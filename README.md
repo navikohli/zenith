@@ -1,8 +1,15 @@
-# Zenith
+# zenith
 
-Zenith is your self-hosted feedback hub. This baseline rebrands the upstream
-application and runs the existing app, PostgreSQL and object storage locally.
-Product identity and feedback-to-delivery workflow additions are not implemented yet.
+Zenith is your self-hosted feedback hub. It runs the existing TypeScript/Bun,
+React/TanStack, PostgreSQL and object-storage stack locally, with application-signed
+product identity, private page screenshots and browser diagnostics, and a headless
+feedback-to-delivery workflow.
+
+Feedback can be claimed and assessed collectively, saved as a private implementation
+plan, approved by its exact hash, implemented and tested, then closed after a matching
+deployment receipt and smoke check. Reporter notifications use the existing job queue
+and mail provider. See the [feedback workflow guide](docs/zenith-feedback-loop.md)
+for product registration, API access, agent adapters and approval/deployment boundaries.
 
 ## Run locally on Windows
 
