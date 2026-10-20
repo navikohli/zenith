@@ -14,7 +14,7 @@ import {
   approvalBellTitle,
 } from '@/lib/server/domains/notifications/notification.service'
 import type { CreateNotificationInput, NotificationType } from '@/lib/server/domains/notifications'
-import type { PrincipalId, PostId, PostCommentId, ConversationMessageId } from '@quackback/ids'
+import type { PrincipalId, PostId, PostCommentId, ConversationMessageId } from '@zenith/ids'
 import { truncate, isRetryableError } from '../hook-utils'
 import { logger } from '@/lib/server/logger'
 import {

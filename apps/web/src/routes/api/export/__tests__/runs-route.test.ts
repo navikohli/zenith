@@ -3,7 +3,7 @@
  * export history and single-run polling for the hub.
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { createId } from '@quackback/ids'
+import { createId } from '@zenith/ids'
 
 const hoisted = vi.hoisted(() => ({
   mockValidateAccess: vi.fn(),

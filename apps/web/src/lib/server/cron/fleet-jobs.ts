@@ -1,8 +1,8 @@
 /**
  * The scheduled sweeps.
  *
- * `startup.ts` arms these on the always-on worker (`QUACKBACK_ROLE=worker` or
- * `all`) under both tenancy modes. `QUACKBACK_CRON_JOB` is a one-shot entry
+ * `startup.ts` arms these on the always-on worker (`ZENITH_ROLE=worker` or
+ * `all`) under both tenancy modes. `ZENITH_CRON_JOB` is a one-shot entry
  * point for the same bodies — run one named job and exit — not the live
  * topology. Compute and Postgres stay up, so fanning a tick across the fleet
  * through `withSweepLock` is just the work.
@@ -198,7 +198,7 @@ export async function runFleetMigratorPass(): Promise<void> {
 }
 
 /**
- * One-shot jobs a process can name via `QUACKBACK_CRON_JOB`.
+ * One-shot jobs a process can name via `ZENITH_CRON_JOB`.
  *
  * The live worker runs the same bodies on timers in `startup.ts`. These names
  * stay as an ad-hoc / rollback entry point: one pass, then exit.

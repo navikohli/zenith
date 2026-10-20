@@ -33,8 +33,8 @@ import {
 import { sql, isNull } from 'drizzle-orm'
 import { getTierLimits } from '@/lib/server/domains/settings/tier-limits.service'
 import { enforceCountLimit } from '@/lib/server/domains/settings/tier-enforce'
-import { createId } from '@quackback/ids'
-import { type PostId, type PrincipalId, type UserId, type PostTagId } from '@quackback/ids'
+import { createId } from '@zenith/ids'
+import { type PostId, type PrincipalId, type UserId, type PostTagId } from '@zenith/ids'
 import {
   dispatchPostStatusChanged,
   dispatchPostUpdated,

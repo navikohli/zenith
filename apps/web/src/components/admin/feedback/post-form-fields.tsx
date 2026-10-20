@@ -150,7 +150,7 @@ export function PostFormFields({
                     videos: richMediaEnabled,
                     tables: richMediaEnabled,
                     embeds: richMediaEnabled && videoEmbedsEnabled,
-                    quackbackEmbeds: true,
+                    zenithEmbeds: true,
                     bubbleMenu: true,
                     slashMenu: true,
                   }}

@@ -8,7 +8,7 @@
 import { db, apiKeys, principal, eq, and, isNull } from '@/lib/server/db'
 import { emit } from '@/lib/server/events/emit'
 import { apiKeyCreated, apiKeyDeleted } from '@/lib/server/events/catalogue'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 import { NotFoundError, ValidationError } from '@/lib/shared/errors'
 import { isAdmin } from '@/lib/shared/roles'
 import { createHash, randomBytes, timingSafeEqual } from 'crypto'

@@ -9,7 +9,7 @@ import type {
   PrincipalId,
   PostId,
   SegmentId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import type { PublishState } from '@/lib/shared/schemas/changelog'
 
 export type { PublishState } from '@/lib/shared/schemas/changelog'

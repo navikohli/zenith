@@ -13,7 +13,7 @@ import { mergeSuggestionQueries } from '@/lib/client/queries/signals'
 import type { CurrentUser } from '@/lib/shared/types'
 import type { Board, PostTag, PostStatusEntity } from '@/lib/shared/db-types'
 import type { TeamMember } from '@/lib/shared/types'
-import type { PostId } from '@quackback/ids'
+import type { PostId } from '@zenith/ids'
 import { useOpenPost } from '@/components/admin/feedback/use-open-post'
 
 interface InboxContainerProps {

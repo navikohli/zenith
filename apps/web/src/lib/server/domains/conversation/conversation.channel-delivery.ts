@@ -4,7 +4,7 @@
  */
 import { db, eq, conversationMessages, type ConversationMessageMetadata } from '@/lib/server/db'
 import type { Channel, ChannelDelivery } from '@/lib/shared/db-types'
-import type { ConversationMessageId } from '@quackback/ids'
+import type { ConversationMessageId } from '@zenith/ids'
 import { getChannelDescriptor } from '@/lib/shared/channels'
 import { broadcastInboxMessageUpdated } from './message.actions'
 

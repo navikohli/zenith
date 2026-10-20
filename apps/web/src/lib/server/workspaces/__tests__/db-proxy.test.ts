@@ -62,7 +62,7 @@ function makeHandle(label: string) {
 
 const singleHandle = makeHandle('single')
 
-vi.mock('@quackback/db/client', async (importOriginal) => {
+vi.mock('@zenith/db/client', async (importOriginal) => {
   const actual = await importOriginal<Record<string, unknown>>()
   return {
     ...actual,
@@ -75,7 +75,7 @@ describe('db proxy — single workspaces', () => {
   beforeEach(() => {
     vi.resetModules()
     stubBaseEnv()
-    vi.stubEnv('QUACKBACK_TENANCY', 'single')
+    vi.stubEnv('ZENITH_TENANCY', 'single')
     vi.stubEnv('DATABASE_URL', 'postgresql://u@localhost:5432/x')
     singleHandle.seenThis = null
     // The singleton is cached on globalThis across module reloads.
@@ -107,9 +107,9 @@ describe('db proxy — pooled workspaces', () => {
   beforeEach(() => {
     vi.resetModules()
     stubBaseEnv()
-    vi.stubEnv('QUACKBACK_TENANCY', 'pooled')
+    vi.stubEnv('ZENITH_TENANCY', 'pooled')
     vi.stubEnv('DATABASE_URL', '')
-    vi.stubEnv('QUACKBACK_CONTROL_DATABASE_URL', 'postgresql://u@localhost:5432/control')
+    vi.stubEnv('ZENITH_CONTROL_DATABASE_URL', 'postgresql://u@localhost:5432/control')
     delete (globalThis as { __db?: unknown }).__db
   })
 

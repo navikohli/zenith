@@ -7,7 +7,7 @@ import { TableCell, TableRow } from '@/components/ui/table'
 import { LocalDate } from '@/components/ui/local-date'
 import { cancelInvitationFn, resendInvitationFn } from '@/lib/server/functions/admin'
 import { formatDistanceToNow } from 'date-fns'
-import type { InviteId } from '@quackback/ids'
+import type { InviteId } from '@zenith/ids'
 
 export interface PendingInvitation {
   id: string

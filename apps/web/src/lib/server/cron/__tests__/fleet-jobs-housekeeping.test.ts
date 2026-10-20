@@ -122,7 +122,7 @@ function reject(label: string) {
 }
 
 beforeEach(() => {
-  vi.stubEnv('QUACKBACK_TENANCY', 'pooled')
+  vi.stubEnv('ZENITH_TENANCY', 'pooled')
   lockNow.ms = 1_700_000_000_000
   lockStore.clear()
   for (const fn of [

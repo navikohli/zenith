@@ -1,5 +1,5 @@
 /**
- * Email sending module for Quackback
+ * Email sending module for Zenith
  *
  * Sends through the Amazon SES v2 API, Nodemailer for SMTP, or the Resend API,
  * with React Email components. No build step required - React components are
@@ -15,7 +15,7 @@ import { render } from '@react-email/components'
 import nodemailer from 'nodemailer'
 import type { Transporter } from 'nodemailer'
 import { Resend } from 'resend'
-import { createLogger } from '@quackback/logger'
+import { createLogger } from '@zenith/logger'
 import { isSyntheticAnonEmail } from './anon'
 import { applyDisplayName, sendViaSes } from './ses'
 import { sendViaResend } from './resend'
@@ -167,7 +167,7 @@ function getProvider(): EmailProvider {
 }
 
 // Recipient addresses (PII) are never logged here — log provider + ids only.
-const log = createLogger({ base: { service_name: 'quackback-email' } }).child({
+const log = createLogger({ base: { service_name: 'zenith-email' } }).child({
   component: 'email',
 })
 
@@ -335,7 +335,7 @@ async function dispatch(
   const threadingHeaders = buildThreadingHeaders(options)
 
   // Defense in depth: the synthetic anonymous placeholder domain
-  // (temp-<id>@anon.quackback.io) is never deliverable. Callers sanitize via
+  // (temp-<id>@anon.zenith.io) is never deliverable. Callers sanitize via
   // realEmail(), but if one slips through, drop it here rather than bounce.
   if (isSyntheticAnonEmail(options.to)) {
     log.warn('refusing to send to synthetic anonymous address')
@@ -689,7 +689,7 @@ export async function sendWelcomeEmail(params: SendWelcomeParams): Promise<Email
 
   return sendEmail({
     to,
-    subject: `Welcome to ${workspaceName} on Quackback!`,
+    subject: `Welcome to ${workspaceName} on Zenith!`,
     react: WelcomeEmail({ name, workspaceName, dashboardUrl, logoUrl }),
     emailType: 'WelcomeEmail',
     preview: { dashboardUrl },
@@ -817,7 +817,7 @@ export async function sendSignupNotAllowedEmail(
   log.debug('sending sign-in refusal email')
   return sendEmail({
     to,
-    subject: 'About your Quackback sign-in request',
+    subject: 'About your Zenith sign-in request',
     react: SignupNotAllowedEmail({ workspaceName, logoUrl }),
     emailType: 'SignupNotAllowedEmail',
   })
@@ -841,7 +841,7 @@ export async function sendPasswordResetEmail(
   log.debug('sending password reset email')
   return sendEmail({
     to,
-    subject: 'Reset your Quackback password',
+    subject: 'Reset your Zenith password',
     react: PasswordResetEmail({ resetLink, logoUrl }),
     emailType: 'PasswordResetEmail',
     preview: { resetLink },

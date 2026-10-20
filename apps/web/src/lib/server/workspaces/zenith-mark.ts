@@ -1,0 +1,2 @@
+/** Inline Zenith mark for the asset-independent unavailable page. */
+export const ZENITH_MARK_SVG = '<svg width="28" height="28" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="#153a47"/><path d="M16 18h32v7L27 40h21v7H16v-7l21-15H16z" fill="#6ce5c8"/></svg>'

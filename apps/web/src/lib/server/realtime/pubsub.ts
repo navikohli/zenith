@@ -12,7 +12,7 @@
  * **One wire channel per database, logical channels inside the payload.**
  * A NOTIFY channel is an identifier capped at 63 bytes, and
  * `conversation:<uuid>` under a workspace prefix does not fit. So every message
- * travels on `quackback_realtime` and names its logical channel in the
+ * travels on `zenith_realtime` and names its logical channel in the
  * envelope. Every subscriber on a replica sees its own workspace's whole realtime
  * stream and filters in process — which is what the previous in-process
  * listener registry already did, one level down.
@@ -185,7 +185,7 @@ async function directConnection(): Promise<{ url: string; password?: () => Promi
   const scope = getWorkspaceScope()
   if (!scope) {
     throw new Error(
-      'realtime subscribe requires a workspace scope under QUACKBACK_TENANCY=pooled: ' +
+      'realtime subscribe requires a workspace scope under ZENITH_TENANCY=pooled: ' +
         "the LISTEN connection is built from this workspace's direct DSN."
     )
   }
@@ -346,7 +346,7 @@ export async function publishAsync(channel: string, payload: unknown): Promise<v
   const namespace = currentWorkspaceNamespace()
   const inline = JSON.stringify({ t: namespace, c: channel, p: payload } satisfies Envelope)
   if (Buffer.byteLength(inline, 'utf8') <= NOTIFY_PAYLOAD_LIMIT) {
-    await db.execute(sql`SELECT pg_notify(${'quackback_realtime'}, ${inline})`)
+    await db.execute(sql`SELECT pg_notify(${'zenith_realtime'}, ${inline})`)
     return
   }
 
@@ -364,7 +364,7 @@ export async function publishAsync(channel: string, payload: unknown): Promise<v
   const id = rows[0]?.id
   if (id === undefined) throw new Error('realtime overflow insert returned no id')
   const envelope = JSON.stringify({ t: namespace, c: channel, o: String(id) } satisfies Envelope)
-  await db.execute(sql`SELECT pg_notify(${'quackback_realtime'}, ${envelope})`)
+  await db.execute(sql`SELECT pg_notify(${'zenith_realtime'}, ${envelope})`)
 }
 
 /** Drain every listener connection on graceful shutdown. */

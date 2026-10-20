@@ -7,7 +7,7 @@ import {
   primaryKey,
   foreignKey,
 } from 'drizzle-orm/pg-core'
-import { typeIdColumn } from '@quackback/ids/drizzle'
+import { typeIdColumn } from '@zenith/ids/drizzle'
 import { principal } from './auth'
 import { conversations } from './conversation'
 

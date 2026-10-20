@@ -8,8 +8,8 @@
  * because this workspace has published nothing of its own in that zone.
  */
 import { describe, it, expect, beforeEach, afterEach, afterAll, vi } from 'vitest'
-import { createId, type SendingDomainId, type TeamId } from '@quackback/ids'
-import type { SesDomainIdentity, SesIdentityCreation } from '@quackback/email/ses-identity'
+import { createId, type SendingDomainId, type TeamId } from '@zenith/ids'
+import type { SesDomainIdentity, SesIdentityCreation } from '@zenith/email/ses-identity'
 
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { eq, sql, teams, emailSendingDomains, type SendingDomainDnsRecord } from '@/lib/server/db'
@@ -23,8 +23,8 @@ const createIdentity = vi.fn<(domain: string) => Promise<SesIdentityCreation>>()
 const getIdentity = vi.fn<(domain: string) => Promise<SesDomainIdentity | null>>()
 const putMailFrom = vi.fn<(domain: string, mailFrom: string) => Promise<void>>()
 
-vi.mock('@quackback/email/ses-identity', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@quackback/email/ses-identity')>()),
+vi.mock('@zenith/email/ses-identity', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@zenith/email/ses-identity')>()),
   createSesDomainIdentity: (domain: string) => createIdentity(domain),
   getSesDomainIdentity: (domain: string) => getIdentity(domain),
   putSesMailFromDomain: (domain: string, mailFrom: string) => putMailFrom(domain, mailFrom),
@@ -131,7 +131,7 @@ describe.skipIf(!fixture.available)('sending-identity (real DB, rolled back)', (
   beforeEach(async () => {
     await fixture.begin()
     vi.stubEnv('EMAIL_SES_REGION', REGION)
-    vi.stubEnv('EMAIL_FROM', 'Quackback <notifications@mail.platform.test>')
+    vi.stubEnv('EMAIL_FROM', 'Zenith <notifications@mail.platform.test>')
     vi.stubEnv('EMAIL_INBOUND_DOMAIN', 'mail.platform.test')
     createIdentity.mockReset().mockResolvedValue(madeIt({ dkimStatus: 'PENDING' }))
     getIdentity.mockReset().mockResolvedValue(identity({ dkimStatus: 'PENDING' }))
@@ -158,7 +158,7 @@ describe.skipIf(!fixture.available)('sending-identity (real DB, rolled back)', (
     expect(row.domain).toBe('tenant-a.example')
     expect(row.status).toBe('pending')
     expect(row.dnsRecords.map((r) => `${r.type} ${r.host}`)).toEqual([
-      'TXT _quackback',
+      'TXT _zenith',
       'CNAME aaa._domainkey',
       'CNAME bbb._domainkey',
       'CNAME ccc._domainkey',
@@ -187,7 +187,7 @@ describe.skipIf(!fixture.available)('sending-identity (real DB, rolled back)', (
     expect(checkedRecords).toHaveBeenCalledWith('tenant-a.example', expect.anything())
     // Exactly the ownership record, carrying this row's own minted token.
     expect(lastChecked()).toEqual([
-      { type: 'TXT', host: '_quackback', value: token, purpose: 'ownership' },
+      { type: 'TXT', host: '_zenith', value: token, purpose: 'ownership' },
     ])
     // Never nothing, and never a value another workspace also publishes.
     expect(lastChecked()).not.toHaveLength(0)
@@ -271,7 +271,7 @@ describe.skipIf(!fixture.available)('sending-identity (real DB, rolled back)', (
       .update(emailSendingDomains)
       .set({
         dnsRecords: [
-          { type: 'TXT', host: '_quackback', value: 'v=spf1 -all', purpose: 'ownership' },
+          { type: 'TXT', host: '_zenith', value: 'v=spf1 -all', purpose: 'ownership' },
         ],
       })
       .where(eq(emailSendingDomains.id, row.id))
@@ -403,7 +403,7 @@ describe.skipIf(!fixture.available)('sending-identity (real DB, rolled back)', (
         sql`SELECT objid FROM pg_locks
             WHERE locktype = 'advisory'
               AND pid = pg_backend_pid()
-              AND objid = (SELECT hashtext('quackback:sending_domain_slot')::bigint & 4294967295)`
+              AND objid = (SELECT hashtext('zenith:sending_domain_slot')::bigint & 4294967295)`
       )
       expect([...(held as unknown as { objid: number }[])]).toHaveLength(1)
     })

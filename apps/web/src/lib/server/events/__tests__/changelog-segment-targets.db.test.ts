@@ -12,7 +12,7 @@
  * notification preferences) are mocked so the test exercises only the
  * subscriber-selection SQL.
  *
- * Connects via DATABASE_URL (vitest pins quackback_test), falling back to the
+ * Connects via DATABASE_URL (vitest pins zenith_test), falling back to the
  * dev DB; skips gracefully when neither is reachable — same pattern as
  * help-center-segment-gate.integration.test.ts.
  */
@@ -50,8 +50,8 @@ import {
   type Database,
 } from '@/lib/server/db'
 // oxlint-disable-next-line no-restricted-imports -- legitimate createDb caller: this file owns the global db for its worker (see help-center-segment-gate.integration.test.ts)
-import { createDb } from '@quackback/db/client'
-import { createId, type ChangelogId, type PrincipalId, type SegmentId } from '@quackback/ids'
+import { createDb } from '@zenith/db/client'
+import { createId, type ChangelogId, type PrincipalId, type SegmentId } from '@zenith/ids'
 import { getChangelogSubscriberTargets } from '../targets'
 import type { EventData } from '../types'
 import type { HookContext } from '../hook-context'
@@ -71,7 +71,7 @@ const OUTSIDER_EMAIL = `seg-outsider-${runSuffix}@example.com`
 
 const CANDIDATE_URLS = [
   process.env.DATABASE_URL,
-  'postgresql://postgres:password@localhost:5432/quackback',
+  'postgresql://postgres:password@localhost:5432/zenith',
 ].filter((u): u is string => !!u)
 
 async function pickWorkingDb(): Promise<{ db: Database; close: () => Promise<void> } | null> {

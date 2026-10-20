@@ -16,7 +16,7 @@ import {
   toAttachments,
   markdownToSanitizedJson,
 } from './-validation'
-import type { TicketId } from '@quackback/ids'
+import type { TicketId } from '@zenith/ids'
 
 const replySchema = z.object({
   content: messageContentSchema,

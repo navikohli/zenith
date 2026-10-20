@@ -3,7 +3,7 @@
  * the whole list in the requested direction, not reorder one loaded page.
  */
 import { describe, it, expect, vi, beforeEach, afterEach, afterAll } from 'vitest'
-import { createId, type ChangelogId } from '@quackback/ids'
+import { createId, type ChangelogId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { changelogEntries } from '@/lib/server/db'
 

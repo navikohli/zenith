@@ -44,7 +44,7 @@ vi.mock('@/lib/server/domains/platform-credentials/platform-credential.service',
   getConfiguredIntegrationTypes: vi.fn().mockResolvedValue(new Set()),
   getPlatformCredentials: vi.fn().mockResolvedValue(null),
 }))
-vi.mock('@quackback/email', () => ({ isEmailConfigured: vi.fn().mockReturnValue(false) }))
+vi.mock('@zenith/email', () => ({ isEmailConfigured: vi.fn().mockReturnValue(false) }))
 vi.mock('@/lib/server/auth/auth-providers', () => ({
   getAllAuthProviders: vi.fn().mockReturnValue([]),
 }))
@@ -187,13 +187,13 @@ describe('getWorkspaceSettings across requests, in production', () => {
     expect((await inRequest(() => getWorkspaceSettings()))?.name).toBe('First')
   })
 
-  it('takes its window from QUACKBACK_SETTINGS_CACHE_MS, where 0 turns the copy off', async () => {
-    vi.stubEnv('QUACKBACK_SETTINGS_CACHE_MS', '0')
+  it('takes its window from ZENITH_SETTINGS_CACHE_MS, where 0 turns the copy off', async () => {
+    vi.stubEnv('ZENITH_SETTINGS_CACHE_MS', '0')
     await inRequest(() => getWorkspaceSettings())
     await inRequest(() => getWorkspaceSettings())
     expect(mockKvGet).toHaveBeenCalledTimes(2)
 
-    vi.stubEnv('QUACKBACK_SETTINGS_CACHE_MS', '60000')
+    vi.stubEnv('ZENITH_SETTINGS_CACHE_MS', '60000')
     forgetCachedKeys('settings:workspace')
     await inRequest(() => getWorkspaceSettings())
     vi.advanceTimersByTime(SETTINGS_LOCAL_TTL_MS + 1)

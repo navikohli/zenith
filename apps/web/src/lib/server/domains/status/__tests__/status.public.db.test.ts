@@ -34,7 +34,7 @@ import {
   type SegmentId,
   type StatusComponentId,
   type StatusIncidentId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import { ANONYMOUS_ACTOR, type Actor } from '@/lib/server/policy/types'
 import {
   getPublicStatusIncident,

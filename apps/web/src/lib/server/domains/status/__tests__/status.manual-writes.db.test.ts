@@ -17,7 +17,7 @@
 import { afterAll, afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import postgres from 'postgres'
 import { drizzle } from 'drizzle-orm/postgres-js'
-import type { StatusComponentId, StatusIncidentId } from '@quackback/ids'
+import type { StatusComponentId, StatusIncidentId } from '@zenith/ids'
 
 const race = vi.hoisted(() => ({
   schema: `status_manual_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`,

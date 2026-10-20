@@ -1,9 +1,9 @@
 # Migrating a fleet
 
-How a pooled Quackback fleet gets its workspace databases from one schema version
+How a pooled Zenith fleet gets its workspace databases from one schema version
 to the next (`SAAS-HOSTING-STACK.md` §10).
 
-`QUACKBACK_TENANCY=single` — every self-hosted install — is untouched by all of
+`ZENITH_TENANCY=single` — every self-hosted install — is untouched by all of
 this. One pod owns one database and migrates it at boot, exactly as it always
 has.
 
@@ -23,7 +23,7 @@ workspace's slowest index build.
 So: **the control plane records intent, and the app reconciles toward it.**
 
 ```
-control DB                          app image (QUACKBACK_ROLE=migrator)
+control DB                          app image (ZENITH_ROLE=migrator)
 ──────────                          ─────────────────────────────────
 cp_workspace_schema_state              claim a workspace (lease)
   target_version   ← CP writes  ──► migrate its database (direct endpoint)
@@ -543,7 +543,7 @@ failed, halt and read · `2` the invocation was wrong.
 
 ### Configuration is validated at boot, and a bad value exits
 
-`MIN_SCHEMA_VERSION` and `QUACKBACK_ROLE` are checked by
+`MIN_SCHEMA_VERSION` and `ZENITH_ROLE` are checked by
 `lib/server/boot-config.ts`, called as the **first statement of `server.ts`** —
 above the eager database warmup, so the refusal happens before any socket is
 opened. That ordering is asserted on the source, because no unit test of either
@@ -562,7 +562,7 @@ Measured after the change, with the good-config row as the control:
 
 ```
 MIN_SCHEMA_VERSION=9999   exit=1  REFUSING TO START   control-DB transactions during boot: 0
-QUACKBACK_ROLE=banana     exit=1  REFUSING TO START   control-DB transactions during boot: 0
+ZENITH_ROLE=banana     exit=1  REFUSING TO START   control-DB transactions during boot: 0
 MIN_SCHEMA_VERSION=0251   runs on to logStartupBanner()  control-DB transactions during boot: 3
 ```
 
@@ -582,9 +582,9 @@ times.
 
 | Variable                         | Meaning                                                                                                                           |
 | -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| `QUACKBACK_ROLE=migrator`        | serves nothing, runs no queues. `shouldRunWorkers()` is an allowlist, so this role starts neither the job worker nor the sweepers |
-| `QUACKBACK_TENANCY=pooled`       | required; the registry is the workspace source                                                                                    |
-| `QUACKBACK_CONTROL_DATABASE_URL` | where `cp_workspace_schema_state` lives                                                                                           |
+| `ZENITH_ROLE=migrator`        | serves nothing, runs no queues. `shouldRunWorkers()` is an allowlist, so this role starts neither the job worker nor the sweepers |
+| `ZENITH_TENANCY=pooled`       | required; the registry is the workspace source                                                                                    |
+| `ZENITH_CONTROL_DATABASE_URL` | where `cp_workspace_schema_state` lives                                                                                           |
 | `MIN_SCHEMA_VERSION`             | the serving floor. Read by the **web** role, not by this one                                                                      |
 
 ### Connections

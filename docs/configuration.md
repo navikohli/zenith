@@ -1,6 +1,6 @@
 # Runtime configuration
 
-Quackback validates required runtime configuration before it starts workers or accepts traffic.
+Zenith validates required runtime configuration before it starts workers or accepts traffic.
 
 | Variable       | Required | Description                                                           |
 | -------------- | -------: | --------------------------------------------------------------------- |
@@ -12,7 +12,7 @@ Production Compose supplies `DATABASE_URL` from its bundled service. You must se
 
 | Operational variable       |                Default | Description                                                                                                   |
 | -------------------------- | ---------------------: | ------------------------------------------------------------------------------------------------------------- |
-| `QUACKBACK_ROLE`           |                  `all` | `web`, `worker`, or `all`; split roles when scaling replicas.                                                 |
+| `ZENITH_ROLE`           |                  `all` | `web`, `worker`, or `all`; split roles when scaling replicas.                                                 |
 | `DB_POOL_MAX`              | `10` web / `20` worker | Maximum PostgreSQL connections per process. Keep the replica total below the server budget.                   |
 | `DB_IDLE_TIMEOUT`          |                   `20` | Seconds before an idle database connection is closed.                                                         |
 | `TRUSTED_PROXY_HOPS`       |                    `0` | Proxy hops permitted to supply client-IP headers. Keep `0` when directly exposed.                             |
@@ -60,9 +60,9 @@ Validate representative workspaces with `EXPLAIN (ANALYZE, BUFFERS)`: nearest-ne
 
 ## Integration gateway and Slack assistant
 
-Cloud fleets can set `INTEGRATION_OAUTH_GATEWAY_URL=https://app.quackback.io` to use a single OAuth callback origin for shared integration apps. Leave it unset for self-hosted installations. `INTEGRATION_GATEWAY_FORWARD_SECRET` authenticates app-level hooks forwarded by the control plane and is required for these hooks in pooled tenancy. Configure it on both fleet web and worker processes.
+Cloud fleets can set `INTEGRATION_OAUTH_GATEWAY_URL=/source.html` to use a single OAuth callback origin for shared integration apps. Leave it unset for self-hosted installations. `INTEGRATION_GATEWAY_FORWARD_SECRET` authenticates app-level hooks forwarded by the control plane and is required for these hooks in pooled tenancy. Configure it on both fleet web and worker processes.
 
-On Cloud, set `QUACKBACK_JOB_WORKER_URL` on the **web** service to the worker's private origin (for example `http://${{worker.RAILWAY_PRIVATE_DOMAIN}}:3000`) so Slack and other on-demand jobs start by id instead of waiting for the worker poll. The publisher also requires `QUACKBACK_FLEET_INTERNAL_TOKEN` on web; without both it stays idle and the poll is the floor. Point the URL at the worker, not a web replica: a process that is not running workers returns 503 so the publisher retries. Leave the URL unset to keep poll-only behaviour. Self-host `QUACKBACK_ROLE=all` does not need the URL: after-commit claims in-process.
+On Cloud, set `ZENITH_JOB_WORKER_URL` on the **web** service to the worker's private origin (for example `http://${{worker.RAILWAY_PRIVATE_DOMAIN}}:3000`) so Slack and other on-demand jobs start by id instead of waiting for the worker poll. The publisher also requires `ZENITH_FLEET_INTERNAL_TOKEN` on web; without both it stays idle and the poll is the floor. Point the URL at the worker, not a web replica: a process that is not running workers returns 503 so the publisher retries. Leave the URL unset to keep poll-only behaviour. Self-host `ZENITH_ROLE=all` does not need the URL: after-commit claims in-process.
 
 For single-tenancy deployments with `PLATFORM_CREDENTIALS_SOURCE=env`, complete credentials for an individual provider are managed from environment variables; other providers fall back to database credentials. Slack uses `INTEGRATION_SLACK_CLIENT_ID`, `INTEGRATION_SLACK_CLIENT_SECRET`, and `INTEGRATION_SLACK_SIGNING_SECRET`. Existing tenant-registered resource webhooks retain their current routes and secrets.
 

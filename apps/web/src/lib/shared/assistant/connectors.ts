@@ -148,7 +148,7 @@ export interface BuiltinConnectorToolDTO {
 }
 
 export interface BuiltinConnectorDTO {
-  id: 'quackback'
+  id: 'zenith'
   name: string
   builtin: true
   tools: BuiltinConnectorToolDTO[]

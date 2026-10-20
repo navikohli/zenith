@@ -1,5 +1,5 @@
 import { afterAll, afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { createId, type PostId, type PrincipalId, type PostCommentId } from '@quackback/ids'
+import { createId, type PostId, type PrincipalId, type PostCommentId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import {
   boards,
@@ -66,7 +66,7 @@ describe('test feedback stays inside its customer session and team workspace', (
     expect(fixture.available).toBe(true)
     await fixture.begin()
     const [database] = await testDb.execute(sql`select current_database() as name`)
-    expect(String(database.name)).toMatch(/^quackback_test(?:_\w+)?$/)
+    expect(String(database.name)).toMatch(/^zenith_test(?:_\w+)?$/)
     const owner = await teamMember()
     const otherOwner = await teamMember()
     const customerId = createId('principal'),

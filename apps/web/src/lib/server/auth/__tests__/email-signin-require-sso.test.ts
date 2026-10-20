@@ -63,14 +63,14 @@ vi.mock('../registered-providers', () => ({
   getRegisteredOidcProviderIds: (...a: unknown[]) => hoisted.getRegisteredOidcProviderIds(...a),
 }))
 
-vi.mock('@quackback/email', () => ({
+vi.mock('@zenith/email', () => ({
   isEmailConfigured: () => true,
   sendMagicLinkEmail: hoisted.sendMagicLinkEmail,
   sendSignupNotAllowedEmail: hoisted.sendSignupNotAllowedEmail,
 }))
 
 vi.mock('@/lib/server/storage/s3', () => ({ getEmailSafeUrl: () => null }))
-vi.mock('@/lib/server/config', () => ({ config: { baseUrl: 'https://acme.quackback.io' } }))
+vi.mock('@/lib/server/config', () => ({ config: { baseUrl: 'https://acme.zenith.io' } }))
 
 import { requestEmailSignin, EmailSigninRefusedError } from '../email-signin'
 

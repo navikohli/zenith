@@ -6,7 +6,7 @@
  */
 
 import { useMutation, useQueryClient, type InfiniteData } from '@tanstack/react-query'
-import type { NotificationId } from '@quackback/ids'
+import type { NotificationId } from '@zenith/ids'
 import {
   markNotificationAsReadFn,
   markAllNotificationsAsReadFn,

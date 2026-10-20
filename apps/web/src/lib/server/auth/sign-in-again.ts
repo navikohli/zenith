@@ -4,7 +4,7 @@
  * sign-in form routes on (`lookupAuthMethodsFn`), plus their own linked
  * sign-ins. The decision itself is `resolveSignInAgainMethods`.
  */
-import type { UserId } from '@quackback/ids'
+import type { UserId } from '@zenith/ids'
 import { account, db, desc, eq } from '@/lib/server/db'
 import { getAuthProviderByProviderId } from '@/lib/server/auth/auth-providers'
 import { hasRecentSignIn } from '@/lib/server/auth/recent-sign-in'

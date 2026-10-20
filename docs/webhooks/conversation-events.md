@@ -40,9 +40,9 @@ comment event).
 
 ## Verifying delivery
 
-Each request carries `X-Quackback-Signature: sha256=<hex>` and `X-Quackback-Timestamp: <unix>`.
+Each request carries `X-Zenith-Signature: sha256=<hex>` and `X-Zenith-Timestamp: <unix>`.
 
-1. Recompute `HMAC-SHA256(secret, "<X-Quackback-Timestamp>.<raw body>")` and compare
+1. Recompute `HMAC-SHA256(secret, "<X-Zenith-Timestamp>.<raw body>")` and compare
    it to the signature using a constant-time comparison.
 2. Reject requests whose timestamp is more than ~5 minutes old (replay protection).
    Never use a tolerance of `0`.

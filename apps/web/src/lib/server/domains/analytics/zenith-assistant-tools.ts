@@ -1,9 +1,9 @@
-/** Action metrics for the Quinn performance area. */
+/** Action metrics for the ZenithAssistant performance area. */
 import { db, and, gte, lt, sql, assistantToolCalls } from '@/lib/server/db'
 import { ratePctOrNull } from '@/lib/shared/percent'
 import { notTestConversation } from '@/lib/server/test-data'
 
-export interface QuinnToolMetric {
+export interface ZenithAssistantToolMetric {
   toolName: string
   succeeded: number
   failed: number
@@ -24,7 +24,7 @@ interface ToolCallAggregateRow {
   avgLatencyMs: number | null
 }
 
-function toMetric(row: ToolCallAggregateRow): QuinnToolMetric {
+function toMetric(row: ToolCallAggregateRow): ZenithAssistantToolMetric {
   const attempted = row.succeeded + row.failed + row.denied
   return {
     toolName: row.toolName,
@@ -43,7 +43,7 @@ function toMetric(row: ToolCallAggregateRow): QuinnToolMetric {
  * calls' average latency, sorted by total calls descending (most-used tools
  * first).
  */
-export async function getQuinnToolMetrics(from: Date, to: Date): Promise<QuinnToolMetric[]> {
+export async function getZenithAssistantToolMetrics(from: Date, to: Date): Promise<ZenithAssistantToolMetric[]> {
   const rows = await db
     .select({
       toolName: assistantToolCalls.toolName,

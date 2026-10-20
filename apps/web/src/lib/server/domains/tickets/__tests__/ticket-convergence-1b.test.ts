@@ -13,10 +13,10 @@
  *    conversation-parented via the Phase 1a redirect.
  *  - THE SIDE-EFFECT GATING TABLE: `conversation.created` FIRES (workflows +
  *    webhooks ride it) with the opening message already in place;
- *    notifyConversationStarted / auto-routing / Quinn stay SUPPRESSED — at
+ *    notifyConversationStarted / auto-routing / ZenithAssistant stay SUPPRESSED — at
  *    intake AND on a follow-up visitor message, including the LEGACY
  *    widget-source pair shape (the Phase 1a flag: a redirected portal/widget
- *    requester reply must not summon Quinn).
+ *    requester reply must not summon ZenithAssistant).
  *  - THE UNCHANGED PATHS: no-requester creates (back-office, requester-less
  *    customer) and flag-less agent creates (admin dialog / convert_to_ticket
  *    shape) stay standalone — no conversation, no link.
@@ -28,7 +28,7 @@
  * The two webhook bridges, realtime, and the notify layer are fully mocked
  * (spy bags — same pattern as ticket-convergence-1a.test.ts), so no event
  * pipeline, pub/sub, or email runs; the assistant orchestrator is a spy so the
- * Quinn gate is assertable at the dispatch site.
+ * ZenithAssistant gate is assertable at the dispatch site.
  */
 import { describe, it, expect, beforeEach, afterEach, afterAll, vi } from 'vitest'
 import {
@@ -38,7 +38,7 @@ import {
   type TicketId,
   type TicketStatusId,
   type UserId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 
 vi.mock('@/lib/server/db', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/lib/server/db')>()),
@@ -99,7 +99,7 @@ const convNotify = vi.hoisted(() => ({
 }))
 vi.mock('../../conversation/conversation.notify', () => convNotify)
 
-// The Quinn spy: the dispatch site's dynamic import resolves here, so a
+// The ZenithAssistant spy: the dispatch site's dynamic import resolves here, so a
 // gated-out turn is simply "never called".
 const assistant = vi.hoisted(() => ({
   runAssistantTurnForConversation: vi.fn().mockResolvedValue(undefined),
@@ -238,7 +238,7 @@ async function readTicket(ticketId: TicketId) {
 }
 
 /**
- * Flush the dispatch site's fire-and-forget Quinn chain (one DB probe + one
+ * Flush the dispatch site's fire-and-forget ZenithAssistant chain (one DB probe + one
  * dynamic import). For a "never called" assertion this pairs with a positive
  * control: once the control's chain has resolved (vi.waitFor), the gated
  * chain — started in the same window — has resolved too.
@@ -447,7 +447,7 @@ describe.skipIf(!fixture.available)('convergence Phase 1b (real DB, rolled back)
       expect(messageVisibleAtDispatch).toBe(true)
     })
 
-    it('SUPPRESSES started-notify, auto-routing, and Quinn at intake', async () => {
+    it('SUPPRESSES started-notify, auto-routing, and ZenithAssistant at intake', async () => {
       await seedDefaultStatus()
       const requesterP = await seedPrincipal({})
 
@@ -464,7 +464,7 @@ describe.skipIf(!fixture.available)('convergence Phase 1b (real DB, rolled back)
       const link = await readPairLink(dto.id as TicketId)
       const conversation = await readConversation(link!.conversationId)
       expect(conversation.assignedAgentPrincipalId).toBeNull()
-      // Quinn is gated out at intake.
+      // ZenithAssistant is gated out at intake.
       expect(assistant.runAssistantTurnForConversation).not.toHaveBeenCalled()
       // The opening message itself went through the pipeline (message.created
       // fired exactly once, for it).
@@ -504,7 +504,7 @@ describe.skipIf(!fixture.available)('convergence Phase 1b (real DB, rolled back)
       expect(ticket.slaApplied).toBeNull()
     })
 
-    it('a follow-up requester reply lands conversation-parented and still does not summon Quinn', async () => {
+    it('a follow-up requester reply lands conversation-parented and still does not summon ZenithAssistant', async () => {
       await seedDefaultStatus()
       const requesterP = await seedPrincipal({})
       const dto = await intakeCreate(requesterP, { title: 'intake pair', description: 'opening' })
@@ -526,7 +526,7 @@ describe.skipIf(!fixture.available)('convergence Phase 1b (real DB, rolled back)
     })
   })
 
-  describe('the Quinn gate on LEGACY widget-source pairs (the Phase 1a flag)', () => {
+  describe('the ZenithAssistant gate on LEGACY widget-source pairs (the Phase 1a flag)', () => {
     it('suppresses the assistant turn on the pair, fires it on an unpaired control', async () => {
       await seedDefaultStatus()
       const requesterP = await seedPrincipal({})
@@ -631,7 +631,7 @@ describe.skipIf(!fixture.available)('convergence Phase 1b (real DB, rolled back)
       // lands on.
       expect(ticket.firstResponseAt).toBeNull()
 
-      // Gating: conversation.created fires, Quinn stays out, and the matrix's
+      // Gating: conversation.created fires, ZenithAssistant stays out, and the matrix's
       // agent-reply → requester email channel rides the redirect unchanged.
       expect(convEmit.emitConversationCreated).toHaveBeenCalledTimes(1)
       expect(convNotify.notifyAgentReply).toHaveBeenCalledTimes(1)

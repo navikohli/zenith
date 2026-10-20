@@ -15,7 +15,7 @@ import {
   type CompanyId,
   type TicketId,
   type TicketTypeId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import {
@@ -33,7 +33,7 @@ import {
   ticketStatuses,
   ticketConversations,
 } from '@/lib/server/db'
-import { ANON_EMAIL_DOMAIN } from '@quackback/email/anon'
+import { ANON_EMAIL_DOMAIN } from '@zenith/email/anon'
 
 vi.mock('@/lib/server/db', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/lib/server/db')>()),

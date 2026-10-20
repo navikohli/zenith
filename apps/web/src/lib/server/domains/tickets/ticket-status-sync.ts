@@ -11,7 +11,7 @@ import {
   type Transaction,
   type Ticket,
 } from '@/lib/server/db'
-import type { TicketId, TicketStatusId, PrincipalId } from '@quackback/ids'
+import type { TicketId, TicketStatusId, PrincipalId } from '@zenith/ids'
 import { emit } from '@/lib/server/events/emit'
 import {
   ticketStatusChanged,

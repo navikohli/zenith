@@ -19,13 +19,13 @@ import {
   type SetupState,
   type UseCaseType,
   type OnboardingOutcome,
-} from '@quackback/db/types'
+} from '@zenith/db/types'
 
 // Re-export types only to keep this module client-safe.
-export type * from '@quackback/db/types'
+export type * from '@zenith/db/types'
 
 // Plain-data constants (and the pure resolvers beside them) from
-// @quackback/db/types are also safe (no runtime side effects) and let client
+// @zenith/db/types are also safe (no runtime side effects) and let client
 // code stay aligned with the schema defaults.
 export {
   ACCESS_TIERS,
@@ -52,7 +52,7 @@ export {
   APPROVAL_REQUEST_CHANNELS,
   APPROVAL_DECISION_CHANNELS,
   APPROVAL_EXECUTION_STATES,
-} from '@quackback/db/types'
+} from '@zenith/db/types'
 export type {
   AccessTier,
   Channel,
@@ -79,7 +79,7 @@ export type {
   IdentityProviderTestCapture,
   IdentityProviderTestCaptureV1,
   IdentityProviderTestCaptureV2,
-} from '@quackback/db/types'
+} from '@zenith/db/types'
 
 // Schema types needed by client components (type-only = no side effects)
 export type {
@@ -107,7 +107,7 @@ export type {
   StoredProjectedLimits,
   StoredCloudIdentityProjection,
   StoredCloudCustomDomain,
-} from '@quackback/db/schema'
+} from '@zenith/db/schema'
 
 // Runtime exports used in client components.
 export const REACTION_EMOJIS = ['👍', '❤️', '🎉', '😄', '🤔', '👀'] as const

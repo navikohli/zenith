@@ -10,13 +10,13 @@
  *     the request automatically carries request_id + route,
  *   - logs request completion with status, duration and query count, or
  *     failure on throw (a client disconnect at info, anything else at error);
- *     with QUACKBACK_SERVER_TIMING=1 the same numbers go out as a
+ *     with ZENITH_SERVER_TIMING=1 the same numbers go out as a
  *     Server-Timing header for the browser's network panel.
  *
  * Downstream code enriches the context with workspace_key / user_id via
  * setLogContext() once auth resolves.
  */
-import type { AppLogger } from '@quackback/logger'
+import type { AppLogger } from '@zenith/logger'
 import { createMiddleware } from '@tanstack/react-start'
 import { logger } from '@/lib/server/logger'
 import { runWithLogContext } from '@/lib/server/log-context'
@@ -64,7 +64,7 @@ export async function handleRequestWithContext<T extends NextResult>({
   request,
   next,
   log = logger,
-  serverTiming = process.env.QUACKBACK_SERVER_TIMING === '1',
+  serverTiming = process.env.ZENITH_SERVER_TIMING === '1',
 }: {
   request: Request
   next: () => Promise<T>

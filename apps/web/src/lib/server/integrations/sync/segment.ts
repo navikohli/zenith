@@ -1,5 +1,5 @@
 import { db, eq, and, user, segments, userSegments, type integrations } from '@/lib/server/db'
-import type { PrincipalId, UserId, SegmentId } from '@quackback/ids'
+import type { PrincipalId, UserId, SegmentId } from '@zenith/ids'
 import { realEmail } from '@/lib/shared/anonymous-email'
 import { getIntegration } from '../index'
 import { decryptSecrets } from '../encryption'

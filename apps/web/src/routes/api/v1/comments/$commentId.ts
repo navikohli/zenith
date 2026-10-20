@@ -9,7 +9,7 @@ import {
 } from '@/lib/server/domains/api/responses'
 import { parseTypeId } from '@/lib/server/domains/api/validation'
 import { PERMISSIONS } from '@/lib/shared/permissions'
-import type { PostCommentId } from '@quackback/ids'
+import type { PostCommentId } from '@zenith/ids'
 import { contentJsonToMarkdown } from '@/lib/server/markdown-tiptap'
 
 // Input validation schema

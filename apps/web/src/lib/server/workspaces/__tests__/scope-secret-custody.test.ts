@@ -117,7 +117,7 @@ describe('the signing-key consumer still works', () => {
   })
 
   it('throws under pooled tenancy with no workspace scope', () => {
-    vi.stubEnv('QUACKBACK_TENANCY', 'pooled')
+    vi.stubEnv('ZENITH_TENANCY', 'pooled')
     expect(getWorkspaceSecretKey()).toBeNull()
     expect(() => activeSecretKey()).toThrow(WorkspaceScopeMissingError)
     vi.unstubAllEnvs()
@@ -379,7 +379,7 @@ describe('a scope cannot exist without its SECRET_KEY having resolved', () => {
     // ciphertext under a key that is not its own — silently, and only
     // discoverable when something later fails to decrypt.
     const carrier: Record<PropertyKey, unknown> = {}
-    carrier[Symbol.for('quackback.workspaceScope')] = {
+    carrier[Symbol.for('zenith.workspaceScope')] = {
       workspace: makeWorkspaceDescriptor('workspace-alpha'),
       db: {},
       sql: {},

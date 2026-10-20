@@ -28,7 +28,7 @@ import {
   type Database,
   type Transaction,
 } from '@/lib/server/db'
-import type { ConversationId, TicketId } from '@quackback/ids'
+import type { ConversationId, TicketId } from '@zenith/ids'
 import { getExecuteRows } from '@/lib/server/utils/execute-rows'
 import { logger } from '@/lib/server/logger'
 

@@ -36,7 +36,7 @@ import {
   principal,
 } from '@/lib/server/db'
 import type { SQL } from 'drizzle-orm'
-import type { ConversationId } from '@quackback/ids'
+import type { ConversationId } from '@zenith/ids'
 
 /**
  * Whether the message's author is a service principal. A membership test

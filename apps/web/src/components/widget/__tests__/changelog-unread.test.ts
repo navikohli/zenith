@@ -55,7 +55,7 @@ describe('seen marker storage', () => {
   })
 
   it('ignores an unparseable stored marker instead of throwing', () => {
-    window.localStorage.setItem('quackback:changelog-seen-at', 'not-a-date')
+    window.localStorage.setItem('zenith:changelog-seen-at', 'not-a-date')
     expect(getChangelogSeenAt()).toBeNull()
   })
 })

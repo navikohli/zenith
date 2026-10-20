@@ -7,7 +7,7 @@ import { SettingRow, SettingRows } from '@/components/admin/settings/setting-row
 import { SettingsCard } from '@/components/admin/settings/settings-card'
 import { wipeCloudWorkspaceFn } from '@/lib/server/functions/workspace-wipe'
 
-/** How long Quackback Cloud keeps a deleted workspace restorable. Set by the control plane. */
+/** How long Zenith Cloud keeps a deleted workspace restorable. Set by the control plane. */
 const RESTORE_WINDOW_DAYS = 30
 
 /** The irreversible workspace-wide action; absent when the deployment offers none. */
@@ -52,7 +52,7 @@ export function WorkspaceDangerCard({
       <SettingRows>
         <SettingRow
           label="Delete workspace"
-          description={`Takes this workspace offline. You can restore it from your Quackback dashboard for ${RESTORE_WINDOW_DAYS} days, then it's permanently deleted.`}
+          description={`Takes this workspace offline. You can restore it from your Zenith dashboard for ${RESTORE_WINDOW_DAYS} days, then it's permanently deleted.`}
           control={
             <Button
               size="sm"
@@ -70,7 +70,7 @@ export function WorkspaceDangerCard({
         open={wipeOpen}
         onOpenChange={setOpen}
         title="Delete workspace?"
-        description={`It goes offline straight away for everyone, including your portal, widget and custom domain. You can restore it from your Quackback dashboard for ${RESTORE_WINDOW_DAYS} days. After that it's permanently deleted. A paid plan won't renew.`}
+        description={`It goes offline straight away for everyone, including your portal, widget and custom domain. You can restore it from your Zenith dashboard for ${RESTORE_WINDOW_DAYS} days. After that it's permanently deleted. A paid plan won't renew.`}
         variant="destructive"
         confirmLabel={busy ? 'Deleting…' : 'Delete workspace'}
         isPending={busy}

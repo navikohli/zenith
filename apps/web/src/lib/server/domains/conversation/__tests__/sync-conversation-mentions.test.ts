@@ -24,7 +24,7 @@
  * spied so we assert exactly who gets alerted.
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import type { ConversationMessageId, ConversationId, PrincipalId } from '@quackback/ids'
+import type { ConversationMessageId, ConversationId, PrincipalId } from '@zenith/ids'
 
 const PRINCIPAL_TABLE = { __tag: 'principal' } as const
 const CONVERSATION_MENTIONS_TABLE = { __tag: 'conversationMessageMentions' } as const

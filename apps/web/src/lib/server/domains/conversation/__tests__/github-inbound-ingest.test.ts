@@ -11,9 +11,9 @@ import {
   type PrincipalId,
   type TeamId,
   type UserId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 
-process.env.BASE_URL = 'https://quackback.test'
+process.env.BASE_URL = 'https://zenith.test'
 process.env.SECRET_KEY ||= 'x'.repeat(32)
 
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'

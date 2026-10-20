@@ -9,7 +9,7 @@
 import { describe, expect, it, vi, beforeEach } from 'vitest'
 import { renderHook, waitFor } from '@testing-library/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import type { AssistantPendingActionId, ConversationId } from '@quackback/ids'
+import type { AssistantPendingActionId, ConversationId } from '@zenith/ids'
 import type { AssistantPendingActionDTO } from '@/lib/server/functions/assistant-actions'
 
 const { settledDTO, approveAssistantActionFn, rejectAssistantActionFn } = vi.hoisted(() => {

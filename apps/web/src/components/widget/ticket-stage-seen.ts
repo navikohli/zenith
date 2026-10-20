@@ -14,11 +14,11 @@
  * badges — only CHANGES to a stage the visitor was baselined on do.
  */
 
-const SEEN_KEY = 'quackback:ticket-stages-seen'
+const SEEN_KEY = 'zenith:ticket-stages-seen'
 
 /** Event name dispatched on window after markers advance, so open widget
  *  views re-read them without a reload. */
-export const TICKET_STAGES_SEEN_EVENT = 'quackback:ticket-stages-seen'
+export const TICKET_STAGES_SEEN_EVENT = 'zenith:ticket-stages-seen'
 
 /** ticket id -> the stage slot the visitor last saw (null = internal-only). */
 export type TicketStageSeenMap = Record<string, string | null>

@@ -71,17 +71,17 @@ interface McpSetupGuideProps {
 // ——————————————————————————————————————————————————
 
 function claudeCodeOAuthConfig(url: string) {
-  return JSON.stringify({ mcpServers: { quackback: { type: 'http', url } } }, null, 2)
+  return JSON.stringify({ mcpServers: { zenith: { type: 'http', url } } }, null, 2)
 }
 
 function claudeCodeApiKeyConfig(url: string) {
   return JSON.stringify(
     {
       mcpServers: {
-        quackback: {
+        zenith: {
           type: 'http',
           url,
-          headers: { Authorization: 'Bearer ${QUACKBACK_API_KEY}' },
+          headers: { Authorization: 'Bearer ${ZENITH_API_KEY}' },
         },
       },
     },
@@ -94,9 +94,9 @@ function cursorConfig(url: string) {
   return JSON.stringify(
     {
       mcpServers: {
-        quackback: {
+        zenith: {
           url,
-          headers: { Authorization: 'Bearer ${env:QUACKBACK_API_KEY}' },
+          headers: { Authorization: 'Bearer ${env:ZENITH_API_KEY}' },
         },
       },
     },
@@ -111,16 +111,16 @@ function vscodeConfig(url: string) {
       inputs: [
         {
           type: 'promptString',
-          id: 'quackback-api-key',
-          description: 'Quackback API key (qb_...)',
+          id: 'zenith-api-key',
+          description: 'Zenith API key (qb_...)',
           password: true,
         },
       ],
       servers: {
-        quackback: {
+        zenith: {
           type: 'http',
           url,
-          headers: { Authorization: 'Bearer ${input:quackback-api-key}' },
+          headers: { Authorization: 'Bearer ${input:zenith-api-key}' },
         },
       },
     },
@@ -133,9 +133,9 @@ function windsurfConfig(url: string) {
   return JSON.stringify(
     {
       mcpServers: {
-        quackback: {
+        zenith: {
           serverUrl: url,
-          headers: { Authorization: 'Bearer ${env:QUACKBACK_API_KEY}' },
+          headers: { Authorization: 'Bearer ${env:ZENITH_API_KEY}' },
         },
       },
     },
@@ -148,7 +148,7 @@ function claudeDesktopOAuthConfig(url: string) {
   return JSON.stringify(
     {
       mcpServers: {
-        quackback: { command: 'npx', args: ['mcp-remote@latest', '--http', url] },
+        zenith: { command: 'npx', args: ['mcp-remote@latest', '--http', url] },
       },
     },
     null,
@@ -160,7 +160,7 @@ function claudeDesktopApiKeyConfig(url: string) {
   return JSON.stringify(
     {
       mcpServers: {
-        quackback: {
+        zenith: {
           command: 'npx',
           args: [
             'mcp-remote@latest',
@@ -208,7 +208,7 @@ const CLIENTS: ClientDef[] = [
     label: 'Cursor',
     filename: '.cursor/mcp.json',
     lang: 'js',
-    note: 'Set QUACKBACK_API_KEY in your environment. OAuth is not supported.',
+    note: 'Set ZENITH_API_KEY in your environment. OAuth is not supported.',
     code: cursorConfig,
   },
   {
@@ -224,7 +224,7 @@ const CLIENTS: ClientDef[] = [
     label: 'Windsurf',
     filename: '~/.codeium/windsurf/mcp_config.json',
     lang: 'js',
-    note: 'Set QUACKBACK_API_KEY in your environment. Uses "serverUrl" not "url". OAuth is not supported.',
+    note: 'Set ZENITH_API_KEY in your environment. Uses "serverUrl" not "url". OAuth is not supported.',
     code: windsurfConfig,
   },
   {
@@ -473,7 +473,7 @@ export function McpSetupGuide({ endpointUrl }: McpSetupGuideProps) {
                 {MCP_TOOLS.length} tools available
               </span>
               <a
-                href="https://www.quackback.io/docs/mcp/reference"
+                href="/source.html"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`${INLINE_LINK} inline-flex items-center gap-1 text-[11px]`}

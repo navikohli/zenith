@@ -34,7 +34,7 @@ import {
   postTags,
   postTagAssignments,
 } from '@/lib/server/db'
-import type { BoardId, PostId, PostTagId } from '@quackback/ids'
+import type { BoardId, PostId, PostTagId } from '@zenith/ids'
 import { config } from '@/lib/server/config'
 import { isAiClientConfigured } from '@/lib/server/domains/ai/config'
 import { structuredChat } from '@/lib/server/domains/ai/structured-chat'

@@ -1,11 +1,11 @@
 /**
- * The one query Quinn's thread mapper uses to read a file's extracted text:
+ * The one query ZenithAssistant's thread mapper uses to read a file's extracted text:
  * textExcerpt, name, family, previewStatus, for a set of file ids.
  */
 import { describe, it, expect, beforeEach, afterEach, afterAll, vi } from 'vitest'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { files } from '@/lib/server/db'
-import type { FileId } from '@quackback/ids'
+import type { FileId } from '@zenith/ids'
 
 vi.mock('@/lib/server/db', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/lib/server/db')>()),

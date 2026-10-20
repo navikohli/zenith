@@ -1,6 +1,5 @@
 import { describe, expect, it } from 'vitest'
 import {
-  WIDGET_SKILL_RAW,
   buildWidgetInstallPrompt,
   buildWidgetInstallSnippet,
   buildWidgetLoaderSnippet,
@@ -15,7 +14,8 @@ describe('buildWidgetInstallPrompt', () => {
     expect(prompt).toContain('https://feedback.example.com/api/widget/sdk.js')
     expect(prompt).toContain('POST https://feedback.example.com/api/widget/install-context')
     expect(prompt).toContain('qbi_testpairingcode')
-    expect(prompt).toContain(WIDGET_SKILL_RAW)
+    expect(prompt).toContain('manual snippet')
+    expect(prompt).not.toContain('github.com/Zenith')
     expect(prompt).toContain('do not ask the user for the HMAC signing secret')
     expect(prompt).toContain('If this app has login')
     expect(prompt).toContain('signingSecret')
@@ -25,7 +25,7 @@ describe('buildWidgetInstallPrompt', () => {
     expect(prompt).not.toContain('Do not implement identify')
     expect(prompt).not.toContain('with identify on')
     expect(prompt).not.toMatch(/wgt_[A-Za-z0-9]/)
-    expect(prompt).not.toContain('QUACKBACK_WIDGET_SECRET')
+    expect(prompt).not.toContain('ZENITH_WIDGET_SECRET')
     expect(prompt).not.toContain('identify-users.md')
   })
 })
@@ -35,16 +35,16 @@ describe('buildWidgetInstallSnippet', () => {
     const snippet = buildWidgetInstallSnippet('https://feedback.example.com/')
 
     expect(snippet).toContain('https://feedback.example.com/api/widget/sdk.js')
-    expect(snippet).toContain('Quackback("init")')
+    expect(snippet).toContain('Zenith("init")')
     expect(snippet).toContain('ssoToken')
-    expect(snippet).toContain('Quackback("identify", { ssoToken })')
-    expect(snippet).toContain('Quackback("logout")')
+    expect(snippet).toContain('Zenith("identify", { ssoToken })')
+    expect(snippet).toContain('Zenith("logout")')
     expect(snippet).toContain('Admin → Settings → Widget → Install')
     expect(snippet).toContain('stable unique user id')
-    expect(snippet).not.toContain('QUACKBACK_WIDGET_SECRET')
-    expect(snippet).not.toContain('Quackback("identify", { id')
+    expect(snippet).not.toContain('ZENITH_WIDGET_SECRET')
+    expect(snippet).not.toContain('Zenith("identify", { id')
     expect(snippet).not.toContain('fetch(')
-    expect(snippet).not.toContain('/api/quackback')
+    expect(snippet).not.toContain('/api/zenith')
     expect(snippet).not.toContain('user.id')
     expect(snippet).not.toMatch(/wgt_[A-Za-z0-9]/)
   })
@@ -60,7 +60,7 @@ describe('buildWidgetLoaderSnippet', () => {
   it('loads and starts Messenger with no comments to break a one-line paste', () => {
     const snippet = buildWidgetLoaderSnippet('https://feedback.example.com/')
     expect(snippet).toContain('https://feedback.example.com/api/widget/sdk.js')
-    expect(snippet).toContain('Quackback("init");')
+    expect(snippet).toContain('Zenith("init");')
     expect(snippet.startsWith('<script>')).toBe(true)
     expect(snippet.trimEnd().endsWith('</script>')).toBe(true)
     expect(snippet).not.toMatch(/^\s*\/\//m)

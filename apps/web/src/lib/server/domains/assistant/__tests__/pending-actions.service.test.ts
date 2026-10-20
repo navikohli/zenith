@@ -5,8 +5,8 @@
  * rollback transaction.
  */
 import { describe, it, expect, beforeEach, afterEach, afterAll, vi } from 'vitest'
-import type { ConversationId, PrincipalId, TicketId, TicketStatusId } from '@quackback/ids'
-import { createId } from '@quackback/ids'
+import type { ConversationId, PrincipalId, TicketId, TicketStatusId } from '@zenith/ids'
+import { createId } from '@zenith/ids'
 
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import {
@@ -508,7 +508,7 @@ describe.skipIf(!fixture.available)('pending-actions.service (real DB, rolled ba
     it('propose -> approve -> markPendingActionExecuted round-trip, announcing via a real internal ticket message', async () => {
       const ticketId = await seedTicket()
       const agentId = await seedPrincipal()
-      // Real Quinn principal (not mocked) so surfacePendingActionNote's
+      // Real ZenithAssistant principal (not mocked) so surfacePendingActionNote's
       // ticket branch actually runs `addTicketNote` for real against the
       // rolled-back tx, landing a genuine conversation_messages row.
       const assistant = await ensureAssistantPrincipal(testDb)

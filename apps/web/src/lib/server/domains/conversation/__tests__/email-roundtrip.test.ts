@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeAll, afterAll, beforeEach } from 'vitest'
-import { sendRawEmail } from '@quackback/email'
+import { sendRawEmail } from '@zenith/email'
 import {
   normalizeSenderAddress,
   parseRawEmail,
@@ -106,9 +106,9 @@ describe.skipIf(!available)('inbound parsing of real MTA output (round-trip)', (
   })
 
   it('round-trips the threading ids the channel replies on', async () => {
-    const rootId = 'conv-77-root@quackback.test'
-    const parentId = 'conv-77-msg-1@quackback.test'
-    const ownId = 'conv-77-msg-2@quackback.test'
+    const rootId = 'conv-77-root@zenith.test'
+    const parentId = 'conv-77-msg-1@zenith.test'
+    const ownId = 'conv-77-msg-2@zenith.test'
 
     const raw = await roundTrip({
       from: 'Acme Support <support@acme.test>',

@@ -1,9 +1,9 @@
 /**
- * Ticket resolution-summary service (Quinn Phase 4: ticket grounding).
+ * Ticket resolution-summary service (ZenithAssistant Phase 4: ticket grounding).
  *
  * The ticket sibling of `summarizeConversationOnClose`
  * (conversation-summary.service.ts): generates a short AI summary of a
- * ticket's customer-visible thread when it closes, so Quinn's copilot can
+ * ticket's customer-visible thread when it closes, so ZenithAssistant's copilot can
  * later ground on how similar tickets were resolved (see
  * `tickets-retrieval.ts`). Same shape as the conversation on-close path —
  * config-gated no-op, a schema-validated `chat({ stream: false })` structured
@@ -51,7 +51,7 @@ import {
   writeForCurrentClose,
   type TriggeringClose,
 } from './close-summary'
-import { createId, type TicketId } from '@quackback/ids'
+import { createId, type TicketId } from '@zenith/ids'
 import { logger } from '@/lib/server/logger'
 
 const log = logger.child({ component: 'ticket-summary' })

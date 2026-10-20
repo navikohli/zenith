@@ -110,7 +110,7 @@ describe('listConversationsForExport', () => {
       },
     ])
     hoisted.selectResults = [
-      [{ principalId: 'principal_2', email: 'temp-principal_2@anon.quackback.io' }],
+      [{ principalId: 'principal_2', email: 'temp-principal_2@anon.zenith.io' }],
       [],
     ]
 

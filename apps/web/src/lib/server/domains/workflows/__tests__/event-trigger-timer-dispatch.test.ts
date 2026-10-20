@@ -13,7 +13,7 @@
  * pinned in isolation — mirrors dispatcher.test.ts's mocking style.
  */
 import { describe, it, expect, beforeEach, vi } from 'vitest'
-import type { ConversationId, WorkflowId } from '@quackback/ids'
+import type { ConversationId, WorkflowId } from '@zenith/ids'
 import { makeConditionContext } from './workflow-test-utils'
 
 const { getWorkflow, listLiveWorkflowsForTrigger } = vi.hoisted(() => ({

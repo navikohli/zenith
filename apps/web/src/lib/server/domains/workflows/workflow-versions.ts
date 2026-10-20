@@ -29,7 +29,7 @@ import {
   type WorkflowVersion,
   type Transaction,
 } from '@/lib/server/db'
-import type { WorkflowId, PrincipalId, WorkflowVersionId } from '@quackback/ids'
+import type { WorkflowId, PrincipalId, WorkflowVersionId } from '@zenith/ids'
 
 /** Retention cap: after every insert, a workflow is pruned back to its
  *  newest N versions (see pruneWorkflowVersions). */

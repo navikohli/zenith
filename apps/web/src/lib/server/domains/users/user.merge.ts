@@ -18,7 +18,7 @@
  */
 
 import { db, inArray, principal } from '@/lib/server/db'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 import { repointPrincipalActivity } from '@/lib/server/domains/principals/principal-repoint'
 import { deleteAnonymousIdentity } from '@/lib/server/domains/principals/principal.factory'
 import { NotFoundError, InternalError } from '@/lib/shared/errors'

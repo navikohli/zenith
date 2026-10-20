@@ -61,7 +61,7 @@ export const applyWorkspaceSettingsProposalFn = createServerFn({ method: 'POST' 
     try {
       const row = await applyWorkspaceSettingsProposal(
         actor,
-        data.pendingActionId as import('@quackback/ids').AssistantPendingActionId,
+        data.pendingActionId as import('@zenith/ids').AssistantPendingActionId,
         data.selectedChangeIds,
         { contentHash: data.contentHash, via: 'app' }
       )
@@ -83,7 +83,7 @@ export const undoWorkspaceSettingsProposalFn = createServerFn({ method: 'POST' }
     try {
       const row = await undoWorkspaceSettingsProposal(
         actor,
-        data.pendingActionId as import('@quackback/ids').AssistantPendingActionId
+        data.pendingActionId as import('@zenith/ids').AssistantPendingActionId
       )
       return settledRequest(row)
     } catch (error) {

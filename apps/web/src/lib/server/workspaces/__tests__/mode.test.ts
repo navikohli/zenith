@@ -17,16 +17,16 @@ import { isPooledTenancy } from '../mode'
 function stubValidEnvFor(tenancy: string | undefined): void {
   vi.stubEnv('BASE_URL', 'http://localhost:3000')
   vi.stubEnv('SECRET_KEY', 'a'.repeat(64))
-  if (tenancy === undefined) vi.stubEnv('QUACKBACK_TENANCY', '')
-  else vi.stubEnv('QUACKBACK_TENANCY', tenancy)
+  if (tenancy === undefined) vi.stubEnv('ZENITH_TENANCY', '')
+  else vi.stubEnv('ZENITH_TENANCY', tenancy)
   // Each mode requires the opposite database story.
   if (tenancy === 'pooled') {
     vi.stubEnv('DATABASE_URL', '')
-    vi.stubEnv('QUACKBACK_CONTROL_DATABASE_URL', 'postgresql://u@localhost:5432/control')
+    vi.stubEnv('ZENITH_CONTROL_DATABASE_URL', 'postgresql://u@localhost:5432/control')
     // Pooled refuses a queue-consuming role: a BullMQ Worker permanently
     // inherits the workspace scope of whichever request armed it, and the default
     // role runs workers. See config.ts's pooled refinement.
-    vi.stubEnv('QUACKBACK_ROLE', 'web')
+    vi.stubEnv('ZENITH_ROLE', 'web')
   } else {
     vi.stubEnv('DATABASE_URL', 'postgresql://u@localhost:5432/x')
   }
@@ -55,13 +55,13 @@ describe('isPooledTenancy', () => {
   it.each(['', 'POOLED', 'Pooled', 'pooled ', 'true', '1', 'multi'])(
     'treats %o as single-workspace — only the exact value switches behaviour',
     (value) => {
-      expect(isPooledTenancy({ QUACKBACK_TENANCY: value })).toBe(false)
+      expect(isPooledTenancy({ ZENITH_TENANCY: value })).toBe(false)
     }
   )
 
   it('reads the environment it is given, not the ambient one', () => {
-    vi.stubEnv('QUACKBACK_TENANCY', 'pooled')
-    expect(isPooledTenancy({ QUACKBACK_TENANCY: 'single' })).toBe(false)
+    vi.stubEnv('ZENITH_TENANCY', 'pooled')
+    expect(isPooledTenancy({ ZENITH_TENANCY: 'single' })).toBe(false)
     expect(isPooledTenancy()).toBe(true)
   })
 
@@ -69,7 +69,7 @@ describe('isPooledTenancy', () => {
     // The whole reason this exists: `db.ts` is imported by 537 files, and the
     // first `db` access must not turn an unrelated missing variable into a
     // database error.
-    vi.stubEnv('QUACKBACK_TENANCY', 'pooled')
+    vi.stubEnv('ZENITH_TENANCY', 'pooled')
     vi.stubEnv('SECRET_KEY', '')
     vi.stubEnv('BASE_URL', '')
     expect(() => isPooledTenancy()).not.toThrow()

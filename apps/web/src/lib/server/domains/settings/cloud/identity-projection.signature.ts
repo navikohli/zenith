@@ -1,12 +1,12 @@
 import { parseIdentityProjection, type IdentityProjection } from './identity-projection'
 import { verifyWorkspaceProjectionToken } from './workspace-projection.signature'
 
-export const IDENTITY_PROJECTION_AUDIENCE = 'quackback-workspace-identity-projection'
+export const IDENTITY_PROJECTION_AUDIENCE = 'zenith-workspace-identity-projection'
 export const IDENTITY_PROJECTION_TYPE = 'identity-projection+jwt'
 
 export function verifyIdentityProjectionToken(
   token: string,
-  publicKeyPem = process.env.QUACKBACK_CP_PROJECTION_PUBLIC_KEY
+  publicKeyPem = process.env.ZENITH_CP_PROJECTION_PUBLIC_KEY
 ): Promise<{ workspaceKey: string; projection: IdentityProjection }> {
   return verifyWorkspaceProjectionToken({
     token,

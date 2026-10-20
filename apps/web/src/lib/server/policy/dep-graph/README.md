@@ -13,7 +13,7 @@ The generated, reviewable output is [`GRAPH.md`](./GRAPH.md).
 
 1. **Workspace packages** (`apps/web` + `packages/*`). Edges carry their
    evidence: `declared` (a `workspace:*` dependency in package.json),
-   `imported` (an `@quackback/*` specifier actually appears in the source),
+   `imported` (an `@zenith/*` specifier actually appears in the source),
    or both. One invariant is a hard test rule rather than a snapshot line:
    **no package imports app code** (no `@/` alias, no `apps/` specifier, no
    relative path escaping its own workspace).
@@ -40,7 +40,7 @@ extracts:
 - dynamic `import('x')` with a string-literal argument; non-literal dynamic
   imports cannot be resolved statically and are skipped
 
-The `@/` alias resolves to `apps/web/src`, `@quackback/*` to the workspace
+The `@/` alias resolves to `apps/web/src`, `@zenith/*` to the workspace
 packages, and Vite query suffixes (`?url`, `?raw`) are stripped. Bare npm
 specifiers are ignored. Self-edges are omitted at every altitude.
 `__tests__`, `*.test.*`, `dist`, and `node_modules` are never scanned.

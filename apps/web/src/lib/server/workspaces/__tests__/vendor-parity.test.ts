@@ -30,7 +30,7 @@ const here = dirname(fileURLToPath(import.meta.url))
 const vendorDir = join(here, '..', 'vendor')
 
 /**
- * SHA-256 of each vendored file, as copied from `quackback-cp`
+ * SHA-256 of each vendored file, as copied from `zenith-cp`
  * `src/lib/server/workspaces/`. Changing a vendored file means changing the digest
  * here too — which is the point.
  */
@@ -55,7 +55,7 @@ const VENDORED = {
 
 /** Where the control plane lives when this machine has a checkout of it. */
 const CP_TENANCY =
-  process.env.QUACKBACK_CP_TENANCY_DIR ?? '/home/james/quackback-cp/src/lib/server/tenancy'
+  process.env.ZENITH_CP_TENANCY_DIR ?? '/home/james/zenith-cp/src/lib/server/tenancy'
 
 function digest(path: string): string {
   return createHash('sha256').update(readFileSync(path)).digest('hex')

@@ -1,7 +1,7 @@
 /**
  * Shared recursive helpers for optimistic comment tree updates.
  */
-import type { PostCommentId } from '@quackback/ids'
+import type { PostCommentId } from '@zenith/ids'
 
 /** Minimal comment shape that both admin and portal comment types satisfy */
 interface CommentNode {

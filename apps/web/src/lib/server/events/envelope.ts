@@ -7,7 +7,7 @@
  * resolver, the relay, and the catalogue build against them, so a change here
  * ripples across the whole spine.
  */
-import type { EvtId } from '@quackback/ids'
+import type { EvtId } from '@zenith/ids'
 
 /**
  * Who or what caused an event.

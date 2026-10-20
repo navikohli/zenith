@@ -1,6 +1,6 @@
 import { SidebarContainer, SidebarSkeleton } from '@/components/shared/sidebar-primitives'
 import { ChangelogMetadataSidebarContent } from './changelog-metadata-sidebar-content'
-import type { PostId, ChangelogCategoryId, SegmentId } from '@quackback/ids'
+import type { PostId, ChangelogCategoryId, SegmentId } from '@zenith/ids'
 import type { PublishState } from '@/lib/shared/schemas/changelog'
 
 export { SidebarSkeleton as ChangelogMetadataSidebarSkeleton }

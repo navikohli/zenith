@@ -33,7 +33,7 @@ import { getExecuteRows } from '@/lib/server/utils/execute-rows'
 import { enqueueJob, type ClaimedJob } from '@/lib/server/jobs/job-queue'
 import { TerminalJobError } from '@/lib/server/jobs/definitions'
 import { logger } from '@/lib/server/logger'
-import type { KbArticleId } from '@quackback/ids'
+import type { KbArticleId } from '@zenith/ids'
 import {
   translateArticleForLocale,
   type ParkedTranslationGuard,

@@ -19,7 +19,7 @@ import {
   statusIncidentUpdates,
   statusIncidentComponents,
 } from '@/lib/server/db'
-import type { StatusComponentId, StatusIncidentId } from '@quackback/ids'
+import type { StatusComponentId, StatusIncidentId } from '@zenith/ids'
 import { canViewStatusComponent, statusComponentViewFilter } from '@/lib/server/policy/status'
 import type { Actor } from '@/lib/server/policy/types'
 import { deriveViewerImpact } from './status.calc'

@@ -1,7 +1,7 @@
 /**
  * The public widget "server config" — the JSON served by
  * `/api/widget/config.json` and baked into `/api/widget/sdk.js` as
- * `window.__QUACKBACK_CONFIG__` so script-tag installs can paint the launcher
+ * `window.__ZENITH_CONFIG__` so script-tag installs can paint the launcher
  * in brand colors without a config round trip. One builder keeps the two
  * responses identical.
  */

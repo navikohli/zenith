@@ -14,7 +14,7 @@ describe('RichTextEditor Enter behavior', () => {
         onDocumentChange={onDocumentChange}
         borderless
         toolbarPosition="bottom"
-        features={{ images: true, quackbackEmbeds: true }}
+        features={{ images: true, zenithEmbeds: true }}
         onImageUpload={vi.fn()}
       />
     )

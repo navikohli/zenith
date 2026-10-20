@@ -19,7 +19,7 @@ import {
   userTags,
   userTagAssignments,
 } from '@/lib/server/db'
-import { createId, type PrincipalId, type UserTagId } from '@quackback/ids'
+import { createId, type PrincipalId, type UserTagId } from '@zenith/ids'
 
 export interface UserTagSummary {
   id: UserTagId

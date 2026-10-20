@@ -10,9 +10,9 @@ import { settings } from '../auth'
  * When this list changes:
  * 1. Add an expand-only migration in `packages/db/drizzle`.
  * 2. Restage the control-plane vendor lineage
- *    (`quackback-cp/scripts/vendor-migrator.sh` from the fleet image digest).
+ *    (`zenith-cp/scripts/vendor-migrator.sh` from the fleet image digest).
  * 3. Update `REQUIRED_SETTINGS_COLUMNS` in
- *    `quackback-cp/src/lib/server/tenancy/tenant-schema.ts` so provision
+ *    `zenith-cp/src/lib/server/tenancy/tenant-schema.ts` so provision
  *    refuses a short schema instead of marking the workspace Ready.
  *
  * The serving image also migrates a behind-ledger workspace on first pool

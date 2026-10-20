@@ -11,9 +11,9 @@ import { z } from 'zod'
 // as a parameter), so those still come through from the original module.
 vi.mock('@/lib/server/db', async (importOriginal) => {
   // oxlint-disable-next-line no-restricted-imports -- sanctioned test fixture, same as db-test-fixture.ts
-  const { createDb } = await import('@quackback/db/client')
+  const { createDb } = await import('@zenith/db/client')
   const url =
-    process.env.DATABASE_URL ?? 'postgresql://postgres:password@localhost:5432/quackback_test'
+    process.env.DATABASE_URL ?? 'postgresql://postgres:password@localhost:5432/zenith_test'
   return {
     ...(await importOriginal<typeof import('@/lib/server/db')>()),
     db: createDb(url, { max: 5, prepare: false }),
@@ -27,7 +27,7 @@ vi.mock('@/lib/server/workspaces/workspace-context', async (importOriginal) => (
 
 import { db, events, auditLog, eq, and, sql } from '@/lib/server/db'
 import { getExecuteRows } from '@/lib/server/utils/execute-rows'
-import { createId } from '@quackback/ids'
+import { createId } from '@zenith/ids'
 import { emit, inherit } from '../emit'
 import type { EventDefinition } from '../catalogue/define'
 import type { DomainEvent } from '../envelope'
@@ -35,7 +35,7 @@ import type { DomainEvent } from '../envelope'
 /**
  * WO-1 — `emit()` writes the outbox row in the caller's transaction, rolls back
  * with an aborted tx, rejects bad payloads, and only writes an audit row when
- * the definition opts in. Runs against the shared quackback_test DB (0192
+ * the definition opts in. Runs against the shared zenith_test DB (0192
  * applied).
  */
 
@@ -64,7 +64,7 @@ const plainDef: EventDefinition<{ postId: string }> = {
 describe('emit()', () => {
   beforeAll(async () => {
     const url =
-      process.env.DATABASE_URL ?? 'postgresql://postgres:password@localhost:5432/quackback_test'
+      process.env.DATABASE_URL ?? 'postgresql://postgres:password@localhost:5432/zenith_test'
     const admin = postgres(url, { max: 1, onnotice: () => {} })
     try {
       await admin.unsafe(

@@ -12,7 +12,7 @@ import type {
   RoadmapColumnId,
   RoadmapId,
   SegmentId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import type { RoadmapView } from '@/lib/client/hooks/use-roadmaps-query'
 import type { RoadmapFrequency, RoadmapType, RoadmapVisibility } from '@/lib/shared/roadmap-config'
 import {

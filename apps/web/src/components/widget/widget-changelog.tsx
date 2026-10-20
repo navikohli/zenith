@@ -13,7 +13,7 @@ import { useWidgetAuth } from './widget-auth-provider'
 import { useInfiniteScroll } from '@/lib/client/hooks/use-infinite-scroll'
 import { getChangelogSeenAt, markChangelogSeen } from './changelog-unread'
 import { NewspaperIcon } from '@heroicons/react/24/outline'
-import type { ChangelogCategoryId } from '@quackback/ids'
+import type { ChangelogCategoryId } from '@zenith/ids'
 import { WidgetChangelogListSkeleton, WidgetChangelogMoreSkeleton } from './widget-skeletons'
 import { ChangelogMetaRow } from './widget-changelog-meta'
 

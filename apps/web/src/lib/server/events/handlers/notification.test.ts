@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest'
 import { filterByInAppPreference } from './notification'
 import type { CreateNotificationInput } from '@/lib/server/domains/notifications'
 import type { NotificationPreferencesData } from '@/lib/server/domains/subscriptions/subscription.service'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 
 function notification(
   principalId: string,

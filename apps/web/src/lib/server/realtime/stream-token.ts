@@ -12,7 +12,7 @@
  */
 import { createHmac, timingSafeEqual } from 'crypto'
 import { activeSecretKey } from '../secret-key'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 import { toSessionScope, type SessionScope } from '@/lib/shared/roles'
 
 // Short TTL: the token only authorizes the initial SSE handshake, and the

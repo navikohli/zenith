@@ -6,7 +6,7 @@
  * registry's reason (`deleted`, `trial_ended`, `admin`, …) is never shown: it
  * is the control plane's business, and a billing reason in particular is not a
  * stranger's to read. The page says only whether the workspace is gone or
- * paused, and points whoever runs it at their Quackback dashboard.
+ * paused, and points whoever runs it at their Zenith dashboard.
  *
  * There is no workspace to take a language from, so the page follows the
  * visitor's Accept-Language. Its strings live in the catalogs under
@@ -18,7 +18,7 @@
 import { createIntl } from 'react-intl'
 import { htmlLangDir } from '@/lib/shared/document-locale'
 import { loadMessages, resolveLocale } from '@/lib/shared/i18n'
-import { QUACKBACK_DUCK_SVG } from './quackback-duck'
+import { ZENITH_MARK_SVG } from './zenith-mark'
 
 export type UnavailableState = 'deleted' | 'paused' | 'unknown'
 
@@ -34,7 +34,7 @@ const COPY = {
     },
     owner: {
       id: 'workspaceUnavailable.deleted.owner',
-      defaultMessage: 'Do you run this workspace? Sign in to Quackback to restore it.',
+      defaultMessage: 'Do you run this workspace? Sign in to Zenith to restore it.',
     },
   },
   paused: {
@@ -45,7 +45,7 @@ const COPY = {
     },
     owner: {
       id: 'workspaceUnavailable.paused.owner',
-      defaultMessage: "Do you run this workspace? Sign in to Quackback to see why it's paused.",
+      defaultMessage: "Do you run this workspace? Sign in to Zenith to see why it's paused.",
     },
   },
   unknown: {
@@ -60,12 +60,12 @@ const COPY = {
     },
     owner: {
       id: 'workspaceUnavailable.unknown.owner',
-      defaultMessage: 'Setting up a workspace? Sign in to Quackback.',
+      defaultMessage: 'Setting up a workspace? Sign in to Zenith.',
     },
   },
 } as const
 
-const SIGN_IN = { id: 'workspaceUnavailable.signIn', defaultMessage: 'Sign in to Quackback' }
+const SIGN_IN = { id: 'workspaceUnavailable.signIn', defaultMessage: 'Sign in to Zenith' }
 const POWERED_BY = { id: 'workspaceUnavailable.poweredBy', defaultMessage: 'Powered by {brand}' }
 
 /**
@@ -73,7 +73,7 @@ const POWERED_BY = { id: 'workspaceUnavailable.poweredBy', defaultMessage: 'Powe
  * plane is. A self-hosted install has none, and its page simply omits the line.
  */
 export function controlPlaneUrl(path: string): string | null {
-  const raw = process.env.QUACKBACK_CONTROL_PLANE_URL
+  const raw = process.env.ZENITH_CONTROL_PLANE_URL
   if (!raw || !raw.startsWith('https://')) return null
   return `${raw.replace(/\/$/, '')}${path}`
 }
@@ -156,7 +156,7 @@ p{margin:0;color:var(--muted);overflow-wrap:anywhere}
   <h1>${text(copy.title)}</h1>
   <p>${text(copy.body, { host: host || '…' })}</p>
   ${owner}
-  <a class="by" href="https://quackback.io">${QUACKBACK_DUCK_SVG}${text(POWERED_BY, { brand: 'Quackback' })}</a>
+  <a class="by" href="/source.html">${ZENITH_MARK_SVG}${text(POWERED_BY, { brand: 'Zenith' })}</a>
 </main>
 </body>
 </html>`

@@ -62,7 +62,7 @@ export interface GenericOAuthConfig {
   clientSecret: string
   disableSignUp?: boolean
   /**
-   * Keep sign-out local to Quackback.
+   * Keep sign-out local to Zenith.
    *
    * Better Auth 1.7 RP-initiated logout ([docs](https://better-auth.com/docs/plugins/generic-oauth#rp-initiated-logout),
    * #9368) redirects `signOut()` to whichever linked OIDC provider exposes

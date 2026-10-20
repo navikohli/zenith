@@ -5,7 +5,7 @@
  * of those.
  */
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import type { PrincipalId, ConversationId, TeamId } from '@quackback/ids'
+import type { PrincipalId, ConversationId, TeamId } from '@zenith/ids'
 import type { Actor } from '@/lib/server/policy/types'
 
 const publishConversationUpdate = vi.fn()

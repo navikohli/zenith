@@ -6,7 +6,7 @@
  * is no longer the current one, and never overwrites a newer close's summary
  * (see domains/assistant/close-summary.ts).
  */
-import type { ConversationId, TicketId } from '@quackback/ids'
+import type { ConversationId, TicketId } from '@zenith/ids'
 import { summarizeConversationOnClose } from '@/lib/server/domains/assistant/conversation-summary.service'
 import { summarizeTicketOnClose } from '@/lib/server/domains/assistant/ticket-summary.service'
 import type { TriggeringClose } from '@/lib/server/domains/assistant/close-summary'

@@ -10,7 +10,7 @@
  */
 
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { createId } from '@quackback/ids'
+import { createId } from '@zenith/ids'
 
 type AnyHandler = (args: { data: Record<string, unknown> }) => Promise<unknown>
 const handlers: AnyHandler[] = []

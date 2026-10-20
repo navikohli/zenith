@@ -27,7 +27,7 @@ import {
 } from '../client'
 
 beforeEach(() => {
-  process.env.QUACKBACK_CONTROL_PLANE_URL = 'https://control.example.com'
+  process.env.ZENITH_CONTROL_PLANE_URL = 'https://control.example.com'
   hoisted.fetch.mockReset()
   vi.stubGlobal('fetch', hoisted.fetch)
 })
@@ -262,7 +262,7 @@ describe('workspace control-plane credential', () => {
   it('opens a sibling with only instanceId in the body', async () => {
     hoisted.fetch.mockResolvedValue(
       new Response(
-        JSON.stringify({ url: 'https://south63792f.quackback.co.uk/auth/open-handoff?ott=x' }),
+        JSON.stringify({ url: 'https://south63792f.zenith.co.uk/auth/open-handoff?ott=x' }),
         { status: 200 }
       )
     )

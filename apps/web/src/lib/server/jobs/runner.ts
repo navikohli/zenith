@@ -189,8 +189,8 @@ async function resolveHandler(def: JobDefinition): Promise<JobHandler> {
  * Stable fields on every job-execution line. IDs only — never `payload`.
  *
  * `event` is the filter key (`job.started`, `job.finished`, `job.retrying`,
- * `job.failed`). `QUACKBACK_ROLE=worker` already binds `service_name` to
- * `quackback-worker`, so a Railway search on `event` + `workspace_key` is the
+ * `job.failed`). `ZENITH_ROLE=worker` already binds `service_name` to
+ * `zenith-worker`, so a Railway search on `event` + `workspace_key` is the
  * whole execution trace.
  */
 function jobFields(job: ClaimedJob, extra: Record<string, unknown> = {}) {

@@ -20,7 +20,7 @@
  * below is recorded with the arguments it received.
  */
 import { describe, it, expect, beforeEach, afterEach, afterAll, vi } from 'vitest'
-import { createId, type PrincipalId, type TicketId, type TicketStatusId } from '@quackback/ids'
+import { createId, type PrincipalId, type TicketId, type TicketStatusId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { events, eq, principal, sql, tickets, ticketStatuses } from '@/lib/server/db'
 import { enqueueJob, type ClaimedJob } from '@/lib/server/jobs/job-queue'

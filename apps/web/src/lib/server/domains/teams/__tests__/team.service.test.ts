@@ -5,7 +5,7 @@
  * transaction (see server/__tests__/README.md).
  */
 import { describe, it, expect, vi, beforeEach, afterEach, afterAll } from 'vitest'
-import { createId, type PrincipalId, type TypeId, type UserId } from '@quackback/ids'
+import { createId, type PrincipalId, type TypeId, type UserId } from '@zenith/ids'
 
 type TeamId = TypeId<'team'>
 

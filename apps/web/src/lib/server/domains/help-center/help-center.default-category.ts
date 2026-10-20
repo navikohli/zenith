@@ -1,5 +1,5 @@
 import { db, helpCenterCategories, and, eq, isNull, type Transaction } from '@/lib/server/db'
-import type { KbCategoryId } from '@quackback/ids'
+import type { KbCategoryId } from '@zenith/ids'
 
 /** The category an article lands in when nobody picked one. */
 export const DEFAULT_HELP_CATEGORY = { name: 'General', slug: 'general' } as const

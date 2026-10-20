@@ -1,5 +1,5 @@
 import { createFileRoute, redirect } from '@tanstack/react-router'
-import { isValidTypeId } from '@quackback/ids'
+import { isValidTypeId } from '@zenith/ids'
 import type { FeatureFlags } from '@/lib/shared/types/settings'
 import { adminPageHead } from '@/lib/client/admin-head'
 

@@ -9,7 +9,7 @@
  */
 
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import type { PrincipalId, UserId } from '@quackback/ids'
+import type { PrincipalId, UserId } from '@zenith/ids'
 
 // --- Mock tracking ---
 
@@ -83,7 +83,7 @@ vi.mock('@/lib/server/db', async (importOriginal) => ({
   sql: vi.fn(() => ({ kind: 'atomic-metadata-patch' })),
 }))
 
-vi.mock('@quackback/ids', () => ({
+vi.mock('@zenith/ids', () => ({
   generateId: vi.fn((prefix: string) => `${prefix}_generated123`),
 }))
 

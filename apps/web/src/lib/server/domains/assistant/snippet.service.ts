@@ -1,7 +1,7 @@
 /**
- * Snippets — short, private facts an admin curates for Quinn to ground
+ * Snippets — short, private facts an admin curates for ZenithAssistant to ground
  * answers on, alongside the knowledge base and (when enabled) feedback
- * posts. Unlike a guidance rule (which steers HOW Quinn answers), a snippet
+ * posts. Unlike a guidance rule (which steers HOW ZenithAssistant answers), a snippet
  * IS an answerable fact, retrieved the same way a KB article is
  * (`snippets-retrieval.ts`). Pure CRUD plus embed-on-write: creating a
  * snippet, or changing its title/content, (re)generates its embedding from
@@ -11,7 +11,7 @@
  * row saved with a null embedding rather than failing the CRUD call.
  */
 import { db, eq, desc, sql, assistantSnippets, type AssistantSnippet } from '@/lib/server/db'
-import type { AssistantSnippetId, PrincipalId } from '@quackback/ids'
+import type { AssistantSnippetId, PrincipalId } from '@zenith/ids'
 import { ValidationError } from '@/lib/shared/errors'
 import { CONTENT_AUDIENCE_RANK, type ContentAudience } from './audience'
 import { generateEmbedding } from '@/lib/server/domains/embeddings/embedding.service'

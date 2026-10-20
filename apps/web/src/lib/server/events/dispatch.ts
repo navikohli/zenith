@@ -13,7 +13,7 @@ import type {
   PostId,
   PrincipalId,
   UserId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 
 import type {
   ConversationUnresponsivePayload,
@@ -687,7 +687,7 @@ export async function dispatchAssistantResolved(
 // raised by workflow-sweep.ts's 5-minute tick or the SLA domain's deadline
 // scan, never by a human/system action. No human or service PRINCIPAL causes
 // these — the actor is a fixed, non-attributable marker, distinct from a real
-// service actor (Quinn, an integration) which always carries a principalId.
+// service actor (ZenithAssistant, an integration) which always carries a principalId.
 // ---------------------------------------------------------------------------
 
 /** The fixed actor every timer-driven trigger carries — there is no

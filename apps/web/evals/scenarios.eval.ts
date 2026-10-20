@@ -1,5 +1,5 @@
 /**
- * Golden eval set entry point (QUINN-TWO-AGENT-SPEC §7). One Vitest case per
+ * Golden eval set entry point (ZENITH_ASSISTANT-TWO-AGENT-SPEC §7). One Vitest case per
  * (scenario × applicable role). Each case runs inside the db-test-fixture
  * rollback transaction — the global `db` is rebound to it so the runtime's own
  * reads see the seeded fixtures and every write vanishes at rollback.
@@ -52,7 +52,7 @@ const fixture = await createDbTestFixture({
   },
 })
 
-describe.skipIf(!fixture.available)('Quinn golden eval set (§7)', () => {
+describe.skipIf(!fixture.available)('ZenithAssistant golden eval set (§7)', () => {
   beforeAll(() => {
     assertEvalEnv()
     // A settings singleton must exist for the runtime's config read.

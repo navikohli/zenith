@@ -64,7 +64,7 @@ vi.mock('@/lib/client/queries/status', () => ({
 
 import { StatusSubscribeButton } from '../status-subscribe-button'
 
-const PENDING_KEY = 'quackback:pending-status-subscription'
+const PENDING_KEY = 'zenith:pending-status-subscription'
 const signedInUser = { user: { id: 'user_1', principalType: 'user' } }
 
 const publicPage = {

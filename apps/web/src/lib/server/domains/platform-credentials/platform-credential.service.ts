@@ -16,7 +16,7 @@
 
 import { CloudCredentialSource } from './cloud-source'
 import { CLOUD_INTEGRATION_FIELDS } from '@/lib/shared/integration-credentials'
-import { generateId, type PrincipalId } from '@quackback/ids'
+import { generateId, type PrincipalId } from '@zenith/ids'
 import { db, integrationPlatformCredentials, eq } from '@/lib/server/db'
 import { cacheGet, cacheSet, cacheDel, CACHE_KEYS } from '@/lib/server/cache'
 import { encryptPlatformCredentials } from '@/lib/server/integrations/encryption'

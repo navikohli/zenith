@@ -11,7 +11,7 @@ const toastError = vi.hoisted(() => vi.fn())
 vi.mock('sonner', () => ({ toast: { error: toastError } }))
 const config = {
   version: 2 as const,
-  identity: { name: 'Quinn', avatarUrl: null },
+  identity: { name: 'Zenith Assistant', avatarUrl: null },
   voice: {
     tone: 'balanced' as const,
     responseLength: 'balanced' as const,
@@ -78,7 +78,7 @@ function savedName(name: string, revision: number) {
 describe('AssistantIdentityCard', () => {
   it('loads the V2 identity with an upload flow instead of a URL input', async () => {
     renderCard()
-    expect(await screen.findByDisplayValue('Quinn')).toBeInTheDocument()
+    expect(await screen.findByDisplayValue('Zenith Assistant')).toBeInTheDocument()
     expect(screen.getByRole('button', { name: /Upload image/ })).toBeInTheDocument()
     expect(screen.queryByLabelText(/Avatar URL/i)).not.toBeInTheDocument()
     expect(screen.queryByRole('textbox', { name: /Avatar URL/i })).not.toBeInTheDocument()
@@ -142,7 +142,7 @@ describe('AssistantIdentityCard', () => {
       })
     })
     await new Promise((resolve) => setTimeout(resolve, 50))
-    expect(name).toHaveValue('Quinn')
+    expect(name).toHaveValue('Zenith Assistant')
     fireEvent.blur(name)
     await waitFor(() => expect(name).toHaveValue('Drake'))
     expect(updateIdentity).not.toHaveBeenCalled()
@@ -197,7 +197,7 @@ describe('AssistantIdentityCard', () => {
     expect(alert).toHaveTextContent(/changed in another session/)
     expect(toastError).not.toHaveBeenCalled()
     fireEvent.click(screen.getByRole('button', { name: 'Reload latest settings' }))
-    await waitFor(() => expect(name).toHaveValue('Quinn'))
+    await waitFor(() => expect(name).toHaveValue('Zenith Assistant'))
     expect(screen.queryByRole('alert')).not.toBeInTheDocument()
     expect(updateIdentity).toHaveBeenCalledTimes(1)
   })
@@ -205,7 +205,7 @@ describe('AssistantIdentityCard', () => {
   it('shows Remove image only with an image, and removing it saves at once', async () => {
     const withImage = {
       ...config,
-      identity: { name: 'Quinn', avatarUrl: 'https://cdn.test/q.png' },
+      identity: { name: 'Zenith Assistant', avatarUrl: 'https://cdn.test/q.png' },
     }
     vi.mocked(getAssistantSettingsFn).mockResolvedValue({
       config: withImage,
@@ -217,7 +217,7 @@ describe('AssistantIdentityCard', () => {
     fireEvent.click(await screen.findByRole('button', { name: /Remove image/ }))
     await waitFor(() =>
       expect(updateIdentity).toHaveBeenCalledWith({
-        data: { expectedRevision: 3, identity: { name: 'Quinn', avatarUrl: null } },
+        data: { expectedRevision: 3, identity: { name: 'Zenith Assistant', avatarUrl: null } },
       })
     )
     await waitFor(() =>

@@ -13,9 +13,9 @@ describe('integration OAuth gateway', () => {
   it.each(['slack', 'github', 'linear', 'trello'])(
     'uses the same gateway callback for %s authorize and exchange',
     (integration) => {
-      vi.stubEnv('INTEGRATION_OAUTH_GATEWAY_URL', 'https://app.quackback.io/')
+      vi.stubEnv('INTEGRATION_OAUTH_GATEWAY_URL', '/source.html')
       expect(buildCallbackUri(integration, request)).toBe(
-        `https://app.quackback.io/oauth/${integration}/callback`
+        `/source.html`
       )
     }
   )

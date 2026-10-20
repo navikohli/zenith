@@ -3,7 +3,7 @@
  */
 import { companies } from '@/lib/server/db'
 
-export type { CompanyId } from '@quackback/ids'
+export type { CompanyId } from '@zenith/ids'
 
 /** A company row, inferred from the schema (kept out of the shared db types pkg). */
 export type Company = typeof companies.$inferSelect

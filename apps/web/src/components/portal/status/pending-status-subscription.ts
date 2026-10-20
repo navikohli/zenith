@@ -11,9 +11,9 @@
  * visitor who closes the dialog and signs in some other way later is never
  * subscribed by surprise, and the choice expires after half an hour.
  */
-import type { StatusComponentId } from '@quackback/ids'
+import type { StatusComponentId } from '@zenith/ids'
 
-const STORAGE_KEY = 'quackback:pending-status-subscription'
+const STORAGE_KEY = 'zenith:pending-status-subscription'
 const MAX_AGE_MS = 30 * 60 * 1000
 
 export interface PendingStatusSubscription {

@@ -1,6 +1,6 @@
 // @vitest-environment node
 import { afterAll, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
-import { createId } from '@quackback/ids'
+import { createId } from '@zenith/ids'
 import type { Actor } from '@/lib/server/policy/types'
 import type { BrandingTransportState, S3FixtureModule } from './website-settings-sdk.fixture'
 import { BRANDING_PNG } from './website-settings-sdk.fixture'

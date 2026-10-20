@@ -3,12 +3,12 @@
  * (per kind), on-demand summaries generated, the propose-approve-execute
  * actions funnel, and the insert/feedback outcomes, over a date range — the
  * fifth independent bounded scan on the assistant admin page (plus a sixth,
- * see below), alongside SupportPerformanceCard, QuinnPerformanceCard,
- * QuinnToolsCard, and GuidanceRulesCard. Consolidating these into a rollup
+ * see below), alongside SupportPerformanceCard, ZenithAssistantPerformanceCard,
+ * ZenithAssistantToolsCard, and GuidanceRulesCard. Consolidating these into a rollup
  * table (the analytics_daily_stats pattern) is deliberately deferred until
  * admin-page latency actually hurts: every one of them is a window-bounded
  * scan riding an index, the same "low volume, no rollup" call
- * quinn-performance.ts and quinn-tools.ts already made.
+ * zenith-assistant-performance.ts and zenith-assistant-tools.ts already made.
  *
  * Data sources:
  *  - `ai_usage_log` rows with `pipelineStep: 'assistant'` and
@@ -100,7 +100,7 @@ import {
   assistantPendingActions,
   helpCenterArticles,
 } from '@/lib/server/db'
-import { ensureTypeId, typeIdLookupKeys, type KbArticleId, type PrincipalId } from '@quackback/ids'
+import { ensureTypeId, typeIdLookupKeys, type KbArticleId, type PrincipalId } from '@zenith/ids'
 import { loadAuthors } from '@/lib/server/domains/principals/principal-display'
 import { COPILOT_EVENT_TYPES } from '@/lib/shared/assistant/copilot-contract'
 import { ratePctOrNull } from '@/lib/shared/percent'

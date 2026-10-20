@@ -1,7 +1,7 @@
 // @vitest-environment happy-dom
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { cleanup, fireEvent, render, screen, act } from '@testing-library/react'
-import type { BoardId } from '@quackback/ids'
+import type { BoardId } from '@zenith/ids'
 
 const toastError = vi.fn()
 vi.mock('sonner', () => ({ toast: { error: (m: string) => toastError(m) } }))

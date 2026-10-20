@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import type { TicketId, PrincipalId } from '@quackback/ids'
+import type { TicketId, PrincipalId } from '@zenith/ids'
 
 const mockTicketFindFirst = vi.fn()
 const mockInsertValues = vi.fn()

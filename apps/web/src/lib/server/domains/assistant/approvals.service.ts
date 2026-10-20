@@ -31,7 +31,7 @@ import {
   type Database,
   type Transaction,
 } from '@/lib/server/db'
-import type { AssistantPendingActionId, PrincipalId } from '@quackback/ids'
+import type { AssistantPendingActionId, PrincipalId } from '@zenith/ids'
 import type { Actor } from '@/lib/server/policy/types'
 import { permissionsForPrincipal } from '@/lib/server/policy/permissions'
 import { PERMISSIONS, type PermissionKey } from '@/lib/shared/permissions'

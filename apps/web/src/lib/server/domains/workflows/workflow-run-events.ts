@@ -15,7 +15,7 @@ import {
   type WorkflowRun,
   type Transaction,
 } from '@/lib/server/db'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 
 type Executor = typeof db | Transaction
 

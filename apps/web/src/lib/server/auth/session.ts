@@ -1,4 +1,4 @@
-import type { UserId, SessionId } from '@quackback/ids'
+import type { UserId, SessionId } from '@zenith/ids'
 import { getRequestPrincipal, getRequestSession } from '@/lib/server/auth/request-session'
 import { logger } from '@/lib/server/logger'
 import type { PrincipalType, SessionScope } from '@/lib/shared/roles'

@@ -41,7 +41,7 @@ import {
   conversations,
 } from '@/lib/server/db'
 import { notTestTicket } from '@/lib/server/test-data'
-import type { ConversationId, SlaPolicyId, TicketId } from '@quackback/ids'
+import type { ConversationId, SlaPolicyId, TicketId } from '@zenith/ids'
 import type { EventConversationRef, EventTicketRef } from '@/lib/server/events/types'
 import {
   commitTicketStamp,

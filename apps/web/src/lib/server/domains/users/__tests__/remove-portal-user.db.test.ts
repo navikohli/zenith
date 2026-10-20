@@ -5,7 +5,7 @@
  * ON DELETE RESTRICT foreign keys on posts / post_comments / conversations
  * aborting the principal delete, which a mocked executor cannot reproduce.
  * Each test runs inside the db-test-fixture rollback transaction, so
- * quackback_test stays clean, and the global `db` is rebound to that
+ * zenith_test stays clean, and the global `db` is rebound to that
  * transaction so the real service (and its own db.transaction, which becomes
  * a savepoint) runs unmodified.
  */
@@ -18,7 +18,7 @@ import {
   type PostId,
   type PrincipalId,
   type UserId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import {
   boards,

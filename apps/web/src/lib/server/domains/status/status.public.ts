@@ -24,7 +24,7 @@ import {
   statusComponentEvents,
   statusIncidents,
 } from '@/lib/server/db'
-import { isTypeId, type StatusComponentId, type StatusIncidentId } from '@quackback/ids'
+import { isTypeId, type StatusComponentId, type StatusIncidentId } from '@zenith/ids'
 import { canViewStatusComponent, statusComponentViewFilter } from '@/lib/server/policy/status'
 import type { Actor } from '@/lib/server/policy/types'
 import type { StatusSettings } from '@/lib/shared/status-settings'

@@ -22,11 +22,11 @@ export default defineConfig({
     setupFiles: [path.resolve(__dirname, '../../vitest.setup.ts')],
     exclude: ['**/node_modules/**', '**/.output/**', '**/e2e/**'],
     env: {
-      // Overridable, because `quackback_test` is shared with every other
+      // Overridable, because `zenith_test` is shared with every other
       // checkout on the machine and a branch mid-rename needs a schema the
       // others would fail against. Default unchanged.
       DATABASE_URL:
-        process.env.DATABASE_URL ?? 'postgresql://postgres:password@localhost:5432/quackback_test',
+        process.env.DATABASE_URL ?? 'postgresql://postgres:password@localhost:5432/zenith_test',
     },
   },
   resolve: {

@@ -42,7 +42,7 @@ vi.mock('@/lib/server/domains/settings/tier-enforce', () => ({
 }))
 
 import { updateBoard } from '../board.service'
-import type { BoardId } from '@quackback/ids'
+import type { BoardId } from '@zenith/ids'
 
 const BOARD_ID = 'board_01' as unknown as BoardId
 

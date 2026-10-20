@@ -44,8 +44,8 @@ describe('e2e widget harness', () => {
     const html = await mintE2eWidgetHtml('customer', 'http://acme.localhost:3000')
     expect(html).toContain('jwt-for-e2e.customer@example.com')
     expect(html).toContain('/api/widget/sdk.js')
-    expect(html).toContain("Quackback('init'")
-    expect(html).toContain("Quackback('open')")
+    expect(html).toContain("Zenith('init'")
+    expect(html).toContain("Zenith('open')")
   })
 
   it('omits identity for the anon persona', async () => {

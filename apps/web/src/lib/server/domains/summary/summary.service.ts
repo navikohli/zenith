@@ -27,7 +27,7 @@ import { TierLimitError } from '@/lib/server/errors/tier-limit-error'
 import { aiBudgetAvailable, enforceAiTokenBudget } from '@/lib/server/domains/settings/tier-enforce'
 import { commentPlainText } from '@/lib/server/markdown-tiptap'
 import { withWorkspaceSweepReentrancyGuard } from '@/lib/server/sweep-lock'
-import type { PostId } from '@quackback/ids'
+import type { PostId } from '@zenith/ids'
 import { isTestCustomer, notTestPrincipal } from '@/lib/server/test-data'
 import { logger } from '@/lib/server/logger'
 

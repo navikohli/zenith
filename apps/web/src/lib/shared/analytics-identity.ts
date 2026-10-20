@@ -16,7 +16,7 @@ export function analyticsDistinctId(email: string | null | undefined): string | 
  * single-workspace install, its settings row id). The key itself is an
  * ownership stamp and never leaves the server; the hash only groups events.
  * Any app holding the key reproduces it as
- * `ws_` + the first 24 hex chars of sha256(`quackback-analytics-workspace:<key>`).
+ * `ws_` + the first 24 hex chars of sha256(`zenith-analytics-workspace:<key>`).
  */
 export async function analyticsWorkspaceKey(
   workspaceKey: string | null | undefined,
@@ -24,7 +24,7 @@ export async function analyticsWorkspaceKey(
 ): Promise<string | null> {
   const source = workspaceKey || settingsId
   if (!source) return null
-  const bytes = new TextEncoder().encode(`quackback-analytics-workspace:${source}`)
+  const bytes = new TextEncoder().encode(`zenith-analytics-workspace:${source}`)
   const digest = new Uint8Array(await crypto.subtle.digest('SHA-256', bytes))
   const hex = Array.from(digest, (b) => b.toString(16).padStart(2, '0')).join('')
   return `ws_${hex.slice(0, 24)}`

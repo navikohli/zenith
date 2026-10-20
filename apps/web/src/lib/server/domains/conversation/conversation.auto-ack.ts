@@ -4,7 +4,7 @@
  */
 import { incrementBucket } from '@/lib/server/utils/rate-bucket'
 import { logger } from '@/lib/server/logger'
-import type { ConversationId } from '@quackback/ids'
+import type { ConversationId } from '@zenith/ids'
 import type { ParsedInboundEmail } from './conversation.email-inbound'
 import { ownEmailDomains } from './conversation.email-channel'
 import { normalizeSenderAddress } from './conversation.email-inbound'
@@ -69,7 +69,7 @@ export async function maybeSendColdInboundAck(opts: {
   }
 
   try {
-    const { sendConversationAutoAckEmail } = await import('@quackback/email')
+    const { sendConversationAutoAckEmail } = await import('@zenith/email')
     const { inboundReplyToAddress, mintOutboundMessageId } =
       await import('./conversation.email-channel')
     const { currentMailSlug } = await import('./conversation.mail-slug')

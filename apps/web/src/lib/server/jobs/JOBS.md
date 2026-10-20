@@ -3,7 +3,7 @@
 Background work on Postgres, per workspace, with leases. This is the substrate that
 replaces Redis for the background tier (`SAAS-HOSTING-STACK.md` §7).
 
-`QUACKBACK_TENANCY=single` — the default and every self-hosted install — gets one
+`ZENITH_TENANCY=single` — the default and every self-hosted install — gets one
 loop, no workspace scope, and the same scheduled jobs on the cadences they have
 always run on. Nothing here needs a registry or a control plane.
 
@@ -124,7 +124,7 @@ Happy-path dispatch is **claim this `job_id` now**. After a `job_queue` insert
 commits, `noteDurableWork` carries the id. Self-host `ROLE=all` / the worker
 calls `claimById` (same lease stamp as `claimJobs`) and `runJob`. Cloud
 `ROLE=web` POSTs `{ workspaceKey, jobIds }` to
-`QUACKBACK_JOB_WORKER_URL/api/internal/job-wake`; the worker does the same
+`ZENITH_JOB_WORKER_URL/api/internal/job-wake`; the worker does the same
 claim. A parked workspace's loop is started, then the id is claimed.
 
 The poll loop is the **sweeper**, not how Slack work starts. Lost HTTP, a
@@ -278,9 +278,9 @@ answers "iterate all workspaces per tick", and that is the right answer for a
 periodic sweep and the wrong one for a queue: the latency of an on-demand job
 would become the tick interval times the workspace count.
 
-`QUACKBACK_ROLE=web` does not start the job worker. Cloud runs a dedicated
-`QUACKBACK_ROLE=worker` replica with a loop per active workspace. Unset
-`QUACKBACK_ROLE` still means `all` (self-host).
+`ZENITH_ROLE=web` does not start the job worker. Cloud runs a dedicated
+`ZENITH_ROLE=worker` replica with a loop per active workspace. Unset
+`ZENITH_ROLE` still means `all` (self-host).
 
 A workspace whose database has not yet run the job-queue migration is
 **skipped with a warning**, not crash-looped.
@@ -298,12 +298,12 @@ has not loaded the full application config.
 | `JOB_REAP_INTERVAL_MS`     | 15000   | How often expired leases are adjudicated                                                                                                                                                |
 | `JOB_PRUNE_INTERVAL_MS`    | 1 hour  | How often terminal rows past retention are dropped (a per-workspace table scan; keep it slow)                                                                                           |
 | `JOB_RETENTION_MS`         | 7 days  | How long terminal rows are kept. Must exceed any live cron slot key                                                                                                                     |
-| `QUACKBACK_JOB_WORKER_URL` | unset   | Cloud web only: origin of the worker (`http://worker.railway.internal:3000`). Publisher also requires `QUACKBACK_FLEET_INTERNAL_TOKEN`. Unset, rejected, or token-missing = poll floor. |
+| `ZENITH_JOB_WORKER_URL` | unset   | Cloud web only: origin of the worker (`http://worker.railway.internal:3000`). Publisher also requires `ZENITH_FLEET_INTERNAL_TOKEN`. Unset, rejected, or token-missing = poll floor. |
 
 ### Worker job logs
 
 Every execution is one structured NDJSON line on stdout. A worker replica
-(`QUACKBACK_ROLE=worker`) binds `service_name=quackback-worker`. Filter on
+(`ZENITH_ROLE=worker`) binds `service_name=zenith-worker`. Filter on
 `event` plus `workspace_key` / `queue`. **Payloads are never logged** — IDs
 only (`job_id`, `dedupe_key`, `attempt`, `max_attempts`, `duration_ms`).
 

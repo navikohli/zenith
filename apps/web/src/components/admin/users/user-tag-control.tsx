@@ -8,7 +8,7 @@
 import { useState } from 'react'
 import { toast } from 'sonner'
 import { XMarkIcon, PlusIcon } from '@heroicons/react/24/solid'
-import type { PrincipalId, UserTagId } from '@quackback/ids'
+import type { PrincipalId, UserTagId } from '@zenith/ids'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'

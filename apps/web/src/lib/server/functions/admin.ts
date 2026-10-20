@@ -1,8 +1,8 @@
 import { z } from 'zod'
 import { createServerFn } from '@tanstack/react-start'
 import { getRequestHeaders } from '@tanstack/react-start/server'
-import { type InviteId, type UserId, type PrincipalId, type SegmentId } from '@quackback/ids'
-import type { BoardId, PostTagId, RoleId, UserTagId } from '@quackback/ids'
+import { type InviteId, type UserId, type PrincipalId, type SegmentId } from '@zenith/ids'
+import type { BoardId, PostTagId, RoleId, UserTagId } from '@zenith/ids'
 import { getSetupState, isOnboardingComplete as checkComplete } from '@/lib/server/db'
 import type { TiptapContent } from '@/lib/shared/schemas/posts'
 import { requireAuth } from './auth-helpers'
@@ -46,7 +46,7 @@ import {
   removeSegmentEvaluationSchedule,
 } from '@/lib/server/events/segment-scheduler'
 import type { CreateSegmentInput, UpdateSegmentInput } from '@/lib/server/domains/segments'
-import { sendInvitationEmail } from '@quackback/email'
+import { sendInvitationEmail } from '@zenith/email'
 import { getBaseUrl } from '@/lib/server/config'
 import {
   INVITATION_EXPIRY_MS,

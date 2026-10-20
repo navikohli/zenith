@@ -20,17 +20,17 @@ function renderBubble(props: Parameters<typeof VisitorMessageBubble>[0]) {
 }
 
 describe('VisitorMessageBubble', () => {
-  it('renders the name as "Quinn AI" for assistant messages, without a badge chip', () => {
+  it('renders the name as "ZenithAssistant AI" for assistant messages, without a badge chip', () => {
     renderBubble({
       side: 'peer',
       content: 'Hello there',
-      authorName: 'Quinn',
+      authorName: 'Zenith Assistant',
       isAssistant: true,
       time: '10:30 AM',
     })
 
     const attribution = screen.getByText(
-      (_, el) => el?.tagName === 'P' && el.textContent === 'Quinn AI · 10:30 AM'
+      (_, el) => el?.tagName === 'P' && el.textContent === 'ZenithAssistant AI · 10:30 AM'
     )
     expect(attribution).toBeInTheDocument()
     expect(attribution).toHaveClass('text-muted-foreground/70')

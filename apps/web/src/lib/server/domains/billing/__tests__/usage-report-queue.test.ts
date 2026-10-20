@@ -69,26 +69,26 @@ function job(payload: Record<string, unknown>, dedupeKey = 'usage-report:2026-07
 }
 
 describe('usage-report job', () => {
-  const previous = process.env.QUACKBACK_CONTROL_PLANE_URL
+  const previous = process.env.ZENITH_CONTROL_PLANE_URL
 
   afterEach(() => {
     hoisted.reportWorkspaceUsage.mockClear()
     hoisted.enqueueJob.mockClear()
     hoisted.cancelJob.mockClear()
     vi.useRealTimers()
-    if (previous === undefined) delete process.env.QUACKBACK_CONTROL_PLANE_URL
-    else process.env.QUACKBACK_CONTROL_PLANE_URL = previous
+    if (previous === undefined) delete process.env.ZENITH_CONTROL_PLANE_URL
+    else process.env.ZENITH_CONTROL_PLANE_URL = previous
   })
 
   it('is a successful no-op without a hosted billing URL', async () => {
-    delete process.env.QUACKBACK_CONTROL_PLANE_URL
+    delete process.env.ZENITH_CONTROL_PLANE_URL
     expect(isHostedBillingConfigured()).toBe(false)
     await expect(runUsageReport(job({ month: '2026-07' }))).resolves.toBeUndefined()
     expect(hoisted.reportWorkspaceUsage).not.toHaveBeenCalled()
   })
 
   it('posts the snapshot for the payload month', async () => {
-    process.env.QUACKBACK_CONTROL_PLANE_URL = 'https://billing.example.com'
+    process.env.ZENITH_CONTROL_PLANE_URL = 'https://billing.example.com'
     await runUsageReport(job({ month: '2026-07' }))
     expect(hoisted.reportWorkspaceUsage).toHaveBeenCalledWith({
       month: '2026-07',
@@ -109,7 +109,7 @@ describe('usage-report job', () => {
   })
 
   it('posts the previous UTC month of now when payload.month is absent', async () => {
-    process.env.QUACKBACK_CONTROL_PLANE_URL = 'https://billing.example.com'
+    process.env.ZENITH_CONTROL_PLANE_URL = 'https://billing.example.com'
     vi.useFakeTimers({ now: new Date('2026-08-01T00:10:00.000Z') })
     await runUsageReport(job({ scheduledFor: '2026-02-01T00:10:00.000Z' }, 'usage-report:2026-07'))
     expect(hoisted.reportWorkspaceUsage).toHaveBeenCalledWith(
@@ -119,7 +119,7 @@ describe('usage-report job', () => {
   })
 
   it('enqueues the previous UTC month from an hourly slot without posting it', async () => {
-    process.env.QUACKBACK_CONTROL_PLANE_URL = 'https://billing.example.com'
+    process.env.ZENITH_CONTROL_PLANE_URL = 'https://billing.example.com'
     vi.useFakeTimers({ now: new Date('2026-08-01T00:10:00.000Z') })
     await runUsageReport(
       job({ scheduledFor: '2026-08-01T00:10:00.000Z' }, 'usage-report:2026-08-01T00:10:00.000Z')
@@ -136,7 +136,7 @@ describe('usage-report job', () => {
   })
 
   it('skips the post when the month is already recorded', async () => {
-    process.env.QUACKBACK_CONTROL_PLANE_URL = 'https://billing.example.com'
+    process.env.ZENITH_CONTROL_PLANE_URL = 'https://billing.example.com'
     vi.useFakeTimers({ now: new Date('2026-08-01T01:10:00.000Z') })
     hoisted.enqueueJob.mockResolvedValueOnce({ inserted: false, jobId: 'job_x' })
     await runUsageReport(

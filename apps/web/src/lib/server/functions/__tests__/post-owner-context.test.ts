@@ -6,7 +6,7 @@
  * (roster mapping, unassigned -> null, former member -> null).
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 
 // --- Capture handlers registered via createServerFn ---

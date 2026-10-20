@@ -1,5 +1,5 @@
 /**
- * Quinn vision: turn a customer screenshot into image input for the model.
+ * ZenithAssistant vision: turn a customer screenshot into image input for the model.
  *
  * The thread mapper (assistant.thread.ts) carries image attachments through on
  * customer turns; this module renders those turns into model messages. Two
@@ -20,10 +20,10 @@
  *      meaningless off-host).
  *   - text-only: no image part is EVER emitted (a text-only endpoint would
  *      reject or silently drop them); the turn degrades to a textual
- *      `[image attached: name]` note so Quinn knows a screenshot exists and
+ *      `[image attached: name]` note so ZenithAssistant knows a screenshot exists and
  *      can say honestly that it cannot view it.
  *
- * Only customer turns carry images: Quinn's own replies and human teammate
+ * Only customer turns carry images: ZenithAssistant's own replies and human teammate
  * turns never need their attachments re-grounded for the model.
  */
 import { absolutizeOffHostAssetUrl } from '@/lib/server/storage/asset-url'

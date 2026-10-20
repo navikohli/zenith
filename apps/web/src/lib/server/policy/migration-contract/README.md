@@ -2,7 +2,7 @@
 
 A regression harness that pins **which hand-written SQL migrations carry
 destructive DDL**, and fails CI when a new one ships without an explicit
-sign-off naming the release it's safe after. It exists because Quackback is
+sign-off naming the release it's safe after. It exists because Zenith is
 moving from one-pod-per-workspace (where code and schema always ship together,
 so a breaking migration is safe) to a pooled fleet, where **one code version
 serves workspaces on two schema versions for the duration of every rollout**.

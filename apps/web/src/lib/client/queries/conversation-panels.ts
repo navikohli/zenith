@@ -6,7 +6,7 @@
  * entry goes stale.
  */
 import { queryOptions } from '@tanstack/react-query'
-import type { ConversationId, PrincipalId, TicketId } from '@quackback/ids'
+import type { ConversationId, PrincipalId, TicketId } from '@zenith/ids'
 import {
   listConversationsForUserFn,
   getConversationAssistantActivityFn,
@@ -34,7 +34,7 @@ export const conversationPanelQueries = {
       queryFn: () => listConversationsForUserFn({ data: { principalId } }),
     }),
 
-  /** Quinn's activity on the conversation (null when Quinn never engaged). */
+  /** ZenithAssistant's activity on the conversation (null when ZenithAssistant never engaged). */
   assistantActivity: (conversationId: ConversationId) =>
     queryOptions({
       ...entries.assistantActivity(conversationId),

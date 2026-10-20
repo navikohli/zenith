@@ -9,5 +9,5 @@ export const freshdeskCatalog: IntegrationCatalogEntry = {
   settingsPath: '/admin/settings/integrations/freshdesk',
   available: true,
   configurable: true,
-  docsUrl: 'https://www.quackback.io/docs/integrations/freshdesk',
+  docsUrl: '/source.html',
 }

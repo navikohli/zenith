@@ -42,7 +42,7 @@ export function SlackAgentCard() {
         />
       </div>
       <p className="text-sm text-muted-foreground">
-        Mention @Quackback in a thread, DM it, or use /quackback. Team members can ask questions and
+        Mention @Zenith in a thread, DM it, or use /zenith. Team members can ask questions and
         approve proposed feedback or tickets.
       </p>
       {!allowed && (

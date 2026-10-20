@@ -14,7 +14,7 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { storedCloud } from '@/lib/server/domains/settings/cloud/__tests__/cloud-fixture'
 import { EntitlementRequiredError } from '@/lib/server/errors/entitlement-error'
-import type { PostId } from '@quackback/ids'
+import type { PostId } from '@zenith/ids'
 
 const hoisted = vi.hoisted(() => ({
   mockGetWorkspaceSettings: vi.fn(),

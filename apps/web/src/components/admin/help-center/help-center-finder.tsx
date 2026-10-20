@@ -48,7 +48,7 @@ const { Component: CreateArticleDialog, preload: preloadCreateArticleDialog } = 
 )
 import { TimeAgo } from '@/components/ui/time-ago'
 import { FormattedMessage, useIntl } from 'react-intl'
-import type { KbArticleId } from '@quackback/ids'
+import type { KbArticleId } from '@zenith/ids'
 
 const SORT_OPTIONS = [
   { value: 'newest', label: 'Newest' },

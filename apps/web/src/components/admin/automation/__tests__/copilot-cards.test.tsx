@@ -14,7 +14,7 @@ const updateCopilotCapabilities = vi.fn()
 
 const config = {
   version: 3 as const,
-  identity: { name: 'Quinn', avatarUrl: null },
+  identity: { name: 'Zenith Assistant', avatarUrl: null },
   agents: {
     agent: {
       voice: {
@@ -107,7 +107,7 @@ describe('CopilotKnowledgeCard', () => {
     expect(screen.getByText('System status')).toBeInTheDocument()
     // The config-only rollout hint is gone now that toggles drive the toolset.
     expect(
-      screen.queryByText(/take effect when Quinn’s knowledge tools roll out/)
+      screen.queryByText(/take effect when ZenithAssistant’s knowledge tools roll out/)
     ).not.toBeInTheDocument()
     // Status is a live lookup, not an index; indexed sources carry no badge.
     expect(screen.getAllByText('Live lookup')).toHaveLength(1)

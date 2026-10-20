@@ -44,7 +44,7 @@ const teamAuth = {
   principalId: 'principal_james',
   userId: 'user_1',
   name: 'James',
-  email: 'james@quackback.io',
+  email: 'james@zenith.io',
   role: 'admin' as const,
   authMethod: 'oauth' as const,
   scopes: ['read:feedback'],

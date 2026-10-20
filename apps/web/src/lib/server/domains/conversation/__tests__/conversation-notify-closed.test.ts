@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import type { ConversationId, PrincipalId } from '@quackback/ids'
+import type { ConversationId, PrincipalId } from '@zenith/ids'
 
 const sendConversationClosedEmail = vi.fn(async (_opts: unknown) => ({ sent: true }))
 const enforceEmailBudget = vi.fn(async () => undefined)
@@ -11,7 +11,7 @@ const buildHookContext = vi.fn(async () => ({
 let csatRows: Array<Record<string, unknown>> = []
 let limitQueue: Array<Array<Record<string, unknown>>> = []
 
-vi.mock('@quackback/email', () => ({
+vi.mock('@zenith/email', () => ({
   sendConversationClosedEmail: (opts: unknown) => sendConversationClosedEmail(opts),
 }))
 

@@ -25,7 +25,7 @@ import {
   conversations,
   tickets,
 } from '@/lib/server/db'
-import { toUuid, type PrincipalId, type SegmentId, type UserTagId } from '@quackback/ids'
+import { toUuid, type PrincipalId, type SegmentId, type UserTagId } from '@zenith/ids'
 import { emitBestEffort } from '@/lib/server/events/emit'
 import { companyCreated, companyDeleted } from '@/lib/server/events/catalogue'
 import { NotFoundError, ValidationError, ConflictError } from '@/lib/shared/errors'

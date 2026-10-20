@@ -4,7 +4,7 @@
  * spending it turns setup tips off once.
  */
 import { afterAll, afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { createId, type PrincipalId, type UserId } from '@quackback/ids'
+import { createId, type PrincipalId, type UserId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { eq, notificationPreferences, principal, unsubscribeTokens, user } from '@/lib/server/db'
 import { ONBOARDING_TIPS_KEY } from '@/lib/shared/onboarding-tips'

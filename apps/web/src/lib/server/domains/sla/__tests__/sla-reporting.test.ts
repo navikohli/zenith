@@ -12,7 +12,7 @@ import {
   type ConversationId,
   type TicketId,
   type TicketStatusId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import {

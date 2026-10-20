@@ -449,7 +449,7 @@ describe('single-workspace relocation', () => {
 describe('pooled tenancy', () => {
   it('never relocates anything', async () => {
     mockConfig.isPooledTenancy = true
-    vi.stubEnv('QUACKBACK_TENANCY', 'pooled')
+    vi.stubEnv('ZENITH_TENANCY', 'pooled')
     put('logos/a.png', 'a')
 
     const outcome = await runLegacyStorageRelocation()
@@ -460,7 +460,7 @@ describe('pooled tenancy', () => {
   })
 
   it('refuses to open the bucket root even when asked directly', async () => {
-    vi.stubEnv('QUACKBACK_TENANCY', 'pooled')
+    vi.stubEnv('ZENITH_TENANCY', 'pooled')
     await expect(openLegacyRelocationBucket()).rejects.toBeInstanceOf(LegacyRelocationRefused)
     expect(sent).toHaveLength(0)
   })

@@ -8,7 +8,7 @@
  */
 import { boolean, pgTable, primaryKey, text, timestamp } from 'drizzle-orm/pg-core'
 import { relations } from 'drizzle-orm'
-import { typeIdColumn } from '@quackback/ids/drizzle'
+import { typeIdColumn } from '@zenith/ids/drizzle'
 import { settings } from './auth'
 
 export const workspaceExperiments = pgTable(

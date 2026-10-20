@@ -1,6 +1,6 @@
 /**
  * Knowledge-document ingest service: admin-uploaded files (PDFs and Word
- * documents) whose extracted text grounds Quinn's answers.
+ * documents) whose extracted text grounds ZenithAssistant's answers.
  *
  * Ingest is synchronous and small: extract the text layer (`./pdf-text`,
  * `lib/server/content/docx-text`), store the row, then embed best-effort — mirroring the
@@ -13,7 +13,7 @@
  * blocks an upload.
  */
 import { db, assistantDocuments, eq, sql } from '@/lib/server/db'
-import type { AssistantDocumentId, PrincipalId } from '@quackback/ids'
+import type { AssistantDocumentId, PrincipalId } from '@zenith/ids'
 import { generateEmbedding } from '@/lib/server/domains/embeddings/embedding.service'
 import { getEmbeddingModel } from '@/lib/server/domains/ai/models'
 import { isS3Usable, uploadObject, generateStorageKey } from '@/lib/server/storage/s3'
@@ -72,7 +72,7 @@ async function embedAssistantDocument(id: AssistantDocumentId, title: string, co
  * (plus the original bytes when object storage is configured), and embed.
  * Throws `DocumentIngestError` on anything the admin can act on — a wrong
  * type, an oversize file, or a document with no text layer (scanned image) —
- * rather than storing a document Quinn can never ground on.
+ * rather than storing a document ZenithAssistant can never ground on.
  */
 export async function ingestAssistantDocument(input: IngestAssistantDocumentInput) {
   const title = input.title.trim()

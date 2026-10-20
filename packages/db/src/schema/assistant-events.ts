@@ -1,6 +1,6 @@
 /**
  * Assistant usage events — append-only, one row per teammate interaction with
- * an AI surface (Quinn Copilot outcome loop): an answer/transform/summary
+ * an AI surface (ZenithAssistant Copilot outcome loop): an answer/transform/summary
  * inserted into the composer (metadata.destination says whether it landed as
  * a customer-facing reply or an internal note), or an explicit thumbs up/down
  * on an answer.
@@ -18,7 +18,7 @@
  */
 import { pgTable, text, timestamp, jsonb, index } from 'drizzle-orm/pg-core'
 import { relations, sql } from 'drizzle-orm'
-import { typeIdWithDefault, typeIdColumnNullable } from '@quackback/ids/drizzle'
+import { typeIdWithDefault, typeIdColumnNullable } from '@zenith/ids/drizzle'
 import { conversations } from './conversation'
 import { tickets } from './tickets'
 import { principal } from './auth'

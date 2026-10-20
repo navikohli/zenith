@@ -26,7 +26,7 @@
  * and show it", never toward silently fabricating a plan past an unknown
  * node).
  */
-import type { ConversationId, WorkflowId } from '@quackback/ids'
+import type { ConversationId, WorkflowId } from '@zenith/ids'
 import type { WorkflowStatus } from '@/lib/server/db'
 import { NotFoundError } from '@/lib/shared/errors'
 import { getWorkflow } from './workflow.service'
@@ -69,7 +69,7 @@ function humanizeType(type: string): string {
 
 /** One trace row's shape. `outcome`: 'planned' = the walk passed through (or
  *  will act) here and continues; 'parked' = this is where a real run would
- *  stop and wait (a timer, an interactive block, or Quinn); 'end' = the walk
+ *  stop and wait (a timer, an interactive block, or ZenithAssistant); 'end' = the walk
  *  terminates here (an unmatched condition/branch, or simply no successor). */
 export interface WorkflowPreviewTraceEntry {
   nodeId: string

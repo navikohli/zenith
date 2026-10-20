@@ -1,6 +1,6 @@
 /** Situational-guidance persistence and deterministic role prefiltering. */
 import { db, eq, and, inArray, asc, assistantGuidanceRules } from '@/lib/server/db'
-import type { AssistantGuidanceRuleId, PrincipalId } from '@quackback/ids'
+import type { AssistantGuidanceRuleId, PrincipalId } from '@zenith/ids'
 import { positionCaseSql } from '@/lib/server/utils'
 import { ValidationError } from '@/lib/shared/errors'
 import {

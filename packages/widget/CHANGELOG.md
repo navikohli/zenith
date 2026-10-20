@@ -1,13 +1,13 @@
-# @quackback/widget
+# @zenith/widget
 
 ## 0.1.6 - 2026-08-31
 
 - The config.json install ping now includes `?sdk=<version>` so the instance can tell an npm/file embed is behind and prompt an update on the widget settings page.
-- `Quackback.version` / `SDK_VERSION` expose the package version to host apps.
+- `Zenith.version` / `SDK_VERSION` expose the package version to host apps.
 
 ## 0.1.5 - 2026-05-18
 
-- Fix: `Quackback("init", { launcher: false, placement: "left" })` from a script-tag install now applies your options instead of silently keeping the default launcher and right-side placement. A repeat `init` call also reconfigures cleanly.
+- Fix: `Zenith("init", { launcher: false, placement: "left" })` from a script-tag install now applies your options instead of silently keeping the default launcher and right-side placement. A repeat `init` call also reconfigures cleanly.
 
 ## 0.1.4 — 2026-04-17
 
@@ -30,14 +30,14 @@ The published package continues to have zero runtime dependencies (React is an o
 ## 0.1.1 — 2026-04-17
 
 - Launcher now stays hidden until the server theme is applied, avoiding a brief flash of the default color before the brand color lands. A 1.5 s fallback reveal ensures the launcher still shows if the config fetch is slow or fails.
-- Default launcher colors updated to Quackback branding (black background, amber-400 icon) for the pre-theme and fallback state.
+- Default launcher colors updated to Zenith branding (black background, amber-400 icon) for the pre-theme and fallback state.
 
 ## 0.1.0 — 2026-04-17
 
-Initial release. Extracted from the Quackback monorepo.
+Initial release. Extracted from the Zenith monorepo.
 
-- Vanilla JS: `Quackback.init`, `.identify`, `.logout`, `.open`, `.close`, `.showLauncher`, `.hideLauncher`, `.on`, `.off`, `.metadata`, `.destroy`, `.isOpen`, `.getUser`, `.isIdentified`
-- React (`@quackback/widget/react`): `useQuackbackInit`, `useQuackback`, `useQuackbackEvent` — singleton + hooks, no provider
+- Vanilla JS: `Zenith.init`, `.identify`, `.logout`, `.open`, `.close`, `.showLauncher`, `.hideLauncher`, `.on`, `.off`, `.metadata`, `.destroy`, `.isOpen`, `.getUser`, `.isIdentified`
+- React (`@zenith/widget/react`): `useZenithInit`, `useZenith`, `useZenithEvent` — singleton + hooks, no provider
 - TypeScript types for all methods and events; discriminated `Identity` union (`{ id, email } | { ssoToken }`); discriminated `OpenOptions` for deep-link targets
-- IIFE bundle for script-tag users (served by Quackback at `/api/widget/sdk.js`)
-- Theme and tab visibility are server-driven — admin configures them in Quackback; there is no client override
+- IIFE bundle for script-tag users (served by Zenith at `/api/widget/sdk.js`)
+- Theme and tab visibility are server-driven — admin configures them in Zenith; there is no client override

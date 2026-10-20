@@ -9,7 +9,7 @@ import {
   isAssistantConfigured,
 } from '@/lib/server/domains/assistant/assistant.runtime'
 import { settings, eq, principal, assistantPendingActions } from '@/lib/server/db'
-import { createId } from '@quackback/ids'
+import { createId } from '@zenith/ids'
 import {
   settingsProposalSchema,
   settingsProposalInputSchema,

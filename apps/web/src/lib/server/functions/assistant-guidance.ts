@@ -7,7 +7,7 @@
 import { z } from 'zod'
 import { createServerFn } from '@tanstack/react-start'
 import { getRequestHeaders } from '@tanstack/react-start/server'
-import type { AssistantGuidanceRuleId } from '@quackback/ids'
+import type { AssistantGuidanceRuleId } from '@zenith/ids'
 import {
   assistantGuidanceRuleInputSchema,
   assistantGuidanceRulePatchSchema,
@@ -172,7 +172,7 @@ export const listAssistantToolsFn = createServerFn({ method: 'GET' }).handler(as
   const { resolveToolSpecs } = await import('@/lib/server/domains/assistant/assistant.toolspec')
   const specs = await resolveToolSpecs()
   // Core control tools (handoff/inability) are protocol primitives, not
-  // workspace-listed capabilities. They stay in Quinn's catalogue but do not
+  // workspace-listed capabilities. They stay in ZenithAssistant's catalogue but do not
   // appear in the admin surface.
   return specs
     .filter((spec) => spec.risk !== 'control')

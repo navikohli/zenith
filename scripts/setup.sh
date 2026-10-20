@@ -8,7 +8,7 @@ YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
 echo ""
-echo "  Quackback Development Setup"
+echo "  Zenith Development Setup"
 echo "  ============================"
 echo ""
 
@@ -59,10 +59,10 @@ fi
 echo ""
 
 # Check if port 5432 is in use by another container
-if docker ps --format '{{.Names}}' | grep -v quackback-db | xargs -I {} docker port {} 2>/dev/null | grep -q "5432"; then
+if docker ps --format '{{.Names}}' | grep -v zenith-db | xargs -I {} docker port {} 2>/dev/null | grep -q "5432"; then
   echo -e "${YELLOW}Port 5432 is in use by another container${NC}"
   echo "Stopping conflicting containers..."
-  docker ps --format '{{.ID}} {{.Names}} {{.Ports}}' | grep "5432->" | grep -v quackback-db | awk '{print $1}' | xargs -r docker stop
+  docker ps --format '{{.ID}} {{.Names}} {{.Ports}}' | grep "5432->" | grep -v zenith-db | awk '{print $1}' | xargs -r docker stop
   echo -e "${GREEN}Cleared port 5432${NC}"
 fi
 
@@ -83,7 +83,7 @@ sleep 2
 until curl -sf http://localhost:9000/minio/health/live > /dev/null 2>&1; do
   sleep 1
 done
-echo -e "${GREEN}MinIO is ready (bucket 'quackback' configured automatically)${NC}"
+echo -e "${GREEN}MinIO is ready (bucket 'zenith' configured automatically)${NC}"
 
 # Install dependencies
 echo "Installing dependencies..."

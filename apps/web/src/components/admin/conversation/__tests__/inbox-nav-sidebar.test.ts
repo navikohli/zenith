@@ -35,10 +35,10 @@ describe('isInboxView', () => {
     expect(isInboxView('saved')).toBe(true)
   })
 
-  it('accepts "quinn" — a nav group of its own, not listed in CONVERSATION_VIEWS', () => {
-    expect(isInboxView('quinn')).toBe(true)
+  it('accepts "zenithAssistant" — a nav group of its own, not listed in CONVERSATION_VIEWS', () => {
+    expect(isInboxView('zenithAssistant')).toBe(true)
     const views: readonly string[] = CONVERSATION_VIEWS.map((c) => c.view)
-    expect(views.includes('quinn')).toBe(false)
+    expect(views.includes('zenithAssistant')).toBe(false)
   })
 
   it('accepts every Tickets-section view (UNIFIED-INBOX-SPEC.md §2.3)', () => {

@@ -5,7 +5,7 @@
  * its frame, behind the frame's spinner. Opening one mounts one dialog.
  */
 import { lazy } from 'react'
-import type { ArticleId, ChangelogId, PostId } from '@quackback/ids'
+import type { ArticleId, ChangelogId, PostId } from '@zenith/ids'
 import { useUrlModal } from '@/lib/client/hooks/use-url-modal'
 import { UrlModalShell } from '@/components/shared/url-modal-shell'
 import type { CurrentUser } from '@/lib/shared/types'

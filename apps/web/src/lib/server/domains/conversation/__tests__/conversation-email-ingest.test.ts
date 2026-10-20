@@ -89,8 +89,8 @@ vi.mock('../conversation.service', () => ({
   sendVisitorMessage: (...a: unknown[]) => sendVisitorMessage(...a),
 }))
 
-vi.mock('@quackback/email', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@quackback/email')>()),
+vi.mock('@zenith/email', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@zenith/email')>()),
   getReceivedEmail: (...a: unknown[]) => getReceivedEmail(...a),
 }))
 
@@ -145,7 +145,7 @@ vi.mock('@/lib/server/storage/s3', async (importOriginal) => ({
   uploadImageBuffer: (...a: unknown[]) => uploadImageBuffer(...a),
   uploadObject: (...a: unknown[]) => uploadObject(...a),
   getPublicUrlOrNull: (key: string | null | undefined) =>
-    key ? `https://quackback.ngrok.app/api/storage/${key}` : null,
+    key ? `https://zenith.ngrok.app/api/storage/${key}` : null,
 }))
 
 vi.mock('@/lib/server/domains/files/files.service', async (importOriginal) => ({
@@ -241,10 +241,10 @@ beforeEach(() => {
   createEmailConversation.mockResolvedValue('conversation_cold')
   cleanupColdInboundLead.mockResolvedValue(undefined)
   uploadImageBuffer.mockImplementation(async (bytes: Buffer, mime: string) => ({
-    url: `https://quackback.ngrok.app/api/storage/chat-images/img-${bytes.length}.${mime.split('/')[1]}`,
+    url: `https://zenith.ngrok.app/api/storage/chat-images/img-${bytes.length}.${mime.split('/')[1]}`,
   }))
   uploadObject.mockImplementation(
-    async (key: string) => `https://quackback.ngrok.app/api/storage/${key}`
+    async (key: string) => `https://zenith.ngrok.app/api/storage/${key}`
   )
   let fileSeq = 0
   storeFile.mockImplementation(
@@ -472,11 +472,11 @@ describe('ingestInboundEmail', () => {
 
   it('never matches a synthetic anonymous placeholder address', async () => {
     principalRow = { ...principalRow!, contactEmail: null }
-    conversationRow = { ...conversationRow!, visitorEmail: 'temp-abc@anon.quackback.io' }
+    conversationRow = { ...conversationRow!, visitorEmail: 'temp-abc@anon.zenith.io' }
 
     const result = await ingestInboundEmail({
       ...baseEvent,
-      data: { ...baseEvent.data, from: 'temp-abc@anon.quackback.io' },
+      data: { ...baseEvent.data, from: 'temp-abc@anon.zenith.io' },
     })
 
     expect(result).toEqual({ status: 'from_mismatch' })
@@ -737,7 +737,7 @@ describe('ingestInboundEmail', () => {
       // a Message-ID host is a fact about the FLEET and not about this workspace.
       // Reading it as authorship hard-drops the neighbour's mail — the same
       // mistake as trusting a sending provider's regional host, one level in.
-      vi.stubEnv('QUACKBACK_TENANCY', 'pooled')
+      vi.stubEnv('ZENITH_TENANCY', 'pooled')
       try {
         const neighboursOwnId = '<c.01kw8qxn1eeh4t2rek7varh032.n1@tenaevexeo.resend.app>'
         const passingThrough = await ingestInboundEmail({
@@ -1300,7 +1300,7 @@ describe('the transport id as a dedupe fallback', () => {
     resolveChannelAccountByRecipient.mockResolvedValue({ id: 'chan_1', role: 'inbound' })
     const parsed = parseRawEmail(
       [
-        'To: support@quackback.example',
+        'To: support@zenith.example',
         'From: stranger@example.com',
         'Subject: Hello',
         '',

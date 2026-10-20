@@ -10,7 +10,7 @@ import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixt
 import { conversationMessages, conversations, eq, files, principal } from '@/lib/server/db'
 import type { ConversationAttachment, FilePreviewMeta } from '@/lib/server/db'
 import type { ClaimedJob } from '@/lib/server/jobs/job-queue'
-import type { FileId, PrincipalId } from '@quackback/ids'
+import type { FileId, PrincipalId } from '@zenith/ids'
 
 vi.mock('@/lib/server/db', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/lib/server/db')>()),

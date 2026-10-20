@@ -9,7 +9,7 @@
  * row rather than from the request.
  */
 import { createHash } from 'node:crypto'
-import { isValidTypeId, type FileId, type PrincipalId } from '@quackback/ids'
+import { isValidTypeId, type FileId, type PrincipalId } from '@zenith/ids'
 import {
   db,
   files,

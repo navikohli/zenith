@@ -1,5 +1,5 @@
 import { afterAll, afterEach, beforeEach, expect, it, vi } from 'vitest'
-import { createId, type PrincipalId } from '@quackback/ids'
+import { createId, type PrincipalId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from './db-test-fixture'
 import {
   principal,
@@ -17,8 +17,8 @@ vi.mock('@/lib/server/db', async (original) => ({
 import { getOrCreateTestCustomer } from '../test-customer'
 import { loadAnalyticsData } from '../domains/analytics/analytics-dashboard'
 import { listPortalUsers } from '../domains/users/user.service'
-import { getQuinnPerformance } from '../domains/analytics/quinn-performance'
-import { getQuinnToolMetrics } from '../domains/analytics/quinn-tools'
+import { getZenithAssistantPerformance } from '../domains/analytics/zenith-assistant-performance'
+import { getZenithAssistantToolMetrics } from '../domains/analytics/zenith-assistant-tools'
 
 const fixture = await createDbTestFixture()
 let owner: PrincipalId
@@ -100,11 +100,11 @@ it('keeps live support metrics and the lead directory unchanged for a test custo
   expect((await listPortalUsers({ lifecycle: 'leads' })).total).toBe(leads.total + 1)
 })
 
-it('keeps test replies out of Quinn performance and action metrics', async () => {
+it('keeps test replies out of ZenithAssistant performance and action metrics', async () => {
   const from = new Date(Date.now() - 86_400_000),
     to = new Date(Date.now() + 86_400_000)
-  const before = await getQuinnPerformance(from, to),
-    tools = await getQuinnToolMetrics(from, to)
+  const before = await getZenithAssistantPerformance(from, to),
+    tools = await getZenithAssistantToolMetrics(from, to)
   const customer = await getOrCreateTestCustomer(owner, 'en')
   const [test] = await testDb
     .insert(conversations)
@@ -125,8 +125,8 @@ it('keeps test replies out of Quinn performance and action metrics', async () =>
     args: { query: 'Acme' },
     status: 'succeeded',
   })
-  expect(await getQuinnPerformance(from, to)).toEqual(before)
-  expect(await getQuinnToolMetrics(from, to)).toEqual(tools)
+  expect(await getZenithAssistantPerformance(from, to)).toEqual(before)
+  expect(await getZenithAssistantToolMetrics(from, to)).toEqual(tools)
   // The teammate's own thread with a legacy marker is real and counts.
   const [real] = await testDb
     .insert(conversations)
@@ -135,7 +135,7 @@ it('keeps test replies out of Quinn performance and action metrics', async () =>
   await testDb
     .insert(assistantInvolvements)
     .values({ conversationId: real.id, triggeredBy: 'first_touch', status: 'active' })
-  const result = await getQuinnPerformance(from, to)
+  const result = await getZenithAssistantPerformance(from, to)
   expect(result.involvements).toBe(before.involvements + 1)
   expect(result.conversations).toBe(before.conversations + 1)
 })

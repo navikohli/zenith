@@ -47,7 +47,7 @@
  *
  * ## This module is the only minter of `SendingIdentity`
  *
- * The senders in `@quackback/email` type their `from` as that brand, so an
+ * The senders in `@zenith/email` type their `from` as that brand, so an
  * address that did not come out of the two functions at the bottom of this file
  * cannot be handed to one. The casts here are the only casts to it in
  * application code, which is what makes the brand a fact about the value rather
@@ -65,8 +65,8 @@
  * `domains/conversation` entirely, which is a move across modules this change
  * does not otherwise touch. The cycle is the deliberate choice until then.
  */
-import { addressDomain, applyDisplayName, parseAddress } from '@quackback/email/ses'
-import type { SendingIdentity } from '@quackback/email/sender'
+import { addressDomain, applyDisplayName, parseAddress } from '@zenith/email/ses'
+import type { SendingIdentity } from '@zenith/email/sender'
 import { logger } from '@/lib/server/logger'
 import { db, eq, emailSendingDomains } from '@/lib/server/db'
 import { isPooledTenancy } from '@/lib/server/workspaces/mode'

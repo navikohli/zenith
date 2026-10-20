@@ -15,7 +15,7 @@ import {
   parseTypeIdArray,
 } from '@/lib/server/domains/api/validation'
 import { contentJsonToMarkdown } from '@/lib/server/markdown-tiptap'
-import type { BoardId, PrincipalId, PostStatusId, PostTagId } from '@quackback/ids'
+import type { BoardId, PrincipalId, PostStatusId, PostTagId } from '@zenith/ids'
 import { segmentIdsForPrincipal } from '@/lib/server/domains/segments/segment-membership.service'
 
 // Input validation schemas
@@ -57,7 +57,7 @@ export const Route = createFileRoute('/api/v1/posts/')({
           const sort = (url.searchParams.get('sort') as 'newest' | 'oldest' | 'votes') ?? 'newest'
           const showDeleted = url.searchParams.get('showDeleted') === 'true'
 
-          const { isValidTypeId } = await import('@quackback/ids')
+          const { isValidTypeId } = await import('@zenith/ids')
           const boardId =
             boardIdParam && isValidTypeId(boardIdParam, 'board')
               ? (boardIdParam as BoardId)

@@ -9,20 +9,20 @@
  */
 export const CLIENT_PROTECTED_SPECIFIERS = [
   'postgres',
-  '@quackback/db',
-  '@quackback/db/client',
-  '@quackback/db/schema',
+  '@zenith/db',
+  '@zenith/db/client',
+  '@zenith/db/schema',
   // The personal email domain list is about 270 KB of data.
-  '@quackback/db/email/personal-email-domains',
+  '@zenith/db/email/personal-email-domains',
   'openai',
-  '@quackback/logger',
+  '@zenith/logger',
   'pino',
   // Server-side file preview engines: a WebAssembly PDF renderer and a HEIC decoder.
   'mupdf',
   'heic-convert',
 ] as const
 
-/** True for a protected package or any of its subpaths (`pino/file`, `@quackback/db/x`). */
+/** True for a protected package or any of its subpaths (`pino/file`, `@zenith/db/x`). */
 export function isClientProtectedSpecifier(spec: string): boolean {
   return CLIENT_PROTECTED_SPECIFIERS.some((p) => spec === p || spec.startsWith(`${p}/`))
 }

@@ -50,10 +50,10 @@ function previewStylesheet(css: string): string {
  * `?preview=1` inside a same-origin iframe (the admin live preview). It
  * listens for postMessage from the parent and exposes two draft channels:
  *
- * - `quackback:preview-css`: the theme editor's full draft stylesheet,
+ * - `zenith:preview-css`: the theme editor's full draft stylesheet,
  *   rendered into a <style> AFTER the children so it cascades over the
  *   loader-injected theme styles and custom CSS.
- * - `quackback:preview-draft`: structural drafts (nav config, welcome card,
+ * - `zenith:preview-draft`: structural drafts (nav config, welcome card,
  *   header identity) provided via PreviewDraftContext for draft-aware
  *   components (PortalHeader, the welcome card render site).
  *
@@ -78,16 +78,16 @@ export function PortalPreviewProvider({
     function onMessage(event: MessageEvent) {
       if (event.origin !== window.location.origin) return
       const msg = event.data as { type?: string; css?: unknown; draft?: unknown } | null | undefined
-      if (msg?.type === 'quackback:preview-css' && typeof msg.css === 'string') {
+      if (msg?.type === 'zenith:preview-css' && typeof msg.css === 'string') {
         setCss(msg.css)
-      } else if (msg?.type === 'quackback:preview-draft' && msg.draft) {
+      } else if (msg?.type === 'zenith:preview-draft' && msg.draft) {
         const incoming = msg.draft as StructuralDraft
         setDraft((prev) => nextDraft(prev, incoming))
       }
     }
     window.addEventListener('message', onMessage)
     // Tell the parent we're ready so it re-sends current drafts after a remount.
-    window.parent.postMessage({ type: 'quackback:preview-ready' }, window.location.origin)
+    window.parent.postMessage({ type: 'zenith:preview-ready' }, window.location.origin)
     return () => window.removeEventListener('message', onMessage)
   }, [active])
 

@@ -91,7 +91,7 @@ export type ConversationMessageMentionId = TypeId<'conversation_msg_mention'>
 /** Conversation message reaction ID - e.g., conversation_msg_reaction_01h455vb4pex5vsknk084sn02q */
 export type ConversationMessageReactionId = TypeId<'conversation_msg_reaction'>
 
-/** Conversation summary ID (Quinn past-conversation grounding) - e.g., conversation_summary_01h455vb4pex5vsknk084sn02q */
+/** Conversation summary ID (ZenithAssistant past-conversation grounding) - e.g., conversation_summary_01h455vb4pex5vsknk084sn02q */
 export type ConversationSummaryId = TypeId<'conversation_summary'>
 
 /** Conversation message translation ID (P2-D.1 inbox translation cache) - e.g., conversation_msg_translation_01h455vb4pex5vsknk084sn02q */
@@ -241,7 +241,7 @@ export type TicketTypeId = TypeId<'ticket_type'>
 /** Ticket activity log ID - e.g., ticket_activity_01h455vb4pex5vsknk084sn02q */
 export type TicketActivityId = TypeId<'ticket_activity'>
 
-/** Ticket summary ID (Quinn ticket-resolution grounding) - e.g., ticket_summary_01h455vb4pex5vsknk084sn02q */
+/** Ticket summary ID (ZenithAssistant ticket-resolution grounding) - e.g., ticket_summary_01h455vb4pex5vsknk084sn02q */
 export type TicketSummaryId = TypeId<'ticket_summary'>
 
 /** Ticket subscription (watcher) ID - e.g., ticket_sub_01h455vb4pex5vsknk084sn02q */

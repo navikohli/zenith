@@ -2,7 +2,7 @@
  * Where every mail recipient in this app comes from.
  *
  * The three classes and the rule they encode are defined next to the senders
- * that demand them, in `@quackback/email/recipient` — a capability-bearing
+ * that demand them, in `@zenith/email/recipient` — a capability-bearing
  * sender's `to` is typed `SecureRecipient`, so handing one a contact address is
  * a compile error at the send site rather than something a convention has to
  * catch. This module is the other half of that: the ONLY place in the app that
@@ -20,8 +20,8 @@
  */
 
 import { eq, inArray } from 'drizzle-orm'
-import type { PrincipalId, UserId } from '@quackback/ids'
-import type { AccountEmail, ContactEmail, SealedEmail } from '@quackback/email/recipient'
+import type { PrincipalId, UserId } from '@zenith/ids'
+import type { AccountEmail, ContactEmail, SealedEmail } from '@zenith/email/recipient'
 import { db, user, principal } from '@/lib/server/db'
 import { realEmail } from '@/lib/shared/anonymous-email'
 
@@ -30,7 +30,7 @@ export type {
   ContactEmail,
   SealedEmail,
   SecureRecipient,
-} from '@quackback/email/recipient'
+} from '@zenith/email/recipient'
 
 /**
  * The account's own address, or null when it has none that can receive mail.

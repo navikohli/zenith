@@ -8,7 +8,7 @@ import {
   unreadWatermarkFromAnchor,
   resolvedConversationRate,
 } from '../conversation.lifecycle'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 import { CONVERSATION_END_REASONS } from '@/lib/shared/conversation/types'
 
 describe('unreadWatermarkFromAnchor', () => {

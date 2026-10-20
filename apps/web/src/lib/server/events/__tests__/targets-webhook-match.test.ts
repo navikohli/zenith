@@ -51,7 +51,7 @@ vi.mock('@/lib/server/domains/ai/config', () => ({
 vi.mock('../hook-context', () => ({
   buildHookContext: vi.fn().mockResolvedValue({
     workspaceName: 'Test Workspace',
-    portalBaseUrl: 'https://test.quackback.io',
+    portalBaseUrl: 'https://test.zenith.io',
     logoUrl: null,
   }),
 }))

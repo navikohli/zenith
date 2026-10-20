@@ -43,7 +43,7 @@
  * them). A blocked admin still owns setup for the same reason: the promoter
  * counts them, so the screen must too.
  */
-import type { UserId } from '@quackback/ids'
+import type { UserId } from '@zenith/ids'
 import { and, asc, eq, isNotNull, principal, sql, user } from '@/lib/server/db'
 import type { Database, Transaction } from '@/lib/server/db'
 import { isProvisionedWorkspace } from '@/lib/server/workspaces/provenance'
@@ -63,7 +63,7 @@ type Executor = Database | Transaction
  * locking after leaves the window this closes wide open. Released on commit.
  */
 export function bootstrapAdminLock() {
-  return sql`select pg_advisory_xact_lock(hashtextextended('quackback:bootstrap-admin', 0))`
+  return sql`select pg_advisory_xact_lock(hashtextextended('zenith:bootstrap-admin', 0))`
 }
 
 /** Who owns a workspace's setup: a human principal holding admin. */

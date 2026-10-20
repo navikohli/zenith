@@ -123,13 +123,13 @@ describe('eventToWorkflowTrigger', () => {
     const event = {
       ...base,
       type: 'message.note_created',
-      actor: { type: 'service' as const, principalId: 'principal_quinn' },
+      actor: { type: 'service' as const, principalId: 'principal_zenithAssistant' },
       data: {
         message: {
           id: 'm_note1',
           conversationId: 'conversation_1',
           senderType: 'agent',
-          authorPrincipalId: 'principal_quinn',
+          authorPrincipalId: 'principal_zenithAssistant',
           content: 'Escalated to VIP',
         },
         conversation: { id: 'conversation_1' },

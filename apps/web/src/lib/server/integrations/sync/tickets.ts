@@ -1,5 +1,5 @@
 import type { integrations } from '@/lib/server/db'
-import type { TicketId } from '@quackback/ids'
+import type { TicketId } from '@zenith/ids'
 import { getIntegration } from '../index'
 import { getIntegrationAuth } from '../token-refresh'
 import { syncDestination, syncHash } from './identity'

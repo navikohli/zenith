@@ -12,7 +12,7 @@
  */
 import { z } from 'zod'
 import { createServerFn, createServerOnlyFn } from '@tanstack/react-start'
-import type { UserId } from '@quackback/ids'
+import type { UserId } from '@zenith/ids'
 import { requireAuth } from './auth-helpers'
 
 import { db, user, eq } from '@/lib/server/db'

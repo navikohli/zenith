@@ -10,7 +10,7 @@
  * schema defined here.
  */
 import { z } from 'zod'
-import { isValidTypeId, type TicketTypeId } from '@quackback/ids'
+import { isValidTypeId, type TicketTypeId } from '@zenith/ids'
 import type { TicketType, TicketStage, TicketStatusCategory } from '@/lib/shared/db-types'
 
 /** Render a ticket's sequential number for display (plain `#142`). */

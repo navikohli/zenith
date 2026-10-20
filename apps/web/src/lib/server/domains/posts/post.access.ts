@@ -14,7 +14,7 @@
  * NotFoundError-shaped error (don't leak existence to denied callers).
  */
 import { db, eq, and, or, isNull, posts, boards, postComments } from '@/lib/server/db'
-import { type PostCommentId, type PostId } from '@quackback/ids'
+import { type PostCommentId, type PostId } from '@zenith/ids'
 import { NotFoundError, ForbiddenError } from '@/lib/shared/errors'
 import { notTestPrincipal } from '@/lib/server/test-data'
 import {

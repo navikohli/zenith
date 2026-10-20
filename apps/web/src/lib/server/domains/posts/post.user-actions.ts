@@ -17,7 +17,7 @@ import {
   isNull,
   type Post,
 } from '@/lib/server/db'
-import { type PostId, type PrincipalId, type UserId } from '@quackback/ids'
+import { type PostId, type PrincipalId, type UserId } from '@zenith/ids'
 import { NotFoundError, ValidationError, ForbiddenError } from '@/lib/shared/errors'
 import { isTeamMember, Role } from '@/lib/shared/roles'
 import { createActivity } from '@/lib/server/domains/activity/activity.service'

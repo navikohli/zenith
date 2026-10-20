@@ -8,7 +8,7 @@ import type { ReactNode } from 'react'
 import { describe, expect, it, vi } from 'vitest'
 import { renderHook, waitFor } from '@testing-library/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import type { ConversationId, PrincipalId } from '@quackback/ids'
+import type { ConversationId, PrincipalId } from '@zenith/ids'
 
 const getPersonBlockStatusFn = vi.fn()
 vi.mock('@/lib/server/functions/blocking', () => ({

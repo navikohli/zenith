@@ -5,7 +5,7 @@ import { TagIcon, XMarkIcon, ChevronDownIcon } from '@heroicons/react/24/solid'
 import { Button } from '@/components/ui/button'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { SegmentPickerList } from '@/components/admin/segments/segment-picker-list'
-import type { SegmentId } from '@quackback/ids'
+import type { SegmentId } from '@zenith/ids'
 
 interface ManualSegmentOption {
   id: SegmentId

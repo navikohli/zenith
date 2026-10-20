@@ -1,7 +1,7 @@
 // @vitest-environment happy-dom
 /**
  * The Support pane: titled like its rail entry, no search box (search lives in
- * the list column), Quinn activity listed with the conversations, and no
+ * the list column), ZenithAssistant activity listed with the conversations, and no
  * filler sentence under an empty Saved views section.
  */
 import { afterEach, describe, expect, it, vi } from 'vitest'
@@ -64,9 +64,9 @@ describe('InboxNavSidebar layout', () => {
   it('lists AI agent activity under Conversations, with no AI section', async () => {
     renderSidebar()
     expect(screen.queryByText('AI')).toBeNull()
-    const quinn = screen.getByRole('button', { name: /AI agent activity/ })
+    const zenithAssistant = screen.getByRole('button', { name: /AI agent activity/ })
     const conversations = screen.getByText('Conversations').closest('div.pb-4') as HTMLElement
-    expect(within(conversations).getByRole('button', { name: /AI agent activity/ })).toBe(quinn)
+    expect(within(conversations).getByRole('button', { name: /AI agent activity/ })).toBe(zenithAssistant)
   })
 
   it('shows no empty-state sentence under Saved views, only its add button', async () => {

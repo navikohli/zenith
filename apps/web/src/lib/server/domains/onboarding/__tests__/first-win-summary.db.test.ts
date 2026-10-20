@@ -2,7 +2,7 @@
  * The named first win Home celebrates: who acted, on what, and where to see it.
  */
 import { afterAll, afterEach, beforeEach, expect, it, vi } from 'vitest'
-import { createId, type PrincipalId, type UserId } from '@quackback/ids'
+import { createId, type PrincipalId, type UserId } from '@zenith/ids'
 import type { BoardAccess } from '@/lib/shared/db-types'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import {

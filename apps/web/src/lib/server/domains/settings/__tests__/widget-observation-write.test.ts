@@ -40,7 +40,7 @@ const { observeExternalWidgetRequest } = await import('../settings.widget')
 
 function requestWithOrigin(
   origin: string,
-  url = 'https://app.quackback.test/api/widget/config.json'
+  url = 'https://app.zenith.test/api/widget/config.json'
 ): Request {
   // happy-dom drops `origin` from init headers (forbidden-header list); set it
   // after construction to emulate the browser-set header — see
@@ -78,7 +78,7 @@ describe('observeExternalWidgetRequest writes', () => {
 
   it('does not touch the database for an originless native request', async () => {
     const observed = await observeExternalWidgetRequest(
-      new Request('https://app.quackback.test/api/widget/config.json')
+      new Request('https://app.zenith.test/api/widget/config.json')
     )
     expect(observed).toBe(false)
     expect(hoisted.findSettings).not.toHaveBeenCalled()
@@ -89,7 +89,7 @@ describe('observeExternalWidgetRequest writes', () => {
     await observeExternalWidgetRequest(
       requestWithOrigin(
         'https://customer.example',
-        'https://app.quackback.test/api/widget/config.json?sdk=0.1.5'
+        'https://app.zenith.test/api/widget/config.json?sdk=0.1.5'
       ),
       new Date('2026-07-13T12:00:00.000Z')
     )
@@ -99,7 +99,7 @@ describe('observeExternalWidgetRequest writes', () => {
   })
 
   it('records the instance SDK version for a script-tag sdk.js fetch', async () => {
-    const req = new Request('https://app.quackback.test/api/widget/sdk.js')
+    const req = new Request('https://app.zenith.test/api/widget/sdk.js')
     req.headers.set('origin', 'https://customer.example')
     await observeExternalWidgetRequest(req, new Date('2026-07-13T12:00:00.000Z'))
     expect(hoisted.setValues).toHaveBeenCalledWith(

@@ -37,7 +37,7 @@ import {
   tickets,
   ticketConversations,
 } from '@/lib/server/db'
-import type { ConversationId, PrincipalId } from '@quackback/ids'
+import type { ConversationId, PrincipalId } from '@zenith/ids'
 import { listTagsForConversation } from '@/lib/server/domains/conversation/conversation-tag.service'
 import { segmentIdsForPrincipal } from '@/lib/server/domains/segments/segment-membership.service'
 import { getOfficeHoursSchedule } from '@/lib/server/domains/settings/settings.office-hours'

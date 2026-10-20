@@ -303,7 +303,7 @@ describe('walkWorkflow — conversational block kinds (Phase C, slice C-1)', () 
     })
   })
 
-  describe("let_assistant_answer (Phase C, slice C-6: parks pending Quinn's outcome)", () => {
+  describe("let_assistant_answer (Phase C, slice C-6: parks pending ZenithAssistant's outcome)", () => {
     const graph: WorkflowGraph = {
       nodes: [
         { id: 't', type: 'trigger' },

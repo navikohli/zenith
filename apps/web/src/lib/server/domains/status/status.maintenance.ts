@@ -29,7 +29,7 @@ import {
   type Database,
   type Transaction,
 } from '@/lib/server/db'
-import type { StatusIncidentId } from '@quackback/ids'
+import type { StatusIncidentId } from '@zenith/ids'
 import { NotFoundError, ValidationError } from '@/lib/shared/errors'
 import { logger } from '@/lib/server/logger'
 import { scheduleDispatch, cancelScheduledDispatch } from '@/lib/server/events/scheduler'

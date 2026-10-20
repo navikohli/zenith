@@ -4,7 +4,7 @@
  */
 import { QueryClient } from '@tanstack/react-query'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import type { ConversationId } from '@quackback/ids'
+import type { ConversationId } from '@zenith/ids'
 import type { ConversationDTO } from '@/lib/shared/conversation/types'
 import type { InboxItemDTO } from '@/lib/shared/inbox/items'
 import { conversationKeys } from '@/lib/client/queries/conversation-keys'

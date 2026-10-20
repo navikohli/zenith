@@ -44,7 +44,7 @@ vi.mock('../signin-device-tracker', async (importOriginal) => {
   }
 })
 
-vi.mock('@quackback/email', () => ({
+vi.mock('@zenith/email', () => ({
   sendNewSignInEmail: (params: unknown) => mockSendNewSignInEmail(params),
 }))
 
@@ -337,7 +337,7 @@ describe('handleNewDeviceNotification — account with no deliverable address', 
     mockIsDeviceUnseen.mockResolvedValueOnce(true)
     const { db } = await import('@/lib/server/db')
     vi.mocked(db.query.user.findFirst).mockResolvedValueOnce({
-      email: 'sso-oidc-abc-deadbeef@anon.quackback.io',
+      email: 'sso-oidc-abc-deadbeef@anon.zenith.io',
     } as never)
 
     await handleNewDeviceNotification(buildCtx(), workspace())

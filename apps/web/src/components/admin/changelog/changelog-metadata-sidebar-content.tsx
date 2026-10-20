@@ -31,7 +31,7 @@ import { listSegmentsFn } from '@/lib/server/functions/admin'
 import { changelogSettingsQueries } from '@/lib/client/queries/changelog'
 import { useImageUpload } from '@/lib/client/hooks/use-image-upload'
 import { cn, tomorrowAt } from '@/lib/shared/utils'
-import type { PostId, ChangelogCategoryId, SegmentId } from '@quackback/ids'
+import type { PostId, ChangelogCategoryId, SegmentId } from '@zenith/ids'
 import type { PublishState } from '@/lib/shared/schemas/changelog'
 import { TagIcon, EnvelopeIcon, PhotoIcon, XMarkIcon } from '@heroicons/react/24/outline'
 

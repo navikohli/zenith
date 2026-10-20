@@ -257,7 +257,7 @@ describe('contentJsonToMarkdown', () => {
     expect(result).toContain('https://youtu.be/abc')
   })
 
-  test('keeps images when they coexist with emoji and Quackback embeds', () => {
+  test('keeps images when they coexist with emoji and Zenith embeds', () => {
     const doc = {
       type: 'doc' as const,
       content: [
@@ -269,7 +269,7 @@ describe('contentJsonToMarkdown', () => {
           ],
         },
         { type: 'resizableImage', attrs: { src: 'https://cdn.example.com/s.png', alt: 'S' } },
-        { type: 'quackbackEmbed', attrs: { kind: 'post', id: 'post_123' } },
+        { type: 'zenithEmbed', attrs: { kind: 'post', id: 'post_123' } },
       ],
     }
     const result = contentJsonToMarkdown(doc, 'stale stored markdown')

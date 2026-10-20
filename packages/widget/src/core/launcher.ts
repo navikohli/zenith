@@ -15,7 +15,7 @@ export interface LauncherHandle {
   /** Replace the button colors (typically called after server config fetch). */
   setColors(colors: { backgroundColor?: string; foregroundColor?: string }): void
   /** Show an unread-count badge on the button (hidden at 0). Driven by the
-   *  iframe's `quackback:unread` messages so a visitor sees waiting replies
+   *  iframe's `zenith:unread` messages so a visitor sees waiting replies
    *  without opening the widget. */
   setUnread(count: number): void
   /** Proactive greeting bubble beside the button (empty/unset hides it). Shown
@@ -32,7 +32,7 @@ export interface LauncherHandle {
   remove(): void
 }
 
-// Quackback brand defaults — shown briefly before the server theme fetch
+// Zenith brand defaults — shown briefly before the server theme fetch
 // completes, or as the permanent colors if the fetch fails.
 const DEFAULT_BG = '#000000'
 const DEFAULT_FG = '#facc15'
@@ -58,7 +58,7 @@ export function createLauncher(opts: LauncherOptions): LauncherHandle {
   let localDismissed = false
   const contained = Boolean(opts.root)
   const edge = contained ? '0px' : '24px'
-  const GREETING_DISMISS_KEY = 'quackback:launcher-greeting-dismissed'
+  const GREETING_DISMISS_KEY = 'zenith:launcher-greeting-dismissed'
   const greetingDismissed = (): boolean => {
     if (contained) return localDismissed
     try {

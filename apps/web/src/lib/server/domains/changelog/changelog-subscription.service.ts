@@ -9,7 +9,7 @@
  * People-directory per-user toggle.
  */
 import { db, eq, sql, changelogSubscriptions, principal, user } from '@/lib/server/db'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 import { logger } from '@/lib/server/logger'
 import { getChangelogSettings } from '@/lib/server/domains/settings/settings.changelog'
 import type {

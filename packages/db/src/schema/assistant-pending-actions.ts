@@ -1,5 +1,5 @@
 /**
- * Pending actions — a write-tool call Quinn proposed but has not executed,
+ * Pending actions — a write-tool call ZenithAssistant proposed but has not executed,
  * awaiting agent approval within a TTL. `proposePendingAction` opens one;
  * `decidePendingAction` moves it to `approved`/`rejected` (only from
  * `proposed`, and only before it expires); the stale-action sweep flips
@@ -27,7 +27,7 @@
  *
  * `ticketId` (unified inbox §3.3) makes the parent polymorphic like
  * conversation_messages (conversation_messages_parent_check): a pending
- * action now hangs off a conversation XOR a ticket, so Quinn can propose a
+ * action now hangs off a conversation XOR a ticket, so ZenithAssistant can propose a
  * write-tool call from a ticket-scoped copilot turn too.
  */
 import {
@@ -41,7 +41,7 @@ import {
   foreignKey,
 } from 'drizzle-orm/pg-core'
 import { relations, sql } from 'drizzle-orm'
-import { typeIdWithDefault, typeIdColumnNullable } from '@quackback/ids/drizzle'
+import { typeIdWithDefault, typeIdColumnNullable } from '@zenith/ids/drizzle'
 import { conversations } from './conversation'
 import { tickets } from './tickets'
 import { assistantInvolvements } from './assistant'

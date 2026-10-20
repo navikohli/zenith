@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { createId, type UserId } from '@quackback/ids'
+import { createId, type UserId } from '@zenith/ids'
 import {
   operations,
   mockTransaction,

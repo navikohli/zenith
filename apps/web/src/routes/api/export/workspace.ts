@@ -59,7 +59,7 @@ export async function handleStartWorkspaceExport(request: Request): Promise<Resp
     }
 
     const slug = validation.settings.slug
-    const fileName = `quackback-export-${slug}-${new Date().toISOString().slice(0, 10)}.zip`
+    const fileName = `zenith-export-${slug}-${new Date().toISOString().slice(0, 10)}.zip`
 
     let run
     try {

@@ -13,7 +13,7 @@
  * directly to unit-test.
  */
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
-import type { StatusComponentId, StatusIncidentId } from '@quackback/ids'
+import type { StatusComponentId, StatusIncidentId } from '@zenith/ids'
 
 const mockIncidentFindFirst = vi.fn()
 const mockIncidentComponentsFindMany = vi.fn()

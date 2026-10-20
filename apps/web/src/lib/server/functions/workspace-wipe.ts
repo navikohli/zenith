@@ -38,7 +38,7 @@ export const wipeCloudWorkspaceFn = createServerFn({ method: 'POST' })
       }
       throw error
     }
-    const raw = process.env.QUACKBACK_CONTROL_PLANE_URL
+    const raw = process.env.ZENITH_CONTROL_PLANE_URL
     const dashboardUrl =
       raw && raw.startsWith('https://') ? `${raw.replace(/\/$/, '')}/dashboard` : '/'
     return { wiped: true as const, confirm: data.confirm, dashboardUrl }

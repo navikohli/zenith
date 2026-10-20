@@ -3,11 +3,11 @@
  * weekly open windows in a timezone, resolved DST-safe at read. An empty
  * `intervals` array means 24/7 (the default), so a fresh workspace is always
  * open until an admin restricts it. Consumed by Messenger reply-expectations,
- * the workflows office-hours condition, Quinn handover copy, and SLA clocks.
+ * the workflows office-hours condition, ZenithAssistant handover copy, and SLA clocks.
  */
 import { pgTable, text, jsonb, timestamp, boolean, uniqueIndex } from 'drizzle-orm/pg-core'
 import { sql } from 'drizzle-orm'
-import { typeIdWithDefault } from '@quackback/ids/drizzle'
+import { typeIdWithDefault } from '@zenith/ids/drizzle'
 
 /** A weekly open window. `day` is 0=Sunday..6=Saturday; `start`/`end` are 'HH:MM'
  *  local times in the schedule's timezone. A window with end <= start is ignored. */

@@ -24,7 +24,7 @@ describe('General workspace identity', () => {
     expect(screen.getByLabelText('Workspace name')).toHaveValue('Acme')
     expect(screen.getByRole('button', { name: 'Change workspace logo' })).toBeInTheDocument()
     expect(screen.queryByLabelText('Workspace URL')).not.toBeInTheDocument()
-    expect(screen.queryByText(/Friendly Quackback URL/i)).not.toBeInTheDocument()
+    expect(screen.queryByText(/Friendly Zenith URL/i)).not.toBeInTheDocument()
     expect(screen.queryByText(/ws-/)).not.toBeInTheDocument()
   })
 

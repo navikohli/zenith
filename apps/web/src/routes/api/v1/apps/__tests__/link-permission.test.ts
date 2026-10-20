@@ -6,7 +6,7 @@
  * resolved authority, the rate limiter and the link service are stubbed.
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { generateId } from '@quackback/ids'
+import { generateId } from '@zenith/ids'
 import { permissionsForLegacyRole } from '@/lib/server/policy/permissions'
 
 const { mockAuthority, mockLink, mockUnlink } = vi.hoisted(() => ({

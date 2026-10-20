@@ -45,7 +45,7 @@ function frameReady() {
     fireEvent(
       window,
       new MessageEvent('message', {
-        data: { type: 'quackback:preview-ready' },
+        data: { type: 'zenith:preview-ready' },
         origin: window.location.origin,
       })
     )
@@ -83,13 +83,13 @@ describe('PortalPreview', () => {
     rerender(<PortalPreview {...saved} draftCss=":root { --primary: blue; }" cssDirty />)
     debounce()
     expect(sent(post)).toEqual([
-      { type: 'quackback:preview-css', css: ':root { --primary: blue; }' },
+      { type: 'zenith:preview-css', css: ':root { --primary: blue; }' },
     ])
 
     post.mockClear()
     rerender(<PortalPreview {...saved} />)
     debounce()
-    expect(sent(post)).toEqual([{ type: 'quackback:preview-css', css: '' }])
+    expect(sent(post)).toEqual([{ type: 'zenith:preview-css', css: '' }])
   })
 
   it('sends an unsaved navigation or welcome card alone, and the saved one on discard', () => {
@@ -100,13 +100,13 @@ describe('PortalPreview', () => {
     const edited = { nav: { items: [{ id: 'feedback', type: 'feedback' as const }] } }
     rerender(<PortalPreview {...saved} draft={edited} draftDirty />)
     debounce()
-    expect(sent(post)).toEqual([{ type: 'quackback:preview-draft', draft: edited }])
+    expect(sent(post)).toEqual([{ type: 'zenith:preview-draft', draft: edited }])
 
     post.mockClear()
     const discarded = { nav: { items: [] } }
     rerender(<PortalPreview {...saved} draft={discarded} />)
     debounce()
-    expect(sent(post)).toEqual([{ type: 'quackback:preview-draft', draft: discarded }])
+    expect(sent(post)).toEqual([{ type: 'zenith:preview-draft', draft: discarded }])
   })
 
   it('re-sends unsaved drafts to a reloaded frame once, and nothing once they are saved', () => {
@@ -117,7 +117,7 @@ describe('PortalPreview', () => {
     frameReady()
     debounce()
     expect(sent(post)).toEqual([
-      { type: 'quackback:preview-css', css: ':root { --primary: blue; }' },
+      { type: 'zenith:preview-css', css: ':root { --primary: blue; }' },
     ])
 
     // A save lands: the frame reloads showing the new saved config natively.

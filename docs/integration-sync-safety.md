@@ -8,8 +8,8 @@ Reviewed PR head: `f3aa1c264dc198bb00075d7749afcac9df940b26`, on `fix/integratio
 
 Both Codex findings were accurate:
 
-- [P1: atomically claim deliveries](https://github.com/QuackbackIO/quackback/pull/575#discussion_r4058023885). Concurrent old queue jobs could all read an absent receipt before executing the same remote create. A queue dedupe key alone did not fence them.
-- [P2: preserve failure health](https://github.com/QuackbackIO/quackback/pull/575#discussion_r4057960308). A successful refresh callback could clear a sibling's error. Health now derives from all unresolved operations for the current installation.
+- [P1: atomically claim deliveries](https://github.com/Zenith/zenith/pull/575#discussion_r4058023885). Concurrent old queue jobs could all read an absent receipt before executing the same remote create. A queue dedupe key alone did not fence them.
+- [P2: preserve failure health](https://github.com/Zenith/zenith/pull/575#discussion_r4057960308). A successful refresh callback could clear a sibling's error. Health now derives from all unresolved operations for the current installation.
 
 The review also found that a successful remote create followed by a failed local association could leave an orphan and later create again. A link for one destination could incorrectly suppress work for another. These require durable evidence and scoped associations, beyond the original two fixes.
 
@@ -26,8 +26,8 @@ The implementation follows these ordered slices:
 
 The review of `7c8971fec` confirmed both new Codex comments:
 
-- [Restored creates](https://github.com/QuackbackIO/quackback/pull/575#discussion_r4061210775): a source-driven cancellation could strand a never-dispatched create. Restoration now reuses that operation only when no dispatch or success evidence exists. Explicit user cancellation, success and uncertainty remain protected.
-- [Slack rate limits](https://github.com/QuackbackIO/quackback/pull/575#discussion_r4061210782): the installed Slack SDK's rate-limit error now maps to a confirmed rejection with its retry delay. Unknown outcomes still require review.
+- [Restored creates](https://github.com/Zenith/zenith/pull/575#discussion_r4061210775): a source-driven cancellation could strand a never-dispatched create. Restoration now reuses that operation only when no dispatch or success evidence exists. Explicit user cancellation, success and uncertainty remain protected.
+- [Slack rate limits](https://github.com/Zenith/zenith/pull/575#discussion_r4061210782): the installed Slack SDK's rate-limit error now maps to a confirmed rejection with its retry delay. Unknown outcomes still require review.
 
 The same pass keeps expired and manually retried Slack app events on the serial Slack queue, preserves webhook-registration errors independently of sync health, and enables outbound status proposals from actual status-listing capabilities. Settings no longer offer event toggles whose adapters do nothing, and setup descriptions distinguish status review from automatic updates. All inbound adapters explicitly declare automatic or review-only status handling; GitHub and Linear can apply verified updates, while the other seven require review.
 
@@ -138,7 +138,7 @@ An operation that was failed or awaiting credentials at backup time may have suc
 
 ## Validation
 
-Validation uses an isolated PostgreSQL database (`quackback_sync_575`), mocked provider boundaries and scratch migration databases. It never calls provider mutation endpoints. The browser review renders the actual health/history/dialog components with fixture server responses inside a settings frame; it covers desktop, mobile, dark mode, loading/error/empty states, restricted actions and confirmation drafts. It is not authenticated full-application E2E coverage.
+Validation uses an isolated PostgreSQL database (`zenith_sync_575`), mocked provider boundaries and scratch migration databases. It never calls provider mutation endpoints. The browser review renders the actual health/history/dialog components with fixture server responses inside a settings frame; it covers desktop, mobile, dark mode, loading/error/empty states, restricted actions and confirmation drafts. It is not authenticated full-application E2E coverage.
 
 Earlier PR validation on 2026-09-21, before the cross-provider consistency changes:
 

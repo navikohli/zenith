@@ -14,7 +14,7 @@
  * messages, each of which wakes a snooze without a status event.
  */
 import { db, and, asc, eq, gte, sql, events, conversationMessages } from '@/lib/server/db'
-import type { ConversationId, TicketId } from '@quackback/ids'
+import type { ConversationId, TicketId } from '@zenith/ids'
 import { getExecuteRows } from '@/lib/server/utils/execute-rows'
 
 /** A paused span; `until` is null while the entity is still paused. */

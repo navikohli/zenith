@@ -5,8 +5,8 @@
  */
 import { z } from 'zod'
 import { createServerFn } from '@tanstack/react-start'
-import { isValidTypeId } from '@quackback/ids'
-import type { ConversationId, TicketId } from '@quackback/ids'
+import { isValidTypeId } from '@zenith/ids'
+import type { ConversationId, TicketId } from '@zenith/ids'
 import { requireAuth, policyActorFromAuth } from './auth-helpers'
 import { isTeamMember } from '@/lib/shared/roles'
 import { PERMISSIONS } from '@/lib/shared/permissions'

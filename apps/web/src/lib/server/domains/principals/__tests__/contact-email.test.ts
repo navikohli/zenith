@@ -21,8 +21,8 @@ describe('acceptableContactEmail', () => {
   it('rejects the reserved placeholder domain', () => {
     // Accepting one would let somebody re-enter the undeliverable state the
     // set-your-address flow exists to escape.
-    expect(acceptableContactEmail('sso-oidc-abc-deadbeef@anon.quackback.io')).toBeNull()
-    expect(acceptableContactEmail('temp-123@anon.quackback.io')).toBeNull()
+    expect(acceptableContactEmail('sso-oidc-abc-deadbeef@anon.zenith.io')).toBeNull()
+    expect(acceptableContactEmail('temp-123@anon.zenith.io')).toBeNull()
   })
 
   it('rejects an address long enough to be an attack on storage', () => {

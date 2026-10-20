@@ -11,7 +11,7 @@ import { useCallback, useMemo, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { toast } from 'sonner'
-import type { ConversationId } from '@quackback/ids'
+import type { ConversationId } from '@zenith/ids'
 import {
   translateConversationMessagesFn,
   setInboxTranslationEnabledFn,

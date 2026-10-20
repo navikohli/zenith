@@ -42,14 +42,14 @@ describe('isTrustedAttachmentUrl — app storage route', () => {
     const ok = withWorkspace(
       'workspace-alpha',
       () => ({
-        system: isTrustedAttachmentUrl('https://ws-abc123.quackback.co.uk/api/storage/x.png'),
-        friendly: isTrustedAttachmentUrl('https://acme.quackback.co.uk/api/storage/x.png'),
+        system: isTrustedAttachmentUrl('https://ws-abc123.zenith.co.uk/api/storage/x.png'),
+        friendly: isTrustedAttachmentUrl('https://acme.zenith.co.uk/api/storage/x.png'),
         relative: isTrustedAttachmentUrl('/api/storage/x.png'),
         other: isTrustedAttachmentUrl('https://evil.example.com/api/storage/x.png'),
       }),
       {
-        storage: { publicUrl: 'https://ws-abc123.quackback.co.uk/api/storage' },
-        baseUrl: 'https://acme.quackback.co.uk',
+        storage: { publicUrl: 'https://ws-abc123.zenith.co.uk/api/storage' },
+        baseUrl: 'https://acme.zenith.co.uk',
       }
     )
     expect(ok).toEqual({ system: true, friendly: true, relative: true, other: false })

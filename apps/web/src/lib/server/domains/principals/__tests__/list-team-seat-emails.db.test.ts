@@ -6,7 +6,7 @@
  * dropping any clause of the predicate returns a different set.
  */
 import { afterAll, afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { createId, type PrincipalId, type UserId } from '@quackback/ids'
+import { createId, type PrincipalId, type UserId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { principal, user } from '@/lib/server/db'
 
@@ -62,14 +62,14 @@ describe.skipIf(!fixture.available)('listTeamSeatEmails predicate', () => {
     await seed('admin', 'user', '   ')
     await seed('admin', 'user', null)
     await seed('admin', 'service', null)
-    await seed('admin', 'support', `support-${tag}@quackback.io`)
+    await seed('admin', 'support', `support-${tag}@zenith.io`)
 
     const emails = await listTeamSeatEmails()
     expect(emails).toContain(`admin-${tag}@acme.test`)
     expect(emails).toContain(`member-${tag}@acme.test`)
     expect(emails).not.toContain(`voter-${tag}@public.test`)
     expect(emails).not.toContain(`temp-${tag}@anon.invalid`)
-    expect(emails).not.toContain(`support-${tag}@quackback.io`)
+    expect(emails).not.toContain(`support-${tag}@zenith.io`)
     expect(emails.filter((e) => e.includes(tag)).sort()).toEqual(
       [`admin-${tag}@acme.test`, `member-${tag}@acme.test`].sort()
     )

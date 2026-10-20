@@ -5,7 +5,7 @@
  */
 
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import type { UserAttributeId } from '@quackback/ids'
+import type { UserAttributeId } from '@zenith/ids'
 import {
   createUserAttributeFn,
   updateUserAttributeFn,

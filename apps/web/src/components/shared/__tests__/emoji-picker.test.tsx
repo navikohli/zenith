@@ -34,6 +34,6 @@ describe('EmojiPicker', () => {
     fireEvent.click(screen.getByLabelText('Insert emoji'))
     fireEvent.click(await screen.findByText('🤞'))
     expect(onSelect).toHaveBeenCalledWith('🤞')
-    expect(JSON.parse(window.localStorage.getItem('quackback:emoji-recent')!)).toEqual(['🤞'])
+    expect(JSON.parse(window.localStorage.getItem('zenith:emoji-recent')!)).toEqual(['🤞'])
   })
 })

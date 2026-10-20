@@ -9,7 +9,7 @@ function request(
   // happy-dom enforces the forbidden-header list at construction and silently
   // drops `origin` from init headers; a browser sets the header itself, so set
   // it on the constructed Request (allowed) to emulate a real cross-origin call.
-  const req = new Request(extra?.url ?? 'https://app.quackback.test/api/widget/config.json')
+  const req = new Request(extra?.url ?? 'https://app.zenith.test/api/widget/config.json')
   if (origin) req.headers.set('origin', origin)
   if (secFetchSite) req.headers.set('sec-fetch-site', secFetchSite)
   if (extra?.referer) req.headers.set('referer', extra.referer)
@@ -28,7 +28,7 @@ describe('widget installation observation', () => {
   it.each([
     [undefined, undefined],
     ['null', undefined],
-    ['https://app.quackback.test', undefined],
+    ['https://app.zenith.test', undefined],
     ['https://customer.example, https://spoof.example', undefined],
     ['file://customer.example', undefined],
     ['https://customer.example/spoofed-path', undefined],
@@ -51,7 +51,7 @@ describe('widget installation observation', () => {
     expect(
       externalWidgetOriginHostname(
         request('https://docs.example.com', undefined, {
-          host: 'app.quackback.test',
+          host: 'app.zenith.test',
           url: 'http://127.0.0.1:3000/api/widget/config.json',
         })
       )
@@ -59,7 +59,7 @@ describe('widget installation observation', () => {
     expect(
       externalWidgetOriginHostname(
         request('http://127.0.0.1:8766', undefined, {
-          host: 'app.quackback.test',
+          host: 'app.zenith.test',
           url: 'http://127.0.0.1:3000/api/widget/config.json',
         })
       )

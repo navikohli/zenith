@@ -5,9 +5,9 @@ import {
   badRequestResponse,
   handleDomainError,
 } from '@/lib/server/domains/api/responses'
-import { isValidTypeId } from '@quackback/ids'
+import { isValidTypeId } from '@zenith/ids'
 import { PERMISSIONS } from '@/lib/shared/permissions'
-import type { PostMergeSuggestionId } from '@quackback/ids'
+import type { PostMergeSuggestionId } from '@zenith/ids'
 
 export const Route = createFileRoute('/api/v1/suggestions/$suggestionId/accept')({
   server: {

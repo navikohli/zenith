@@ -26,7 +26,7 @@ export const Route = createFileRoute('/_portal/u/$principalId')({
     }
     return {
       profile,
-      workspaceName: context.settings?.name ?? 'Quackback',
+      workspaceName: context.settings?.name ?? 'Zenith',
       baseUrl: context.baseUrl ?? '',
     }
   },

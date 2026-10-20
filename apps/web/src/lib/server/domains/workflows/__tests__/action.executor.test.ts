@@ -13,7 +13,7 @@ import type {
   TeamId,
   ConversationTagId,
   SlaPolicyId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import type { Actor } from '@/lib/server/policy/types'
 import { NotFoundError, ValidationError } from '@/lib/shared/errors'
 
@@ -172,7 +172,7 @@ const ctx: WorkflowContext = {
 
 beforeEach(() => {
   vi.clearAllMocks()
-  ensureAssistantPrincipal.mockResolvedValue({ id: 'principal_quinn' })
+  ensureAssistantPrincipal.mockResolvedValue({ id: 'principal_zenithAssistant' })
   resolveWorkflowVariables.mockResolvedValue({
     first_name: 'Jane',
     name: 'Jane Doe',
@@ -180,7 +180,7 @@ beforeEach(() => {
     workspace_name: 'Acme',
   })
   getAssistantRuntimeConfig.mockResolvedValue({
-    config: { identity: { name: 'Quinn', avatarUrl: null } },
+    config: { identity: { name: 'Zenith Assistant', avatarUrl: null } },
   })
   appendAssistantReply.mockResolvedValue({ id: 'conversation_message_block_1' })
   previewAssistantTurnForConversation.mockResolvedValue('eligible')
@@ -242,7 +242,7 @@ describe('applyAction', () => {
     expect(safeFetch).toHaveBeenCalledOnce()
     const [, options] = safeFetch.mock.calls[0]
     expect(options.headers).toMatchObject({
-      'X-Quackback-Delivery-Id': 'workflow:workflow_run_1:action_webhook',
+      'X-Zenith-Delivery-Id': 'workflow:workflow_run_1:action_webhook',
       'Idempotency-Key': 'workflow:workflow_run_1:action_webhook',
     })
     expect(JSON.parse(options.body)).toMatchObject({
@@ -504,7 +504,7 @@ describe('applyAction', () => {
       expect(appendAssistantReply).toHaveBeenCalledWith(
         conversationId,
         'Hi Jane!', // resolved plain-text fallback, no raw {token}
-        { principalId: 'principal_quinn', displayName: 'Quinn', avatarUrl: null },
+        { principalId: 'principal_zenithAssistant', displayName: 'Zenith Assistant', avatarUrl: null },
         expect.objectContaining({
           waiting: false,
           contentJson: { type: 'doc', content: [{ type: 'text', text: 'Hi Jane!' }] },
@@ -533,7 +533,7 @@ describe('applyAction', () => {
       expect(appendAssistantReply).toHaveBeenCalledWith(
         conversationId,
         'Hi Jane!',
-        { principalId: 'principal_quinn', displayName: 'Quinn', avatarUrl: null },
+        { principalId: 'principal_zenithAssistant', displayName: 'Zenith Assistant', avatarUrl: null },
         expect.objectContaining({
           waiting: false,
           metadata: {
@@ -785,7 +785,7 @@ describe('applyAction', () => {
   })
 
   describe('let_assistant_answer', () => {
-    it('hands the turn to Quinn out-of-band and returns immediately', async () => {
+    it('hands the turn to ZenithAssistant out-of-band and returns immediately', async () => {
       let resolveTurn: () => void = () => {}
       runAssistantTurnForConversation.mockReturnValue(
         new Promise<void>((resolve) => {
@@ -827,7 +827,7 @@ describe('applyAction', () => {
       })
     })
 
-    it('returns assistantDeclined when the orchestrator preview says Quinn will not run', async () => {
+    it('returns assistantDeclined when the orchestrator preview says ZenithAssistant will not run', async () => {
       previewAssistantTurnForConversation.mockResolvedValueOnce('declined')
       await expect(applyAction({ type: 'let_assistant_answer' }, ctx)).resolves.toMatchObject({
         label: 'assistant declined',
@@ -856,7 +856,7 @@ describe('applyAction', () => {
 
   describe('add_note', () => {
     it('posts through the shared addAgentNote seam, authored by the assistant service principal, under the run actor', async () => {
-      ensureAssistantPrincipal.mockResolvedValue({ id: 'principal_quinn', displayName: 'Quinn' })
+      ensureAssistantPrincipal.mockResolvedValue({ id: 'principal_zenithAssistant', displayName: 'Zenith Assistant' })
       addAgentNote.mockResolvedValue({
         conversation: { id: conversationId },
         message: { id: 'conversation_message_note_1' },
@@ -867,13 +867,13 @@ describe('applyAction', () => {
       expect(addAgentNote).toHaveBeenCalledWith(
         conversationId,
         'Escalated to VIP',
-        { principalId: 'principal_quinn', displayName: 'Quinn' },
+        { principalId: 'principal_zenithAssistant', displayName: 'Zenith Assistant' },
         actor
       )
     })
 
     it('propagates a failure from the note write path (e.g. an empty/over-long body slipping past the schema)', async () => {
-      ensureAssistantPrincipal.mockResolvedValue({ id: 'principal_quinn', displayName: 'Quinn' })
+      ensureAssistantPrincipal.mockResolvedValue({ id: 'principal_zenithAssistant', displayName: 'Zenith Assistant' })
       addAgentNote.mockRejectedValue(new Error('Message cannot be empty'))
       await expect(applyAction({ type: 'add_note', body: '' }, ctx)).rejects.toThrow(
         'Message cannot be empty'

@@ -7,7 +7,7 @@ import {
   ticketExternalLinks,
   type Ticket,
 } from '@/lib/server/db'
-import type { PostId, TicketId } from '@quackback/ids'
+import type { PostId, TicketId } from '@zenith/ids'
 import {
   resolveStatusMapping,
   resolveTicketStatusMapping,

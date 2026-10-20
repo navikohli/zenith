@@ -1,5 +1,5 @@
 /**
- * Feedback-posts grounding source for Quinn.
+ * Feedback-posts grounding source for ZenithAssistant.
  *
  * A second `KnowledgeSource` (see `./retrieval-sources`) alongside the
  * knowledge base: retrieval over `posts`, same audience-scoped hybrid shape as

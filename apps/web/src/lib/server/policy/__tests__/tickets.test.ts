@@ -6,7 +6,7 @@
  * filter admits — no `db` mock (nothing under test reads the global db).
  */
 import { describe, it, expect, beforeEach, afterEach, afterAll } from 'vitest'
-import { createId, type PrincipalId, type TypeId, type UserId } from '@quackback/ids'
+import { createId, type PrincipalId, type TypeId, type UserId } from '@zenith/ids'
 
 type TeamId = TypeId<'team'>
 type TicketId = TypeId<'ticket'>

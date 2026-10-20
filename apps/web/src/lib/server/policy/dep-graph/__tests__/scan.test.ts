@@ -5,12 +5,12 @@ describe('extractImports', () => {
   it('extracts static import specifiers', () => {
     const refs = extractImports(
       'a.ts',
-      `import { x } from './x'\nimport y from '@/lib/shared/y'\nimport '@quackback/ids'\n`
+      `import { x } from './x'\nimport y from '@/lib/shared/y'\nimport '@zenith/ids'\n`
     )
     expect(refs).toEqual([
       { specifier: './x', kind: 'static' },
       { specifier: '@/lib/shared/y', kind: 'static' },
-      { specifier: '@quackback/ids', kind: 'static' },
+      { specifier: '@zenith/ids', kind: 'static' },
     ])
   })
 
@@ -77,7 +77,7 @@ describe('resolveSrcSpecifier', () => {
 
   it('returns null for bare, package, and src-escaping specifiers', () => {
     expect(resolveSrcSpecifier('routes/a.tsx', 'react')).toBeNull()
-    expect(resolveSrcSpecifier('routes/a.tsx', '@quackback/ids')).toBeNull()
+    expect(resolveSrcSpecifier('routes/a.tsx', '@zenith/ids')).toBeNull()
     expect(resolveSrcSpecifier('routes/a.tsx', '@tanstack/react-router')).toBeNull()
     expect(resolveSrcSpecifier('server.ts', '../package.json')).toBeNull()
   })

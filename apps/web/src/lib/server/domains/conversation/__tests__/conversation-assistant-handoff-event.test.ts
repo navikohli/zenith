@@ -3,7 +3,7 @@
  * system message + realtime update — workflows/webhooks had no way to react.
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import type { ConversationId } from '@quackback/ids'
+import type { ConversationId } from '@zenith/ids'
 
 const dispatchAssistantHandedOff = vi.fn()
 const buildEventActor = vi.fn((a: { principalId: string; displayName?: string }) => ({
@@ -98,12 +98,12 @@ vi.mock('@/lib/server/db', async (importOriginal) => {
 })
 
 import { executeAssistantHandoff } from '../conversation.service'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 
 const convId = 'conversation_1' as ConversationId
-const quinnAuthor = {
-  principalId: 'principal_quinn' as PrincipalId,
-  displayName: 'Quinn',
+const zenithAssistantAuthor = {
+  principalId: 'principal_zenithAssistant' as PrincipalId,
+  displayName: 'Zenith Assistant',
 }
 
 beforeEach(() => {
@@ -115,15 +115,15 @@ beforeEach(() => {
 
 describe('executeAssistantHandoff bus event', () => {
   it('dispatches assistant.handed_off with the conversation id and reason', async () => {
-    await executeAssistantHandoff(convId, 'explicit_request', quinnAuthor)
+    await executeAssistantHandoff(convId, 'explicit_request', zenithAssistantAuthor)
 
     expect(dispatchAssistantHandedOff).toHaveBeenCalledTimes(1)
     const [actor, conversationId, reason] = dispatchAssistantHandedOff.mock.calls[0]
     expect(conversationId).toBe(convId)
     expect(reason).toBe('explicit_request')
-    expect(actor).toEqual({ type: 'service', principalId: 'principal_quinn', displayName: 'Quinn' })
+    expect(actor).toEqual({ type: 'service', principalId: 'principal_zenithAssistant', displayName: 'Zenith Assistant' })
     expect(buildEventActor).toHaveBeenCalledWith(
-      expect.objectContaining({ principalId: 'principal_quinn' })
+      expect.objectContaining({ principalId: 'principal_zenithAssistant' })
     )
   })
 
@@ -149,7 +149,7 @@ describe('executeAssistantHandoff bus event', () => {
       order.push('dispatch')
     })
 
-    await executeAssistantHandoff(convId, 'explicit_request', quinnAuthor)
+    await executeAssistantHandoff(convId, 'explicit_request', zenithAssistantAuthor)
 
     expect(classifyConversationAttributes).toHaveBeenCalledWith(convId, { trigger: 'handoff' })
     expect(order).toEqual(['classify', 'dispatch'])
@@ -157,7 +157,7 @@ describe('executeAssistantHandoff bus event', () => {
 
   it('stands the deterministic router down when a live handoff workflow exists', async () => {
     hasLiveWorkflowForTrigger.mockResolvedValueOnce(true)
-    await executeAssistantHandoff(convId, 'explicit_request', quinnAuthor)
+    await executeAssistantHandoff(convId, 'explicit_request', zenithAssistantAuthor)
     expect(routeConversation).not.toHaveBeenCalled()
   })
 
@@ -165,7 +165,7 @@ describe('executeAssistantHandoff bus event', () => {
     classifyConversationAttributes.mockRejectedValue(new Error('classifier exploded'))
 
     await expect(
-      executeAssistantHandoff(convId, 'explicit_request', quinnAuthor)
+      executeAssistantHandoff(convId, 'explicit_request', zenithAssistantAuthor)
     ).resolves.toBeUndefined()
     expect(dispatchAssistantHandedOff).toHaveBeenCalledTimes(1)
   })

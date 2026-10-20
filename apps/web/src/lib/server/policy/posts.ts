@@ -16,7 +16,7 @@ import {
 // pure helper, and pulling it from the db barrel would make every suite that
 // mocks that barrel have to stub it.
 import { resolveReplyPolicy } from '@/lib/shared/db-types'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 import { allowDecision, denyDecision, isTeamActor, type Actor, type Decision } from './types'
 import { can } from './authorize'
 import { PERMISSIONS } from '@/lib/shared/permissions'

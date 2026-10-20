@@ -9,7 +9,7 @@ import { NewTabHint } from '@/components/ui/button'
 // expanded/collapsed state on first paint instead of flashing expanded and
 // then collapsing once client JS reads localStorage. This key is only read
 // once, client-side, to migrate returning users onto the cookie.
-const LEGACY_DISMISSED_VERSION_KEY = 'quackback_dismissed_version'
+const LEGACY_DISMISSED_VERSION_KEY = 'zenith_dismissed_version'
 
 function getLegacyDismissedVersion(): string | null {
   if (typeof window === 'undefined') return null
@@ -29,7 +29,7 @@ function clearLegacyDismissedVersion(): void {
   }
 }
 
-const CHANGELOG_URL = 'https://feedback.quackback.io/changelog'
+const CHANGELOG_URL = '/source.html'
 
 interface UpdateBannerProps {
   latestVersion: LatestVersionResult | null
@@ -76,7 +76,7 @@ export function UpdateBanner({ latestVersion, dismissedVersion }: UpdateBannerPr
         <div className="flex items-center justify-between gap-3 px-4 py-2.5 text-sm bg-primary/5 border-b border-primary/10">
           <div className="flex items-center gap-2 min-w-0">
             <span className="font-medium text-foreground shrink-0">
-              Quackback v{latestVersion.version} is available
+              Zenith v{latestVersion.version} is available
             </span>
             <span className="text-muted-foreground hidden sm:inline">-</span>
             <div className="hidden sm:flex items-center gap-2 text-muted-foreground">

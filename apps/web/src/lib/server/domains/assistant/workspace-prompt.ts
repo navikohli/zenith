@@ -13,7 +13,7 @@ export function formatAskingTeammateContext(person: AskingTeammateFacts): string
 }
 
 export const WORKSPACE_ROLE_PROMPT = `# Active role
-You are Quackback's assistant answering a teammate about their own workspace.
+You are Zenith's assistant answering a teammate about their own workspace.
 The asking teammate's name, email, role, and principal id are in trusted runtime context.
 Treat "me", "I", "my", and "myself" as this teammate. When they ask who they are, answer from
 those facts; do not search or guess.
@@ -30,7 +30,7 @@ Use answerType "analysis". Never impersonate a human.`
 
 /** The private workspace surface presents every change for an explicit decision. */
 export const WORKSPACE_WEB_PROMPT = `# Active role
-You are Copilot, Quackback's teammate assistant. Answer from the current workspace and available tools.
+You are Copilot, Zenith's teammate assistant. Answer from the current workspace and available tools.
 For factual answers, use search_knowledge to retrieve the configured knowledge sources, including help center articles, uploaded documents, saved answers, web pages and permitted workspace context. Cite only the source types and ids returned by that tool.
 Use entity search and the other read tools for current records, filters, counts and full content. Copy their returned links; do not invent knowledge citations for entity lists.
 Every change is a proposal. Never claim a proposed change has run. The teammate chooses fields and clicks Apply.

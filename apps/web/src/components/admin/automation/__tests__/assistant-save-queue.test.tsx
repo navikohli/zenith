@@ -29,7 +29,7 @@ function resetServer() {
   server.loads = 0
   server.config = {
     version: 3,
-    identity: { name: 'Quinn', avatarUrl: null },
+    identity: { name: 'Zenith Assistant', avatarUrl: null },
     agents: {
       agent: {
         voice: { tone: 'balanced', responseLength: 'balanced', additionalInstructions: '' },

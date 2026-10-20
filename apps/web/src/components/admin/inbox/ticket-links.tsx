@@ -3,7 +3,7 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { LinkIcon, PlusIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { toast } from 'sonner'
-import type { TicketId } from '@quackback/ids'
+import type { TicketId } from '@zenith/ids'
 import type { TicketDTO } from '@/lib/server/domains/tickets'
 import { ticketQueries, ticketKeys } from '@/lib/client/queries/inbox'
 import { linkTicketToTrackerFn, unlinkTicketFromTrackerFn } from '@/lib/server/functions/tickets'

@@ -24,7 +24,7 @@ import {
   postTagAssignments,
   posts,
 } from '@/lib/server/db'
-import type { PostTagId, BoardId } from '@quackback/ids'
+import type { PostTagId, BoardId } from '@zenith/ids'
 import { NotFoundError, ValidationError, ConflictError, InternalError } from '@/lib/shared/errors'
 import { TAXONOMY_DEFAULT_COLOR } from '@/lib/shared/schemas/taxonomy'
 import { assertHexColor, assertTrimmedName } from '@/lib/server/utils'

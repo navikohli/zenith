@@ -23,7 +23,7 @@ import {
 } from '@/lib/server/db'
 import { postViewFilter } from '@/lib/server/policy/posts'
 import type { Actor } from '@/lib/server/policy/types'
-import { toUuid, type PostId, type PrincipalId } from '@quackback/ids'
+import { toUuid, type PostId, type PrincipalId } from '@zenith/ids'
 import { notTestPrincipal } from '@/lib/server/test-data'
 import type {
   PostListItem,

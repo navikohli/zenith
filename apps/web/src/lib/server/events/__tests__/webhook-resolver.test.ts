@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { createId } from '@quackback/ids'
+import { createId } from '@zenith/ids'
 import { boardIdsFromEvent, webhookMatches, webhookResolver } from '../resolvers/webhook.resolver'
 import type { DomainEvent } from '../envelope'
 

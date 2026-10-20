@@ -1,21 +1,21 @@
 export type InboundMessage =
-  | { type: 'quackback:init'; data?: unknown }
-  | { type: 'quackback:identify'; data: unknown }
-  | { type: 'quackback:device'; data: string }
-  | { type: 'quackback:metadata'; data: Record<string, string> }
-  | { type: 'quackback:open'; data?: unknown }
-  | { type: 'quackback:locale'; data: string }
-  | { type: 'quackback:mobile'; data: boolean }
+  | { type: 'zenith:init'; data?: unknown }
+  | { type: 'zenith:identify'; data: unknown }
+  | { type: 'zenith:device'; data: string }
+  | { type: 'zenith:metadata'; data: Record<string, string> }
+  | { type: 'zenith:open'; data?: unknown }
+  | { type: 'zenith:locale'; data: string }
+  | { type: 'zenith:mobile'; data: boolean }
 
 export type OutboundMessage =
-  | { type: 'quackback:ready' }
-  | { type: 'quackback:close' }
-  | { type: 'quackback:navigate'; url: string }
-  | { type: 'quackback:expand'; expanded: boolean }
-  | { type: 'quackback:identify-result'; success: boolean; user?: unknown; error?: string }
-  | { type: 'quackback:auth-change'; user: unknown }
-  | { type: 'quackback:event'; name: string; payload: unknown }
-  | { type: 'quackback:unread'; count: number }
+  | { type: 'zenith:ready' }
+  | { type: 'zenith:close' }
+  | { type: 'zenith:navigate'; url: string }
+  | { type: 'zenith:expand'; expanded: boolean }
+  | { type: 'zenith:identify-result'; success: boolean; user?: unknown; error?: string }
+  | { type: 'zenith:auth-change'; user: unknown }
+  | { type: 'zenith:event'; name: string; payload: unknown }
+  | { type: 'zenith:unread'; count: number }
 
 export interface BridgeOptions {
   getIframe: () => HTMLIFrameElement | null

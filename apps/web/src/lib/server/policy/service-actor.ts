@@ -5,7 +5,7 @@
  * effective ceiling and can't silently widen as role presets grow.
  */
 import type { PermissionKey } from '@/lib/shared/permissions'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 import type { Actor } from './types'
 
 export function boundedServiceActor(

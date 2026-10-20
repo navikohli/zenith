@@ -81,12 +81,12 @@ describe('StepPalette', () => {
     const onInsert = vi.fn()
     render(<StepPalette onInsert={onInsert} workflowClass="background" />)
 
-    const quinn = screen.getByRole('button', { name: /Let the AI agent answer/ })
-    expect(quinn).toBeDisabled()
-    expect(quinn.textContent).toContain(
+    const zenithAssistant = screen.getByRole('button', { name: /Let the AI agent answer/ })
+    expect(zenithAssistant).toBeDisabled()
+    expect(zenithAssistant.textContent).toContain(
       "Customer-facing workflows only: a background run can't wait for the reply"
     )
-    fireEvent.click(quinn)
+    fireEvent.click(zenithAssistant)
     expect(onInsert).not.toHaveBeenCalled()
   })
 })

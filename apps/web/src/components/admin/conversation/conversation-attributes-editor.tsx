@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { ChevronDownIcon } from '@heroicons/react/24/solid'
 import { toast } from 'sonner'
-import type { ConversationId, TicketId } from '@quackback/ids'
+import type { ConversationId, TicketId } from '@zenith/ids'
 import { setConversationAttributeValueFn } from '@/lib/server/functions/conversation-attributes'
 import {
   conversationAttributeQueries,

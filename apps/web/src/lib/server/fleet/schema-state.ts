@@ -36,7 +36,7 @@
  * Postgres, not a per-workspace compute behind a transaction pooler.
  */
 import { sql } from 'drizzle-orm'
-import { createDbFromSql, type Database } from '@quackback/db/client'
+import { createDbFromSql, type Database } from '@zenith/db/client'
 import { logger } from '@/lib/server/logger'
 import { getExecuteRows } from '@/lib/server/utils/execute-rows'
 import {
@@ -57,7 +57,7 @@ export const SCHEMA_STATE_TABLE = 'cp_workspace_schema_state'
  * A drizzle handle over the control connection.
  *
  * Built lazily and memoised: `getControlSql()` throws when
- * `QUACKBACK_CONTROL_DATABASE_URL` is unset, and a module-level call would make
+ * `ZENITH_CONTROL_DATABASE_URL` is unset, and a module-level call would make
  * importing this file fail on a single-workspace install that will never use it.
  */
 let controlDbMemo: Database | null = null

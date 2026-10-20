@@ -5,4 +5,4 @@
 export {
   companyEmailDomain,
   isPersonalEmailDomain,
-} from '@quackback/db/email/personal-email-domains'
+} from '@zenith/db/email/personal-email-domains'

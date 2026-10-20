@@ -17,7 +17,7 @@ import {
   roadmapVisibilitySchema,
   segmentIdInputSchema,
 } from '@/lib/shared/roadmap-config'
-import { postStatusIdSchema, roadmapColumnIdSchema } from '@quackback/ids/zod'
+import { postStatusIdSchema, roadmapColumnIdSchema } from '@zenith/ids/zod'
 
 const roadmapColumnSchema = z.object({
   id: roadmapColumnIdSchema.optional(),

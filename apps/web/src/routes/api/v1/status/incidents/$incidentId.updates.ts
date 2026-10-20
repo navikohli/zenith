@@ -10,7 +10,7 @@ import { parseTypeId } from '@/lib/server/domains/api/validation'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import { serializeIncidentDetails } from '../-serialize'
 import { STATUS_INCIDENT_LIFECYCLE_STATUSES } from '../-validation'
-import type { StatusIncidentId } from '@quackback/ids'
+import type { StatusIncidentId } from '@zenith/ids'
 
 const postIncidentUpdateSchema = z.object({
   status: z.enum(STATUS_INCIDENT_LIFECYCLE_STATUSES),

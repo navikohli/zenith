@@ -1,5 +1,5 @@
 import { pgTable, text, timestamp, uniqueIndex } from 'drizzle-orm/pg-core'
-import { typeIdColumn } from '@quackback/ids/drizzle'
+import { typeIdColumn } from '@zenith/ids/drizzle'
 import { principal } from './auth'
 
 /** The setup emails a teammate has been sent: the welcome and the day-two nudge, once each. */

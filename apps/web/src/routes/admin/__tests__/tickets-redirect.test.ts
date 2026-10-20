@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { generateId } from '@quackback/ids'
+import { generateId } from '@zenith/ids'
 
 const { Route } = await import('../tickets')
 

@@ -9,7 +9,7 @@ import {
   UserIcon,
 } from '@heroicons/react/16/solid'
 import type { IntlShape } from 'react-intl'
-import type { TicketId } from '@quackback/ids'
+import type { TicketId } from '@zenith/ids'
 import type { TicketActivityType } from '@/lib/server/domains/tickets'
 import type { ConversationPriority } from '@/lib/shared/conversation/types'
 import { activityQueries } from '@/lib/client/queries/activity'

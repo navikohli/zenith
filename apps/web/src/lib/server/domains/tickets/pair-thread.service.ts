@@ -61,8 +61,8 @@
  * PHASE 2 — assistant-turn flagging. `isAssistant` resolves here exactly the
  * way the conversation view does (`listMessages`): the shared memoized
  * assistant-principal lookup (messages/assistant-principal) is passed to
- * `toMessageDTO`, so Quinn's turns carry the AI flag on BOTH parents of the
- * pair — a Quinn reply read through the ticket-side union renders identically
+ * `toMessageDTO`, so ZenithAssistant's turns carry the AI flag on BOTH parents of the
+ * pair — a ZenithAssistant reply read through the ticket-side union renders identically
  * to the same row in the conversation view (agent pair view, and the
  * requester surfaces that already render the flag).
  */
@@ -80,7 +80,7 @@ import {
   isNull,
   type ConversationMessage,
 } from '@/lib/server/db'
-import type { ConversationId, ConversationMessageId, TicketId } from '@quackback/ids'
+import type { ConversationId, ConversationMessageId, TicketId } from '@zenith/ids'
 import type { ConversationMessageDTO } from '@/lib/shared/conversation/types'
 import { toMessageDTO } from '@/lib/server/messages/message-core'
 import { assistantPrincipalIdOnce } from '@/lib/server/messages/assistant-principal'
@@ -265,7 +265,7 @@ function compareNewestFirst(a: ConversationMessage, b: ConversationMessage): num
   return a.id > b.id ? -1 : a.id < b.id ? 1 : 0
 }
 
-/** Map merged rows to DTOs, tagging each with its parent's provenance. Quinn's
+/** Map merged rows to DTOs, tagging each with its parent's provenance. ZenithAssistant's
  *  turns are flagged (`isAssistant`) via the shared memoized assistant id —
  *  the same resolution `listMessages` applies on the conversation side. */
 async function toPairDtos(

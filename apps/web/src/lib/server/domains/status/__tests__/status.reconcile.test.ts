@@ -13,7 +13,7 @@
  * mock shape) for the maintenance start/complete stale-boundary guard.
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import type { StatusComponentId, StatusIncidentId } from '@quackback/ids'
+import type { StatusComponentId, StatusIncidentId } from '@zenith/ids'
 
 // --- Mock tracking for status.components.ts ---
 const mockSelectWhere = vi.fn()

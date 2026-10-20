@@ -1,4 +1,4 @@
-import type { ConversationAttributeId } from '@quackback/ids'
+import type { ConversationAttributeId } from '@zenith/ids'
 import type {
   ConversationAttributeFieldType,
   ConversationAttributeOption,
@@ -50,7 +50,7 @@ export interface CreateConversationAttributeInput {
   requiredToClose?: boolean
   sourceHint?: ConversationAttributeSourceHint | null
   /** `select` field type only — validated at the service layer. Defaults ON
-   *  for select, so Quinn classifies new attributes unless opted out. */
+   *  for select, so ZenithAssistant classifies new attributes unless opted out. */
   aiDetect?: boolean
   /** `select` field type only — validated at the service layer. */
   detectOnClose?: boolean

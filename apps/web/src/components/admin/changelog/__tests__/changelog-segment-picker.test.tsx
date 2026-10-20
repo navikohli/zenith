@@ -36,7 +36,7 @@ vi.mock('@/lib/client/hooks/use-image-upload', () => ({
 }))
 
 import { ChangelogMetadataSidebarContent } from '../changelog-metadata-sidebar-content'
-import type { SegmentId } from '@quackback/ids'
+import type { SegmentId } from '@zenith/ids'
 
 afterEach(cleanup)
 

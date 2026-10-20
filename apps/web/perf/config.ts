@@ -3,7 +3,7 @@ import type { Browser, BrowserContextOptions } from '@playwright/test'
 
 export const BENCH_DATABASE_URL =
   process.env.PERF_DATABASE_URL ??
-  'postgresql://postgres:password@localhost:5432/quackback_perf_bench'
+  'postgresql://postgres:password@localhost:5432/zenith_perf_bench'
 
 export const BENCH_PORT = Number(process.env.PERF_PORT ?? 3190)
 
@@ -34,11 +34,11 @@ export async function startBenchServer(
       BASE_URL: BENCH_URL,
       DATABASE_URL: BENCH_DATABASE_URL,
       SECRET_KEY: process.env.PERF_SECRET_KEY ?? 'perf-bench-secret-key-local-and-ci-only-0000',
-      QUACKBACK_ROLE: 'web',
-      QUACKBACK_SERVER_TIMING: '1',
+      ZENITH_ROLE: 'web',
+      ZENITH_SERVER_TIMING: '1',
       // The settings copy a process keeps for a few seconds would make a count
       // depend on timing; held for the whole run, counts measure a warm process.
-      QUACKBACK_SETTINGS_CACHE_MS: String(60 * 60 * 1000),
+      ZENITH_SETTINGS_CACHE_MS: String(60 * 60 * 1000),
       ...env,
     },
     stdout: onLine ? 'pipe' : 'ignore',

@@ -20,7 +20,7 @@ import {
   assertTemplateRefsAreSentinels,
   templateGalleryChips,
   templateNeedsInboxAi,
-  templateNeedsQuinn,
+  templateNeedsZenithAssistant,
   workflowTemplatesByCategory,
 } from '../workflow-templates'
 
@@ -185,14 +185,14 @@ describe('conversational and new primitives', () => {
     ).toBe(true)
   })
 
-  it('ai-first-support hands the turn to Quinn with an honest escalation path', () => {
+  it('ai-first-support hands the turn to ZenithAssistant with an honest escalation path', () => {
     const t = byId('ai-first-support')
     expect(t.categories).toContain('customer_facing')
     const kinds = t.payload.graph.nodes.map((n) => n.type)
     expect(kinds).toContain('let_assistant_answer')
     expect(kinds).toContain('request_csat')
     const escalatedEdge = t.payload.graph.edges.find(
-      (e) => e.branch === 'escalated' && e.from === 'quinn_answer'
+      (e) => e.branch === 'escalated' && e.from === 'zenithAssistant_answer'
     )
     expect(escalatedEdge).toBeDefined()
   })
@@ -272,19 +272,19 @@ describe('vip-concierge-lane', () => {
 })
 
 describe('templateGalleryChips', () => {
-  it('hides the Quinn prereq when the workspace already has it', () => {
+  it('hides the ZenithAssistant prereq when the workspace already has it', () => {
     const front = WORKFLOW_TEMPLATES.find((t) => t.id === 'front-door-triage-bot')!
-    expect(templateNeedsQuinn(front)).toBe(true)
-    const off = templateGalleryChips(front, { quinnOn: false })
+    expect(templateNeedsZenithAssistant(front)).toBe(true)
+    const off = templateGalleryChips(front, { zenithAssistantOn: false })
     expect(off.some((c) => c.label === 'Needs AI agent on')).toBe(true)
-    const on = templateGalleryChips(front, { quinnOn: true })
+    const on = templateGalleryChips(front, { zenithAssistantOn: true })
     expect(on.some((c) => c.label === 'Needs AI agent on')).toBe(false)
   })
 
   it('marks route-by-issue-type as needing 2 options', () => {
     const t = WORKFLOW_TEMPLATES.find((tpl) => tpl.id === 'route-by-issue-type')!
     expect(templateNeedsInboxAi(t)).toBe(true)
-    const chips = templateGalleryChips(t, { quinnOn: true })
+    const chips = templateGalleryChips(t, { zenithAssistantOn: true })
     expect(chips.some((c) => c.label === '2 options to pick')).toBe(true)
   })
 })

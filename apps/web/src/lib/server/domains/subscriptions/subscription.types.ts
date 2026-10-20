@@ -5,7 +5,7 @@
  * no database dependencies.
  */
 
-import type { PrincipalId, PostId, PostSubscriptionId } from '@quackback/ids'
+import type { PrincipalId, PostId, PostSubscriptionId } from '@zenith/ids'
 import type { NotificationMatrix } from './notification-matrix'
 
 export type SubscriptionReason = 'author' | 'vote' | 'comment' | 'manual' | 'feedback_author'

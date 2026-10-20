@@ -7,7 +7,7 @@
 
 import { z } from 'zod'
 import { db, postSentiment, posts, eq, and, gte, lte, sql, count, isNull } from '@/lib/server/db'
-import { createId, type PostId } from '@quackback/ids'
+import { createId, type PostId } from '@zenith/ids'
 import { config } from '@/lib/server/config'
 import { isAiClientConfigured } from '@/lib/server/domains/ai/config'
 import { structuredChat } from '@/lib/server/domains/ai/structured-chat'

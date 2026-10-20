@@ -9,7 +9,7 @@
  * close -> close no-op `close` already relied on.
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import type { ConversationId, PrincipalId } from '@quackback/ids'
+import type { ConversationId, PrincipalId } from '@zenith/ids'
 import type { Actor } from '@/lib/server/policy/types'
 
 const emitConversationStatusChanged = vi.fn()

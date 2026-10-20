@@ -4,7 +4,7 @@
  * whole request before writing and either applies all of it or none.
  */
 import { describe, it, expect, vi, beforeEach, afterEach, afterAll } from 'vitest'
-import { createId, type PrincipalId, type UserId } from '@quackback/ids'
+import { createId, type PrincipalId, type UserId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import {
   account,
@@ -53,8 +53,8 @@ vi.mock('@/lib/server/functions/invitation-magic-link', async (importOriginal) =
     hoisted.mint(email, callbackPath),
 }))
 
-vi.mock('@quackback/email', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@quackback/email')>()),
+vi.mock('@zenith/email', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@zenith/email')>()),
   sendInvitationEmail: (...args: unknown[]) => hoisted.sendInvitationEmail(...args),
 }))
 
@@ -237,7 +237,7 @@ describe.skipIf(!fixture.available)('findPeopleToAdd', () => {
     })
     const ssoOnly = await seedPerson({
       name: 'Steam Person',
-      email: `sso-steam-${t}@anon.quackback.io`,
+      email: `sso-steam-${t}@anon.zenith.io`,
       account: { providerId: `community-${t}`, accountId: `7656119${t}` },
     })
     const neverSignedIn = await seedPerson({ name: `Ada contact ${t}` })
@@ -262,18 +262,18 @@ describe.skipIf(!fixture.available)('findPeopleToAdd', () => {
     )
     const sso = byNameResult.people.find((p) => p.principalId === ssoOnly.principalId)
     expect(sso?.detail).toBe(`Signs in with Community Login · 7656119${t}`)
-    expect(JSON.stringify(byNameResult)).not.toContain('anon.quackback.io')
+    expect(JSON.stringify(byNameResult)).not.toContain('anon.zenith.io')
   })
 
   it('never matches on a placeholder address', async () => {
     const caller = await seedPerson({ role: 'admin', ...signedIn })
     await seedPerson({
-      email: `sso-steam-${tag()}@anon.quackback.io`,
+      email: `sso-steam-${tag()}@anon.zenith.io`,
       account: { providerId: 'github', accountId: '42' },
     })
 
     const result = await findPeopleToAdd({
-      query: 'anon.quackback',
+      query: 'anon.zenith',
       callerPrincipalId: caller.principalId,
       canSearchPeople: true,
     })
@@ -362,7 +362,7 @@ describe.skipIf(!fixture.available)('findPeopleToAdd', () => {
     })
     // A contact who never signed in is invited by email instead.
     expect(await lookup(contact.email!)).toEqual({ address: contact.email, status: 'new' })
-    expect(await lookup('sso-x@anon.quackback.io')).toBeUndefined()
+    expect(await lookup('sso-x@anon.zenith.io')).toBeUndefined()
     expect(await lookup('not an email')).toBeUndefined()
   })
 
@@ -512,9 +512,9 @@ describe.skipIf(!fixture.available)('addTeamMembers', () => {
       })
     }
     await expect(add([createId('principal')])).rejects.toMatchObject({ code: 'NOT_ELIGIBLE' })
-    await expect(add([], ['sso-x@anon.quackback.io'])).rejects.toMatchObject({
+    await expect(add([], ['sso-x@anon.zenith.io'])).rejects.toMatchObject({
       code: 'NOT_ELIGIBLE',
-      email: 'sso-x@anon.quackback.io',
+      email: 'sso-x@anon.zenith.io',
     })
     expect(await roleOf(contact.principalId)).toBe('user')
   })

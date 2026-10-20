@@ -58,17 +58,17 @@ export async function mintE2eWidgetHtml(
   <script src="/api/widget/sdk.js"></script>
   <script>
     (function () {
-      var Quackback = window.Quackback
-      if (typeof Quackback !== 'function') return
-      Quackback('on', 'identify', function (ev) {
+      var Zenith = window.Zenith
+      if (typeof Zenith !== 'function') return
+      Zenith('on', 'identify', function (ev) {
         document.documentElement.dataset.identified = ev && ev.success ? '1' : '0'
         if (ev && ev.user && ev.user.name) {
           document.documentElement.dataset.userName = ev.user.name
         }
         document.documentElement.dataset.anonymous = ev && ev.anonymous ? '1' : '0'
       })
-      Quackback('init', ${JSON.stringify(init)})
-      Quackback('open')
+      Zenith('init', ${JSON.stringify(init)})
+      Zenith('open')
     })()
   </script>
 </body>

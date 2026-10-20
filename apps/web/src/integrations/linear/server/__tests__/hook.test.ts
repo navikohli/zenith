@@ -67,7 +67,7 @@ describe('linearHook', () => {
             issue: {
               id: 'uuid-abc-123',
               identifier: 'QUA-42',
-              url: 'https://linear.app/quackback/issue/QUA-42/bug-report',
+              url: 'https://linear.app/zenith/issue/QUA-42/bug-report',
             },
           },
         },
@@ -80,7 +80,7 @@ describe('linearHook', () => {
     if (result.state !== 'succeeded') throw new Error('Expected successful delivery')
     expect(result.result?.externalId).toBe('uuid-abc-123')
     expect(result.result?.externalDisplayId).toBe('QUA-42')
-    expect(result.result?.externalUrl).toBe('https://linear.app/quackback/issue/QUA-42/bug-report')
+    expect(result.result?.externalUrl).toBe('https://linear.app/zenith/issue/QUA-42/bug-report')
   })
 
   it('sends correct GraphQL mutation with team ID', async () => {

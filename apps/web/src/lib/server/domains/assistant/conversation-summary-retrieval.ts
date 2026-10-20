@@ -1,5 +1,5 @@
 /**
- * Past-conversation-summaries grounding source for Quinn (P2-A.4).
+ * Past-conversation-summaries grounding source for ZenithAssistant (P2-A.4).
  *
  * A fourth `KnowledgeSource` (see `./retrieval-sources`) alongside the
  * knowledge base, feedback posts, and admin-curated snippets: retrieval over
@@ -30,7 +30,7 @@
  * `resolveKnowledgeSources`), default off.
  */
 import { db, conversationSummaries, and, desc, eq, ilike, ne, sql } from '@/lib/server/db'
-import type { PrincipalId, ConversationId } from '@quackback/ids'
+import type { PrincipalId, ConversationId } from '@zenith/ids'
 import { generateEmbedding } from '@/lib/server/domains/embeddings/embedding.service'
 import type { ContentAudience } from './audience'
 import {

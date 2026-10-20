@@ -201,7 +201,7 @@ function PortalFeed() {
   // useVotedPosts({ initialVotedIds }) below (its query uses that as
   // initialData), so vote highlights are present in the server-rendered HTML
   // without a separate loader-side setQueryData.
-  const workspaceName = settings?.name ?? 'Quackback'
+  const workspaceName = settings?.name ?? 'Zenith'
   const workspaceSlug = settings?.slug ?? ''
 
   // Empty state if no boards exist (derived from the query, not the loader).

@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
 import path from 'node:path'
-import * as mail from '@quackback/email'
+import * as mail from '@zenith/email'
 
 /**
  * Every mail template must be classified by where its FROM comes from.

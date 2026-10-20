@@ -9,7 +9,7 @@ import { useState, useEffect } from 'react'
 import { useMutation, useQuery, useQueryClient, useSuspenseQuery } from '@tanstack/react-query'
 import { PlusIcon, XMarkIcon, SparklesIcon } from '@heroicons/react/24/solid'
 import { toast } from 'sonner'
-import type { ConversationAttributeId } from '@quackback/ids'
+import type { ConversationAttributeId } from '@zenith/ids'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -193,7 +193,7 @@ function AttributeFormDialog({
 
   // AI detection is select-only: clear it if the author switches away from
   // select (only reachable pre-creation, since type locks after that). On a
-  // NEW attribute it defaults ON when the type supports it, so Quinn assigns
+  // NEW attribute it defaults ON when the type supports it, so ZenithAssistant assigns
   // attributes automatically unless the author opts out; editing never
   // overrides the stored choice.
   useEffect(() => {
@@ -367,7 +367,7 @@ function AttributeFormDialog({
             />
             {aiDetect && supportsAiDetect(fieldType) && (
               <p className="text-[11px] text-muted-foreground">
-                This is the whole prompt Quackback AI sees, so be explicit: when the value applies,
+                This is the whole prompt Zenith AI sees, so be explicit: when the value applies,
                 when it does not, and typical customer phrasing. Example: &quot;Applies when the
                 customer reports being charged the wrong amount. Does not apply to general billing
                 questions. Customers usually say things like &apos;double charged&apos; or
@@ -496,7 +496,7 @@ function AttributeFormDialog({
             <SettingRows>
               <SettingRow
                 label="Let AI detect this attribute"
-                description="Quackback AI classifies conversations it participates in."
+                description="Zenith AI classifies conversations it participates in."
                 htmlFor="attr-ai-detect"
                 control={
                   <Switch id="attr-ai-detect" checked={aiDetect} onCheckedChange={setAiDetect} />
@@ -524,7 +524,7 @@ function AttributeFormDialog({
               <div>
                 <p className="text-sm font-medium">Test detection</p>
                 <p className="text-[11px] text-muted-foreground">
-                  Paste a sample customer message to preview what Quackback AI would detect.
+                  Paste a sample customer message to preview what Zenith AI would detect.
                 </p>
               </div>
               <Textarea
@@ -729,8 +729,8 @@ export function ConversationAttributesList() {
                 !attr.aiDetect
                   ? 'Usually set by AI'
                   : attr.detectOnClose
-                    ? 'Quackback AI classifies this attribute and re-checks on close'
-                    : 'Quackback AI classifies this attribute'
+                    ? 'Zenith AI classifies this attribute and re-checks on close'
+                    : 'Zenith AI classifies this attribute'
               }
             >
               AI

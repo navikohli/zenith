@@ -3,7 +3,7 @@ import type { Role } from '@/lib/shared/roles'
 import Papa from 'papaparse'
 import type { ImportInput } from '@/lib/server/domains/import/types'
 import { REQUIRED_HEADERS } from '@/lib/shared/schemas/import'
-import { isValidTypeId, type BoardId } from '@quackback/ids'
+import { isValidTypeId, type BoardId } from '@zenith/ids'
 import { contentLengthExceeds } from '@/lib/server/utils/read-body'
 import { logger } from '@/lib/server/logger'
 

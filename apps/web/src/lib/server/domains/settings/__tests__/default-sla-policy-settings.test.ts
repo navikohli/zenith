@@ -1,5 +1,5 @@
 import { beforeEach, describe, it, expect, vi } from 'vitest'
-import { generateId } from '@quackback/ids'
+import { generateId } from '@zenith/ids'
 import { ValidationError } from '@/lib/shared/errors'
 import { DEFAULT_SLA_POLICY_SETTINGS } from '@/lib/shared/sla/default-policy'
 import { resolveDefaultSlaPolicy, updateDefaultSlaPolicySettings } from '../settings.sla-default'

@@ -15,7 +15,7 @@ import {
   TrashIcon,
   LinkIcon,
 } from '@heroicons/react/24/outline'
-import type { ChangelogId, PrincipalId, PostId } from '@quackback/ids'
+import type { ChangelogId, PrincipalId, PostId } from '@zenith/ids'
 import { stripMarkdownPreview } from '@/lib/shared/utils'
 import { toIsoDateOnly } from '@/lib/shared/utils/date'
 

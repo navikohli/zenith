@@ -30,7 +30,7 @@ import { PERMISSIONS } from '@/lib/shared/permissions'
 import { useApprovePost, useRejectPost } from '@/lib/client/mutations/moderation'
 import type { PublicPostListItem } from '@/lib/shared/types'
 import { cn } from '@/lib/shared/utils'
-import type { PostId, PostStatusId } from '@quackback/ids'
+import type { PostId, PostStatusId } from '@zenith/ids'
 import { useSessionContext } from '@/lib/client/hooks/use-root-context'
 import { shownName } from '@/lib/shared/greeting-name'
 

@@ -6,7 +6,7 @@
  * regardless of later edits.
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import type { StatusComponentId, StatusIncidentId, StatusIncidentTemplateId } from '@quackback/ids'
+import type { StatusComponentId, StatusIncidentId, StatusIncidentTemplateId } from '@zenith/ids'
 
 const mockIncidentFindFirst = vi.fn()
 const mockIncidentComponentsFindMany = vi.fn()

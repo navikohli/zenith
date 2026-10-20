@@ -1,5 +1,5 @@
 /**
- * Query-options factory for a live Quinn pending-action row. Both
+ * Query-options factory for a live ZenithAssistant pending-action row. Both
  * proposed-action cards (the inbox approval card, PendingActionCard, and the
  * Copilot answer card — see `usePendingActionDecision`) fetch this ONCE for
  * the current status instead of trusting the stale note snapshot
@@ -12,7 +12,7 @@
  * source of truth for its query key + fetcher.
  */
 import { queryOptions } from '@tanstack/react-query'
-import type { AssistantPendingActionId } from '@quackback/ids'
+import type { AssistantPendingActionId } from '@zenith/ids'
 import { getAssistantPendingActionFn } from '@/lib/server/functions/assistant-pending-actions'
 
 export const assistantPendingActionKeys = {

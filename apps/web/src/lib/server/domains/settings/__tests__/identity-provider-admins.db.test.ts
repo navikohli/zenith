@@ -10,7 +10,7 @@ import {
   type PrincipalId,
   type RoleId,
   type UserId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import {
   account,
@@ -134,7 +134,7 @@ describe.skipIf(!fixture.available)('listProviderAdmins', () => {
       role: 'member',
       name: 'Bo',
       displayName: 'Bo Agent',
-      email: 'temp-x@anon.quackback.io',
+      email: 'temp-x@anon.zenith.io',
       assignRoleId: support,
     })
     const opsLead = await seedPerson({

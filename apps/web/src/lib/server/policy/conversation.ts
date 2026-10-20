@@ -10,7 +10,7 @@ import { allowDecision, denyDecision, type Actor, type Decision } from './types'
 import { can, authorize } from './authorize'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import { writePermissionFor } from '@/lib/shared/conversation/message-permissions'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 import type { ConversationStatus } from '@/lib/server/db'
 
 export interface ConversationShape {

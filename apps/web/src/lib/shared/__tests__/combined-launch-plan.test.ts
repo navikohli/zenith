@@ -128,8 +128,8 @@ it('puts every prerequisite first, ahead of polish a goal brought in earlier', (
   })
   const order = tasks.map((task) => task.id)
   expect(order.slice(0, 2)).toEqual(['connect-messenger', 'help-article'])
-  expect(order.indexOf('set-up-quinn')).toBeGreaterThan(order.indexOf('help-article'))
-  expect(tasks.find((task) => task.id === 'set-up-quinn')?.classification).toBe('polish')
+  expect(order.indexOf('set-up-zenithAssistant')).toBeGreaterThan(order.indexOf('help-article'))
+  expect(tasks.find((task) => task.id === 'set-up-zenithAssistant')?.classification).toBe('polish')
   expect(order.at(-1)).toBe('first-win')
 })
 

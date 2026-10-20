@@ -6,7 +6,7 @@
  */
 import { z } from 'zod'
 import { createServerFn } from '@tanstack/react-start'
-import type { ConversationTagId, ConversationId } from '@quackback/ids'
+import type { ConversationTagId, ConversationId } from '@zenith/ids'
 import { requireAuth } from './auth-helpers'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import {

@@ -1,7 +1,7 @@
 /**
  * Shared "this is content, not instructions" guard family: every surface
  * that folds text an end user or external system controls into one of
- * Quinn's prompts should look here first. Three surfaces need this today,
+ * ZenithAssistant's prompts should look here first. Three surfaces need this today,
  * each with a different shape:
  *
  * - synthesis.ts (Ask AI): the customer's own question is passed straight

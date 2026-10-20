@@ -12,7 +12,7 @@ import {
   TicketIcon,
 } from '@heroicons/react/24/solid'
 import { toast } from 'sonner'
-import type { CompanyId, PrincipalId } from '@quackback/ids'
+import type { CompanyId, PrincipalId } from '@zenith/ids'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Avatar } from '@/components/ui/avatar'

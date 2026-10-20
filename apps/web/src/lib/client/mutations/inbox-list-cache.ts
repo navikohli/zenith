@@ -9,7 +9,7 @@
 import type { InfiniteData, QueryClient } from '@tanstack/react-query'
 import { inboxKeys } from '@/lib/client/hooks/use-inbox-query'
 import type { InboxPostListResult, PostListItem } from '@/lib/shared/db-types'
-import type { PostId } from '@quackback/ids'
+import type { PostId } from '@zenith/ids'
 
 export function isInboxInfiniteList(old: unknown): old is InfiniteData<InboxPostListResult> {
   if (!old || typeof old !== 'object') return false

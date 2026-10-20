@@ -36,7 +36,7 @@ vi.mock('@/lib/server/db', () => ({
   gt: vi.fn(),
 }))
 
-vi.mock('@quackback/ids', () => ({
+vi.mock('@zenith/ids', () => ({
   generateId: vi.fn(() => 'principal_mock123'),
 }))
 

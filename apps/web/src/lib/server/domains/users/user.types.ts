@@ -4,7 +4,7 @@
  * Types for portal user management operations.
  */
 
-import type { PrincipalId, PostStatusId, SegmentId } from '@quackback/ids'
+import type { PrincipalId, PostStatusId, SegmentId } from '@zenith/ids'
 
 // ============================================
 // Segment summary (embedded in user records)
@@ -114,9 +114,9 @@ export interface PortalUserListParams {
   page?: number
   limit?: number
   /** Filter by segment IDs (OR logic — users in ANY of the given segments) */
-  segmentIds?: import('@quackback/ids').SegmentId[]
+  segmentIds?: import('@zenith/ids').SegmentId[]
   /** Filter by user tag IDs (OR logic — users carrying ANY of the given tags) */
-  tagIds?: import('@quackback/ids').UserTagId[]
+  tagIds?: import('@zenith/ids').UserTagId[]
   /**
    * Lifecycle view over the three-tier people model:
    * - visitor: anonymous with no engagement yet (idle minted session, or an

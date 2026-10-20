@@ -436,7 +436,7 @@ export interface ProbeConfig {
 
 /** Aggregate run report. */
 export interface ProbeReport {
-  suite: 'quackback-workspace-isolation'
+  suite: 'zenith-workspace-isolation'
   schemaVersion: 1
   startedAt: string
   finishedAt: string

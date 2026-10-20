@@ -13,8 +13,8 @@ import {
   dismissMergeSuggestion,
   restoreMergeSuggestion,
 } from '@/lib/server/domains/merge-suggestions/merge-suggestion.service'
-import { isTypeId } from '@quackback/ids'
-import type { PostMergeSuggestionId } from '@quackback/ids'
+import { isTypeId } from '@zenith/ids'
+import type { PostMergeSuggestionId } from '@zenith/ids'
 import type { CallToolResult } from '@modelcontextprotocol/sdk/types.js'
 import type { McpAuthContext } from '../types'
 import { registerTool, jsonResult, errorResult, WRITE } from './helpers'

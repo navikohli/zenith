@@ -1,5 +1,5 @@
 /**
- * Web sources — public pages an admin adds by URL for Quinn to ground
+ * Web sources — public pages an admin adds by URL for ZenithAssistant to ground
  * answers on, alongside the knowledge base and snippets (see
  * `./web-sources-retrieval` for the retrieval half). Adding a source fetches
  * the seed page at write time through the SSRF-guarded `safeFetch` (a URL
@@ -11,7 +11,7 @@
  * fetchable without credentials), so rows carry no audience tier.
  */
 import { db, eq, desc, assistantWebSources, type AssistantWebSource } from '@/lib/server/db'
-import type { AssistantWebSourceId, PrincipalId } from '@quackback/ids'
+import type { AssistantWebSourceId, PrincipalId } from '@zenith/ids'
 import { ValidationError, NotFoundError } from '@/lib/shared/errors'
 import { safeFetch } from '@/lib/server/content/ssrf-guard'
 import { logger } from '@/lib/server/logger'

@@ -2,8 +2,8 @@
  * How a Cloudflare-for-SaaS custom host becomes a workspace Host.
  *
  * Railway only accepts names we registered. The edge Worker fetches the
- * origin in QUACKBACK_SAAS_RAILWAY_ORIGIN and sends the visitor hostname in
- * `x-quackback-customer-host`, signed with `QUACKBACK_SAAS_EDGE_SECRET`.
+ * origin in ZENITH_SAAS_RAILWAY_ORIGIN and sends the visitor hostname in
+ * `x-zenith-customer-host`, signed with `ZENITH_SAAS_EDGE_SECRET`.
  *
  * Trust that header only when:
  *   1. this request arrived as a trusted Railway/fallback origin, and
@@ -11,13 +11,13 @@
  *
  * A stranger hitting the Railway origin with a forged header fails (1) if they
  * also lack the secret, and (2) if they have the name but not the signature.
- * The Worker (`quackback-cp/workers/saas-origin`) is the only signer.
+ * The Worker (`zenith-cp/workers/saas-origin`) is the only signer.
  */
 import { createHmac, timingSafeEqual } from 'node:crypto'
 import { isIP } from 'node:net'
 
-export const CUSTOMER_HOST_HEADER = 'x-quackback-customer-host'
-export const CUSTOMER_HOST_SIG_HEADER = 'x-quackback-customer-host-sig'
+export const CUSTOMER_HOST_HEADER = 'x-zenith-customer-host'
+export const CUSTOMER_HOST_SIG_HEADER = 'x-zenith-customer-host-sig'
 export const SIGNED_PREFIX = 'v1:'
 
 export function hostnameOnly(value: string | null | undefined): string | null {
@@ -44,7 +44,7 @@ export function verifyCustomerHostSignature(
 
 function trustedOriginHosts(env: NodeJS.ProcessEnv = process.env): Set<string> {
   const hosts = new Set<string>()
-  for (const raw of [env.QUACKBACK_SAAS_FALLBACK_ORIGIN, env.QUACKBACK_SAAS_RAILWAY_ORIGIN]) {
+  for (const raw of [env.ZENITH_SAAS_FALLBACK_ORIGIN, env.ZENITH_SAAS_RAILWAY_ORIGIN]) {
     const host = hostnameOnly(raw ?? null)
     if (host) hosts.add(host)
   }
@@ -62,7 +62,7 @@ export function verifiedCustomerHost(
 ): string | null {
   if (!requestHost || !trustedOriginHosts(env).has(requestHost)) return null
   const customer = hostnameOnly(headers.get(CUSTOMER_HOST_HEADER))
-  const secret = env.QUACKBACK_SAAS_EDGE_SECRET?.trim() ?? ''
+  const secret = env.ZENITH_SAAS_EDGE_SECRET?.trim() ?? ''
   const sig = headers.get(CUSTOMER_HOST_SIG_HEADER)
   if (
     customer &&
@@ -95,17 +95,17 @@ export function requestWorkspaceHost(
  * of every such request, so neither the socket address nor X-Forwarded-For
  * names the visitor. The proxy signs the visitor address it observed:
  *
- *   x-quackback-edge-client-ip:     the address (IPv4 or IPv6 text)
- *   x-quackback-edge-client-ip-sig: `<unixSeconds>.<hex>`, where hex is
- *     HMAC-SHA256(QUACKBACK_SAAS_EDGE_SECRET,
+ *   x-zenith-edge-client-ip:     the address (IPv4 or IPv6 text)
+ *   x-zenith-edge-client-ip-sig: `<unixSeconds>.<hex>`, where hex is
+ *     HMAC-SHA256(ZENITH_SAAS_EDGE_SECRET,
  *                 `ip-v1:<customerHost>:<ip>:<unixSeconds>`)
  *
  * The signature binds the address to the customer host the same request
  * carries, so it is trusted only alongside a verified customer host, and only
  * within EDGE_CLIENT_IP_MAX_SKEW_SECONDS of the signing time.
  */
-export const EDGE_CLIENT_IP_HEADER = 'x-quackback-edge-client-ip'
-export const EDGE_CLIENT_IP_SIG_HEADER = 'x-quackback-edge-client-ip-sig'
+export const EDGE_CLIENT_IP_HEADER = 'x-zenith-edge-client-ip'
+export const EDGE_CLIENT_IP_SIG_HEADER = 'x-zenith-edge-client-ip-sig'
 export const EDGE_CLIENT_IP_PREFIX = 'ip-v1:'
 export const EDGE_CLIENT_IP_MAX_SKEW_SECONDS = 300
 
@@ -151,7 +151,7 @@ export function checkEdgeClientIp(
 ): EdgeClientIpResult | null {
   const ip = headers.get(EDGE_CLIENT_IP_HEADER)
   if (!ip) return null
-  const secret = env.QUACKBACK_SAAS_EDGE_SECRET?.trim() ?? ''
+  const secret = env.ZENITH_SAAS_EDGE_SECRET?.trim() ?? ''
   if (!secret) return { rejected: 'secret-unset' }
   if (!requestHost || !trustedOriginHosts(env).has(requestHost)) {
     return { rejected: 'untrusted-origin' }

@@ -5,7 +5,7 @@
  * stay alive when either surface is on.
  */
 
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 import {
   isPortalChatStartEnabled,
   isPortalSupportSurfaceEnabled,

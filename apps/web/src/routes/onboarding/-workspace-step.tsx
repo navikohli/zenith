@@ -33,7 +33,7 @@ import { cn } from '@/lib/shared/utils'
 import { ReadyStep } from './-ready-step'
 import { SignOutButton } from './-sign-out-button'
 
-const DRAFT_KEY = 'quackback:onboarding:workspace-name'
+const DRAFT_KEY = 'zenith:onboarding:workspace-name'
 
 type CloudIdentity = NonNullable<Awaited<ReturnType<typeof getCloudIdentityFn>>>
 
@@ -310,12 +310,12 @@ function WorkspaceNameStep({
   useSetupTitle(
     ready
       ? intl.formatMessage(
-          { id: 'onboarding.title.ready', defaultMessage: '{name} is ready · Quackback' },
+          { id: 'onboarding.title.ready', defaultMessage: '{name} is ready · Zenith' },
           { name: ready.name }
         )
       : intl.formatMessage({
           id: 'onboarding.title.workspace',
-          defaultMessage: 'Name your workspace · Quackback',
+          defaultMessage: 'Name your workspace · Zenith',
         })
   )
 

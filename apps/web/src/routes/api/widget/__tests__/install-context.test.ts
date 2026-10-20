@@ -103,7 +103,7 @@ describe('POST /api/widget/install-context', () => {
   it('allows HTTPS Cloud redeem', async () => {
     pooled.current = true
     const res = await handleWidgetInstallContext(
-      post({ code: 'qbi_validcode12' }, 'https://acme.quackback.app/api/widget/install-context', {
+      post({ code: 'qbi_validcode12' }, 'https://acme.zenith.app/api/widget/install-context', {
         'x-forwarded-proto': 'https',
       })
     )

@@ -8,7 +8,7 @@
 import { createServerFn } from '@tanstack/react-start'
 import { redirect } from '@tanstack/react-router'
 import { z } from 'zod'
-import type { UserId } from '@quackback/ids'
+import type { UserId } from '@zenith/ids'
 import { getSession } from '@/lib/server/auth/session'
 import { getRequestPermissions, getRequestPrincipal } from '@/lib/server/auth/request-session'
 import { findSettingsCached } from '@/lib/server/domains/settings/settings.helpers'

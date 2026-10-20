@@ -19,7 +19,7 @@ import {
   statusIncidents,
 } from '@/lib/server/db'
 import type { Database, Transaction } from '@/lib/server/db'
-import type { StatusComponentId, StatusComponentGroupId, StatusIncidentId } from '@quackback/ids'
+import type { StatusComponentId, StatusComponentGroupId, StatusIncidentId } from '@zenith/ids'
 import { NotFoundError, ValidationError } from '@/lib/shared/errors'
 import { assertTrimmedName, nextPosition, positionCaseSql } from '@/lib/server/utils'
 import type { EventActor } from '@/lib/server/events/dispatch'

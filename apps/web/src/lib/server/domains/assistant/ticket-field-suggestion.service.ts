@@ -41,7 +41,7 @@
 import { chat } from '@tanstack/ai'
 import { openaiCompatibleText } from '@tanstack/ai-openai/compatible'
 import { z } from 'zod'
-import type { ConversationId, TicketTypeId } from '@quackback/ids'
+import type { ConversationId, TicketTypeId } from '@zenith/ids'
 import { config } from '@/lib/server/config'
 import {
   isAiClientConfigured,

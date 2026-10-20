@@ -8,7 +8,7 @@
  * and logs a warning.
  */
 import { describe, it, expect, vi, beforeEach, afterEach, afterAll } from 'vitest'
-import { createId, type PrincipalId, type RoleId, type UserId } from '@quackback/ids'
+import { createId, type PrincipalId, type RoleId, type UserId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { and, eq, isNull, principal, principalRoleAssignments, roles, user } from '@/lib/server/db'
 import { SYSTEM_ROLES } from '@/lib/shared/permissions'

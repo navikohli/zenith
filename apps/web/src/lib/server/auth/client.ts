@@ -47,7 +47,7 @@ export const authClient = createAuthClient({
  */
 export const signOut: typeof authClient.signOut = async (...args) => {
   if (typeof window !== 'undefined') {
-    window.Quackback?.('logout')
+    window.Zenith?.('logout')
   }
   return authClient.signOut(...args)
 }

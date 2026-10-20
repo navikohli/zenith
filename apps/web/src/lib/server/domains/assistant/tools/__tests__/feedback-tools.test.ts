@@ -1,6 +1,6 @@
 import { beforeEach, afterEach, afterAll, describe, it, expect, vi } from 'vitest'
 import { PERMISSIONS } from '@/lib/shared/permissions'
-import { generateId } from '@quackback/ids'
+import { generateId } from '@zenith/ids'
 vi.mock('@/lib/server/db', async (original) => ({
   ...(await original<typeof import('@/lib/server/db')>()),
   db: (await import('@/lib/server/__tests__/db-test-fixture')).testDb,

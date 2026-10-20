@@ -31,7 +31,7 @@ import {
   type ApprovalRequestChannel,
   type ApprovalRisk,
 } from '@/lib/server/db'
-import type { AssistantPendingActionId, PrincipalId } from '@quackback/ids'
+import type { AssistantPendingActionId, PrincipalId } from '@zenith/ids'
 import { ticketFilter } from '@/lib/server/policy/tickets'
 import { can } from '@/lib/server/policy/authorize'
 import { isTeamActor, type Actor } from '@/lib/server/policy/types'

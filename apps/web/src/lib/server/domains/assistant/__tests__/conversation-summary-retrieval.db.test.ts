@@ -9,12 +9,12 @@
  * in-progress summary.
  *
  * Every test runs inside the db-test-fixture rollback transaction, so
- * quackback_test stays clean. The keyword (no-embedding) ranking path is used
+ * zenith_test stays clean. The keyword (no-embedding) ranking path is used
  * throughout — this suite is about the scope predicate, not the ranking
  * algorithm, so a mocked `generateEmbedding` avoids a real network call.
  */
 import { describe, it, expect, vi, beforeEach, afterEach, afterAll } from 'vitest'
-import { createId, type ConversationId, type PrincipalId, type UserId } from '@quackback/ids'
+import { createId, type ConversationId, type PrincipalId, type UserId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { conversationSummaries, conversations, principal, user, eq } from '@/lib/server/db'
 

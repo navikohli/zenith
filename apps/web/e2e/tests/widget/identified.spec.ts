@@ -2,7 +2,7 @@ import { test, expect, type Page, type FrameLocator } from '@playwright/test'
 import { seedWidgetIdentified, setWidgetSurfaces } from '../../utils/db-helpers'
 
 function widgetFrame(page: Page): FrameLocator {
-  return page.frameLocator('iframe.quackback-widget-iframe')
+  return page.frameLocator('iframe.zenith-widget-iframe')
 }
 
 /** Tab labels include an unread prefix (`1 unread Messages`) when badged. */
@@ -41,7 +41,7 @@ test.describe('Identified widget harness', { tag: '@smoke' }, () => {
   test('customer can mark a help article helpful', async ({ page }) => {
     const widget = await openIdentified(page, 'customer')
     await page.evaluate(() => {
-      const q = window.Quackback as ((cmd: string, arg?: unknown) => unknown) | undefined
+      const q = window.Zenith as ((cmd: string, arg?: unknown) => unknown) | undefined
       q?.('open', { articleId: 'e2e-widget-article' })
     })
     await expect(widget.getByText('E2E Widget Article')).toBeVisible({ timeout: 15000 })

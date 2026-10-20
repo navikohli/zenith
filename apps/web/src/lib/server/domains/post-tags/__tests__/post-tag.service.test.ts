@@ -10,7 +10,7 @@
  * `where` shape can be asserted without a database.
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import type { PostTagId, PrincipalId } from '@quackback/ids'
+import type { PostTagId, PrincipalId } from '@zenith/ids'
 import type { Actor } from '@/lib/server/policy'
 
 const mockEq = vi.fn((col, val) => ({ _tag: 'eq', col, val }))

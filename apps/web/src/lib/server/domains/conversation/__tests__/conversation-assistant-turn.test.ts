@@ -1,11 +1,11 @@
 /**
- * Quinn messenger wiring: the out-of-band trigger gate and the escalation
+ * ZenithAssistant messenger wiring: the out-of-band trigger gate and the escalation
  * dispatch. The model client is fully mocked (the assistant domain is replaced),
  * so no live runtime is exercised — these assert the conversation-side wiring:
- * when Quinn runs, and how offer vs hand-off persist.
+ * when ZenithAssistant runs, and how offer vs hand-off persist.
  */
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import type { ConversationId } from '@quackback/ids'
+import type { ConversationId } from '@zenith/ids'
 import type { AssistantTurnResult } from '@/lib/server/domains/assistant/assistant.runtime'
 
 const assistantMock = vi.hoisted(() => ({
@@ -311,7 +311,7 @@ beforeEach(() => {
   assistantMock.getActiveInvolvement.mockResolvedValue(null)
   assistantMock.getLatestInvolvement.mockResolvedValue(null)
   assistantMock.openInvolvement.mockResolvedValue({ id: 'assistant_involvement_1' })
-  getMessengerConfig.mockResolvedValue({ assistant: { respond: true, name: 'Quinn' } })
+  getMessengerConfig.mockResolvedValue({ assistant: { respond: true, name: 'Zenith Assistant' } })
   mockEnforceAiTokenBudget.mockResolvedValue(undefined)
   mockRequireEntitlement.mockResolvedValue(undefined)
   mockIsFeatureEnabled.mockResolvedValue(false)
@@ -381,7 +381,7 @@ describe('runAssistantTurnForConversation gate', () => {
   it('stays silent after a handoff even before the first teammate reply', async () => {
     // The customer writes again after "Connecting you to the team" but before
     // a human replies: the message-based silence rule cannot see the handoff,
-    // so the involvement state must mute Quinn.
+    // so the involvement state must mute ZenithAssistant.
     assistantMock.getLatestInvolvement.mockResolvedValue(involvementRow('handed_off'))
 
     await runAssistantTurnForConversation(CONV)
@@ -392,7 +392,7 @@ describe('runAssistantTurnForConversation gate', () => {
     expect(mockClearActivitySnapshot).not.toHaveBeenCalled()
   })
 
-  it('a workflow step explicitly re-engages Quinn on a handed-off conversation', async () => {
+  it('a workflow step explicitly re-engages ZenithAssistant on a handed-off conversation', async () => {
     assistantMock.getLatestInvolvement.mockResolvedValue(involvementRow('handed_off'))
     assistantMock.runAssistantTurn.mockResolvedValue(answered({}))
 
@@ -694,7 +694,7 @@ describe('runAssistantTurnForConversation activity snapshot (Redis mirror)', () 
     expect(mockClearActivitySnapshot).toHaveBeenCalledWith(CONV)
   })
 
-  it('fails over to a human handoff on a model failure: no Quinn reply, system message only', async () => {
+  it('fails over to a human handoff on a model failure: no ZenithAssistant reply, system message only', async () => {
     assistantMock.runAssistantTurn.mockRejectedValue(new Error('provider exhausted'))
 
     // The floor is the terminal outcome, so the orchestrator resolves rather
@@ -702,7 +702,7 @@ describe('runAssistantTurnForConversation activity snapshot (Redis mirror)', () 
     await expect(runAssistantTurnForConversation(CONV)).resolves.toBeUndefined()
 
     // The only persisted message is the visitor-visible transition marker from
-    // executeAssistantHandoff — never a server-authored Quinn reply.
+    // executeAssistantHandoff — never a server-authored ZenithAssistant reply.
     expect(insertedMessages).toHaveLength(1)
     expect(insertedMessages[0].content).toBe('Connecting you to the team')
     expect(assistantMock.recordHandoff).toHaveBeenCalledWith(

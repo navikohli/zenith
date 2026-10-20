@@ -14,7 +14,7 @@ import {
   principal as principalTable,
   user as userTable,
 } from '@/lib/server/db'
-import { toUuid, fromUuid, type PostId, type PostCommentId, type PrincipalId } from '@quackback/ids'
+import { toUuid, fromUuid, type PostId, type PostCommentId, type PrincipalId } from '@zenith/ids'
 import { buildCommentTree, toStatusChange } from '@/lib/shared'
 import type { PublicPostDetail, PublicComment, PinnedComment } from './post.types'
 import { DEFAULT_COMMENT_PAGE_SIZE, encodeCommentCursor, decodeCommentCursor } from './comment-page'
@@ -225,7 +225,7 @@ export async function getPublicPostDetail(
   }
 
   const tagsResult = parseJson<
-    Array<{ id: import('@quackback/ids').PostTagId; name: string; color: string }>
+    Array<{ id: import('@zenith/ids').PostTagId; name: string; color: string }>
   >(postResult.tagsJson)
   const authorAvatarFields = postResult.authorAvatarData
     ? parseJson<{

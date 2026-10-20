@@ -4,7 +4,7 @@ import { assertPendingWorkspaceParent } from '@/lib/server/domains/assistant/pen
  *
  * The inbox approval card renders from an internal note's metadata pointer
  * (pendingActionId + toolName + summary), which is only a point-in-time
- * snapshot taken when Quinn proposed the action. This fn is how the card
+ * snapshot taken when ZenithAssistant proposed the action. This fn is how the card
  * learns the CURRENT status (approved/rejected/executed/failed/expired)
  * instead of trusting that stale snapshot. Base gate is conversation.view
  * (any inbox teammate may open the approval queue); same as approve/reject
@@ -14,7 +14,7 @@ import { assertPendingWorkspaceParent } from '@/lib/server/domains/assistant/pen
  */
 import { z } from 'zod'
 import { createServerFn } from '@tanstack/react-start'
-import type { AssistantPendingActionId } from '@quackback/ids'
+import type { AssistantPendingActionId } from '@zenith/ids'
 import { requireAuth, policyActorFromAuth } from './auth-helpers'
 import { NotFoundError } from '@/lib/shared/errors'
 import {

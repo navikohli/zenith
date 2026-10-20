@@ -74,7 +74,7 @@ import {
   type Ticket,
   type ConversationMessageMetadata,
 } from '@/lib/server/db'
-import type { ConversationId, PrincipalId, TicketId } from '@quackback/ids'
+import type { ConversationId, PrincipalId, TicketId } from '@zenith/ids'
 import { can } from '@/lib/server/policy/authorize'
 import type { Actor } from '@/lib/server/policy/types'
 import { PERMISSIONS } from '@/lib/shared/permissions'
@@ -185,7 +185,7 @@ export async function linkTicketToConversation(
   // first-response machinery owns the timeline (the Phase 1a write redirect
   // never stamps the ticket's column). Internal notes don't count as a
   // response, mirroring insertTicketMessage's stamp rule; senderType 'agent'
-  // includes Quinn's replies, matching the conversation SLA's own FRT settle.
+  // includes ZenithAssistant's replies, matching the conversation SLA's own FRT settle.
   // Pair-only: on a provenance link the conversation's replies answered the
   // CUSTOMER, and an internal task's response clock is its own.
   if (isPair && !ticket.firstResponseAt) {

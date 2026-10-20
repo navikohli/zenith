@@ -8,7 +8,7 @@
  * words what it is handed.
  */
 import { createIntl, type IntlShape, type MessageDescriptor } from 'react-intl'
-import type { OnboardingEmailContent } from '@quackback/email'
+import type { OnboardingEmailContent } from '@zenith/email'
 import {
   DEFAULT_LOCALE,
   loadMessages,

@@ -13,7 +13,7 @@ import { publishedAtToPublishState } from '@/lib/shared/schemas/changelog'
 import { parseTypeIdArray } from '@/lib/server/domains/api/validation'
 import { db, principal, eq } from '@/lib/server/db'
 import { PERMISSIONS } from '@/lib/shared/permissions'
-import type { PostId } from '@quackback/ids'
+import type { PostId } from '@zenith/ids'
 import { formatChangelogResponse } from './-serialize'
 
 // Input validation schema

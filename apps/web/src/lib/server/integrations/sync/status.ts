@@ -1,6 +1,6 @@
 import { getIntegration } from '@/lib/server/integrations'
 import { eq, and, sql, integrations, postExternalLinks, ticketExternalLinks } from '@/lib/server/db'
-import type { IntegrationId } from '@quackback/ids'
+import type { IntegrationId } from '@zenith/ids'
 import type { HookJobData } from '@/lib/server/events/hook-job'
 import type { JobSqlExecutor } from '@/lib/server/jobs/job-queue'
 import { getExecuteRows } from '@/lib/server/utils/execute-rows'

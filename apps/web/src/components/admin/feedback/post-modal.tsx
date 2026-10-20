@@ -63,7 +63,7 @@ import {
   type PostCommentId,
   type BoardId,
   type PrincipalId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import { useDeleteComment, useRestoreComment } from '@/lib/client/mutations/portal-comments'
 import { useLoadMoreAdminComments } from '@/lib/client/mutations/load-more-comments'
 import { InlineModerationActions } from '@/components/shared/inline-moderation-actions'
@@ -446,7 +446,7 @@ export const PostModalContent = memo(function PostModalContent({
                   videos: true,
                   tables: true,
                   embeds: true,
-                  quackbackEmbeds: true,
+                  zenithEmbeds: true,
                   bubbleMenu: true,
                   slashMenu: true,
                 }}

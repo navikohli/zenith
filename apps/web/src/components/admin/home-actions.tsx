@@ -15,7 +15,7 @@ import {
 import { adminQueries } from '@/lib/client/queries/admin'
 import { homeActionGroups, type HomeActionId } from '@/lib/shared/admin-home'
 import type { FeatureFlags } from '@/lib/shared/types/settings'
-import type { TicketId } from '@quackback/ids'
+import type { TicketId } from '@zenith/ids'
 
 const CreatePostDialog = lazy(() =>
   import('@/components/admin/feedback/create-post-dialog').then((module) => ({

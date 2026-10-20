@@ -11,7 +11,7 @@ import {
   sql,
   inArray,
 } from '@/lib/server/db'
-import type { KbCategoryId, SegmentId } from '@quackback/ids'
+import type { KbCategoryId, SegmentId } from '@zenith/ids'
 import { ANONYMOUS_ACTOR, type Actor } from '@/lib/server/policy/types'
 import { segmentGateAllows } from '@/lib/server/policy/segment-gate'
 import { NotFoundError, ValidationError } from '@/lib/shared/errors'

@@ -7,8 +7,8 @@
  * editors on the company profile.
  */
 import { pgTable, text, timestamp, uniqueIndex } from 'drizzle-orm/pg-core'
-import { generateId } from '@quackback/ids'
-import { typeIdTextColumn } from '@quackback/ids/drizzle'
+import { generateId } from '@zenith/ids'
+import { typeIdTextColumn } from '@zenith/ids/drizzle'
 import type { UserAttributeType, CurrencyCode } from './user-attributes'
 
 export const companyAttributeDefinitions = pgTable(

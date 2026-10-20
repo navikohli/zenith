@@ -6,7 +6,7 @@
  * outbox row; `runEventDispatch` is the only drain.
  */
 import { events } from '@/lib/server/db'
-import type { EvtId } from '@quackback/ids'
+import type { EvtId } from '@zenith/ids'
 import type { DomainEvent, EventActorType } from './envelope'
 
 type EventRow = typeof events.$inferSelect

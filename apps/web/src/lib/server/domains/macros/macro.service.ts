@@ -22,7 +22,7 @@ import {
   type MacroScope,
   type MacroAction,
 } from '@/lib/server/db'
-import type { MacroId, PrincipalId, ConversationId } from '@quackback/ids'
+import type { MacroId, PrincipalId, ConversationId } from '@zenith/ids'
 import { realEmail } from '@/lib/shared/anonymous-email'
 import { firstNameOf } from '@/lib/shared/conversation/personalize'
 import { NotFoundError } from '@/lib/shared/errors'

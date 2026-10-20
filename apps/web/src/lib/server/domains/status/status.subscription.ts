@@ -19,7 +19,7 @@ import {
   principal,
   user,
 } from '@/lib/server/db'
-import type { PrincipalId, StatusComponentId, StatusSubscriptionId } from '@quackback/ids'
+import type { PrincipalId, StatusComponentId, StatusSubscriptionId } from '@zenith/ids'
 import { NotFoundError } from '@/lib/shared/errors'
 import { logger } from '@/lib/server/logger'
 import type {

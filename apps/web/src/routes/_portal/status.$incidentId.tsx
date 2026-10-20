@@ -19,7 +19,7 @@ import {
 import { BackLink } from '@/components/ui/back-link'
 import { AreaMessages } from '@/components/shared/area-messages'
 import { DEFAULT_LOCALE, loadAreaMessages } from '@/lib/shared/i18n'
-import type { StatusIncidentId } from '@quackback/ids'
+import type { StatusIncidentId } from '@zenith/ids'
 
 export const Route = createFileRoute('/_portal/status/$incidentId')({
   loader: async ({ context, params }) => {
@@ -46,7 +46,7 @@ export const Route = createFileRoute('/_portal/status/$incidentId')({
     return {
       incidentId,
       incidentTitle: incident.title,
-      workspaceName: context.settings?.name ?? 'Quackback',
+      workspaceName: context.settings?.name ?? 'Zenith',
       baseUrl: context.baseUrl ?? '',
       messages: await messagesPromise,
     }

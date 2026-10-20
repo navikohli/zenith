@@ -8,7 +8,7 @@
  * `onboarding_emails` row is claimed before sending.
  */
 import { randomUUID } from 'crypto'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 import {
   db,
   eq,
@@ -40,7 +40,7 @@ import type { Role } from '@/lib/shared/roles'
 import { detectFirstWin } from '@/lib/server/activation-wins'
 import { getCloudConfig } from '@/lib/server/domains/settings/cloud/cloud.service'
 import { PLAN_CATALOGUE } from '@/lib/server/domains/settings/cloud/cloud.types'
-import { sendOnboardingNudgeEmail, sendOnboardingWelcomeEmail } from '@quackback/email'
+import { sendOnboardingNudgeEmail, sendOnboardingWelcomeEmail } from '@zenith/email'
 import type { SupportedLocale } from '@/lib/shared/i18n'
 import type { OnboardingOutcome } from '@/lib/shared/db-types'
 import {

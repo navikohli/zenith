@@ -1,6 +1,6 @@
 /** Membership writes and outbound operations commit together. Each person has independent recovery. */
 import { randomUUID } from 'node:crypto'
-import type { PrincipalId, SegmentId } from '@quackback/ids'
+import type { PrincipalId, SegmentId } from '@zenith/ids'
 import { integrations, principal, eq, and, inArray, type Transaction } from '@/lib/server/db'
 import { getIntegration, getIntegrationTypesWithSegmentSync } from './index'
 import { queueSyncOperation } from './sync/ledger'

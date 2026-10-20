@@ -4,7 +4,7 @@ import { createDb, type Database } from '../client'
 import { ensurePageViewPartitions, dropExpiredPageViewPartitions } from '../page-view-partitions'
 
 // DB-backed (skips without Postgres, like the 0126 backfill pin). Requires the
-// 0137 page_views parent table (run `bun run db:migrate` against quackback_test).
+// 0137 page_views parent table (run `bun run db:migrate` against zenith_test).
 const DB_URL = process.env.DATABASE_URL
 let db: Database | null = null
 if (DB_URL) db = createDb(DB_URL, { max: 1 })

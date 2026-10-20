@@ -15,7 +15,7 @@ import { describe, it, expect, vi, beforeEach, afterEach, afterAll } from 'vites
 import { betterAuth } from 'better-auth'
 import { drizzleAdapter } from 'better-auth/adapters/drizzle'
 import { oneTimeToken } from 'better-auth/plugins'
-import { createId, type UserId } from '@quackback/ids'
+import { createId, type UserId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { user, session, account, verification, settings, eq, sql } from '@/lib/server/db'
 import type { IdentityProjection } from '@/lib/server/domains/settings/cloud/identity-projection'
@@ -63,9 +63,9 @@ const fixture = await createDbTestFixture({
   },
 })
 
-const CANONICAL = 'https://acme.quackback.co.uk'
-const SYSTEM_HOST = 'ws-abc123.quackback.co.uk'
-const FRIENDLY_HOST = 'acme.quackback.co.uk'
+const CANONICAL = 'https://acme.zenith.co.uk'
+const SYSTEM_HOST = 'ws-abc123.zenith.co.uk'
+const FRIENDLY_HOST = 'acme.zenith.co.uk'
 
 const IDENTITY: IdentityProjection = {
   version: 2,
@@ -219,7 +219,7 @@ describe.skipIf(!fixture.available)('rename-transfer OTT consume', () => {
 
     const result = await consumeOriginTransfer({
       ott: token,
-      host: 'other.quackback.co.uk',
+      host: 'other.zenith.co.uk',
     })
     expect(result).toEqual({ kind: 'error', status: 'invalid' })
     expect(await ottRowCount(token)).toBe(1)
@@ -251,7 +251,7 @@ describe.skipIf(!fixture.available)('rename-transfer OTT consume', () => {
     const headers = new Headers({
       host: SYSTEM_HOST,
       cookie: 'cf_clearance=edge',
-      referer: 'https://app.quackback.io/',
+      referer: '/source.html',
     })
 
     const result = await consumeOpenHandoff({ ott: token, headers })

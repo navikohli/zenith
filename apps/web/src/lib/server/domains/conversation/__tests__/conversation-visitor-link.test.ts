@@ -4,7 +4,7 @@
  * else the widget's ?c= deep link.
  */
 import { describe, expect, it } from 'vitest'
-import type { ConversationId } from '@quackback/ids'
+import type { ConversationId } from '@zenith/ids'
 import { visitorConversationLink } from '../conversation.notify'
 
 const id = 'conversation_abc123' as ConversationId

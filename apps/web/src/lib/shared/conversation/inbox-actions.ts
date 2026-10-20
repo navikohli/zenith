@@ -76,7 +76,7 @@ export const INBOX_ACTIONS: readonly InboxActionDescriptor[] = [
   // A note-only thread (back_office/tracker tickets) has nothing else to
   // switch from, so the key is a plain focus there.
   { id: 'note', label: 'Add internal note', group: 'Reply', scope: 'active', shortcut: 'n' },
-  // q for Quinn. Additionally gated on `copilotAvailable` (flag + copilot.use
+  // q for ZenithAssistant. Additionally gated on `copilotAvailable` (flag + copilot.use
   // + the ≥xl viewport that shows the detail panel) — see isInboxActionEnabled.
   { id: 'copilot', label: 'Ask Copilot', group: 'Reply', scope: 'active', shortcut: 'q' },
   { id: 'macro', label: 'Reply with macro', group: 'Reply', scope: 'both', shortcut: 'm' },

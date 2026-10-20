@@ -13,7 +13,7 @@ import { useDeleteArticle, useDeleteCategory } from '@/lib/client/mutations/help
 import { helpCenterQueries } from '@/lib/client/queries/help-center'
 import { collectDescendantIds } from '@/lib/shared/help-center-tree'
 import { Route } from '@/routes/admin/help-center'
-import type { KbArticleId, KbCategoryId } from '@quackback/ids'
+import type { KbArticleId, KbCategoryId } from '@zenith/ids'
 
 type CategoryDialogState =
   { mode: 'new'; parentId: KbCategoryId | null } | { mode: 'edit'; category: TreeCategory } | null

@@ -13,7 +13,7 @@ import {
 } from '@/lib/server/functions/public-posts'
 import type { PublicFeedbackFilters } from '@/lib/shared/types'
 import type { PublicPostListItem } from '@/lib/shared/types'
-import type { PostId, PostStatusId, PostTagId } from '@quackback/ids'
+import type { PostId, PostStatusId, PostTagId } from '@zenith/ids'
 
 // ============================================================================
 // Types

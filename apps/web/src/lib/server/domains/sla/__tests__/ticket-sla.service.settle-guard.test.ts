@@ -10,7 +10,7 @@
  * interleaving deterministically inside it.
  */
 import { describe, it, expect, beforeEach, afterEach, afterAll, vi } from 'vitest'
-import type { TicketId, TicketStatusId } from '@quackback/ids'
+import type { TicketId, TicketStatusId } from '@zenith/ids'
 
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { tickets, ticketStatuses, slaEvents, slaPolicies, eq } from '@/lib/server/db'

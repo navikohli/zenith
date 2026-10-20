@@ -5,7 +5,7 @@
 import { z } from 'zod'
 import { createServerFn, createServerOnlyFn } from '@tanstack/react-start'
 import { getRequestHeaders } from '@tanstack/react-start/server'
-import { type PostCommentId, type PostId, type PostStatusId, type UserId } from '@quackback/ids'
+import { type PostCommentId, type PostId, type PostStatusId, type UserId } from '@zenith/ids'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import { createActivity } from '@/lib/server/domains/activity/activity.service'
 import { logger } from '@/lib/server/logger'

@@ -3,8 +3,8 @@ import {
   setEmailLogSink,
   setEmailPoweredByResolver,
   type EmailLogSinkEntry,
-} from '@quackback/email'
-import type { ConversationId, PostId, TicketId } from '@quackback/ids'
+} from '@zenith/email'
+import type { ConversationId, PostId, TicketId } from '@zenith/ids'
 import { db, emailLog } from '@/lib/server/db'
 import { logger } from '@/lib/server/logger'
 import { getCurrentWorkspace } from '@/lib/server/workspaces/workspace-context'

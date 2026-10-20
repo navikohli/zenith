@@ -70,7 +70,7 @@ vi.mock('@/lib/server/auth/index', () => ({
   })),
 }))
 
-vi.mock('@quackback/email', () => ({
+vi.mock('@zenith/email', () => ({
   isEmailConfigured: () => true,
   sendMagicLinkEmail: hoisted.sendMagicLinkEmail,
   sendSignupNotAllowedEmail: hoisted.sendSignupNotAllowedEmail,
@@ -84,7 +84,7 @@ vi.mock('@/lib/server/auth/registered-providers', () => ({
   getRegisteredOidcProviderIds: async () => new Set(['oidc_acme']),
 }))
 vi.mock('@/lib/server/config', () => ({
-  config: { baseUrl: 'https://acme.quackback.io', trustedProxyHops: 1 },
+  config: { baseUrl: 'https://acme.zenith.io', trustedProxyHops: 1 },
 }))
 
 // The limiter records what it was asked and answers "allowed", so a suite with
@@ -105,7 +105,7 @@ const KNOWN = 'regular@acme.example'
 const STRANGER = 'stranger@evil.example'
 
 function post(email: string): Request {
-  return new Request('https://acme.quackback.io/api/auth/portal-signin', {
+  return new Request('https://acme.zenith.io/api/auth/portal-signin', {
     method: 'POST',
     headers: { 'content-type': 'application/json', 'x-forwarded-for': '203.0.113.7' },
     body: JSON.stringify({ email, callbackURL: '/' }),

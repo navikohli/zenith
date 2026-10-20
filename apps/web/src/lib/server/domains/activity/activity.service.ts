@@ -7,7 +7,7 @@
  */
 
 import { db, postActivity, eq, desc, principal as principalTable } from '@/lib/server/db'
-import type { PostId, PrincipalId } from '@quackback/ids'
+import type { PostId, PrincipalId } from '@zenith/ids'
 import { isOnTeam } from '@/lib/server/domains/principals/principal-standing'
 import { logger } from '@/lib/server/logger'
 

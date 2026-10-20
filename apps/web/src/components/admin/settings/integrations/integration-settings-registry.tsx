@@ -283,7 +283,7 @@ export const INTEGRATION_SETTINGS: Record<string, IntegrationSettingsEntry> = {
       steps: [
         <p key="1">
           Click <span className="font-medium text-foreground">Connect Asana</span> to authorize
-          Quackback to create tasks in your Asana workspace.
+          Zenith to create tasks in your Asana workspace.
         </p>,
         <p key="2">Select which project new feedback tasks should be created in.</p>,
         <p key="3">
@@ -328,7 +328,7 @@ export const INTEGRATION_SETTINGS: Record<string, IntegrationSettingsEntry> = {
         </p>,
         <p key="2">
           Enter your organization URL and PAT below, then click{' '}
-          <span className="font-medium text-foreground">Connect</span>. Quackback will verify access
+          <span className="font-medium text-foreground">Connect</span>. Zenith will verify access
           to your organization.
         </p>,
         <p key="3">
@@ -361,7 +361,7 @@ export const INTEGRATION_SETTINGS: Record<string, IntegrationSettingsEntry> = {
       steps: [
         <p key="1">
           Click <span className="font-medium text-foreground">Connect ClickUp</span> to authorize
-          Quackback to create tasks in your ClickUp workspace.
+          Zenith to create tasks in your ClickUp workspace.
         </p>,
         <p key="2">Select a space and list where new feedback tasks should be created.</p>,
         <p key="3">
@@ -391,7 +391,7 @@ export const INTEGRATION_SETTINGS: Record<string, IntegrationSettingsEntry> = {
       steps: [
         <p key="1">
           Click <span className="font-medium text-foreground">Connect Discord</span> to add the
-          Quackback bot to your Discord server.
+          Zenith bot to your Discord server.
         </p>,
         <p key="2">
           Select which text channel notifications should be posted to. The bot needs access to the
@@ -431,7 +431,7 @@ export const INTEGRATION_SETTINGS: Record<string, IntegrationSettingsEntry> = {
         </p>,
         <p key="2">
           Enter your Freshdesk subdomain and API key below, then click{' '}
-          <span className="font-medium text-foreground">Save</span>. Quackback will verify the
+          <span className="font-medium text-foreground">Save</span>. Zenith will verify the
           connection.
         </p>,
         <p key="3">Customer details are looked up by email when you open customer context.</p>,
@@ -454,7 +454,7 @@ export const INTEGRATION_SETTINGS: Record<string, IntegrationSettingsEntry> = {
       steps: [
         <p key="1">
           Click <span className="font-medium text-foreground">Connect GitHub</span> to authorize
-          Quackback to create issues in your GitHub repositories.
+          Zenith to create issues in your GitHub repositories.
         </p>,
         <p key="2">Select which repository new feedback issues should be created in.</p>,
         <p key="3">
@@ -492,7 +492,7 @@ export const INTEGRATION_SETTINGS: Record<string, IntegrationSettingsEntry> = {
         </p>,
         <p key="2">
           Click <span className="font-medium text-foreground">Connect GitLab</span> to authorize
-          Quackback with your GitLab account. You will be sent to GitLab.com or your instance,
+          Zenith with your GitLab account. You will be sent to GitLab.com or your instance,
           depending on the URL you configured.
         </p>,
         <p key="3">
@@ -570,7 +570,7 @@ export const INTEGRATION_SETTINGS: Record<string, IntegrationSettingsEntry> = {
       steps: [
         <p key="1">
           Click <span className="font-medium text-foreground">Connect Jira</span> to authorize
-          Quackback to create issues in your Jira instance.
+          Zenith to create issues in your Jira instance.
         </p>,
         <p key="2">Select which project and issue type to use for new feedback issues.</p>,
         <p key="3">
@@ -600,7 +600,7 @@ export const INTEGRATION_SETTINGS: Record<string, IntegrationSettingsEntry> = {
       steps: [
         <p key="1">
           Click <span className="font-medium text-foreground">Connect Linear</span> to authorize
-          Quackback to create issues in your Linear workspace.
+          Zenith to create issues in your Linear workspace.
         </p>,
         <p key="2">Select which team new feedback issues should be created in.</p>,
         <p key="3">
@@ -635,7 +635,7 @@ export const INTEGRATION_SETTINGS: Record<string, IntegrationSettingsEntry> = {
         </p>,
         <p key="2">
           Copy the webhook URL and paste it below, then click{' '}
-          <span className="font-medium text-foreground">Save</span>. Quackback will send a test
+          <span className="font-medium text-foreground">Save</span>. Zenith will send a test
           payload.
         </p>,
         <p key="3">
@@ -668,7 +668,7 @@ export const INTEGRATION_SETTINGS: Record<string, IntegrationSettingsEntry> = {
         </p>,
         <p key="2">
           Click <span className="font-medium text-foreground">Connect Monday.com</span> to authorize
-          Quackback with your Monday.com workspace.
+          Zenith with your Monday.com workspace.
         </p>,
         <p key="3">
           Select a board to create items in, then choose which events should trigger new items.
@@ -702,7 +702,7 @@ export const INTEGRATION_SETTINGS: Record<string, IntegrationSettingsEntry> = {
         </p>,
         <p key="2">
           Copy the production webhook URL and paste it below, then click{' '}
-          <span className="font-medium text-foreground">Save</span>. Quackback will send a test
+          <span className="font-medium text-foreground">Save</span>. Zenith will send a test
           payload.
         </p>,
         <p key="3">
@@ -731,7 +731,7 @@ export const INTEGRATION_SETTINGS: Record<string, IntegrationSettingsEntry> = {
       steps: [
         <p key="1">
           Click <span className="font-medium text-foreground">Connect Notion</span> to authorize
-          Quackback with your Notion workspace.
+          Zenith with your Notion workspace.
         </p>,
         <p key="2">
           Select which database new feedback items should be created in. The database must have a
@@ -770,7 +770,7 @@ export const INTEGRATION_SETTINGS: Record<string, IntegrationSettingsEntry> = {
         </p>,
         <p key="2">
           Paste the topic URL below. If your topic is protected, add an access token too. Click{' '}
-          <span className="font-medium text-foreground">Save</span>. Quackback will send a test
+          <span className="font-medium text-foreground">Save</span>. Zenith will send a test
           notification to verify the channel.
         </p>,
         <p key="3">
@@ -804,7 +804,7 @@ export const INTEGRATION_SETTINGS: Record<string, IntegrationSettingsEntry> = {
         </p>,
         <p key="2">
           Click <span className="font-medium text-foreground">Connect Salesforce</span> to authorize
-          Quackback with your Salesforce org.
+          Zenith with your Salesforce org.
         </p>,
         <p key="3">Customer details are looked up by email when you open customer context.</p>,
       ],
@@ -882,7 +882,7 @@ export const INTEGRATION_SETTINGS: Record<string, IntegrationSettingsEntry> = {
       title: 'Connect your Slack workspace',
       description: 'Post notifications to the Slack channel you choose.',
       steps: [
-        <p key="1">Authorize Quackback to post messages to your Slack workspace.</p>,
+        <p key="1">Authorize Zenith to post messages to your Slack workspace.</p>,
         <p key="2">
           Select which channel notifications should be posted to. The bot must be added to private
           channels before they appear in the list.
@@ -920,7 +920,7 @@ export const INTEGRATION_SETTINGS: Record<string, IntegrationSettingsEntry> = {
         </p>,
         <p key="2">
           Paste the API key below and click{' '}
-          <span className="font-medium text-foreground">Save</span>. Quackback will verify the
+          <span className="font-medium text-foreground">Save</span>. Zenith will verify the
           connection.
         </p>,
         <p key="3">
@@ -944,11 +944,11 @@ export const INTEGRATION_SETTINGS: Record<string, IntegrationSettingsEntry> = {
         'Connect Microsoft Teams to receive notifications when users submit feedback, when statuses change, and when comments are added.',
       steps: [
         <p key="1">
-          Register Quackback in your Azure AD workspace and add the Teams bot permissions.
+          Register Zenith in your Azure AD workspace and add the Teams bot permissions.
         </p>,
         <p key="2">
           Click <span className="font-medium text-foreground">Connect Teams</span> to authorize
-          Quackback to post to your Teams channels.
+          Zenith to post to your Teams channels.
         </p>,
         <p key="3">
           Select a team and channel for notifications, then choose which events trigger messages.
@@ -979,7 +979,7 @@ export const INTEGRATION_SETTINGS: Record<string, IntegrationSettingsEntry> = {
         </p>,
         <p key="2">
           Click <span className="font-medium text-foreground">Connect Trello</span> to authorize
-          Quackback to access your Trello workspace.
+          Zenith to access your Trello workspace.
         </p>,
         <p key="3">Select which board and list new feedback cards should be created in.</p>,
         <p key="4">
@@ -1016,7 +1016,7 @@ export const INTEGRATION_SETTINGS: Record<string, IntegrationSettingsEntry> = {
         </p>,
         <p key="2">
           Copy the webhook URL from Zapier and paste it below, then click{' '}
-          <span className="font-medium text-foreground">Save</span>. Quackback will send a test
+          <span className="font-medium text-foreground">Save</span>. Zenith will send a test
           payload.
         </p>,
         <p key="3">

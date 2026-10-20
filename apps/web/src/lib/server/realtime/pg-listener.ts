@@ -1,5 +1,5 @@
 /**
- * The realtime bus's receive side — `LISTEN quackback_realtime` on a
+ * The realtime bus's receive side — `LISTEN zenith_realtime` on a
  * session-mode connection.
  *
  * The discipline is the same one the job queue used to take, and the reason is the same
@@ -41,7 +41,7 @@ import { logger } from '@/lib/server/logger'
 const log = logger.child({ component: 'realtime-listen' })
 
 /** The single NOTIFY channel per workspace database. */
-export const REALTIME_CHANNEL = 'quackback_realtime'
+export const REALTIME_CHANNEL = 'zenith_realtime'
 
 export interface RealtimeListener {
   /**

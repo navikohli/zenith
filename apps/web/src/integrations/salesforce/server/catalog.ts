@@ -9,5 +9,5 @@ export const salesforceCatalog: IntegrationCatalogEntry = {
   settingsPath: '/admin/settings/integrations/salesforce',
   available: true,
   configurable: true,
-  docsUrl: 'https://www.quackback.io/docs/integrations/salesforce',
+  docsUrl: '/source.html',
 }

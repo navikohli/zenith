@@ -5,7 +5,7 @@
  */
 import { z } from 'zod'
 import { createServerFn } from '@tanstack/react-start'
-import type { StatusComponentId } from '@quackback/ids'
+import type { StatusComponentId } from '@zenith/ids'
 import { requireAuth, normalizePrincipalType } from './auth-helpers'
 import { subscribe, unsubscribe, getMySubscription } from '@/lib/server/domains/status'
 import { logger } from '@/lib/server/logger'

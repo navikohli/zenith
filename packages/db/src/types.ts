@@ -1,5 +1,5 @@
 import type { InferSelectModel, InferInsertModel } from 'drizzle-orm'
-import type { BoardId, PostStatusId, PostTagId, SegmentId, TicketId } from '@quackback/ids'
+import type { BoardId, PostStatusId, PostTagId, SegmentId, TicketId } from '@zenith/ids'
 import type { boards, roadmaps, roadmapColumns, postTags } from './schema/boards'
 import type { postStatuses } from './schema/statuses'
 import type {
@@ -969,7 +969,7 @@ export interface PostSuggestion {
   content: string
 }
 
-// A write-tool call Quinn proposed but has not executed, surfaced on an
+// A write-tool call ZenithAssistant proposed but has not executed, surfaced on an
 // internal note (conversation_messages.metadata) so the team sees it without
 // polling. A point-in-time snapshot only — the pending action row is the live
 // source of truth an agent approves/rejects from.
@@ -1149,7 +1149,7 @@ export interface ConversationMessageMetadata {
   /** Agent-only suggestion (on an internal note) to track this conversation as a
    *  feedback post. Surfaced only via the agent DTO, never to the visitor. */
   postSuggestion?: PostSuggestion
-  /** Agent-only snapshot (on an internal note) of a write-tool proposal Quinn
+  /** Agent-only snapshot (on an internal note) of a write-tool proposal ZenithAssistant
    *  surfaced for approval. Surfaced only via the agent DTO, never to the visitor. */
   assistantPendingAction?: AssistantPendingActionSurface
   /** Agent-only (P2-D.1 inbox translation): set on an OUTGOING reply sent while

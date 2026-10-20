@@ -8,7 +8,7 @@
  * exactly the shape this run has caught nineteen times.
  *
  * **Every key is unique per test.** `DATABASE_URL` is hard-coded to one shared
- * `quackback_test` for every worktree and agent on the machine, so a suite that
+ * `zenith_test` for every worktree and agent on the machine, so a suite that
  * asserted whole-table state would fail on somebody else's row. Nothing here
  * counts rows it did not write.
  */
@@ -16,11 +16,11 @@ import { readFileSync } from 'node:fs'
 import path from 'node:path'
 import { randomUUID } from 'node:crypto'
 import postgres from 'postgres'
-// The lint rule reserves @quackback/db/client for db.ts; test fixtures that
+// The lint rule reserves @zenith/db/client for db.ts; test fixtures that
 // need their own short-lived connection are sanctioned callers, same as
 // db-test-fixture.ts and jobs/__tests__/harness.ts.
 // oxlint-disable-next-line no-restricted-imports
-import { createDbFromSql, type Database } from '@quackback/db/client'
+import { createDbFromSql, type Database } from '@zenith/db/client'
 import {
   createWorkspaceScope,
   runWithWorkspaceScope,
@@ -31,7 +31,7 @@ import {
 } from '@/lib/server/__tests__/workspace-scope'
 
 const URL =
-  process.env.DATABASE_URL ?? 'postgresql://postgres:password@localhost:5432/quackback_test'
+  process.env.DATABASE_URL ?? 'postgresql://postgres:password@localhost:5432/zenith_test'
 
 const MIGRATION = path.resolve(
   __dirname,

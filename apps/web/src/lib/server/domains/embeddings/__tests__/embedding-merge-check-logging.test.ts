@@ -4,7 +4,7 @@
  * not be logged at error; any other failure still must be.
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import type { PostId } from '@quackback/ids'
+import type { PostId } from '@zenith/ids'
 import { TierLimitError } from '@/lib/server/errors/tier-limit-error'
 
 const h = vi.hoisted(() => ({

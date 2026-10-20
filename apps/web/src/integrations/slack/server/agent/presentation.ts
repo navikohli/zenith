@@ -1,5 +1,5 @@
 import type { ChatStopStreamArguments } from '@slack/web-api'
-import { isTypeId } from '@quackback/ids'
+import { isTypeId } from '@zenith/ids'
 type KnownBlock = NonNullable<ChatStopStreamArguments['blocks']>[number]
 import type { AssistantThreadMessage } from '@/lib/server/domains/assistant/assistant.runtime'
 import type {
@@ -213,7 +213,7 @@ export function buildProposalBlocks(
     { type: 'section', text: { type: 'mrkdwn', text: escapeSlack(action.summary).slice(0, 2800) } },
     {
       type: 'context',
-      elements: [{ type: 'mrkdwn', text: 'Proposed by Quackback · needs a teammate’s approval' }],
+      elements: [{ type: 'mrkdwn', text: 'Proposed by Zenith · needs a teammate’s approval' }],
     },
     {
       type: 'actions',

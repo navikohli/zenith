@@ -21,7 +21,7 @@
 
 import { APIError, createAuthMiddleware } from 'better-auth/api'
 import { getJwtToken } from 'better-auth/plugins'
-import type { PrincipalId, RoleId, UserId } from '@quackback/ids'
+import type { PrincipalId, RoleId, UserId } from '@zenith/ids'
 import type { SsoRoleMatch } from '@/lib/shared/resolve-sso-role'
 import { SYSTEM_ROLES } from '@/lib/shared/permissions'
 import { toSessionScope, type Role } from '@/lib/shared/roles'
@@ -922,7 +922,7 @@ function nextSyncedField(
 
 /**
  * Keep `user.name` and `user.image` in step with the identity provider after an
- * OIDC callback, without ever overwriting what a person chose in Quackback.
+ * OIDC callback, without ever overwriting what a person chose in Zenith.
  *
  * Better-Auth's genericOAuth writes `name` and `image` only when it CREATES the
  * user, and `overrideUserInfo` stays off. So, on every callback:
@@ -1595,7 +1595,7 @@ export async function handleNewDeviceNotification(
   // Email + audit are independent — fire in parallel. A failure
   // rolls back via `forgetDevice` so the next sign-in re-fires.
   try {
-    const { sendNewSignInEmail } = await import('@quackback/email')
+    const { sendNewSignInEmail } = await import('@zenith/email')
     const { recordAuditEvent } = await import('@/lib/server/audit/log')
     const { resolveAccountRecipient } = await import('@/lib/server/email/recipient')
     const occurredAt = new Date().toISOString()

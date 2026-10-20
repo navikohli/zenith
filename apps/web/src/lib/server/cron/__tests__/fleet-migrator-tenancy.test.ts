@@ -34,7 +34,7 @@ afterEach(() => vi.unstubAllEnvs())
 
 describe('runFleetMigratorPass', () => {
   it('returns without touching the registry or the sweep lock on a single-workspace install', async () => {
-    vi.stubEnv('QUACKBACK_TENANCY', 'single')
+    vi.stubEnv('ZENITH_TENANCY', 'single')
     await runFleetMigratorPass()
     expect(withSweepLock).not.toHaveBeenCalled()
     expect(enrolActiveWorkspaces).not.toHaveBeenCalled()
@@ -42,7 +42,7 @@ describe('runFleetMigratorPass', () => {
   })
 
   it('runs the enrol and reconcile pass under pooled tenancy', async () => {
-    vi.stubEnv('QUACKBACK_TENANCY', 'pooled')
+    vi.stubEnv('ZENITH_TENANCY', 'pooled')
     await runFleetMigratorPass()
     expect(enrolActiveWorkspaces).toHaveBeenCalledOnce()
     expect(runReconcilePass).toHaveBeenCalledOnce()

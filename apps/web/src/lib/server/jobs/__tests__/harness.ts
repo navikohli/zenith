@@ -8,21 +8,21 @@
  * for real and clean up by queue name.
  *
  * **Queue names are unique per test.** `DATABASE_URL` is hard-coded to one
- * shared `quackback_test` for every worktree and agent on the machine, so a
+ * shared `zenith_test` for every worktree and agent on the machine, so a
  * suite that asserted whole-table state would fail on somebody else's row. Every
  * assertion here is scoped to a queue name this file minted.
  */
 import { readFileSync } from 'node:fs'
 import path from 'node:path'
 import postgres from 'postgres'
-// The lint rule reserves @quackback/db/client for db.ts; test fixtures that
+// The lint rule reserves @zenith/db/client for db.ts; test fixtures that
 // need their own short-lived connection are sanctioned callers, same as
 // db-test-fixture.ts.
 // oxlint-disable-next-line no-restricted-imports
-import { createDbFromSql, type Database } from '@quackback/db/client'
+import { createDbFromSql, type Database } from '@zenith/db/client'
 
 const URL =
-  process.env.DATABASE_URL ?? 'postgresql://postgres:password@localhost:5432/quackback_test'
+  process.env.DATABASE_URL ?? 'postgresql://postgres:password@localhost:5432/zenith_test'
 
 const MIGRATION = path.resolve(
   __dirname,
@@ -77,7 +77,7 @@ export async function cleanupQueues(queues: readonly string[]): Promise<void> {
  * The eight migrated queues have fixed names (`events`, `workflow-dispatch`, …)
  * so a suite exercising one cannot mint a private queue. Deleting the whole
  * queue would delete another checkout's rows out from under it — the shared
- * `quackback_test` rule again — so a suite that has to use the real name
+ * `zenith_test` rule again — so a suite that has to use the real name
  * removes exactly the keys it wrote.
  */
 export async function cleanupDedupeKeys(queue: string, keys: readonly string[]): Promise<void> {

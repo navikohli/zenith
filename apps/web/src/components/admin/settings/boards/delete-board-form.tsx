@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
 import { ConfirmDialog } from '@/components/shared/confirm-dialog'
 import { SettingRow, SettingRows } from '@/components/admin/settings/setting-row'
-import type { BoardId } from '@quackback/ids'
+import type { BoardId } from '@zenith/ids'
 
 interface Board {
   id: BoardId

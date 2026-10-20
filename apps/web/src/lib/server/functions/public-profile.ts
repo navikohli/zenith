@@ -16,7 +16,7 @@
  */
 import { z } from 'zod'
 import { createServerFn } from '@tanstack/react-start'
-import { isValidTypeId, type PrincipalId } from '@quackback/ids'
+import { isValidTypeId, type PrincipalId } from '@zenith/ids'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import type {
   PublicProfileActivityItem,

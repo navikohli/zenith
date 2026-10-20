@@ -10,7 +10,7 @@ import { getIntegration } from './index'
 
 export class InstallBoundElsewhereError extends Error {
   constructor() {
-    super('This account is already connected to another Quackback workspace.')
+    super('This account is already connected to another Zenith workspace.')
     this.name = 'InstallBoundElsewhereError'
   }
 }

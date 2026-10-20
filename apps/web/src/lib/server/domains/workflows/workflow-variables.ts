@@ -14,7 +14,7 @@
  * identically to an absent key (fallback, or empty string with none).
  */
 import { db, eq, conversations, principal, user, settings } from '@/lib/server/db'
-import type { ConversationId } from '@quackback/ids'
+import type { ConversationId } from '@zenith/ids'
 import { NotFoundError } from '@/lib/shared/errors'
 import { realEmail } from '@/lib/shared/anonymous-email'
 import { firstNameOf } from '@/lib/shared/conversation/personalize'

@@ -1,6 +1,6 @@
 import { getIntegration } from '@/lib/server/integrations'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { createId, type PostId } from '@quackback/ids'
+import { createId, type PostId } from '@zenith/ids'
 const state = vi.hoisted(() => ({
   post: {} as Record<string, unknown>,
   links: [] as Array<Record<string, unknown>>,

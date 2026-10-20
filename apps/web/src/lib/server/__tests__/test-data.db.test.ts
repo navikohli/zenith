@@ -4,7 +4,7 @@
  * attribute a client once wrote are real data, so they stay counted.
  */
 import { afterAll, afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { createId, type PrincipalId, type UserId } from '@quackback/ids'
+import { createId, type PrincipalId, type UserId } from '@zenith/ids'
 import { sql } from 'drizzle-orm'
 import { createDbTestFixture, testDb } from './db-test-fixture'
 import {

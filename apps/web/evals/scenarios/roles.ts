@@ -113,7 +113,7 @@ export const roleScenarios: Scenario[] = [
     ],
     structural: [
       { type: 'status', oneOf: ['answered'] },
-      // The designed chain: search surfaces the existing post, then Quinn
+      // The designed chain: search surfaces the existing post, then ZenithAssistant
       // shares the live card (vote affordance included) instead of capturing
       // a duplicate — ledger-gated, so an unsearched post id cannot ship.
       { type: 'calledTool', name: 'search' },

@@ -13,7 +13,7 @@ import {
   type SegmentId,
   type PrincipalId,
   type UserId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import { tiptapContentSchema, type TiptapContent } from '@/lib/shared/schemas/posts'
 import { PageLimitSchema } from '@/lib/shared/schemas/taxonomy'
 import { PERMISSIONS } from '@/lib/shared/permissions'

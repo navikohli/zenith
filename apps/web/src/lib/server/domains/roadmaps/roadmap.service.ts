@@ -13,7 +13,7 @@ import {
   type RoadmapColumn,
   type Transaction,
 } from '@/lib/server/db'
-import type { PostTagId, RoadmapId, RoadmapColumnId } from '@quackback/ids'
+import type { PostTagId, RoadmapId, RoadmapColumnId } from '@zenith/ids'
 import { nextPosition, positionCaseSql } from '@/lib/server/utils'
 import { NotFoundError, ValidationError, ConflictError } from '@/lib/shared/errors'
 import { roadmapBaseFilterSchema } from '@/lib/shared/roadmap-config'

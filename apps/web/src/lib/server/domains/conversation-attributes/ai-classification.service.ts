@@ -1,12 +1,12 @@
 /**
  * Deterministic AI attribute classification (AI-ATTRIBUTES-PARITY-SPEC.md
- * Phase 1). Unlike Quinn's `set_attribute` tool (best-effort, only fires when
+ * Phase 1). Unlike ZenithAssistant's `set_attribute` tool (best-effort, only fires when
  * the model elects to call it mid-turn), this is a dedicated classification
  * pass: ONE structured-output chat call classifies every `ai_detect=true`
  * select definition against the conversation transcript, at defined "job
  * done" moments (handoff, assistant close, inactivity close, teammate close)
  * rather than depending on tool-call luck. Phase 2 adds a fifth moment,
- * `live_recheck` — every inbound customer message, while Quinn is
+ * `live_recheck` — every inbound customer message, while ZenithAssistant is
  * participating, when a LIVE workflow condition references an AI attribute
  * (the assistant orchestrator's cost gate) — narrowed via `restrictToKeys` to
  * just the attributes that gate actually references, never the full
@@ -23,8 +23,8 @@
  * per classification run (mirrors `appendAssistantHandoffNote` /
  * `appendAssistantPendingActionNote` in conversation.service.ts — an
  * agent-authored, inbox-only `conversation_messages` row — the established
- * durable-timeline mechanism for Quinn's automated actions). Authored under
- * `ensureAssistantPrincipal()` + `quinnActor`'s bounded identity, never a raw
+ * durable-timeline mechanism for ZenithAssistant's automated actions). Authored under
+ * `ensureAssistantPrincipal()` + `zenithAssistantActor`'s bounded identity, never a raw
  * service principal.
  *
  * Gated, in order: a configured AI
@@ -39,7 +39,7 @@
  * in a best-effort try/catch of their own.
  */
 import { db, conversations, conversationMessages, eq } from '@/lib/server/db'
-import type { ConversationId } from '@quackback/ids'
+import type { ConversationId } from '@zenith/ids'
 import { config } from '@/lib/server/config'
 import { isAiClientConfigured } from '@/lib/server/domains/ai/config'
 import { getChatModel } from '@/lib/server/domains/ai/models'
@@ -47,7 +47,7 @@ import { enforceAiTokenBudget } from '@/lib/server/domains/settings/tier-enforce
 import { TierLimitError } from '@/lib/server/errors/tier-limit-error'
 import { loadConversationThread } from '@/lib/server/domains/assistant/assistant.thread'
 import { ensureAssistantPrincipal } from '@/lib/server/domains/assistant/assistant.principal'
-import { quinnActor } from '@/lib/server/domains/assistant/assistant.actor'
+import { zenithAssistantActor } from '@/lib/server/domains/assistant/assistant.actor'
 import { publishAgentConversationEvent } from '@/lib/server/realtime/conversation-channels'
 import { toMessageDTO } from '@/lib/server/messages/message-core'
 import { authorFromInput } from '@/lib/server/domains/conversation/conversation.query'
@@ -142,18 +142,18 @@ async function recordClassificationNote(
   applied: readonly AppliedChange[]
 ): Promise<void> {
   try {
-    // Bounded Quinn identity (never a raw, role-inheriting service
+    // Bounded ZenithAssistant identity (never a raw, role-inheriting service
     // principal) — mirrors the workflow engine's boundedServiceActor
     // pattern. Nothing in this flow is permission-checked (setConversationAttribute
     // takes no actor, and this note insert is the same unchecked shape
     // appendAssistantHandoffNote already uses), but the AUTHOR identity is
-    // still Quinn's bounded actor, not an ambient admin-equivalent principal.
+    // still ZenithAssistant's bounded actor, not an ambient admin-equivalent principal.
     const assistantPrincipal = await ensureAssistantPrincipal()
-    const actor = quinnActor(assistantPrincipal.id)
-    const author = { principalId: actor.principalId!, displayName: 'Quackback AI' }
+    const actor = zenithAssistantActor(assistantPrincipal.id)
+    const author = { principalId: actor.principalId!, displayName: 'Zenith AI' }
 
     const lines = applied.map((a) => `- Set ${a.label} → ${a.optionLabel}: ${a.reasoning}`)
-    const content = ['Quackback AI classified this conversation:', ...lines].join('\n')
+    const content = ['Zenith AI classified this conversation:', ...lines].join('\n')
 
     const [message] = await db
       .insert(conversationMessages)

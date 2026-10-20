@@ -18,7 +18,7 @@ import {
   foreignKey,
 } from 'drizzle-orm/pg-core'
 import { relations, sql } from 'drizzle-orm'
-import { typeIdWithDefault, typeIdColumn } from '@quackback/ids/drizzle'
+import { typeIdWithDefault, typeIdColumn } from '@zenith/ids/drizzle'
 import { changelogEntries } from './changelog'
 
 export const changelogCategories = pgTable(

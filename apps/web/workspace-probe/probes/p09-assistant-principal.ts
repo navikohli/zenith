@@ -11,7 +11,7 @@
  *
  * Silent misattribution is the case worth catching. If bravo happens to hold a
  * principal row with the same id — impossible today, entirely possible after a
- * restore, a clone, or a seeded fixture — the FK is satisfied and Quinn's
+ * restore, a clone, or a seeded fixture — the FK is satisfied and ZenithAssistant's
  * replies in bravo are attributed to a principal from alpha. Nothing errors.
  */
 
@@ -79,7 +79,7 @@ export const p09AssistantPrincipal: Probe = {
           'the relevant feature enabled. No REST endpoint provisions it, so the fixture cannot, and ' +
           'writing a principal row straight into the workspace database would be a fixture the ' +
           'application would never create: it would satisfy this probe while proving nothing about ' +
-          'the memo that poisons it. To unblock, configure AI on both workspaces and ask Quackback AI ' +
+          'the memo that poisons it. To unblock, configure AI on both workspaces and ask Zenith AI ' +
           'one question in each, then re-run. Reported as blocked rather than passed: an absent ' +
           'principal cannot be misattributed, which is not the same as isolation being proven.',
       })

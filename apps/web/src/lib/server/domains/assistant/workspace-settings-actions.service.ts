@@ -1,5 +1,5 @@
 import { randomUUID } from 'node:crypto'
-import type { AssistantPendingActionId } from '@quackback/ids'
+import type { AssistantPendingActionId } from '@zenith/ids'
 import {
   db,
   eq,

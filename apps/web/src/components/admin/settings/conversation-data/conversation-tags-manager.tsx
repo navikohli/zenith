@@ -11,7 +11,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { Link } from '@tanstack/react-router'
 import { TagIcon } from '@heroicons/react/24/outline'
 import { toast } from 'sonner'
-import type { ConversationTagId } from '@quackback/ids'
+import type { ConversationTagId } from '@zenith/ids'
 import {
   listConversationTagsForSettingsFn,
   updateConversationTagFn,

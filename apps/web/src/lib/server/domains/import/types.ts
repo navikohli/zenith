@@ -1,4 +1,4 @@
-import type { BoardId, PrincipalId, PostTagId } from '@quackback/ids'
+import type { BoardId, PrincipalId, PostTagId } from '@zenith/ids'
 
 /**
  * A real voter record carried alongside a source-id row (§I3). When a row's

@@ -54,17 +54,17 @@ function edgeHeaders(overrides: EdgeOverrides = {}): Record<string, string> {
   const headers: Record<string, string> = {
     host: overrides.host ?? ORIGIN,
     'x-forwarded-for': `192.0.2.1, ${XFF_HOP}`,
-    'x-quackback-customer-host': customer,
-    'x-quackback-edge-client-ip': ip,
+    'x-zenith-customer-host': customer,
+    'x-zenith-edge-client-ip': ip,
   }
   const customerSig =
     overrides.customerSig === undefined ? signCustomerHost(SECRET, customer) : overrides.customerSig
-  if (customerSig !== null) headers['x-quackback-customer-host-sig'] = customerSig
+  if (customerSig !== null) headers['x-zenith-customer-host-sig'] = customerSig
   const sig =
     overrides.sig === undefined
       ? `${NOW_S}.${signEdgeClientIp(SECRET, customer, ip, NOW_S)}`
       : overrides.sig
-  if (sig !== null) headers['x-quackback-edge-client-ip-sig'] = sig
+  if (sig !== null) headers['x-zenith-edge-client-ip-sig'] = sig
   return headers
 }
 
@@ -78,9 +78,9 @@ const sigFor = (secret: string, host: string, ip: string, ts: number) =>
 beforeEach(() => {
   vi.useFakeTimers()
   vi.setSystemTime(NOW_S * 1000)
-  vi.stubEnv('QUACKBACK_SAAS_EDGE_SECRET', SECRET)
-  vi.stubEnv('QUACKBACK_SAAS_RAILWAY_ORIGIN', ORIGIN)
-  vi.stubEnv('QUACKBACK_SAAS_FALLBACK_ORIGIN', '')
+  vi.stubEnv('ZENITH_SAAS_EDGE_SECRET', SECRET)
+  vi.stubEnv('ZENITH_SAAS_RAILWAY_ORIGIN', ORIGIN)
+  vi.stubEnv('ZENITH_SAAS_FALLBACK_ORIGIN', '')
   proxyConfig.hops = 1
   mockGetRequestIP.mockReset()
   mockGetRequestIP.mockReturnValue(PROXY_PEER)
@@ -180,7 +180,7 @@ describe('getClientIp ignores an edge address that does not fully verify', () =>
   })
 
   it('the edge secret is unset', () => {
-    vi.stubEnv('QUACKBACK_SAAS_EDGE_SECRET', '')
+    vi.stubEnv('ZENITH_SAAS_EDGE_SECRET', '')
     expect(getClientIp(request(edgeHeaders()))).toBe(XFF_HOP)
     proxyConfig.hops = 0
     expect(getClientIp(request(edgeHeaders()))).toBe(PROXY_PEER)
@@ -257,7 +257,7 @@ describe('warning about a rejected edge address', () => {
   })
 
   it('logs nothing when the edge secret is unset', async () => {
-    vi.stubEnv('QUACKBACK_SAAS_EDGE_SECRET', '')
+    vi.stubEnv('ZENITH_SAAS_EDGE_SECRET', '')
     const fresh = await freshGetClientIp()
     expect(fresh(request(edgeHeaders()))).toBe(XFF_HOP)
     expect(mockWarn).not.toHaveBeenCalled()

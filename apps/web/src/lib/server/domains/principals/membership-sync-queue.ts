@@ -16,7 +16,7 @@ import type { ClaimedJob } from '@/lib/server/jobs/job-queue'
 const log = logger.child({ component: 'membership-sync' })
 
 export function isControlPlaneConfigured(): boolean {
-  const raw = process.env.QUACKBACK_CONTROL_PLANE_URL
+  const raw = process.env.ZENITH_CONTROL_PLANE_URL
   return typeof raw === 'string' && raw.length > 0
 }
 

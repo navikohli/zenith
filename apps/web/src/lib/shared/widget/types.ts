@@ -38,10 +38,10 @@ export type WidgetEventName = keyof WidgetEventMap
 // ---- SDK -> Iframe Messages ----
 
 export interface WidgetInboundMessages {
-  'quackback:identify': { anonymous: true } | Record<string, unknown> | null
-  'quackback:metadata': WidgetMetadata
-  'quackback:locale': string
-  'quackback:open':
+  'zenith:identify': { anonymous: true } | Record<string, unknown> | null
+  'zenith:metadata': WidgetMetadata
+  'zenith:locale': string
+  'zenith:open':
     | {
         view?: 'home' | 'new-post' | 'changelog' | 'help' | 'chat' | 'messages' | 'tickets'
         title?: string
@@ -58,18 +58,18 @@ export interface WidgetInboundMessages {
 // ---- Iframe -> SDK Messages ----
 
 export interface WidgetOutboundMessages {
-  'quackback:ready': Record<string, never>
-  'quackback:close': Record<string, never>
-  'quackback:navigate': { url: string }
-  'quackback:identify-result': {
+  'zenith:ready': Record<string, never>
+  'zenith:close': Record<string, never>
+  'zenith:navigate': { url: string }
+  'zenith:identify-result': {
     success: boolean
     user: { id: string; name: string; email: string; avatarUrl: string | null } | null
     error?: string
   }
-  'quackback:auth-change': {
+  'zenith:auth-change': {
     user: { id: string; name: string; email: string; avatarUrl: string | null } | null
   }
-  'quackback:event': {
+  'zenith:event': {
     name: WidgetEventName
     payload: WidgetEventMap[WidgetEventName]
   }

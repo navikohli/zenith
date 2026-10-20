@@ -18,7 +18,7 @@ import {
   user,
   type Principal,
 } from '@/lib/server/db'
-import type { PrincipalId, RoleId, UserId } from '@quackback/ids'
+import type { PrincipalId, RoleId, UserId } from '@zenith/ids'
 import {
   DomainException,
   InternalError,

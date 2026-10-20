@@ -12,7 +12,7 @@ import type {
   TeamId,
   CompanyId,
   ConversationId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import type {
   TicketType,
   TicketStage,
@@ -69,7 +69,7 @@ export interface CreateTicketInput {
    *  transaction (see createTicketCore's doc for the contract). Deliberately
    *  NOT derived from (type, requester) alone: agent-shaped flows that create
    *  a customer ticket WITH a requester — the admin create dialog, the
-   *  create-from-a-conversation flow, `convert_to_ticket`, Quinn's own
+   *  create-from-a-conversation flow, `convert_to_ticket`, ZenithAssistant's own
    *  create_ticket tool — leave this unset and stay standalone/explicitly
    *  linked exactly as before. */
   withBackingConversation?: boolean

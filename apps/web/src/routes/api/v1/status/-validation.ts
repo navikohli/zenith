@@ -2,7 +2,7 @@
  * Shared request-validation helpers for the /api/v1/status/* routes.
  * Not a route itself (the `-` prefix opts it out of file-based routing).
  */
-import { isValidTypeId, type IdPrefix } from '@quackback/ids'
+import { isValidTypeId, type IdPrefix } from '@zenith/ids'
 import { ValidationError } from '@/lib/shared/errors'
 
 export const STATUS_COMPONENT_STATUSES = [

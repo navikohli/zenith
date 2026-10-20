@@ -4,7 +4,7 @@
  * the db-test-fixture rollback transaction.
  */
 import { describe, it, expect, beforeEach, afterEach, afterAll, vi } from 'vitest'
-import type { OfficeHoursId } from '@quackback/ids'
+import type { OfficeHoursId } from '@zenith/ids'
 
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { slaPolicies, officeHoursSchedules } from '@/lib/server/db'

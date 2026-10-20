@@ -5,7 +5,7 @@
  * falsy value opts a dubious address out of the verified default.
  */
 import { describe, it, expect, vi } from 'vitest'
-import type { PrincipalId, PostStatusId } from '@quackback/ids'
+import type { PrincipalId, PostStatusId } from '@zenith/ids'
 import {
   parseCsvEmailVerified,
   csvRowSchema,

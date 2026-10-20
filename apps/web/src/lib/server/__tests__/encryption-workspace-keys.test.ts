@@ -22,8 +22,8 @@ const { encrypt, decrypt, _resetKeyCache } = await import('../encryption')
 const { withWorkspace } = await import('@/lib/server/__tests__/workspace-scope')
 
 /**
- * hkdf-sha256(SECRET_KEY, salt='quackback-encryption-salt-v1',
- * info='quackback:v1:integration-tokens', 32) — the derivation as it stood
+ * hkdf-sha256(SECRET_KEY, salt='zenith-encryption-salt-v1',
+ * info='zenith:v1:integration-tokens', 32) — the derivation as it stood
  * before tenancy existed. Pinned, not computed.
  */
 const HISTORICAL_KEY_HEX = 'bc648c38680bb360fcd00058eca995b7b7dccc0516dc580584a0d364e3dc09ad'
@@ -64,8 +64,8 @@ describe('deriveKey under the single-workspace namespace', () => {
 describe('deriveKey under a workspace scope', () => {
   /**
    * hkdf-sha256(ikm='test-secret-key-for-workspace-alpha-0123456789abcdef',
-   * salt='quackback-encryption-salt-v1',
-   * info='quackback:v1:t:workspace-alpha:integration-tokens', 32).
+   * salt='zenith-encryption-salt-v1',
+   * info='zenith:v1:t:workspace-alpha:integration-tokens', 32).
    *
    * The IKM is the WORKSPACE's resolved `SECRET_KEY`, not the fleet-wide one. That
    * is the whole point of this case and it is the only one that can see it: every

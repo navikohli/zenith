@@ -28,7 +28,7 @@ export type SessionScope = 'dashboard' | 'widget' | 'portal'
  * Request header the portal sets when it mints an anonymous session, so the
  * session is tagged for the portal rather than the widget. Absent means widget.
  */
-export const SESSION_AUDIENCE_HEADER = 'x-quackback-session-audience'
+export const SESSION_AUDIENCE_HEADER = 'x-zenith-session-audience'
 
 /** Normalize a stored scope; unmarked values are dashboard. */
 export function toSessionScope(value: unknown): SessionScope {

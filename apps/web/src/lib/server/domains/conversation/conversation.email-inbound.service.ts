@@ -16,11 +16,11 @@
  */
 import { db, eq, sql, conversationMessages, conversations, principal, user } from '@/lib/server/db'
 import type { ConversationAttachment, ConversationSpamFiledBy } from '@/lib/server/db'
-import type { ConversationId, PrincipalId, TicketId } from '@quackback/ids'
+import type { ConversationId, PrincipalId, TicketId } from '@zenith/ids'
 import type { Actor } from '@/lib/server/policy/types'
 import { normalizePrincipalType } from '@/lib/server/functions/auth-helpers'
 import { isBlocked } from '@/lib/server/domains/principals/blocking'
-import { getReceivedEmail } from '@quackback/email'
+import { getReceivedEmail } from '@zenith/email'
 import { realEmail } from '@/lib/shared/anonymous-email'
 import { NotFoundError } from '@/lib/shared/errors'
 import { logger } from '@/lib/server/logger'

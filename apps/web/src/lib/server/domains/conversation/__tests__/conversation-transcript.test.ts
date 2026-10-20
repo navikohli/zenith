@@ -60,7 +60,7 @@ describe('renderConversationTranscript', () => {
       }),
       msg({
         senderType: 'agent',
-        author: { displayName: 'Quinn' } as TranscriptMessage['author'],
+        author: { displayName: 'Zenith Assistant' } as TranscriptMessage['author'],
         isAssistant: true,
         content: 'See this article',
         createdAt: '2026-07-04T09:18:00.000Z',
@@ -75,7 +75,7 @@ describe('renderConversationTranscript', () => {
     expect(out).toContain('[2026-07-04 09:15 UTC] Alice (visitor): I need help')
     expect(out).toContain('Jane (agent): Sure')
     expect(out).toContain('Jane (agent) · internal note: escalate to billing')
-    expect(out).toContain('Quinn (assistant): See this article')
+    expect(out).toContain('ZenithAssistant (assistant): See this article')
     expect(out).toContain('System: Conversation closed')
   })
 
@@ -182,11 +182,11 @@ describe('renderConversationTranscript — deriving text and images from content
       msg({
         senderType: 'agent',
         isAssistant: true,
-        author: { displayName: 'Quinn' } as TranscriptMessage['author'],
+        author: { displayName: 'Zenith Assistant' } as TranscriptMessage['author'],
         content: 'Pick one\n[Billing] [Technical issue]',
         contentJson: { type: 'doc', content: [{ type: 'text', text: 'Pick one' }] },
       }),
     ])
-    expect(out).toContain('Quinn (assistant): Pick one\n[Billing] [Technical issue]')
+    expect(out).toContain('ZenithAssistant (assistant): Pick one\n[Billing] [Technical issue]')
   })
 })

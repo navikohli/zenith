@@ -50,7 +50,7 @@ export type IconKey = 'trigger' | 'condition' | 'branch' | 'wait' | ActionType |
 export interface ChipData {
   label: string
   tone?: Tone
-  /** Long warn chips (Let Quinn escalate) wrap inside the card. */
+  /** Long warn chips (Let ZenithAssistant escalate) wrap inside the card. */
   wrap?: boolean
 }
 
@@ -86,7 +86,7 @@ export interface StepContentContext {
   labels: EntityLabels
   stepIssues: ReadonlyMap<string, string>
   selectedId: string | null
-  /** Minutes until a silent Quinn park escalates (engine: 10, or auto-close waitMinutes). */
+  /** Minutes until a silent ZenithAssistant park escalates (engine: 10, or auto-close waitMinutes). */
   assistantEscalateMinutes?: number
 }
 

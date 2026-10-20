@@ -3,7 +3,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 const { getOpenAI } = vi.hoisted(() => ({ getOpenAI: vi.fn<() => unknown>() }))
 vi.mock('@/lib/server/domains/ai/config', () => ({ getOpenAI }))
 
-import { createId } from '@quackback/ids'
+import { createId } from '@zenith/ids'
 import { aiResolver, summaryResolver } from '../resolvers/ai.resolver'
 import type { DomainEvent } from '../envelope'
 

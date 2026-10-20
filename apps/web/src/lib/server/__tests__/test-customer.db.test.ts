@@ -1,5 +1,5 @@
 import { afterAll, afterEach, beforeEach, expect, it, vi } from 'vitest'
-import { createId, type PrincipalId } from '@quackback/ids'
+import { createId, type PrincipalId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from './db-test-fixture'
 import {
   boards,

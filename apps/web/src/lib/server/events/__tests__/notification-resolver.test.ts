@@ -54,7 +54,7 @@ vi.mock('../targets', () => ({
   getConversationNoteMentionedEmailTargets: h.getConversationNoteMentionedEmailTargets,
 }))
 
-import { createId } from '@quackback/ids'
+import { createId } from '@zenith/ids'
 import { notificationResolver } from '../resolvers/notification.resolver'
 import type { DomainEvent } from '../envelope'
 

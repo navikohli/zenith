@@ -19,7 +19,7 @@ type SidebarLaunch = ReturnType<Checklist['launchPlanProgress']> & {
   inHelp: boolean
 }
 
-const STORAGE_PREFIX = 'quackback:launch-plan-dock:'
+const STORAGE_PREFIX = 'zenith:launch-plan-dock:'
 /** This person's first-run markers, which Home loads for its tour offer and first win. */
 const PROGRESS_KEY = ['onboarding', 'progress'] as const
 

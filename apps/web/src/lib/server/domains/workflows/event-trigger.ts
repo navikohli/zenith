@@ -55,7 +55,7 @@ import type {
   TicketId,
   WorkflowId,
   WorkflowRunId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import type { PrincipalType } from '@/lib/server/policy/types'
 import type { BlockReplyMetadata, WorkflowRun } from '@/lib/server/db'
 import type { TicketStatusCategory } from '@/lib/shared/db-types'
@@ -193,7 +193,7 @@ export function eventToWorkflowTrigger(
       }
     }
     case 'conversation.attribute_changed': {
-      // An AI classification write is service-actored (Quinn), same as
+      // An AI classification write is service-actored (ZenithAssistant), same as
       // assistant.handed_off below, so this trigger opts out of the
       // automated-actor gate the same way. IMPORTANT: this opt-out is NOT
       // where the re-trigger loop is prevented — a workflow's own
@@ -216,7 +216,7 @@ export function eventToWorkflowTrigger(
       // The assistant's own service principal authors these events, so the
       // dispatcher's automated-actor gate would silently swallow them. That gate
       // exists to stop a workflow's own automated action from re-triggering
-      // workflows; a terminal "Quinn handed off / Quinn resolved" signal is not
+      // workflows; a terminal "ZenithAssistant handed off / ZenithAssistant resolved" signal is not
       // that loop, so the trigger opts out explicitly.
       return {
         triggerType: event.type,
@@ -327,7 +327,7 @@ export function eventToWorkflowTrigger(
 
 /**
  * A reply (any HUMAN message — visitor or teammate) or a close ends pending
- * waits on the conversation. A service-authored message (Quinn's own replies,
+ * waits on the conversation. A service-authored message (ZenithAssistant's own replies,
  * and — Phase C, slice C-1 — a workflow's own send_block post) is explicitly
  * EXCLUDED: it must never count as "someone replied" for THIS purpose.
  *
@@ -454,10 +454,10 @@ async function tryResumeAssistantWait(
   if (cursor.waitKind !== 'assistant') return null
 
   const resumed = await resumeWorkflowRun(run.id, { assistantOutcome: outcome })
-  // Funnel: only 'escalated' (assistant.handed_off — Quinn escalating mid-
+  // Funnel: only 'escalated' (assistant.handed_off — ZenithAssistant escalating mid-
   // conversation, driven by the customer's own turn) is a CUSTOMER-driven
   // engagement signal. 'resolved' (a close — dispatchWorkflowsForEvent's
-  // isClose branch) ends the wait via Quinn or an agent resolving the
+  // isClose branch) ends the wait via ZenithAssistant or an agent resolving the
   // conversation, not the customer answering anything, so it does not count
   // toward the funnel. A teammate message never reaches this function at
   // all (it interrupts instead, see isInterruptingEvent) so there is no
@@ -504,7 +504,7 @@ function isRunStillActive(resumed: WorkflowRun | null): boolean {
  *    uses, so it doesn't undo the resume it just did.
  *  - (slice C-6) `assistant.handed_off` resumes a parked let_assistant_answer
  *    wait down its escalated edge; a close resumes one down its default edge
- *    INSTEAD of interrupting it (Quinn resolved the conversation — the
+ *    INSTEAD of interrupting it (ZenithAssistant resolved the conversation — the
  *    classic resolved-then-follow-up pattern) — but a close still interrupts
  *    every OTHER waiting run on the conversation exactly as before, via the
  *    excludeRunId carve-out (see interruptWaitingRuns's doc).
@@ -513,7 +513,7 @@ function isRunStillActive(resumed: WorkflowRun | null): boolean {
  * message, a close with nothing parked at an assistant-wait) falls through to
  * the interrupt path unchanged — except that a VISITOR message never
  * interrupts a parked assistant-wait either way (excludeWaitKind: 'assistant'
- * below): a multi-turn conversation with Quinn is normal, so only a teammate
+ * below): a multi-turn conversation with ZenithAssistant is normal, so only a teammate
  * message or the two resume triggers above can ever end one. Either way,
  * other triggers for this same event still dispatch afterward.
  */

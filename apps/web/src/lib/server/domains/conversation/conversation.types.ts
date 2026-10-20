@@ -1,4 +1,4 @@
-import type { ConversationId, PrincipalId } from '@quackback/ids'
+import type { ConversationId, PrincipalId } from '@zenith/ids'
 import type { ConversationMessageMetadata } from '@/lib/server/db'
 import type {
   ConversationAttachment,

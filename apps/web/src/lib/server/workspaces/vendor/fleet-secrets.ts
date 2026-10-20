@@ -60,7 +60,7 @@ import { createCipheriv, createDecipheriv, hkdfSync, randomBytes, timingSafeEqua
 export const FLEET_ROOT_KEY_MIN_LENGTH = 32
 
 /** HKDF salt. Fixed and versioned; changing it changes every derived key. */
-const HKDF_SALT = 'quackback-fleet-root-v1'
+const HKDF_SALT = 'zenith-fleet-root-v1'
 
 const KEY_LENGTH = 32
 const IV_LENGTH = 12
@@ -117,9 +117,9 @@ function assertTarget(target: FleetSecretTarget): void {
   }
 }
 
-/** `quackback:fleet:<kind>:v<gen>:<workspaceKey>:<purpose>` — the HKDF info string. */
+/** `zenith:fleet:<kind>:v<gen>:<workspaceKey>:<purpose>` — the HKDF info string. */
 function info(kind: 'derive' | 'seal', target: FleetSecretTarget): string {
-  return `quackback:fleet:${kind}:v${target.generation}:${target.workspaceKey}:${target.purpose}`
+  return `zenith:fleet:${kind}:v${target.generation}:${target.workspaceKey}:${target.purpose}`
 }
 
 function subKey(rootKey: string, kind: 'derive' | 'seal', target: FleetSecretTarget): Buffer {
@@ -235,7 +235,7 @@ function aad(target: FleetSecretTarget): string {
  * be an offline-guessable verifier sitting in a database, while a sealed
  * constant proves possession without publishing anything about the key.
  */
-export const SECRET_KEY_CANARY_PLAINTEXT = 'quackback-secret-key-canary-v1'
+export const SECRET_KEY_CANARY_PLAINTEXT = 'zenith-secret-key-canary-v1'
 
 /**
  * Seal the canary under `secretKey` itself — NOT under the fleet root.
@@ -299,7 +299,7 @@ export function verifySecretKeyCanary(
 
 function canaryKey(secretKey: string): Buffer {
   return Buffer.from(
-    hkdfSync('sha256', secretKey, HKDF_SALT, 'quackback:fleet:canary:v1', KEY_LENGTH),
+    hkdfSync('sha256', secretKey, HKDF_SALT, 'zenith:fleet:canary:v1', KEY_LENGTH),
   )
 }
 
@@ -351,7 +351,7 @@ export type SecretStampProvenance = {
 export function secretMaterialFingerprint(material: string): string {
   if (typeof material !== 'string' || material === '') return 'none'
   return Buffer.from(
-    hkdfSync('sha256', material, HKDF_SALT, 'quackback:fleet:material-fingerprint:v1', 8),
+    hkdfSync('sha256', material, HKDF_SALT, 'zenith:fleet:material-fingerprint:v1', 8),
   ).toString('hex')
 }
 

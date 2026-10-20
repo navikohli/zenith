@@ -9,7 +9,7 @@
  * `set_attribute` is accepted and stored but no-ops until a general conversation
  * custom-attribute setter exists (see applyAction).
  */
-import type { ConversationId, PrincipalId, ConversationTagId, TeamId } from '@quackback/ids'
+import type { ConversationId, PrincipalId, ConversationTagId, TeamId } from '@zenith/ids'
 import type { MacroAction, MacroSnoozePreset } from '@/lib/server/db'
 import type { Actor } from '@/lib/server/policy/types'
 import { tomorrowAt } from '@/lib/shared/utils/date'

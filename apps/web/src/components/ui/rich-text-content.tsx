@@ -71,7 +71,7 @@ const DOMPURIFY_CONFIG = {
     'data-name',
     'data-principal-id',
     'data-display-name',
-    'data-quackback-embed',
+    'data-zenith-embed',
     'data-kind',
     'data-id',
   ],

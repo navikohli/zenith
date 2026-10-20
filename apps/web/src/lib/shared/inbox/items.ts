@@ -6,8 +6,8 @@
  * helpers only, no server imports, so the admin bundle can import this
  * directly.
  */
-import { isValidTypeId } from '@quackback/ids'
-import type { ConversationId, TicketId } from '@quackback/ids'
+import { isValidTypeId } from '@zenith/ids'
+import type { ConversationId, TicketId } from '@zenith/ids'
 import type { ConversationDTO, ConversationStatus } from '@/lib/shared/conversation/types'
 import type { TicketStatusCategory } from '@/lib/shared/db-types'
 import type { TicketDTO } from '@/lib/server/domains/tickets/ticket.types'

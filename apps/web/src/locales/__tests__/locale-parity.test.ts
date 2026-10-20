@@ -41,13 +41,13 @@ const SAME_AS_ENGLISH_EVERYWHERE = [
   'AI',
   'Copilot',
   'PDF',
-  'Quackback AI',
+  'Zenith AI',
   'jane@example.com',
   'you@example.com',
   'name@company.com',
   'GitHub',
   'Copilot.',
-  'Quackback AI.',
+  'Zenith AI.',
 ]
 const SAME_AS_ENGLISH: Record<string, readonly string[]> = {
   de: [

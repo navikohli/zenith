@@ -12,7 +12,7 @@ import {
   type PrincipalId,
   type TeamId,
   type UserId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import type { Actor } from '@/lib/server/policy/types'
 
 // config is read lazily (getters), so seeding the required env before any config
@@ -20,7 +20,7 @@ import type { Actor } from '@/lib/server/policy/types'
 // (restrictImagesToTrustedOrigins) needs it to accept the rehosted image src.
 // The harness leaves BASE_URL as a bare "/" (not a valid absolute URL), so set an
 // absolute one unconditionally for this file's config load.
-process.env.BASE_URL = 'https://quackback.test'
+process.env.BASE_URL = 'https://zenith.test'
 process.env.SECRET_KEY ||= 'x'.repeat(32)
 // The inbound channel has to be configured for a reply address to be minted at
 // all, and the mail-loop guard's whole question is whether an address in front
@@ -152,7 +152,7 @@ async function seedInboundRoute(address: string): Promise<void> {
 }
 
 const coldEmail = (over: Partial<ParsedInboundEmail> = {}): ParsedInboundEmail => ({
-  toAddresses: ['support@quackback.io'],
+  toAddresses: ['support@zenith.io'],
   ccAddresses: [],
   replyToAddresses: [],
   from: 'customer@acme.com',
@@ -166,7 +166,7 @@ const coldEmail = (over: Partial<ParsedInboundEmail> = {}): ParsedInboundEmail =
   autoResponseSuppress: null,
   precedence: null,
   hasListHeaders: false,
-  authenticationResults: 'mx.quackback.io; spf=pass; dmarc=pass (p=reject) header.from=acme.com',
+  authenticationResults: 'mx.zenith.io; spf=pass; dmarc=pass (p=reject) header.from=acme.com',
   ...over,
 })
 
@@ -180,7 +180,7 @@ describe.skipIf(!fixture.available)('cold-inbound ingest (real DB, rolled back)'
   afterAll(fixture.close)
 
   it('opens an email conversation for a fresh mail to an inbound route', async () => {
-    await seedInboundRoute('support@quackback.io')
+    await seedInboundRoute('support@zenith.io')
 
     const res = await ingestParsedEmail(coldEmail())
     expect(res.status).toBe('ingested')
@@ -224,7 +224,7 @@ describe.skipIf(!fixture.available)('cold-inbound ingest (real DB, rolled back)'
   })
 
   it('stores converted content + contentJson for an HTML-only cold inbound', async () => {
-    await seedInboundRoute('support@quackback.io')
+    await seedInboundRoute('support@zenith.io')
 
     const res = await ingestParsedEmail(
       coldEmail({ text: '', html: '<div dir="ltr">Invoice looks <b>wrong</b>.</div>' })
@@ -245,7 +245,7 @@ describe.skipIf(!fixture.available)('cold-inbound ingest (real DB, rolled back)'
   })
 
   it('rehosts an inline cid image + stores a discrete attachment for cold inbound', async () => {
-    await seedInboundRoute('support@quackback.io')
+    await seedInboundRoute('support@zenith.io')
     const png = Buffer.from([
       0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a, 0x00, 0x00, 0x00, 0x0d, 0x49, 0x48, 0x44,
       0x52,
@@ -307,7 +307,7 @@ describe.skipIf(!fixture.available)('cold-inbound ingest (real DB, rolled back)'
   // agent could ever learn it had arrived. Retention is the fix, so this case
   // asserts the bytes SURVIVED, not merely that a status changed.
   it('retains a hard DMARC reject in Spam instead of destroying it', async () => {
-    await seedInboundRoute('support@quackback.io')
+    await seedInboundRoute('support@zenith.io')
 
     const res = await ingestParsedEmail(
       coldEmail({ authenticationResults: 'mx; dmarc=fail (p=reject) header.from=acme.com' })
@@ -336,7 +336,7 @@ describe.skipIf(!fixture.available)('cold-inbound ingest (real DB, rolled back)'
   // deliberately distinct from the pre-existing 'sender_auth_failure' — one is
   // "the author domain told us to refuse this", the other is "DMARC was weak".
   it('records the refusal cause on the retained thread, from the enumerated set', async () => {
-    await seedInboundRoute('support@quackback.io')
+    await seedInboundRoute('support@zenith.io')
 
     const res = await ingestParsedEmail(
       coldEmail({ authenticationResults: 'mx; dmarc=fail (p=reject) header.from=acme.com' })
@@ -362,7 +362,7 @@ describe.skipIf(!fixture.available)('cold-inbound ingest (real DB, rolled back)'
   // likely to be a real customer, so it must not be indistinguishable from a
   // plain DMARC failure once it is sitting in the Spam view.
   it('distinguishes an ARC-rescued sender from a plain sender-auth failure', async () => {
-    await seedInboundRoute('support@quackback.io')
+    await seedInboundRoute('support@zenith.io')
 
     const rescued = await ingestParsedEmail(
       coldEmail({
@@ -395,7 +395,7 @@ describe.skipIf(!fixture.available)('cold-inbound ingest (real DB, rolled back)'
   // ring by forging a From is a notification channel handed to them, and a
   // message workflow firing on one is backscatter sent in our name.
   it('confers no identity and raises no signals for a retained refusal', async () => {
-    await seedInboundRoute('support@quackback.io')
+    await seedInboundRoute('support@zenith.io')
     // The account the spoofer is impersonating.
     const spoofedPrincipalId = await seedAccount('Real Customer', 'customer@acme.com')
 
@@ -429,7 +429,7 @@ describe.skipIf(!fixture.available)('cold-inbound ingest (real DB, rolled back)'
   // nothing. A release that adopted the spoofed account would hand the spoofer
   // the identity the refusal existed to withhold.
   it('releases a retained refusal into the queue without conferring identity', async () => {
-    await seedInboundRoute('support@quackback.io')
+    await seedInboundRoute('support@zenith.io')
     const spoofedPrincipalId = await seedAccount('Real Customer', 'customer@acme.com')
 
     const res = await ingestParsedEmail(
@@ -464,7 +464,7 @@ describe.skipIf(!fixture.available)('cold-inbound ingest (real DB, rolled back)'
   // conversation.spam-retention.ts; this pins that the sweep reaches quarantined
   // mail at all, and that a released thread is out of its reach.
   it('sweeps a retained refusal once it is past the retention window', async () => {
-    await seedInboundRoute('support@quackback.io')
+    await seedInboundRoute('support@zenith.io')
     const res = await ingestParsedEmail(
       coldEmail({ authenticationResults: 'mx; dmarc=fail (p=reject) header.from=acme.com' })
     )
@@ -496,7 +496,7 @@ describe.skipIf(!fixture.available)('cold-inbound ingest (real DB, rolled back)'
   })
 
   it('never sweeps a refusal an agent released, however old the filing', async () => {
-    await seedInboundRoute('support@quackback.io')
+    await seedInboundRoute('support@zenith.io')
     const res = await ingestParsedEmail(
       coldEmail({ authenticationResults: 'mx; dmarc=fail (p=reject) header.from=acme.com' })
     )
@@ -524,7 +524,7 @@ describe.skipIf(!fixture.available)('cold-inbound ingest (real DB, rolled back)'
   // unauthenticated stranger, so the throttle has to bite BEFORE resolution —
   // a gate placed after it has already let the row be created.
   it('rate-limits a flooding sender without creating a principal or conversation', async () => {
-    await seedInboundRoute('support@quackback.io')
+    await seedInboundRoute('support@zenith.io')
     const [{ count: principalsBefore }] = await testDb
       .select({ count: sql<number>`count(*)::int` })
       .from(principal)
@@ -545,7 +545,7 @@ describe.skipIf(!fixture.available)('cold-inbound ingest (real DB, rolled back)'
   // An unparseable From has no key to throttle on, and used to mint a lead with
   // a null contact email on a thread nobody could ever reply to.
   it('drops an unparseable From before spending a rate-limit token', async () => {
-    await seedInboundRoute('support@quackback.io')
+    await seedInboundRoute('support@zenith.io')
 
     const res = await ingestParsedEmail(coldEmail({ from: 'not an address' }))
 
@@ -558,7 +558,7 @@ describe.skipIf(!fixture.available)('cold-inbound ingest (real DB, rolled back)'
   // conversation). The display-name variant pins that normalization is what
   // makes the match work — a raw From header would key a second lead.
   it('reuses the lead a previous mail from the same address created', async () => {
-    await seedInboundRoute('support@quackback.io')
+    await seedInboundRoute('support@zenith.io')
 
     const first = await ingestParsedEmail(coldEmail())
     expect(first.status).toBe('ingested')
@@ -601,12 +601,12 @@ describe.skipIf(!fixture.available)('cold-inbound ingest (real DB, rolled back)'
    *  except the reply address we minted and put on it ourselves. */
   const loopingMail = (replyTo: string): string =>
     [
-      'From: Support <noreply@quackback.test>',
-      'To: support@quackback.io',
+      'From: Support <noreply@zenith.test>',
+      'To: support@zenith.io',
       `Reply-To: Acme Support <${replyTo}>`,
       'Subject: New reply from Acme',
       'Message-ID: <0100019a1f4c8e21-6b2d@email.amazonses.com>',
-      'Authentication-Results: mx.quackback.io; spf=pass; dmarc=pass (p=none) header.from=quackback.test',
+      'Authentication-Results: mx.zenith.io; spf=pass; dmarc=pass (p=none) header.from=zenith.test',
       '',
       'An agent replied to your conversation.',
     ].join('\r\n')
@@ -618,7 +618,7 @@ describe.skipIf(!fixture.available)('cold-inbound ingest (real DB, rolled back)'
   // saying "I replied and nothing happened" leaves nobody anything to match.
   // That is the same reasoning that quarantines a sender-auth refusal above.
   it('retains a suspected mail loop in Spam instead of destroying it', async () => {
-    await seedInboundRoute('support@quackback.io')
+    await seedInboundRoute('support@zenith.io')
     const ours = inboundReplyToAddress(
       createId('conversation') as ConversationId,
       SELF_HOSTED_MAIL_SLUG
@@ -660,7 +660,7 @@ describe.skipIf(!fixture.available)('cold-inbound ingest (real DB, rolled back)'
   // that accepted any address at our inbound domain, which on a shared domain is
   // every neighbour's mail.
   it('leaves a neighbouring workspace’s reply address alone', async () => {
-    await seedInboundRoute('support@quackback.io')
+    await seedInboundRoute('support@zenith.io')
     const neighbours = inboundReplyToAddress(createId('conversation') as ConversationId, 'ws-t2')!
     expect(neighbours).not.toBeNull()
 
@@ -682,7 +682,7 @@ describe.skipIf(!fixture.available)('cold-inbound ingest (real DB, rolled back)'
   // (as the header it signed carries it), so this also pins that the two forms
   // are reconciled by the store rather than by a string match here.
   it('hard-drops a message whose own Message-ID is one we recorded going out', async () => {
-    await seedInboundRoute('support@quackback.io')
+    await seedInboundRoute('support@zenith.io')
     const opened = await ingestParsedEmail(coldEmail())
     expect(opened.status).toBe('ingested')
     if (opened.status !== 'ingested') return
@@ -700,7 +700,7 @@ describe.skipIf(!fixture.available)('cold-inbound ingest (real DB, rolled back)'
   })
 
   it('suppresses a blocked sender without opening a conversation', async () => {
-    await seedInboundRoute('support@quackback.io')
+    await seedInboundRoute('support@zenith.io')
     // A lead an earlier mail created, since blocked. createdAt is set explicitly
     // because the column's default lives in the factory, not in the schema.
     await testDb.insert(principal).values({

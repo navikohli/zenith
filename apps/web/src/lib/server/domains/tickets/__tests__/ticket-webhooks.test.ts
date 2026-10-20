@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 import type { Ticket } from '@/lib/server/db'
 import type { Actor } from '@/lib/server/policy/types'
 import type { ConversationMessageDTO } from '@/lib/shared/conversation/types'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 
 const loadAuthors = vi.hoisted(() => vi.fn())
 vi.mock('@/lib/server/domains/principals/principal-display', () => ({ loadAuthors }))

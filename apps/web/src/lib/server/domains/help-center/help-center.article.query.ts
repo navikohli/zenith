@@ -17,7 +17,7 @@ import {
   sql,
   inArray,
 } from '@/lib/server/db'
-import type { KbArticleId, KbCategoryId, PrincipalId } from '@quackback/ids'
+import type { KbArticleId, KbCategoryId, PrincipalId } from '@zenith/ids'
 import { ANONYMOUS_ACTOR, type Actor } from '@/lib/server/policy/types'
 import type {
   HelpCenterArticleWithCategory,

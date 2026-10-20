@@ -6,9 +6,9 @@ request from the `Host` header.
 This document states the resolution order, what happens on every failure mode,
 how pool eviction is tuned and measured, and which background subsystems are
 scoped versus deferred. Authority is `SAAS-HOSTING-STACK.md` §3, §5, §6, §7.3,
-§8, §10.5; the data contract is `quackback-cp/docs/workspace-registry-contract.md`.
+§8, §10.5; the data contract is `zenith-cp/docs/workspace-registry-contract.md`.
 
-`QUACKBACK_TENANCY=single` is the default and is byte-for-byte today's
+`ZENITH_TENANCY=single` is the default and is byte-for-byte today's
 behaviour: one `DATABASE_URL`, one memoized connection, no registry, no
 middleware work. Everything below applies to `pooled`.
 
@@ -66,8 +66,8 @@ any workspace-database query exists.
 On the request-scoped `AsyncLocalStorage` store that `request-context.ts` already
 opens for every SSR document, server route and server function, under a symbol
 key, the same mechanism `request-memo.ts` already uses for its
-per-request memo. `@quackback/logger` owns the store and shares it with
-`@quackback/db` and `@quackback/email`, so a scoped log line carries `workspace_key`
+per-request memo. `@zenith/logger` owns the store and shares it with
+`@zenith/db` and `@zenith/email`, so a scoped log line carries `workspace_key`
 without anyone passing it down.
 
 `runWithWorkspaceScope` always opens a **nested** ALS run rather than mutating the
@@ -247,12 +247,12 @@ rather than debug logs: the counter is the only thing that distinguishes
 **Eviction is necessary but not sufficient.** The job worker polls each tenant
 database on its own interval, so `ROLE=all` keeps a quiet workspace's compute
 awake even after the request pool evicts. Idle saving requires
-`QUACKBACK_ROLE=web`. The role split is optional scale-out for that cost
+`ZENITH_ROLE=web`. The role split is optional scale-out for that cost
 model, not a second mechanism.
 
 #### Measured, 2026-08-08
 
-Local pooled fleet, `QUACKBACK_ROLE=web`, `WORKSPACE_POOL_IDLE_SECONDS=20`, against
+Local pooled fleet, `ZENITH_ROLE=web`, `WORKSPACE_POOL_IDLE_SECONDS=20`, against
 `gauntlet-ws-t3` (its own catalog, default 300 s suspend). The
 method polls the compute for `current_state = idle` **before** the trial: a
 suspend/wake measurement without a verified pre-state measures nothing.
@@ -390,7 +390,7 @@ design rather than a convenience:
 
 | Half         | Scheme                                            | Why                                                                                                                                                                                                                                                                                                                                                          |
 | ------------ | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `SECRET_KEY` | `derived+hkdf://v<gen>/<workspace>/app-secrets`   | A value **we** choose. Nothing outside the system has to agree with it, so it need not be stored: HKDF from one fleet root (`QUACKBACK_FLEET_ROOT_KEY`) with the workspace id as domain separation. No store, no network hop, no handoff — custody stops being a delivery problem, which is the failure that shipped once already on the database credential |
+| `SECRET_KEY` | `derived+hkdf://v<gen>/<workspace>/app-secrets`   | A value **we** choose. Nothing outside the system has to agree with it, so it need not be stored: HKDF from one fleet root (`ZENITH_FLEET_ROOT_KEY`) with the workspace id as domain separation. No store, no network hop, no handoff — custody stops being a delivery problem, which is the failure that shipped once already on the database credential |
 | S3 keys      | `sealed+aead://v<gen>/<workspace>/storage/<blob>` | A value **Cloudflare** chose. No derivation produces it, so it is carried — sealed under a key derived from the same root and bound to the workspace, with the blob riding **in the reference**, so it is read in the same row and the same query as the DSN                                                                                                 |
 
 **Blast radius, stated plainly.** One root opens every workspace. That is weaker
@@ -535,7 +535,7 @@ would turn one bad record into a fleet-wide outage of every sweeper.
 
 ### 5.1 The worker tier
 
-`jobs/worker.ts`, started by `startup.ts` under `QUACKBACK_ROLE=worker` (or `all`).
+`jobs/worker.ts`, started by `startup.ts` under `ZENITH_ROLE=worker` (or `all`).
 One poll loop per workspace, each claiming jobs with `FOR UPDATE SKIP LOCKED`
 on that workspace's pooled connection. After-commit only nudges the in-process
 poll wait; there is no job-queue `LISTEN`. Domain events no longer have their
@@ -543,7 +543,7 @@ own relay loop: `emit()` writes an `event-dispatch` job in the same transaction
 as the outbox row. `events/RELAY.md` records the deletion; `jobs/JOBS.md` is
 the account of the remaining tier.
 
-The worker is its own always-on service (`QUACKBACK_ROLE=worker`) rather than
+The worker is its own always-on service (`ZENITH_ROLE=worker`) rather than
 a role on the web tier so HTTP replicas stay producer-only: they enqueue, they
 do not claim. Compute and Postgres stay up, so a live poll loop is the
 intended cost of running jobs, not a reason to detach.
@@ -553,10 +553,10 @@ intended cost of running jobs, not a reason to detach.
 Every sweep in `startup.ts` funnels through `withSweepLock`, which under pooled
 tenancy fans the tick out across the whole fleet. Compute and Postgres stay
 up, so the always-on worker arms the same timers as a single-workspace
-install. `cron/fleet-jobs.ts` holds the bodies; `QUACKBACK_CRON_JOB` remains a
+install. `cron/fleet-jobs.ts` holds the bodies; `ZENITH_CRON_JOB` remains a
 one-shot entry point for the same functions, not the live topology.
 
-`QUACKBACK_ROLE=web` starts none of this. The job worker, the boot-time
+`ZENITH_ROLE=web` starts none of this. The job worker, the boot-time
 partition ensure, telemetry, and the sweep schedule all live in
 `startBackgroundProcessing()`, which only runs on `worker` and `all`.
 
@@ -607,7 +607,7 @@ workspace resumes within the hour of its first request.
 `config.baseUrl` returns `getCurrentWorkspace()?.routing.baseUrl` whenever a workspace
 scope is active. One getter rather than ~56 call sites, because a per-call-site
 fix is a list that goes stale on the next absolute URL anyone writes. It reaches
-email links, asset URLs, `__QUACKBACK_URL__` in the widget SDK, OAuth callback
+email links, asset URLs, `__ZENITH_URL__` in the widget SDK, OAuth callback
 redirects, the MCP resource metadata, better-auth's `baseURL` and the cookie
 `secure` flag. `trustedOrigins` becomes the workspace's own hostnames and stops
 honouring the process-wide `TRUSTED_ORIGINS`, which under pooling would make one
@@ -631,8 +631,8 @@ fire — but the swallow is worth narrowing.
 
 | Variable                                                | Meaning                                                                                                    |
 | ------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `QUACKBACK_TENANCY`                                     | `single` (default) or `pooled`                                                                             |
-| `QUACKBACK_CONTROL_DATABASE_URL`                        | Control-plane Postgres holding `cp_workspace_registry` / `cp_workspace_hostnames`. Required under `pooled` |
+| `ZENITH_TENANCY`                                     | `single` (default) or `pooled`                                                                             |
+| `ZENITH_CONTROL_DATABASE_URL`                        | Control-plane Postgres holding `cp_workspace_registry` / `cp_workspace_hostnames`. Required under `pooled` |
 | `DATABASE_URL`                                          | Required under `single`. **Refused under `pooled`**                                                        |
 | `WORKSPACE_POOL_MAX` / `_MAX_ENTRIES` / `_IDLE_SECONDS` | See §4                                                                                                     |
 | `WORKSPACE_REGISTRY_TTL_MS`                             | Hostname cache TTL                                                                                         |

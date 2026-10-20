@@ -11,7 +11,7 @@ import {
 } from '@/lib/server/domains/api/responses'
 import { parseTypeId, parseOptionalTypeId } from '@/lib/server/domains/api/validation'
 import type { Role } from '@/lib/shared/roles'
-import type { PostId, PostCommentId, PrincipalId } from '@quackback/ids'
+import type { PostId, PostCommentId, PrincipalId } from '@zenith/ids'
 import { contentJsonToMarkdown } from '@/lib/server/markdown-tiptap'
 
 // Input validation schema

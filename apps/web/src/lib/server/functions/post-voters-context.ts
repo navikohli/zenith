@@ -16,7 +16,7 @@
 
 import { z } from 'zod'
 import { createServerFn } from '@tanstack/react-start'
-import { type PostId } from '@quackback/ids'
+import { type PostId } from '@zenith/ids'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import { requireAuth } from './auth-helpers'
 import { getPostVoters } from '@/lib/server/domains/posts/post.voting'

@@ -30,8 +30,8 @@ beforeEach(() => {
   saved = { ...process.env }
   for (const key of [
     'DATABASE_URL',
-    'QUACKBACK_TENANCY',
-    'QUACKBACK_CONTROL_DATABASE_URL',
+    'ZENITH_TENANCY',
+    'ZENITH_CONTROL_DATABASE_URL',
     'USER_CONTENT_URL',
   ]) {
     delete process.env[key]
@@ -39,7 +39,7 @@ beforeEach(() => {
   Object.assign(process.env, {
     BASE_URL: 'https://app.example.com',
     SECRET_KEY: 'x'.repeat(48),
-    DATABASE_URL: 'postgresql://app@localhost:5432/quackback',
+    DATABASE_URL: 'postgresql://app@localhost:5432/zenith',
   })
   logged.issues = []
   logged.warnings = []
@@ -95,8 +95,8 @@ describe('USER_CONTENT_URL', () => {
   })
 
   it('is ignored under pooled tenancy, with one warning', async () => {
-    process.env.QUACKBACK_TENANCY = 'pooled'
-    process.env.QUACKBACK_CONTROL_DATABASE_URL = 'postgresql://cp@localhost:5432/control'
+    process.env.ZENITH_TENANCY = 'pooled'
+    process.env.ZENITH_CONTROL_DATABASE_URL = 'postgresql://cp@localhost:5432/control'
     delete process.env.DATABASE_URL
     process.env.USER_CONTENT_URL = 'https://files.example.com'
 
@@ -112,8 +112,8 @@ describe('USER_CONTENT_URL', () => {
   it('does not warn when single-workspace, or when unset', async () => {
     process.env.USER_CONTENT_URL = 'https://files.example.com'
     await load()
-    process.env.QUACKBACK_TENANCY = 'pooled'
-    process.env.QUACKBACK_CONTROL_DATABASE_URL = 'postgresql://cp@localhost:5432/control'
+    process.env.ZENITH_TENANCY = 'pooled'
+    process.env.ZENITH_CONTROL_DATABASE_URL = 'postgresql://cp@localhost:5432/control'
     delete process.env.DATABASE_URL
     delete process.env.USER_CONTENT_URL
     await load()

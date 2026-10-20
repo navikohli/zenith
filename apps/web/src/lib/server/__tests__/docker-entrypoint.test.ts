@@ -1,15 +1,15 @@
 /**
- * The image entrypoint used to ignore QUACKBACK_ROLE=migrator: it ran
+ * The image entrypoint used to ignore ZENITH_ROLE=migrator: it ran
  * single-DB migrate.mjs and then bound PORT. These tests pin the contract
  * on the real file (ordering) and by executing it with a bun shim (so CI
  * does not need a full image build).
  *
  * Image smoke, when a digest is available:
  *
- *   docker run --rm -e QUACKBACK_ROLE=migrator <image>
+ *   docker run --rm -e ZENITH_ROLE=migrator <image>
  *
  * Expects the fleet-migrator CLI to exit 2 (no control database) and never
- * bind PORT. The CLI maps a missing QUACKBACK_CONTROL_DATABASE_URL to
+ * bind PORT. The CLI maps a missing ZENITH_CONTROL_DATABASE_URL to
  * exit 2; argument errors do the same.
  */
 import { spawn } from 'node:child_process'
@@ -79,7 +79,7 @@ function runEntrypoint(
 const BUN_SHIM = `#!/bin/sh
 printf '%s\\n' "$*" >> "__LOG__"
 if [ "$1" = "/app/fleet-migrator.mjs" ]; then
-  echo "QUACKBACK_CONTROL_DATABASE_URL is not set (no control database)" >&2
+  echo "ZENITH_CONTROL_DATABASE_URL is not set (no control database)" >&2
   exit 2
 fi
 if [ "$1" = "/app/migrate.mjs" ] || [ "$1" = "/app/seed.mjs" ]; then
@@ -96,7 +96,7 @@ describe('docker-entrypoint.sh source', () => {
   it('execs the fleet migrator before any single-DB migrate or server bind', () => {
     const raw = readFileSync(ENTRYPOINT, 'utf8')
     const src = raw.replace(/#[^\n]*/g, (m) => ' '.repeat(m.length))
-    const roleAt = src.indexOf('"$QUACKBACK_ROLE" = "migrator"')
+    const roleAt = src.indexOf('"$ZENITH_ROLE" = "migrator"')
     const execAt = src.indexOf(MIGRATOR_EXEC)
     const migrateAt = src.indexOf('bun /app/migrate.mjs')
     const serverAt = src.indexOf('bun .output/server/index.mjs')
@@ -121,7 +121,7 @@ describe('docker-entrypoint.sh source', () => {
 
 describe('docker-entrypoint.sh migrator role', () => {
   it('runs fleet-migrator enrol+run, exits 2 with no control DB, and never starts the server', async () => {
-    const result = await runEntrypoint({ QUACKBACK_ROLE: 'migrator' }, BUN_SHIM)
+    const result = await runEntrypoint({ ZENITH_ROLE: 'migrator' }, BUN_SHIM)
 
     expect(result.code).toBe(2)
     expect(result.invocations).toEqual(['/app/fleet-migrator.mjs enrol'])
@@ -132,7 +132,7 @@ describe('docker-entrypoint.sh migrator role', () => {
 
   it('does not take the migrator path for web, worker, all, or a case typo', async () => {
     for (const role of ['web', 'worker', 'all', 'Migrator', 'MIGRATOR', undefined]) {
-      const result = await runEntrypoint({ QUACKBACK_ROLE: role }, BUN_SHIM)
+      const result = await runEntrypoint({ ZENITH_ROLE: role }, BUN_SHIM)
       expect(result.code, String(role)).toBe(42)
       expect(result.invocations, String(role)).toContain('.output/server/index.mjs')
       expect(result.invocations.join('\n'), String(role)).not.toContain('fleet-migrator.mjs')

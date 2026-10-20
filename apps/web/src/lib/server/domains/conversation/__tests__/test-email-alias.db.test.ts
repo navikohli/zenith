@@ -4,9 +4,9 @@
  * writing to the ordinary workspace address is a real customer conversation.
  */
 import { describe, it, expect, beforeEach, afterEach, afterAll, vi } from 'vitest'
-import { createId, type PrincipalId, type UserId } from '@quackback/ids'
+import { createId, type PrincipalId, type UserId } from '@zenith/ids'
 
-process.env.BASE_URL = 'https://quackback.test'
+process.env.BASE_URL = 'https://zenith.test'
 process.env.SECRET_KEY ||= 'x'.repeat(32)
 process.env.EMAIL_INBOUND_DOMAIN = 'tenaevexeo.resend.app'
 process.env.EMAIL_INBOUND_SIGNING_SECRET = 'whsec_dGVzdHNlY3JldA=='

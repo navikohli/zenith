@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import { createServerFn } from '@tanstack/react-start'
-import type { KbArticleId, PrincipalId } from '@quackback/ids'
+import type { KbArticleId, PrincipalId } from '@zenith/ids'
 import { listPublicArticlesSchema } from '@/lib/shared/schemas/help-center'
 import { toIsoStringOrNull } from '@/lib/shared/utils'
 

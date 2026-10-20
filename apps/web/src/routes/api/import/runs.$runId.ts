@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import type { Role } from '@/lib/shared/roles'
-import { isValidTypeId } from '@quackback/ids'
-import type { ImportRunId } from '@quackback/ids'
+import { isValidTypeId } from '@zenith/ids'
+import type { ImportRunId } from '@zenith/ids'
 import { logger } from '@/lib/server/logger'
 
 const log = logger.child({ component: 'import-run' })

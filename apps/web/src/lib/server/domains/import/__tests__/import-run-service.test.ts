@@ -44,7 +44,7 @@ vi.mock('@/lib/server/db', () => ({
   desc: (...args: unknown[]) => ({ desc: args }),
 }))
 
-vi.mock('@quackback/ids', () => ({
+vi.mock('@zenith/ids', () => ({
   createId: (prefix: string) => `${prefix}_generated`,
 }))
 

@@ -23,7 +23,7 @@ import {
   inArray,
   asc,
 } from '@/lib/server/db'
-import type { BoardId, PostId } from '@quackback/ids'
+import type { BoardId, PostId } from '@zenith/ids'
 import { emitBestEffort } from '@/lib/server/events/emit'
 import { boardCreated, boardDeleted } from '@/lib/server/events/catalogue'
 import { NotFoundError, ValidationError, ConflictError } from '@/lib/shared/errors'

@@ -26,7 +26,7 @@ import { AnalyticsSummaryCards, type MetricKey } from './analytics-summary-cards
 import { AnalyticsVisitorCards, type VisitorMetricKey } from './analytics-visitor-cards'
 import { AnalyticsVisitorPanels } from './analytics-visitor-panels'
 import { AnalyticsStatRow, type AnalyticsStatProps } from './analytics-stat-row'
-import { AnalyticsQuinnSection } from './analytics-quinn-section'
+import { AnalyticsZenithAssistantSection } from './analytics-zenith-assistant-section'
 import { AnalyticsSlaCards } from './analytics-sla-cards'
 import { AnalyticsEmpty } from './analytics-empty'
 import { AnalyticsBoardChart } from './analytics-board-chart'
@@ -134,7 +134,7 @@ export function AnalyticsPage() {
       to: '/admin/analytics',
       search: (prev: Record<string, unknown>) => ({ ...prev, section: next }),
     })
-  // The windows the Quinn and SLA cards read: fixed per period so their query keys stay stable.
+  // The windows the ZenithAssistant and SLA cards read: fixed per period so their query keys stay stable.
   const range = useMemo(() => periodRange(period), [period])
   const [activeMetric, setActiveMetric] = useState<MetricKey>('posts')
   const [visitorMetric, setVisitorMetric] = useState<VisitorMetricKey>('visitors')
@@ -255,7 +255,7 @@ export function AnalyticsPage() {
             </div>
 
             {section === 'ai' ? (
-              <AnalyticsQuinnSection
+              <AnalyticsZenithAssistantSection
                 range={range}
                 periodLabel={periods.find((p) => p.value === period)?.label ?? ''}
               />

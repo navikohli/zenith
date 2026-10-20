@@ -1,5 +1,5 @@
 import { afterAll, afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { createId } from '@quackback/ids'
+import { createId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { eq, principal, user, settings, assistantPendingActions, auditLog } from '@/lib/server/db'
 import { ALL_PERMISSIONS, PERMISSIONS } from '@/lib/shared/permissions'
@@ -226,7 +226,7 @@ it('runs real SDK settings tools through the proposal pipeline without a write b
       .where(
         eq(
           assistantPendingActions.id,
-          ctx.ledger.proposedActions[0].id as import('@quackback/ids').AssistantPendingActionId
+          ctx.ledger.proposedActions[0].id as import('@zenith/ids').AssistantPendingActionId
         )
       )
     expect((pending.args.changes as { area: string }[]).map((change) => change.area)).toEqual([

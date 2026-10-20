@@ -21,17 +21,17 @@ import { sql, type Logger } from 'drizzle-orm'
 // Direct client import to spin up our own pool — bypasses the global `db`
 // proxy/singleton so each test file keeps its own short-lived connection
 // (and closes it cleanly in afterAll). The lint rule reserves
-// @quackback/db/client for the canonical db.ts entry; this fixture is a
+// @zenith/db/client for the canonical db.ts entry; this fixture is a
 // sanctioned caller of `createDb`, like board-view-filter-parity.test.ts.
 // oxlint-disable-next-line no-restricted-imports
-import { createDb, type Database } from '@quackback/db/client'
+import { createDb, type Database } from '@zenith/db/client'
 
 /** The transaction handle type the fixture parks each test inside. */
 export type TestTransaction = Parameters<Parameters<Database['transaction']>[0]>[0]
 
 const CANDIDATE_URLS = [
   process.env.DATABASE_URL,
-  'postgresql://postgres:password@localhost:5432/quackback',
+  'postgresql://postgres:password@localhost:5432/zenith',
 ].filter((u): u is string => !!u)
 
 /** Thrown into the transaction callback so postgres always rolls back; compared by identity. */

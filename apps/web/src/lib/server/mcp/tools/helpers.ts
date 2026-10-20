@@ -8,7 +8,7 @@
 import { z } from 'zod'
 import type { McpServer, ToolCallback } from '@modelcontextprotocol/sdk/server/mcp.js'
 import type { CallToolResult, ToolAnnotations } from '@modelcontextprotocol/sdk/types.js'
-import type { SegmentId } from '@quackback/ids'
+import type { SegmentId } from '@zenith/ids'
 import { isTeamMember } from '@/lib/shared/roles'
 import { isFeatureEnabled } from '@/lib/server/domains/settings/settings.service'
 import { segmentIdsForPrincipal } from '@/lib/server/domains/segments/segment-membership.service'

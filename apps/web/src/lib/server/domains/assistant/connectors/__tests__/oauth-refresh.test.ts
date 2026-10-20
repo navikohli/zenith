@@ -3,7 +3,7 @@ process.env.SECRET_KEY ||= 'test-secret-key-for-connector-oauth-abcdefgh'
 import { afterAll, afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { connectors } from '@/lib/server/db'
-import { createId } from '@quackback/ids'
+import { createId } from '@zenith/ids'
 import { encrypt } from '@/lib/server/encryption'
 import { CONNECTOR_SECRETS_PURPOSE } from '../connectors.service'
 

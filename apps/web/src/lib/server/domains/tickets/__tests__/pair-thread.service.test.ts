@@ -18,7 +18,7 @@ import {
   type TicketId,
   type TicketStatusId,
   type UserId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 
 vi.mock('@/lib/server/db', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/lib/server/db')>()),
@@ -361,26 +361,26 @@ describe.skipIf(!fixture.available)('pair-thread union loader (real DB, rolled b
     expect(page.messages.map((m) => m.id)).toEqual([m1, m2])
   })
 
-  it('flags Quinn turns (isAssistant) on BOTH parents of the pair (Phase 2)', async () => {
+  it('flags ZenithAssistant turns (isAssistant) on BOTH parents of the pair (Phase 2)', async () => {
     const next = seedClock()
-    const quinn = await seedPrincipal()
-    assistantState.id = quinn
+    const zenithAssistant = await seedPrincipal()
+    assistantState.id = zenithAssistant
     try {
       const human = await seedPrincipal()
       const ticketId = await seedTicket()
       const conversationId = await seedConversation()
       await linkPair(ticketId, conversationId)
 
-      // Quinn-authored rows on each parent + a human row for contrast. The
+      // ZenithAssistant-authored rows on each parent + a human row for contrast. The
       // assistant flag must resolve identically whichever parent the row
       // hangs off (the conversation view's `listMessages` rule).
-      const q1 = await post({ ticketId }, 'quinn on the legacy parent', {
+      const q1 = await post({ ticketId }, 'zenithAssistant on the legacy parent', {
         at: next(),
-        author: quinn,
+        author: zenithAssistant,
       })
-      const q2 = await post({ conversationId }, 'quinn on the conversation', {
+      const q2 = await post({ conversationId }, 'zenithAssistant on the conversation', {
         at: next(),
-        author: quinn,
+        author: zenithAssistant,
       })
       const h1 = await post({ conversationId }, 'human reply', { at: next(), author: human })
 

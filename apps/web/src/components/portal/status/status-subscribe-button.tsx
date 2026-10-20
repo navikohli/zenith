@@ -24,7 +24,7 @@ import {
   statusKeys,
 } from '@/lib/client/queries/status'
 import { subscribeStatusFn, unsubscribeStatusFn } from '@/lib/server/functions/status-subscriptions'
-import type { StatusComponentId } from '@quackback/ids'
+import type { StatusComponentId } from '@zenith/ids'
 import { useStatusFeedOffered } from './use-status-feed-offered'
 import {
   resumeSubscribeUrl,

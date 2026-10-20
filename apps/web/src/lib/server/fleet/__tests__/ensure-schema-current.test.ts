@@ -5,14 +5,14 @@
  * query (explicit column lists). This is the request-path backstop.
  */
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { BUNDLED_MIGRATIONS, latestBundledVersion } from '@quackback/db/schema-version'
+import { BUNDLED_MIGRATIONS, latestBundledVersion } from '@zenith/db/schema-version'
 import { WorkspaceSchemaFloorRefusal } from '../schema-floor'
 
 const readAppliedLedger = vi.fn()
 const migrateDirect = vi.fn()
 
-vi.mock('@quackback/db/schema-version', async (importOriginal) => {
-  const actual = await importOriginal<typeof import('@quackback/db/schema-version')>()
+vi.mock('@zenith/db/schema-version', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@zenith/db/schema-version')>()
   return { ...actual, readAppliedLedger: (...args: unknown[]) => readAppliedLedger(...args) }
 })
 

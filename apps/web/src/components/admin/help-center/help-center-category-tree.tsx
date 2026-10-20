@@ -5,7 +5,7 @@ import { PencilIcon, TrashIcon, FolderPlusIcon } from '@heroicons/react/16/solid
 import { MENU_ROW } from '@/components/ui/menu'
 import { cn } from '@/lib/shared/utils'
 import { buildAncestorChain, MAX_CATEGORY_DEPTH } from '@/lib/shared/help-center-tree'
-import type { KbCategoryId } from '@quackback/ids'
+import type { KbCategoryId } from '@zenith/ids'
 import { formatCategoryCount } from './category-count'
 
 export interface TreeCategory {

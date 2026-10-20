@@ -29,7 +29,7 @@ export const githubIssues: IssueTrackerCapability = {
         headers: {
           Authorization: `Bearer ${auth.accessToken}`,
           Accept: 'application/vnd.github+json',
-          'User-Agent': 'quackback',
+          'User-Agent': 'zenith',
           'X-GitHub-Api-Version': '2022-11-28',
         },
       }
@@ -94,7 +94,7 @@ export const githubIssues: IssueTrackerCapability = {
         Authorization: `Bearer ${accessToken}`,
         Accept: 'application/vnd.github+json',
         'Content-Type': 'application/json',
-        'User-Agent': 'quackback',
+        'User-Agent': 'zenith',
         'X-GitHub-Api-Version': '2022-11-28',
       },
       body: JSON.stringify({ title, body: bodyMarkdown }),

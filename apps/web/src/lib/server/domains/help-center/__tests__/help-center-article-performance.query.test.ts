@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import type { KbArticleId } from '@quackback/ids'
+import type { KbArticleId } from '@zenith/ids'
 
 const mockLimit = vi.fn()
 const mockOrderBy = vi.fn(() => ({ limit: mockLimit }))

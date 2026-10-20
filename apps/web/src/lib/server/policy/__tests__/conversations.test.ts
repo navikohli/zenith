@@ -8,7 +8,7 @@
  * deleted-row case here (unlike ticketFilter).
  */
 import { describe, it, expect, beforeEach, afterEach, afterAll } from 'vitest'
-import { createId, type PrincipalId, type TypeId, type UserId } from '@quackback/ids'
+import { createId, type PrincipalId, type TypeId, type UserId } from '@zenith/ids'
 
 type TeamId = TypeId<'team'>
 type ConversationId = TypeId<'conversation'>

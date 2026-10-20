@@ -16,7 +16,7 @@
 import { describe, expect, it } from 'vitest'
 import { getTableName, is } from 'drizzle-orm'
 import { PgTable } from 'drizzle-orm/pg-core'
-// The repo reserves `@quackback/db/*` for the server re-export layer and
+// The repo reserves `@zenith/db/*` for the server re-export layer and
 // standalone scripts, so app code cannot bypass `@/lib/server/db`. This test
 // needs the raw Drizzle table objects — it is asserting on schema METADATA, not
 // querying anything — and going through the server barrel would drag in the
@@ -24,7 +24,7 @@ import { PgTable } from 'drizzle-orm/pg-core'
 // the names out of the source with a regex was the alternative, and that is the
 // approach that let `notifications` sit in the scan list unnoticed.
 // oxlint-disable-next-line no-restricted-imports
-import * as schema from '@quackback/db/schema'
+import * as schema from '@zenith/db/schema'
 import { SCAN_TABLES, FIXTURE_TABLES } from '../db-scan'
 
 function schemaTableNames(): Set<string> {

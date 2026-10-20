@@ -7,7 +7,7 @@
  * second POST with a spent token is harmless and answers 200 either way.
  */
 import { afterAll, afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { createId, type BoardId, type PostId, type PrincipalId, type UserId } from '@quackback/ids'
+import { createId, type BoardId, type PostId, type PrincipalId, type UserId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import {
   and,

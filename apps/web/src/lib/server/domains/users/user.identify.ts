@@ -6,8 +6,8 @@
  */
 
 import { db, eq, and, principal, user, sql } from '@/lib/server/db'
-import type { PrincipalId, UserId } from '@quackback/ids'
-import { generateId } from '@quackback/ids'
+import type { PrincipalId, UserId } from '@zenith/ids'
+import { generateId } from '@zenith/ids'
 import {
   createPrincipal,
   syncPrincipalProfile,

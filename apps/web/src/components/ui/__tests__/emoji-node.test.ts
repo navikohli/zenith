@@ -14,7 +14,7 @@ const POST_EDITOR_FEATURES = {
   videos: true,
   tables: true,
   embeds: true,
-  quackbackEmbeds: true,
+  zenithEmbeds: true,
   bubbleMenu: true,
   slashMenu: true,
 }

@@ -18,7 +18,7 @@ import {
   userSegments,
   type Roadmap,
 } from '@/lib/server/db'
-import { type RoadmapId } from '@quackback/ids'
+import { type RoadmapId } from '@zenith/ids'
 import { NotFoundError, ValidationError } from '@/lib/shared/errors'
 import {
   ANONYMOUS_ACTOR,

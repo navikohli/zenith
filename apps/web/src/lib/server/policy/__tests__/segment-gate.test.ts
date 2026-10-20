@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { PgDialect } from 'drizzle-orm/pg-core'
 import type { SQL } from 'drizzle-orm'
-import type { PrincipalId, SegmentId } from '@quackback/ids'
+import type { PrincipalId, SegmentId } from '@zenith/ids'
 import { segmentGateAllows, segmentGateFilter } from '../segment-gate'
 import { statusComponents } from '@/lib/server/db'
 import { ANONYMOUS_ACTOR, type Actor } from '../types'

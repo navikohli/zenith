@@ -6,11 +6,11 @@ import { friendlySiblingAddress, WorkspaceSwitcher } from '../workspace-switcher
 
 describe('friendlySiblingAddress', () => {
   it('keeps a friendly host and drops a generated system host', () => {
-    expect(friendlySiblingAddress('https://south63792f.quackback.co.uk')).toBe(
-      'south63792f.quackback.co.uk'
+    expect(friendlySiblingAddress('https://south63792f.zenith.co.uk')).toBe(
+      'south63792f.zenith.co.uk'
     )
     expect(
-      friendlySiblingAddress('https://ws-4a048e07941c5e7840e986c0.quackback.co.uk')
+      friendlySiblingAddress('https://ws-4a048e07941c5e7840e986c0.zenith.co.uk')
     ).toBeNull()
     expect(friendlySiblingAddress(null)).toBeNull()
   })
@@ -38,12 +38,12 @@ describe('WorkspaceSwitcher', () => {
             {
               instanceId: 'inst_south',
               displayName: 'South',
-              url: 'https://south63792f.quackback.co.uk',
+              url: 'https://south63792f.zenith.co.uk',
             },
             {
               instanceId: 'inst_raw',
               displayName: 'Untitled workspace',
-              url: 'https://ws-4a048e07941c5e7840e986c0.quackback.co.uk',
+              url: 'https://ws-4a048e07941c5e7840e986c0.zenith.co.uk',
             },
           ]}
           onOpen={onOpen}
@@ -51,7 +51,7 @@ describe('WorkspaceSwitcher', () => {
       </TooltipProvider>
     )
     expect(screen.getByText('South')).toBeTruthy()
-    expect(screen.getByText('south63792f.quackback.co.uk')).toBeTruthy()
+    expect(screen.getByText('south63792f.zenith.co.uk')).toBeTruthy()
     expect(screen.getByText('Untitled workspace')).toBeTruthy()
     expect(screen.queryByText(/ws-4a048e07941c5e7840e986c0/)).toBeNull()
     fireEvent.click(screen.getByText('South'))

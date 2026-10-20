@@ -25,7 +25,7 @@ import {
   deleteCompanyAttribute,
 } from '@/lib/server/domains/company-attributes/company-attribute.service'
 import { normalizeAttributeKey } from '@/lib/server/domains/attribute-definitions/attribute-definition.service'
-import { createId } from '@quackback/ids'
+import { createId } from '@zenith/ids'
 
 const fixture = await createDbTestFixture({
   probe: async (db) => {

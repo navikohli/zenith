@@ -23,13 +23,13 @@ let saved: NodeJS.ProcessEnv
 
 beforeEach(() => {
   saved = { ...process.env }
-  for (const key of ['QUACKBACK_TENANCY', 'TRUSTED_CLIENT_IP_HEADER', 'TRUSTED_PROXY_HOPS']) {
+  for (const key of ['ZENITH_TENANCY', 'TRUSTED_CLIENT_IP_HEADER', 'TRUSTED_PROXY_HOPS']) {
     delete process.env[key]
   }
   Object.assign(process.env, {
     BASE_URL: 'https://app.example.com',
     SECRET_KEY: 'x'.repeat(48),
-    DATABASE_URL: 'postgresql://app@localhost:5432/quackback',
+    DATABASE_URL: 'postgresql://app@localhost:5432/zenith',
   })
   logged.issues = []
 })
@@ -67,9 +67,9 @@ describe('TRUSTED_CLIENT_IP_HEADER', () => {
   it('refuses X-Forwarded-For, the app headers and invalid names', async () => {
     for (const value of [
       'X-Forwarded-For',
-      'x-quackback-client-ip',
-      'x-quackback-edge-client-ip',
-      'X-Quackback-Edge-Client-IP-Sig',
+      'x-zenith-client-ip',
+      'x-zenith-edge-client-ip',
+      'X-Zenith-Edge-Client-IP-Sig',
       'x real ip',
       'x-real-ip:',
       'x-real-ip,cf-connecting-ip',

@@ -6,7 +6,7 @@
  * evaluation that read these live in the Apply-SLA slice.
  */
 import { db, eq, and, isNull, desc, slaPolicies, type SlaPolicy } from '@/lib/server/db'
-import type { SlaPolicyId, OfficeHoursId } from '@quackback/ids'
+import type { SlaPolicyId, OfficeHoursId } from '@zenith/ids'
 
 export interface SlaPolicyInput {
   name: string

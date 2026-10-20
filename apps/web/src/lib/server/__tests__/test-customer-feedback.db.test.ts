@@ -1,5 +1,5 @@
 import { afterAll, afterEach, beforeEach, expect, it, vi } from 'vitest'
-import { createId, type BoardId, type PrincipalId } from '@quackback/ids'
+import { createId, type BoardId, type PrincipalId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from './db-test-fixture'
 import {
   boards,
@@ -105,7 +105,7 @@ const actorFor = (id: PrincipalId): Actor => ({
 
 beforeEach(async () => {
   expect(fixture.available).toBe(true)
-  expect(process.env.DATABASE_URL).toMatch(/\/quackback_test(?:_\w+)?(?:\?|$)/)
+  expect(process.env.DATABASE_URL).toMatch(/\/zenith_test(?:_\w+)?(?:\?|$)/)
   await fixture.begin()
   effects.beforeRehost = null
   effects.headers = new Headers()

@@ -1,5 +1,5 @@
 /**
- * Quinn performance summary — the "Analyze" headline for the AI assistant:
+ * ZenithAssistant performance summary — the "Analyze" headline for the AI assistant:
  * involvement, resolution, and escalation
  * rates, the confirmed-vs-assumed resolution split, and actions taken via
  * tool calls, over a date range. Involvement volume is low (like CSAT — see
@@ -26,13 +26,13 @@ import { ratePctOrNull } from '@/lib/shared/percent'
 import { summarizeCsat, type CsatSummary } from './csat-summary'
 import { notTestConversation } from '@/lib/server/test-data'
 
-export interface QuinnInvolvementRow {
+export interface ZenithAssistantInvolvementRow {
   status: AssistantInvolvementStatus
   handoffReason: string | null
   createdAt: string | Date
 }
 
-export interface QuinnPerformanceSummary {
+export interface ZenithAssistantPerformanceSummary {
   /** Involvements opened in the range. */
   involvements: number
   /** Conversations created in the range — the involvement-rate denominator. */
@@ -45,14 +45,14 @@ export interface QuinnPerformanceSummary {
   resolvedAssumed: number
   /** (resolvedConfirmed + resolvedAssumed) / involvements, 0-100. */
   resolutionRate: number
-  /** Handed off to a human by Quinn's own judgment (excludes system errors). */
+  /** Handed off to a human by ZenithAssistant's own judgment (excludes system errors). */
   handedOff: number
   /** Handed off by the failure floor after a hard turn failure — an infra
    *  reliability signal, kept out of the quality-facing escalation rate. */
   systemErrors: number
   /** handedOff / involvements, 0-100. */
   escalationRate: number
-  /** Still with Quinn: involvements neither resolved nor handed off. */
+  /** Still with ZenithAssistant: involvements neither resolved nor handed off. */
   pending: number
   /** Successful assistant_tool_calls in the range. */
   actionsTaken: number
@@ -60,10 +60,10 @@ export interface QuinnPerformanceSummary {
   dailyTrend: Array<{ date: string; involvements: number; resolved: number }>
 }
 
-/** The full report `getQuinnPerformance` returns: the rate summary plus the
- *  customer-satisfaction slice over Quinn-handled conversations. */
-export interface QuinnPerformanceReport extends QuinnPerformanceSummary {
-  /** CSAT over rated conversations Quinn was involved in (see getQuinnCsat). */
+/** The full report `getZenithAssistantPerformance` returns: the rate summary plus the
+ *  customer-satisfaction slice over ZenithAssistant-handled conversations. */
+export interface ZenithAssistantPerformanceReport extends ZenithAssistantPerformanceSummary {
+  /** CSAT over rated conversations ZenithAssistant was involved in (see getZenithAssistantCsat). */
   csat: CsatSummary
 }
 
@@ -73,17 +73,17 @@ const isResolved = (status: AssistantInvolvementStatus): boolean =>
 const isHandedOff = (status: AssistantInvolvementStatus): boolean =>
   (AI_INBOX_BUCKETS.escalated as readonly AssistantInvolvementStatus[]).includes(status)
 
-// Quinn's rate tiles always render a number rather than a placeholder, so this
+// ZenithAssistant's rate tiles always render a number rather than a placeholder, so this
 // coalesces the shared helper's null (nothing to divide by) down to 0 — unlike
-// guidance-stats.ts and quinn-tools.ts, which surface that "no data yet" case
+// guidance-stats.ts and zenith-assistant-tools.ts, which surface that "no data yet" case
 // to the UI as null.
 const pct = (n: number, d: number): number => ratePctOrNull(n, d) ?? 0
 
-export function summarizeQuinnPerformance(
-  involvementRows: QuinnInvolvementRow[],
+export function summarizeZenithAssistantPerformance(
+  involvementRows: ZenithAssistantInvolvementRow[],
   conversations: number,
   actionsTaken: number
-): QuinnPerformanceSummary {
+): ZenithAssistantPerformanceSummary {
   let resolvedConfirmed = 0
   let resolvedAssumed = 0
   let handedOff = 0
@@ -93,8 +93,8 @@ export function summarizeQuinnPerformance(
   for (const row of involvementRows) {
     if (row.status === 'resolved_confirmed') resolvedConfirmed++
     else if (row.status === 'resolved_assumed') resolvedAssumed++
-    // A failure-floor handoff measures the platform, not Quinn's judgment:
-    // counted separately so a provider outage cannot masquerade as Quinn
+    // A failure-floor handoff measures the platform, not ZenithAssistant's judgment:
+    // counted separately so a provider outage cannot masquerade as ZenithAssistant
     // getting worse at answering.
     else if (isHandedOff(row.status) && row.handoffReason === 'system_error') systemErrors++
     else if (isHandedOff(row.status)) handedOff++
@@ -130,12 +130,12 @@ export function summarizeQuinnPerformance(
 }
 
 /**
- * CSAT over Quinn-handled conversations in [from, to): rated conversations
+ * CSAT over ZenithAssistant-handled conversations in [from, to): rated conversations
  * (csatSubmittedAt in range) that have at least one assistant involvement.
  * The EXISTS semi-join keeps a re-involved conversation counted once; the
  * rating math is the shared `summarizeCsat` (csat-summary.ts).
  */
-export async function getQuinnCsat(from: Date, to: Date): Promise<CsatSummary> {
+export async function getZenithAssistantCsat(from: Date, to: Date): Promise<CsatSummary> {
   const rows = await db
     .select({ rating: conversations.csatRating, ratedAt: conversations.csatSubmittedAt })
     .from(conversations)
@@ -157,12 +157,12 @@ export async function getQuinnCsat(from: Date, to: Date): Promise<CsatSummary> {
 }
 
 /**
- * Query + summarize Quinn's performance over [from, to). Three independent
+ * Query + summarize ZenithAssistant's performance over [from, to). Three independent
  * scans over the range (involvements, conversation count, succeeded tool
  * calls) plus the CSAT slice — low volume, like CSAT, so no rollup table; the
- * grouping and rate math happen in memory in `summarizeQuinnPerformance` above.
+ * grouping and rate math happen in memory in `summarizeZenithAssistantPerformance` above.
  */
-export async function getQuinnPerformance(from: Date, to: Date): Promise<QuinnPerformanceReport> {
+export async function getZenithAssistantPerformance(from: Date, to: Date): Promise<ZenithAssistantPerformanceReport> {
   const [involvementRows, conversationCountRows, actionRows, csat] = await Promise.all([
     db
       .select({
@@ -199,11 +199,11 @@ export async function getQuinnPerformance(from: Date, to: Date): Promise<QuinnPe
           lt(assistantToolCalls.createdAt, to)
         )
       ),
-    getQuinnCsat(from, to),
+    getZenithAssistantCsat(from, to),
   ])
 
   return {
-    ...summarizeQuinnPerformance(
+    ...summarizeZenithAssistantPerformance(
       involvementRows,
       conversationCountRows[0]?.n ?? 0,
       actionRows[0]?.n ?? 0

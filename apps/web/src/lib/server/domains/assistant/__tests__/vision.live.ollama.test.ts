@@ -1,7 +1,7 @@
 // @vitest-environment node
 /**
- * Live Quinn-vision smoke test: a customer screenshot reaches a real
- * vision-capable, OpenAI-compatible endpoint and Quinn describes its contents.
+ * Live ZenithAssistant-vision smoke test: a customer screenshot reaches a real
+ * vision-capable, OpenAI-compatible endpoint and ZenithAssistant describes its contents.
  *
  * Opt-in like assistant.live.ollama.test.ts: runs only when OPENAI_BASE_URL,
  * OPENAI_API_KEY and AI_CHAT_MODEL are set, the endpoint is reachable, AND
@@ -57,7 +57,7 @@ async function endpointReachable(base: string): Promise<boolean> {
 const { runAssistantTurn } = await import('../assistant.runtime')
 const { isVisionCapableModel } = await import('@/lib/server/domains/ai/models')
 
-describe.runIf(liveConfigured)('quinn vision (live endpoint)', () => {
+describe.runIf(liveConfigured)('zenithAssistant vision (live endpoint)', () => {
   it('describes the contents of a screenshot a customer sent', { timeout: 900_000 }, async () => {
     if (!(await endpointReachable(AI_BASE!))) {
       console.warn(`[vision.live] endpoint ${AI_BASE} unreachable — skipping`)
@@ -66,7 +66,7 @@ describe.runIf(liveConfigured)('quinn vision (live endpoint)', () => {
     expect(isVisionCapableModel(AI_MODEL!)).toBe(true)
 
     const result = await runAssistantTurn({
-      assistantPrincipalId: 'principal_quinn' as never,
+      assistantPrincipalId: 'principal_zenithAssistant' as never,
       conversationId: null,
       involvementId: null,
       role: 'customer_support',
@@ -88,7 +88,7 @@ describe.runIf(liveConfigured)('quinn vision (live endpoint)', () => {
       ],
     })
 
-    console.log('[vision.live] quinn said:', result.status === 'answered' ? result.text : result)
+    console.log('[vision.live] zenithAssistant said:', result.status === 'answered' ? result.text : result)
     expect(result.status).toBe('answered')
     if (result.status !== 'answered') return
     // The screenshot contains the literal words "Export" and "502".

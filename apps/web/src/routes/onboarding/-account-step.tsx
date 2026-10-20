@@ -70,7 +70,7 @@ function useAdvanceOnAuthSuccess(
 
 /**
  * The account screens' frame: the setup split, with the whole portal in the
- * panel so someone new to Quackback sees what customers will get before they
+ * panel so someone new to Zenith sees what customers will get before they
  * have set anything up.
  */
 function AccountFrame({
@@ -88,8 +88,8 @@ function AccountFrame({
   useSetupTitle(
     intl.formatMessage(
       purpose === 'create'
-        ? { id: 'onboarding.title.account', defaultMessage: 'Create your account · Quackback' }
-        : { id: 'onboarding.title.signIn', defaultMessage: 'Sign in · Quackback' }
+        ? { id: 'onboarding.title.account', defaultMessage: 'Create your account · Zenith' }
+        : { id: 'onboarding.title.signIn', defaultMessage: 'Sign in · Zenith' }
     )
   )
   return (
@@ -476,7 +476,7 @@ function FirstAdminStep({ offerSignIn, onSignIn }: { offerSignIn: boolean; onSig
         <OnboardingHeading>
           <FormattedMessage
             id="onboarding.account.firstAdmin.title"
-            defaultMessage="Welcome to {br}Quackback"
+            defaultMessage="Welcome to {br}Zenith"
             values={{ br: <br /> }}
           />
         </OnboardingHeading>
@@ -734,7 +734,7 @@ function MethodsStep({
         <OnboardingHeading>
           <FormattedMessage
             id="onboarding.account.firstAdmin.title"
-            defaultMessage="Welcome to {br}Quackback"
+            defaultMessage="Welcome to {br}Zenith"
             values={{ br: <br /> }}
           />
         </OnboardingHeading>
@@ -824,7 +824,7 @@ function SsoStep() {
       <OnboardingHeading>
         <FormattedMessage
           id="onboarding.account.firstAdmin.title"
-          defaultMessage="Welcome to {br}Quackback"
+          defaultMessage="Welcome to {br}Zenith"
           values={{ br: <br /> }}
         />
       </OnboardingHeading>

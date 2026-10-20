@@ -1,7 +1,7 @@
 // @vitest-environment happy-dom
 /**
  * The launcher unread badge (Phase 7 unified unread): driven by the iframe's
- * quackback:unread messages, it shows a count only while the widget is CLOSED
+ * zenith:unread messages, it shows a count only while the widget is CLOSED
  * (an alert on the close icon, or on an already-read open widget, is noise).
  */
 import { describe, it, expect, beforeEach } from 'vitest'
@@ -219,6 +219,6 @@ describe('launcher contained in a root', () => {
     const bubble = root.querySelector('div') as HTMLElement
     ;(bubble.lastElementChild as HTMLElement).click()
     expect(bubble.style.display).toBe('none')
-    expect(sessionStorage.getItem('quackback:launcher-greeting-dismissed')).toBeNull()
+    expect(sessionStorage.getItem('zenith:launcher-greeting-dismissed')).toBeNull()
   })
 })

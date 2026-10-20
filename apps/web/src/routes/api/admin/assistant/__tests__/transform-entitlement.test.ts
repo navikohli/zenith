@@ -65,7 +65,7 @@ vi.mock('@/lib/server/db', async (importOriginal) => {
 })
 
 import { handleTransform } from '../transform'
-import { generateId } from '@quackback/ids'
+import { generateId } from '@zenith/ids'
 
 const CONVERSATION_ID = generateId('conversation')
 const PRINCIPAL_ID = 'principal_1'

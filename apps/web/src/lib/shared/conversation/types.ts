@@ -10,7 +10,7 @@ import type {
   ConversationTagId,
   PrincipalId,
   TicketId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 
 // Sourced from the DB enum (CONVERSATION_STATUSES) via the browser-safe bridge,
 // so the client type can never drift from the column's allowed values. Imported
@@ -182,7 +182,7 @@ export interface ConversationMessageDTO {
   /** KB sources for an AI assistant reply, indexed by inline [n] markers in
    *  `content`. Empty for human/visitor messages. Safe for both audiences. */
   citations: ConversationMessageCitation[]
-  /** True when this message was authored by the AI assistant (Quinn). Lets the
+  /** True when this message was authored by the AI assistant (ZenithAssistant). Lets the
    *  agent inbox mark AI vs human turns in a blended thread; the customer widget
    *  ignores it. */
   isAssistant: boolean
@@ -256,7 +256,7 @@ export interface AgentConversationMessageDTO extends ConversationMessageDTO {
   /** Agent-only AI suggestion to track this conversation as a post; null
    *  otherwise. Never on the base DTO, so it never reaches the visitor. */
   postSuggestion: { boardId: string; title: string; content: string } | null
-  /** Agent-only pointer to a Quinn write-tool proposal awaiting approval,
+  /** Agent-only pointer to a ZenithAssistant write-tool proposal awaiting approval,
    *  surfaced on the internal note that announced it. Just enough to render the
    *  card and look up the live pending-action row for its current status — the
    *  row, not this pointer, is the source of truth. Optional (unlike
@@ -438,16 +438,16 @@ export const CONVERSATION_SPAM_FILED_BY_LABELS: Record<ConversationSpamFiledBy, 
  * inbox stream can route across many threads. `message` events carry an
  * `id:` line equal to the message id for Last-Event-ID backfill.
  */
-/** What Quinn is doing this turn, for the widget's live working trace. */
+/** What ZenithAssistant is doing this turn, for the widget's live working trace. */
 export type AssistantActivityStatus = 'thinking' | 'searching_kb' | 'reviewing_conversation'
 
-/** Terminal outcome of Quinn's involvement in a conversation (mirrors the db
+/** Terminal outcome of ZenithAssistant's involvement in a conversation (mirrors the db
  *  ASSISTANT_INVOLVEMENT_STATUSES; inlined here so the browser-safe module has
  *  no server import). */
 export type AssistantInvolvementOutcome =
   'active' | 'handed_off' | 'resolved_confirmed' | 'resolved_assumed' | 'abandoned'
 
-/** Short, teammate-facing phrasing for why Quinn handed off (keys mirror the db
+/** Short, teammate-facing phrasing for why ZenithAssistant handed off (keys mirror the db
  *  ASSISTANT_HANDOFF_REASONS). Single source for the escalation note + the agent
  *  detail panel; callers fall back to the raw key for any unknown reason. */
 export const HANDOFF_REASON_LABELS: Record<string, string> = {
@@ -460,17 +460,17 @@ export const HANDOFF_REASON_LABELS: Record<string, string> = {
   system_error: 'AI agent hit an error',
 }
 
-/** Quinn's activity on one conversation, for the agent details panel. Null when
- *  Quinn never engaged the conversation. */
+/** ZenithAssistant's activity on one conversation, for the agent details panel. Null when
+ *  ZenithAssistant never engaged the conversation. */
 export interface ConversationAssistantActivity {
   outcome: AssistantInvolvementOutcome
   /** Structured handoff reason when escalated, else null. */
   handoffReason: string | null
-  /** KB sources Quinn cited across the involvement. */
+  /** KB sources ZenithAssistant cited across the involvement. */
   sources: ConversationMessageCitation[]
-  /** CSAT rating attributed to Quinn (1-5), or null. */
+  /** CSAT rating attributed to ZenithAssistant (1-5), or null. */
   rating: number | null
-  /** ISO time of Quinn's last substantive answer, or null. */
+  /** ISO time of ZenithAssistant's last substantive answer, or null. */
   answeredAt: string | null
 }
 
@@ -552,7 +552,7 @@ export type ConversationStreamEvent =
       conversationId: ConversationId
       message: ConversationMessageDTO
     }
-  // Ephemeral AI-assistant working status while Quinn's turn runs — never
+  // Ephemeral AI-assistant working status while ZenithAssistant's turn runs — never
   // persisted. Published on the conversation channel ONLY (not the inbox) so it
   // drives the visitor's live trace without churning the agent inbox list.
   | {
@@ -561,7 +561,7 @@ export type ConversationStreamEvent =
       status: AssistantActivityStatus
       at: string
     }
-  // Ephemeral streamed answer while Quinn composes. `text` is the FULL clean
+  // Ephemeral streamed answer while ZenithAssistant composes. `text` is the FULL clean
   // answer so far (the client REPLACES its placeholder buffer, not appends) so a
   // dropped frame or a retry self-heals. Discarded when the final persisted
   // `message` arrives. Conversation channel only, like `assistant_activity`.

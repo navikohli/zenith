@@ -80,10 +80,10 @@ describe('postsExporter.serialize', () => {
   it('blanks synthetic anonymous author emails', () => {
     const anon = {
       ...row,
-      author: { displayName: 'anon', user: { email: 'temp-123@anon.quackback.io' } },
+      author: { displayName: 'anon', user: { email: 'temp-123@anon.zenith.io' } },
     }
     const line = postsExporter.serialize(anon as never)
-    expect(line).not.toContain('anon.quackback.io')
+    expect(line).not.toContain('anon.zenith.io')
   })
 })
 
@@ -170,7 +170,7 @@ describe('kbArticlesExporter.serialize', () => {
       slug: 'install',
       title: 'Install the widget',
       description: null,
-      content: 'npm i quackback',
+      content: 'npm i zenith',
       publishedAt: d('2026-07-06T00:00:00Z'),
       viewCount: 10,
       helpfulCount: 3,

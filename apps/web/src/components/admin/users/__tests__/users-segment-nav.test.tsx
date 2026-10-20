@@ -8,7 +8,7 @@ import { render, screen, fireEvent } from '@testing-library/react'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { UsersSegmentNav } from '../users-segment-nav'
 import type { SegmentListItem } from '@/lib/client/hooks/use-segments-queries'
-import type { SegmentId } from '@quackback/ids'
+import type { SegmentId } from '@zenith/ids'
 
 vi.mock('@tanstack/react-router', () => ({
   useNavigate: () => vi.fn(),

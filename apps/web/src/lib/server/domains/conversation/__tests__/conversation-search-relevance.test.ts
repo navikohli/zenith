@@ -10,7 +10,7 @@
  * rows this file seeds, whatever else the test database holds.
  */
 import { describe, it, expect, beforeEach, afterEach, afterAll, vi } from 'vitest'
-import { createId, type ConversationId, type PrincipalId, type UserId } from '@quackback/ids'
+import { createId, type ConversationId, type PrincipalId, type UserId } from '@zenith/ids'
 
 vi.mock('@/lib/server/db', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/lib/server/db')>()),

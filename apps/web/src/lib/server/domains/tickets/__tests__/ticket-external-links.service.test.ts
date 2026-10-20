@@ -7,7 +7,7 @@
  * rollback.
  */
 import { describe, it, expect, vi, beforeEach, afterEach, afterAll } from 'vitest'
-import { createId, type PrincipalId, type TicketId, type UserId } from '@quackback/ids'
+import { createId, type PrincipalId, type TicketId, type UserId } from '@zenith/ids'
 vi.mock('@/lib/server/secret-key', () => ({
   activeSecretKey: () => 'integration-sync-test-key-32-characters-only',
 }))
@@ -485,7 +485,7 @@ describe.skipIf(!fixture.available)('ticket-external-links.service (real DB, rol
       expect(String(url)).toBe('https://api.github.com/repos/acme/widgets/issues')
       const sent = JSON.parse((init as RequestInit).body as string)
       expect(sent.body).toContain('It breaks when exporting large CSVs.')
-      expect(sent.body).toContain('Created from Quackback ticket')
+      expect(sent.body).toContain('Created from Zenith ticket')
 
       const page = await listTicketMessages(ticketId, { includeInternal: true })
       const note = page.messages.find((m) => m.systemEvent?.kind === 'external_linked')
@@ -581,7 +581,7 @@ describe.skipIf(!fixture.available)('ticket-external-links.service (real DB, rol
         body: string
       }
       expect(sent.body).not.toContain('PRIVATE')
-      expect(sent.body).toContain('Created from Quackback ticket')
+      expect(sent.body).toContain('Created from Zenith ticket')
     } finally {
       fetchSpy.mockRestore()
     }

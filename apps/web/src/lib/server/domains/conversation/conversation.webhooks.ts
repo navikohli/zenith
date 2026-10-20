@@ -9,7 +9,7 @@
  * userId). Synthetic anonymous emails are stripped via realEmail() everywhere
  * an email surfaces.
  */
-import type { ConversationId, SlaPolicyId } from '@quackback/ids'
+import type { ConversationId, SlaPolicyId } from '@zenith/ids'
 import type { Conversation, ConversationMessage } from '@/lib/server/db'
 import type { Actor } from '@/lib/server/policy/types'
 import type { ConversationAuthorInput } from './conversation.types'

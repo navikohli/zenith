@@ -70,7 +70,7 @@ function postFromHost(data: unknown) {
   act(() => {
     window.dispatchEvent(
       new MessageEvent('message', {
-        data: { type: 'quackback:identify', data },
+        data: { type: 'zenith:identify', data },
         source: window.parent,
       })
     )

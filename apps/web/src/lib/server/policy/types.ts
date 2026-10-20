@@ -8,7 +8,7 @@
  * Decisions are an explicit discriminated union so the deny case
  * always carries a machine-readable reason for logging and UI hints.
  */
-import type { PrincipalId, SegmentId } from '@quackback/ids'
+import type { PrincipalId, SegmentId } from '@zenith/ids'
 import type { Role, PrincipalType } from '@/lib/shared/roles'
 import type { PermissionKey } from '@/lib/shared/permissions'
 

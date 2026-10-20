@@ -30,7 +30,7 @@ import { votedPostsKeys } from '@/lib/client/hooks/use-portal-posts-query'
 import { adminQueries } from '@/lib/client/queries/admin'
 import type { PostDetails } from '@/lib/shared/types'
 import type { PostListItem, InboxPostListResult, PostTag } from '@/lib/shared/db-types'
-import type { PrincipalId, PostId, PostStatusId, PostTagId, BoardId } from '@quackback/ids'
+import type { PrincipalId, PostId, PostStatusId, PostTagId, BoardId } from '@zenith/ids'
 import type { CreatePostInput } from '@/lib/shared/types'
 
 // ============================================================================

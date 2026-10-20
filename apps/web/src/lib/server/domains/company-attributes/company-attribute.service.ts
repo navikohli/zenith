@@ -1,5 +1,5 @@
 import { companyAttributeDefinitions } from '@/lib/server/db'
-import type { CompanyAttributeId } from '@quackback/ids'
+import type { CompanyAttributeId } from '@zenith/ids'
 import { createAttributeDefinitionService } from '@/lib/server/domains/attribute-definitions/attribute-definition.service'
 import type {
   CompanyAttribute,

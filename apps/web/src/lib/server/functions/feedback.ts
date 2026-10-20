@@ -8,8 +8,8 @@
 
 import { z } from 'zod'
 import { createServerFn } from '@tanstack/react-start'
-import type { PrincipalId } from '@quackback/ids'
-import { isTypeId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
+import { isTypeId } from '@zenith/ids'
 
 import { requireAuth } from './auth-helpers'
 import { PERMISSIONS } from '@/lib/shared/permissions'

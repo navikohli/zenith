@@ -17,7 +17,7 @@ import {
   foreignKey,
 } from 'drizzle-orm/pg-core'
 import { relations, sql } from 'drizzle-orm'
-import { typeIdWithDefault, typeIdColumn } from '@quackback/ids/drizzle'
+import { typeIdWithDefault, typeIdColumn } from '@zenith/ids/drizzle'
 import { principal } from './auth'
 
 export type ExportRunStatus = 'pending' | 'running' | 'completed' | 'failed'
@@ -35,7 +35,7 @@ export const exportRuns = pgTable(
       .$type<ExportRunStatus>()
       .notNull()
       .default('pending'),
-    // Download name presented to the admin (quackback-export-<slug>-<date>.zip).
+    // Download name presented to the admin (zenith-export-<slug>-<date>.zip).
     fileName: text('file_name').notNull(),
     // Bucket object key (exports/<runId>.zip). Null until the upload lands.
     s3Key: text('s3_key'),

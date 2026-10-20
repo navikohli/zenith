@@ -43,7 +43,7 @@ import { sql } from 'drizzle-orm'
 import { db, principal, eq, and, inArray } from '@/lib/server/db'
 import { getExecuteRows } from '@/lib/server/utils/execute-rows'
 import { currentWorkspaceNamespace } from '@/lib/server/workspaces/workspace-keyed'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 import { logger } from '@/lib/server/logger'
 
 const log = logger.child({ component: 'presence' })

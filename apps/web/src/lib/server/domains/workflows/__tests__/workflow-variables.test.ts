@@ -8,7 +8,7 @@
  */
 import { describe, it, expect, beforeEach, afterEach, afterAll } from 'vitest'
 import { vi } from 'vitest'
-import { createId, type PrincipalId, type UserId, type ConversationId } from '@quackback/ids'
+import { createId, type PrincipalId, type UserId, type ConversationId } from '@zenith/ids'
 
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { conversations, principal, user, settings, eq } from '@/lib/server/db'
@@ -127,7 +127,7 @@ describe.skipIf(!fixture.available)('resolveWorkflowVariables (real DB, rolled b
     // where a template-authored fallback like `{first_name|there}` applies.
     expect(vars.first_name).toBe('')
     expect(vars.name).toBe('')
-    // The synthetic anon.quackback.io placeholder must never surface.
+    // The synthetic anon.zenith.io placeholder must never surface.
     expect(vars.email).toBe('')
     expect(vars.workspace_name).toBe('Acme Test Co')
   })

@@ -130,7 +130,7 @@
       "name": "Asana",
       "category": "issue_tracking",
       "iconBg": "bg-[#F06A6A]",
-      "docsUrl": "https://www.quackback.io/docs/integrations/asana",
+      "docsUrl": "/source.html",
       "configurable": true,
       "envPrefix": "INTEGRATION_ASANA_",
       "fields": [
@@ -155,7 +155,7 @@
       "name": "Azure DevOps",
       "category": "issue_tracking",
       "iconBg": "bg-[#0078D4]",
-      "docsUrl": "https://www.quackback.io/docs/integrations/azure-devops",
+      "docsUrl": "/source.html",
       "configurable": false,
       "envPrefix": "INTEGRATION_AZURE_DEVOPS_",
       "fields": []
@@ -165,7 +165,7 @@
       "name": "ClickUp",
       "category": "issue_tracking",
       "iconBg": "bg-[#7B68EE]",
-      "docsUrl": "https://www.quackback.io/docs/integrations/clickup",
+      "docsUrl": "/source.html",
       "configurable": true,
       "envPrefix": "INTEGRATION_CLICKUP_",
       "fields": [
@@ -190,7 +190,7 @@
       "name": "Discord",
       "category": "notifications",
       "iconBg": "bg-[#5865F2]",
-      "docsUrl": "https://www.quackback.io/docs/integrations/discord",
+      "docsUrl": "/source.html",
       "configurable": true,
       "envPrefix": "INTEGRATION_DISCORD_",
       "fields": [
@@ -222,7 +222,7 @@
       "name": "Freshdesk",
       "category": "support_crm",
       "iconBg": "bg-[#25C16F]",
-      "docsUrl": "https://www.quackback.io/docs/integrations/freshdesk",
+      "docsUrl": "/source.html",
       "configurable": false,
       "envPrefix": "INTEGRATION_FRESHDESK_",
       "fields": []
@@ -232,7 +232,7 @@
       "name": "GitHub",
       "category": "issue_tracking",
       "iconBg": "bg-[#24292F]",
-      "docsUrl": "https://www.quackback.io/docs/integrations/github",
+      "docsUrl": "/source.html",
       "configurable": true,
       "envPrefix": "INTEGRATION_GITHUB_",
       "fields": [
@@ -257,7 +257,7 @@
       "name": "GitLab",
       "category": "issue_tracking",
       "iconBg": "bg-[#FC6D26]",
-      "docsUrl": "https://www.quackback.io/docs/integrations/gitlab",
+      "docsUrl": "/source.html",
       "configurable": true,
       "envPrefix": "INTEGRATION_GITLAB_",
       "fields": [
@@ -293,7 +293,7 @@
       "name": "HubSpot",
       "category": "support_crm",
       "iconBg": "bg-[#FF7A59]",
-      "docsUrl": "https://www.quackback.io/docs/integrations/hubspot",
+      "docsUrl": "/source.html",
       "configurable": true,
       "envPrefix": "INTEGRATION_HUBSPOT_",
       "fields": [
@@ -318,7 +318,7 @@
       "name": "Intercom",
       "category": "support_crm",
       "iconBg": "bg-[#1F8DED]",
-      "docsUrl": "https://www.quackback.io/docs/integrations/intercom",
+      "docsUrl": "/source.html",
       "configurable": true,
       "envPrefix": "INTEGRATION_INTERCOM_",
       "fields": [
@@ -343,7 +343,7 @@
       "name": "Jira",
       "category": "issue_tracking",
       "iconBg": "bg-[#0052CC]",
-      "docsUrl": "https://www.quackback.io/docs/integrations/jira",
+      "docsUrl": "/source.html",
       "configurable": true,
       "envPrefix": "INTEGRATION_JIRA_",
       "fields": [
@@ -368,7 +368,7 @@
       "name": "Linear",
       "category": "issue_tracking",
       "iconBg": "bg-[#5E6AD2]",
-      "docsUrl": "https://www.quackback.io/docs/integrations/linear",
+      "docsUrl": "/source.html",
       "configurable": true,
       "envPrefix": "INTEGRATION_LINEAR_",
       "fields": [
@@ -393,7 +393,7 @@
       "name": "Make",
       "category": "automation",
       "iconBg": "bg-[#6D00CC]",
-      "docsUrl": "https://www.quackback.io/docs/integrations/make",
+      "docsUrl": "/source.html",
       "configurable": false,
       "envPrefix": "INTEGRATION_MAKE_",
       "fields": []
@@ -403,7 +403,7 @@
       "name": "Monday.com",
       "category": "issue_tracking",
       "iconBg": "bg-[#FF3D57]",
-      "docsUrl": "https://www.quackback.io/docs/integrations/monday",
+      "docsUrl": "/source.html",
       "configurable": true,
       "envPrefix": "INTEGRATION_MONDAY_",
       "fields": [
@@ -428,7 +428,7 @@
       "name": "n8n",
       "category": "automation",
       "iconBg": "bg-[#EA4B71]",
-      "docsUrl": "https://www.quackback.io/docs/integrations/n8n",
+      "docsUrl": "/source.html",
       "configurable": false,
       "envPrefix": "INTEGRATION_N8N_",
       "fields": []
@@ -438,7 +438,7 @@
       "name": "Notion",
       "category": "issue_tracking",
       "iconBg": "bg-[#000000]",
-      "docsUrl": "https://www.quackback.io/docs/integrations/notion",
+      "docsUrl": "/source.html",
       "configurable": true,
       "envPrefix": "INTEGRATION_NOTION_",
       "fields": [
@@ -463,7 +463,7 @@
       "name": "ntfy",
       "category": "notifications",
       "iconBg": "bg-[#317f6f]",
-      "docsUrl": "https://www.quackback.io/docs/integrations/ntfy",
+      "docsUrl": "/source.html",
       "configurable": false,
       "envPrefix": "INTEGRATION_NTFY_",
       "fields": []
@@ -473,7 +473,7 @@
       "name": "Salesforce",
       "category": "support_crm",
       "iconBg": "bg-[#00A1E0]",
-      "docsUrl": "https://www.quackback.io/docs/integrations/salesforce",
+      "docsUrl": "/source.html",
       "configurable": true,
       "envPrefix": "INTEGRATION_SALESFORCE_",
       "fields": [
@@ -508,7 +508,7 @@
       "name": "Shortcut",
       "category": "issue_tracking",
       "iconBg": "bg-[#58B1E4]",
-      "docsUrl": "https://www.quackback.io/docs/integrations/shortcut",
+      "docsUrl": "/source.html",
       "configurable": false,
       "envPrefix": "INTEGRATION_SHORTCUT_",
       "fields": []
@@ -518,7 +518,7 @@
       "name": "Slack",
       "category": "notifications",
       "iconBg": "bg-[#4A154B]",
-      "docsUrl": "https://www.quackback.io/docs/integrations/slack",
+      "docsUrl": "/source.html",
       "configurable": true,
       "envPrefix": "INTEGRATION_SLACK_",
       "fields": [
@@ -551,7 +551,7 @@
       "name": "Stripe",
       "category": "support_crm",
       "iconBg": "bg-[#635BFF]",
-      "docsUrl": "https://www.quackback.io/docs/integrations/stripe",
+      "docsUrl": "/source.html",
       "configurable": false,
       "envPrefix": "INTEGRATION_STRIPE_",
       "fields": []
@@ -561,7 +561,7 @@
       "name": "Microsoft Teams",
       "category": "notifications",
       "iconBg": "bg-[#6264A7]",
-      "docsUrl": "https://www.quackback.io/docs/integrations/teams",
+      "docsUrl": "/source.html",
       "configurable": true,
       "envPrefix": "INTEGRATION_TEAMS_",
       "fields": [
@@ -586,7 +586,7 @@
       "name": "Trello",
       "category": "issue_tracking",
       "iconBg": "bg-[#0052CC]",
-      "docsUrl": "https://www.quackback.io/docs/integrations/trello",
+      "docsUrl": "/source.html",
       "configurable": true,
       "envPrefix": "INTEGRATION_TRELLO_",
       "fields": [
@@ -611,7 +611,7 @@
       "name": "Zapier",
       "category": "automation",
       "iconBg": "bg-[#FF4A00]",
-      "docsUrl": "https://www.quackback.io/docs/integrations/zapier",
+      "docsUrl": "/source.html",
       "configurable": false,
       "envPrefix": "INTEGRATION_ZAPIER_",
       "fields": []
@@ -621,7 +621,7 @@
       "name": "Zendesk",
       "category": "support_crm",
       "iconBg": "bg-[#03363D]",
-      "docsUrl": "https://www.quackback.io/docs/integrations/zendesk",
+      "docsUrl": "/source.html",
       "configurable": true,
       "envPrefix": "INTEGRATION_ZENDESK_",
       "fields": [

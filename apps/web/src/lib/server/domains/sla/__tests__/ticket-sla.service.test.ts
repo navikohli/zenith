@@ -8,7 +8,7 @@
  * passes in silence. Runs inside the db-test-fixture rollback transaction.
  */
 import { describe, it, expect, beforeEach, afterEach, afterAll, vi } from 'vitest'
-import type { TicketId, TicketStatusId } from '@quackback/ids'
+import type { TicketId, TicketStatusId } from '@zenith/ids'
 
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import {

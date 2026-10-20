@@ -17,7 +17,7 @@
  * boundary (it owns every principal INSERT).
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 import type { Actor } from '@/lib/server/policy/types'
 
 const hoisted = vi.hoisted(() => ({
@@ -312,7 +312,7 @@ describe('listParticipantReplyRecipients', () => {
       {
         principalId: 'principal_p3',
         type: 'anonymous',
-        userEmail: 'temp-123@anon.quackback.io',
+        userEmail: 'temp-123@anon.zenith.io',
         contactEmail: null,
       },
       // The conversation's own visitor, also a participant row — excluded.

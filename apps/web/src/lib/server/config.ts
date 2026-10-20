@@ -50,7 +50,7 @@ const HEADER_TOKEN_RE = /^[!#$%&'*+\-.^_`|~0-9a-z]+$/
 /**
  * Why a `TRUSTED_CLIENT_IP_HEADER` value cannot be used, or null when it can.
  * X-Forwarded-For is a list whose trust is positional, which is what
- * TRUSTED_PROXY_HOPS handles; the app's own `x-quackback-*` headers carry
+ * TRUSTED_PROXY_HOPS handles; the app's own `x-zenith-*` headers carry
  * addresses it resolved or verified itself and must never be taken from a proxy.
  */
 function trustedClientIpHeaderProblem(name: string): string | null {
@@ -58,7 +58,7 @@ function trustedClientIpHeaderProblem(name: string): string | null {
   if (name === 'x-forwarded-for') {
     return 'X-Forwarded-For is a list; use TRUSTED_PROXY_HOPS to pick the trusted entry instead'
   }
-  if (name.startsWith('x-quackback-')) return 'x-quackback-* headers are reserved for the app'
+  if (name.startsWith('x-zenith-')) return 'x-zenith-* headers are reserved for the app'
   return null
 }
 
@@ -169,7 +169,7 @@ const configSchema = z
      */
     fleetRootKey: z
       .string()
-      .min(32, 'QUACKBACK_FLEET_ROOT_KEY must be at least 32 characters')
+      .min(32, 'ZENITH_FLEET_ROOT_KEY must be at least 32 characters')
       .optional(),
 
     // Auth
@@ -217,7 +217,7 @@ const configSchema = z
      * credential draws on it, so with N sending processes set roughly the
      * account quota divided by N. Unset, the transport paces at 10/s, under the
      * smallest production quota of 14/s. Read by the transport itself
-     * (`sesMaxSendRate` in @quackback/email); validated here so a malformed value
+     * (`sesMaxSendRate` in @zenith/email); validated here so a malformed value
      * stops boot instead of being quietly replaced by the default.
      */
     // Blank or whitespace-only is unset, as the transport reads it: coercing
@@ -301,7 +301,7 @@ const configSchema = z
         message:
           `BASE_URL is ${cfg.baseUrl}, which is a wildcard pattern rather than an origin. ` +
           'Once a wildcard custom domain is attached, RAILWAY_PUBLIC_DOMAIN becomes ' +
-          '`*.example.com`; under QUACKBACK_TENANCY=pooled the per-request origin comes ' +
+          '`*.example.com`; under ZENITH_TENANCY=pooled the per-request origin comes ' +
           'from the workspace record, so set BASE_URL to a real fleet hostname.',
       })
     }
@@ -338,7 +338,7 @@ const configSchema = z
         ctx.addIssue({
           code: 'custom',
           path: ['controlDatabaseUrl'],
-          message: 'QUACKBACK_CONTROL_DATABASE_URL is required when QUACKBACK_TENANCY=pooled',
+          message: 'ZENITH_CONTROL_DATABASE_URL is required when ZENITH_TENANCY=pooled',
         })
       }
       if (cfg.databaseUrl) {
@@ -346,7 +346,7 @@ const configSchema = z
           code: 'custom',
           path: ['databaseUrl'],
           message:
-            'DATABASE_URL must be unset when QUACKBACK_TENANCY=pooled — the database is resolved per request',
+            'DATABASE_URL must be unset when ZENITH_TENANCY=pooled — the database is resolved per request',
         })
       }
     }
@@ -374,14 +374,14 @@ function buildConfigFromEnv(): unknown {
     dbIdleTimeout: env('DB_IDLE_TIMEOUT'),
 
     // Tenancy
-    tenancyMode: env('QUACKBACK_TENANCY'),
-    controlDatabaseUrl: env('QUACKBACK_CONTROL_DATABASE_URL'),
+    tenancyMode: env('ZENITH_TENANCY'),
+    controlDatabaseUrl: env('ZENITH_CONTROL_DATABASE_URL'),
     workspacePoolMax: env('WORKSPACE_POOL_MAX'),
     workspacePoolIdleSeconds: env('WORKSPACE_POOL_IDLE_SECONDS'),
     workspacePoolMaxEntries: env('WORKSPACE_POOL_MAX_ENTRIES'),
     workspaceRegistryTtlMs: env('WORKSPACE_REGISTRY_TTL_MS'),
     workspaceDormantAfterHours: env('WORKSPACE_DORMANT_AFTER_HOURS'),
-    fleetRootKey: env('QUACKBACK_FLEET_ROOT_KEY'),
+    fleetRootKey: env('ZENITH_FLEET_ROOT_KEY'),
 
     // Auth
     secretKey: process.env.SECRET_KEY,
@@ -460,7 +460,7 @@ function buildConfigFromEnv(): unknown {
 let _config: Config | null = null
 
 function isBuildTime(): boolean {
-  return process.env.QUACKBACK_BUILD === '1'
+  return process.env.ZENITH_BUILD === '1'
 }
 
 function loadConfig(): Config {
@@ -486,7 +486,7 @@ function loadConfig(): Config {
     // Logged here because this runs once per process.
     log.warn(
       { userContentUrl: _config.userContentUrl },
-      'USER_CONTENT_URL is ignored under QUACKBACK_TENANCY=pooled: the storage route resolves ' +
+      'USER_CONTENT_URL is ignored under ZENITH_TENANCY=pooled: the storage route resolves ' +
         'the workspace from the Host header, so one shared host cannot serve every workspace'
     )
   }
@@ -517,7 +517,7 @@ export const config = {
    * Under pooled tenancy the fleet has no single origin: one process serves
    * many hostnames, and `BASE_URL` is the platform's own domain. Every absolute
    * URL the app produces resolves from here — email links, asset URLs,
-   * `__QUACKBACK_URL__` in the widget SDK, OAuth callbacks, the MCP resource
+   * `__ZENITH_URL__` in the widget SDK, OAuth callbacks, the MCP resource
    * metadata — as do better-auth's `trustedOrigins` and the cookie `secure`
    * flag. So a fleet-wide value means **every workspace emails links to another
    * workspace's hostname** (SAAS-HOSTING-STACK.md §9).
@@ -545,7 +545,7 @@ export const config = {
     const url = loadConfig().databaseUrl
     if (!url) {
       throw new Error(
-        'DATABASE_URL is not configured. Under QUACKBACK_TENANCY=pooled the database is ' +
+        'DATABASE_URL is not configured. Under ZENITH_TENANCY=pooled the database is ' +
           'resolved per request from the workspace registry; use the workspace scope instead.'
       )
     }
@@ -581,7 +581,7 @@ export const config = {
   get dbPoolMax() {
     const configured = loadConfig().dbPoolMax
     if (configured) return configured
-    return process.env.QUACKBACK_ROLE === 'worker' ? 20 : 10
+    return process.env.ZENITH_ROLE === 'worker' ? 20 : 10
   },
   get dbIdleTimeout() {
     return loadConfig().dbIdleTimeout
@@ -802,7 +802,7 @@ export const config = {
   },
 
   get platformCredentialsSource(): 'db' | 'env' | 'control-plane' {
-    if (process.env.QUACKBACK_TENANCY === 'pooled') return 'control-plane'
+    if (process.env.ZENITH_TENANCY === 'pooled') return 'control-plane'
     return process.env.PLATFORM_CREDENTIALS_SOURCE === 'env' ? 'env' : 'db'
   },
 

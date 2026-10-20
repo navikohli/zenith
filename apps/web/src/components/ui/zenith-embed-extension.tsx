@@ -7,10 +7,10 @@ import {
   ARTICLE_URL_PASTE_RE,
   TICKET_URL_PASTE_RE,
 } from '@/lib/shared/embeds/parse-embed-url'
-import { QuackbackEmbedCard } from '@/components/shared/quackback-embed-card'
+import { ZenithEmbedCard } from '@/components/shared/zenith-embed-card'
 import { cn } from '@/lib/shared/utils'
 
-export interface QuackbackEmbedOptions {
+export interface ZenithEmbedOptions {
   /** When true, pasting a post/changelog URL converts it into an embed node.
    * Off by default so the node is always in the schema (existing content
    * round-trips) but paste only fires on editors that opt in. */
@@ -18,24 +18,24 @@ export interface QuackbackEmbedOptions {
 }
 
 /**
- * In-editor render for a Quackback link embed. Reads the `{ kind, id }` off the
- * node and defers to the shared, viewer-scoped {@link QuackbackEmbedCard}. The
+ * In-editor render for a Zenith link embed. Reads the `{ kind, id }` off the
+ * node and defers to the shared, viewer-scoped {@link ZenithEmbedCard}. The
  * wrapper is always mounted (ProseMirror needs a DOM host) and stays
  * non-editable; an empty node simply renders nothing inside it.
  */
-function QuackbackEmbedNodeView({ node, selected, deleteNode }: ReactNodeViewProps) {
+function ZenithEmbedNodeView({ node, selected, deleteNode }: ReactNodeViewProps) {
   const kind = node.attrs.kind as 'post' | 'changelog' | 'article' | 'ticket' | null
   const id = node.attrs.id as string | null
   return (
     <NodeViewWrapper
       className={cn(
-        'quackback-embed-nodeview group relative my-2 inline-block max-w-full rounded-md',
+        'zenith-embed-nodeview group relative my-2 inline-block max-w-full rounded-md',
         selected && 'ring-2 ring-ring ring-offset-1'
       )}
       contentEditable={false}
     >
       {/* Inert preview while composing — no live voting, no navigation. */}
-      {kind && id ? <QuackbackEmbedCard kind={kind} id={id} interactive={false} /> : null}
+      {kind && id ? <ZenithEmbedCard kind={kind} id={id} interactive={false} /> : null}
       {/* Remove control. mousedown-preventDefault so it doesn't steal the
           editor selection before the click fires. */}
       <button
@@ -56,13 +56,13 @@ function QuackbackEmbedNodeView({ node, selected, deleteNode }: ReactNodeViewPro
 }
 
 /**
- * A first-party TipTap node for embedding Quackback posts / changelog entries.
+ * A first-party TipTap node for embedding Zenith posts / changelog entries.
  * An atom block (no editable children) that paste rules create from a pasted
- * URL. Serializes to `<div data-quackback-embed data-kind data-id>` so saved
+ * URL. Serializes to `<div data-zenith-embed data-kind data-id>` so saved
  * content round-trips through any editor that has this node in its schema.
  */
-export const QuackbackEmbed = Node.create<QuackbackEmbedOptions>({
-  name: 'quackbackEmbed',
+export const ZenithEmbed = Node.create<ZenithEmbedOptions>({
+  name: 'zenithEmbed',
   group: 'block',
   atom: true,
   selectable: true,
@@ -82,7 +82,7 @@ export const QuackbackEmbed = Node.create<QuackbackEmbedOptions>({
   parseHTML() {
     return [
       {
-        tag: 'div[data-quackback-embed]',
+        tag: 'div[data-zenith-embed]',
         getAttrs: (el) => ({
           kind: (el as HTMLElement).getAttribute('data-kind'),
           id: (el as HTMLElement).getAttribute('data-id'),
@@ -95,7 +95,7 @@ export const QuackbackEmbed = Node.create<QuackbackEmbedOptions>({
     return [
       'div',
       {
-        'data-quackback-embed': '1',
+        'data-zenith-embed': '1',
         'data-kind': HTMLAttributes.kind,
         'data-id': HTMLAttributes.id,
       },
@@ -103,7 +103,7 @@ export const QuackbackEmbed = Node.create<QuackbackEmbedOptions>({
   },
 
   addNodeView() {
-    return ReactNodeViewRenderer(QuackbackEmbedNodeView)
+    return ReactNodeViewRenderer(ZenithEmbedNodeView)
   },
 
   addPasteRules() {

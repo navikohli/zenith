@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import type { ApiKey } from '@/lib/server/domains/api-keys'
-import type { PrincipalId, ApiKeyId, UserId } from '@quackback/ids'
+import type { PrincipalId, ApiKeyId, UserId } from '@zenith/ids'
 
 /** DeveloperConfig for the mocked getDeveloperConfig (everything enabled). */
 const devConfig = (overrides = {}) => ({
@@ -84,11 +84,11 @@ vi.mock('@/lib/server/db', async (importOriginal) => ({
   eq: vi.fn((_a: unknown, _b: unknown) => 'eq-condition'),
 }))
 
-// Mock getTypeIdPrefix from @quackback/ids — extract everything before the last
+// Mock getTypeIdPrefix from @zenith/ids — extract everything before the last
 // underscore, matching the real TypeID split (the suffix is a fixed base32
 // block with no underscores, so this also works for compound prefixes like
 // kb_article).
-vi.mock('@quackback/ids', async (importOriginal) => {
+vi.mock('@zenith/ids', async (importOriginal) => {
   const actual = (await importOriginal()) as Record<string, unknown>
   return {
     ...actual,
@@ -690,7 +690,7 @@ describe('MCP HTTP Handler', () => {
       const body = (await response.json()) as {
         result: { serverInfo: { name: string }; capabilities: { tools: unknown } }
       }
-      expect(body.result.serverInfo.name).toBe('quackback')
+      expect(body.result.serverInfo.name).toBe('zenith')
       expect(body.result.capabilities.tools).toBeDefined()
     })
 
@@ -753,12 +753,12 @@ describe('MCP HTTP Handler', () => {
         result: { resources: Array<{ uri: string; name: string }> }
       }
       const uris = body.result.resources.map((r) => r.uri)
-      expect(uris).toContain('quackback://boards')
-      expect(uris).toContain('quackback://statuses')
-      expect(uris).toContain('quackback://tags')
-      expect(uris).toContain('quackback://roadmaps')
-      expect(uris).toContain('quackback://members')
-      expect(uris).toContain('quackback://help-center/categories')
+      expect(uris).toContain('zenith://boards')
+      expect(uris).toContain('zenith://statuses')
+      expect(uris).toContain('zenith://tags')
+      expect(uris).toContain('zenith://roadmaps')
+      expect(uris).toContain('zenith://members')
+      expect(uris).toContain('zenith://help-center/categories')
       expect(uris).toHaveLength(6)
     })
 
@@ -1568,7 +1568,7 @@ describe('MCP HTTP Handler', () => {
       const response = await handleMcpRequest(
         mcpRequest(
           jsonRpcRequest('resources/read', {
-            uri: 'quackback://boards',
+            uri: 'zenith://boards',
           })
         )
       )

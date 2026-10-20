@@ -7,7 +7,7 @@
 import { z } from 'zod'
 import { createServerFn } from '@tanstack/react-start'
 import { getRequestHeaders } from '@tanstack/react-start/server'
-import type { PrincipalId, RoleId } from '@quackback/ids'
+import type { PrincipalId, RoleId } from '@zenith/ids'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import { DomainException } from '@/lib/shared/errors'
 import {

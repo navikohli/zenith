@@ -5,7 +5,7 @@
  * name. Callers use this to decide whether a name is the team's own text.
  */
 import { db, principal, inArray } from '@/lib/server/db'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 import { isTeamMember } from '@/lib/shared/roles'
 
 /**

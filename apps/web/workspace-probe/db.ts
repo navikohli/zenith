@@ -19,7 +19,7 @@
  */
 
 import postgres from 'postgres'
-import { fromUuid, isTypeIdFormat, toUuid, type IdPrefix, type TypeId } from '@quackback/ids'
+import { fromUuid, isTypeIdFormat, toUuid, type IdPrefix, type TypeId } from '@zenith/ids'
 import type { WorkspaceDb, WorkspaceSlot } from './types'
 
 /** Thrown when a workspace database cannot be reached or queried. */

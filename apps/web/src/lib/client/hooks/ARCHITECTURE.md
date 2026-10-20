@@ -226,7 +226,7 @@ registerHook('slack', slackHook)
 
 ```typescript
 // hooks/email/handler.ts
-import { sendStatusChangeEmail, sendNewCommentEmail } from '@quackback/email'
+import { sendStatusChangeEmail, sendNewCommentEmail } from '@zenith/email'
 import type { HookHandler, EmailTarget, EmailConfig } from '../types'
 
 export const emailHook: HookHandler = {

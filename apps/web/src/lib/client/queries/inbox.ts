@@ -12,7 +12,7 @@
  * invalidations keep matching.
  */
 import { queryOptions } from '@tanstack/react-query'
-import type { ConversationId, TicketId } from '@quackback/ids'
+import type { ConversationId, TicketId } from '@zenith/ids'
 import {
   listInboxItemsFn,
   fetchInboxCountsFn,

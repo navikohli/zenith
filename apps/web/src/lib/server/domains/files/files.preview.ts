@@ -14,7 +14,7 @@
  * only a fault in storage, the database or a missing parser throws, so the
  * queue retries.
  */
-import type { FileId } from '@quackback/ids'
+import type { FileId } from '@zenith/ids'
 import {
   db,
   files,

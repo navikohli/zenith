@@ -96,7 +96,7 @@ vi.mock('@/lib/server/domains/settings/tier-limits.service', () => ({
   getTierLimits: vi.fn().mockResolvedValue({ features: { customOidcProvider: true } }),
 }))
 
-vi.mock('@quackback/email', () => ({
+vi.mock('@zenith/email', () => ({
   isEmailConfigured: vi.fn().mockReturnValue(true),
 }))
 

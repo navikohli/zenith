@@ -1,17 +1,17 @@
 /**
- * Shared email styles for Quackback emails
+ * Shared email styles for Zenith emails
  *
  * Ensures consistent branding across all email templates.
  * Colors are derived from the app's design system.
  */
 
-export const DEFAULT_LOGO_URL = 'https://quackback.io/logo.png'
+export const DEFAULT_LOGO_URL = `${(process.env.BASE_URL || 'http://localhost:3100').replace(/\/$/, '')}/logo.png`
 
 // Brand colors (converted from oklch to hex for email compatibility)
 export const colors = {
-  // Primary gold - oklch(0.886 0.176 86) ≈ #FFD43B
-  primary: '#FFD43B',
-  primaryDark: '#F2C230',
+  // Primary gold - oklch(0.886 0.176 86) ≈ #6CE5C8
+  primary: '#6CE5C8',
+  primaryDark: '#37BCA1',
 
   // Text colors
   heading: '#0f172a', // slate-900

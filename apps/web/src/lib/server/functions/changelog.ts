@@ -5,10 +5,10 @@
  */
 
 import { createServerFn, createServerOnlyFn } from '@tanstack/react-start'
-import type { BoardId, ChangelogCategoryId, ChangelogId, PostId, SegmentId } from '@quackback/ids'
+import type { BoardId, ChangelogCategoryId, ChangelogId, PostId, SegmentId } from '@zenith/ids'
 // Note: BoardId is only used for searchShippedPosts filtering
 import { sanitizeTiptapContent } from '@/lib/server/sanitize-tiptap'
-import { isValidTypeId } from '@quackback/ids'
+import { isValidTypeId } from '@zenith/ids'
 import { NotFoundError } from '@/lib/shared/errors'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import { requireAuth, getOptionalAuth, policyActorFromAuth } from './auth-helpers'

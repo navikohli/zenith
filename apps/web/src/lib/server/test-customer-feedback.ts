@@ -1,5 +1,5 @@
 import type { Actor } from '@/lib/server/policy/types'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 import {
   db,
   eq,

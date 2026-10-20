@@ -24,8 +24,8 @@
  *
  * ACTION tools are forced to `writeToolPolicy: 'propose'` (see
  * `resolveEffectiveToolMode`) regardless of each tool's configured mode:
- * a copilot turn is a teammate asking Quinn a
- * question about the conversation, never Quinn acting in it directly, so a
+ * a copilot turn is a teammate asking ZenithAssistant a
+ * question about the conversation, never ZenithAssistant acting in it directly, so a
  * write-tool call turns into a pending-approval proposal instead of running
  * for real (P2-C.4, "act-on-approval"). This includes metadata writes such as
  * `set_attribute`: every state change requires an explicit teammate decision.
@@ -105,7 +105,7 @@ export async function handleCopilot({ request }: { request: Request }): Promise<
   }
 
   // The AG-UI history maps onto the runtime's thread vocabulary (teammate
-  // turns read as 'customer' — the one asking Quinn); the question is the
+  // turns read as 'customer' — the one asking ZenithAssistant); the question is the
   // trailing user turn, length-gated exactly as the old request schema was.
   const messages = aguiThreadMessages(agui.messages, {
     maxTurns: MAX_HISTORY_TURNS + 1,
@@ -116,7 +116,7 @@ export async function handleCopilot({ request }: { request: Request }): Promise<
     return errorResponse('INVALID_REQUEST', 'A question is required', 400)
   }
 
-  // Provisioning Quinn's identity is idempotent and, like the sandbox, not a
+  // Provisioning ZenithAssistant's identity is idempotent and, like the sandbox, not a
   // conversation write of its own.
   const assistant = await ensureAssistantPrincipal()
 
@@ -137,7 +137,7 @@ export async function handleCopilot({ request }: { request: Request }): Promise<
           ticketId,
           surface: 'copilot',
           // Attributes this turn to the asking teammate in the usage log, for
-          // the per-teammate breakdown in analytics/copilot-usage.ts; Quinn's
+          // the per-teammate breakdown in analytics/copilot-usage.ts; ZenithAssistant's
           // own principal id above never identifies the human on the other end.
           actorPrincipalId: auth.principal.id,
           sourceTypes: parsed.sourceTypes,

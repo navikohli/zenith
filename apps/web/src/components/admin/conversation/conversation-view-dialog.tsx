@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
 import { PlusIcon, TrashIcon } from '@heroicons/react/24/solid'
-import type { ConversationViewId } from '@quackback/ids'
+import type { ConversationViewId } from '@zenith/ids'
 import {
   createConversationViewFn,
   updateConversationViewFn,

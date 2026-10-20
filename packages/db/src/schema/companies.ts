@@ -8,7 +8,7 @@
  */
 import { pgTable, text, integer, timestamp, jsonb, uniqueIndex } from 'drizzle-orm/pg-core'
 import { relations, sql } from 'drizzle-orm'
-import { typeIdWithDefault } from '@quackback/ids/drizzle'
+import { typeIdWithDefault } from '@zenith/ids/drizzle'
 import { principal } from './auth'
 
 export const companies = pgTable(

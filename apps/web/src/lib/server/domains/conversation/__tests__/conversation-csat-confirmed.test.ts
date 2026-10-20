@@ -1,13 +1,13 @@
 /**
  * Real-DB coverage for the resolved_confirmed CSAT trigger: a positive rating
- * while Quinn's active involvement already answered counts as the customer's
+ * while ZenithAssistant's active involvement already answered counts as the customer's
  * explicit affirmation (§ recordOutcome, otherwise unreachable pre-CSAT). The
  * confirm runs from a queued reaction, possibly late, so it acts only on the
  * involvement the rating was given about: the one open when it was submitted.
  */
 import { describe, it, expect, beforeEach, afterEach, afterAll } from 'vitest'
 import { vi } from 'vitest'
-import type { AssistantInvolvementId, ConversationId } from '@quackback/ids'
+import type { AssistantInvolvementId, ConversationId } from '@zenith/ids'
 
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { assistantInvolvements, conversations, principal, eq } from '@/lib/server/db'
@@ -65,7 +65,7 @@ describe.skipIf(!fixture.available)('confirmResolutionFromCsat (real DB, rolled 
   afterEach(fixture.rollback)
   afterAll(fixture.close)
 
-  it('resolves confirmed on a positive rating while Quinn already answered', async () => {
+  it('resolves confirmed on a positive rating while ZenithAssistant already answered', async () => {
     const conversationId = await seedConversation()
     const involvement = await seedInvolvement(conversationId, new Date())
 
@@ -83,7 +83,7 @@ describe.skipIf(!fixture.available)('confirmResolutionFromCsat (real DB, rolled 
     expect(await statusOf(involvement.id)).toBe('active')
   })
 
-  it('leaves the involvement active when Quinn has not yet answered', async () => {
+  it('leaves the involvement active when ZenithAssistant has not yet answered', async () => {
     const conversationId = await seedConversation()
     const involvement = await seedInvolvement(conversationId, null)
 
@@ -101,7 +101,7 @@ describe.skipIf(!fixture.available)('confirmResolutionFromCsat (real DB, rolled 
   it('a late confirm never confirms an involvement opened after the rating', async () => {
     const conversationId = await seedConversation()
     // The rating (10:20) was about the first involvement, which has since
-    // handed off; Quinn engaged again at 10:40 and has answered.
+    // handed off; ZenithAssistant engaged again at 10:40 and has answered.
     const rated = await seedInvolvement(conversationId, at('10:10'), {
       createdAt: at('10:00'),
       status: 'handed_off',

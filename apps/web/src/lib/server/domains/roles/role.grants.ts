@@ -5,7 +5,7 @@
  * service stays within size bounds.
  */
 import { db } from '@/lib/server/db'
-import type { RoleId } from '@quackback/ids'
+import type { RoleId } from '@zenith/ids'
 import { SYSTEM_ROLES, type PermissionKey } from '@/lib/shared/permissions'
 import { ForbiddenError } from '@/lib/shared/errors'
 import { isAdmin, type Role } from '@/lib/shared/roles'

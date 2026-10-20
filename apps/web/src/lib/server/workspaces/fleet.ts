@@ -13,7 +13,7 @@
  *
  * Two properties are deliberate.
  *
- * **Single-workspace behaviour is untouched.** Under `QUACKBACK_TENANCY=single`
+ * **Single-workspace behaviour is untouched.** Under `ZENITH_TENANCY=single`
  * `runFleetPass` calls the body exactly once, with no scope, exactly as the
  * sweeper does today. Self-hosted installs get no new machinery and no new
  * failure modes.

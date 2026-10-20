@@ -63,7 +63,7 @@ import type {
   PrincipalId,
   TicketId,
   TicketStatusId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import {
   sendAgentMessageFn,
   addConversationNoteFn,

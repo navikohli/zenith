@@ -35,7 +35,7 @@ import {
 } from '@/components/ui/lazy-rich-text-editor'
 import { COMMENT_EDITOR_FEATURES } from './comment-editor-features'
 import type { ReplyPolicy, TiptapContent } from '@/lib/shared/db-types'
-import type { PostCommentId, PostId, PrincipalId } from '@quackback/ids'
+import type { PostCommentId, PostId, PrincipalId } from '@zenith/ids'
 import { InlineModerationActions } from '@/components/shared/inline-moderation-actions'
 import { useApproveComment, useRejectComment } from '@/lib/client/mutations/moderation'
 import { useOpenedOnce } from '@/lib/client/hooks/use-opened-once'

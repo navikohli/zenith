@@ -119,7 +119,7 @@ export function AbandonedJourneyAutoCloseCard() {
           })}
           description={intl.formatMessage({
             id: 'automation.workflows.closeSpamHint',
-            defaultMessage: 'When Quackback AI classifies a conversation as spam',
+            defaultMessage: 'When Zenith AI classifies a conversation as spam',
           })}
           htmlFor="close-spam-enabled"
           control={

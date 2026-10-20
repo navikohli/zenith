@@ -23,11 +23,11 @@
  * that is the neighbour's" case here vacuous.
  */
 import { describe, it, expect, beforeEach, afterEach, afterAll, vi } from 'vitest'
-import type { PrincipalId, TeamId } from '@quackback/ids'
+import type { PrincipalId, TeamId } from '@zenith/ids'
 
 // Read lazily through getters, so seeding before any config access is what makes
 // config.baseUrl resolve for the insert-time trusted-url gate.
-process.env.BASE_URL = 'https://quackback.test'
+process.env.BASE_URL = 'https://zenith.test'
 process.env.SECRET_KEY ||= 'x'.repeat(32)
 // The inbound channel's two halves. Both are read at call time, so the cases
 // that need a different value below set one for their own duration.
@@ -119,7 +119,7 @@ async function withEnv(
  *  guard has anything to decide: a single-workspace install has nobody to
  *  impersonate and permits any address, so an answer there proves nothing about
  *  the rule that actually grants one. */
-const asPooled = (fn: () => Promise<void>) => withEnv({ QUACKBACK_TENANCY: 'pooled' }, fn)
+const asPooled = (fn: () => Promise<void>) => withEnv({ ZENITH_TENANCY: 'pooled' }, fn)
 
 const suffix = () => `${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`
 
@@ -523,7 +523,7 @@ describe.skipIf(!fixture.available)('the platform inbox (real DB, rolled back)',
 
     await withEnv(
       {
-        QUACKBACK_TENANCY: 'pooled',
+        ZENITH_TENANCY: 'pooled',
         EMAIL_INBOUND_DOMAIN: 'newmail.example',
         // Still received on, because every address published before the move is
         // in somebody's mail client.

@@ -92,7 +92,7 @@ describe.skipIf(!reachable)('assistant runtime (live AI endpoint)', () => {
       role: 'customer_support',
       surface: 'widget',
       messages: [
-        { sender: 'customer', content: "I'd like to learn more about Quackback pricing." },
+        { sender: 'customer', content: "I'd like to learn more about Zenith pricing." },
       ],
       onActivity: (activity) => pricingActivities.push(activity),
     })

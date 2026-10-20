@@ -50,7 +50,7 @@ vi.mock('@/lib/server/domains/inbox/inbox.query', () => ({
   countInboxScopes: hoisted.countInboxScopes,
 }))
 
-import { generateId } from '@quackback/ids'
+import { generateId } from '@zenith/ids'
 import { listInboxItemsFn, fetchInboxCountsFn, listInboxItemsSchema } from '../inbox'
 
 const AUTH = {

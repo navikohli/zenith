@@ -3,7 +3,7 @@ import { withApiKeyAuth } from '@/lib/server/domains/api/auth'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import { successResponse, handleDomainError } from '@/lib/server/domains/api/responses'
 import { parseTypeId } from '@/lib/server/domains/api/validation'
-import type { PostId } from '@quackback/ids'
+import type { PostId } from '@zenith/ids'
 
 export const Route = createFileRoute('/api/v1/posts/$postId/vote')({
   server: {

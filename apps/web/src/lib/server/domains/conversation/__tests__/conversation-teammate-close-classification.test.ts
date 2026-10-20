@@ -1,14 +1,14 @@
 /**
  * setConversationStatus (the conversation close service used by BOTH the
- * teammate inbox close path and Quinn's end_conversation tool, plus workflow
+ * teammate inbox close path and ZenithAssistant's end_conversation tool, plus workflow
  * `close` actions): when a real teammate is the one closing the conversation,
  * fire the detectOnClose classification pass (AI-ATTRIBUTES-PARITY-SPEC.md
  * Phase 1, trigger 'teammate_close'), fire-and-forget. Never fires for a
- * service actor (Quinn or a workflow) closing through this same function —
+ * service actor (ZenithAssistant or a workflow) closing through this same function —
  * those moments are covered by their own dedicated hooks.
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import type { ConversationId, PrincipalId } from '@quackback/ids'
+import type { ConversationId, PrincipalId } from '@zenith/ids'
 import type { Actor } from '@/lib/server/policy/types'
 
 const classifyConversationAttributes = vi.fn()
@@ -114,7 +114,7 @@ describe('setConversationStatus: teammate-close classification hook', () => {
     })
   })
 
-  it('never fires for a service actor (Quinn/workflow) closing through the same function', async () => {
+  it('never fires for a service actor (ZenithAssistant/workflow) closing through the same function', async () => {
     await setConversationStatus(convId, 'closed', serviceActor)
     expect(classifyConversationAttributes).not.toHaveBeenCalled()
   })

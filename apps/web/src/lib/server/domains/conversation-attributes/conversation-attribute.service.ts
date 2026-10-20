@@ -9,7 +9,7 @@
 import { randomUUID } from 'node:crypto'
 import { db, eq, asc, and, isNull, conversationAttributeDefinitions } from '@/lib/server/db'
 import type { ConversationAttributeOption } from '@/lib/server/db'
-import type { ConversationAttributeId } from '@quackback/ids'
+import type { ConversationAttributeId } from '@zenith/ids'
 import { NotFoundError, ValidationError, ConflictError, InternalError } from '@/lib/shared/errors'
 import { isUniqueViolation } from '@/lib/server/utils'
 import type {
@@ -170,7 +170,7 @@ export async function createConversationAttribute(
         requiredToClose: input.requiredToClose ?? false,
         sourceHint: input.sourceHint ?? null,
         // AI classification is on by default where supported (select), so
-        // Quinn assigns attributes automatically unless the author opts out.
+        // ZenithAssistant assigns attributes automatically unless the author opts out.
         aiDetect: input.aiDetect ?? input.fieldType === 'select',
         detectOnClose: input.detectOnClose ?? false,
       })

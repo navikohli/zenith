@@ -27,7 +27,7 @@
  * generic fan-out, since `live` is just a differently-populated array of the
  * same shape either way.
  */
-import type { ConversationId, PrincipalId, WorkflowId } from '@quackback/ids'
+import type { ConversationId, PrincipalId, WorkflowId } from '@zenith/ids'
 import type { PrincipalType } from '@/lib/server/policy/types'
 import type { Workflow } from '@/lib/server/db'
 import type { TicketStatusCategory } from '@/lib/shared/db-types'

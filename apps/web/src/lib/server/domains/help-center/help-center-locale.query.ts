@@ -25,7 +25,7 @@ import {
   helpCenterArticleTranslations,
   helpCenterCategoryTranslations,
 } from '@/lib/server/db'
-import type { KbArticleId, KbCategoryId } from '@quackback/ids'
+import type { KbArticleId, KbCategoryId } from '@zenith/ids'
 import { ANONYMOUS_ACTOR, type Actor } from '@/lib/server/policy/types'
 import { NotFoundError } from '@/lib/shared/errors'
 import { DEFAULT_LOCALE } from '@/lib/shared/i18n'

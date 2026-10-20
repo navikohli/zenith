@@ -112,7 +112,7 @@ export async function publishTicketUpdated(row: Ticket): Promise<TicketDTO> {
  *   | conversation.created webhooks   | FIRE     | (both ride emitConversationCreated below)
  *   | notifyConversationStarted       | SUPPRESS | the requester just filed the ticket — noise
  *   | auto-routing                    | SUPPRESS | the ticket's born-owned assignee rules govern
- *   | Quinn (assistant turn)          | SUPPRESS | pair conversations are gated out of the
+ *   | ZenithAssistant (assistant turn)          | SUPPRESS | pair conversations are gated out of the
  *   |                                 |          | assistant at the dispatch site
  *   |                                 |          | (conversation.service.ts), at intake AND on
  *   |                                 |          | every later visitor message
@@ -206,7 +206,7 @@ export async function createTicketCore(input: CreateTicketInput, actor: Actor): 
     // 'ticket_form': the row arrived on a ticket intake form — the
     // non-widget source keeps shouldConsiderAssistant's widget-source gate
     // from matching, a defense-in-depth layer under the primary pair-link
-    // Quinn gate (conversation.service.ts). waitingSince/visitorLastReadAt start at the
+    // ZenithAssistant gate (conversation.service.ts). waitingSince/visitorLastReadAt start at the
     // intake instant — the requester just acted and is waiting on the team;
     // the opening-message pipeline below overwrites both with its own
     // message-time stamps when there is one.
@@ -315,8 +315,8 @@ export async function createTicketCore(input: CreateTicketInput, actor: Actor): 
   // conversation.created handler dispatched below finds the full opening
   // context, the same guarantee the native messenger flow's ordering gives),
   // then emitConversationCreated (workflows + webhooks FIRE), then the SLA
-  // handoff. The suppressed three (started-notify, auto-routing, Quinn) are
-  // simply never invoked here; Quinn is additionally gated at the
+  // handoff. The suppressed three (started-notify, auto-routing, ZenithAssistant) are
+  // simply never invoked here; ZenithAssistant is additionally gated at the
   // conversation.service dispatch site for every later visitor message.
   if (created.backingConversation) {
     const backingConversation = created.backingConversation

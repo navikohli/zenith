@@ -14,7 +14,7 @@ import {
   type PrincipalId,
   type UserId,
   type ConversationId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import {
@@ -1412,7 +1412,7 @@ describe.skipIf(!fixture.available)('runWorkflow (real DB, rolled back)', () => 
       applyAction.mockResolvedValueOnce({ label: 'handed to assistant' })
       const conversationId = await seedConversation()
       const wf = await createWorkflow({
-        name: 'Let Quinn answer',
+        name: 'Let ZenithAssistant answer',
         class: 'customer_facing',
         triggerType: 'conversation.created',
         graph: assistantGraph(),
@@ -1436,13 +1436,13 @@ describe.skipIf(!fixture.available)('runWorkflow (real DB, rolled back)', () => 
       expect(events.map((e) => e.kind).sort()).toEqual(['started', 'waiting'])
     })
 
-    it('resumes the escalated edge immediately when Quinn declines to run', async () => {
+    it('resumes the escalated edge immediately when ZenithAssistant declines to run', async () => {
       applyAction
         .mockResolvedValueOnce({ label: 'assistant declined', assistantDeclined: true })
         .mockResolvedValueOnce({ label: 'priority set' })
       const conversationId = await seedConversation()
       const wf = await createWorkflow({
-        name: 'Let Quinn answer',
+        name: 'Let ZenithAssistant answer',
         class: 'customer_facing',
         triggerType: 'conversation.created',
         graph: assistantGraph(),
@@ -1454,7 +1454,7 @@ describe.skipIf(!fixture.available)('runWorkflow (real DB, rolled back)', () => 
       expect(applyAction.mock.calls[1][0]).toEqual({ type: 'set_priority', priority: 'urgent' })
     })
 
-    it('stamps expiresAt on an assistant WaitCursor so a silent Quinn cannot hold the lock forever', async () => {
+    it('stamps expiresAt on an assistant WaitCursor so a silent ZenithAssistant cannot hold the lock forever', async () => {
       getWorkflowAbandonedAutoCloseSettings.mockResolvedValueOnce({
         enabled: true,
         waitMinutes: 15,
@@ -1463,7 +1463,7 @@ describe.skipIf(!fixture.available)('runWorkflow (real DB, rolled back)', () => 
       applyAction.mockResolvedValueOnce({ label: 'handed to assistant' })
       const conversationId = await seedConversation()
       const wf = await createWorkflow({
-        name: 'Let Quinn answer',
+        name: 'Let ZenithAssistant answer',
         class: 'customer_facing',
         triggerType: 'conversation.created',
         graph: assistantGraph(),
@@ -1479,7 +1479,7 @@ describe.skipIf(!fixture.available)('runWorkflow (real DB, rolled back)', () => 
       applyAction.mockResolvedValueOnce({ label: 'handed to assistant' })
       const conversationId = await seedConversation()
       const wf = await createWorkflow({
-        name: 'Let Quinn answer',
+        name: 'Let ZenithAssistant answer',
         class: 'customer_facing',
         triggerType: 'conversation.created',
         graph: assistantGraph(),
@@ -1499,7 +1499,7 @@ describe.skipIf(!fixture.available)('runWorkflow (real DB, rolled back)', () => 
       applyAction.mockResolvedValueOnce({ label: 'handed to assistant' })
       const conversationId = await seedConversation()
       const wf = await createWorkflow({
-        name: 'Let Quinn answer',
+        name: 'Let ZenithAssistant answer',
         class: 'customer_facing',
         triggerType: 'conversation.created',
         graph: assistantGraph(),
@@ -1518,7 +1518,7 @@ describe.skipIf(!fixture.available)('runWorkflow (real DB, rolled back)', () => 
       applyAction.mockResolvedValueOnce({ label: 'handed to assistant' })
       const conversationId = await seedConversation()
       const wf = await createWorkflow({
-        name: 'Let Quinn answer',
+        name: 'Let ZenithAssistant answer',
         class: 'customer_facing',
         triggerType: 'conversation.created',
         graph: assistantGraph(),
@@ -1550,7 +1550,7 @@ describe.skipIf(!fixture.available)('runWorkflow (real DB, rolled back)', () => 
       applyAction.mockResolvedValueOnce({ label: 'handed to assistant' })
       const conversationId = await seedConversation()
       const wf = await createWorkflow({
-        name: 'Let Quinn answer',
+        name: 'Let ZenithAssistant answer',
         class: 'customer_facing',
         triggerType: 'conversation.created',
         graph: assistantGraph(),
@@ -1572,7 +1572,7 @@ describe.skipIf(!fixture.available)('runWorkflow (real DB, rolled back)', () => 
       const conversationId = await seedConversation()
 
       const assistantWf = await createWorkflow({
-        name: 'Let Quinn answer',
+        name: 'Let ZenithAssistant answer',
         class: 'customer_facing',
         triggerType: 'conversation.created',
         graph: {
@@ -1632,7 +1632,7 @@ describe.skipIf(!fixture.available)('runWorkflow (real DB, rolled back)', () => 
       const conversationId = await seedConversation()
 
       const assistantWf = await createWorkflow({
-        name: 'Let Quinn answer',
+        name: 'Let ZenithAssistant answer',
         class: 'customer_facing',
         triggerType: 'conversation.created',
         graph: {
@@ -1709,7 +1709,7 @@ describe.skipIf(!fixture.available)('runWorkflow (real DB, rolled back)', () => 
       const conversationId = await seedConversation()
 
       const assistantWf = await createWorkflow({
-        name: 'Let Quinn answer, then CSAT',
+        name: 'Let ZenithAssistant answer, then CSAT',
         class: 'customer_facing',
         triggerType: 'conversation.created',
         graph: {

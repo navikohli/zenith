@@ -9,7 +9,7 @@ import {
 } from '@/lib/server/domains/api/responses'
 import { parseTypeId } from '@/lib/server/domains/api/validation'
 import { PERMISSIONS } from '@/lib/shared/permissions'
-import type { BoardId } from '@quackback/ids'
+import type { BoardId } from '@zenith/ids'
 
 // Input validation schema — `audience` and `access` are intentionally
 // excluded. Visibility is a policy-level setting changed only via

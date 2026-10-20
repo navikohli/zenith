@@ -25,7 +25,7 @@ import {
   deleteCategoryTranslation,
 } from '@/lib/server/domains/help-center/help-center-translations.service'
 import { getHelpCenterConfig } from '@/lib/server/domains/settings/settings.service'
-import type { KbArticleId, KbCategoryId } from '@quackback/ids'
+import type { KbArticleId, KbCategoryId } from '@zenith/ids'
 
 // ============================================================================
 // Article translations

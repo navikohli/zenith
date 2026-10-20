@@ -9,7 +9,7 @@ import { describe, it, expect, vi } from 'vitest'
 import { render, screen, fireEvent } from '@testing-library/react'
 import { UserCard } from '../user-card'
 import type { PortalUserListItemView } from '@/lib/shared/types'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 
 const USER: PortalUserListItemView = {
   principalId: 'principal_1' as PrincipalId,

@@ -23,7 +23,7 @@ import {
   BUNDLED_MIGRATIONS,
   readAppliedLedger,
   type AppliedLedger,
-} from '@quackback/db/schema-version'
+} from '@zenith/db/schema-version'
 import { logger } from '@/lib/server/logger'
 import { WorkspaceSchemaFloorRefusal } from './schema-floor'
 

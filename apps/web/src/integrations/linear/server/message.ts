@@ -28,7 +28,7 @@ export function buildLinearIssueBody(
     '---',
     `**Submitted by:** ${author}`,
     `**Board:** ${post.boardSlug}`,
-    `[View in Quackback](${postUrl})`,
+    `[View in Zenith](${postUrl})`,
   ].join('\n')
 
   return { title: post.title, description }

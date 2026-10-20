@@ -21,7 +21,7 @@
  * Server-only: carried on AsyncLocalStorage.
  */
 import { AsyncLocalStorage } from 'node:async_hooks'
-import type { ApiKeyId, PrincipalId } from '@quackback/ids'
+import type { ApiKeyId, PrincipalId } from '@zenith/ids'
 import type { AuditChannel, AuditCredentialKind } from '@/lib/shared/audit-attribution'
 import type { AuditActor } from './log'
 
@@ -60,7 +60,7 @@ interface AttributionSlot {
  * evaluate a module twice, and two stores would let a boundary set
  * attribution that the audit writer never sees.
  */
-const STORAGE_KEY = Symbol.for('quackback.auditAttribution')
+const STORAGE_KEY = Symbol.for('zenith.auditAttribution')
 const storage: AsyncLocalStorage<AttributionSlot> = ((globalThis as Record<symbol, unknown>)[
   STORAGE_KEY
 ] ??= new AsyncLocalStorage<AttributionSlot>()) as AsyncLocalStorage<AttributionSlot>

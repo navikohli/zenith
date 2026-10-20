@@ -18,7 +18,7 @@ import { render, screen, fireEvent, waitFor, act, within } from '@testing-librar
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { BoardModerationForm } from '../board-moderation-form'
 import { DEFAULT_BOARD_ACCESS, type BoardAccess } from '@/lib/shared/db-types'
-import type { BoardId } from '@quackback/ids'
+import type { BoardId } from '@zenith/ids'
 
 // ---------------------------------------------------------------------------
 // Mocks

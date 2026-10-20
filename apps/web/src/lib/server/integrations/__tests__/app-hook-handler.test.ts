@@ -45,11 +45,11 @@ function request(gateway = true, provider = true, body = raw) {
     headers: {
       ...(gateway
         ? {
-            'x-quackback-gateway-provider': 'slack',
-            'x-quackback-gateway-received-at': ts,
-            'x-quackback-gateway-receipt-signature': signGatewayReceipt(raw, ts, 'gateway-secret'),
-            'x-quackback-gateway-timestamp': ts,
-            'x-quackback-gateway-signature': signGatewayForward(raw, ts, 'gateway-secret'),
+            'x-zenith-gateway-provider': 'slack',
+            'x-zenith-gateway-received-at': ts,
+            'x-zenith-gateway-receipt-signature': signGatewayReceipt(raw, ts, 'gateway-secret'),
+            'x-zenith-gateway-timestamp': ts,
+            'x-zenith-gateway-signature': signGatewayForward(raw, ts, 'gateway-secret'),
           }
         : {}),
       ...(provider
@@ -118,13 +118,13 @@ describe('app hook trust boundary', () => {
     vi.setSystemTime((Number(ts) + 900) * 1000)
     const delayed = request()
     const fresh = String(Number(ts) + 900)
-    delayed.headers.set('x-quackback-gateway-timestamp', fresh)
+    delayed.headers.set('x-zenith-gateway-timestamp', fresh)
     delayed.headers.set(
-      'x-quackback-gateway-signature',
+      'x-zenith-gateway-signature',
       signGatewayForward(raw, fresh, 'gateway-secret')
     )
     expect((await handleAppHook(delayed.clone(), 'slack', 'events')).status).toBe(200)
-    delayed.headers.set('x-quackback-gateway-received-at', fresh)
+    delayed.headers.set('x-zenith-gateway-received-at', fresh)
     expect((await handleAppHook(delayed, 'slack', 'events')).status).toBe(401)
     expect((await handleAppHook(request(false), 'slack', 'events')).status).toBe(401)
   })
@@ -133,9 +133,9 @@ describe('app hook trust boundary', () => {
     vi.setSystemTime((Number(ts) + 3601) * 1000)
     const delayed = request()
     const fresh = String(Number(ts) + 3601)
-    delayed.headers.set('x-quackback-gateway-timestamp', fresh)
+    delayed.headers.set('x-zenith-gateway-timestamp', fresh)
     delayed.headers.set(
-      'x-quackback-gateway-signature',
+      'x-zenith-gateway-signature',
       signGatewayForward(raw, fresh, 'gateway-secret')
     )
     expect((await handleAppHook(delayed, 'slack', 'events')).status).toBe(401)

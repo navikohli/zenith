@@ -72,7 +72,7 @@
 import { randomUUID } from 'node:crypto'
 import { hostname } from 'node:os'
 import { sql, type SQL } from 'drizzle-orm'
-import { generateId } from '@quackback/ids'
+import { generateId } from '@zenith/ids'
 import { db } from '@/lib/server/db'
 import { getExecuteRows } from '@/lib/server/utils/execute-rows'
 import { logger } from '@/lib/server/logger'

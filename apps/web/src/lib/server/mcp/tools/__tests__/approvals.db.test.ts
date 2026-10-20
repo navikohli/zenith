@@ -5,7 +5,7 @@
  */
 import { afterAll, afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import type { CallToolResult } from '@modelcontextprotocol/sdk/types.js'
-import { createId, type PrincipalId } from '@quackback/ids'
+import { createId, type PrincipalId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { eq, principal, user, settings, apiKeys, assistantPendingActions } from '@/lib/server/db'
 import { ALL_PERMISSIONS } from '@/lib/shared/permissions'

@@ -8,7 +8,7 @@
  * to a directly-callable fn (mirrors copilot-summary.test.ts).
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { createId, type TicketTypeId } from '@quackback/ids'
+import { createId, type TicketTypeId } from '@zenith/ids'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 
 vi.mock('@tanstack/react-start', () => ({

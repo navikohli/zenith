@@ -104,7 +104,7 @@ describe('buildLaunchTasks', () => {
       'create-board',
       'publish-changelog',
       'connect-messenger',
-      'set-up-quinn',
+      'set-up-zenithAssistant',
       'help-article',
       'add-status-service',
     ])
@@ -120,7 +120,7 @@ describe('buildLaunchTasks', () => {
     expect(configured.find((task) => task.id === 'connect-messenger')?.isCompleted).toBe(false)
     expect(
       configured.filter((task) => task.classification === 'prerequisite').map((t) => t.id)
-    ).toEqual(['create-board', 'connect-messenger', 'set-up-quinn'])
+    ).toEqual(['create-board', 'connect-messenger', 'set-up-zenithAssistant'])
   })
 
   it('completes Connect Messenger when the SDK is observed and the widget is on', () => {
@@ -135,42 +135,42 @@ describe('buildLaunchTasks', () => {
 
   describe('Set up the AI agent', () => {
     const withSupport = { ...base, features: { ...noExtraModules, supportInbox: true } }
-    const quinn = (status: LaunchStatus) =>
-      buildLaunchTasks(status).find((task) => task.id === 'set-up-quinn')
+    const zenithAssistant = (status: LaunchStatus) =>
+      buildLaunchTasks(status).find((task) => task.id === 'set-up-zenithAssistant')
 
     it('is offered only while the Support inbox is on', () => {
-      expect(quinn(base)).toBeUndefined()
-      expect(quinn(withSupport)).toBeDefined()
+      expect(zenithAssistant(base)).toBeUndefined()
+      expect(zenithAssistant(withSupport)).toBeDefined()
     })
 
     it('is left out when the plan lacks the assistant or no AI model is configured', () => {
       expect(
-        quinn({ ...withSupport, features: { ...withSupport.features, assistant: false } })
+        zenithAssistant({ ...withSupport, features: { ...withSupport.features, assistant: false } })
       ).toBe(undefined)
       expect(
-        quinn({ ...withSupport, features: { ...withSupport.features, assistant: true } })
+        zenithAssistant({ ...withSupport, features: { ...withSupport.features, assistant: true } })
       ).toBeDefined()
     })
 
-    it('stays out while the Support inbox is off even when Quinn can answer', () => {
-      expect(quinn({ ...base, features: { ...noExtraModules, assistant: true } })).toBeUndefined()
+    it('stays out while the Support inbox is off even when ZenithAssistant can answer', () => {
+      expect(zenithAssistant({ ...base, features: { ...noExtraModules, assistant: true } })).toBeUndefined()
     })
 
     it('is done when the Agent is on and answering, and open otherwise', () => {
-      expect(quinn({ ...withSupport, hasAgentAnswering: true })?.isCompleted).toBe(true)
-      expect(quinn({ ...withSupport, hasAgentAnswering: false })?.isCompleted).toBe(false)
-      expect(quinn(withSupport)?.isCompleted).toBe(false)
+      expect(zenithAssistant({ ...withSupport, hasAgentAnswering: true })?.isCompleted).toBe(true)
+      expect(zenithAssistant({ ...withSupport, hasAgentAnswering: false })?.isCompleted).toBe(false)
+      expect(zenithAssistant(withSupport)?.isCompleted).toBe(false)
     })
 
     it('opens the Agent settings for an assistant manager', () => {
-      const task = quinn({ ...withSupport, hasAgentAnswering: false })
+      const task = zenithAssistant({ ...withSupport, hasAgentAnswering: false })
       expect(task?.href).toBe('/admin/settings/agent')
       expect(task?.actionLabel).toBe('Set up the AI agent')
       expect(task?.availability).toBe('available')
     })
 
     it('is blocked without a link for someone who cannot manage the assistant', () => {
-      const task = quinn({
+      const task = zenithAssistant({
         ...withSupport,
         hasAgentAnswering: false,
         permissions: {

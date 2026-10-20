@@ -18,7 +18,7 @@
  *   catalogue state. A unit test that had to race a real build would be timing
  *   dependent; the live kill is the evidence, this is the regression net.
  * - Each run gets its own scratch database, so nothing depends on the shared
- *   `quackback_test` and no assertion counts rows it does not own.
+ *   `zenith_test` and no assertion counts rows it does not own.
  */
 import { randomUUID } from 'node:crypto'
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from 'vitest'
@@ -38,7 +38,7 @@ import {
   type ConcurrentIndexSpec,
   type IndexBuildEvent,
   type PreflightFacts,
-} from '@quackback/db/schema-ops'
+} from '@zenith/db/schema-ops'
 
 const ADMIN_URL =
   process.env.DRIFT_CHECK_DATABASE_URL ?? 'postgresql://postgres:password@localhost:5432/postgres'
@@ -239,7 +239,7 @@ describe('migration preflight', () => {
     serverVersion: '18.1',
     serverVersionNum: 180001,
     database: 'qb',
-    user: 'quackback',
+    user: 'zenith',
     canCreateTemp: true,
     extensions: {
       vector: { available: '0.8.1', installed: '0.8.1' },
@@ -333,8 +333,8 @@ describe('migration preflight', () => {
   it('names a missing TEMPORARY privilege', () => {
     const problems = preflightProblems({ ...healthy, canCreateTemp: false })
     expect(problems).toEqual([
-      'The database user "quackback" lacks the TEMPORARY privilege on database "qb", ' +
-        'which the upgrade needs. Run as a superuser: GRANT TEMPORARY ON DATABASE "qb" TO "quackback";',
+      'The database user "zenith" lacks the TEMPORARY privilege on database "qb", ' +
+        'which the upgrade needs. Run as a superuser: GRANT TEMPORARY ON DATABASE "qb" TO "zenith";',
     ])
   })
 
@@ -366,7 +366,7 @@ describe('migration preflight', () => {
   it('lists every problem in one readable error', () => {
     const err = new MigrationPreflightError(['first problem', 'second problem'])
     expect(err.message).toBe(
-      'The database is not ready for this version of Quackback; no migrations were applied.\n' +
+      'The database is not ready for this version of Zenith; no migrations were applied.\n' +
         '  - first problem\n' +
         '  - second problem'
     )

@@ -1,4 +1,4 @@
-const STYLE_ID = 'quackback-widget-styles'
+const STYLE_ID = 'zenith-widget-styles'
 
 // The panel CSS is side-specific (corner offset + transform origin), so the
 // element is rewritten when the side changes after creation — e.g. the server
@@ -12,7 +12,7 @@ export function ensureStyles(side: 'left' | 'right'): void {
   const el = existing ?? document.createElement('style')
   el.id = STYLE_ID
   el.textContent = [
-    '.quackback-panel{position:fixed;z-index:2147483647;overflow:hidden;pointer-events:none;',
+    '.zenith-panel{position:fixed;z-index:2147483647;overflow:hidden;pointer-events:none;',
     `bottom:88px;${side}:24px;width:400px;height:min(600px,calc(100vh - 108px));`,
     'border-radius:12px;box-shadow:0 24px 80px rgba(0,0,0,0.32),0 6px 20px rgba(0,0,0,0.18);',
     `opacity:0;transform:scale(0);transform-origin:bottom ${side};`,
@@ -21,21 +21,21 @@ export function ensureStyles(side: 'left' | 'right'): void {
     // Long-form content (posts, articles, changelog entries) grows the panel.
     // Desktop-scoped: on mobile the panel is already full-screen, and this
     // higher-specificity rule would otherwise SHRINK it there.
-    '@media(min-width:640px){.quackback-panel.quackback-expanded{width:min(720px,calc(100vw - 48px));height:min(780px,calc(100vh - 48px))}}',
-    '.quackback-panel.quackback-open{opacity:1;transform:scale(1);pointer-events:auto}',
-    '.quackback-panel.quackback-closing{opacity:0;transform:scale(0);pointer-events:none;',
+    '@media(min-width:640px){.zenith-panel.zenith-expanded{width:min(720px,calc(100vw - 48px));height:min(780px,calc(100vh - 48px))}}',
+    '.zenith-panel.zenith-open{opacity:1;transform:scale(1);pointer-events:auto}',
+    '.zenith-panel.zenith-closing{opacity:0;transform:scale(0);pointer-events:none;',
     'transition:opacity 200ms cubic-bezier(0.4,0,1,1),transform 200ms cubic-bezier(0.4,0,1,1)}',
     '@media(max-width:639px){',
-    '.quackback-panel{top:0;left:0;right:0;bottom:0;width:100%;height:100vh;',
+    '.zenith-panel{top:0;left:0;right:0;bottom:0;width:100%;height:100vh;',
     'border-radius:0;box-shadow:none;',
     'opacity:1;visibility:hidden;transform:translateY(100%);transform-origin:center;',
     'transition:transform 300ms cubic-bezier(0.4,0,0.2,1),visibility 0s linear 300ms}',
-    '.quackback-panel.quackback-open{transform:translateY(0);visibility:visible;transition:transform 300ms cubic-bezier(0.4,0,0.2,1),visibility 0s linear 0s}',
-    '.quackback-panel.quackback-closing{transform:translateY(100%);visibility:hidden;transition:transform 200ms cubic-bezier(0.4,0,1,1),visibility 0s linear 200ms}}',
-    '.quackback-backdrop{position:fixed;inset:0;z-index:2147483646;background:rgba(0,0,0,0.4);',
+    '.zenith-panel.zenith-open{transform:translateY(0);visibility:visible;transition:transform 300ms cubic-bezier(0.4,0,0.2,1),visibility 0s linear 0s}',
+    '.zenith-panel.zenith-closing{transform:translateY(100%);visibility:hidden;transition:transform 200ms cubic-bezier(0.4,0,1,1),visibility 0s linear 200ms}}',
+    '.zenith-backdrop{position:fixed;inset:0;z-index:2147483646;background:rgba(0,0,0,0.4);',
     'opacity:0;pointer-events:none;transition:opacity 200ms ease}',
-    '.quackback-backdrop.quackback-open{opacity:1;pointer-events:auto}',
-    '@media(min-width:640px){.quackback-backdrop{display:none!important}}',
+    '.zenith-backdrop.zenith-open{opacity:1;pointer-events:auto}',
+    '@media(min-width:640px){.zenith-backdrop{display:none!important}}',
   ].join('')
   if (!existing) document.head.appendChild(el)
 }

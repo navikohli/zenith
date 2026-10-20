@@ -103,7 +103,7 @@ export function AddConnectorDialog({
             {intl.formatMessage({
               id: 'automation.connectors.add.description',
               defaultMessage:
-                'Connect Quackback AI to an external MCP server. Tools are discovered automatically.',
+                'Connect Zenith AI to an external MCP server. Tools are discovered automatically.',
             })}
           </DialogDescription>
         </DialogHeader>

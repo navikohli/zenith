@@ -34,7 +34,7 @@
  * its next connection, is evicted, and is rebuilt on the following request.
  */
 import postgres from 'postgres'
-import { createDbFromSql, type Database } from '@quackback/db/client'
+import { createDbFromSql, type Database } from '@zenith/db/client'
 import { config } from '@/lib/server/config'
 import { logger } from '@/lib/server/logger'
 import { runWithLogContext } from '@/lib/server/log-context'
@@ -227,7 +227,7 @@ async function resolvePassword(workspace: WorkspaceDescriptor): Promise<string> 
       }
       const root = config.fleetRootKey
       if (!root) {
-        throw new Error(`${redactRef(ref)} needs QUACKBACK_FLEET_ROOT_KEY`)
+        throw new Error(`${redactRef(ref)} needs ZENITH_FLEET_ROOT_KEY`)
       }
       return openWorkspaceSecret(
         root,

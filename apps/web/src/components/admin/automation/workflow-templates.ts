@@ -119,7 +119,7 @@ export const WORKFLOW_TEMPLATES: WorkflowTemplate[] = [
               { key: 'sales', label: 'Talk to sales' },
             ],
           },
-          { id: 'quinn_answer', type: 'let_assistant_answer' },
+          { id: 'zenithAssistant_answer', type: 'let_assistant_answer' },
           {
             id: 'branch_issue_type',
             type: 'branch',
@@ -130,17 +130,17 @@ export const WORKFLOW_TEMPLATES: WorkflowTemplate[] = [
             ],
           },
           {
-            id: 'assign_billing_from_quinn',
+            id: 'assign_billing_from_zenithAssistant',
             type: 'action',
             action: { type: 'assign_team', teamId: NEEDS_SETUP_TEAM },
           },
           {
-            id: 'assign_bug_from_quinn',
+            id: 'assign_bug_from_zenithAssistant',
             type: 'action',
             action: { type: 'assign_team', teamId: NEEDS_SETUP_TEAM },
           },
           {
-            id: 'assign_other_from_quinn',
+            id: 'assign_other_from_zenithAssistant',
             type: 'action',
             action: { type: 'assign_team', teamId: NEEDS_SETUP_TEAM },
           },
@@ -208,11 +208,11 @@ export const WORKFLOW_TEMPLATES: WorkflowTemplate[] = [
         edges: [
           { from: 'trigger', to: 'welcome_message' },
           { from: 'welcome_message', to: 'triage_buttons' },
-          { from: 'triage_buttons', to: 'quinn_answer', branch: 'product' },
-          { from: 'quinn_answer', to: 'branch_issue_type', branch: 'escalated' },
-          { from: 'branch_issue_type', to: 'assign_billing_from_quinn', branch: 'billing_issue' },
-          { from: 'branch_issue_type', to: 'assign_bug_from_quinn', branch: 'bug_issue' },
-          { from: 'branch_issue_type', to: 'assign_other_from_quinn', branch: 'everything_else' },
+          { from: 'triage_buttons', to: 'zenithAssistant_answer', branch: 'product' },
+          { from: 'zenithAssistant_answer', to: 'branch_issue_type', branch: 'escalated' },
+          { from: 'branch_issue_type', to: 'assign_billing_from_zenithAssistant', branch: 'billing_issue' },
+          { from: 'branch_issue_type', to: 'assign_bug_from_zenithAssistant', branch: 'bug_issue' },
+          { from: 'branch_issue_type', to: 'assign_other_from_zenithAssistant', branch: 'everything_else' },
           { from: 'triage_buttons', to: 'collect_bug_area', branch: 'bug' },
           { from: 'collect_bug_area', to: 'convert_bug' },
           { from: 'convert_bug', to: 'bug_ack' },
@@ -233,7 +233,7 @@ export const WORKFLOW_TEMPLATES: WorkflowTemplate[] = [
   {
     id: 'route-by-issue-type',
     title: 'Route by issue type',
-    benefit: 'Quackback AI classifies, the workflow routes. The modern pattern.',
+    benefit: 'Zenith AI classifies, the workflow routes. The modern pattern.',
     categories: ['popular', 'routing'],
     icon: FunnelIcon,
     iconClassName: 'bg-violet-500/10 text-violet-600 dark:text-violet-400',
@@ -442,7 +442,7 @@ export const WORKFLOW_TEMPLATES: WorkflowTemplate[] = [
       graph: {
         nodes: [
           { id: 'trigger', type: 'trigger' },
-          { id: 'quinn_answer', type: 'let_assistant_answer' },
+          { id: 'zenithAssistant_answer', type: 'let_assistant_answer' },
           { id: 'wait_before_csat', type: 'wait', seconds: 600 },
           {
             id: 'ask_csat',
@@ -520,8 +520,8 @@ export const WORKFLOW_TEMPLATES: WorkflowTemplate[] = [
           { id: 'show_reply_time_neutral', type: 'show_reply_time' },
         ],
         edges: [
-          { from: 'trigger', to: 'quinn_answer' },
-          { from: 'quinn_answer', to: 'wait_before_csat' },
+          { from: 'trigger', to: 'zenithAssistant_answer' },
+          { from: 'zenithAssistant_answer', to: 'wait_before_csat' },
           { from: 'wait_before_csat', to: 'ask_csat' },
           { from: 'ask_csat', to: 'apology_low_1', branch: '1' },
           { from: 'apology_low_1', to: 'reopen_low_1' },
@@ -534,7 +534,7 @@ export const WORKFLOW_TEMPLATES: WorkflowTemplate[] = [
           { from: 'ask_csat', to: 'thanks_3', branch: '3' },
           { from: 'ask_csat', to: 'thanks_4', branch: '4' },
           { from: 'ask_csat', to: 'thanks_5', branch: '5' },
-          { from: 'quinn_answer', to: 'branch_sentiment', branch: 'escalated' },
+          { from: 'zenithAssistant_answer', to: 'branch_sentiment', branch: 'escalated' },
           { from: 'branch_sentiment', to: 'set_priority_negative', branch: 'negative' },
           { from: 'set_priority_negative', to: 'apply_sla_negative' },
           { from: 'apply_sla_negative', to: 'assign_negative' },
@@ -642,7 +642,7 @@ export const WORKFLOW_TEMPLATES: WorkflowTemplate[] = [
     id: 'prioritize-by-ai-urgency',
     title: 'Prioritize by AI urgency',
     benefit:
-      'React when Quackback AI marks a conversation urgent, the signal that exists at intake.',
+      'React when Zenith AI marks a conversation urgent, the signal that exists at intake.',
     categories: ['sla'],
     icon: SparklesIcon,
     iconClassName: 'bg-orange-500/10 text-orange-600 dark:text-orange-400',
@@ -818,7 +818,7 @@ export interface TemplateGalleryChip {
   label: string
 }
 
-export function templateNeedsQuinn(template: WorkflowTemplate): boolean {
+export function templateNeedsZenithAssistant(template: WorkflowTemplate): boolean {
   return template.payload.graph.nodes.some((n) => n.type === 'let_assistant_answer')
 }
 
@@ -842,7 +842,7 @@ function countActionType(template: WorkflowTemplate, type: GraphAction['type']):
 
 export function templateGalleryChips(
   template: WorkflowTemplate,
-  ctx: { quinnOn: boolean }
+  ctx: { zenithAssistantOn: boolean }
 ): TemplateGalleryChip[] {
   const chips: TemplateGalleryChip[] = [
     { kind: 'trigger', label: triggerLabel(template.payload.triggerType) },
@@ -853,7 +853,7 @@ export function templateGalleryChips(
     chips.push({ kind: 'class', label: 'Background' })
   }
 
-  if (templateNeedsQuinn(template) && !ctx.quinnOn) {
+  if (templateNeedsZenithAssistant(template) && !ctx.zenithAssistantOn) {
     chips.push({ kind: 'prereq', label: 'Needs AI agent on' })
   }
   if (templateUsesOfficeHours(template)) {

@@ -21,18 +21,18 @@ import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } 
 
 const env = vi.hoisted(() => {
   const url =
-    process.env.DATABASE_URL || 'postgresql://postgres:password@localhost:5432/quackback_test'
+    process.env.DATABASE_URL || 'postgresql://postgres:password@localhost:5432/zenith_test'
   const parsed = new URL(url)
   const password = decodeURIComponent(parsed.password)
   parsed.password = ''
-  vi.stubEnv('QUACKBACK_TENANCY', 'pooled')
+  vi.stubEnv('ZENITH_TENANCY', 'pooled')
   // Pooled mode refuses a fleet-wide DATABASE_URL; the pool cache reaches the
   // test database through the workspace descriptor instead.
   vi.stubEnv('DATABASE_URL', '')
   vi.stubEnv('BASE_URL', 'http://localhost:3000')
   vi.stubEnv('SECRET_KEY', 'a'.repeat(64))
-  vi.stubEnv('QUACKBACK_CONTROL_DATABASE_URL', 'postgresql://u@localhost:5432/control')
-  vi.stubEnv('QUACKBACK_TENANT_SECRET_DB', password)
+  vi.stubEnv('ZENITH_CONTROL_DATABASE_URL', 'postgresql://u@localhost:5432/control')
+  vi.stubEnv('ZENITH_TENANT_SECRET_DB', password)
   return { url, workspaceUrl: parsed.toString() }
 })
 
@@ -81,7 +81,7 @@ vi.mock('@/lib/server/workspaces/registry', async (importOriginal) => {
             ...base.database,
             pooledUrl: env.workspaceUrl,
             directUrl: env.workspaceUrl,
-            credentialRef: 'env://QUACKBACK_TENANT_SECRET_DB',
+            credentialRef: 'env://ZENITH_TENANT_SECRET_DB',
           },
         },
       }

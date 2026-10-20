@@ -7,5 +7,5 @@ import type { EditorFeatures } from '@/components/ui/rich-text-editor'
  */
 export const PUBLIC_FEEDBACK_EDITOR_FEATURES: EditorFeatures = {
   headings: true,
-  quackbackEmbeds: true,
+  zenithEmbeds: true,
 }

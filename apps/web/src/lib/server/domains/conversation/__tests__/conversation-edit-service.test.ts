@@ -3,7 +3,7 @@
  * reaches the visitor, and an internal note stays on the inbox channel.
  */
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import type { PrincipalId, ConversationMessageId } from '@quackback/ids'
+import type { PrincipalId, ConversationMessageId } from '@zenith/ids'
 import type { Actor } from '@/lib/server/policy/types'
 import { ForbiddenError, ValidationError } from '@/lib/shared/errors'
 

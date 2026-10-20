@@ -4,7 +4,7 @@
  * and permission, then reads the same columns the product lists already use.
  * Everything is workspace-wide; the viewer only affects ordering via `mine`.
  */
-import type { PrincipalId, PostId } from '@quackback/ids'
+import type { PrincipalId, PostId } from '@zenith/ids'
 import {
   db,
   eq,

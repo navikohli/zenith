@@ -22,7 +22,7 @@ function runCli(
   stdout: string
 }> {
   const env: NodeJS.ProcessEnv = { ...process.env, ...extraEnv }
-  delete env.QUACKBACK_CONTROL_DATABASE_URL
+  delete env.ZENITH_CONTROL_DATABASE_URL
   return new Promise((resolve, reject) => {
     const child = spawn('bun', [SCRIPT, ...args], {
       env,

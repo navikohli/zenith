@@ -6,7 +6,7 @@ import {
   useDeleteCompanyAttribute,
 } from '@/lib/client/mutations'
 import type { CompanyAttributeItem } from '@/lib/client/hooks/use-company-attributes-queries'
-import type { CompanyAttributeId } from '@quackback/ids'
+import type { CompanyAttributeId } from '@zenith/ids'
 import {
   ScalarAttributeList,
   type BuiltinAttributeField,

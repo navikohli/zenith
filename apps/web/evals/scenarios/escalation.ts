@@ -1,5 +1,5 @@
 /**
- * §7.3 Escalation & control (scenarios 6–9). Quinn decides THAT it hands off,
+ * §7.3 Escalation & control (scenarios 6–9). ZenithAssistant decides THAT it hands off,
  * never where. Scenario 9 (silence rule) is deterministic — no model call.
  */
 import type { Scenario } from '../types'
@@ -122,7 +122,7 @@ export const escalationScenarios: Scenario[] = [
   },
   {
     id: '09',
-    title: 'Silence rule — a human teammate replied last, so Quinn must skip',
+    title: 'Silence rule — a human teammate replied last, so ZenithAssistant must skip',
     roles: ['customer_support'],
     surface: 'widget',
     thread: [

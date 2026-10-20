@@ -9,7 +9,7 @@ import { render, screen, cleanup } from '@testing-library/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { IntlProvider } from 'react-intl'
 import type { ReplyPolicy } from '@/lib/shared/db-types'
-import type { PostId } from '@quackback/ids'
+import type { PostId } from '@zenith/ids'
 
 vi.mock('@tanstack/react-router', () => ({
   Link: ({ children }: { children: unknown }) => children,

@@ -10,7 +10,7 @@
  * grants nothing at sign-in, so it must not block the edit.
  */
 import { db, eq, inArray, permissions, rolePermissions } from '@/lib/server/db'
-import type { RoleId } from '@quackback/ids'
+import type { RoleId } from '@zenith/ids'
 import type { PermissionKey } from '@/lib/shared/permissions'
 import { ForbiddenError, NotFoundError, ValidationError } from '@/lib/shared/errors'
 import {

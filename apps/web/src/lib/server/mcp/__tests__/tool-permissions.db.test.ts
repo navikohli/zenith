@@ -8,7 +8,7 @@
  */
 import { describe, it, expect, vi, beforeEach, afterEach, afterAll } from 'vitest'
 import type { CallToolResult } from '@modelcontextprotocol/sdk/types.js'
-import { createId, generateId, type PrincipalId, type RoleId, type UserId } from '@quackback/ids'
+import { createId, generateId, type PrincipalId, type RoleId, type UserId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { eq, permissions, principal, rolePermissions, roles, user } from '@/lib/server/db'
 import { ALL_PERMISSIONS, PERMISSIONS, type PermissionKey } from '@/lib/shared/permissions'

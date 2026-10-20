@@ -1,5 +1,5 @@
 /**
- * Profile: what Quackback takes from this provider about a person.
+ * Profile: what Zenith takes from this provider about a person.
  *
  * The table is always open. Standard OpenID Connect claims identify the
  * account (`sub`) and set its email, name, username and avatar, so most
@@ -83,7 +83,7 @@ export function UserDetailsCard({ provider }: { provider: IdentityProvider }) {
     <div id="mapping" className="scroll-mt-6">
       <SettingsCard
         title="Profile"
-        description={`What Quackback takes from ${label || 'your provider'} for each person.`}
+        description={`What Zenith takes from ${label || 'your provider'} for each person.`}
         contentClassName="space-y-4"
       >
         {/* Keyed so a draft never carries from one provider to another. */}
@@ -465,7 +465,7 @@ function ProfileEditor({
           </Label>
           <p id={`${syncId}-note`} className="text-muted-foreground">
             {profileSync
-              ? 'Keeps profiles in step with your provider. Names or pictures someone changed in Quackback are kept.'
+              ? 'Keeps profiles in step with your provider. Names or pictures someone changed in Zenith are kept.'
               : 'Name and avatar are set when an account is created.'}
           </p>
         </div>

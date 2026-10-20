@@ -15,7 +15,7 @@ import {
 } from '@heroicons/react/24/solid'
 import { PlusIcon, XMarkIcon } from '@heroicons/react/16/solid'
 import { toast } from 'sonner'
-import type { TicketId, PrincipalId } from '@quackback/ids'
+import type { TicketId, PrincipalId } from '@zenith/ids'
 import type { TicketDTO } from '@/lib/server/domains/tickets'
 import type { TicketWatcher } from '@/lib/server/domains/tickets/ticket-subscription.service'
 import type { ConversationPriority } from '@/lib/shared/db-types'

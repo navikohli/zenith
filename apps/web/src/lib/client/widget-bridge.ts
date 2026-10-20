@@ -4,17 +4,17 @@ interface NativeBridge {
 
 declare global {
   interface Window {
-    __quackbackNative?: Partial<NativeBridge>
+    __zenithNative?: Partial<NativeBridge>
   }
 }
 
 export function sendToHost(message: Record<string, unknown>): void {
-  if (window.__quackbackNative?.dispatch) {
+  if (window.__zenithNative?.dispatch) {
     const rawType = typeof message.type === 'string' ? message.type : ''
-    const eventType = rawType.startsWith('quackback:')
-      ? rawType.slice('quackback:'.length)
+    const eventType = rawType.startsWith('zenith:')
+      ? rawType.slice('zenith:'.length)
       : rawType || 'unknown'
-    window.__quackbackNative.dispatch(eventType, message)
+    window.__zenithNative.dispatch(eventType, message)
     return
   }
   window.parent.postMessage(message, '*')

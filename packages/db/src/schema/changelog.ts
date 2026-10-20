@@ -10,7 +10,7 @@ import {
   customType,
 } from 'drizzle-orm/pg-core'
 import { relations, sql } from 'drizzle-orm'
-import { typeIdWithDefault, typeIdColumn, typeIdColumnNullable } from '@quackback/ids/drizzle'
+import { typeIdWithDefault, typeIdColumn, typeIdColumnNullable } from '@zenith/ids/drizzle'
 import { principal } from './auth'
 import { posts } from './posts'
 import type { TiptapContent } from '../types'
@@ -18,7 +18,7 @@ import type { TiptapContent } from '../types'
 /** pgvector column, 1536 dims (OpenAI text-embedding-3-small). Local to this
  *  file, mirroring the per-schema-file `vector` customType convention (see
  *  conversation-summary.ts / posts.ts / kb.ts). Populated on publish/edit by
- *  `changelog-embedding.service.ts` (Quinn Phase 4: changelog grounding);
+ *  `changelog-embedding.service.ts` (ZenithAssistant Phase 4: changelog grounding);
  *  drafts stay null until they are next published. */
 const vector = customType<{ data: number[] }>({
   dataType() {
@@ -55,7 +55,7 @@ export const changelogEntries = pgTable(
     // of these segments. [] = broadcast to every subscriber. Same "segment
     // list, [] = everyone" convention as the segment-gate primitive.
     segmentIds: jsonb('segment_ids').$type<string[]>().notNull().default([]),
-    // Semantic embedding for Quinn grounding (Quinn Phase 4). Embedded on
+    // Semantic embedding for ZenithAssistant grounding (ZenithAssistant Phase 4). Embedded on
     // publish/edit; drafts stay null. Track the model version so a re-embed
     // can find rows without losing data (mirrors posts.embedding_model).
     embedding: vector('embedding'),

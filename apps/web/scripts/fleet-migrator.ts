@@ -1,9 +1,9 @@
 /**
- * `QUACKBACK_ROLE=migrator` — the fleet migration reconciler, as a command.
+ * `ZENITH_ROLE=migrator` — the fleet migration reconciler, as a command.
  *
  * ```
- * QUACKBACK_ROLE=migrator QUACKBACK_TENANCY=pooled \
- *   QUACKBACK_CONTROL_DATABASE_URL=... bun run scripts/fleet-migrator.ts run
+ * ZENITH_ROLE=migrator ZENITH_TENANCY=pooled \
+ *   ZENITH_CONTROL_DATABASE_URL=... bun run scripts/fleet-migrator.ts run
  * ```
  *
  * A command rather than a daemon, because that is what the platform wants: it
@@ -21,7 +21,7 @@ import {
   latestBundledVersion,
   tagForVersion,
   BUNDLED_MIGRATIONS,
-} from '@quackback/db/schema-version'
+} from '@zenith/db/schema-version'
 import { hostname } from 'node:os'
 import { randomUUID } from 'node:crypto'
 import {
@@ -118,8 +118,8 @@ function workerId(): string {
 
 async function main(): Promise<number> {
   const { command, opts } = parseArgs(process.argv.slice(2))
-  if (!process.env.QUACKBACK_CONTROL_DATABASE_URL) {
-    throw new Error('QUACKBACK_CONTROL_DATABASE_URL is not set (no control database)')
+  if (!process.env.ZENITH_CONTROL_DATABASE_URL) {
+    throw new Error('ZENITH_CONTROL_DATABASE_URL is not set (no control database)')
   }
   const target = latestBundledVersion()
 

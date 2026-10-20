@@ -27,7 +27,7 @@ const hoisted = vi.hoisted(() => ({
 }))
 
 vi.mock('../pg-listener', () => ({
-  REALTIME_CHANNEL: 'quackback_realtime',
+  REALTIME_CHANNEL: 'zenith_realtime',
   openRealtimeListener: async (input: { onPayload: (raw: string) => void }) => {
     hoisted.opens += 1
     hoisted.deliver = input.onPayload

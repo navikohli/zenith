@@ -5,7 +5,7 @@
 import { db, integrations, eq, sql } from '@/lib/server/db'
 import { encryptSecrets } from './encryption'
 import { getIntegration } from './index'
-import type { IntegrationId, PrincipalId } from '@quackback/ids'
+import type { IntegrationId, PrincipalId } from '@zenith/ids'
 import { createServicePrincipal } from '@/lib/server/domains/principals/principal.service'
 
 /** Overlay OAuth-returned config onto the stored blob so reconnect cannot

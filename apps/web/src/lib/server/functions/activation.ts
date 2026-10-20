@@ -1,6 +1,6 @@
 import { createServerFn } from '@tanstack/react-start'
 import { z } from 'zod'
-import type { BoardId, KbArticleId } from '@quackback/ids'
+import type { BoardId, KbArticleId } from '@zenith/ids'
 import {
   db,
   and,

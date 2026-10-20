@@ -99,7 +99,7 @@ export const ENTITLEMENTS = {
     chokepoint: 'lib/server/functions/sso.ts (upsertIdentityProviderFn)',
   },
   /**
-   * Customer-facing Quinn replies in Messenger. Teammate Copilot stays on
+   * Customer-facing ZenithAssistant replies in Messenger. Teammate Copilot stays on
    * {@link ENTITLEMENTS.aiDrafts}; this key only gates the orchestrator.
    */
   aiAssistant: {

@@ -28,7 +28,7 @@ import {
   deleteArticleTranslationFn,
 } from '@/lib/server/functions/help-center-translations'
 import { getArticleFn } from '@/lib/server/functions/help-center'
-import type { KbArticleId } from '@quackback/ids'
+import type { KbArticleId } from '@zenith/ids'
 import type { SupportedLocale } from '@/lib/shared/i18n'
 
 const LOCALE_LABELS: Record<string, string> = {

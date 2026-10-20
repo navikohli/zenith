@@ -3,10 +3,10 @@ import { usePermission } from '@/lib/client/hooks/use-permission'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import { cn } from '@/lib/shared/utils'
 
-type QuinnBucket = 'resolved' | 'escalated' | 'pending'
+type ZenithAssistantBucket = 'resolved' | 'escalated' | 'pending'
 
-/** Quinn-view outcome sub-filter. */
-const QUINN_BUCKETS: { value: QuinnBucket | undefined; label: string }[] = [
+/** ZenithAssistant-view outcome sub-filter. */
+const ZENITH_ASSISTANT_BUCKETS: { value: ZenithAssistantBucket | undefined; label: string }[] = [
   { value: undefined, label: 'All' },
   { value: 'pending', label: 'Pending' },
   { value: 'escalated', label: 'Escalated' },
@@ -14,26 +14,26 @@ const QUINN_BUCKETS: { value: QuinnBucket | undefined; label: string }[] = [
 ]
 
 /**
- * The header of the Quinn activity view: the outcome sub-filter, and for
+ * The header of the ZenithAssistant activity view: the outcome sub-filter, and for
  * assistant managers a link to the Agent settings.
  */
-export function QuinnViewHeader({
+export function ZenithAssistantViewHeader({
   value,
   counts,
   onChange,
 }: {
-  value?: QuinnBucket
+  value?: ZenithAssistantBucket
   counts?: { resolved: number; escalated: number; pending: number }
-  onChange: (value?: QuinnBucket) => void
+  onChange: (value?: ZenithAssistantBucket) => void
 }) {
   const canConfigure = usePermission(PERMISSIONS.AI_CUSTOMER_MANAGE)
-  const countFor = (v?: QuinnBucket): number | undefined => {
+  const countFor = (v?: ZenithAssistantBucket): number | undefined => {
     if (!counts) return undefined
     return v ? counts[v] : counts.resolved + counts.escalated + counts.pending
   }
   return (
     <div className="flex flex-wrap items-center gap-1.5 px-3 pb-2 pt-1">
-      {QUINN_BUCKETS.map((b) => {
+      {ZENITH_ASSISTANT_BUCKETS.map((b) => {
         const active = value === b.value
         const n = countFor(b.value)
         return (

@@ -1579,7 +1579,7 @@ describe('conversational block kinds', () => {
       triggerId: 'trigger',
       steps: [
         {
-          id: 'quinn-1',
+          id: 'zenith-assistant-1',
           kind: 'let_assistant_answer',
           paths: [
             {
@@ -1598,8 +1598,8 @@ describe('conversational block kinds', () => {
     }
     const graph = treeToGraph(tree)
     expect(workflowGraphSchema.safeParse(graph).success).toBe(true)
-    expect(graph.edges).toContainEqual({ from: 'quinn-1', to: 'a1' })
-    expect(graph.edges).toContainEqual({ from: 'quinn-1', to: 'a2', branch: 'escalated' })
+    expect(graph.edges).toContainEqual({ from: 'zenith-assistant-1', to: 'a1' })
+    expect(graph.edges).toContainEqual({ from: 'zenith-assistant-1', to: 'a2', branch: 'escalated' })
     expect(graphToTree(graph)).toEqual({ ok: true, value: tree })
   })
 
@@ -1608,7 +1608,7 @@ describe('conversational block kinds', () => {
       triggerId: 'trigger',
       steps: [
         {
-          id: 'quinn-1',
+          id: 'zenith-assistant-1',
           kind: 'let_assistant_answer',
           instructions: 'Focus on billing only',
           paths: [
@@ -1620,7 +1620,7 @@ describe('conversational block kinds', () => {
     }
     const graph = treeToGraph(tree)
     expect(workflowGraphSchema.safeParse(graph).success).toBe(true)
-    const node = graph.nodes.find((n) => n.id === 'quinn-1')
+    const node = graph.nodes.find((n) => n.id === 'zenith-assistant-1')
     expect(node).toMatchObject({ instructions: 'Focus on billing only' })
     expect(node).not.toHaveProperty('autoCloseOverride')
     expect(graphToTree(graph)).toEqual({ ok: true, value: tree })
@@ -1630,12 +1630,12 @@ describe('conversational block kinds', () => {
     const graph: WorkflowGraphJson = {
       nodes: [
         { id: 'trigger', type: 'trigger' },
-        { id: 'quinn-1', type: 'let_assistant_answer' },
+        { id: 'zenith-assistant-1', type: 'let_assistant_answer' },
         { id: 'a1', type: 'action', action: { type: 'close' } },
       ],
       edges: [
-        { from: 'trigger', to: 'quinn-1' },
-        { from: 'quinn-1', to: 'a1' },
+        { from: 'trigger', to: 'zenith-assistant-1' },
+        { from: 'zenith-assistant-1', to: 'a1' },
       ],
     }
     const tree = graphToTree(graph)

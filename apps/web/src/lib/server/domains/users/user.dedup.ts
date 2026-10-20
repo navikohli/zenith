@@ -16,7 +16,7 @@
 
 import { db, eq, ne, and, or, inArray, sql, principal, user } from '@/lib/server/db'
 import { notTestPrincipal } from '@/lib/server/test-data'
-import type { PrincipalId, UserId } from '@quackback/ids'
+import type { PrincipalId, UserId } from '@zenith/ids'
 
 export type ContactEmailMatchType = 'verified_user' | 'unverified_user' | 'lead'
 
@@ -145,7 +145,7 @@ export async function findDuplicatesForPrincipal(
   const self = selfRows[0]
   if (!self) return []
 
-  // The synthetic placeholder minted for leads (temp-…@anon.quackback.io) is
+  // The synthetic placeholder minted for leads (temp-…@anon.zenith.io) is
   // unique per identity, so including user.email here is collision-free.
   const emails = [self.userEmail, self.contactEmail]
     .map((e) => e?.trim().toLowerCase())

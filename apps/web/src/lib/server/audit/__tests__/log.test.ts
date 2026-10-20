@@ -8,7 +8,7 @@
  * mutation it records).
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import type { UserId } from '@quackback/ids'
+import type { UserId } from '@zenith/ids'
 
 vi.mock('@/lib/server/config', () => ({ config: { trustedProxyHops: 2 } }))
 
@@ -355,7 +355,7 @@ describe('recordAuditEvent attribution', () => {
     ],
     [
       'assistant',
-      { channel: 'assistant', clientName: 'Quinn', onBehalfOfPrincipalId: ON_BEHALF },
+      { channel: 'assistant', clientName: 'Zenith Assistant', onBehalfOfPrincipalId: ON_BEHALF },
       { channel: 'assistant', credentialKind: null, onBehalfOfPrincipalId: ON_BEHALF },
     ],
     [
@@ -383,7 +383,7 @@ describe('recordAuditEvent attribution', () => {
     const txValues = vi.fn((_row: unknown) => ({ returning: async () => [{ id: 'audit_row' }] }))
     const tx = { insert: vi.fn(() => ({ values: txValues })) }
     await runWithAuditAttribution(
-      { channel: 'assistant', clientName: 'Quinn', onBehalfOfPrincipalId: ON_BEHALF as never },
+      { channel: 'assistant', clientName: 'Zenith Assistant', onBehalfOfPrincipalId: ON_BEHALF as never },
       () =>
         recordAuditEventInTransaction(tx as never, {
           event: 'copilot.settings.applied',
@@ -392,7 +392,7 @@ describe('recordAuditEvent attribution', () => {
     )
     expect(txValues.mock.calls[0][0]).toMatchObject({
       channel: 'assistant',
-      clientName: 'Quinn',
+      clientName: 'Zenith Assistant',
       onBehalfOfPrincipalId: ON_BEHALF,
     })
   })

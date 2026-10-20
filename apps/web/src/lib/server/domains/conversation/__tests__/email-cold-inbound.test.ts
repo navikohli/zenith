@@ -4,7 +4,7 @@
  * db-test-fixture rollback transaction.
  */
 import { describe, it, expect, beforeEach, afterEach, afterAll, vi } from 'vitest'
-import { createId, type UserId } from '@quackback/ids'
+import { createId, type UserId } from '@zenith/ids'
 
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { user, principal, eq } from '@/lib/server/db'

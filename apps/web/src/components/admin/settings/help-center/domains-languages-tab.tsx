@@ -231,7 +231,7 @@ function DomainCard({ domain }: { domain: HelpCenterConfig['domain'] }) {
             <div className="mt-2 space-y-1.5 text-[13px] text-muted-foreground">
               <p>
                 Point a CNAME for your domain at this instance. TLS terminates at your own reverse
-                proxy (Caddy, nginx, Traefik). Quackback does not issue certificates.
+                proxy (Caddy, nginx, Traefik). Zenith does not issue certificates.
               </p>
               <p>
                 Article content stores absolute image URLs. Changing the domain does not rewrite
@@ -694,7 +694,7 @@ function AutoTranslateCard({
             }}
             onBlur={handleSaveTerms}
             rows={4}
-            placeholder="Quackback&#10;API&#10;webhook"
+            placeholder="Zenith&#10;API&#10;webhook"
             aria-invalid={termsError ? true : undefined}
           />
           {termsError && (

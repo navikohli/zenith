@@ -10,7 +10,7 @@ import {
   type PostStatusId,
   type PostTagId,
   type UserId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import type { BoardSettings, BoardAccess } from '@/lib/server/db'
 // Pure helper + its type, imported through the client-safe re-export so suites
 // that mock '@/lib/server/db' don't have to stub them.
@@ -55,7 +55,7 @@ import {
   getPublicRoadmapColumnsPosts,
   getPublicRoadmapDateBuckets,
 } from '@/lib/server/domains/roadmaps/roadmap.query'
-import { roadmapIdSchema, postStatusIdSchema } from '@quackback/ids/zod'
+import { roadmapIdSchema, postStatusIdSchema } from '@zenith/ids/zod'
 import {
   boardIdInputSchema,
   segmentIdInputSchema,

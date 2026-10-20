@@ -14,7 +14,7 @@ import {
   changelogCategories,
   changelogEntryCategories,
 } from '@/lib/server/db'
-import type { ChangelogCategoryId, ChangelogId } from '@quackback/ids'
+import type { ChangelogCategoryId, ChangelogId } from '@zenith/ids'
 import { NotFoundError, ValidationError, ConflictError } from '@/lib/shared/errors'
 import { TAXONOMY_DEFAULT_COLOR } from '@/lib/shared/schemas/taxonomy'
 import {

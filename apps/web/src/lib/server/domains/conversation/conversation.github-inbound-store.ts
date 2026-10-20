@@ -18,7 +18,7 @@ import {
   type ConversationMessageMetadata,
   type TiptapContent,
 } from '@/lib/server/db'
-import type { ChannelAccountId, ConversationId, PrincipalId } from '@quackback/ids'
+import type { ChannelAccountId, ConversationId, PrincipalId } from '@zenith/ids'
 import type { Actor } from '@/lib/server/policy/types'
 import { sanitizeTiptapContent } from '@/lib/server/sanitize-tiptap'
 import { githubMarkdownToTiptapJson, tiptapJsonToText } from '@/lib/server/markdown-tiptap'

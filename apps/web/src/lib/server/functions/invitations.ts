@@ -1,7 +1,7 @@
 import { createServerFn } from '@tanstack/react-start'
 import { getRequestHeaders } from '@tanstack/react-start/server'
 import { z } from 'zod'
-import type { InviteId, PrincipalId, RoleId, UserId } from '@quackback/ids'
+import type { InviteId, PrincipalId, RoleId, UserId } from '@zenith/ids'
 import { db, invitation, principal, user, and, eq } from '@/lib/server/db'
 import { ROLE_RANK, assertNotWidgetScope, toSessionScope, type Role } from '@/lib/shared/roles'
 import {
@@ -105,7 +105,7 @@ export const getInvitationDetailsFn = createServerFn({ method: 'GET' })
         name: inv.name,
         email: inv.email,
         role: inv.role,
-        workspaceName: settings?.name ?? 'Quackback',
+        workspaceName: settings?.name ?? 'Zenith',
         inviterName: inv.inviter?.name ?? null,
       },
       passwordEnabled,
@@ -380,7 +380,7 @@ export const getInviteBrandingFn = createServerFn({ method: 'GET' })
     ])
 
     return {
-      workspaceName: settings?.name ?? 'Quackback',
+      workspaceName: settings?.name ?? 'Zenith',
       logoUrl: getPublicUrlOrNull(settings?.logoKey),
       inviterName: inv?.inviter?.name ?? null,
     }

@@ -18,7 +18,7 @@
  * have returned — i.e. only rows that satisfy all four guards.
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import type { ChangelogId, PostId } from '@quackback/ids'
+import type { ChangelogId, PostId } from '@zenith/ids'
 // Static SUT import (vi.mock below is hoisted above it) so the module transform
 // is paid at file load, not inside a 5s-timed test — which it blew under a
 // saturated parallel run via the per-test `await import()`.

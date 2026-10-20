@@ -117,12 +117,12 @@ describe('public URLs', () => {
 
   it('keeps persist relative after a friendly URL rename', () => {
     const url = withWorkspace('workspace-alpha', () => getPublicUrlOrNull(PUBLIC_KEY), {
-      storage: { publicUrl: 'https://ws-abc123.quackback.co.uk/api/storage' },
-      baseUrl: 'https://acme.quackback.co.uk',
+      storage: { publicUrl: 'https://ws-abc123.zenith.co.uk/api/storage' },
+      baseUrl: 'https://acme.zenith.co.uk',
     })
 
     expect(url).toBe(`/api/storage/${PUBLIC_KEY}`)
-    expect(url).not.toContain('acme.quackback.co.uk')
+    expect(url).not.toContain('acme.zenith.co.uk')
     expect(url).not.toContain('env-cdn.example.net')
   })
 
@@ -131,13 +131,13 @@ describe('public URLs', () => {
       'workspace-alpha',
       () => absolutizeOffHostAssetUrl(`/api/storage/${PUBLIC_KEY}`),
       {
-        storage: { publicUrl: 'https://ws-abc123.quackback.co.uk/api/storage' },
-        baseUrl: 'https://acme.quackback.co.uk',
+        storage: { publicUrl: 'https://ws-abc123.zenith.co.uk/api/storage' },
+        baseUrl: 'https://acme.zenith.co.uk',
       }
     )
 
-    expect(url).toBe(`https://ws-abc123.quackback.co.uk/api/storage/${PUBLIC_KEY}`)
-    expect(url).not.toContain('acme.quackback.co.uk')
+    expect(url).toBe(`https://ws-abc123.zenith.co.uk/api/storage/${PUBLIC_KEY}`)
+    expect(url).not.toContain('acme.zenith.co.uk')
     expect(url).not.toContain('env-cdn.example.net')
   })
 
@@ -242,12 +242,12 @@ describe('public URLs', () => {
 
   it('email-safe URLs absolutize from the system host and force the proxy hint', () => {
     const url = withWorkspace('workspace-alpha', () => getEmailSafeUrl(PUBLIC_KEY), {
-      storage: { publicUrl: 'https://ws-abc123.quackback.co.uk/api/storage' },
-      baseUrl: 'https://acme.quackback.co.uk',
+      storage: { publicUrl: 'https://ws-abc123.zenith.co.uk/api/storage' },
+      baseUrl: 'https://acme.zenith.co.uk',
     })
 
-    expect(url).toBe(`https://ws-abc123.quackback.co.uk/api/storage/${PUBLIC_KEY}?email=1`)
-    expect(url).not.toContain('acme.quackback.co.uk')
+    expect(url).toBe(`https://ws-abc123.zenith.co.uk/api/storage/${PUBLIC_KEY}?email=1`)
+    expect(url).not.toContain('acme.zenith.co.uk')
   })
 })
 

@@ -2,7 +2,7 @@ import { createServerFn } from '@tanstack/react-start'
 import { z } from 'zod'
 import { requireAuth } from './auth-helpers'
 import { db, integrations, integrationEventMappings, eq, and, sql } from '@/lib/server/db'
-import type { IntegrationId } from '@quackback/ids'
+import type { IntegrationId } from '@zenith/ids'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import { logger } from '@/lib/server/logger'
 // cacheDel/CACHE_KEYS are imported dynamically inside handlers to keep the

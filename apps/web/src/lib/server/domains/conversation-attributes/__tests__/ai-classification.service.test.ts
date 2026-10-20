@@ -69,7 +69,7 @@ vi.mock('@/lib/server/domains/assistant/assistant.principal', () => ({
 }))
 
 vi.mock('@/lib/server/domains/assistant/assistant.actor', () => ({
-  quinnActor: (principalId: string) => ({
+  zenithAssistantActor: (principalId: string) => ({
     principalId,
     role: 'admin',
     principalType: 'service',
@@ -127,7 +127,7 @@ vi.mock('@/lib/server/realtime/conversation-channels', () => ({
   publishAgentConversationEvent: (...args: unknown[]) => mockPublishAgentConversationEvent(...args),
 }))
 
-import type { ConversationId } from '@quackback/ids'
+import type { ConversationId } from '@zenith/ids'
 import { classifyConversationAttributes } from '../ai-classification.service'
 
 const conversationId = 'conversation_1' as ConversationId
@@ -165,7 +165,7 @@ beforeEach(() => {
   mockLoadConversationThread.mockResolvedValue([
     { senderType: 'visitor', content: 'I was charged twice for my subscription this month.' },
   ])
-  mockEnsureAssistantPrincipal.mockResolvedValue({ id: 'principal_quinn' })
+  mockEnsureAssistantPrincipal.mockResolvedValue({ id: 'principal_zenithAssistant' })
   mockSetConversationAttribute.mockResolvedValue({
     issue_type: { v: 'opt_billing', src: 'ai', at: '2026-01-01' },
   })
@@ -446,12 +446,12 @@ describe('classifyConversationAttributes: happy path', () => {
     ).resolves.toEqual([])
   })
 
-  it('uses the bounded Quinn actor identity as the note author', async () => {
+  it('uses the bounded ZenithAssistant actor identity as the note author', async () => {
     mockChat.mockResolvedValue({
       results: [{ key: 'issue_type', optionId: 'opt_billing', reasoning: 'x' }],
     })
     await classifyConversationAttributes(conversationId, { trigger: 'handoff' })
     const insertedValues = mockInsertValues.mock.calls[0][0]
-    expect(insertedValues.principalId).toBe('principal_quinn')
+    expect(insertedValues.principalId).toBe('principal_zenithAssistant')
   })
 })

@@ -8,7 +8,7 @@ import {
 } from '@/lib/server/domains/api/responses'
 import { parseOptionalTypeId } from '@/lib/server/domains/api/validation'
 import { APPROVAL_STATUSES, type ApprovalStatus } from '@/lib/shared/assistant/approvals'
-import type { AssistantPendingActionId } from '@quackback/ids'
+import type { AssistantPendingActionId } from '@zenith/ids'
 
 export const Route = createFileRoute('/api/v1/approvals/')({
   server: {

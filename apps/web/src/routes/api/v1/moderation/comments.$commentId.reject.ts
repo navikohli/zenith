@@ -9,7 +9,7 @@ import {
 import { parseTypeId } from '@/lib/server/domains/api/validation'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import { moderationAuditFromApiAuth } from './-audit'
-import type { PostCommentId } from '@quackback/ids'
+import type { PostCommentId } from '@zenith/ids'
 
 const rejectSchema = z.object({
   reason: z.string().max(500).optional(),

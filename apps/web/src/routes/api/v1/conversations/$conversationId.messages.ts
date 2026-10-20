@@ -4,7 +4,7 @@ import { successResponse, handleDomainError } from '@/lib/server/domains/api/res
 import { parseTypeId } from '@/lib/server/domains/api/validation'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import { serializeMessage } from './-serialize'
-import type { ConversationId, SegmentId } from '@quackback/ids'
+import type { ConversationId, SegmentId } from '@zenith/ids'
 
 export const Route = createFileRoute('/api/v1/conversations/$conversationId/messages')({
   server: {

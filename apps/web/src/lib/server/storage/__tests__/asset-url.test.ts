@@ -23,11 +23,11 @@ const KEY = 'logos/2026/08/brand.png'
 
 describe('systemHostOriginFromPublicUrl', () => {
   it('reads the origin of a pinned https://host/api/storage value', () => {
-    expect(systemHostOriginFromPublicUrl('https://ws-abc123.quackback.co.uk/api/storage')).toBe(
-      'https://ws-abc123.quackback.co.uk'
+    expect(systemHostOriginFromPublicUrl('https://ws-abc123.zenith.co.uk/api/storage')).toBe(
+      'https://ws-abc123.zenith.co.uk'
     )
-    expect(systemHostOriginFromPublicUrl('https://ws-abc123.quackback.co.uk/api/storage/')).toBe(
-      'https://ws-abc123.quackback.co.uk'
+    expect(systemHostOriginFromPublicUrl('https://ws-abc123.zenith.co.uk/api/storage/')).toBe(
+      'https://ws-abc123.zenith.co.uk'
     )
   })
 
@@ -41,10 +41,10 @@ describe('systemHostOriginFromPublicUrl', () => {
 describe('getSystemAssetOrigin', () => {
   it('uses the pinned system host, not the friendly URL or env base', () => {
     const origin = withWorkspace('workspace-alpha', () => getSystemAssetOrigin(), {
-      storage: { publicUrl: 'https://ws-abc123.quackback.co.uk/api/storage' },
-      baseUrl: 'https://acme.quackback.co.uk',
+      storage: { publicUrl: 'https://ws-abc123.zenith.co.uk/api/storage' },
+      baseUrl: 'https://acme.zenith.co.uk',
     })
-    expect(origin).toBe('https://ws-abc123.quackback.co.uk')
+    expect(origin).toBe('https://ws-abc123.zenith.co.uk')
   })
 
   it('falls back to the workspace base when the pin is not a system-host storage URL', () => {
@@ -65,23 +65,23 @@ describe('absolutizeOffHostAssetUrl', () => {
       'workspace-alpha',
       () => absolutizeOffHostAssetUrl(`/api/storage/${KEY}`),
       {
-        storage: { publicUrl: 'https://ws-abc123.quackback.co.uk/api/storage' },
-        baseUrl: 'https://acme.quackback.co.uk',
+        storage: { publicUrl: 'https://ws-abc123.zenith.co.uk/api/storage' },
+        baseUrl: 'https://acme.zenith.co.uk',
       }
     )
-    expect(url).toBe(`https://ws-abc123.quackback.co.uk/api/storage/${KEY}`)
+    expect(url).toBe(`https://ws-abc123.zenith.co.uk/api/storage/${KEY}`)
   })
 
   it('rewrites a legacy friendly-host storage src onto the system host', () => {
     const url = withWorkspace(
       'workspace-alpha',
-      () => absolutizeOffHostAssetUrl(`https://acme.quackback.co.uk/api/storage/${KEY}`),
+      () => absolutizeOffHostAssetUrl(`https://acme.zenith.co.uk/api/storage/${KEY}`),
       {
-        storage: { publicUrl: 'https://ws-abc123.quackback.co.uk/api/storage' },
-        baseUrl: 'https://acme.quackback.co.uk',
+        storage: { publicUrl: 'https://ws-abc123.zenith.co.uk/api/storage' },
+        baseUrl: 'https://acme.zenith.co.uk',
       }
     )
-    expect(url).toBe(`https://ws-abc123.quackback.co.uk/api/storage/${KEY}`)
+    expect(url).toBe(`https://ws-abc123.zenith.co.uk/api/storage/${KEY}`)
   })
 
   it('leaves a legacy CDN src untouched', () => {
@@ -95,11 +95,11 @@ describe('absolutizeOffHostAssetUrl', () => {
       'workspace-alpha',
       () => absolutizeOffHostAssetUrl(`/api/storage/${KEY}?read=abc`, { email: true }),
       {
-        storage: { publicUrl: 'https://ws-abc123.quackback.co.uk/api/storage' },
-        baseUrl: 'https://acme.quackback.co.uk',
+        storage: { publicUrl: 'https://ws-abc123.zenith.co.uk/api/storage' },
+        baseUrl: 'https://acme.zenith.co.uk',
       }
     )
-    expect(url).toBe(`https://ws-abc123.quackback.co.uk/api/storage/${KEY}?read=abc&email=1`)
+    expect(url).toBe(`https://ws-abc123.zenith.co.uk/api/storage/${KEY}?read=abc&email=1`)
   })
 
   it('does not treat /api/storage as a stored asset path', () => {

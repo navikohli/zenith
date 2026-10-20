@@ -53,7 +53,7 @@ import {
   resolveVersionSpec,
   UnknownSchemaVersion,
   type SchemaFloorVerdict,
-} from '@quackback/db/schema-version'
+} from '@zenith/db/schema-version'
 
 /** Distinguishable from a fingerprint refusal, because it means something else. */
 export const SCHEMA_FLOOR_REFUSAL_CODE = 'schema_below_floor'

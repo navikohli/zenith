@@ -1,43 +1,43 @@
-# @quackback/widget
+# @zenith/widget
 
-The official SDK for embedding the [Quackback](https://quackback.io) feedback widget in your app. Ships with TypeScript types and a React adapter.
+The official SDK for embedding the [Zenith](/source.html) feedback widget in your app. Ships with TypeScript types and a React adapter.
 
 ## Install
 
 ```bash
-npm install @quackback/widget
-# or:  pnpm add @quackback/widget
-# or:  bun add @quackback/widget
+npm install @zenith/widget
+# or:  pnpm add @zenith/widget
+# or:  bun add @zenith/widget
 ```
 
 ## Vanilla JS
 
 ```js
-import { Quackback } from '@quackback/widget'
+import { Zenith } from '@zenith/widget'
 
-Quackback.init({ instanceUrl: 'https://feedback.yourcompany.com' })
+Zenith.init({ instanceUrl: 'https://feedback.yourcompany.com' })
 
 // When you know who the user is:
-Quackback.identify({ id: 'u_123', email: 'ada@example.com', name: 'Ada' })
+Zenith.identify({ id: 'u_123', email: 'ada@example.com', name: 'Ada' })
 
 // Deep-link to a specific view:
-Quackback.open({ view: 'new-post', title: 'Bug:', board: 'bugs' })
+Zenith.open({ view: 'new-post', title: 'Bug:', board: 'bugs' })
 ```
 
 ## React
 
 ```tsx
-import { useQuackbackInit, useQuackback, useQuackbackEvent } from '@quackback/widget/react'
+import { useZenithInit, useZenith, useZenithEvent } from '@zenith/widget/react'
 
 function App() {
   const { user } = useAuth()
 
-  useQuackbackInit({
+  useZenithInit({
     instanceUrl: 'https://feedback.yourcompany.com',
     identity: user ? { id: user.id, email: user.email, name: user.name } : undefined,
   })
 
-  useQuackbackEvent('post:created', (post) => {
+  useZenithEvent('post:created', (post) => {
     analytics.track('feedback_submitted', { postId: post.id })
   })
 
@@ -45,16 +45,16 @@ function App() {
 }
 
 function FeedbackButton() {
-  const qb = useQuackback()
+  const qb = useZenith()
   return <button onClick={() => qb.open({ view: 'new-post' })}>Feedback</button>
 }
 ```
 
-No provider needed — Quackback is a singleton and the hooks wrap its lifecycle.
+No provider needed — Zenith is a singleton and the hooks wrap its lifecycle.
 
 ## Other frameworks
 
-Vue, Svelte, Angular, Solid: import `Quackback` from the main entry and call it directly. Framework adapters ship on request.
+Vue, Svelte, Angular, Solid: import `Zenith` from the main entry and call it directly. Framework adapters ship on request.
 
 ## Prefer a script tag?
 
@@ -70,24 +70,24 @@ Drop this in your `<head>` and skip the install step entirely:
 
 | Method                                        | Description                                                                |
 | --------------------------------------------- | -------------------------------------------------------------------------- |
-| `Quackback.init(options)`                     | Create launcher + iframe. `options.instanceUrl` required.                  |
-| `Quackback.identify(identity?)`               | Attribute activity to a user. Omit for anonymous.                          |
-| `Quackback.logout()`                          | Clear identity; widget stays visible in anonymous mode.                    |
-| `Quackback.open(options?)`                    | Open the panel; optional deep-link payload (see below).                    |
-| `Quackback.close()`                           | Close the panel.                                                           |
-| `Quackback.showLauncher()` / `hideLauncher()` | Toggle the floating button.                                                |
-| `Quackback.metadata(patch)`                   | Attach session context to submitted feedback. Pass `null` to remove a key. |
-| `Quackback.on(event, handler)`                | Subscribe to a widget event. Returns an unsubscribe function.              |
-| `Quackback.off(event, handler?)`              | Remove a specific handler, or all listeners for the event.                 |
-| `Quackback.destroy()`                         | Tear down all widget state and DOM.                                        |
-| `Quackback.isOpen()`                          | Whether the panel is currently visible.                                    |
-| `Quackback.getUser()`                         | The current identified user, or `null`.                                    |
-| `Quackback.isIdentified()`                    | `true` when a user is identified (non-anonymous).                          |
+| `Zenith.init(options)`                     | Create launcher + iframe. `options.instanceUrl` required.                  |
+| `Zenith.identify(identity?)`               | Attribute activity to a user. Omit for anonymous.                          |
+| `Zenith.logout()`                          | Clear identity; widget stays visible in anonymous mode.                    |
+| `Zenith.open(options?)`                    | Open the panel; optional deep-link payload (see below).                    |
+| `Zenith.close()`                           | Close the panel.                                                           |
+| `Zenith.showLauncher()` / `hideLauncher()` | Toggle the floating button.                                                |
+| `Zenith.metadata(patch)`                   | Attach session context to submitted feedback. Pass `null` to remove a key. |
+| `Zenith.on(event, handler)`                | Subscribe to a widget event. Returns an unsubscribe function.              |
+| `Zenith.off(event, handler?)`              | Remove a specific handler, or all listeners for the event.                 |
+| `Zenith.destroy()`                         | Tear down all widget state and DOM.                                        |
+| `Zenith.isOpen()`                          | Whether the panel is currently visible.                                    |
+| `Zenith.getUser()`                         | The current identified user, or `null`.                                    |
+| `Zenith.isIdentified()`                    | `true` when a user is identified (non-anonymous).                          |
 
 ### `init` options
 
 ```ts
-Quackback.init({
+Zenith.init({
   instanceUrl: 'https://feedback.yourcompany.com', // required
   placement: 'right' | 'left', // default 'right'
   defaultBoard: 'bugs', // filter widget to one board
@@ -110,27 +110,27 @@ Quackback.init({
 })
 ```
 
-Theme colors and tab visibility come from your Quackback admin (Admin → Settings → Widget).
+Theme colors and tab visibility come from your Zenith admin (Admin → Settings → Widget).
 
 ### `identify` shapes
 
 ```ts
-Quackback.identify() // anonymous
-Quackback.identify({ id: 'u_123', email: 'ada@x.com', name: 'Ada' }) // unverified
-Quackback.identify({ ssoToken: 'eyJ...' }) // verified
+Zenith.identify() // anonymous
+Zenith.identify({ id: 'u_123', email: 'ada@x.com', name: 'Ada' }) // unverified
+Zenith.identify({ ssoToken: 'eyJ...' }) // verified
 ```
 
-See the [Identify users guide](https://quackback.io/docs/widget/identify-users) for JWT claims and server examples.
+See the [Identify users guide](/source.html) for JWT claims and server examples.
 
 ### `open` deep-links
 
 ```ts
-Quackback.open() // home
-Quackback.open({ view: 'new-post', title: 'Bug:', body: '...', board: 'bugs' }) // pre-filled form
-Quackback.open({ view: 'changelog' }) // changelog feed
-Quackback.open({ view: 'help', query: 'pricing' }) // help search
-Quackback.open({ postId: 'post_01h...' }) // specific post
-Quackback.open({ articleId: 'article_01h...' }) // help article TypeID or slug
+Zenith.open() // home
+Zenith.open({ view: 'new-post', title: 'Bug:', body: '...', board: 'bugs' }) // pre-filled form
+Zenith.open({ view: 'changelog' }) // changelog feed
+Zenith.open({ view: 'help', query: 'pricing' }) // help search
+Zenith.open({ postId: 'post_01h...' }) // specific post
+Zenith.open({ articleId: 'article_01h...' }) // help article TypeID or slug
 ```
 
 `postId` and `articleId` win over `view` if both are set. `board` on `open` only applies to `view: 'new-post'`. Home / Popular Ideas filtering uses `init({ defaultBoard })` or the iframe `?board=` param.
@@ -140,7 +140,7 @@ Every `open` field is live. A disabled surface or an unseen board fails closed �
 ### Events
 
 ```ts
-const unsubscribe = Quackback.on('vote', (payload) => {
+const unsubscribe = Zenith.on('vote', (payload) => {
   console.log('Voted on', payload.postId)
 })
 unsubscribe()
@@ -159,7 +159,7 @@ unsubscribe()
 
 ## Docs
 
-Full documentation: https://quackback.io/docs/widget
+Full documentation: /source.html
 
 ## License
 

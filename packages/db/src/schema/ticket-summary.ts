@@ -1,6 +1,6 @@
 import { pgTable, text, timestamp, index, customType } from 'drizzle-orm/pg-core'
 import { relations, sql } from 'drizzle-orm'
-import { typeIdWithDefault, typeIdColumn, typeIdColumnNullable } from '@quackback/ids/drizzle'
+import { typeIdWithDefault, typeIdColumn, typeIdColumnNullable } from '@zenith/ids/drizzle'
 import { tickets } from './tickets'
 import { principal } from './auth'
 
@@ -14,7 +14,7 @@ const vector = customType<{ data: number[] }>({
 })
 
 /**
- * One AI-generated resolution summary per closed ticket (Quinn Phase 4:
+ * One AI-generated resolution summary per closed ticket (ZenithAssistant Phase 4:
  * ticket grounding), produced by `ticket-summary.service.ts` on close from the
  * ticket's customer-visible thread — `listTicketMessages({ includeInternal:
  * false })` excludes internal notes, so a note never enters a summary — and

@@ -33,7 +33,7 @@
  * coverage — which is worse than no branch, because it invites the reader to
  * believe the case is handled somewhere.
  */
-import { assertEmailProviderConfigured } from '@quackback/email/provider'
+import { assertEmailProviderConfigured } from '@zenith/email/provider'
 import { logger } from '@/lib/server/logger'
 import { validateRuntimeConfig } from '@/lib/server/config'
 import { assertSchemaFloorConfigured } from '@/lib/server/fleet/schema-floor'
@@ -63,7 +63,7 @@ export function assertBootConfigurationOrExit(
   // Skipped during the build: the server entry is evaluated to generate the
   // route manifest, in an environment that is not the one it will run in, so a
   // build-time reading of these variables says nothing.
-  if (env.QUACKBACK_BUILD === '1') return
+  if (env.ZENITH_BUILD === '1') return
 
   try {
     assertProcessRoleConfigured(env)

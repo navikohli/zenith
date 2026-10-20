@@ -64,10 +64,10 @@ export function renderPermissionsMirror(): string {
  * GENERATED — do not edit by hand. Edit \`packages/db/src/rbac-catalogue.ts\`
  * then run \`bun run db:permissions\` from the repo root.
  *
- * The widget/portal client bundles can't import \`@quackback/db\` (it drags in
+ * The widget/portal client bundles can't import \`@zenith/db\` (it drags in
  * postgres), so the catalogue is projected here as plain data for the admin
  * UI. A drift test (permissions-catalogue-drift.test.ts) asserts this stays
- * identical to the \`@quackback/db\` source of truth: edit the catalogue there
+ * identical to the \`@zenith/db\` source of truth: edit the catalogue there
  * first, then regenerate here.
  */
 
@@ -86,7 +86,7 @@ ${PERMISSION_CATEGORIES.map((category) => `  '${category}',`).join('\n')}
 export type PermissionCategory = (typeof PERMISSION_CATEGORIES)[number]
 
 // --------------------------------------------------------------- presets ---
-// Projected from @quackback/db (the drift test enforces equality). The policy
+// Projected from @zenith/db (the drift test enforces equality). The policy
 // layer resolves an actor's permissions from these, and the read-only Roles UI
 // renders them, so they must be client-safe.
 
@@ -128,7 +128,7 @@ export function presetForLegacyRole(role: string): SystemRoleKey | null {
 
 /**
  * Each permission's category, for the read-only Roles matrix UI. The
- * (key, category) pairs mirror @quackback/db's PERMISSION_CATALOGUE; the drift
+ * (key, category) pairs mirror @zenith/db's PERMISSION_CATALOGUE; the drift
  * test enforces the projection. Descriptions live only in the db catalogue.
  */
 export const PERMISSION_CATALOGUE: ReadonlyArray<{

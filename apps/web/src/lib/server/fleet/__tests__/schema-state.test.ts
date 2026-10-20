@@ -7,7 +7,7 @@
  * `CHECK` are database behaviour, and a test double would only assert that the
  * strings written are the strings written.
  *
- * The schema comes from `quackback-cp`'s `drizzle/0049_tenant_schema_state.sql`
+ * The schema comes from `zenith-cp`'s `drizzle/0049_tenant_schema_state.sql`
  * verbatim rather than from a hand-written CREATE TABLE, because the constraints
  * *are* half of what is being tested — a fixture that re-typed them could pass
  * against a table the control plane will never have. The only thing stubbed is
@@ -15,7 +15,7 @@
  * repository and is not what these tests are about.
  *
  * Each run gets its own scratch database, so nothing here depends on the shared
- * `quackback_test` and no assertion counts rows it does not own.
+ * `zenith_test` and no assertion counts rows it does not own.
  */
 import { randomUUID } from 'node:crypto'
 import { readFileSync } from 'node:fs'
@@ -23,7 +23,7 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from 'vitest'
 import postgres from 'postgres'
-import { createDbFromSql } from '@quackback/db/client'
+import { createDbFromSql } from '@zenith/db/client'
 import {
   __setControlDbForTests,
   blockWorkspace,

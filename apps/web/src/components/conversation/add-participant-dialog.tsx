@@ -11,7 +11,7 @@ import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { toast } from 'sonner'
 import { XMarkIcon } from '@heroicons/react/24/solid'
-import type { ConversationId, PrincipalId } from '@quackback/ids'
+import type { ConversationId, PrincipalId } from '@zenith/ids'
 import {
   Dialog,
   DialogContent,

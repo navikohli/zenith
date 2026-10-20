@@ -61,7 +61,7 @@ describe('assistantConfigSchema', () => {
     expect(assistantConfigSchema.parse(DEFAULT_ASSISTANT_CONFIG)).toEqual({
       version: 4,
       identity: {
-        name: 'Quackback AI',
+        name: 'Zenith AI',
         avatarUrl: null,
       },
       agents: {
@@ -103,7 +103,7 @@ describe('assistantConfigSchema', () => {
     expect(
       assistantConfigSchema.safeParse({
         version: 2,
-        identity: { name: 'Quinn', avatarUrl: null },
+        identity: { name: 'Zenith Assistant', avatarUrl: null },
         voice: { tone: 'balanced', responseLength: 'balanced', additionalInstructions: '' },
       }).success
     ).toBe(false)
@@ -233,12 +233,12 @@ describe('assistant configuration normalization', () => {
 
   it('normalizes names and instructions while preserving internal newlines, Unicode, and RTL text', () => {
     const input = validConfig()
-    input.identity.name = ' \u0000Quinn وكيل\u007f '
+    input.identity.name = ' \u0000ZenithAssistant وكيل\u007f '
     input.agents.agent.voice.additionalInstructions =
       ' \u0001Use café ☕.\r\nاكتب بالعربية.\nכתוב בעברית.\u001f '
 
     expect(normalizeAssistantConfig(input)).toMatchObject({
-      identity: { name: 'Quinn وكيل' },
+      identity: { name: 'ZenithAssistant وكيل' },
       agents: {
         workspace: structuredClone(DEFAULT_WORKSPACE_ASSISTANT),
         agent: {

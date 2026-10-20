@@ -1,5 +1,5 @@
-import type { UserId, PostStatusId, PrincipalId } from '@quackback/ids'
-import { generateId } from '@quackback/ids'
+import type { UserId, PostStatusId, PrincipalId } from '@zenith/ids'
+import { generateId } from '@zenith/ids'
 import { DEFAULT_SETUP_STATE, type OnboardingOutcome, type SetupState } from '@/lib/server/db'
 import { isAdmin } from '@/lib/shared/roles'
 import { getSettings } from '@/lib/server/functions/workspace'

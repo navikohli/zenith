@@ -8,7 +8,7 @@
  * Only the hook registry is stubbed, because that is what decides *what* runs.
  *
  * Rows are scoped to dedupe keys this file mints: `DATABASE_URL` points every
- * worktree on this machine at one shared `quackback_test`.
+ * worktree on this machine at one shared `zenith_test`.
  */
 
 import { describe, it, expect, vi, afterAll, beforeAll, beforeEach } from 'vitest'

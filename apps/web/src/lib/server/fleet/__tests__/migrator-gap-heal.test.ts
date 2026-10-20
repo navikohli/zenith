@@ -25,7 +25,7 @@
  * ## Method
  *
  * - **Every test gets its own database**, copied from one fully migrated
- *   template. Nothing here touches the shared `quackback_test`, and no assertion
+ *   template. Nothing here touches the shared `zenith_test`, and no assertion
  *   counts rows it does not own.
  * - **`migrateWorkspace` is the subject, not a re-implementation of it.** The only
  *   seam is the workspace's password: `withPassword` is a pure string function, so
@@ -43,15 +43,15 @@ import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { afterAll, afterEach, beforeAll, describe, expect, it, vi } from 'vitest'
 import postgres from 'postgres'
-import { runMigrations } from '@quackback/db/migrate'
-import { verifySchemaPostconditions } from '@quackback/db/schema-ops'
+import { runMigrations } from '@zenith/db/migrate'
+import { verifySchemaPostconditions } from '@zenith/db/schema-ops'
 import {
   BUNDLED_MIGRATIONS,
   MIGRATIONS_DIR,
   latestBundledVersion,
   readAppliedLedger,
   truncateAppliedLedger,
-} from '@quackback/db/schema-version'
+} from '@zenith/db/schema-version'
 import { assessReplaySafety } from '@/lib/server/policy/migration-contract/replay-safety'
 
 // The migrator resolves a workspace's password through the pool cache, which wants
@@ -80,8 +80,8 @@ vi.mock('@/lib/server/workspaces/pool-cache', () => ({
  */
 const executor = vi.hoisted(() => ({ pretendItRan: false }))
 
-vi.mock('@quackback/db/migrate', async (importOriginal) => {
-  const actual = await importOriginal<typeof import('@quackback/db/migrate')>()
+vi.mock('@zenith/db/migrate', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@zenith/db/migrate')>()
   return {
     ...actual,
     runMigrations: async (...args: Parameters<typeof actual.runMigrations>) =>

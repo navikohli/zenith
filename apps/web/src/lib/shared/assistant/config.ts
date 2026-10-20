@@ -63,7 +63,7 @@ export const assistantVoiceSchema = z.object({
 })
 
 /**
- * The two peer agents Quinn drives (D3/D4). A guidance rule, a knowledge map,
+ * The two peer agents ZenithAssistant drives (D3/D4). A guidance rule, a knowledge map,
  * and every runtime resolution belong to exactly one of these. `roleToAgent`
  * below is the single, exhaustive mint point that maps a pipeline role onto
  * one of these — callers never re-derive it from a role literal (C3).
@@ -243,7 +243,7 @@ export type AssistantConfig = z.infer<typeof assistantConfigSchema>
 export const DEFAULT_ASSISTANT_CONFIG: AssistantConfig = {
   version: ASSISTANT_CONFIG_VERSION,
   identity: {
-    name: 'Quackback AI',
+    name: 'Zenith AI',
     avatarUrl: null,
   },
   agents: {

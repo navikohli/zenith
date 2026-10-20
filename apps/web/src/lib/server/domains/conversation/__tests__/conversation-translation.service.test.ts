@@ -8,7 +8,7 @@
  * deterministic.
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import type { ConversationId, ConversationMessageId, PrincipalId } from '@quackback/ids'
+import type { ConversationId, ConversationMessageId, PrincipalId } from '@zenith/ids'
 import type { Actor } from '@/lib/server/policy/types'
 import type { Conversation, ConversationMessage } from '@/lib/server/db'
 

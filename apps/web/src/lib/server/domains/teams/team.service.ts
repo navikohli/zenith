@@ -24,7 +24,7 @@ import {
   user,
 } from '@/lib/server/db'
 import type { Transaction } from '@/lib/server/db'
-import type { PrincipalId, TeamId } from '@quackback/ids'
+import type { PrincipalId, TeamId } from '@zenith/ids'
 import { isTeamMember } from '@/lib/shared/roles'
 import { NotFoundError, ValidationError } from '@/lib/shared/errors'
 import { logger } from '@/lib/server/logger'

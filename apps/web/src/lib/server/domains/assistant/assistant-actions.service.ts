@@ -2,7 +2,7 @@ import { assertPendingWorkspaceParent } from './pending-action-parent'
 import { agentKindForTurn, isConnectorTool, isHomeThreadKey } from './workspace-safety'
 import { toolPermissions } from './tool-permissions'
 import { db } from '@/lib/server/db'
-import type { AssistantPendingActionId, PrincipalId } from '@quackback/ids'
+import type { AssistantPendingActionId, PrincipalId } from '@zenith/ids'
 import type { Actor } from '@/lib/server/policy/types'
 import { can } from '@/lib/server/policy/authorize'
 import { NotFoundError, ForbiddenError, ConflictError, DomainException } from '@/lib/shared/errors'
@@ -38,7 +38,7 @@ class ToolSpecGoneError extends DomainException {
 }
 
 /** Build the tool-execution context for an approved action. Records remain
- * attributed to Quinn, while authorization and domain writes use the approving
+ * attributed to ZenithAssistant, while authorization and domain writes use the approving
  * teammate's actor. */
 async function buildExecutionContext(
   pending: AssistantPendingAction,

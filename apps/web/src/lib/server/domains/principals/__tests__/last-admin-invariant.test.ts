@@ -21,7 +21,7 @@
  * `last-admin-invariant.db.test.ts`.
  */
 import { describe, it, expect, beforeEach, vi } from 'vitest'
-import type { PrincipalId, UserId } from '@quackback/ids'
+import type { PrincipalId, UserId } from '@zenith/ids'
 import { ForbiddenError } from '@/lib/shared/errors'
 
 const hoisted = vi.hoisted(() => ({

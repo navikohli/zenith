@@ -16,7 +16,7 @@ import {
   check,
 } from 'drizzle-orm/pg-core'
 import { sql } from 'drizzle-orm'
-import { typeIdWithDefault, typeIdColumn, typeIdColumnNullable } from '@quackback/ids/drizzle'
+import { typeIdWithDefault, typeIdColumn, typeIdColumnNullable } from '@zenith/ids/drizzle'
 import { officeHoursSchedules } from './office-hours'
 import { conversations } from './conversation'
 import { tickets } from './tickets'

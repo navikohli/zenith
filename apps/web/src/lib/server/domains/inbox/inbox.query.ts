@@ -42,7 +42,7 @@ import type {
   PrincipalId,
   TeamId,
   CompanyId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import type { ConversationPriority, TicketStage } from '@/lib/shared/db-types'
 import type { Channel } from '@/lib/shared/channels'
 import { PRIORITY_RANK } from '@/lib/shared/conversation/priority-meta'

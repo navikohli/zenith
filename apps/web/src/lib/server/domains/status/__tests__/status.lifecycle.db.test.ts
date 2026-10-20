@@ -9,7 +9,7 @@
  * runs for real inside the fixture's always-rolled-back transaction.
  */
 import { afterAll, afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { createId } from '@quackback/ids'
+import { createId } from '@zenith/ids'
 import { testDb } from '@/lib/server/__tests__/db-test-fixture'
 import {
   and,

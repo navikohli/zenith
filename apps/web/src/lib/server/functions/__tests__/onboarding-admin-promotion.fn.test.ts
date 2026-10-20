@@ -77,8 +77,8 @@ vi.mock('@/lib/server/config-file/managed-paths', () => ({
     (paths ?? []).includes(path)
   ),
 }))
-vi.mock('@quackback/ids', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@quackback/ids')>()),
+vi.mock('@zenith/ids', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@zenith/ids')>()),
   generateId: vi.fn((type: string) => `${type}_test`),
 }))
 vi.mock('@/lib/server/logger', () => ({

@@ -19,7 +19,7 @@
  * the first union branch.
  */
 import { z } from 'zod'
-import { isValidTypeId } from '@quackback/ids'
+import { isValidTypeId } from '@zenith/ids'
 import { conversationIdSchema } from './conversation-id.schema'
 
 export const ticketIdSchema = z

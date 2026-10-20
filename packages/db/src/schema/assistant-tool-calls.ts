@@ -20,7 +20,7 @@ import {
   foreignKey,
 } from 'drizzle-orm/pg-core'
 import { relations, sql } from 'drizzle-orm'
-import { typeIdWithDefault, typeIdColumnNullable } from '@quackback/ids/drizzle'
+import { typeIdWithDefault, typeIdColumnNullable } from '@zenith/ids/drizzle'
 import { conversations } from './conversation'
 import { assistantInvolvements } from './assistant'
 import { assistantPendingActions } from './assistant-pending-actions'
@@ -79,9 +79,9 @@ export const assistantToolCalls = pgTable(
       table.conversationId,
       table.createdAt
     ),
-    // Drives the Quinn performance dashboard's succeeded-actions date-range scan.
+    // Drives the ZenithAssistant performance dashboard's succeeded-actions date-range scan.
     index('assistant_tool_calls_status_created_at_idx').on(table.status, table.createdAt),
-    // Plain created_at: quinn-tools.ts's per-tool breakdown filters ONLY on
+    // Plain created_at: zenith-assistant-tools.ts's per-tool breakdown filters ONLY on
     // created_at (status is a FILTER inside the aggregate, not a WHERE
     // predicate), so the composite (status, created_at) index above can't
     // serve it — a range scan needs created_at as the index's leading column.

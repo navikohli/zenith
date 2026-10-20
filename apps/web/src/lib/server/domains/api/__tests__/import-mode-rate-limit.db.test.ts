@@ -9,7 +9,7 @@
  * cap lowered to 2 so a few requests cross it.
  */
 import { describe, it, expect, vi, beforeEach, afterEach, afterAll } from 'vitest'
-import { createId, type PrincipalId, type UserId } from '@quackback/ids'
+import { createId, type PrincipalId, type UserId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { apiKeys, principal, sql, user } from '@/lib/server/db'
 import { RateLimitError, UnauthorizedError } from '@/lib/shared/errors'

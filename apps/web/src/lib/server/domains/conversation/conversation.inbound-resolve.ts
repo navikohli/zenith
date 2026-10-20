@@ -8,7 +8,7 @@
  * behavior is unchanged. Future channels use channel_threads for step 1.
  */
 import { and, db, desc, eq, conversations, channelThreads } from '@/lib/server/db'
-import type { ChannelAccountId, ConversationId, PrincipalId } from '@quackback/ids'
+import type { ChannelAccountId, ConversationId, PrincipalId } from '@zenith/ids'
 
 export async function resolveInboundConversation(opts: {
   lookupCorrelation: () => Promise<ConversationId | null>

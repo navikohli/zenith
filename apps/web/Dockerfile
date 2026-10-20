@@ -1,15 +1,15 @@
 # syntax=docker/dockerfile:1
 
 # ============================================================================
-# Quackback Docker Build
+# Zenith Docker Build
 #
 # Features:
 #   - Auto-runs migrations on startup (like Grafana, Metabase)
 #   - Optional database seeding with SEED_DATABASE=true
 #
 # Example:
-#   docker build -t quackback -f apps/web/Dockerfile .
-#   docker run -e DATABASE_URL=... -e SEED_DATABASE=true quackback
+#   docker build -t zenith -f apps/web/Dockerfile .
+#   docker run -e DATABASE_URL=... -e SEED_DATABASE=true zenith
 # ============================================================================
 
 # Base image with Bun
@@ -38,7 +38,7 @@ ENV NODE_ENV=production
 
 # Build the widget bundle first — apps/web imports packages/widget/dist/browser.js
 # via a Vite ?raw import, so the file must exist before the TanStack Start build runs.
-RUN bun run --filter @quackback/widget build
+RUN bun run --filter @zenith/widget build
 
 # Build the TanStack Start application
 WORKDIR /app/apps/web
@@ -82,7 +82,7 @@ RUN bun build packages/db/src/migrate.ts \
 # pooled tenancy it is a role of this image, not a developer script. It reads
 # the control registry, claims the workspaces behind their target version and
 # migrates each one, and a release rollout invokes it between the schema step
-# and the deploy step. Left out of the image, `QUACKBACK_ROLE=migrator` is a
+# and the deploy step. Left out of the image, `ZENITH_ROLE=migrator` is a
 # role nothing can actually run, and the migrate-then-deploy gate has no first
 # half — the whole point of building one artifact is that it carries every role
 # the fleet needs.
@@ -105,28 +105,28 @@ ENV NODE_ENV=production
 
 # Create non-root user for security (alpine uses addgroup/adduser, not groupadd/useradd)
 RUN addgroup -S -g 1001 nodejs && \
-    adduser -S -u 1001 -G nodejs quackback
+    adduser -S -u 1001 -G nodejs zenith
 
 # Copy the built server bundle (self-contained — Nitro inlines all runtime deps)
-COPY --from=builder --chown=quackback:nodejs /app/apps/web/.output ./.output
+COPY --from=builder --chown=zenith:nodejs /app/apps/web/.output ./.output
 
 # Copy the bundled migration script + drizzle SQL files. The bundle is a
 # single self-contained .mjs (no node_modules required); the SQL files are
 # read at runtime by drizzle's migrator.
-COPY --from=builder --chown=quackback:nodejs /tmp/migrate.mjs ./migrate.mjs
-COPY --from=builder --chown=quackback:nodejs /tmp/seed.mjs ./seed.mjs
-COPY --from=builder --chown=quackback:nodejs /tmp/fleet-migrator.mjs ./fleet-migrator.mjs
-COPY --from=builder --chown=quackback:nodejs /app/packages/db/drizzle ./drizzle
+COPY --from=builder --chown=zenith:nodejs /tmp/migrate.mjs ./migrate.mjs
+COPY --from=builder --chown=zenith:nodejs /tmp/seed.mjs ./seed.mjs
+COPY --from=builder --chown=zenith:nodejs /tmp/fleet-migrator.mjs ./fleet-migrator.mjs
+COPY --from=builder --chown=zenith:nodejs /app/packages/db/drizzle ./drizzle
 
 # Copy entrypoint script
-COPY --chown=quackback:nodejs apps/web/docker-entrypoint.sh ./docker-entrypoint.sh
-RUN chmod +x ./docker-entrypoint.sh
+COPY --chown=zenith:nodejs apps/web/docker-entrypoint.sh ./docker-entrypoint.sh
+RUN sed -i 's/\r$//' ./docker-entrypoint.sh && chmod +x ./docker-entrypoint.sh
 
 # Create writable directories for Bun runtime
-RUN mkdir -p /app/.cache && chown -R quackback:nodejs /app/.cache
+RUN mkdir -p /app/.cache && chown -R zenith:nodejs /app/.cache
 
 # Switch to non-root user
-USER quackback
+USER zenith
 
 # Set Bun's cache directory to a writable location
 ENV BUN_INSTALL_CACHE_DIR=/app/.cache

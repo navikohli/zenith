@@ -7,7 +7,7 @@
  */
 
 import { db, posts, postComments, eq, and, sql, isNull } from '@/lib/server/db'
-import { toUuid, type PostId, type PrincipalId, type PostStatusId } from '@quackback/ids'
+import { toUuid, type PostId, type PrincipalId, type PostStatusId } from '@zenith/ids'
 import { getExecuteRows } from '@/lib/server/utils'
 import { NotFoundError } from '@/lib/shared/errors'
 import { isTeamMember, Role } from '@/lib/shared/roles'

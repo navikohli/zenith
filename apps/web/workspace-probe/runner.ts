@@ -216,7 +216,7 @@ export async function runSuite(
   const allPass = counts.LEAK === 0 && counts.ERROR === 0 && counts.BLOCKED === 0
 
   const report: ProbeReport = {
-    suite: 'quackback-workspace-isolation',
+    suite: 'zenith-workspace-isolation',
     schemaVersion: 1,
     startedAt: startedAt.toISOString(),
     finishedAt: finishedAt.toISOString(),

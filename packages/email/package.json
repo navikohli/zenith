@@ -1,5 +1,5 @@
 {
-  "name": "@quackback/email",
+  "name": "@zenith/email",
   "version": "0.1.0",
   "private": true,
   "license": "AGPL-3.0",
@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@aws-sdk/client-sesv2": "^3.1131.0",
-    "@quackback/logger": "workspace:*",
+    "@zenith/logger": "workspace:*",
     "@react-email/components": "^1.0.12",
     "nodemailer": "^10.0.9",
     "react": "^19.3.0",

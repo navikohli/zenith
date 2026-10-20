@@ -10,7 +10,7 @@
 import { describe, expect, it } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import { IntlProvider } from 'react-intl'
-import type { ConversationId, PrincipalId } from '@quackback/ids'
+import type { ConversationId, PrincipalId } from '@zenith/ids'
 import type { ConversationDTO } from '@/lib/shared/conversation/types'
 import type { InboxItemDTO } from '@/lib/shared/inbox/items'
 import { ConversationRow } from '../conversation-list-column'

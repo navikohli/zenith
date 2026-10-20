@@ -23,7 +23,7 @@ import {
   isNull,
   type Ticket,
 } from '@/lib/server/db'
-import type { ConversationId, TicketId, TicketTypeId, PrincipalId } from '@quackback/ids'
+import type { ConversationId, TicketId, TicketTypeId, PrincipalId } from '@zenith/ids'
 import type { Actor, PrincipalType } from '@/lib/server/policy/types'
 import type { TiptapContent, ConversationAttachment } from '@/lib/shared/db-types'
 import type { ConversationMessageDTO } from '@/lib/shared/conversation/types'

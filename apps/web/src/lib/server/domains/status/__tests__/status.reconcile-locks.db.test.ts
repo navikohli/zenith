@@ -17,7 +17,7 @@
 import { afterAll, beforeEach, describe, expect, it, vi } from 'vitest'
 import postgres from 'postgres'
 import { drizzle } from 'drizzle-orm/postgres-js'
-import { createId, type StatusComponentId, type StatusIncidentId } from '@quackback/ids'
+import { createId, type StatusComponentId, type StatusIncidentId } from '@zenith/ids'
 
 vi.mock('@/lib/server/events/process', () => ({ processEvent: vi.fn() }))
 

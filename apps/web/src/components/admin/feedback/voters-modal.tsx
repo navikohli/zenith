@@ -20,7 +20,7 @@ import type { VotersQuerySource } from '@/components/admin/feedback/voters-avata
 import { fetchPostVotersFn } from '@/lib/server/functions/posts'
 import { useUpdateVoterSubscription } from '@/lib/client/mutations/admin-subscriptions'
 import { useRemoveVote } from '@/lib/client/mutations/posts'
-import type { PostId, PrincipalId } from '@quackback/ids'
+import type { PostId, PrincipalId } from '@zenith/ids'
 import type { SubscriptionLevel } from '@/lib/shared/types'
 
 interface VotersModalProps {

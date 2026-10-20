@@ -5,7 +5,7 @@
  * the old hand-built `history[]` request field is gone — surfaced through the
  * turn-shaped callbacks those panels' per-turn state models are built around.
  * (Distinct from `use-assistant-turn.ts`, the widget's transient stream state
- * for Quinn replies arriving over the conversation pubsub relay.)
+ * for ZenithAssistant replies arriving over the conversation pubsub relay.)
  *
  * What each callback maps FROM on the wire:
  * - `onTextDelta`: TEXT_MESSAGE_CONTENT deltas are the RAW structured JSON;
@@ -15,7 +15,7 @@
  *   `stepName` is the server-authoritative status vocabulary).
  * - `onFinal`: the terminal RUN_FINISHED's standard `result` slot — the
  *   turn's post-processed surface payload. Its presence is what "finalized"
- *   means on every Quackback client; a bare RUN_FINISHED never is.
+ *   means on every Zenith client; a bare RUN_FINISHED never is.
  * - `onError`: a terminal RUN_ERROR frame, or a transport failure. HTTP
  *   non-2xx bodies keep their server-shaped message (tier limits, flag gates)
  *   via `aguiFetchClient`, which rewrites the envelope into a RUN_ERROR frame.

@@ -25,7 +25,7 @@ import {
   lte,
   inArray,
 } from '@/lib/server/db'
-import type { ChangelogId, PrincipalId, PostId } from '@quackback/ids'
+import type { ChangelogId, PrincipalId, PostId } from '@zenith/ids'
 import { NotFoundError, ValidationError } from '@/lib/shared/errors'
 import { markdownToTiptapJson, projectContentJsonToMarkdown } from '@/lib/server/markdown-tiptap'
 import { rehostExternalImages } from '@/lib/server/content/rehost-images'
@@ -296,7 +296,7 @@ export async function updateChangelog(
     }
   }
 
-  // Re-embed on a content/title edit (Quinn Phase 4). The publish-transition
+  // Re-embed on a content/title edit (ZenithAssistant Phase 4). The publish-transition
   // paths above already re-embed via `notifyChangelogPublished`; this covers an
   // edit to an ALREADY-published entry whose `publishState` didn't change (that
   // helper isn't called then). The embed service no-ops for drafts/scheduled
@@ -490,7 +490,7 @@ export async function notifyChangelogPublished(
 
   if (!claimed) return false
 
-  // Embed the just-published entry for Quinn grounding (Quinn Phase 4).
+  // Embed the just-published entry for ZenithAssistant grounding (ZenithAssistant Phase 4).
   // Fire-and-forget + best-effort (the service swallows its own errors), off
   // the exact publish moment: this helper is the single funnel every publish
   // path (create, update-to-published, scheduled job, reconciler) reaches, so

@@ -24,7 +24,7 @@ import {
   type Database,
   type Transaction,
 } from '@/lib/server/db'
-import type { ConversationId, SlaPolicyId } from '@quackback/ids'
+import type { ConversationId, SlaPolicyId } from '@zenith/ids'
 import { getSlaPolicy } from './sla-policy.service'
 import {
   addOfficeHoursSeconds,

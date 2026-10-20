@@ -4,7 +4,7 @@
  * restore returns it to the open queue with the spam marker fully cleared.
  */
 import { afterAll, afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { createId, type ConversationId, type PrincipalId, type UserId } from '@quackback/ids'
+import { createId, type ConversationId, type PrincipalId, type UserId } from '@zenith/ids'
 import type { Actor } from '@/lib/server/policy/types'
 
 vi.mock('@/lib/server/db', async (importOriginal) => ({

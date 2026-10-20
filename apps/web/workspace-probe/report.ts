@@ -73,7 +73,7 @@ export function renderHumanSummary(output: RunOutput): string {
   const lines: string[] = []
 
   lines.push(rule('='))
-  lines.push('QUACKBACK WORKSPACE ISOLATION PROBE')
+  lines.push('ZENITH WORKSPACE ISOLATION PROBE')
   lines.push(`alpha  ${report.targets.alpha}`)
   lines.push(`bravo  ${report.targets.bravo}`)
   lines.push(rule('='))

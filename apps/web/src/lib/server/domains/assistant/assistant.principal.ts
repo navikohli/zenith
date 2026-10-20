@@ -1,7 +1,7 @@
 /**
- * The assistant's workspace identity (Quinn).
+ * The assistant's workspace identity (ZenithAssistant).
  *
- * Quinn is a single workspace-scoped service principal (`principalType='service'`,
+ * ZenithAssistant is a single workspace-scoped service principal (`principalType='service'`,
  * userId null) that authors its replies as ordinary conversation messages, so
  * attribution, CSAT-by-last-handler, and webhooks fall out for free. The display
  * identity (name/avatar) lives in messenger settings and is layered on at render
@@ -15,7 +15,7 @@ import type { Executor } from '@/lib/server/domains/principals/principal.factory
 import { createServicePrincipal } from '@/lib/server/domains/principals/principal.service'
 
 /** Default display name; the messenger settings identity overrides it in the UI. */
-export const ASSISTANT_DEFAULT_NAME = 'Quackback AI'
+export const ASSISTANT_DEFAULT_NAME = 'Zenith AI'
 
 // The service-metadata discriminator. Reuses the existing `integration` kind
 // (the metadata union is closed) with an `assistant`-only integration type, so
@@ -44,7 +44,7 @@ export async function getAssistantPrincipal(exec: Executor = db): Promise<Princi
  *
  * Read-first; provisioned lazily once per workspace (single writer in practice,
  * so a duplicate is harmless — `getAssistantPrincipal` returns the first).
- * Role `member`: Quinn operates as a team actor and, per RBAC, service principals
+ * Role `member`: ZenithAssistant operates as a team actor and, per RBAC, service principals
  * resolve permissions workspace-wide.
  */
 export async function ensureAssistantPrincipal(exec: Executor = db): Promise<Principal> {

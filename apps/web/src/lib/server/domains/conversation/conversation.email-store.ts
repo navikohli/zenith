@@ -16,8 +16,8 @@ import {
   conversationMessages,
   conversationOutboundEmails,
 } from '@/lib/server/db'
-import type { ConversationId, PrincipalId } from '@quackback/ids'
-import { sesBareMessageId } from '@quackback/email/message-id'
+import type { ConversationId, PrincipalId } from '@zenith/ids'
+import { sesBareMessageId } from '@zenith/email/message-id'
 import { stripAngleBrackets } from './conversation.email-inbound'
 import { logger } from '@/lib/server/logger'
 

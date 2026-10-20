@@ -4,7 +4,7 @@
  * fabricated TypeID strings only.
  */
 import { describe, expect, it } from 'vitest'
-import { generateId } from '@quackback/ids'
+import { generateId } from '@zenith/ids'
 import {
   facetToConversationStatus,
   facetToTicketStatusCategory,

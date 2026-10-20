@@ -1,6 +1,6 @@
 # Slack workspace assistant
 
-Quackback answers linked teammates in channel threads and DMs, and proposes feedback posts or internal tickets for a teammate to approve. Workspace assistant knowledge, tools, and instructions are internally managed defaults; the only tenant control is **AI assistant in Slack** on the Slack integration card. Customer support and Copilot settings remain separate. The Slack deployment is off by default.
+Zenith answers linked teammates in channel threads and DMs, and proposes feedback posts or internal tickets for a teammate to approve. Workspace assistant knowledge, tools, and instructions are internally managed defaults; the only tenant control is **AI assistant in Slack** on the Slack integration card. Customer support and Copilot settings remain separate. The Slack deployment is off by default.
 
 ## Self-hosted setup
 
@@ -8,9 +8,9 @@ Quackback answers linked teammates in channel threads and DMs, and proposes feed
 2. Replace the events, interactions, commands and options URLs with `https://YOUR_HOST/api/integrations/slack/hooks/events`, `/interactions`, `/commands` and `/options` respectively. Keep the last path segment specific to each URL.
 3. Under Settings → Integrations → Slack, save the app's Client ID, Client Secret and Signing Secret. Leave `INTEGRATION_OAUTH_GATEWAY_URL` unset. Single tenancy accepts direct Slack signatures without gateway authentication.
 4. Connect Slack. If already connected, reconnect to grant the assistant scopes. Enable **AI assistant in Slack** on the integration card.
-5. Invite the app to a channel and mention it in a thread, DM it, or use `/quackback`. The **Send to Quackback** message shortcut proposes feedback. The slash command responds ephemerally.
+5. Invite the app to a channel and mention it in a thread, DM it, or use `/zenith`. The **Send to Zenith** message shortcut proposes feedback. The slash command responds ephemerally.
 
-A Slack user's email must match exactly one verified Quackback member or administrator. Existing links are checked against current membership on every turn. Deleted users, bots, ambiguous emails and former members do not gain team knowledge. Custom Quackback permissions govern assistant use and approval. Manual linking and public answers for unlinked users are not included.
+A Slack user's email must match exactly one verified Zenith member or administrator. Existing links are checked against current membership on every turn. Deleted users, bots, ambiguous emails and former members do not gain team knowledge. Custom Zenith permissions govern assistant use and approval. Manual linking and public answers for unlinked users are not included.
 
 The **Approve** and **Reject** buttons check the acting member's permissions. Writes always require approval. Conversation-only controls and connector writes are unavailable on Slack in this release. Tickets created from Slack are internal back-office tickets. Feedback citations and links respect the tenant host.
 
@@ -24,4 +24,4 @@ Status calls use `agents.sessions.setStatus` with `channel_id`. Suggested prompt
 
 ## Cloud deployment
 
-See [the integration gateway runbook](./integration-gateway-rollout.md). The shared app uses the manifest's `app.quackback.io` URLs. Every workspace database keeps its own assistant configuration, member links, pending actions and deduplication receipts. Shared OAuth client/signing credentials are Railway environment variables on CP and the fleet. Tenant installation tokens remain isolated in workspace databases.
+See [the integration gateway runbook](./integration-gateway-rollout.md). The shared app uses the manifest's `app.zenith.io` URLs. Every workspace database keeps its own assistant configuration, member links, pending actions and deduplication receipts. Shared OAuth client/signing credentials are Railway environment variables on CP and the fleet. Tenant installation tokens remain isolated in workspace databases.

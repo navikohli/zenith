@@ -6,7 +6,7 @@
  * the global `db` onto the fixture's testDb itself.
  */
 import { vi } from 'vitest'
-import { createId, type PrincipalId, type StatusComponentId } from '@quackback/ids'
+import { createId, type PrincipalId, type StatusComponentId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { eq, principal, statusComponents, statusIncidents } from '@/lib/server/db'
 import { createStatusComponent } from '../status.components'

@@ -24,7 +24,7 @@
  * that, so a new RESTRICT column cannot ship and quietly reintroduce the
  * foreign-key failure this registry exists to prevent.
  */
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 import {
   conversationMessages,
   conversations,

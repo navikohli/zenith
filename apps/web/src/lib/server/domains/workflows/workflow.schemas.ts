@@ -387,7 +387,7 @@ export const workflowGraphSchema = z
  * (Phase C, slices C-1/C-6): reply_buttons / collect_data / collect_reply /
  * request_csat wait for a customer's matching structured reply
  * (event-trigger.ts's tryResumeInputWait); let_assistant_answer waits for
- * Quinn's own hand-off/close signal (tryResumeAssistantWait).
+ * ZenithAssistant's own hand-off/close signal (tryResumeAssistantWait).
  * disable_composer never parks on its own, but it only ever makes sense
  * adjacent to one of the above (it's builder sugar forcing allowTyping:false
  * on its neighbor), so it's restricted the same way — an admin who wants it

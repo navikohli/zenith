@@ -1,7 +1,7 @@
 import { createFileRoute, useRouter } from '@tanstack/react-router'
 import { FormattedMessage, useIntl } from 'react-intl'
 import { useSuspenseQuery } from '@tanstack/react-query'
-import type { UserId } from '@quackback/ids'
+import type { UserId } from '@zenith/ids'
 import { settingsQueries } from '@/lib/client/queries/settings'
 import { getEmailChangeStateFn } from '@/lib/server/functions/contact-email'
 import { UserIcon } from '@heroicons/react/24/solid'

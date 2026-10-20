@@ -27,7 +27,7 @@ import {
   type Transaction,
   type BlockReplyMetadata,
 } from '@/lib/server/db'
-import type { ConversationId, PrincipalId, ConversationMessageId } from '@quackback/ids'
+import type { ConversationId, PrincipalId, ConversationMessageId } from '@zenith/ids'
 import { logger } from '@/lib/server/logger'
 import {
   evaluateCondition,

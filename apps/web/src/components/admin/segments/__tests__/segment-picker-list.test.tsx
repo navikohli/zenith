@@ -11,7 +11,7 @@
 import { describe, it, expect, vi } from 'vitest'
 import { render, screen, fireEvent } from '@testing-library/react'
 import { SegmentPickerList } from '../segment-picker-list'
-import type { SegmentId } from '@quackback/ids'
+import type { SegmentId } from '@zenith/ids'
 
 function makeSegments(n: number) {
   return Array.from({ length: n }, (_, i) => ({

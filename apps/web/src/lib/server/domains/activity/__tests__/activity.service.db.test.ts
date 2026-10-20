@@ -4,7 +4,7 @@
  * the team (and can rename themselves on the portal) no longer counts.
  */
 import { afterAll, afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { createId, type BoardId, type PostId, type PrincipalId } from '@quackback/ids'
+import { createId, type BoardId, type PostId, type PrincipalId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { boards, postActivity, posts, principal } from '@/lib/server/db'
 

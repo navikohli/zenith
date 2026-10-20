@@ -12,7 +12,7 @@
  */
 import { z } from 'zod'
 import { createServerFn } from '@tanstack/react-start'
-import { isValidTypeId, type AssistantPendingActionId } from '@quackback/ids'
+import { isValidTypeId, type AssistantPendingActionId } from '@zenith/ids'
 import type { ApprovalView } from '@/lib/server/domains/assistant/approvals.queue'
 import { approvalRefusal, type ApprovalRefusal } from '@/lib/shared/approval-refusal'
 import { requireAuth, policyActorFromAuth, type AuthContext } from './auth-helpers'

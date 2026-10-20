@@ -16,7 +16,7 @@ import {
   principal,
   type PostComment,
 } from '@/lib/server/db'
-import { type PostCommentId, type PrincipalId } from '@quackback/ids'
+import { type PostCommentId, type PrincipalId } from '@zenith/ids'
 import { NotFoundError, ValidationError, ForbiddenError } from '@/lib/shared/errors'
 import { Role } from '@/lib/shared/roles'
 import { PERMISSIONS, type PermissionKey } from '@/lib/shared/permissions'

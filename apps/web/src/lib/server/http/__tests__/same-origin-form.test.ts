@@ -6,7 +6,7 @@ import { isSameOriginFormPost, originMatchesRequestHost } from '../same-origin-f
 describe('originMatchesRequestHost', () => {
   it('accepts a browser https Origin against the public Host', () => {
     expect(
-      originMatchesRequestHost('https://south63792f.quackback.co.uk', 'south63792f.quackback.co.uk')
+      originMatchesRequestHost('https://south63792f.zenith.co.uk', 'south63792f.zenith.co.uk')
     ).toBe(true)
   })
 
@@ -15,14 +15,14 @@ describe('originMatchesRequestHost', () => {
   })
 
   it('refuses a missing Origin, a foreign Origin, and a suffix host', () => {
-    expect(originMatchesRequestHost(null, 'south63792f.quackback.co.uk')).toBe(false)
-    expect(originMatchesRequestHost('https://attacker.test', 'south63792f.quackback.co.uk')).toBe(
+    expect(originMatchesRequestHost(null, 'south63792f.zenith.co.uk')).toBe(false)
+    expect(originMatchesRequestHost('https://attacker.test', 'south63792f.zenith.co.uk')).toBe(
       false
     )
     expect(
       originMatchesRequestHost(
-        'https://south63792f.quackback.co.uk.attacker.test',
-        'south63792f.quackback.co.uk'
+        'https://south63792f.zenith.co.uk.attacker.test',
+        'south63792f.zenith.co.uk'
       )
     ).toBe(false)
   })
@@ -30,8 +30,8 @@ describe('originMatchesRequestHost', () => {
   it('uses the first forwarded host when a proxy lists several', () => {
     expect(
       originMatchesRequestHost(
-        'https://south63792f.quackback.co.uk',
-        'south63792f.quackback.co.uk, 127.0.0.1:3000'
+        'https://south63792f.zenith.co.uk',
+        'south63792f.zenith.co.uk, 127.0.0.1:3000'
       )
     ).toBe(true)
   })
@@ -57,55 +57,55 @@ describe('isSameOriginFormPost', () => {
     expect(
       isSameOriginFormPost(
         formPost({
-          origin: 'https://south63792f.quackback.co.uk',
-          host: 'south63792f.quackback.co.uk',
+          origin: 'https://south63792f.zenith.co.uk',
+          host: 'south63792f.zenith.co.uk',
         })
       )
     ).toBe(true)
   })
 
   it('accepts a custom domain whose Host is the Railway hop', () => {
-    vi.stubEnv('QUACKBACK_SAAS_RAILWAY_ORIGIN', RAILWAY)
-    vi.stubEnv('QUACKBACK_SAAS_EDGE_SECRET', SECRET)
+    vi.stubEnv('ZENITH_SAAS_RAILWAY_ORIGIN', RAILWAY)
+    vi.stubEnv('ZENITH_SAAS_EDGE_SECRET', SECRET)
     expect(
       isSameOriginFormPost(
         formPost({
           origin: `https://${CUSTOMER}`,
           host: RAILWAY,
           'x-forwarded-host': RAILWAY,
-          'x-quackback-customer-host': CUSTOMER,
-          'x-quackback-customer-host-sig': signCustomerHost(SECRET, CUSTOMER),
+          'x-zenith-customer-host': CUSTOMER,
+          'x-zenith-customer-host-sig': signCustomerHost(SECRET, CUSTOMER),
         })
       )
     ).toBe(true)
   })
 
   it('refuses a custom-domain Origin when the customer-host HMAC is wrong', () => {
-    vi.stubEnv('QUACKBACK_SAAS_RAILWAY_ORIGIN', RAILWAY)
-    vi.stubEnv('QUACKBACK_SAAS_EDGE_SECRET', SECRET)
+    vi.stubEnv('ZENITH_SAAS_RAILWAY_ORIGIN', RAILWAY)
+    vi.stubEnv('ZENITH_SAAS_EDGE_SECRET', SECRET)
     expect(
       isSameOriginFormPost(
         formPost({
           origin: `https://${CUSTOMER}`,
           host: RAILWAY,
           'x-forwarded-host': RAILWAY,
-          'x-quackback-customer-host': CUSTOMER,
-          'x-quackback-customer-host-sig': '00'.repeat(32),
+          'x-zenith-customer-host': CUSTOMER,
+          'x-zenith-customer-host-sig': '00'.repeat(32),
         })
       )
     ).toBe(false)
   })
 
   it('refuses a foreign Origin even when a signed customer host is present', () => {
-    vi.stubEnv('QUACKBACK_SAAS_RAILWAY_ORIGIN', RAILWAY)
-    vi.stubEnv('QUACKBACK_SAAS_EDGE_SECRET', SECRET)
+    vi.stubEnv('ZENITH_SAAS_RAILWAY_ORIGIN', RAILWAY)
+    vi.stubEnv('ZENITH_SAAS_EDGE_SECRET', SECRET)
     expect(
       isSameOriginFormPost(
         formPost({
           origin: 'https://attacker.test',
           host: RAILWAY,
-          'x-quackback-customer-host': CUSTOMER,
-          'x-quackback-customer-host-sig': signCustomerHost(SECRET, CUSTOMER),
+          'x-zenith-customer-host': CUSTOMER,
+          'x-zenith-customer-host-sig': signCustomerHost(SECRET, CUSTOMER),
         })
       )
     ).toBe(false)

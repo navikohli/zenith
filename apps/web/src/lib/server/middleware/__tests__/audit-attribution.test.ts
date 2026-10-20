@@ -6,7 +6,7 @@
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import type { ApiKey } from '@/lib/server/domains/api-keys'
-import type { ApiKeyId, PrincipalId } from '@quackback/ids'
+import type { ApiKeyId, PrincipalId } from '@zenith/ids'
 import type { PermissionKey } from '@/lib/shared/permissions'
 
 vi.mock('@/lib/server/config', () => ({ config: { trustedProxyHops: 1 } }))

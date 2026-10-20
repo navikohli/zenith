@@ -33,7 +33,7 @@ import { Link } from '@tanstack/react-router'
 import { FormattedMessage, useIntl } from 'react-intl'
 import { Button } from '@/components/ui/button'
 import { NewButton } from '@/components/shared/new-button'
-import type { PostStatusId, PostId, RoadmapId } from '@quackback/ids'
+import type { PostStatusId, PostId, RoadmapId } from '@zenith/ids'
 
 /**
  * Renders into document.body once mounted. The board renders on the server

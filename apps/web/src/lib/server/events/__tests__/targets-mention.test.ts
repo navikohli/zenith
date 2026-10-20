@@ -83,8 +83,8 @@ vi.mock('@/lib/server/domains/ai/config', () => ({
 vi.mock('../hook-context', () => ({
   buildHookContext: vi.fn().mockResolvedValue({
     workspaceName: 'Test Workspace',
-    portalBaseUrl: 'https://test.quackback.io',
-    logoUrl: 'https://test.quackback.io/logo.png',
+    portalBaseUrl: 'https://test.zenith.io',
+    logoUrl: 'https://test.zenith.io/logo.png',
   }),
 }))
 
@@ -149,7 +149,7 @@ function makePostMentionedEvent() {
     data: {
       postId: 'post_1',
       postTitle: 'A test post',
-      postUrl: 'https://test.quackback.io/b/bugs/posts/post_1',
+      postUrl: 'https://test.zenith.io/b/bugs/posts/post_1',
       mentionedPrincipalId: 'principal_mentioned',
       mentioningPrincipalId: 'principal_actor',
       excerpt: 'Hey @alice, what do you think?',
@@ -184,11 +184,11 @@ describe('post.mentioned target resolution', () => {
     expect(emailTargets).toHaveLength(1)
     expect(emailTargets[0].target).toMatchObject({
       email: 'alice@example.com',
-      unsubscribeUrl: 'https://test.quackback.io/unsubscribe?token=token-abc',
+      unsubscribeUrl: 'https://test.zenith.io/unsubscribe?token=token-abc',
     })
     expect(emailTargets[0].config).toMatchObject({
       postTitle: 'A test post',
-      postUrl: 'https://test.quackback.io/b/bugs/posts/post_1',
+      postUrl: 'https://test.zenith.io/b/bugs/posts/post_1',
       workspaceName: 'Test Workspace',
     })
     // Token was issued with action=unsubscribe_all (global mute) since the
@@ -287,7 +287,7 @@ describe('mention email — reachable only via a contact address', () => {
         id: 'principal_mentioned',
         type: 'user',
         role: 'user',
-        email: 'sso-oidc-abc-deadbeef@anon.quackback.io',
+        email: 'sso-oidc-abc-deadbeef@anon.zenith.io',
         contactEmail: 'reachable@example.com',
       },
     ])
@@ -305,7 +305,7 @@ describe('mention email — reachable only via a contact address', () => {
         id: 'principal_mentioned',
         type: 'user',
         role: 'user',
-        email: 'sso-oidc-abc-deadbeef@anon.quackback.io',
+        email: 'sso-oidc-abc-deadbeef@anon.zenith.io',
         contactEmail: null,
       },
     ])

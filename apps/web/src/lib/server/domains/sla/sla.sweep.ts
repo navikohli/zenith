@@ -23,7 +23,7 @@
  */
 import { db, and, inArray, isNotNull, sql, conversations } from '@/lib/server/db'
 import { notTestConversation } from '@/lib/server/test-data'
-import type { ConversationId, SlaPolicyId } from '@quackback/ids'
+import type { ConversationId, SlaPolicyId } from '@zenith/ids'
 import type { EventConversationRef } from '@/lib/server/events/types'
 import { commitStamp, insertClockEvent, type SlaApplied, type StampExecutor } from './sla.service'
 

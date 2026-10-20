@@ -2,7 +2,7 @@
  * Outbound MCP client for one connector.
  *
  * Transport is streamable HTTP with DNS-pinned fetch. Discovery and tool
- * calls go through the official MCP client; Quinn never spreads raw
+ * calls go through the official MCP client; ZenithAssistant never spreads raw
  * discovered tools into the agent loop — those become AssistantToolSpecs
  * in connector-tools.ts.
  */
@@ -79,7 +79,7 @@ export async function openConnectorSession(input: {
   authProvider?: OAuthClientProvider
   transport?: Transport
 }): Promise<ConnectorMcpSession> {
-  const client = new Client({ name: 'quackback-connectors', version: '1.0.0' })
+  const client = new Client({ name: 'zenith-connectors', version: '1.0.0' })
   const transport =
     input.transport ??
     new StreamableHTTPClientTransport(new URL(input.url), {

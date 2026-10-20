@@ -150,7 +150,7 @@ export function WidgetShell({
   // hidden).
   useEffect(() => {
     sendToHost({
-      type: 'quackback:unread',
+      type: 'zenith:unread',
       count: messengerUnread + changelogUnread + ticketStageUnread,
     })
   }, [messengerUnread, changelogUnread, ticketStageUnread])
@@ -241,7 +241,7 @@ export function WidgetShell({
     // Teammates skip OTT mint entirely — a portal cookie would replace a
     // dashboard login. Send them to the site unsigned.
     if (!canPortalHandoff) {
-      sendToHost({ type: 'quackback:navigate', url: `${origin}/?auth=signin` })
+      sendToHost({ type: 'zenith:navigate', url: `${origin}/?auth=signin` })
       return
     }
     const ott = await generateOneTimeToken()
@@ -253,7 +253,7 @@ export function WidgetShell({
     // portal host — not the widget iframe's origin, which may differ in
     // self-hosted setups where the widget is served from a separate domain.
     const portalUrl = `${origin}/auth/widget-handoff?ott=${encodeURIComponent(ott)}`
-    sendToHost({ type: 'quackback:navigate', url: portalUrl })
+    sendToHost({ type: 'zenith:navigate', url: portalUrl })
   }, [canPortalHandoff, portalOrigin])
 
   return (
@@ -471,7 +471,7 @@ export function WidgetShell({
         {showPoweredBy ? (
           <div className="border-t border-border/20 py-2 flex items-center justify-center">
             <a
-              href={`https://quackback.io?utm_campaign=${encodeURIComponent(orgSlug || 'unknown')}&utm_content=widget&utm_medium=referral&utm_source=powered-by`}
+              href="/source.html"
               target="_blank"
               className="group inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-all"
             >
@@ -486,7 +486,7 @@ export function WidgetShell({
                 <FormattedMessage
                   id="widget.shell.poweredBy"
                   defaultMessage="Powered by {brand}"
-                  values={{ brand: <span className="font-medium">Quackback</span> }}
+                  values={{ brand: <span className="font-medium">Zenith</span> }}
                 />
               </span>
             </a>

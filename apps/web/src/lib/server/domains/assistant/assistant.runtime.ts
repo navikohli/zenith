@@ -1,6 +1,6 @@
 import type { Actor } from '@/lib/server/policy/types'
 /**
- * Quinn runtime seam.
+ * ZenithAssistant runtime seam.
  *
  * The TanStack AI server-core agentic loop lives behind this one interface so
  * the framework's blast radius stays in a single file (the fallback to another
@@ -24,7 +24,7 @@ import type { AiAnswerKind } from '@/lib/server/domains/ai/usage-log'
 import { getAssistantRuntimeConfig } from '@/lib/server/domains/settings/settings.assistant'
 import { logger } from '@/lib/server/logger'
 import type { AssistantHandoffReason } from '@/lib/server/db'
-import type { PrincipalId, ConversationId, TicketId, AssistantInvolvementId } from '@quackback/ids'
+import type { PrincipalId, ConversationId, TicketId, AssistantInvolvementId } from '@zenith/ids'
 import type { AssistantSurface } from '@/lib/shared/assistant/surfaces'
 import { agentKindForTurn, isHomeThreadKey, isHomeTurn } from './workspace-safety'
 import {
@@ -101,10 +101,10 @@ import {
 
 const log = logger.child({ component: 'assistant-runtime' })
 
-/** The structured reason Quinn escalates — it decides THAT, never WHERE. */
+/** The structured reason ZenithAssistant escalates — it decides THAT, never WHERE. */
 export type EscalationReason = AssistantHandoffReason
 
-/** Who authored a thread turn. Human teammate replies are distinct from Quinn's own. */
+/** Who authored a thread turn. Human teammate replies are distinct from ZenithAssistant's own. */
 export type AssistantThreadSender = 'customer' | 'assistant' | 'human_agent'
 
 /** A turn in the assistant thread. */
@@ -119,7 +119,7 @@ export interface AssistantThreadMessage {
   attachments?: ConversationAttachment[]
 }
 
-/** A handoff Quinn requested by calling handoff_to_human. */
+/** A handoff ZenithAssistant requested by calling handoff_to_human. */
 export interface EscalationOutcome {
   reason: EscalationReason
   mode: 'handoff'
@@ -157,7 +157,7 @@ export interface AssistantRuntimeConfig {
  */
 export type AssistantAnswerType = 'draft_reply' | 'analysis'
 
-/** Why Quinn completed a turn without claiming it had answered the question. */
+/** Why ZenithAssistant completed a turn without claiming it had answered the question. */
 export type AssistantCannotAnswerReason = AssistantInabilityReason
 
 /** Fields shared by every customer-visible terminal outcome. */
@@ -191,8 +191,8 @@ interface AssistantDeliveredFields {
 }
 
 /**
- * What one turn produces. `cannot_answer` is derived only from Quinn calling
- * the report_inability tool; `suppressed` means the silence rule muted Quinn.
+ * What one turn produces. `cannot_answer` is derived only from ZenithAssistant calling
+ * the report_inability tool; `suppressed` means the silence rule muted ZenithAssistant.
  */
 export type AssistantTurnResult =
   | ({ status: 'answered' } & AssistantDeliveredFields)
@@ -203,7 +203,7 @@ export type AssistantTurnResult =
   | { status: 'suppressed'; reason: 'silence' | 'not_addressed'; listen?: 'continue' | 'leave' }
 
 /**
- * A step surfaced while Quinn works, for a live "thinking / searching" trace in
+ * A step surfaced while ZenithAssistant works, for a live "thinking / searching" trace in
  * the widget. `thinking` is the default working state; `tool` names the tool the
  * agentic loop just invoked, any name present in this turn's assembled tool set
  * (the registry, not a hardcoded list, decides what's valid).
@@ -225,7 +225,7 @@ interface AssistantTurnCommonInput {
   contextBlock?: string
   workspaceThreadKey?: string
 
-  /** Quinn's service principal (authors replies next wave). */
+  /** ZenithAssistant's service principal (authors replies next wave). */
   assistantPrincipalId: PrincipalId
   /** The linked conversation, or null (sandbox, which also implies simulate mode for write tools). */
   conversationId?: ConversationId | null
@@ -272,7 +272,7 @@ interface AssistantTurnCommonInput {
   simulate?: boolean
   /**
    * The teammate who asked this turn's question — Copilot only.
-   * `assistantPrincipalId` always identifies Quinn itself, never the human on
+   * `assistantPrincipalId` always identifies ZenithAssistant itself, never the human on
    * the other end, so per-teammate usage reporting (analytics/copilot-usage.ts)
    * needs a separate field to attribute a turn to its asker. Rides the
    * usage-log metadata as `principalId` when set; undefined for every other
@@ -330,7 +330,7 @@ export class AssistantNotConfiguredError extends Error {
   }
 }
 
-/** Whether Quinn can run: AI client plus an effective chat model. */
+/** Whether ZenithAssistant can run: AI client plus an effective chat model. */
 export function isAssistantConfigured(): boolean {
   return (
     isAiClientConfigured(config.openaiApiKey, config.openaiBaseUrl) &&
@@ -489,9 +489,9 @@ export function salvageAssistantOutput(raw: string): AssistantOutput | null {
 // ---------------------------------------------------------------- pure rules ---
 
 /**
- * Silence rule: any human teammate reply after Quinn's last message mutes it
+ * Silence rule: any human teammate reply after ZenithAssistant's last message mutes it
  * until an explicit re-engagement (assign-back or a later workflow step), which
- * the caller signals by not passing the muting human turn. When Quinn has never
+ * the caller signals by not passing the muting human turn. When ZenithAssistant has never
  * spoken, any human teammate turn means a human is already handling it.
  */
 export function respondEligible(messages: AssistantThreadMessage[]): boolean {
@@ -567,7 +567,7 @@ export function relinkCitations(
 
 /**
  * A substantive answer (not a bare greeting): the assumed/confirmed resolution
- * outcomes only count when Quinn actually answered. Citations imply substance;
+ * outcomes only count when ZenithAssistant actually answered. Citations imply substance;
  * otherwise require more than a short pleasantry.
  */
 export function isSubstantiveAnswer(turn: {
@@ -758,7 +758,7 @@ export function buildConversationContextPrompt(
  * newest window, so a long conversation's original request survives into
  * `budgetTranscript`'s head. `includeInternal` follows the audience (D1) — the
  * copilot resolves to 'team', so a teammate's internal notes on the open thread
- * are visible to Quinn here (labelled `Note (internal):` by the renderer); the
+ * are visible to ZenithAssistant here (labelled `Note (internal):` by the renderer); the
  * persisted on-close summary loads the thread notes-free and is unaffected.
  */
 async function loadConversationGroundingContext(
@@ -823,12 +823,12 @@ function deriveAnswerKind(
 
 /**
  * Run one assistant turn. Returns a suppressed result when the silence rule
- * mutes Quinn (no model spend); otherwise runs the agentic loop and returns the
+ * mutes ZenithAssistant (no model spend); otherwise runs the agentic loop and returns the
  * cited answer plus any handoff/inability decision recorded by tools.
  *
  * Malformed structured output (a known weak-model failure mode) is salvaged
  * where possible and retried once. Exhausted failure throws: a caller may
- * retry or surface an error, but the server never authors words as Quinn.
+ * retry or surface an error, but the server never authors words as ZenithAssistant.
  */
 export async function runAssistantTurn(input: AssistantTurnInput): Promise<AssistantTurnResult> {
   const surface = input.surface
@@ -979,7 +979,7 @@ export async function runAssistantTurn(input: AssistantTurnInput): Promise<Assis
     (role === 'copilot_qa' && messages.some((message) => message.sender === 'assistant'))
 
   // Shared construction point (simulate derives from the null conversation =
-  // sandbox; actor defaults to Quinn's bounded set).
+  // sandbox; actor defaults to ZenithAssistant's bounded set).
   let skillCount = 0
   try {
     skillCount = await countAssignedSkills(agentKind, execDb)
@@ -1293,7 +1293,7 @@ ${runtimeConfig.config.agents.workspace.instructions}`)
       salvage: (raw) => salvageAssistantOutput(raw),
       // Customer-visible text is model-authored or absent. A provider/decoding
       // failure propagates to the caller for retry/observability; it is never
-      // converted into a canned Quinn message.
+      // converted into a canned ZenithAssistant message.
       onFailure: 'throw',
       signal: input.signal,
       onTextDelta: input.onTextDelta,
@@ -1440,7 +1440,7 @@ ${runtimeConfig.config.agents.workspace.instructions}`)
     }
     const delivered = {
       text: relinkCitations(parsed.text, parsed.citations, citations),
-      // Quinn's self-classification (copilot surface only); every other surface
+      // ZenithAssistant's self-classification (copilot surface only); every other surface
       // omits it, and so does a model that didn't bother — both land on the
       // customer-safe default, so this never demotes a widget reply.
       answerType: parsed.answerType ?? (role === 'copilot_qa' ? 'analysis' : 'draft_reply'),

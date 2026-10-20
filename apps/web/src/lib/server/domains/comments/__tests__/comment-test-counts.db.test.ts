@@ -1,5 +1,5 @@
 import { afterAll, afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { createId, isTypeId, type PostId, type PrincipalId } from '@quackback/ids'
+import { createId, isTypeId, type PostId, type PrincipalId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import {
   boards,
@@ -106,7 +106,7 @@ describe('test comments never change stored post counts', () => {
     expect(fixture.available).toBe(true)
     await fixture.begin()
     const [database] = await testDb.execute(sql`select current_database() as name`)
-    expect(String(database.name)).toMatch(/^quackback_test(?:_\w+)?$/)
+    expect(String(database.name)).toMatch(/^zenith_test(?:_\w+)?$/)
     settingsState.holdLinks = false
     const ownerId = createId('principal'),
       userId = createId('user')

@@ -12,7 +12,7 @@ import {
   type PrincipalId,
   type TicketId,
   type UserId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import type { Actor } from '@/lib/server/policy/types'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import {

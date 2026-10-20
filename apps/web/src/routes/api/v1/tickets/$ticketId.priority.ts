@@ -11,7 +11,7 @@ import { serviceActorFromApiAuth } from '@/lib/server/domains/api/service-actor'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import { serializeTicket } from './-serialize'
 import { priorityEnum } from './-validation'
-import type { TicketId } from '@quackback/ids'
+import type { TicketId } from '@zenith/ids'
 
 const prioritySchema = z.object({
   priority: priorityEnum,

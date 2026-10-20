@@ -6,7 +6,7 @@
  * default in the other.
  */
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
-import { DEFAULT_SES_MAX_SEND_RATE, sesMaxSendRate } from '@quackback/email/ses'
+import { DEFAULT_SES_MAX_SEND_RATE, sesMaxSendRate } from '@zenith/email/ses'
 
 const logged = vi.hoisted(() => ({ issues: [] as Array<{ path: string; code: string }> }))
 vi.mock('@/lib/server/logger', () => ({
@@ -26,11 +26,11 @@ let saved: NodeJS.ProcessEnv
 
 beforeEach(() => {
   saved = { ...process.env }
-  for (const key of ['QUACKBACK_TENANCY', 'EMAIL_SES_MAX_SEND_RATE']) delete process.env[key]
+  for (const key of ['ZENITH_TENANCY', 'EMAIL_SES_MAX_SEND_RATE']) delete process.env[key]
   Object.assign(process.env, {
     BASE_URL: 'https://app.example.com',
     SECRET_KEY: 'x'.repeat(48),
-    DATABASE_URL: 'postgresql://app@localhost:5432/quackback',
+    DATABASE_URL: 'postgresql://app@localhost:5432/zenith',
   })
   logged.issues = []
 })

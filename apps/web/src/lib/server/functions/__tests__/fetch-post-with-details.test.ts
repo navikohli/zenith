@@ -6,7 +6,7 @@
  * case that shows a merge banner.
  */
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import type { PostId } from '@quackback/ids'
+import type { PostId } from '@zenith/ids'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 
 vi.mock('@tanstack/react-start', () => ({

@@ -123,7 +123,7 @@ vi.mock('@/lib/server/domains/settings/settings.assistant', () => ({
 }))
 
 vi.mock('@/lib/server/domains/assistant/assistant.principal', () => ({
-  ASSISTANT_DEFAULT_NAME: 'Quackback AI',
+  ASSISTANT_DEFAULT_NAME: 'Zenith AI',
   ensureAssistantPrincipal: hoisted.ensureAssistantPrincipal,
 }))
 
@@ -205,7 +205,7 @@ beforeEach(() => {
   // (toolName without an `action_` prefix) never touch either.
   hoisted.getConnectorSpecByToolName.mockResolvedValue(null)
   hoisted.getAssistantRuntimeConfig.mockResolvedValue({})
-  hoisted.ensureAssistantPrincipal.mockResolvedValue({ id: 'principal_quinn' })
+  hoisted.ensureAssistantPrincipal.mockResolvedValue({ id: 'principal_zenithAssistant' })
   hoisted.assertConversationViewable.mockResolvedValue(undefined)
   hoisted.assertTicketVisible.mockResolvedValue(undefined)
 })
@@ -247,7 +247,7 @@ describe('approveAssistantActionFn', () => {
       CLOSE_SPEC,
       decided,
       expect.objectContaining({
-        assistantPrincipalId: 'principal_quinn',
+        assistantPrincipalId: 'principal_zenithAssistant',
         role: 'customer_support',
         conversationId: 'conversation_1',
         involvementId: 'assistant_involvement_1',

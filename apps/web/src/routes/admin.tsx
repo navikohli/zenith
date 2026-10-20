@@ -20,7 +20,7 @@ import { TooltipProvider } from '@/components/ui/tooltip'
 import { UpdateBanner } from '@/components/admin/update-banner'
 import { PlanNoticeBanner } from '@/components/admin/plan-notice-banner'
 import { getPlanNotice } from '@/lib/server/functions/plan-notice'
-import { CloudQuackbackWidget } from '@/components/shared/cloud-quackback-widget'
+import { CloudZenithWidget } from '@/components/shared/cloud-zenith-widget'
 import { FileViewerProvider, scrollToMessage } from '@/components/shared/files/file-viewer-context'
 import { useHasPermission } from '@/lib/client/use-permissions'
 import { PERMISSIONS } from '@/lib/shared/permissions'
@@ -325,7 +325,7 @@ function AdminContent({
     <>
       {/* In the launch window the corner launcher stays hidden (it reads like the
           workspace's own Messenger); Help, Contact us opens it. */}
-      <CloudQuackbackWidget launcherHidden={inLaunchWindow || (canUseCopilot && chatOpen)} />
+      <CloudZenithWidget launcherHidden={inLaunchWindow || (canUseCopilot && chatOpen)} />
       <AdminWorkspaceFrame
         sidebar={
           initialUserData && (

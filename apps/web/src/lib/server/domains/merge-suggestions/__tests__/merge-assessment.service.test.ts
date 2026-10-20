@@ -4,7 +4,7 @@
 
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { z } from 'zod'
-import type { PostId } from '@quackback/ids'
+import type { PostId } from '@zenith/ids'
 import type { MergeCandidate } from '../merge-search.service'
 
 const mockConfig = vi.hoisted(() => ({

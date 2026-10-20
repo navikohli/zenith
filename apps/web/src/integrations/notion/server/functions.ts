@@ -2,7 +2,7 @@
  * Notion-specific server functions.
  */
 import { createServerFn } from '@tanstack/react-start'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import { ValidationError } from '@/lib/shared/errors'
 

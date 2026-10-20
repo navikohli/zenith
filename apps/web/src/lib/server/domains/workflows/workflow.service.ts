@@ -11,7 +11,7 @@
  */
 import { db, eq, and, isNull, inArray, asc, workflows, type Workflow } from '@/lib/server/db'
 import type { WorkflowClass, WorkflowStatus } from '@/lib/server/db'
-import type { WorkflowId, PrincipalId } from '@quackback/ids'
+import type { WorkflowId, PrincipalId } from '@zenith/ids'
 import { positionCaseSql } from '@/lib/server/utils'
 import { WorkspaceKeyedCache } from '@/lib/server/workspaces/workspace-keyed'
 import type { WorkflowGraph, WorkflowNode } from './graph'

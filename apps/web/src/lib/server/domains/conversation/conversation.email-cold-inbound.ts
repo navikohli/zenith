@@ -42,7 +42,7 @@ import type {
   ConversationAttachment,
   ConversationSpamFiledBy,
 } from '@/lib/server/db'
-import type { PrincipalId, ChannelAccountId, ConversationId } from '@quackback/ids'
+import type { PrincipalId, ChannelAccountId, ConversationId } from '@zenith/ids'
 import type { Actor } from '@/lib/server/policy/types'
 import { sanitizeTiptapContent } from '@/lib/server/sanitize-tiptap'
 import { resolveAttachments, linkFilesToMessage } from '@/lib/server/domains/files/files.service'

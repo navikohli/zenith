@@ -34,7 +34,7 @@ export interface EventExposure {
 export interface EventDefinition<P> {
   /** '<entity>.<verb>'. */
   type: string
-  /** The subject aggregate — must be a @quackback/ids entity key (see CONTRACT.md). */
+  /** The subject aggregate — must be a @zenith/ids entity key (see CONTRACT.md). */
   entity: string
   version: number
   /** Zod schema for the payload; validated at emit time. */

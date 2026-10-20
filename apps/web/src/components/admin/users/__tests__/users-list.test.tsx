@@ -14,7 +14,7 @@ import { IntlProvider } from 'react-intl'
 import { UsersList } from '../users-list'
 import { installInMemoryLocalStorage } from '@/test/local-storage'
 import type { PortalUserListItemView, UsersFilters } from '@/lib/shared/types'
-import type { PrincipalId, SegmentId } from '@quackback/ids'
+import type { PrincipalId, SegmentId } from '@zenith/ids'
 
 beforeAll(() => {
   installInMemoryLocalStorage()

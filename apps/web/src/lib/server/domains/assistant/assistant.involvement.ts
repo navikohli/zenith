@@ -1,7 +1,7 @@
 /**
- * Assistant involvement service — the audit/KPI unit for Quinn.
+ * Assistant involvement service — the audit/KPI unit for ZenithAssistant.
  *
- * One `assistant_involvements` row per conversation Quinn engages. The locked
+ * One `assistant_involvements` row per conversation ZenithAssistant engages. The locked
  * outcome semantics (converged across the market references) live here as pure,
  * unit-tested functions; persistence is a thin layer over them. The inactivity
  * TIMER that drives an assumed resolution is wired in the next wave — this wave
@@ -28,7 +28,7 @@ import {
 import type { Executor } from '@/lib/server/domains/principals/principal.factory'
 import { logger } from '@/lib/server/logger'
 import { notTestConversation } from '@/lib/server/test-data'
-import type { AssistantInvolvementId, ConversationId } from '@quackback/ids'
+import type { AssistantInvolvementId, ConversationId } from '@zenith/ids'
 import { classifyConversationAttributes } from '@/lib/server/domains/conversation-attributes/ai-classification.service'
 
 const log = logger.child({ component: 'assistant-involvement' })
@@ -36,7 +36,7 @@ const log = logger.child({ component: 'assistant-involvement' })
 export type AssistantInvolvement = typeof assistantInvolvements.$inferSelect
 
 /**
- * Inactivity window before a thread with no customer reply after Quinn's last
+ * Inactivity window before a thread with no customer reply after ZenithAssistant's last
  * answer is assumed resolved. The stale-involvement sweep
  * (`finalizeStaleAssistantInvolvements`) trips it; the pure eligibility rule
  * defaults to the same window. Single source for both.
@@ -44,8 +44,8 @@ export type AssistantInvolvement = typeof assistantInvolvements.$inferSelect
 export const ASSUMED_RESOLUTION_INACTIVITY_MINUTES = 10
 
 /**
- * The Quinn-inbox buckets, mapped to involvement lifecycle statuses — the
- * outcome vocabulary the "Quinn AI" inbox view filters and counts by.
+ * The ZenithAssistant-inbox buckets, mapped to involvement lifecycle statuses — the
+ * outcome vocabulary the "ZenithAssistant AI" inbox view filters and counts by.
  */
 export const AI_INBOX_BUCKETS = {
   resolved: ['resolved_confirmed', 'resolved_assumed'],
@@ -56,9 +56,9 @@ export const AI_INBOX_BUCKETS = {
 export type AiInboxBucket = keyof typeof AI_INBOX_BUCKETS
 
 /**
- * Conversation-count per Quinn-inbox bucket, for the inbox nav badges. One
+ * Conversation-count per ZenithAssistant-inbox bucket, for the inbox nav badges. One
  * grouped scan of `assistant_involvements` (there is one row per conversation
- * Quinn engaged), folded into the three buckets.
+ * ZenithAssistant engaged), folded into the three buckets.
  */
 export async function countAssistantInboxBuckets(
   exec: Executor = db
@@ -83,9 +83,9 @@ export async function countAssistantInboxBuckets(
 
 /** Context the outcome rules reason over (all supplied by the caller). */
 export interface OutcomeContext {
-  /** Quinn produced a substantive answer this involvement (a greeting is not one). */
+  /** ZenithAssistant produced a substantive answer this involvement (a greeting is not one). */
   gaveRealAnswer: boolean
-  /** Minutes since the customer's last activity after Quinn's real answer. */
+  /** Minutes since the customer's last activity after ZenithAssistant's real answer. */
   inactivityMinutes: number
   /** The customer came back needing help after the assumed window. */
   customerReturned: boolean
@@ -120,7 +120,7 @@ export function outcomeStatus(kind: 'confirmed' | 'assumed'): AssistantInvolveme
 
 // -------------------------------------------------------------- persistence ---
 
-/** Open a fresh involvement for a conversation Quinn is engaging. */
+/** Open a fresh involvement for a conversation ZenithAssistant is engaging. */
 export async function openInvolvement(
   input: { conversationId: ConversationId; triggeredBy: AssistantInvolvementTrigger },
   exec: Executor = db
@@ -167,7 +167,7 @@ export async function getLatestInvolvement(
 
 /**
  * Record the outcome of one answered turn on the involvement in a single UPDATE:
- * the sources Quinn cited and the substantive-answer time (the inactivity
+ * the sources ZenithAssistant cited and the substantive-answer time (the inactivity
  * clock the stale-involvement sweep reads). Handoff is a separate tool-led
  * terminal operation and is recorded through recordHandoff.
  */
@@ -187,7 +187,7 @@ export async function recordAssistantAnswer(
 }
 
 /**
- * Record a hand-off: Quinn decided THAT it escalates and why (never WHERE).
+ * Record a hand-off: ZenithAssistant decided THAT it escalates and why (never WHERE).
  * Returns the updated row, or null when the involvement was no longer active —
  * the same conditional-UPDATE guard as recordOutcome, so concurrent turns
  * cannot double-record a handoff. Callers must skip the conversation-side
@@ -252,16 +252,16 @@ export async function recordOutcome(
 
 /**
  * Positive end of the 1-5 CSAT scale — the threshold treated as the customer's
- * explicit affirmation of Quinn's answer.
+ * explicit affirmation of ZenithAssistant's answer.
  */
 const POSITIVE_CSAT_RATING = 4
 
 /**
- * Resolve Quinn's active involvement as confirmed off a positive CSAT rating
+ * Resolve ZenithAssistant's active involvement as confirmed off a positive CSAT rating
  * when it already gave a real answer. Subscribed to conversation.csat_submitted
  * (events/event-reactions.ts), which fires only on the first submission;
  * a later rating change does not re-run it. No-op without an active involvement, one
- * Quinn hasn't yet answered, or a rating below the positive threshold.
+ * ZenithAssistant hasn't yet answered, or a rating below the positive threshold.
  * Best-effort: a failure never surfaces to the CSAT submission that raised it.
  *
  * The reaction can run late, so the rating is bound to the involvement it was
@@ -307,7 +307,7 @@ export async function confirmResolutionFromCsat(
 
 /**
  * Revive any assumed-resolved involvement on a conversation back to active — the
- * customer came back needing help, so Quinn re-engages within the same
+ * customer came back needing help, so ZenithAssistant re-engages within the same
  * involvement rather than opening a new one. Returns the revived row, which the
  * turn orchestrator reuses AS the active involvement (skipping a second lookup),
  * or null when there was nothing to revive.
@@ -387,7 +387,7 @@ export async function finalizeStaleAssistantInvolvements(
   return { resolved: resolvedRows.length }
 }
 
-/** Attach a CSAT rating (recorded when Quinn was the last handler). */
+/** Attach a CSAT rating (recorded when ZenithAssistant was the last handler). */
 export async function setInvolvementRating(
   id: AssistantInvolvementId,
   rating: number,

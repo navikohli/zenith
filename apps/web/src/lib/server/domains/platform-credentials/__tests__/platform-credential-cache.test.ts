@@ -6,7 +6,7 @@
  */
 
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 
 // --- Cache mocks ---
 const mockCacheDel = vi.fn()
@@ -72,7 +72,7 @@ vi.mock('@/lib/server/integrations/encryption', () => ({
   decryptPlatformCredentials: vi.fn(),
 }))
 
-vi.mock('@quackback/ids', () => ({
+vi.mock('@zenith/ids', () => ({
   generateId: vi.fn().mockReturnValue('platform_cred_1'),
 }))
 

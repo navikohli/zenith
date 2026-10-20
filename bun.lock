@@ -3,7 +3,7 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "quackback",
+      "name": "zenith",
       "dependencies": {
         "@codemirror/lang-css": "^6.3.1",
         "@codemirror/language": "^6.12.4",
@@ -41,7 +41,7 @@
       },
     },
     "apps/web": {
-      "name": "@quackback/web",
+      "name": "@zenith/web",
       "version": "0.14.1",
       "dependencies": {
         "@aws-sdk/client-s3": "^3.1131.0",
@@ -74,10 +74,10 @@
         "@hookform/resolvers": "^5.9.1",
         "@modelcontextprotocol/sdk": "1.32.1",
         "@opentelemetry/api": "^1.9.1",
-        "@quackback/db": "workspace:*",
-        "@quackback/email": "workspace:*",
-        "@quackback/ids": "workspace:*",
-        "@quackback/logger": "workspace:*",
+        "@zenith/db": "workspace:*",
+        "@zenith/email": "workspace:*",
+        "@zenith/ids": "workspace:*",
+        "@zenith/logger": "workspace:*",
         "@slack/web-api": "^8.1.1",
         "@tabler/icons-react": "^3.46.0",
         "@tailwindcss/typography": "^0.5.20",
@@ -199,10 +199,10 @@
       },
     },
     "packages/db": {
-      "name": "@quackback/db",
+      "name": "@zenith/db",
       "version": "0.1.0",
       "dependencies": {
-        "@quackback/ids": "workspace:*",
+        "@zenith/ids": "workspace:*",
         "drizzle-orm": "^0.45.2",
         "postgres": "^3.4.9",
       },
@@ -216,11 +216,11 @@
       },
     },
     "packages/email": {
-      "name": "@quackback/email",
+      "name": "@zenith/email",
       "version": "0.1.0",
       "dependencies": {
         "@aws-sdk/client-sesv2": "^3.1131.0",
-        "@quackback/logger": "workspace:*",
+        "@zenith/logger": "workspace:*",
         "@react-email/components": "^1.0.12",
         "nodemailer": "^10.0.9",
         "react": "^19.3.0",
@@ -231,7 +231,7 @@
       },
     },
     "packages/ids": {
-      "name": "@quackback/ids",
+      "name": "@zenith/ids",
       "version": "0.1.0",
       "dependencies": {
         "typeid-js": "^1.2.0",
@@ -247,7 +247,7 @@
       },
     },
     "packages/logger": {
-      "name": "@quackback/logger",
+      "name": "@zenith/logger",
       "version": "0.1.0",
       "dependencies": {
         "@opentelemetry/api": "^1.9.1",
@@ -255,7 +255,7 @@
       },
     },
     "packages/widget": {
-      "name": "@quackback/widget",
+      "name": "@zenith/widget",
       "version": "0.1.6",
       "devDependencies": {
         "@testing-library/dom": "^10.4.1",
@@ -275,7 +275,7 @@
       ],
     },
     "scripts/import": {
-      "name": "@quackback/import",
+      "name": "@zenith/import",
       "version": "0.1.0",
       "dependencies": {
         "dotenv": "^18.0.8",
@@ -718,19 +718,19 @@
 
     "@posthog/types": ["@posthog/types@1.416.0", "", {}, "sha512-0/9+02s/0uDyrH4G/qUg1yyl6gXUg8Uuxw/PlDad3KLzo9FFS9zS/kAQaEshx/saVGupj1aAy/4EUBxWisBogw=="],
 
-    "@quackback/db": ["@quackback/db@workspace:packages/db"],
+    "@zenith/db": ["@zenith/db@workspace:packages/db"],
 
-    "@quackback/email": ["@quackback/email@workspace:packages/email"],
+    "@zenith/email": ["@zenith/email@workspace:packages/email"],
 
-    "@quackback/ids": ["@quackback/ids@workspace:packages/ids"],
+    "@zenith/ids": ["@zenith/ids@workspace:packages/ids"],
 
-    "@quackback/import": ["@quackback/import@workspace:scripts/import"],
+    "@zenith/import": ["@zenith/import@workspace:scripts/import"],
 
-    "@quackback/logger": ["@quackback/logger@workspace:packages/logger"],
+    "@zenith/logger": ["@zenith/logger@workspace:packages/logger"],
 
-    "@quackback/web": ["@quackback/web@workspace:apps/web"],
+    "@zenith/web": ["@zenith/web@workspace:apps/web"],
 
-    "@quackback/widget": ["@quackback/widget@workspace:packages/widget"],
+    "@zenith/widget": ["@zenith/widget@workspace:packages/widget"],
 
     "@radix-ui/primitive": ["@radix-ui/primitive@1.2.0", "", {}, "sha512-KABY+VMIRPJL+Vyzv/335FEhXXD/xDv8BMb1kl48/aXJZMH0LtHCTx5ga5RnxaEP3nZHtmTLf1P9vanmFX46bw=="],
 

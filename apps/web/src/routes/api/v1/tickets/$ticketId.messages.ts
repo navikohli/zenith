@@ -4,7 +4,7 @@ import { successResponse, handleDomainError } from '@/lib/server/domains/api/res
 import { parseTypeId } from '@/lib/server/domains/api/validation'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import { serializeTicketMessage } from './-serialize'
-import type { TicketId } from '@quackback/ids'
+import type { TicketId } from '@zenith/ids'
 
 export const Route = createFileRoute('/api/v1/tickets/$ticketId/messages')({
   server: {

@@ -1,5 +1,5 @@
 import { db, emailLog, and, eq, gte, inArray, lt, sql } from '@/lib/server/db'
-import { METERED_EMAIL_TYPES } from '@quackback/email'
+import { METERED_EMAIL_TYPES } from '@zenith/email'
 
 export async function emailsSentThisMonth(): Promise<number> {
   return emailsSentInUtcMonth(new Date())

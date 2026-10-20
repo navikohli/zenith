@@ -678,7 +678,7 @@ describe('notificationHook — assistant.handed_off', () => {
       id: 'evt-handoff-1',
       type: 'assistant.handed_off',
       timestamp: new Date().toISOString(),
-      actor: { type: 'service', principalId: 'principal_quinn', displayName: 'Quinn' },
+      actor: { type: 'service', principalId: 'principal_zenithAssistant', displayName: 'Zenith Assistant' },
       data: { conversationId: 'conversation_1', reason: 'Customer asked for a human' },
     } as EventData
 

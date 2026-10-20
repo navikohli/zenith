@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { z } from 'zod'
-import type { RoadmapColumnId, RoadmapId } from '@quackback/ids'
+import type { RoadmapColumnId, RoadmapId } from '@zenith/ids'
 import { withApiKeyAuth } from '@/lib/server/domains/api/auth'
 import {
   badRequestResponse,

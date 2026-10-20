@@ -50,12 +50,12 @@ export function createPanel(opts: PanelOptions): PanelHandle {
   const url = opts.widgetUrl + (params.length ? '?' + params.join('&') : '')
 
   const backdrop = document.createElement('div')
-  backdrop.className = 'quackback-backdrop'
+  backdrop.className = 'zenith-backdrop'
   backdrop.addEventListener('click', opts.onBackdropClick)
   document.body.appendChild(backdrop)
 
   const panel = document.createElement('div')
-  panel.className = 'quackback-panel quackback-widget-iframe-wrapper'
+  panel.className = 'zenith-panel zenith-widget-iframe-wrapper'
   // Closed, the panel is only transparent: inert keeps its frame out of the
   // host page's tab order and the accessibility tree until it opens.
   panel.inert = true
@@ -75,7 +75,7 @@ export function createPanel(opts: PanelOptions): PanelHandle {
     'allow-scripts allow-forms allow-same-origin allow-popups allow-downloads'
   )
   iframe.setAttribute('allow', 'clipboard-write')
-  iframe.className = 'quackback-widget-iframe'
+  iframe.className = 'zenith-widget-iframe'
   panel.appendChild(iframe)
 
   let open = false
@@ -86,27 +86,27 @@ export function createPanel(opts: PanelOptions): PanelHandle {
       if (open) return
       open = true
       panel.inert = false
-      panel.classList.remove('quackback-closing')
-      backdrop.classList.remove('quackback-closing')
+      panel.classList.remove('zenith-closing')
+      backdrop.classList.remove('zenith-closing')
       void panel.offsetHeight // force reflow
-      panel.classList.add('quackback-open')
-      backdrop.classList.add('quackback-open')
+      panel.classList.add('zenith-open')
+      backdrop.classList.add('zenith-open')
     },
     hide() {
       if (!open) return
       open = false
       panel.inert = true
-      panel.classList.remove('quackback-open')
-      panel.classList.add('quackback-closing')
-      backdrop.classList.remove('quackback-open')
-      backdrop.classList.add('quackback-closing')
+      panel.classList.remove('zenith-open')
+      panel.classList.add('zenith-closing')
+      backdrop.classList.remove('zenith-open')
+      backdrop.classList.add('zenith-closing')
       setTimeout(() => {
-        panel.classList.remove('quackback-closing')
-        backdrop.classList.remove('quackback-closing')
+        panel.classList.remove('zenith-closing')
+        backdrop.classList.remove('zenith-closing')
       }, 300)
     },
     setExpanded(expanded) {
-      panel.classList.toggle('quackback-expanded', expanded)
+      panel.classList.toggle('zenith-expanded', expanded)
     },
     setPlacement(side) {
       ensureStyles(side)

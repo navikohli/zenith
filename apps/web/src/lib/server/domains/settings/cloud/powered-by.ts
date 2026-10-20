@@ -1,7 +1,7 @@
 import type { CloudConfig } from './cloud.types'
 
 /**
- * Whether the "Powered by Quackback" badge should render on the portal,
+ * Whether the "Powered by Zenith" badge should render on the portal,
  * widget, and branded emails.
  *
  * Self-hosted (cloud disabled) always shows it. `isEntitled('hideBranding')` is

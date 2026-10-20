@@ -4,7 +4,7 @@
  * lifetime can be reasoned about and tested in isolation. Also hosts the
  * shared token-rotation helper used by both team and portal invite paths.
  */
-import type { InviteId } from '@quackback/ids'
+import type { InviteId } from '@zenith/ids'
 import { logger } from '@/lib/server/logger'
 import { TEAM_INVITATION_VALID_DAYS } from '@/lib/shared/team-people'
 

@@ -1,6 +1,6 @@
 import { beforeEach, afterEach, afterAll, describe, it, expect, vi } from 'vitest'
 import { randomUUID, createHmac } from 'node:crypto'
-import { createId } from '@quackback/ids'
+import { createId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 vi.mock('@/lib/server/db', async (original) => ({
   ...(await original<typeof import('@/lib/server/db')>()),
@@ -245,7 +245,7 @@ describe.skipIf(!fixture.available)('provider capability flows', () => {
       events: [{ resource: { resource_type: 'task', gid: 'task-1' }, action: 'changed' }],
     })
     const response = await handleInboundWebhook(
-      new Request('https://quackback.test/api/integrations/asana/webhook', {
+      new Request('https://zenith.test/api/integrations/asana/webhook', {
         method: 'POST',
         headers: {
           'X-Hook-Signature': createHmac('sha256', 'review-signing-secret')
@@ -282,7 +282,7 @@ describe.skipIf(!fixture.available)('provider capability flows', () => {
     })
     const receive = () =>
       handleInboundWebhook(
-        new Request('https://quackback.test/api/integrations/asana/webhook', {
+        new Request('https://zenith.test/api/integrations/asana/webhook', {
           method: 'POST',
           headers: {
             'X-Hook-Signature': createHmac('sha256', 'review-signing-secret')

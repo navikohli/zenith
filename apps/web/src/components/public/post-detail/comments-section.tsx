@@ -5,7 +5,7 @@ import { portalDetailQueries, type PublicCommentView } from '@/lib/client/querie
 import { AuthCommentsSection } from '@/components/public/auth-comments-section'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
-import type { PostCommentId, PostId } from '@quackback/ids'
+import type { PostCommentId, PostId } from '@zenith/ids'
 
 /**
  * Recursively count all live (non-deleted) comments including nested replies

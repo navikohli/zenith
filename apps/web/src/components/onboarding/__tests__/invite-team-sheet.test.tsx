@@ -76,7 +76,7 @@ it('invites each address with the default member role and shows a link when mail
             email: data.emails[0],
             invitationId: 'invite_b',
             emailSent: false,
-            inviteLink: 'https://acme.quackback.test/invite/b',
+            inviteLink: 'https://acme.zenith.test/invite/b',
           },
         ],
   }))
@@ -103,7 +103,7 @@ it('invites each address with the default member role and shows a link when mail
     data: { principalIds: [], emails: ['b@acme.example'], role: 'member' },
   })
   expect(await screen.findByText('Invited a@acme.example')).toBeTruthy()
-  expect(screen.getByText('https://acme.quackback.test/invite/b')).toBeTruthy()
+  expect(screen.getByText('https://acme.zenith.test/invite/b')).toBeTruthy()
   expect(invalidate).toHaveBeenCalledWith({ queryKey: ['admin', 'onboarding'] })
 })
 

@@ -55,7 +55,7 @@ export function ChangelogFormFields({
                   bubbleMenu: true,
                   slashMenu: true,
                   embeds: true,
-                  quackbackEmbeds: true,
+                  zenithEmbeds: true,
                 }}
                 onImageUpload={uploadImage}
               />

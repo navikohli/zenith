@@ -1,5 +1,5 @@
 import { afterAll, afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { createId } from '@quackback/ids'
+import { createId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from './db-test-fixture'
 import { user, eq } from '@/lib/server/db'
 

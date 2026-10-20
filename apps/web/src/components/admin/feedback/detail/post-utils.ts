@@ -5,7 +5,7 @@
  */
 
 import type { JSONContent } from '@tiptap/react'
-import type { PostCommentId } from '@quackback/ids'
+import type { PostCommentId } from '@zenith/ids'
 import type { PostDetails } from '@/lib/shared/types'
 import type { PublicCommentView } from '@/lib/client/queries/portal-detail'
 

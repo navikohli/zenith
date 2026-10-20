@@ -10,7 +10,7 @@
  * shows operational.
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import type { StatusComponentId, StatusIncidentId } from '@quackback/ids'
+import type { StatusComponentId, StatusIncidentId } from '@zenith/ids'
 
 const mockIncidentFindFirst = vi.fn()
 const mockIncidentComponentsFindMany = vi.fn()

@@ -11,7 +11,7 @@ import {
 
 describe('formatHcIdSlug / parseHcIdSlug', () => {
   it('joins a numeric id with the slug', () => {
-    expect(formatHcIdSlug(42, 'what-is-quackback')).toBe('42-what-is-quackback')
+    expect(formatHcIdSlug(42, 'what-is-zenith')).toBe('42-what-is-zenith')
   })
 
   it('omits the hyphen when the slug is empty', () => {
@@ -20,10 +20,10 @@ describe('formatHcIdSlug / parseHcIdSlug', () => {
   })
 
   it('round-trips a numeric article param', () => {
-    const param = formatHcIdSlug(42, 'what-is-quackback')
+    const param = formatHcIdSlug(42, 'what-is-zenith')
     expect(parseHcIdSlug(param)).toEqual({
       urlId: 42,
-      slug: 'what-is-quackback',
+      slug: 'what-is-zenith',
     })
   })
 
@@ -36,15 +36,15 @@ describe('formatHcIdSlug / parseHcIdSlug', () => {
   })
 
   it('rejects a leading-zero or ULID key so legacy slugs stay distinct', () => {
-    expect(parseHcIdSlug('01m1cxgr9qf22rxt2vwk5jrchg-what-is-quackback')).toBeNull()
+    expect(parseHcIdSlug('01m1cxgr9qf22rxt2vwk5jrchg-what-is-zenith')).toBeNull()
     expect(parseHcIdSlug('0-slug')).toBeNull()
   })
 })
 
 describe('hcArticlePath / hcCollectionPath', () => {
   it('always includes the locale, including the default', () => {
-    expect(hcArticlePath({ locale: 'en', urlId: 42, slug: 'what-is-quackback' })).toBe(
-      '/hc/en/articles/42-what-is-quackback'
+    expect(hcArticlePath({ locale: 'en', urlId: 42, slug: 'what-is-zenith' })).toBe(
+      '/hc/en/articles/42-what-is-zenith'
     )
     expect(hcCollectionPath({ locale: 'en', urlId: 7, slug: 'getting-started' })).toBe(
       '/hc/en/collections/7-getting-started'

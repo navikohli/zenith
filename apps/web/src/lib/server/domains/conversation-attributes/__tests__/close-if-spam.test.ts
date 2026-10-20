@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import type { ConversationId } from '@quackback/ids'
+import type { ConversationId } from '@zenith/ids'
 
 const { getWorkflowCloseSpamSettings, setConversationStatus } = vi.hoisted(() => ({
   getWorkflowCloseSpamSettings: vi.fn(async () => ({ enabled: false })),

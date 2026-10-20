@@ -1,5 +1,5 @@
 /**
- * Changelog grounding source for Quinn (Quinn Phase 4).
+ * Changelog grounding source for ZenithAssistant (ZenithAssistant Phase 4).
  *
  * A `KnowledgeSource` (see `./retrieval-sources`) over `changelog_entries`:
  * retrieval with the same audience-scoped hybrid shape as `posts-retrieval.ts`

@@ -7,7 +7,7 @@
  */
 import { z } from 'zod'
 import { createServerFn } from '@tanstack/react-start'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import { toIsoString } from '@/lib/shared/utils'
 import type { JsonValue } from '@/lib/shared/json'

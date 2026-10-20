@@ -21,7 +21,7 @@ const webhookFields = {
     description: 'Webhook ID',
     example: 'webhook_01h455vb4pex5vsknk084sn02q',
   }),
-  url: z.string().url().meta({ example: 'https://example.com/hooks/quackback' }),
+  url: z.string().url().meta({ example: 'https://example.com/hooks/zenith' }),
   events: z.array(WebhookEventSchema).meta({ description: 'Events delivered to this webhook' }),
   boardIds: z
     .array(TypeIdSchema)

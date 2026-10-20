@@ -13,7 +13,7 @@ import {
   type RoadmapId,
   type SegmentId,
   type UserId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import {
   tiptapContentSchema,
   listPublicPostsSchema,
@@ -54,7 +54,7 @@ import { can } from '@/lib/server/policy/authorize'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import { logger } from '@/lib/server/logger'
 import { toIsoStringOrNull } from '@/lib/shared/utils'
-import { roadmapIdSchema, postStatusIdSchema } from '@quackback/ids/zod'
+import { roadmapIdSchema, postStatusIdSchema } from '@zenith/ids/zod'
 
 const log = logger.child({ component: 'public-posts' })
 

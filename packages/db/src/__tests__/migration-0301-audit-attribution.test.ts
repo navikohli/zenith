@@ -21,7 +21,7 @@ const ATTRIBUTION_COLUMNS = [
 
 it('adds nullable attribution columns, replays as a no-op and leaves existing rows alone', async () => {
   const db = createDb(
-    process.env.DATABASE_URL ?? 'postgresql://postgres:password@localhost:5432/quackback_test',
+    process.env.DATABASE_URL ?? 'postgresql://postgres:password@localhost:5432/zenith_test',
     { max: 1 }
   )
   const rollback = new Error('owned migration fixture rollback')

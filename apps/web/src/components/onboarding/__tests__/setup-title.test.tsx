@@ -12,15 +12,15 @@ afterEach(cleanup)
 
 describe('useSetupTitle', () => {
   it('names the tab while the screen shows, then gives the previous title back', () => {
-    document.title = 'Quackback'
+    document.title = 'Zenith'
     const { unmount } = render(<Screen title="Set up your workspace" />)
     expect(document.title).toBe('Set up your workspace')
     unmount()
-    expect(document.title).toBe('Quackback')
+    expect(document.title).toBe('Zenith')
   })
 
   it('leaves a title the next route set before the screen unmounted', () => {
-    document.title = 'Quackback'
+    document.title = 'Zenith'
     const { unmount } = render(<Screen title="Set up your workspace" />)
     // The router swaps the title in the same commit that unmounts the screen.
     document.title = 'Feedback - Acme'

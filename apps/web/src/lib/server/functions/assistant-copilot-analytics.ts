@@ -1,6 +1,6 @@
 /**
  * Copilot usage + outcome metrics server function, for the "Copilot usage"
- * section of the Quinn performance area (P2-D.2): questions, transforms,
+ * section of the ZenithAssistant performance area (P2-D.2): questions, transforms,
  * summaries, and the actions funnel over a date range. Read-only, gated on
  * analytics.view like the rest of the analytics surface (mirrors
  * assistant-analytics.ts and assistant-tools-analytics.ts).

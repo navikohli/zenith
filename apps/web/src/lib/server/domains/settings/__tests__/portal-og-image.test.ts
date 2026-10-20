@@ -84,7 +84,7 @@ vi.mock('@/lib/server/domains/platform-credentials/platform-credential.service',
   getPlatformCredentials: vi.fn().mockResolvedValue(null),
 }))
 
-vi.mock('@quackback/email', () => ({
+vi.mock('@zenith/email', () => ({
   isEmailConfigured: vi.fn().mockReturnValue(false),
 }))
 

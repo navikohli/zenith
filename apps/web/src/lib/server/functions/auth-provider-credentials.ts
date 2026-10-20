@@ -204,7 +204,7 @@ export const fetchAuthProviderStatusFn = createServerFn({ method: 'GET' }).handl
   await requireAuth({ permission: PERMISSIONS.AUTH_MANAGE })
 
   const { getAllAuthProviders } = await import('@/lib/server/auth/auth-providers')
-  const { isEmailConfigured } = await import('@quackback/email')
+  const { isEmailConfigured } = await import('@zenith/email')
   const configuredTypes = await getConfiguredIntegrationTypes()
 
   const status: Record<string, boolean> = {}

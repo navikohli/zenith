@@ -5,7 +5,7 @@
  * small and anonymized (§7.2).
  *
  * Existing domain helpers are reused by IMPORT, never copied:
- *  - `ensureAssistantPrincipal` provisions Quinn's service principal
+ *  - `ensureAssistantPrincipal` provisions ZenithAssistant's service principal
  *  - `generateKbEmbedding` / `formatArticleText` embed seeded articles with the
  *    configured model (the same path production embeds through)
  *  - `openInvolvement` opens the involvement a live write turn audits against
@@ -16,7 +16,7 @@ import {
   type PostStatusId,
   type PrincipalId,
   type AssistantInvolvementId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import {
   sql,
   eq,
@@ -124,7 +124,7 @@ export async function applyScenarioSettings(config: ScenarioConfig = {}): Promis
   await testDb.update(settings).set({ assistantConfig }).where(eq(settings.id, row.id))
 }
 
-/** Find-or-create Quinn's service principal inside the transaction. */
+/** Find-or-create ZenithAssistant's service principal inside the transaction. */
 export async function seedAssistantPrincipal(): Promise<PrincipalId> {
   const p = await ensureAssistantPrincipal()
   return p.id as PrincipalId

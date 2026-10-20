@@ -24,7 +24,7 @@ export const emailAdapter: ChannelAdapter = {
 
   async deliverCsatRequest(ctx) {
     const from = (await resolveConversationFrom(ctx.conversationId)) ?? undefined
-    const { sendCsatRequestEmail } = await import('@quackback/email')
+    const { sendCsatRequestEmail } = await import('@zenith/email')
     await sendCsatRequestEmail({
       to: ctx.recipient,
       promptText: ctx.promptText,

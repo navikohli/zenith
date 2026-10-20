@@ -1,8 +1,8 @@
 import { describe, it, expect } from 'vitest'
 import { contactRecipientFrom, sealedRecipient } from '../recipient'
 
-const PLACEHOLDER = 'sso-oidc-abc-deadbeef@anon.quackback.io'
-const ANON = 'temp-01j9@anon.quackback.io'
+const PLACEHOLDER = 'sso-oidc-abc-deadbeef@anon.zenith.io'
+const ANON = 'temp-01j9@anon.zenith.io'
 
 /**
  * The contact class is the only one that may follow an address someone other

@@ -3,7 +3,7 @@ import { it, expect, vi, afterAll } from 'vitest'
 // A real, separate one-connection pool is essential: the transactional fixture
 // would hide a nested global-client query behind its transaction proxy.
 // oxlint-disable-next-line no-restricted-imports
-import { createDb } from '@quackback/db/client'
+import { createDb } from '@zenith/db/client'
 
 // CI owns its disposable DATABASE_URL; local runs must opt in explicitly.
 const testUrl = vi.hoisted(
@@ -26,7 +26,7 @@ vi.mock('@/lib/server/db', async (original) => {
   const actual = await original<typeof import('@/lib/server/db')>()
   // A distinct physical pool is the behavior under test.
   // oxlint-disable-next-line no-restricted-imports
-  const { createDb } = await import('@quackback/db/client')
+  const { createDb } = await import('@zenith/db/client')
   return {
     ...actual,
     db: createDb(testUrl ?? 'postgres://localhost/unused_test_pool', {

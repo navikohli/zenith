@@ -22,7 +22,7 @@ function baseMessage(over: Partial<AgentConversationMessageDTO> = {}): AgentConv
     senderType: 'agent',
     content: 'How can we help?',
     createdAt: '2026-07-01T00:00:00.000Z',
-    author: { principalId: 'principal_a' as never, displayName: 'Quinn', avatarUrl: null },
+    author: { principalId: 'principal_a' as never, displayName: 'Zenith Assistant', avatarUrl: null },
     attachments: [],
     citations: [],
     isAssistant: true,

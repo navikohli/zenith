@@ -1,9 +1,9 @@
 /**
- * Quinn turn orchestration — the assistant side of the conversation<->assistant
+ * ZenithAssistant turn orchestration — the assistant side of the conversation<->assistant
  * cycle. `runAssistantTurnForConversation` runs one out-of-band turn for a widget
- * conversation (persisting Quinn's reply and maintaining the involvement record);
+ * conversation (persisting ZenithAssistant's reply and maintaining the involvement record);
  * `attributeCsatIfLastHandler` mirrors a submitted CSAT rating onto the
- * involvement when Quinn was the last handler.
+ * involvement when ZenithAssistant was the last handler.
  *
  * Ownership lives in the assistant domain, but the cycle reaches back into the
  * conversation domain for the message-append + hand-off primitives it exports
@@ -19,7 +19,7 @@ import {
   conversationMessages,
   type AssistantHandoffReason,
 } from '@/lib/server/db'
-import type { AssistantInvolvementId, ConversationId, PrincipalId } from '@quackback/ids'
+import type { AssistantInvolvementId, ConversationId, PrincipalId } from '@zenith/ids'
 import type {
   ConversationMessageCitation,
   ConversationStreamEvent,
@@ -88,7 +88,7 @@ export function __resetAssistantPrincipalMemo(): void {
 
 /**
  * Phase 2 live re-check (AI-ATTRIBUTES-PARITY-SPEC.md §3): on an inbound
- * customer message, while Quinn is participating, re-classify JUST the
+ * customer message, while ZenithAssistant is participating, re-classify JUST the
  * attribute keys some LIVE workflow condition actually references — so a
  * mid-conversation intent change is fresh by the time a handoff-triggered
  * workflow branches on it. Mirrors both competitors' cost gate: no live
@@ -113,7 +113,7 @@ async function triggerLiveAttributeRecheck(conversationId: ConversationId): Prom
 /**
  * Run one out-of-band assistant turn for a widget conversation. Gated on a
  * configured AI client and the `assistant.respond` setting; the silence rule
- * mutes it when a human has replied since Quinn's last message. Persists Quinn's
+ * mutes it when a human has replied since ZenithAssistant's last message. Persists ZenithAssistant's
  * reply as an ordinary assistant-authored message, maintains the involvement
  * record, and executes any escalation the engine decided on. Best-effort
  * throughout — the caller invokes it fire-and-forget.
@@ -129,7 +129,7 @@ export type AssistantTurnEligibility = 'eligible' | 'declined'
 
 /**
  * Cheap gates the orchestrator would exit on before spending on the model.
- * A workflow "Let Quinn answer" node uses this so a decline can resume the
+ * A workflow "Let ZenithAssistant answer" node uses this so a decline can resume the
  * escalated edge immediately instead of parking forever.
  */
 export async function previewAssistantTurnForConversation(
@@ -207,7 +207,7 @@ export async function runAssistantTurnForConversation(
 
   // Overlap the principal find-or-create with the thread read: the raw read is
   // principal-independent (only the pure mapping needs the id), so both run at
-  // once, then the map labels Quinn's own turns.
+  // once, then the map labels ZenithAssistant's own turns.
   const [assistantPrincipalId, threadRows] = await Promise.all([
     ensureAssistantPrincipalId(),
     loadConversationThread(conversationId),
@@ -237,14 +237,14 @@ export async function runAssistantTurnForConversation(
   // conversation has at most one active involvement and it is always the most
   // recently created row (openInvolvement only inserts when none is active;
   // every other transition updates in place), so `latest.status` alone says
-  // whether Quinn is engaged ('active') and whether it bowed out ('handed_off').
+  // whether ZenithAssistant is engaged ('active') and whether it bowed out ('handed_off').
   const revived = await voidAssumedResolutionForConversation(conversationId)
   const latest = revived ?? (await getLatestInvolvement(conversationId))
   const active = latest?.status === 'active' ? latest : null
 
-  // Handoff silence: once Quinn hands a conversation to the team, the team
+  // Handoff silence: once ZenithAssistant hands a conversation to the team, the team
   // owns it — including the window before a teammate's first reply, which the
-  // message-based silence rule above cannot see. Quinn never re-enters on its
+  // message-based silence rule above cannot see. ZenithAssistant never re-enters on its
   // own; a workflow step is the explicit re-engagement path and bypasses this.
   if ((opts?.surface ?? 'widget') === 'widget' && latest?.status === 'handed_off') return
 
@@ -362,7 +362,7 @@ export async function runAssistantTurnForConversation(
       throw new InternalSourcedReplyError()
     }
 
-    // A substantive answer or escalation engages Quinn and needs an
+    // A substantive answer or escalation engages ZenithAssistant and needs an
     // involvement. A standalone inability reply does not open an involvement
     // that could otherwise sit active forever with no answer clock.
     const involvement =
@@ -463,7 +463,7 @@ class InternalSourcedReplyError extends Error {
 /**
  * Failure floor: a hard turn failure must not strand the customer with a
  * vanished typing indicator and no reply. There is no model-authored text to
- * persist — and the server never authors words as Quinn — so the honest
+ * persist — and the server never authors words as ZenithAssistant — so the honest
  * terminal outcome is a human handoff: executeAssistantHandoff opens and
  * routes the conversation, and its system message ("Connecting you to the
  * team") is what the customer sees. Deliberately NOT surface-scoped: a
@@ -521,8 +521,8 @@ async function escalateToHuman(
 }
 
 /**
- * Mirror a submitted CSAT rating onto Quinn's involvement when it was the last
- * handler (the most recent visitor-facing reply was Quinn's). Best-effort: never
+ * Mirror a submitted CSAT rating onto ZenithAssistant's involvement when it was the last
+ * handler (the most recent visitor-facing reply was ZenithAssistant's). Best-effort: never
  * throws into the CSAT path.
  */
 export async function attributeCsatIfLastHandler(
@@ -530,7 +530,7 @@ export async function attributeCsatIfLastHandler(
   rating: number
 ): Promise<void> {
   try {
-    // Gate on the involvement first: no involvement means Quinn never engaged,
+    // Gate on the involvement first: no involvement means ZenithAssistant never engaged,
     // so skip the principal + last-message reads entirely.
     const involvement = await getLatestInvolvement(conversationId)
     if (!involvement) return

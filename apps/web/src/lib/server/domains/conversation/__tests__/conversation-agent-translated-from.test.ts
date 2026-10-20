@@ -6,7 +6,7 @@
  * the same conversation channel.
  */
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import type { PrincipalId, ConversationId } from '@quackback/ids'
+import type { PrincipalId, ConversationId } from '@zenith/ids'
 import type { Actor } from '@/lib/server/policy/types'
 
 const insertedMessages: Record<string, unknown>[] = []

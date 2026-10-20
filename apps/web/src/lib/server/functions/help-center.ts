@@ -3,7 +3,7 @@
  */
 
 import { createServerFn, createServerOnlyFn } from '@tanstack/react-start'
-import type { KbCategoryId, KbArticleId, KbArticleFeedbackId, PrincipalId } from '@quackback/ids'
+import type { KbCategoryId, KbArticleId, KbArticleFeedbackId, PrincipalId } from '@zenith/ids'
 import { sanitizeTiptapContent } from '@/lib/server/sanitize-tiptap'
 import { ANONYMOUS_ACTOR, type Actor } from '@/lib/server/policy/types'
 import {

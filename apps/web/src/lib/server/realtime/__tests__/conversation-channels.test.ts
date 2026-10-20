@@ -4,7 +4,7 @@
  * never reaches the visitor's conversation channel.
  */
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import type { ConversationId, PrincipalId, TicketId } from '@quackback/ids'
+import type { ConversationId, PrincipalId, TicketId } from '@zenith/ids'
 import type { ConversationDTO } from '@/lib/shared/conversation/types'
 
 const publish = vi.fn()

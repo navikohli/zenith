@@ -5,7 +5,7 @@
  */
 
 import { db, eq, and, postCommentReactions, principal } from '@/lib/server/db'
-import { type PostCommentId, type PrincipalId } from '@quackback/ids'
+import { type PostCommentId, type PrincipalId } from '@zenith/ids'
 import { aggregateReactions } from '@/lib/shared'
 import { type Actor } from '@/lib/server/policy'
 import { assertCommentViewable } from '@/lib/server/domains/posts/post.access'

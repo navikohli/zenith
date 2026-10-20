@@ -15,7 +15,7 @@ import type {
   AssistantPendingActionId,
   ConversationId,
   PrincipalId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import type { Executor } from '@/lib/server/domains/principals/principal.factory'
 import { logger } from '@/lib/server/logger'
 

@@ -137,7 +137,7 @@ describe('a self-hosted process', () => {
 
 describe('a pooled process with no scope', () => {
   it('refuses, and the refusal is the database proxy s own', async () => {
-    // Exactly what `db.ts` does under QUACKBACK_TENANCY=pooled: there is no
+    // Exactly what `db.ts` does under ZENITH_TENANCY=pooled: there is no
     // fleet-wide connection to fall back to, so the read throws. Storage adds no
     // check of its own — it inherits this one.
     const { WorkspaceScopeMissingError } = await import('@/lib/server/workspaces/workspace-context')

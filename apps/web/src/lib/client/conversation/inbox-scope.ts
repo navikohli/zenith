@@ -11,7 +11,7 @@ import type {
   CompanyId,
   TeamId,
   ConversationViewId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import type { ConversationStatus, ConversationPriority } from '@/lib/shared/conversation/types'
 import { parseChannel, type Channel } from '@/lib/shared/channels'
 import type {
@@ -42,7 +42,7 @@ export type InboxView =
   | 'all'
   | 'mentions'
   | 'saved'
-  | 'quinn'
+  | 'zenithAssistant'
   | 'spam'
   | 'created_by_me'
   | 'test'
@@ -61,7 +61,7 @@ const INBOX_VIEWS: Record<InboxView, true> = {
   all: true,
   mentions: true,
   saved: true,
-  quinn: true,
+  zenithAssistant: true,
   spam: true,
   created_by_me: true,
   test: true,
@@ -73,7 +73,7 @@ const INBOX_VIEWS: Record<InboxView, true> = {
 
 /**
  * URL-safe guard: is `v` one of the canonical inbox views (conversation scopes,
- * Quinn AI, or a Tickets-section scope)? The inbox route's `?view=` allowlist.
+ * ZenithAssistant AI, or a Tickets-section scope)? The inbox route's `?view=` allowlist.
  * Lives here, not in the nav sidebar, because the route's validateSearch runs
  * from the route module, which every page loads eagerly.
  */
@@ -106,7 +106,7 @@ export function ticketTypeForView(view: TypedTicketInboxView): TicketType {
   return TICKET_VIEW_TYPE[view]
 }
 
-/** Quinn-inbox sub-filter by involvement outcome. */
+/** ZenithAssistant-inbox sub-filter by involvement outcome. */
 export type AiBucket = 'resolved' | 'escalated' | 'pending'
 
 /**
@@ -164,7 +164,7 @@ export interface InboxSearch {
   /** Deep-link target message within the open item — scrolled to + flashed on open. */
   m?: string
   view?: InboxView
-  /** Quinn-view sub-filter by involvement outcome; omitted = any Quinn-engaged. */
+  /** ZenithAssistant-view sub-filter by involvement outcome; omitted = any ZenithAssistant-engaged. */
   ai?: AiBucket
   tag?: string
   segment?: string
@@ -280,9 +280,9 @@ export function buildListParams(
   // status/priority chips.
   if (nav.view === 'created_by_me')
     return { view: 'created_by_me' as const, search: q, companyId: company, sort: sortParam }
-  if (nav.view === 'quinn')
+  if (nav.view === 'zenithAssistant')
     return {
-      view: 'quinn' as const,
+      view: 'zenithAssistant' as const,
       ai: aiBucket,
       status: statusParam,
       priority,
@@ -331,7 +331,7 @@ export function normalizeInboxChannel(v: unknown): Channel | undefined {
 /**
  * Adapt a triage facet to the legacy `StatusFilter` shape `buildListParams`
  * (and the conversation-inbox query factory) expect — the scopes that still
- * run the pre-unified-inbox conversation-only list (mentions/quinn/saved,
+ * run the pre-unified-inbox conversation-only list (mentions/zenithAssistant/saved,
  * tag/segment/custom views) keep calling `buildListParams` unchanged, so its
  * `ConversationStatus | 'all'` contract can't drift. `waiting` maps back to
  * `snoozed`; `all` has no conversation-status equivalent.
@@ -344,7 +344,7 @@ export function facetToStatusFilter(facet: InboxTriageFacet): StatusFilter {
 // Unified list params (UNIFIED-INBOX-SPEC.md §3.1) — the subset of
 // InboxNavItem scopes the unified `listInboxItemsFn` endpoint actually
 // supports today: assignee queues (mine/unassigned/all), a per-team inbox,
-// and the Tickets-section scopes. Tag/segment/custom/mentions/quinn/
+// and the Tickets-section scopes. Tag/segment/custom/mentions/zenithAssistant/
 // saved stay on the legacy `buildListParams` + conversation-only endpoint
 // (see the inbox route report — the unified endpoint's filter has no
 // tagIds/segmentIds/mentionedPrincipalId/assistantStatuses support yet).
@@ -383,7 +383,7 @@ export interface InboxListParams {
  * Whether `nav` is one of the scopes the unified `listInboxItemsFn` endpoint
  * supports (mine/unassigned/all, a per-team inbox, a Tickets-section scope,
  * or a custom saved view carrying a ticket-only rule — §2.8). Everything else
- * (tag/segment/mentions/quinn/saved/spam, and a custom view with NO ticket rules)
+ * (tag/segment/mentions/zenithAssistant/saved/spam, and a custom view with NO ticket rules)
  * stays on the legacy conversation-only endpoint via `buildListParams`.
  */
 export function usesUnifiedInboxList(

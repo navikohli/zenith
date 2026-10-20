@@ -8,7 +8,7 @@
  * visitor's own thread for a customer-visible message, and the ticket thread
  * the message shows in.
  */
-import { isValidTypeId, type FileId } from '@quackback/ids'
+import { isValidTypeId, type FileId } from '@zenith/ids'
 import type { ConversationMessage } from '@/lib/server/db'
 import type { JobHandler } from '@/lib/server/jobs/definitions'
 import {

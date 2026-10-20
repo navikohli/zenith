@@ -2,7 +2,7 @@ import { RETRIEVED_CONTENT_NOTE } from './injection-guard'
 import { isHomeTurn, isWorkspaceToolAllowed, workspaceProposalMode } from './workspace-safety'
 import { toolPermissions } from './tool-permissions'
 /**
- * Quinn's tool-execution pipeline: assembles the tool catalogue
+ * ZenithAssistant's tool-execution pipeline: assembles the tool catalogue
  * (assistant.toolspec.ts) into TanStack AI server tools bound to a runtime
  * context, with each write tool's execution branch resolved from the turn's
  * role policy.
@@ -23,7 +23,7 @@ import { DomainException } from '@/lib/shared/errors'
 import { can } from '@/lib/server/policy/authorize'
 import { logger } from '@/lib/server/logger'
 import { assistantAttribution, runWithAuditAttribution } from '@/lib/server/audit/attribution'
-import type { ConversationId, TicketId } from '@quackback/ids'
+import type { ConversationId, TicketId } from '@zenith/ids'
 import type { AssistantToolContext, AssistantToolSpec } from './assistant.toolspec'
 import { resolveToolSpecs, isNoParentResult, NO_CONVERSATION_NOTE } from './assistant.toolspec'
 import {
@@ -238,8 +238,8 @@ async function runWithPipeline(
     // and `resolveEffectiveToolMode` for how the choice is made): the sandbox
     // has no real conversation to attach a claim, approval, or denial to
     // (nowhere to attach), while copilot has a real conversation but previews
-    // anyway because a teammate asking Quinn a question about the
-    // conversation must never let Quinn act in it (policy says preview).
+    // anyway because a teammate asking ZenithAssistant a question about the
+    // conversation must never let ZenithAssistant act in it (policy says preview).
     ctx.ledger.toolOutcomes.push({ name: spec.name, outcome: 'simulated' })
     return { simulated: true, summary: spec.summarize(args, ctx) }
   }

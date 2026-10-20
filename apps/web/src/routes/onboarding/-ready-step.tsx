@@ -261,7 +261,7 @@ function InstallSection({ checks, offset }: { checks: InstallChecks | 'loading';
           detail: (
             <FormattedMessage
               id="onboarding.ready.email.missingDetail"
-              defaultMessage="Invites and password resets can’t be sent until you add SMTP, Amazon SES or Resend settings and restart Quackback."
+              defaultMessage="Invites and password resets can’t be sent until you add SMTP, Amazon SES or Resend settings and restart Zenith."
             />
           ),
         },
@@ -306,7 +306,7 @@ function InstallSection({ checks, offset }: { checks: InstallChecks | 'loading';
         !checks.address.ok && checks.address.visitedOrigin ? (
           <FormattedMessage
             id="onboarding.ready.address.mismatch"
-            defaultMessage="You opened Quackback at {visited}. If that’s the address people will use, set BASE_URL to it and restart."
+            defaultMessage="You opened Zenith at {visited}. If that’s the address people will use, set BASE_URL to it and restart."
             values={{
               visited: (
                 <span className="font-mono text-[12px]">{checks.address.visitedOrigin}</span>

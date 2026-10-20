@@ -1,7 +1,7 @@
 /**
  * Server Function for resolving live link-embed previews.
  *
- * When a Quackback post/changelog URL is embedded in rich text, the display
+ * When a Zenith post/changelog URL is embedded in rich text, the display
  * surface resolves it *fresh* through `getEmbedPreviewFn` so the card always
  * shows the current title/votes/status. The resolver is viewer-scoped: it
  * reuses the same public read paths (and the same audience/portal gates) as
@@ -12,7 +12,7 @@
 
 import { z } from 'zod'
 import { createServerFn } from '@tanstack/react-start'
-import type { PostId, ChangelogId, PostStatusId, TicketId, PrincipalId } from '@quackback/ids'
+import type { PostId, ChangelogId, PostStatusId, TicketId, PrincipalId } from '@zenith/ids'
 import type { Actor } from '@/lib/server/policy'
 import type {
   EmbedPreview,

@@ -73,7 +73,7 @@ import {
   fetchTeammateStyleProfile,
   runCopilotTransform,
 } from '../copilot-transform'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 
 const PRINCIPAL_ID = 'principal_1' as PrincipalId
 

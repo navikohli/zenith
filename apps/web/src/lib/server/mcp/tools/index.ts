@@ -1,5 +1,5 @@
 /**
- * MCP Tools for Quackback
+ * MCP Tools for Zenith
  *
  * Tools calling domain services directly (no HTTP self-loop), grouped by
  * resource module. Each tool declares its authorization contract — `{ scope,

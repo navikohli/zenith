@@ -29,7 +29,7 @@ import {
   type WorkflowRun,
   type Workflow,
 } from '@/lib/server/db'
-import type { ConversationId } from '@quackback/ids'
+import type { ConversationId } from '@zenith/ids'
 import type { Actor } from '@/lib/server/policy/types'
 import { boundedServiceActor } from '@/lib/server/policy/service-actor'
 import { PERMISSIONS, type PermissionKey } from '@/lib/shared/permissions'

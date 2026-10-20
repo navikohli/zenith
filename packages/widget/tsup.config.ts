@@ -22,7 +22,7 @@ export default defineConfig([
   {
     entry: { browser: 'src/browser-queue.ts' },
     format: ['iife'],
-    globalName: 'QuackbackBundle',
+    globalName: 'ZenithBundle',
     minify: true,
     sourcemap: false,
     target: 'es2020',

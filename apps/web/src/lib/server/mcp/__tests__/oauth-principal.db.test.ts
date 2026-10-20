@@ -9,7 +9,7 @@ if (!process.env.BASE_URL?.startsWith('http')) process.env.BASE_URL = 'http://lo
 process.env.SECRET_KEY ??= 'test-secret-key-with-at-least-32-characters'
 
 import { db, sql } from '@/lib/server/db'
-import { createId, toUuid, type PrincipalId } from '@quackback/ids'
+import { createId, toUuid, type PrincipalId } from '@zenith/ids'
 import { readOAuthPrincipal } from '../oauth-principal'
 
 let available = false

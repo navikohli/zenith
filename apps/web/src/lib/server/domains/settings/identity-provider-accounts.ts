@@ -31,7 +31,7 @@ import {
   ssoVerifiedDomain,
   user,
 } from '@/lib/server/db'
-import type { IdentityProviderId, PrincipalId, RoleId } from '@quackback/ids'
+import type { IdentityProviderId, PrincipalId, RoleId } from '@zenith/ids'
 import { realEmail } from '@/lib/shared/anonymous-email'
 import { canManageSso, isAdminTierBundle } from '@/lib/shared/sso-claim-mapping-edit'
 import { roleMappingFor } from '@/lib/shared/oidc-claim-mapping'

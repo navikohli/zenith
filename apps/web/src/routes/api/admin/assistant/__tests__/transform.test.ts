@@ -68,7 +68,7 @@ import { handleTransform } from '../transform'
 import { SSE_KEEPALIVE_INTERVAL_MS } from '@/lib/server/domains/assistant/agui'
 import { TierLimitError } from '@/lib/server/errors/tier-limit-error'
 import { NotFoundError } from '@/lib/shared/errors'
-import { generateId } from '@quackback/ids'
+import { generateId } from '@zenith/ids'
 
 const CONVERSATION_ID = generateId('conversation')
 const TICKET_ID = generateId('ticket')

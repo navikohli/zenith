@@ -8,7 +8,7 @@
  * point-in-time transaction. manifest.json is written last because it carries
  * the per-entity counts gathered while streaming.
  */
-import type { ExportRunId } from '@quackback/ids'
+import type { ExportRunId } from '@zenith/ids'
 import { uploadObject, deleteObject } from '@/lib/server/storage/s3'
 import { logger } from '@/lib/server/logger'
 import { ZipBuilder } from './zip'
@@ -77,7 +77,7 @@ export async function buildWorkspaceExport(
 
   const manifest: WorkspaceExportManifest = {
     format_version: 1,
-    generator: 'quackback',
+    generator: 'zenith',
     workspace_slug: workspaceSlug,
     exported_at: new Date().toISOString(),
     entities: entityCounts,

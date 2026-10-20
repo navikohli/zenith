@@ -89,13 +89,13 @@ describe('getRegisteredAuthProviders across requests, in production', () => {
     expect(providerReads()).toBe(1)
   })
 
-  it('takes its window from QUACKBACK_SETTINGS_CACHE_MS, where 0 turns the copy off', async () => {
-    vi.stubEnv('QUACKBACK_SETTINGS_CACHE_MS', '0')
+  it('takes its window from ZENITH_SETTINGS_CACHE_MS, where 0 turns the copy off', async () => {
+    vi.stubEnv('ZENITH_SETTINGS_CACHE_MS', '0')
     await inRequest(() => getRegisteredAuthProviders())
     await inRequest(() => getRegisteredAuthProviders())
     expect(providerReads()).toBe(2)
 
-    vi.stubEnv('QUACKBACK_SETTINGS_CACHE_MS', String(60 * 60 * 1000))
+    vi.stubEnv('ZENITH_SETTINGS_CACHE_MS', String(60 * 60 * 1000))
     await inRequest(() => getRegisteredAuthProviders())
     vi.advanceTimersByTime(10 * 60 * 1000)
     await inRequest(() => getRegisteredAuthProviders())

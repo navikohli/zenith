@@ -167,6 +167,6 @@ export function buildDiscordMessage(event: EventData, rootUrl: string): DiscordM
     }
 
     default:
-      return { content: `Quackback event: ${(event as EventData).type}` }
+      return { content: `Zenith event: ${(event as EventData).type}` }
   }
 }

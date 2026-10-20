@@ -14,7 +14,7 @@ import {
   conversationMessageFlags,
   type ConversationMessage,
 } from '@/lib/server/db'
-import type { ConversationMessageId, PrincipalId } from '@quackback/ids'
+import type { ConversationMessageId, PrincipalId } from '@zenith/ids'
 import { NotFoundError, ForbiddenError } from '@/lib/shared/errors'
 import { canActAsAgent } from '@/lib/server/policy/conversation'
 import type { Actor } from '@/lib/server/policy/types'

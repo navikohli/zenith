@@ -5,7 +5,7 @@ vi.mock('@/lib/server/secret-key', () => ({
 }))
 vi.mock('@/lib/server/db', async (original) => {
   // oxlint-disable-next-line no-restricted-imports
-  const { createDb } = await import('@quackback/db/client')
+  const { createDb } = await import('@zenith/db/client')
   return {
     ...(await original<typeof import('@/lib/server/db')>()),
     db: createDb(process.env.DATABASE_URL!, { max: 8, prepare: false }),
@@ -26,7 +26,7 @@ import { getValidAccessToken } from '../../token-refresh'
 import { readSyncHealth } from '../health'
 import { queueSyncOperation } from '../ledger'
 import { installationIdentity } from '../identity'
-import type { IntegrationId } from '@quackback/ids'
+import type { IntegrationId } from '@zenith/ids'
 const ids: IntegrationId[] = []
 async function seed() {
   const [row] = await db

@@ -49,8 +49,8 @@ afterAll(async () => {
 const OWNERSHIP_RECORDS = JSON.stringify([
   {
     type: 'TXT',
-    host: '_quackback',
-    value: 'quackback-domain-verification=6f1c2a9e4b8d0f37',
+    host: '_zenith',
+    value: 'zenith-domain-verification=6f1c2a9e4b8d0f37',
     purpose: 'ownership',
   },
 ])

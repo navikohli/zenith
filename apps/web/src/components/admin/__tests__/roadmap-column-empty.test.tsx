@@ -18,7 +18,7 @@ vi.mock('@/lib/client/hooks/use-roadmap-posts-query', () => ({
 vi.mock('../roadmap-card', () => ({ RoadmapCard: () => null }))
 
 import { RoadmapColumn } from '../roadmap-column'
-import type { RoadmapId } from '@quackback/ids'
+import type { RoadmapId } from '@zenith/ids'
 
 afterEach(cleanup)
 

@@ -10,7 +10,7 @@ import type { VotersQuerySource } from '@/lib/client/queries/post-voters'
 import { useProxyVote } from '@/lib/client/mutations/posts'
 import { useCreatePortalUser } from '@/lib/client/mutations/users'
 import { cn } from '@/lib/shared/utils'
-import type { PostId, PrincipalId } from '@quackback/ids'
+import type { PostId, PrincipalId } from '@zenith/ids'
 
 export type { VotersQuerySource }
 

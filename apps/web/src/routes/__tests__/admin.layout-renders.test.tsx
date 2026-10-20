@@ -46,8 +46,8 @@ vi.mock('@/components/admin/admin-sidebar', () => ({
     return null
   },
 }))
-vi.mock('@/components/shared/cloud-quackback-widget', () => ({
-  CloudQuackbackWidget: () => {
+vi.mock('@/components/shared/cloud-zenith-widget', () => ({
+  CloudZenithWidget: () => {
     shell.widgetRenders++
     return null
   },

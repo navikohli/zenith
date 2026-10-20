@@ -8,7 +8,7 @@
  * lists around the votes are stubbed empty.
  */
 import { afterAll, afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { createId, type BoardId, type PostId, type PrincipalId, type UserId } from '@quackback/ids'
+import { createId, type BoardId, type PostId, type PrincipalId, type UserId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { boards, postVotes, posts, principal, user } from '@/lib/server/db'
 import { DEFAULT_BOARD_ACCESS } from '@/lib/shared/db-types'

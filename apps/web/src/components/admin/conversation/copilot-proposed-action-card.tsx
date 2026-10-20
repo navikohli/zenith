@@ -5,7 +5,7 @@
  */
 import { CheckCircleIcon, CheckIcon, XMarkIcon } from '@heroicons/react/24/solid'
 import { ArrowPathIcon, ShieldCheckIcon } from '@heroicons/react/24/outline'
-import type { AssistantPendingActionId } from '@quackback/ids'
+import type { AssistantPendingActionId } from '@zenith/ids'
 import { Button } from '@/components/ui/button'
 import { usePendingActionDecision } from '@/lib/client/hooks/use-pending-action-decision'
 import type { CopilotProposedAction } from '@/lib/shared/assistant/copilot-contract'

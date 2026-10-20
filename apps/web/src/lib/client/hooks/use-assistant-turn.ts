@@ -6,7 +6,7 @@ import type { AssistantActivityStatus } from '@/lib/shared/conversation/types'
 const ASSISTANT_TURN_TTL_MS = 20_000
 
 /**
- * Transient state for Quinn's in-flight turn in the widget: the current working
+ * Transient state for ZenithAssistant's in-flight turn in the widget: the current working
  * status and the answer as it streams. Both are ephemeral (never cached) and
  * cleared when the persisted reply lands; a TTL backstops a lost final signal.
  * Mirrors {@link useConversationTyping}.

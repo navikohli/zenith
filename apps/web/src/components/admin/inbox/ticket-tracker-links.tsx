@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { PlusIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { toast } from 'sonner'
-import type { TicketId, TicketExternalLinkId } from '@quackback/ids'
+import type { TicketId, TicketExternalLinkId } from '@zenith/ids'
 import { ticketQueries, ticketKeys } from '@/lib/client/queries/inbox'
 import {
   createTicketIssueFn,

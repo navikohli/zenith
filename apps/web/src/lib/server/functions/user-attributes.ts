@@ -6,7 +6,7 @@
  * `./admin` so existing `functions/admin` importers keep working.
  */
 import { createServerFn } from '@tanstack/react-start'
-import type { UserAttributeId } from '@quackback/ids'
+import type { UserAttributeId } from '@zenith/ids'
 import { requireAuth } from './auth-helpers'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import {

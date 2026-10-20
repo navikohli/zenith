@@ -4,7 +4,7 @@
  * conflict and a locked field. A new area is covered by adding one case.
  */
 import { afterAll, afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { createId } from '@quackback/ids'
+import { createId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { auditLog, eq, principal, settings, user } from '@/lib/server/db'
 import { ALL_PERMISSIONS } from '@/lib/shared/permissions'

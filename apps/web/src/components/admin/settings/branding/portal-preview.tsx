@@ -71,11 +71,11 @@ export function PortalPreview({
     const origin = window.location.origin
     const css = cssDirty ? draftCss : ''
     if (css !== frameCss.current) {
-      target.postMessage({ type: 'quackback:preview-css', css }, origin)
+      target.postMessage({ type: 'zenith:preview-css', css }, origin)
       frameCss.current = css
     }
     if ((draftDirty || frameDraft.current) && draft !== frameDraft.current) {
-      target.postMessage({ type: 'quackback:preview-draft', draft }, origin)
+      target.postMessage({ type: 'zenith:preview-draft', draft }, origin)
       frameDraft.current = draft
     }
   }, [draftCss, cssDirty, draft, draftDirty])
@@ -92,7 +92,7 @@ export function PortalPreview({
   useEffect(() => {
     function onMessage(event: MessageEvent) {
       if (event.origin !== window.location.origin) return
-      if ((event.data as { type?: string } | null)?.type === 'quackback:preview-ready') {
+      if ((event.data as { type?: string } | null)?.type === 'zenith:preview-ready') {
         frameCss.current = ''
         frameDraft.current = null
         postDrafts()

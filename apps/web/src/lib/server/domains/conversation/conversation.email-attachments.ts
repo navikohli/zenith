@@ -20,7 +20,7 @@
  * never call it for a note, because a note never calls notifyAgentReply /
  * notifyVisitorMessage / notifyConversationStarted in the first place.
  */
-import { MAX_EMAIL_ATTACHMENT_BYTES, type EmailAttachment } from '@quackback/email'
+import { MAX_EMAIL_ATTACHMENT_BYTES, type EmailAttachment } from '@zenith/email'
 import type { ConversationAttachment } from '@/lib/server/db'
 import { getEmailSafeUrl, getS3Object } from '@/lib/server/storage/s3'
 import { storedAssetKeyFromSrc } from '@/lib/server/storage/asset-url'

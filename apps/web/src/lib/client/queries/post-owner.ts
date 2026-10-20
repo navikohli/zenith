@@ -5,7 +5,7 @@
  * only when the actor holds that key.
  */
 import { queryOptions } from '@tanstack/react-query'
-import type { PostId } from '@quackback/ids'
+import type { PostId } from '@zenith/ids'
 import { listOwnerCandidatesFn, getPostOwnerFn } from '@/lib/server/functions/post-owner-context'
 
 export const postOwnerQueries = {

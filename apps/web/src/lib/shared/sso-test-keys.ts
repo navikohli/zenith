@@ -25,7 +25,7 @@ export function ssoTestResultKey(testId: string): string {
  * listener; this exists only to filter unrelated messages on the same
  * origin (browser extensions, devtools, other tabs).
  */
-export const SSO_TEST_POSTMESSAGE_SOURCE = 'quackback-sso-test' as const
+export const SSO_TEST_POSTMESSAGE_SOURCE = 'zenith-sso-test' as const
 
 /**
  * Legacy generic OAuth callback, still sent by providers on the `legacy`

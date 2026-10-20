@@ -10,9 +10,9 @@
  * Slack work starts. There is no LISTEN doorbell: PgBouncer does not
  * deliver NOTIFY, and LISTEN cannot start a parked loop.
  *
- * Under `QUACKBACK_TENANCY=single` there is one loop, no scope, and
- * `DATABASE_URL`. Under pooled tenancy the worker (`QUACKBACK_ROLE=worker` or
- * `all`) starts a loop per active registry workspace. `QUACKBACK_ROLE=web`
+ * Under `ZENITH_TENANCY=single` there is one loop, no scope, and
+ * `DATABASE_URL`. Under pooled tenancy the worker (`ZENITH_ROLE=worker` or
+ * `all`) starts a loop per active registry workspace. `ZENITH_ROLE=web`
  * is a no-op so HTTP replicas stay producer-only.
  */
 import { config } from '@/lib/server/config'
@@ -616,7 +616,7 @@ function scheduleWorkspaceRefresh(cfg: RunnerConfig): void {
 export async function startJobWorker(): Promise<void> {
   if (running) return
   if (!shouldRunWorkers()) {
-    log.info('QUACKBACK_ROLE=web — job worker not started')
+    log.info('ZENITH_ROLE=web — job worker not started')
     return
   }
   running = true

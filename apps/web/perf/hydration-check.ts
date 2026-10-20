@@ -16,7 +16,7 @@
  */
 import { chromium, type BrowserContext } from '@playwright/test'
 import postgres from 'postgres'
-import { fromUuid } from '@quackback/ids'
+import { fromUuid } from '@zenith/ids'
 import { BENCH_DATABASE_URL, BENCH_URL, signedInContext, startBenchServer } from './config'
 
 const appDir = process.env.PERF_APP_DIR ?? new URL('..', import.meta.url).pathname

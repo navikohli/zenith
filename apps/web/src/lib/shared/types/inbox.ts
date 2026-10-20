@@ -6,7 +6,7 @@
  */
 
 import type { Board, PostTag } from '@/lib/shared/db-types'
-import type { PostId, PostStatusId, PostCommentId, PrincipalId } from '@quackback/ids'
+import type { PostId, PostStatusId, PostCommentId, PrincipalId } from '@zenith/ids'
 import type { CommentTreeNode, CommentReactionCount } from '@/lib/shared'
 
 export interface PinnedComment {

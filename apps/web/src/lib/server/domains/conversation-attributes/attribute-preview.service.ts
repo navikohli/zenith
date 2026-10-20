@@ -5,7 +5,7 @@
  * `classification-core.ts` call the real classifier
  * (`ai-classification.service.ts`) uses, over an EPHEMERAL one-line
  * transcript containing just the sample message — so the predicted
- * option + reasoning shown to the admin is provably what Quinn would decide
+ * option + reasoning shown to the admin is provably what ZenithAssistant would decide
  * on a real conversation whose only customer content was that sample.
  *
  * Unlike the fire-and-forget real classifier (which never throws — it's

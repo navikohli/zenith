@@ -28,7 +28,7 @@
  */
 import { pgTable, text, integer, boolean, timestamp, jsonb, uniqueIndex } from 'drizzle-orm/pg-core'
 import { sql } from 'drizzle-orm'
-import { typeIdWithDefault } from '@quackback/ids/drizzle'
+import { typeIdWithDefault } from '@zenith/ids/drizzle'
 import { TICKET_TYPES } from '../types'
 
 /**

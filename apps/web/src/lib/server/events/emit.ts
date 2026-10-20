@@ -13,7 +13,7 @@
  */
 import { db, events, auditLog, type Database, type Transaction } from '@/lib/server/db'
 import { auditAttributionColumns } from '@/lib/server/audit/attribution'
-import { createId, type EvtId } from '@quackback/ids'
+import { createId, type EvtId } from '@zenith/ids'
 import { logger } from '@/lib/server/logger'
 import { enqueueJob } from '@/lib/server/jobs/job-queue'
 import { EVENT_DISPATCH_QUEUE } from './event-dispatch-queue'

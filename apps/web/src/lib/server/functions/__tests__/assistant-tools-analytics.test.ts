@@ -1,6 +1,6 @@
 /**
  * Action metrics server fn: gate on analytics.view and delegate with parsed
- * dates. Domain math is covered in domains/analytics/__tests__/quinn-tools.test.ts.
+ * dates. Domain math is covered in domains/analytics/__tests__/zenith-assistant-tools.test.ts.
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { PERMISSIONS } from '@/lib/shared/permissions'
@@ -29,15 +29,15 @@ vi.mock('@tanstack/react-start', () => ({
 
 const hoisted = vi.hoisted(() => ({
   requireAuth: vi.fn(),
-  getQuinnToolMetrics: vi.fn(),
+  getZenithAssistantToolMetrics: vi.fn(),
 }))
 
 vi.mock('@/lib/server/functions/auth-helpers', () => ({ requireAuth: hoisted.requireAuth }))
-vi.mock('@/lib/server/domains/analytics/quinn-tools', () => ({
-  getQuinnToolMetrics: hoisted.getQuinnToolMetrics,
+vi.mock('@/lib/server/domains/analytics/zenith-assistant-tools', () => ({
+  getZenithAssistantToolMetrics: hoisted.getZenithAssistantToolMetrics,
 }))
 
-import { getQuinnToolMetricsFn } from '../assistant-tools-analytics'
+import { getZenithAssistantToolMetricsFn } from '../assistant-tools-analytics'
 
 const TOOL_METRICS = [
   {
@@ -54,29 +54,29 @@ const TOOL_METRICS = [
 beforeEach(() => {
   vi.clearAllMocks()
   hoisted.requireAuth.mockResolvedValue({})
-  hoisted.getQuinnToolMetrics.mockResolvedValue(TOOL_METRICS)
+  hoisted.getZenithAssistantToolMetrics.mockResolvedValue(TOOL_METRICS)
 })
 
-describe('getQuinnToolMetricsFn', () => {
+describe('getZenithAssistantToolMetricsFn', () => {
   it('gates on analytics.view', async () => {
-    await getQuinnToolMetricsFn({
+    await getZenithAssistantToolMetricsFn({
       data: { from: '2026-06-01T00:00:00Z', to: '2026-07-01T00:00:00Z' },
     })
     expect(hoisted.requireAuth).toHaveBeenCalledWith({ permission: PERMISSIONS.ANALYTICS_VIEW })
   })
 
   it('parses the range into Dates and delegates to the domain query', async () => {
-    await getQuinnToolMetricsFn({
+    await getZenithAssistantToolMetricsFn({
       data: { from: '2026-06-01T00:00:00Z', to: '2026-07-01T00:00:00Z' },
     })
-    expect(hoisted.getQuinnToolMetrics).toHaveBeenCalledWith(
+    expect(hoisted.getZenithAssistantToolMetrics).toHaveBeenCalledWith(
       new Date('2026-06-01T00:00:00Z'),
       new Date('2026-07-01T00:00:00Z')
     )
   })
 
   it('returns the domain result verbatim', async () => {
-    const out = await getQuinnToolMetricsFn({
+    const out = await getZenithAssistantToolMetricsFn({
       data: { from: '2026-06-01T00:00:00Z', to: '2026-07-01T00:00:00Z' },
     })
     expect(out).toEqual(TOOL_METRICS)
@@ -84,7 +84,7 @@ describe('getQuinnToolMetricsFn', () => {
 
   it('rejects a non-ISO-datetime range before it reaches the auth gate', async () => {
     await expect(
-      getQuinnToolMetricsFn({ data: { from: 'not-a-date', to: '2026-07-01T00:00:00Z' } })
+      getZenithAssistantToolMetricsFn({ data: { from: 'not-a-date', to: '2026-07-01T00:00:00Z' } })
     ).rejects.toThrow()
     expect(hoisted.requireAuth).not.toHaveBeenCalled()
   })
@@ -92,8 +92,8 @@ describe('getQuinnToolMetricsFn', () => {
   it('propagates a denied auth gate without calling the domain query', async () => {
     hoisted.requireAuth.mockRejectedValue(new Error('Access denied'))
     await expect(
-      getQuinnToolMetricsFn({ data: { from: '2026-06-01T00:00:00Z', to: '2026-07-01T00:00:00Z' } })
+      getZenithAssistantToolMetricsFn({ data: { from: '2026-06-01T00:00:00Z', to: '2026-07-01T00:00:00Z' } })
     ).rejects.toThrow('Access denied')
-    expect(hoisted.getQuinnToolMetrics).not.toHaveBeenCalled()
+    expect(hoisted.getZenithAssistantToolMetrics).not.toHaveBeenCalled()
   })
 })

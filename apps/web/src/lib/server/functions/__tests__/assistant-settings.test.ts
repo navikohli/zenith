@@ -83,7 +83,7 @@ import {
 
 const CONFIG: AssistantConfig = {
   version: 4,
-  identity: { name: 'Quinn', avatarUrl: null },
+  identity: { name: 'Zenith Assistant', avatarUrl: null },
   agents: {
     workspace: structuredClone(DEFAULT_WORKSPACE_ASSISTANT),
     agent: {

@@ -4,7 +4,7 @@ import { successResponse, handleDomainError } from '@/lib/server/domains/api/res
 import { parseTypeId } from '@/lib/server/domains/api/validation'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import { moderationAuditFromApiAuth } from './-audit'
-import type { PostId } from '@quackback/ids'
+import type { PostId } from '@zenith/ids'
 
 export const Route = createFileRoute('/api/v1/moderation/posts/$postId/approve')({
   server: {

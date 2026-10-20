@@ -7,7 +7,7 @@
  * extra round-trip.
  */
 import { db, principal, eq, sql } from '@/lib/server/db'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 
 export interface OAuthPrincipalRead {
   role: string

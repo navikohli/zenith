@@ -43,13 +43,13 @@ describe('<DomainsCard>', () => {
         readiness: 'pending',
         ownershipTxt: null,
         ownershipProof: {
-          name: '_quackback-challenge.feedback.example.com',
+          name: '_zenith-challenge.feedback.example.com',
           value: 'proof-token-1',
         },
       } as CustomDomainInstruction,
     ])
     expect(screen.getByText('edge.example.net')).toBeTruthy()
-    expect(screen.getByText('_quackback-challenge.feedback.example.com')).toBeTruthy()
+    expect(screen.getByText('_zenith-challenge.feedback.example.com')).toBeTruthy()
     expect(screen.getByText('proof-token-1')).toBeTruthy()
   })
 

@@ -27,7 +27,7 @@
  * the call-shape and managed-field coverage; this one is about the guards.
  */
 import { describe, it, expect, vi, beforeEach, afterEach, afterAll } from 'vitest'
-import { createId, type PrincipalId, type UserId } from '@quackback/ids'
+import { createId, type PrincipalId, type UserId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { principal, user, settings, eq, sql, DEFAULT_SETUP_STATE } from '@/lib/server/db'
 import { finishIdentityOnboarding } from '@/lib/server/setup-state'

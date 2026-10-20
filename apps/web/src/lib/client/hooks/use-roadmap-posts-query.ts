@@ -12,7 +12,7 @@ import type {
   RoadmapPostsListResult,
   RoadmapViewPost,
 } from '@/lib/shared/types'
-import type { RoadmapId, PostStatusId } from '@quackback/ids'
+import type { RoadmapId, PostStatusId } from '@zenith/ids'
 import type { RoadmapFilters } from '@/lib/shared/types'
 import { getRoadmapColumnsFn, getRoadmapPostsFn } from '@/lib/server/functions/roadmaps'
 import { getRoadmapPostsByStatusFn } from '@/lib/server/functions/public-posts'

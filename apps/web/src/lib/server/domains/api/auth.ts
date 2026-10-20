@@ -19,7 +19,7 @@ import {
   recordApiKeyFailure,
 } from './rate-limit'
 import { UnauthorizedError, ForbiddenError, RateLimitError } from '@/lib/shared/errors'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 import { isAdmin, type Role } from '@/lib/shared/roles'
 import {
   hasApiScope,

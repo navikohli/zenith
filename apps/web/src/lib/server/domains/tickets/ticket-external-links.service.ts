@@ -29,7 +29,7 @@ import {
   conversationMessages,
   ticketExternalLinks,
 } from '@/lib/server/db'
-import type { TicketId, TicketExternalLinkId, IntegrationId } from '@quackback/ids'
+import type { TicketId, TicketExternalLinkId, IntegrationId } from '@zenith/ids'
 import { getIntegration } from '@/lib/server/integrations'
 import type { ParsedIssueRef } from '@/lib/server/integrations/types'
 import { getBaseUrl } from '@/lib/server/config'
@@ -387,7 +387,7 @@ export async function buildTicketIssueData(ticketId: TicketId) {
   const bodyMarkdown = [
     narrative,
     `---`,
-    `Created from Quackback ticket #${ticket.number}: ${getBaseUrl()}/admin/inbox?i=${ticketId}`,
+    `Created from Zenith ticket #${ticket.number}: ${getBaseUrl()}/admin/inbox?i=${ticketId}`,
   ]
     .filter(Boolean)
     .join('\n\n')

@@ -46,30 +46,30 @@ const JOB = {
 }
 
 describe('runMembershipSync', () => {
-  const previous = process.env.QUACKBACK_CONTROL_PLANE_URL
+  const previous = process.env.ZENITH_CONTROL_PLANE_URL
 
   afterEach(() => {
     hoisted.pushWorkspaceMembership.mockClear()
-    if (previous === undefined) delete process.env.QUACKBACK_CONTROL_PLANE_URL
-    else process.env.QUACKBACK_CONTROL_PLANE_URL = previous
+    if (previous === undefined) delete process.env.ZENITH_CONTROL_PLANE_URL
+    else process.env.ZENITH_CONTROL_PLANE_URL = previous
   })
 
   it('is a successful no-op without a control-plane URL', async () => {
-    delete process.env.QUACKBACK_CONTROL_PLANE_URL
+    delete process.env.ZENITH_CONTROL_PLANE_URL
     expect(isControlPlaneConfigured()).toBe(false)
     await expect(runMembershipSync(JOB)).resolves.toBeUndefined()
     expect(hoisted.pushWorkspaceMembership).not.toHaveBeenCalled()
   })
 
   it('rethrows a control-plane outage so the job lease retries', async () => {
-    process.env.QUACKBACK_CONTROL_PLANE_URL = 'https://control.example.com'
+    process.env.ZENITH_CONTROL_PLANE_URL = 'https://control.example.com'
     hoisted.emails = [{ email: 'admin@acme.test' }]
     hoisted.pushWorkspaceMembership.mockRejectedValueOnce(new Error('unavailable'))
     await expect(runMembershipSync(JOB)).rejects.toThrow('unavailable')
   })
 
   it('posts the desired seat set when the control plane is configured', async () => {
-    process.env.QUACKBACK_CONTROL_PLANE_URL = 'https://control.example.com'
+    process.env.ZENITH_CONTROL_PLANE_URL = 'https://control.example.com'
     hoisted.emails = [
       { email: 'Admin@Acme.Test' },
       { email: 'member@acme.test' },

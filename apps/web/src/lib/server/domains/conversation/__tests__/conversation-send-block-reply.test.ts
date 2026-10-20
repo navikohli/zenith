@@ -15,7 +15,7 @@
  * conversation-lookup/message-insert chain.
  */
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import type { PrincipalId, ConversationId, ConversationMessageId } from '@quackback/ids'
+import type { PrincipalId, ConversationId, ConversationMessageId } from '@zenith/ids'
 import type { Actor } from '@/lib/server/policy/types'
 
 const emit = vi.hoisted(() => ({

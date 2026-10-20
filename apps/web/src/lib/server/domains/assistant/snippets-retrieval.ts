@@ -1,5 +1,5 @@
 /**
- * Snippets grounding source for Quinn.
+ * Snippets grounding source for ZenithAssistant.
  *
  * A third `KnowledgeSource` (see `./retrieval-sources`) alongside the
  * knowledge base and feedback posts: retrieval over admin-curated

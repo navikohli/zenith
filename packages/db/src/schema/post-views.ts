@@ -1,6 +1,6 @@
 import { pgTable, text, timestamp, boolean, jsonb, index, foreignKey } from 'drizzle-orm/pg-core'
 import { sql } from 'drizzle-orm'
-import { typeIdWithDefault, typeIdColumnNullable } from '@quackback/ids/drizzle'
+import { typeIdWithDefault, typeIdColumnNullable } from '@zenith/ids/drizzle'
 import { principal } from './auth'
 
 /**

@@ -13,7 +13,7 @@ import {
   type ConversationShape,
 } from '../conversation'
 import { ANONYMOUS_ACTOR, type Actor } from '../types'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 import { PERMISSIONS, type PermissionKey } from '@/lib/shared/permissions'
 
 const VISITOR = 'principal_visitor' as PrincipalId

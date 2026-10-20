@@ -8,7 +8,7 @@
  * up), and leaves them parked while it is not.
  */
 import { afterAll, afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { createId } from '@quackback/ids'
+import { createId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { sql } from '@/lib/server/db'
 import type { ClaimedJob } from '@/lib/server/jobs/job-queue'

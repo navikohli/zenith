@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { createId, type CompanyId, type PrincipalId } from '@quackback/ids'
+import { createId, type CompanyId, type PrincipalId } from '@zenith/ids'
 
 const mockWithApiKeyAuth = vi.fn()
 const mockListCompaniesPage = vi.fn()

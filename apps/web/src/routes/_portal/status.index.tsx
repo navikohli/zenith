@@ -45,7 +45,7 @@ export const Route = createFileRoute('/_portal/status/')({
       throw notFound()
     }
     return {
-      workspaceName: context.settings?.name ?? 'Quackback',
+      workspaceName: context.settings?.name ?? 'Zenith',
       baseUrl: context.baseUrl ?? '',
       messages: await messagesPromise,
     }

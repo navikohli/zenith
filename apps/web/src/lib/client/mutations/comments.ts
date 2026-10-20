@@ -10,7 +10,7 @@ import { inboxKeys } from '@/lib/client/hooks/use-inbox-query'
 import { updatePostInInboxLists } from '@/lib/client/mutations/inbox-list-cache'
 import type { PostDetails, PostCommentReaction, CommentWithReplies } from '@/lib/shared/types'
 import type { InboxPostListResult } from '@/lib/shared/db-types'
-import type { PostCommentId, PrincipalId, PostId } from '@quackback/ids'
+import type { PostCommentId, PrincipalId, PostId } from '@zenith/ids'
 import { addReplyToTree, replaceOptimisticInTree } from '@/lib/client/utils/comment-tree-helpers'
 
 // ============================================================================

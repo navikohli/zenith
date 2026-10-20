@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import type { KbCategoryId } from '@quackback/ids'
+import type { KbCategoryId } from '@zenith/ids'
 
 const insertValuesCalls: unknown[][] = []
 const updateSetCalls: unknown[][] = []

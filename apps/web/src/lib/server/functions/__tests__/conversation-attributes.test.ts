@@ -7,7 +7,7 @@
  * exactly-one-of-{conversationId,ticketId} input contract.
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { createId, type ConversationId, type TicketId } from '@quackback/ids'
+import { createId, type ConversationId, type TicketId } from '@zenith/ids'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import { permissionsForLegacyRole } from '@/lib/server/policy/permissions'
 import type { Role } from '@/lib/server/auth'

@@ -12,7 +12,7 @@ import {
   and,
   desc,
 } from '@/lib/server/db'
-import { toUuid, type PostId, type PostVoteId, type PrincipalId } from '@quackback/ids'
+import { toUuid, type PostId, type PostVoteId, type PrincipalId } from '@zenith/ids'
 import { relatedPostIdsSql } from './post.merge-ids'
 import { realEmail } from '@/lib/shared/anonymous-email'
 import { notTestPrincipal } from '@/lib/server/test-data'

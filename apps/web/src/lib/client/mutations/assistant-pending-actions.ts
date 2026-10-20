@@ -1,12 +1,12 @@
 /**
- * Approve/reject mutations for Quinn's pending write-tool proposals: thin
+ * Approve/reject mutations for ZenithAssistant's pending write-tool proposals: thin
  * wrappers over the committed approve/reject server fns that seed the
  * pending-action detail cache with the settled row (so the card's terminal
  * state shows immediately) and refresh the open thread (approval can change
  * the conversation itself, e.g. a status change).
  */
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import type { AssistantPendingActionId, ConversationId } from '@quackback/ids'
+import type { AssistantPendingActionId, ConversationId } from '@zenith/ids'
 import {
   approveAssistantActionFn,
   rejectAssistantActionFn,

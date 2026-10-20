@@ -5,7 +5,7 @@
  * field rejects the submission; unknown keys never reach the row.
  */
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import type { BoardId, PrincipalId, PostStatusId } from '@quackback/ids'
+import type { BoardId, PrincipalId, PostStatusId } from '@zenith/ids'
 import type { BoardCustomField } from '@/lib/shared/db-types'
 
 const insertedRows: Record<string, unknown[]> = { posts: [], post_votes: [] }

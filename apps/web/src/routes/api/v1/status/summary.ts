@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { withApiKeyAuth } from '@/lib/server/domains/api/auth'
 import { successResponse, handleDomainError } from '@/lib/server/domains/api/responses'
 import type { Actor } from '@/lib/server/policy'
-import type { SegmentId } from '@quackback/ids'
+import type { SegmentId } from '@zenith/ids'
 import { serializePublicComponent, serializePublicIncident } from './-serialize'
 
 export const Route = createFileRoute('/api/v1/status/summary')({

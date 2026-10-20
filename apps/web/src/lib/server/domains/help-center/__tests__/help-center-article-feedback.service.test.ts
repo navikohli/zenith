@@ -9,8 +9,8 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { PgDialect } from 'drizzle-orm/pg-core'
 import type { SQL } from 'drizzle-orm'
-import { createId } from '@quackback/ids'
-import type { KbArticleFeedbackId, KbArticleId, PrincipalId } from '@quackback/ids'
+import { createId } from '@zenith/ids'
+import type { KbArticleFeedbackId, KbArticleId, PrincipalId } from '@zenith/ids'
 
 const insertValuesCalls: unknown[][] = []
 const updateSetCalls: unknown[][] = []

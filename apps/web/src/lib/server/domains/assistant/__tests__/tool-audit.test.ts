@@ -4,7 +4,7 @@
  * claimed call. Runs inside the db-test-fixture rollback transaction.
  */
 import { describe, it, expect, beforeEach, afterEach, afterAll, vi } from 'vitest'
-import type { ConversationId } from '@quackback/ids'
+import type { ConversationId } from '@zenith/ids'
 
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { assistantToolCalls, conversations, principal, eq, inArray } from '@/lib/server/db'

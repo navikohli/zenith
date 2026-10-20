@@ -24,7 +24,7 @@ import {
 } from '@/lib/server/db'
 import { createHash } from 'node:crypto'
 import { sql, type SQL } from 'drizzle-orm'
-import { fromUuid, type PrincipalId, type UserId } from '@quackback/ids'
+import { fromUuid, type PrincipalId, type UserId } from '@zenith/ids'
 import type { AuditChannel, AuditCredentialKind } from '@/lib/shared/audit-attribution'
 import { getClientIp } from '@/lib/server/domains/api/rate-limit'
 import type { AuthContext } from '@/lib/server/functions/auth-helpers'
@@ -164,7 +164,7 @@ export type AuditEventType =
   // that lets an operator assert it without the user proving ownership emits
   // one of these.
   | 'user.email_verified.asserted' // per-user: admin contact creation, REST identify
-  // Restore hygiene. Written by settleExternalSideEffects (@quackback/db) when
+  // Restore hygiene. Written by settleExternalSideEffects (@zenith/db) when
   // a restore stamps the external side-effect ledger so already-sent mail,
   // webhooks and announcements are not sent a second time. The metadata
   // carries the restore instant and the per-column outcome.
@@ -543,7 +543,7 @@ export async function pruneAuditLog(opts?: { retentionDays?: number }): Promise<
 /**
  * Derive a stable, length-capped `reason` string from a thrown error.
  *
- * Prefers `error.code` (typed Quackback errors like ValidationError /
+ * Prefers `error.code` (typed Zenith errors like ValidationError /
  * ForbiddenError set this to a stable identifier). Falls back to a
  * truncated `error.message` so messages don't leak full backtraces or
  * unbounded user input into the audit row.

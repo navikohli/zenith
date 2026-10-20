@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { z } from 'zod'
-import type { UserId, PrincipalId } from '@quackback/ids'
+import type { UserId, PrincipalId } from '@zenith/ids'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import { assertRoutePermission } from '@/lib/shared/route-permission'
 import { settingsQueries } from '@/lib/client/queries/settings'

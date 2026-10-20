@@ -1,5 +1,5 @@
 import { beforeEach, it, expect, vi } from 'vitest'
-import { generateId } from '@quackback/ids'
+import { generateId } from '@zenith/ids'
 import { resolveSlackPrincipal, type SlackIdentityDeps } from '../identity'
 const person = { id: generateId('principal'), role: 'member' as const, displayName: 'Member' }
 const deps: SlackIdentityDeps = { linked: vi.fn(), byEmail: vi.fn(), link: vi.fn() }

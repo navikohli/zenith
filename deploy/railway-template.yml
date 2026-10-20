@@ -13,8 +13,8 @@ services:
     volumes:
       - mount: /var/lib/postgresql/data
     env:
-      POSTGRES_DB: quackback
-      POSTGRES_USER: quackback
+      POSTGRES_DB: zenith
+      POSTGRES_USER: zenith
       POSTGRES_PASSWORD: ${{secret(32)}}
     networking: private
 
@@ -23,8 +23,8 @@ services:
     # Railway-provided S3-compatible object storage
     # Region is selected by the user during deployment
 
-  quackback:
-    image: ghcr.io/quackbackio/quackback:latest
+  zenith:
+    image: ghcr.io/zenith/zenith:latest
     healthcheck:
       path: /api/health/ready
       timeout: 300
@@ -33,7 +33,7 @@ services:
       maxRetries: 3
     networking: public
     env:
-      DATABASE_URL: postgresql://quackback:${{postgres.POSTGRES_PASSWORD}}@${{postgres.RAILWAY_PRIVATE_DOMAIN}}:5432/quackback
+      DATABASE_URL: postgresql://zenith:${{postgres.POSTGRES_PASSWORD}}@${{postgres.RAILWAY_PRIVATE_DOMAIN}}:5432/zenith
       SECRET_KEY: ${{secret(64)}}
       BASE_URL: https://${{RAILWAY_PUBLIC_DOMAIN}}
       PORT: '3000'

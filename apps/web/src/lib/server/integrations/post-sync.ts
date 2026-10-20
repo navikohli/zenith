@@ -1,5 +1,5 @@
 /** Integration-only resync; every destination is represented by durable history. */
-import { createId, type PostId, type PrincipalId } from '@quackback/ids'
+import { createId, type PostId, type PrincipalId } from '@zenith/ids'
 import { db, eq, and, posts, boards, integrations, postExternalLinks } from '@/lib/server/db'
 import { contentJsonToMarkdown } from '@/lib/server/markdown-tiptap'
 import { integrationResolver } from '@/lib/server/events/resolvers/integration.resolver'

@@ -1,5 +1,5 @@
 /**
- * Shared synthesis engine behind Quinn's tool-using turn (assistant.runtime.ts)
+ * Shared synthesis engine behind ZenithAssistant's tool-using turn (assistant.runtime.ts)
  * and Ask AI's one-shot answer (synthesis.ts). Both are thin wrappers around
  * one parameterized core: a chat()-stream delta-diffing skeleton, JSON
  * salvage plumbing, and a small retry harness.
@@ -50,7 +50,7 @@ export interface SynthesisMessage {
   role: 'user' | 'assistant'
   /**
    * Plain text for ordinary turns; a multi-part array when a caller grounds
-   * the turn on customer images (Quinn vision — assistant/vision.ts builds
+   * the turn on customer images (ZenithAssistant vision — assistant/vision.ts builds
    * the parts and gates them on the model's image-input capability, so an
    * image part only ever appears here for a vision-capable model).
    */
@@ -267,7 +267,7 @@ async function streamOnce<TContext>(
     // advertise silently shrinks the pool to none and the turn dies with no
     // output.
     ...structuredOutputProviderOptions(),
-    // Tool-less only: Quinn's tool loop still needs reasoning_details on the
+    // Tool-less only: ZenithAssistant's tool loop still needs reasoning_details on the
     // wire. AI_REASONING_EXCLUDE is opt-in because require_parameters 404s
     // models whose providers do not advertise `reasoning`.
     // Effort is safe on the tool loop: it shortens thinking, it does not
@@ -502,7 +502,7 @@ export interface RunSynthesisOptions<
 > extends RunAttemptOptions<TContext> {
   /** Total attempts beyond the first. Defaults to `DEFAULT_RETRIES` (one retry). */
   retries?: number
-  /** Caller-owned terminal failure policy. Quinn uses 'throw' so infrastructure
+  /** Caller-owned terminal failure policy. ZenithAssistant uses 'throw' so infrastructure
    *  failure can never be published as model-authored customer text. */
   onFailure: 'throw' | 'fallback'
   /** Required (and only used) when `onFailure` is 'fallback'. */

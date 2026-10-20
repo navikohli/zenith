@@ -9,8 +9,8 @@ import {
 } from '@/lib/server/domains/api/responses'
 import { NotFoundError } from '@/lib/shared/errors'
 import { parseTypeId } from '@/lib/server/domains/api/validation'
-import { isValidTypeId } from '@quackback/ids'
-import type { PrincipalId, RoleId } from '@quackback/ids'
+import { isValidTypeId } from '@zenith/ids'
+import type { PrincipalId, RoleId } from '@zenith/ids'
 import { isTeamMember } from '@/lib/shared/roles'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 

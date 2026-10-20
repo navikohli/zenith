@@ -20,7 +20,7 @@ import { PgTable, getTableConfig } from 'drizzle-orm/pg-core'
 // The walk must see the FULL schema; the app barrel (@/lib/server/db) is a
 // curated re-export, and a table missing from it would escape this audit.
 // oxlint-disable-next-line no-restricted-imports
-import * as schema from '@quackback/db/schema'
+import * as schema from '@zenith/db/schema'
 import { REPOINT_STEPS, REPOINT_EXEMPTIONS, type RepointStep } from '../principal-repoint'
 
 /** All principal-referencing columns in the schema, keyed `table.column`. */

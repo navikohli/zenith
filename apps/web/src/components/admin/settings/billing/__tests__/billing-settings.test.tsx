@@ -27,7 +27,7 @@ const catalogue: BillingCatalogue = {
       priceMonthlyCents: 0,
       priceYearlyCents: 0,
       billedPer: 'workspace',
-      bestFor: 'For trying Quackback out',
+      bestFor: 'For trying Zenith out',
       highlights: ['1 seat', 'Unlimited boards & posts'],
       recommended: false,
     },
@@ -189,7 +189,7 @@ describe('BillingPlansView', () => {
     expect(screen.getByText('1,840 of 10,000')).toBeInTheDocument()
     expect(screen.getAllByRole('button', { name: 'Top up' })).toHaveLength(2)
     expect(screen.getByRole('heading', { name: 'Add-ons' })).toBeInTheDocument()
-    expect(screen.getByText('Remove Quackback branding')).toBeInTheDocument()
+    expect(screen.getByText('Remove Zenith branding')).toBeInTheDocument()
     const addBranding = screen.getByRole('button', { name: 'Add' })
     expect(addBranding).toBeEnabled()
     const brandingForm = addBranding.closest('form')
@@ -387,7 +387,7 @@ describe('BillingPlansView', () => {
     expect(screen.getByRole('radio', { name: /Save \$96\/yr/ })).toBeInTheDocument()
     expect(screen.queryByRole('radio', { name: /Save \$192\/yr/ })).not.toBeInTheDocument()
 
-    fireEvent.click(screen.getByRole('button', { name: /For trying Quackback out/ }))
+    fireEvent.click(screen.getByRole('button', { name: /For trying Zenith out/ }))
     expect(screen.queryByText(/Save \$/)).not.toBeInTheDocument()
   })
 

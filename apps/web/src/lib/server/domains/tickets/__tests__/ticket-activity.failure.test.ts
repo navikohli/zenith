@@ -6,7 +6,7 @@
  * the db-test-fixture's shared transaction).
  */
 import { describe, it, expect, vi } from 'vitest'
-import { createId, type TicketId } from '@quackback/ids'
+import { createId, type TicketId } from '@zenith/ids'
 
 const insertError = new Error('boom: activity insert failed')
 const values = vi.fn(() => Promise.reject(insertError))

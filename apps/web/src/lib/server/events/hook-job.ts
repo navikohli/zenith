@@ -42,7 +42,7 @@ import { TerminalJobError } from '@/lib/server/jobs/definitions'
 import type { ClaimedJob } from '@/lib/server/jobs/job-queue'
 import type { HookResult } from './hook-types'
 import type { EventData } from './types'
-import type { ChangelogId, PostId, PrincipalId, StatusIncidentId, WebhookId } from '@quackback/ids'
+import type { ChangelogId, PostId, PrincipalId, StatusIncidentId, WebhookId } from '@zenith/ids'
 import { logger } from '@/lib/server/logger'
 import { isTestEvent } from './test-event'
 

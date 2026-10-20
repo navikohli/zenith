@@ -16,7 +16,7 @@ import {
   type PrincipalId,
   type PostStatusId,
   type UserId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import { NotFoundError, ValidationError, ForbiddenError } from '@/lib/shared/errors'
 import { isTeamMember, Role } from '@/lib/shared/roles'
 import { subscribeToPost } from '@/lib/server/domains/subscriptions/subscription.service'

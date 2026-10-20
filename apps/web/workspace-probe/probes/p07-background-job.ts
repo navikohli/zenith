@@ -2,7 +2,7 @@
  * P07 — a background job enqueued for alpha executing against bravo's database.
  *
  * Under the pooled design the worker tier is shared: one always-warm
- * `QUACKBACK_ROLE=worker` fleet drains queues for every workspace
+ * `ZENITH_ROLE=worker` fleet drains queues for every workspace
  * (SAAS-HOSTING-STACK.md §1, §5 caveat 3). A job carries no request scope, so
  * whatever workspace the worker's `db` resolves to is the workspace the job writes to.
  * There is no second gate — the write succeeds, against the wrong database.

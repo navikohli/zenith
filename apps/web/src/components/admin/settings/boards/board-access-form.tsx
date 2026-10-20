@@ -36,7 +36,7 @@ import { useUpdateBoardAccess } from '@/lib/client/mutations'
 import { useSegments } from '@/lib/client/hooks/use-segments-queries'
 import { settingsQueries } from '@/lib/client/queries/settings'
 import { cn } from '@/lib/shared/utils/cn'
-import type { BoardId } from '@quackback/ids'
+import type { BoardId } from '@zenith/ids'
 import {
   ACCESS_TIER_RANK,
   type AccessTier,

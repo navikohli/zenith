@@ -7,7 +7,7 @@
  */
 import { QueryClient } from '@tanstack/react-query'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import type { PostStatusId, RoadmapId } from '@quackback/ids'
+import type { PostStatusId, RoadmapId } from '@zenith/ids'
 
 vi.mock('@tanstack/react-query', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@tanstack/react-query')>()),

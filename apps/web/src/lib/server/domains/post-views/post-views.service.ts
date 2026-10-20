@@ -8,7 +8,7 @@
  * available to any inbox viewer (post.view_private).
  */
 import { db, postViews, eq, and, or, asc, isNull } from '@/lib/server/db'
-import type { PostViewId, PrincipalId } from '@quackback/ids'
+import type { PostViewId, PrincipalId } from '@zenith/ids'
 import type { PostViewDTO, PostViewFilters } from '@/lib/shared/post/views'
 
 function toDTO(row: {

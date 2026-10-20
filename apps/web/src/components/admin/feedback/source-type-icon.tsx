@@ -32,20 +32,20 @@ function EmailIcon({ className }: { className?: string }) {
 
 /** Source type → icon component (merges custom icons with existing integration icons) */
 const SOURCE_TYPE_ICONS: Record<string, ComponentType<{ className?: string }>> = {
-  // widget/quackback uses the logo image, not an SVG icon — handled separately in SourceTypeIcon
+  // widget/zenith uses the logo image, not an SVG icon — handled separately in SourceTypeIcon
   api: ApiIcon,
   csv: CsvIcon,
   email: EmailIcon,
   ...INTEGRATION_ICON_MAP,
 }
 
-/** Source types that use the Quackback logo image instead of an SVG icon */
-const LOGO_SOURCE_TYPES = new Set(['quackback'])
+/** Source types that use the Zenith logo image instead of an SVG icon */
+const LOGO_SOURCE_TYPES = new Set(['zenith'])
 
 /** Intrinsic (non-integration) source types — their badge colors live here;
  *  every provider's color is derived from the shared integration manifest. */
 const INTRINSIC_SOURCE_COLORS: Record<string, string> = {
-  quackback: 'bg-yellow-100 dark:bg-yellow-900/80',
+  zenith: 'bg-yellow-100 dark:bg-yellow-900/80',
   api: 'bg-violet-100 dark:bg-violet-900/80 text-violet-600 dark:text-violet-400',
   csv: 'bg-amber-100 dark:bg-amber-900/80 text-amber-600 dark:text-amber-400',
   email: 'bg-rose-100 dark:bg-rose-900/80 text-rose-600 dark:text-rose-400',
@@ -63,7 +63,7 @@ const SOURCE_TYPE_COLORS: Record<string, string> = {
 
 /** Intrinsic source-type labels; provider labels are derived from the manifest. */
 const INTRINSIC_SOURCE_LABELS: Record<string, string> = {
-  quackback: 'Quackback',
+  zenith: 'Zenith',
   api: 'API',
   csv: 'CSV Import',
   email: 'Email',
@@ -105,7 +105,7 @@ export function SourceTypeIcon({ sourceType, size = 'md', className }: SourceTyp
       )}
       title={SOURCE_TYPE_LABELS[sourceType] ?? sourceType}
     >
-      {isLogo && <img src="/logo.png" alt="Quackback" className={cn('rounded-sm', s.logo)} />}
+      {isLogo && <img src="/logo.png" alt="Zenith" className={cn('rounded-sm', s.logo)} />}
       {!isLogo && Icon && <Icon className={s.icon} />}
       {!isLogo && !Icon && (
         <span className={cn('font-semibold', s.fallback)}>

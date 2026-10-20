@@ -70,7 +70,7 @@ vi.mock('@/lib/server/domains/principals/bootstrap-admin', () => ({
   findSetupClaimant: async () => undefined,
 }))
 
-vi.mock('@quackback/email', () => ({
+vi.mock('@zenith/email', () => ({
   isEmailConfigured: () => true,
   sendMagicLinkEmail: hoisted.sendMagicLinkEmail,
   sendSignupNotAllowedEmail: hoisted.sendSignupNotAllowedEmail,
@@ -84,7 +84,7 @@ vi.mock('@/lib/server/domains/settings/identity-providers.service', () => ({
 vi.mock('../registered-providers', () => ({
   getRegisteredOidcProviderIds: vi.fn(async () => new Set()),
 }))
-vi.mock('@/lib/server/config', () => ({ config: { baseUrl: 'https://acme.quackback.io' } }))
+vi.mock('@/lib/server/config', () => ({ config: { baseUrl: 'https://acme.zenith.io' } }))
 
 import { requestEmailSignin } from '../email-signin'
 

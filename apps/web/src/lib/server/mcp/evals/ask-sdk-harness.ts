@@ -6,7 +6,7 @@ import type { McpAuthContext } from '@/lib/server/mcp/types'
 
 export async function openAskSdkHarness(auth: McpAuthContext) {
   const server = createMcpServer(auth)
-  const client = new Client({ name: 'quackback-admin-evaluation', version: '1.0.0' })
+  const client = new Client({ name: 'zenith-admin-evaluation', version: '1.0.0' })
   const [clientTransport, serverTransport] = InMemoryTransport.createLinkedPair()
   await server.connect(serverTransport)
   await client.connect(clientTransport)

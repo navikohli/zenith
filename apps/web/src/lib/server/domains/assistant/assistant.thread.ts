@@ -1,12 +1,12 @@
 /**
- * Rows-to-turns mapper for the Quinn messenger wiring: conversation message DTOs
+ * Rows-to-turns mapper for the ZenithAssistant messenger wiring: conversation message DTOs
  * become the `AssistantThreadMessage[]` the runtime reasons over. Kept as a pure
  * mapper (unit-tested) plus a thin read-only loader over the shared
  * `listMessages` read.
  *
  * Sender mapping:
  *   - a 'visitor' message           → 'customer'
- *   - an 'agent' message by Quinn    → 'assistant' (matched on the service
+ *   - an 'agent' message by ZenithAssistant    → 'assistant' (matched on the service
  *                                      principal id)
  *   - an 'agent' message by anyone   → 'human_agent'
  * System notices are not turns and are skipped; text-less messages are skipped
@@ -21,7 +21,7 @@
  * turn's `content`, immediately followed by the file's extracted excerpt when
  * one has been loaded (loadThreadFileExcerpts, one query per turn-building
  * read). A file with no excerpt yet (or ever) still gets its bracket line, so
- * Quinn knows the file exists even when it cannot read it. The bracket line
+ * ZenithAssistant knows the file exists even when it cannot read it. The bracket line
  * rides the same `content` field a customer's own typed text already does —
  * a customer message is already content to help with, never instructions to
  * follow — but the excerpt itself is text pulled from inside an uploaded
@@ -29,7 +29,7 @@
  * gets its own fence: the same `wrapUntrustedText` guard every other surface
  * uses for text an end user or external system controls (injection-guard.ts).
  * Only customer (visitor) turns get this treatment; a human teammate's or
- * Quinn's own attachments are never expanded this way.
+ * ZenithAssistant's own attachments are never expanded this way.
  *
  * Excerpt text is budgeted once across the WHOLE thread
  * (`THREAD_EXCERPT_BUDGET_CHARS`), spent newest-turn-first, so a long history
@@ -37,7 +37,7 @@
  * once could. Bracket lines are free and always included, whatever the
  * budget has left by the time a turn is reached.
  */
-import type { PrincipalId, ConversationId, TicketId, FileId } from '@quackback/ids'
+import type { PrincipalId, ConversationId, TicketId, FileId } from '@zenith/ids'
 import {
   db,
   conversations,
@@ -176,7 +176,7 @@ export function mapRowsToThreadMessages(
     // System notices are status records, not turns.
     if (m.senderType === 'system') continue
     const trimmed = m.content?.trim() ?? ''
-    // Image attachments make a text-less message a turn (Quinn vision) on any
+    // Image attachments make a text-less message a turn (ZenithAssistant vision) on any
     // sender, matching the pre-existing rule exactly. Document attachments
     // only ever do this for a customer turn (the only sender this expansion
     // ever applies to at all).
@@ -249,7 +249,7 @@ export async function loadThreadFileExcerpts(
  * is spent only on customer-visible turns — the byte-identical default every
  * existing caller (the summary paths, attribute classification, the
  * orchestrator) relies on. The copilot grounding block opts into
- * `includeInternal: true` so Quinn can see a teammate's notes on the open thread
+ * `includeInternal: true` so ZenithAssistant can see a teammate's notes on the open thread
  * (D1); no other caller passes it, and no non-team surface ever should. The
  * caller pairs these with the assistant principal id through
  * `mapRowsToThreadMessages` — the raw read is principal-independent, so it can

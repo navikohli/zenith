@@ -9,7 +9,7 @@ import { describe, it, expect, beforeAll, beforeEach, vi } from 'vitest'
 import { act, render, screen, fireEvent, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query'
-import type { IdentityProviderId } from '@quackback/ids'
+import type { IdentityProviderId } from '@zenith/ids'
 import type { IdentityProvider } from '@/lib/server/domains/settings/identity-providers.service'
 import { UserDetailsCard } from '../user-details-card'
 import {
@@ -576,7 +576,7 @@ describe('UserDetailsCard profile sync', () => {
     expect(syncBox()).toBeChecked()
     expect(
       screen.getByText(
-        'Keeps profiles in step with your provider. Names or pictures someone changed in Quackback are kept.'
+        'Keeps profiles in step with your provider. Names or pictures someone changed in Zenith are kept.'
       )
     ).toBeInTheDocument()
     save()
@@ -647,7 +647,7 @@ describe('UserDetailsCard always open', () => {
     renderCard(makeProvider({ claimMapping: null }))
     expect(screen.getByRole('heading', { name: 'Profile' })).toBeInTheDocument()
     expect(
-      screen.getByText('What Quackback takes from Acme ID for each person.')
+      screen.getByText('What Zenith takes from Acme ID for each person.')
     ).toBeInTheDocument()
     expect(screen.queryByRole('heading', { name: 'User details' })).not.toBeInTheDocument()
     expect(screen.queryByRole('button', { name: 'Customize' })).not.toBeInTheDocument()

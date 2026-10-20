@@ -4,7 +4,7 @@
  * team. A real idea carrying a legacy client `test` attribute always counts.
  */
 import { afterAll, afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { createId, type BoardId, type PostId, type PrincipalId, type UserId } from '@quackback/ids'
+import { createId, type BoardId, type PostId, type PrincipalId, type UserId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from './db-test-fixture'
 import { and, boards, eq, posts, principal, user } from '@/lib/server/db'
 
@@ -82,7 +82,7 @@ describe.skipIf(!fixture.available)('reads leave test ideas out (real DB)', () =
     expect(external.items.map((item) => item.id)).toEqual([legacyIdea])
   })
 
-  it('never lets Quinn or Copilot cite a test idea', async () => {
+  it('never lets ZenithAssistant or Copilot cite a test idea', async () => {
     for (const ceiling of ['public', 'team'] as const) {
       const rows = await testDb
         .select({ id: posts.id })

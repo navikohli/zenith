@@ -6,7 +6,7 @@
  * failing read leaves its panel out rather than failing the thread.
  */
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import type { ConversationId, PrincipalId, TicketId, UserId } from '@quackback/ids'
+import type { ConversationId, PrincipalId, TicketId, UserId } from '@zenith/ids'
 import type { Conversation } from '@/lib/server/db'
 import type { Actor } from '@/lib/server/policy/types'
 import { PERMISSIONS, type PermissionKey } from '@/lib/shared/permissions'
@@ -229,7 +229,7 @@ describe('loadAgentConversationPanels', () => {
 })
 
 describe('loadConversationAssistantActivity', () => {
-  it("maps Quinn's latest involvement for the panel", async () => {
+  it("maps ZenithAssistant's latest involvement for the panel", async () => {
     mocks.getLatestInvolvement.mockResolvedValue({
       status: 'handed_off',
       handoffReason: 'asked_for_human',

@@ -1,5 +1,5 @@
 import { userAttributeDefinitions } from '@/lib/server/db'
-import type { UserAttributeId } from '@quackback/ids'
+import type { UserAttributeId } from '@zenith/ids'
 import { createAttributeDefinitionService } from '@/lib/server/domains/attribute-definitions/attribute-definition.service'
 import type {
   UserAttribute,

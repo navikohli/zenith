@@ -76,7 +76,7 @@ import {
   type ConversationSystemEventKind,
   type ConversationMessageMetadata,
 } from '@/lib/server/db'
-import type { TicketId, PrincipalId, ConversationId } from '@quackback/ids'
+import type { TicketId, PrincipalId, ConversationId } from '@zenith/ids'
 import type { Executor } from '@/lib/server/domains/principals/principal.factory'
 import type { ConversationAttachment, TiptapContent } from '@/lib/shared/db-types'
 import type {
@@ -572,7 +572,7 @@ export interface AgentTicketMessagePage {
  * (`TicketMessagePage`, bare `ConversationMessageDTO[]`) is also used by the
  * requester portal and the transcript export, neither of which may ever see
  * agent-only reaction/flag data — keeping them as two functions makes that
- * split a type-level guarantee instead of a runtime opt.  Quinn post-
+ * split a type-level guarantee instead of a runtime opt.  ZenithAssistant post-
  * suggestions and pending-action pointers don't exist on ticket threads yet,
  * hence the empty map.
  */

@@ -192,7 +192,7 @@ export interface CopilotTurn {
 }
 
 function copilotSourcesStorageKey(principalId: string): string {
-  return `quackback:copilot-sources:${principalId}`
+  return `zenith:copilot-sources:${principalId}`
 }
 
 /** The Answer-sources filter selection: all visible types checked by default,

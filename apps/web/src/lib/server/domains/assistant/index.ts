@@ -1,10 +1,10 @@
 /**
  * Assistant domain: shared retrieval, one-shot answer synthesis, and the
- * in-product AI agent (Quinn) — its workspace identity, involvement record, tool
+ * in-product AI agent (ZenithAssistant) — its workspace identity, involvement record, tool
  * layer, and the TanStack AI runtime seam.
  *
  * Retrieval was built for help-center Ask AI first; the same module backs
- * Quinn's search tool. The runtime seam is what the next wave's
+ * ZenithAssistant's search tool. The runtime seam is what the next wave's
  * messenger wiring and the admin sandbox both call.
  */
 export {
@@ -17,7 +17,7 @@ export {
 } from './retrieval'
 
 // Source-adapter seam: the composed knowledge-base + (flagged) feedback-posts
-// grounding retrieval behind Quinn's search tool.
+// grounding retrieval behind ZenithAssistant's search tool.
 export {
   retrieveKnowledge,
   resolveKnowledgeSources,
@@ -39,17 +39,17 @@ export {
   type SynthesizeAnswerParams,
 } from './synthesis'
 
-// Quinn — identity
+// ZenithAssistant — identity
 export {
   ensureAssistantPrincipal,
   getAssistantPrincipal,
   ASSISTANT_DEFAULT_NAME,
 } from './assistant.principal'
 
-// Quinn — bounded actor
-export { quinnActor, ASSISTANT_PERMISSIONS } from './assistant.actor'
+// ZenithAssistant — bounded actor
+export { zenithAssistantActor, ASSISTANT_PERMISSIONS } from './assistant.actor'
 
-// Quinn — involvement record + outcome semantics
+// ZenithAssistant — involvement record + outcome semantics
 export {
   openInvolvement,
   getActiveInvolvement,
@@ -68,7 +68,7 @@ export {
   type OutcomeContext,
 } from './assistant.involvement'
 
-// Quinn — messenger thread mapping
+// ZenithAssistant — messenger thread mapping
 export {
   mapRowsToThreadMessages,
   loadConversationThread,
@@ -77,7 +77,7 @@ export {
   ASSISTANT_THREAD_WINDOW,
   type AssistantItemState,
 } from './assistant.thread'
-// Quinn — tool catalogue
+// ZenithAssistant — tool catalogue
 export {
   ASSISTANT_TOOL_SPECS,
   resolveToolSpecs,
@@ -94,7 +94,7 @@ export {
   type AssistantToolContext,
 } from './assistant.toolspec'
 
-// Quinn — customization + action plumbing (guidance rules, approval queue,
+// ZenithAssistant — customization + action plumbing (guidance rules, approval queue,
 // tool-call audit); the execution pipeline wires these into the tool assembler.
 export {
   createGuidanceRule,
@@ -144,7 +144,7 @@ export {
   type TeammateStyleProfile,
 } from './copilot-transform'
 
-// Quinn — tools + runtime
+// ZenithAssistant — tools + runtime
 export { assembleAssistantToolset } from './assistant.tools'
 export {
   ASSISTANT_PROMPT_VERSION,

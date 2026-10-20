@@ -1,4 +1,4 @@
-import { ensureTypeId, isValidTypeId, type IdPrefix } from '@quackback/ids'
+import { ensureTypeId, isValidTypeId, type IdPrefix } from '@zenith/ids'
 import { ValidationError } from '@/lib/shared/errors'
 
 /**

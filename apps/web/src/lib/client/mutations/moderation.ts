@@ -9,7 +9,7 @@ import { inboxKeys } from '@/lib/client/hooks/use-inbox-query'
 import { publicPostsKeys } from '@/lib/client/hooks/use-portal-posts-query'
 import { adminQueries } from '@/lib/client/queries/admin'
 import { portalDetailQueries } from '@/lib/client/queries/portal-detail'
-import type { PostId } from '@quackback/ids'
+import type { PostId } from '@zenith/ids'
 
 const pendingPostsKey = ['portal', 'moderation', 'pending', 'posts'] as const
 

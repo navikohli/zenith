@@ -7,7 +7,7 @@
  * copilot-summary.test.ts) so the real zod validator runs on each call.
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { createId, type ConversationId, type TicketTypeId } from '@quackback/ids'
+import { createId, type ConversationId, type TicketTypeId } from '@zenith/ids'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 
 vi.mock('@tanstack/react-start', () => ({

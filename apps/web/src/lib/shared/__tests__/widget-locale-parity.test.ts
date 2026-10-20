@@ -28,7 +28,7 @@ function readWidgetLocales(): string[] {
 }
 
 describe('widget locale list', () => {
-  it('offers Thai in the Quinn translation menu', () => {
+  it('offers Thai in the ZenithAssistant translation menu', () => {
     expect(TRANSLATE_LANGUAGES).toContainEqual({ value: 'Thai', label: 'ภาษาไทย' })
   })
 

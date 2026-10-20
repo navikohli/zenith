@@ -1,14 +1,14 @@
 /**
  * Process role — controls whether this instance consumes background queues.
  *
- * QUACKBACK_ROLE=web     Serve HTTP only. Queue modules stay producer-only:
+ * ZENITH_ROLE=web     Serve HTTP only. Queue modules stay producer-only:
  *                        they can enqueue, but nothing claims a job.
- * QUACKBACK_ROLE=worker  Run the job worker — one poll loop per workspace.
+ * ZENITH_ROLE=worker  Run the job worker — one poll loop per workspace.
  *                        Still serves HTTP (health probes work unchanged);
  *                        don't route user traffic to it.
- * QUACKBACK_ROLE=all     Both — the default. Unset means `all`, which is the
+ * ZENITH_ROLE=all     Both — the default. Unset means `all`, which is the
  *                        self-host single-container path.
- * QUACKBACK_ROLE=migrator Reconcile workspace schemas toward the control plane's
+ * ZENITH_ROLE=migrator Reconcile workspace schemas toward the control plane's
  *                        recorded intent, then exit (SAAS-HOSTING-STACK.md
  *                        §10.3). Serves no traffic and runs no queues: it holds
  *                        a DIRECT session-mode connection per workspace it is
@@ -33,7 +33,7 @@ export type ProcessRole = (typeof PROCESS_ROLES)[number]
  * The role an unrecognised value falls back to.
  *
  * **Not `all`.** The old code warned and returned `all`, which is fail-OPEN
- * into the exact topology the design forbids: measured, `QUACKBACK_ROLE=banana`
+ * into the exact topology the design forbids: measured, `ZENITH_ROLE=banana`
  * — and `MIGRATOR`, and `Migrator` — booted the job worker and the
  * sweepers together. A typo in a deployment manifest is not a licence to run
  * every background subsystem against every workspace.
@@ -50,7 +50,7 @@ const UNRECOGNISED_ROLE_FALLBACK: ProcessRole = 'web'
 let warnedInvalid = false
 
 /**
- * Parse `QUACKBACK_ROLE`.
+ * Parse `ZENITH_ROLE`.
  *
  * The allowlist is over the **environment string**, not over the `ProcessRole`
  * union. Checking the union is what let a case typo through: `MIGRATOR` failed
@@ -69,12 +69,12 @@ function parseRole(raw: string | undefined): { role: ProcessRole; recognised: bo
 }
 
 export function getProcessRole(): ProcessRole {
-  const { role, recognised } = parseRole(process.env.QUACKBACK_ROLE)
+  const { role, recognised } = parseRole(process.env.ZENITH_ROLE)
   if (!recognised && !warnedInvalid) {
     warnedInvalid = true
     log.error(
-      { role: process.env.QUACKBACK_ROLE, fallback: role },
-      `unrecognised QUACKBACK_ROLE (expected one of ${PROCESS_ROLES.join(' | ')}); ` +
+      { role: process.env.ZENITH_ROLE, fallback: role },
+      `unrecognised ZENITH_ROLE (expected one of ${PROCESS_ROLES.join(' | ')}); ` +
         `falling back to '${role}', which starts NO background work. Fix the value: this ` +
         'process is not doing the job its deployment thinks it is.'
     )
@@ -90,7 +90,7 @@ export function __resetRoleWarningForTests(): void {
 export class InvalidProcessRole extends Error {
   constructor(raw: string) {
     super(
-      `QUACKBACK_ROLE='${raw}' is not one of ${PROCESS_ROLES.join(' | ')}. Refusing to start: ` +
+      `ZENITH_ROLE='${raw}' is not one of ${PROCESS_ROLES.join(' | ')}. Refusing to start: ` +
         'the previous behaviour was to fall back to `all`, which boots the job worker and the ' +
         'sweepers — so a typo silently produced the one topology pooled tenancy forbids.'
     )
@@ -105,7 +105,7 @@ export class InvalidProcessRole extends Error {
  * from running at all, which is the outcome an operator can actually see.
  */
 export function assertProcessRoleConfigured(env: NodeJS.ProcessEnv = process.env): void {
-  const raw = env.QUACKBACK_ROLE
+  const raw = env.ZENITH_ROLE
   if (!parseRole(raw).recognised) throw new InvalidProcessRole(String(raw))
 }
 

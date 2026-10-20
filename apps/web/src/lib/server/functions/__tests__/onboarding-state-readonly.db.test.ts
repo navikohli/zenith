@@ -11,7 +11,7 @@
  * Every write rolls back with the fixture transaction.
  */
 import { describe, it, expect, vi, beforeEach, afterEach, afterAll } from 'vitest'
-import { createId, type PrincipalId, type UserId } from '@quackback/ids'
+import { createId, type PrincipalId, type UserId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { principal, user, eq, sql } from '@/lib/server/db'
 import { isSetupBlocked, pickOnboardingStep } from '@/routes/onboarding/-onboarding-step'
@@ -265,7 +265,7 @@ describe.skipIf(!fixture.available)('checkOnboardingState reports without mutati
   })
 
   it('does not count an anonymous visitor who arrived first as the claimant', async () => {
-    const visitorId = await seedUser('temp-visitor@anon.quackback.io')
+    const visitorId = await seedUser('temp-visitor@anon.zenith.io')
     await seedPrincipal({
       userId: visitorId,
       role: 'user',

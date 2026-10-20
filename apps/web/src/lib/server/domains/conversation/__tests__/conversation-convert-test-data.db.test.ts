@@ -5,7 +5,7 @@ import {
   type ConversationId,
   type PostId,
   type PrincipalId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import {
   boards,
@@ -145,7 +145,7 @@ beforeEach(async () => {
       expect(attachments).toBeUndefined()
       expect(doc).toEqual({
         type: 'doc',
-        content: [{ type: 'quackbackEmbed', attrs: { kind: 'post', id: postId } }],
+        content: [{ type: 'zenithEmbed', attrs: { kind: 'post', id: postId } }],
       })
       return { message: { id: createId('conversation_message'), conversationId: id, content } }
     }

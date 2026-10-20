@@ -17,7 +17,7 @@
  * There is no config flag that disables the seed.
  *
  * A static migration cannot do this for us: the identifier is the workspace
- * origin (`https://<slug>.quackback.io/api/mcp`), not a fleet-wide constant.
+ * origin (`https://<slug>.zenith.io/api/mcp`), not a fleet-wide constant.
  */
 
 type OauthResourceTable = { identifier: unknown }

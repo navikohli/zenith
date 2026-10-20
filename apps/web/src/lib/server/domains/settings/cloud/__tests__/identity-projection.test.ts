@@ -19,8 +19,8 @@ import {
 const PROJECTION: IdentityProjection = {
   version: 4,
   displayName: 'Acme Feedback',
-  canonicalOrigin: 'https://acme.quackback.co.uk',
-  platformHostname: 'acme.quackback.co.uk',
+  canonicalOrigin: 'https://acme.zenith.co.uk',
+  platformHostname: 'acme.zenith.co.uk',
   customDomains: [
     {
       hostname: 'feedback.acme.com',
@@ -39,7 +39,7 @@ async function signedToken(
 ): Promise<string> {
   return new SignJWT({ workspaceKey, identityProjection: projection })
     .setProtectedHeader({ alg: 'EdDSA', typ: IDENTITY_PROJECTION_TYPE })
-    .setIssuer('quackback-control-plane')
+    .setIssuer('zenith-control-plane')
     .setAudience(IDENTITY_PROJECTION_AUDIENCE)
     .setIssuedAt()
     .sign(privateKey)
@@ -89,15 +89,15 @@ describe('identity projection monotonicity', () => {
   })
 
   it('rejects another workspace before touching local state', async () => {
-    const previous = process.env.QUACKBACK_INSTANCE_ID
-    process.env.QUACKBACK_INSTANCE_ID = 'inst_acme'
+    const previous = process.env.ZENITH_INSTANCE_ID
+    process.env.ZENITH_INSTANCE_ID = 'inst_acme'
     try {
       await expect(writeIdentityProjection('inst_other', PROJECTION)).rejects.toMatchObject({
         code: 'workspace_mismatch',
       })
     } finally {
-      if (previous === undefined) delete process.env.QUACKBACK_INSTANCE_ID
-      else process.env.QUACKBACK_INSTANCE_ID = previous
+      if (previous === undefined) delete process.env.ZENITH_INSTANCE_ID
+      else process.env.ZENITH_INSTANCE_ID = previous
     }
   })
 })

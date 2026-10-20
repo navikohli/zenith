@@ -24,7 +24,7 @@ import { parseTypeId, parseTypeIdArray } from '@/lib/server/domains/api/validati
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import { serializeStatusComponent } from './-serialize'
 import { STATUS_COMPONENT_STATUSES, parseNullableTypeId } from './-validation'
-import type { StatusComponentId, StatusComponentGroupId, SegmentId } from '@quackback/ids'
+import type { StatusComponentId, StatusComponentGroupId, SegmentId } from '@zenith/ids'
 import type { StatusComponentRow } from '@/lib/server/domains/status'
 
 const createComponentSchema = z.object({

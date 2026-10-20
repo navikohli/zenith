@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 
 // Mock the email package before importing the handler
-vi.mock('@quackback/email', () => ({
+vi.mock('@zenith/email', () => ({
   sendStatusChangeEmail: vi.fn(),
   sendNewCommentEmail: vi.fn(),
   sendChangelogPublishedEmail: vi.fn(),
@@ -59,8 +59,8 @@ import { emailHook } from '../handlers/email'
 // package entry: a hand-written stand-in for it stops tracking the shape the
 // moment the shape changes, which is how the classification regression this
 // guards against went unnoticed.
-import { SesEmailError } from '@quackback/email/ses'
-import { currentEmailIdempotencyKey } from '@quackback/email/idempotency'
+import { SesEmailError } from '@zenith/email/ses'
+import { currentEmailIdempotencyKey } from '@zenith/email/idempotency'
 import {
   sendStatusChangeEmail,
   sendNewCommentEmail,
@@ -68,7 +68,7 @@ import {
   sendPostMentionEmail,
   sendTicketEventEmail,
   sendNoteMentionEmail,
-} from '@quackback/email'
+} from '@zenith/email'
 import type {
   EmailTarget,
   EmailConfig,

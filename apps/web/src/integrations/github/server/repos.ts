@@ -14,7 +14,7 @@ export async function listGitHubRepos(
     headers: {
       Authorization: `Bearer ${accessToken}`,
       Accept: 'application/vnd.github+json',
-      'User-Agent': 'quackback',
+      'User-Agent': 'zenith',
       'X-GitHub-Api-Version': '2022-11-28',
     },
   })

@@ -356,7 +356,7 @@ accepted one falls through to the object path.
 
 Compute on this fleet is **already pooled**: one service, `numReplicas: 1`, one
 region, one `SECRET_KEY`, one auth instance cache, and one shared
-`quackback-worker` with no per-workspace `DATABASE_URL`. What is still per-workspace is
+`zenith-worker` with no per-workspace `DATABASE_URL`. What is still per-workspace is
 the DATABASE. That distinction is the whole of this section, and getting it
 backwards is not a harmless inaccuracy — it made the suite understate its own
 strongest evidence, describing P01's pass as over-determined by a topology the
@@ -405,7 +405,7 @@ while proving nothing about the memo. P09 correctly refuses to pass on the
 absence and reports `BLOCKED`, which fails the run unless the operator passes
 `--allow-blocked`.
 
-To unblock it: configure AI on both workspaces and ask Quackback AI one question in each,
+To unblock it: configure AI on both workspaces and ask Zenith AI one question in each,
 then re-run.
 
 ## Surfaces and families no probe can judge

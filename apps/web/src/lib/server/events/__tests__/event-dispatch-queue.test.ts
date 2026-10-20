@@ -2,13 +2,13 @@ import { beforeAll, describe, expect, it, vi } from 'vitest'
 import { readFileSync } from 'node:fs'
 import path from 'node:path'
 import postgres from 'postgres'
-import { createId } from '@quackback/ids'
+import { createId } from '@zenith/ids'
 
 vi.mock('@/lib/server/db', async (importOriginal) => {
   // oxlint-disable-next-line no-restricted-imports
-  const { createDb } = await import('@quackback/db/client')
+  const { createDb } = await import('@zenith/db/client')
   const url =
-    process.env.DATABASE_URL ?? 'postgresql://postgres:password@localhost:5432/quackback_test'
+    process.env.DATABASE_URL ?? 'postgresql://postgres:password@localhost:5432/zenith_test'
   return {
     ...(await importOriginal<typeof import('@/lib/server/db')>()),
     db: createDb(url, { max: 5, prepare: false }),
@@ -82,7 +82,7 @@ const webhookAndWorkflow = async (): Promise<HookTarget[]> => [
 describe('runEventDispatch', () => {
   beforeAll(async () => {
     const url =
-      process.env.DATABASE_URL ?? 'postgresql://postgres:password@localhost:5432/quackback_test'
+      process.env.DATABASE_URL ?? 'postgresql://postgres:password@localhost:5432/zenith_test'
     const admin = postgres(url, { max: 1, onnotice: () => {} })
     try {
       await admin.unsafe(

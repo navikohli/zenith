@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 // The source of truth comes through the server db barrel (apps/web may not import
-// @quackback/db directly). It drags postgres, which is fine in this node test.
+// @zenith/db directly). It drags postgres, which is fine in this node test.
 import {
   PERMISSIONS as DB_PERMISSIONS,
   ALL_PERMISSIONS as DB_ALL_PERMISSIONS,
@@ -16,7 +16,7 @@ import {
 } from '@/lib/server/db'
 import * as mirror from '../permissions'
 
-// The client mirror (apps/web/.../permissions.ts) duplicates the @quackback/db
+// The client mirror (apps/web/.../permissions.ts) duplicates the @zenith/db
 // catalogue because client bundles can't import the db package. This guards the
 // two from drifting: edit the db catalogue first, then mirror the change here.
 describe('permission catalogue mirror', () => {

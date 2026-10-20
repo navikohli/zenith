@@ -1,5 +1,5 @@
 import { eq, posts, postStatuses, boards, postActivity, type Transaction } from '@/lib/server/db'
-import type { PostId, PostStatusId, PrincipalId } from '@quackback/ids'
+import type { PostId, PostStatusId, PrincipalId } from '@zenith/ids'
 import { emit } from '@/lib/server/events/emit'
 import { postStatusChanged } from '@/lib/server/events/catalogue/post'
 

@@ -140,7 +140,7 @@ function GeneralSettingsPage() {
 
       <SettingsCard
         title="Modules"
-        description="Choose the Quackback modules available to your team and customers."
+        description="Choose the Zenith modules available to your team and customers."
       >
         <SettingRows>
           {PRODUCT_DEFINITIONS.map((product) => {

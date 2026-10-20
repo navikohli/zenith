@@ -13,7 +13,7 @@ import {
   storeWebhookConfig,
   clearWebhookConfig,
 } from '@/lib/server/integrations/webhook-registration'
-import type { IntegrationId } from '@quackback/ids'
+import type { IntegrationId } from '@zenith/ids'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import { logger } from '@/lib/server/logger'
 
@@ -46,8 +46,8 @@ const updateTicketStatusMappingsSchema = z.object({
   ticketStatusMappings: z.record(z.string(), z.string().nullable()),
 })
 
-// Outbound (IF WO-15): Quackback statusId -> remote status name to push. Keyed
-// by Quackback status id (stable) rather than name; unmapped statuses (value
+// Outbound (IF WO-15): Zenith statusId -> remote status name to push. Keyed
+// by Zenith status id (stable) rather than name; unmapped statuses (value
 // omitted) simply don't push.
 const updatePushStatusMappingsSchema = z.object({
   integrationId: z.string(),
@@ -276,7 +276,7 @@ export const updateTicketStatusMappingsFn = createServerFn({ method: 'POST' })
 
 /**
  * Update the OUTBOUND push mappings for an integration (IF WO-15, two-way
- * status sync). Stores the per-Quackback-status → remote-status map under
+ * status sync). Stores the per-Zenith-status → remote-status map under
  * `pushStatusMappings` (posts) or `ticketPushStatusMappings` (tickets); the
  * remote-status-push resolver reads it when an entity status changes.
  */

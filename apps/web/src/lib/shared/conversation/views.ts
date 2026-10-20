@@ -7,10 +7,10 @@
  * client and reusing the same query factory. This module is the single source
  * of truth for the shape — the widget/portal/admin bundles and the server
  * domain all import it (the server can import shared; the client can't import
- * @quackback/db). Zod caps a view at 15 rules per the spec.
+ * @zenith/db). Zod caps a view at 15 rules per the spec.
  */
 import { z } from 'zod'
-import type { ConversationViewId } from '@quackback/ids'
+import type { ConversationViewId } from '@zenith/ids'
 import type { ConversationStatus, ConversationPriority } from './types'
 import {
   TICKET_TYPES,

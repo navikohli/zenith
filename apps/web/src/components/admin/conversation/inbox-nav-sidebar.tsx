@@ -19,7 +19,7 @@ import {
   PencilSquareIcon,
 } from '@heroicons/react/24/solid'
 import { StarIcon as StarOutlineIcon } from '@heroicons/react/24/outline'
-import type { ConversationTagId, SegmentId, TeamId, ConversationViewId } from '@quackback/ids'
+import type { ConversationTagId, SegmentId, TeamId, ConversationViewId } from '@zenith/ids'
 import { fetchConversationTagsWithCountsFn } from '@/lib/server/functions/conversation-tags'
 import { fetchInboxSegmentsWithCountsFn } from '@/lib/server/functions/conversation-segments'
 import {
@@ -68,7 +68,7 @@ import { useFeatureFlag } from '@/lib/client/hooks/use-root-context'
 
 // Start with the broad conversation queue, then progressively narrow to the
 // teammate's own work and secondary personal feeds.
-// Status is no longer a view; it's a list filter. Quinn AI and the Tickets
+// Status is no longer a view; it's a list filter. ZenithAssistant AI and the Tickets
 // section (below) render as their own nav groups, in that order (§2.3).
 export const CONVERSATION_VIEWS = [
   { view: 'all', label: 'All conversations', Icon: InboxIcon },
@@ -82,7 +82,7 @@ export const CONVERSATION_VIEWS = [
   { view: 'spam', label: 'Spam', Icon: NoSymbolIcon },
 ] as const
 
-const QUINN_VIEW = { view: 'quinn', label: 'AI agent activity', Icon: SparklesIcon } as const
+const ZENITH_ASSISTANT_VIEW = { view: 'zenithAssistant', label: 'AI agent activity', Icon: SparklesIcon } as const
 
 /**
  * The solid beaker, drawn here rather than imported: the settings menu's icon
@@ -207,7 +207,7 @@ export function scopeLabelFor(
       return 'Spam'
     case 'test':
       return 'Test conversations'
-    case 'quinn':
+    case 'zenithAssistant':
       return 'AI agent activity'
     case 'saved':
       return 'Saved messages'
@@ -531,8 +531,8 @@ export const InboxNavSidebar = memo(function InboxNavSidebar({
   const showTickets = useSupportTicketsEnabled()
   const activeKey = inboxNavKey(nav)
   const teamRows = teamNavRows(teams)
-  const quinnItem: InboxNavItem = { kind: 'view', view: QUINN_VIEW.view }
-  const quinnActive = activeKey === inboxNavKey(quinnItem)
+  const zenithAssistantItem: InboxNavItem = { kind: 'view', view: ZENITH_ASSISTANT_VIEW.view }
+  const zenithAssistantActive = activeKey === inboxNavKey(zenithAssistantItem)
   const testActive = activeKey === inboxNavKey(TEST_ITEM)
 
   return (
@@ -566,12 +566,12 @@ export const InboxNavSidebar = memo(function InboxNavSidebar({
               })}
               <button
                 type="button"
-                onClick={() => onSelect(quinnItem)}
-                data-active={quinnActive || undefined}
-                className={itemClass(quinnActive)}
+                onClick={() => onSelect(zenithAssistantItem)}
+                data-active={zenithAssistantActive || undefined}
+                className={itemClass(zenithAssistantActive)}
               >
-                <QUINN_VIEW.Icon className={cn('size-4 shrink-0', quinnActive && 'text-primary')} />
-                <span className="min-w-0 flex-1 truncate text-left">{QUINN_VIEW.label}</span>
+                <ZENITH_ASSISTANT_VIEW.Icon className={cn('size-4 shrink-0', zenithAssistantActive && 'text-primary')} />
+                <span className="min-w-0 flex-1 truncate text-left">{ZENITH_ASSISTANT_VIEW.label}</span>
               </button>
               {showsTestView(counts, testActive) && (
                 <button
@@ -670,7 +670,7 @@ export function InboxScopeMenu({
   const showTickets = useSupportTicketsEnabled()
   const activeKey = inboxNavKey(nav)
   const teamRows = teamNavRows(teams)
-  const quinnItem: InboxNavItem = { kind: 'view', view: QUINN_VIEW.view }
+  const zenithAssistantItem: InboxNavItem = { kind: 'view', view: ZENITH_ASSISTANT_VIEW.view }
 
   return (
     <DropdownMenu>
@@ -739,11 +739,11 @@ export function InboxScopeMenu({
         )}
         <DropdownMenuSeparator />
         <DropdownMenuItem
-          onClick={() => onSelect(quinnItem)}
-          className={cn('gap-2', activeKey === inboxNavKey(quinnItem) && 'text-primary')}
+          onClick={() => onSelect(zenithAssistantItem)}
+          className={cn('gap-2', activeKey === inboxNavKey(zenithAssistantItem) && 'text-primary')}
         >
-          <QUINN_VIEW.Icon className="h-4 w-4" />
-          {QUINN_VIEW.label}
+          <ZENITH_ASSISTANT_VIEW.Icon className="h-4 w-4" />
+          {ZENITH_ASSISTANT_VIEW.label}
         </DropdownMenuItem>
         <ScopeMenuSection
           title="Teams"

@@ -2,7 +2,7 @@
  * How an approval reads to the agents and API clients that follow it: one
  * status word per state, and the in-app page a person opens to decide it.
  */
-import { isValidTypeId } from '@quackback/ids'
+import { isValidTypeId } from '@zenith/ids'
 
 /**
  * The states an approval moves through, as clients read them. `pending` waits

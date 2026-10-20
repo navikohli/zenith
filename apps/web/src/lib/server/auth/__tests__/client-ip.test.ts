@@ -115,17 +115,17 @@ describe('a visitor address signed by the custom-host edge proxy', () => {
     return {
       host: origin,
       'x-forwarded-for': '9.9.9.9, 10.0.0.2',
-      'x-quackback-customer-host': customer,
-      'x-quackback-customer-host-sig': signCustomerHost(secret, customer),
-      'x-quackback-edge-client-ip': '198.51.100.23',
-      'x-quackback-edge-client-ip-sig': ipSig,
+      'x-zenith-customer-host': customer,
+      'x-zenith-customer-host-sig': signCustomerHost(secret, customer),
+      'x-zenith-edge-client-ip': '198.51.100.23',
+      'x-zenith-edge-client-ip-sig': ipSig,
       [CLIENT_IP_HEADER]: '9.9.9.9',
     }
   }
 
   beforeEach(() => {
-    vi.stubEnv('QUACKBACK_SAAS_EDGE_SECRET', secret)
-    vi.stubEnv('QUACKBACK_SAAS_RAILWAY_ORIGIN', origin)
+    vi.stubEnv('ZENITH_SAAS_EDGE_SECRET', secret)
+    vi.stubEnv('ZENITH_SAAS_RAILWAY_ORIGIN', origin)
     mockGetRequestIP.mockReturnValue('10.0.0.2')
   })
 

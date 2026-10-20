@@ -25,7 +25,7 @@ import {
 import { cn } from '@/lib/shared/utils'
 import { listPortalUsersFn } from '@/lib/server/functions/admin'
 import { useMergeLeadIntoUser } from '@/lib/client/mutations'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 
 interface MergeLeadControlProps {
   /** The lead being viewed (the merge source). */

@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import type { ChangelogId, PrincipalId } from '@quackback/ids'
+import type { ChangelogId, PrincipalId } from '@zenith/ids'
 import type { EventActor } from '@/lib/server/events/dispatch'
 import { ValidationError } from '@/lib/shared/errors'
 import type { TiptapContent } from '@/lib/shared/db-types'

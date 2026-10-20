@@ -34,13 +34,13 @@
  */
 import { SendEmailCommand, SESv2Client } from '@aws-sdk/client-sesv2'
 import type { SendEmailCommandOutput, SESv2ClientConfig } from '@aws-sdk/client-sesv2'
-import { createLogger } from '@quackback/logger'
+import { createLogger } from '@zenith/logger'
 import { sesWireMessageId } from './message-id'
 import { createSendRateLimiter, SendRateQueueFullError } from './send-rate'
 import type { SendRateLimiter } from './send-rate'
 import type { EmailAttachment } from './attachment'
 
-const log = createLogger({ base: { service_name: 'quackback-email' } }).child({
+const log = createLogger({ base: { service_name: 'zenith-email' } }).child({
   component: 'email-ses',
 })
 

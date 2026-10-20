@@ -80,7 +80,7 @@ export function serverWorkers(): Plugin {
   /** Reference ids of the worker chunks this plugin emitted. */
   const emitted = new Set<string>()
   return {
-    name: 'quackback:server-workers',
+    name: 'zenith:server-workers',
     enforce: 'pre',
     configResolved(config) {
       building = config.command === 'build'

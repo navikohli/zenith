@@ -3,13 +3,13 @@ import { isCanonicalIdentityHost } from '@/lib/server/functions/origin-transfer'
 
 describe('origin transfer host binding', () => {
   it('accepts only the projected canonical hostname', () => {
-    expect(isCanonicalIdentityHost('new.quackback.co.uk', 'https://new.quackback.co.uk')).toBe(true)
-    expect(isCanonicalIdentityHost('new.quackback.co.uk:443', 'https://new.quackback.co.uk')).toBe(
+    expect(isCanonicalIdentityHost('new.zenith.co.uk', 'https://new.zenith.co.uk')).toBe(true)
+    expect(isCanonicalIdentityHost('new.zenith.co.uk:443', 'https://new.zenith.co.uk')).toBe(
       true
     )
-    expect(isCanonicalIdentityHost('old.quackback.co.uk', 'https://new.quackback.co.uk')).toBe(
+    expect(isCanonicalIdentityHost('old.zenith.co.uk', 'https://new.zenith.co.uk')).toBe(
       false
     )
-    expect(isCanonicalIdentityHost(null, 'https://new.quackback.co.uk')).toBe(false)
+    expect(isCanonicalIdentityHost(null, 'https://new.zenith.co.uk')).toBe(false)
   })
 })

@@ -8,7 +8,7 @@
 import type { ReactNode } from 'react'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { cleanup, renderHook, waitFor } from '@testing-library/react'
-import type { ConversationId } from '@quackback/ids'
+import type { ConversationId } from '@zenith/ids'
 import type { ConversationMessageDTO } from '@/lib/shared/conversation/types'
 import {
   portalVisitorRpc,

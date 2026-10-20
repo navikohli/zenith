@@ -1,5 +1,5 @@
 import { queryOptions } from '@tanstack/react-query'
-import type { TeamId } from '@quackback/ids'
+import type { TeamId } from '@zenith/ids'
 import { listTeamsFn } from '@/lib/server/functions/teams'
 
 export type InboxTeam = {

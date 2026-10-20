@@ -5,7 +5,7 @@
  * against fabricated DTOs — no db import, no mocks.
  */
 import { describe, it, expect } from 'vitest'
-import type { ConversationId, TicketId } from '@quackback/ids'
+import type { ConversationId, TicketId } from '@zenith/ids'
 import type { ConversationDTO } from '@/lib/shared/conversation/types'
 import type { TicketDTO } from '@/lib/server/domains/tickets/ticket.types'
 import type { InboxItemDTO } from '@/lib/shared/inbox/items'

@@ -5,7 +5,7 @@
  */
 import { QueryClient } from '@tanstack/react-query'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import type { PostId } from '@quackback/ids'
+import type { PostId } from '@zenith/ids'
 
 const mockFetchInboxPosts = vi.fn()
 vi.mock('@/lib/server/functions/posts', async (importOriginal) => ({

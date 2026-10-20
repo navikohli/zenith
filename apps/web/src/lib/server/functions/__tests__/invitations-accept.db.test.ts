@@ -6,7 +6,7 @@
  * projected maxTeamSeats, so a refused accept leaves the invite pending.
  */
 import { afterAll, afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { createId, type PrincipalId, type UserId } from '@quackback/ids'
+import { createId, type PrincipalId, type UserId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { eq, invitation, principal, settings, user } from '@/lib/server/db'
 import { storedCloud } from '@/lib/server/domains/settings/cloud/__tests__/cloud-fixture'

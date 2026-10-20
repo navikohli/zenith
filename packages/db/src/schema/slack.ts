@@ -1,5 +1,5 @@
 import { pgTable, text, timestamp, primaryKey, foreignKey, index } from 'drizzle-orm/pg-core'
-import { typeIdColumn } from '@quackback/ids/drizzle'
+import { typeIdColumn } from '@zenith/ids/drizzle'
 import { principal } from './auth'
 export const slackUserLinks = pgTable(
   'slack_user_links',

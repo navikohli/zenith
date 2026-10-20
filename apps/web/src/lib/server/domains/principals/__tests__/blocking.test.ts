@@ -4,7 +4,7 @@
  * the blocked_at flag; unblock clears both columns.
  */
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 
 let findFirstRow: Record<string, unknown> | undefined
 const setPayloads: Record<string, unknown>[] = []

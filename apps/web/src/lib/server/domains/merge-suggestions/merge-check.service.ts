@@ -15,7 +15,7 @@ import { withWorkspaceSweepReentrancyGuard } from '@/lib/server/sweep-lock'
 import { aiBudgetAvailable } from '@/lib/server/domains/settings/tier-enforce'
 import { TierLimitError } from '@/lib/server/errors/tier-limit-error'
 import { isTestCustomer, notTestPrincipal } from '@/lib/server/test-data'
-import type { PostId } from '@quackback/ids'
+import type { PostId } from '@zenith/ids'
 
 const log = logger.child({ component: 'merge-check' })
 

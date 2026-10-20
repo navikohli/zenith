@@ -3,14 +3,14 @@ import { useQuery, useQueryClient, type QueryClient } from '@tanstack/react-quer
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { toast } from 'sonner'
 import { ChatBubbleLeftRightIcon, TicketIcon } from '@heroicons/react/24/solid'
-import { isValidTypeId } from '@quackback/ids'
+import { isValidTypeId } from '@zenith/ids'
 import type {
   ConversationId,
   ConversationMessageId,
   CompanyId,
   TicketId,
   TicketStatusId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import { coerceTicketTypeId } from '@/lib/shared/tickets'
 import type { ConversationPriority } from '@/lib/shared/conversation/types'
 import {
@@ -123,7 +123,7 @@ import {
   type FeatureFlags,
 } from '@/lib/shared/types/settings'
 import { useFeatureFlag, useWorkspaceSettings } from '@/lib/client/hooks/use-root-context'
-import { QuinnViewHeader } from '@/components/admin/conversation/quinn-view-header'
+import { ZenithAssistantViewHeader } from '@/components/admin/conversation/zenith-assistant-view-header'
 import { TestViewHeader } from '@/components/admin/conversation/test-view-header'
 
 // URL is the source of truth for open item + filters (refresh-safe, shareable).
@@ -179,7 +179,7 @@ function validateInboxSearch(search: Record<string, unknown>): InboxSearch {
     // ticket_type id is accepted (a junk value is dropped, never reaching
     // the uuid-backed ticket query).
     ttype: coerceTicketTypeId(typeof search.ttype === 'string' ? search.ttype : undefined),
-    // Quinn-view sub-filter by involvement outcome; only the canonical buckets.
+    // ZenithAssistant-view sub-filter by involvement outcome; only the canonical buckets.
     ai:
       search.ai === 'resolved' || search.ai === 'escalated' || search.ai === 'pending'
         ? search.ai
@@ -778,7 +778,7 @@ function InboxPage() {
 
   // The unified endpoint (mine/unassigned/all, a team scope, a Tickets-section
   // scope, or a custom view carrying a ticket-only rule — §2.8) vs the legacy
-  // conversation-only endpoint (mentions/quinn/saved, tag/segment, and a
+  // conversation-only endpoint (mentions/zenithAssistant/saved, tag/segment, and a
   // custom view with no ticket rules — see inbox-scope.ts's module note). The
   // predicate + both param builders live in `useInboxListSource`; the loader
   // (server context, no hooks) makes its own `usesUnifiedInboxList` call above
@@ -792,18 +792,18 @@ function InboxPage() {
     sort,
     ticketTypeId: urlTicketType,
     activeViewFilters: activeView?.filters,
-    aiBucket: nav.kind === 'view' && nav.view === 'quinn' ? urlAi : undefined,
+    aiBucket: nav.kind === 'view' && nav.view === 'zenithAssistant' ? urlAi : undefined,
     isSaved,
     streamConnected,
     channel: urlChannel,
   })
 
-  // Quinn-view sub-filter counts (only fetched while that view is open).
-  const isQuinnView = nav.kind === 'view' && nav.view === 'quinn'
+  // ZenithAssistant-view sub-filter counts (only fetched while that view is open).
+  const isZenithAssistantView = nav.kind === 'view' && nav.view === 'zenithAssistant'
   const isTestView = nav.kind === 'view' && nav.view === 'test'
   const { data: assistantCounts } = useQuery({
     ...conversationInboxQueries.assistantCounts(),
-    enabled: isQuinnView,
+    enabled: isZenithAssistantView,
   })
 
   // The ticket status catalogue, needed to resolve "close" → the default
@@ -1460,13 +1460,13 @@ function InboxPage() {
     onOpenHelp: () => setHelpOpen(true),
   })
 
-  // The list header's slot: the Quinn view's outcome sub-filter chips
+  // The list header's slot: the ZenithAssistant view's outcome sub-filter chips
   // (Resolved/Escalated/Pending). Memoized so opening an item leaves the
   // (memoized) list header as it was.
   const listHeaderSlot = useMemo(
     () =>
-      isQuinnView ? (
-        <QuinnViewHeader
+      isZenithAssistantView ? (
+        <ZenithAssistantViewHeader
           value={urlAi}
           counts={assistantCounts}
           onChange={(ai) => updateSearch({ ai, i: undefined, m: undefined })}
@@ -1479,7 +1479,7 @@ function InboxPage() {
           }}
         />
       ) : undefined,
-    [isQuinnView, isTestView, urlAi, assistantCounts, updateSearch, refreshInbox, setNav]
+    [isZenithAssistantView, isTestView, urlAi, assistantCounts, updateSearch, refreshInbox, setNav]
   )
 
   // The company refinement, offered only when the workspace has companies.

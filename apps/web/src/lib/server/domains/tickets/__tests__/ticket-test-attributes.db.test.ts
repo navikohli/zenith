@@ -9,7 +9,7 @@ import {
   tickets,
   ticketStatuses,
 } from '@/lib/server/db'
-import type { TicketId } from '@quackback/ids'
+import type { TicketId } from '@zenith/ids'
 import { notTestConversation, notTestTicket } from '@/lib/server/test-data'
 import type { Actor } from '@/lib/server/policy/types'
 import { resolveActorPermissions } from '@/lib/server/policy/permissions'

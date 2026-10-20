@@ -2,7 +2,7 @@ import { can } from '@/lib/server/policy/authorize'
 import { PERMISSIONS, type PermissionKey } from '@/lib/shared/permissions'
 import type { Actor } from '@/lib/server/policy/types'
 /**
- * Source-adapter seam for Quinn's grounding retrieval.
+ * Source-adapter seam for ZenithAssistant's grounding retrieval.
  *
  * `search` used to call the knowledge base directly (the only
  * grounding source that existed). This module generalizes that into a
@@ -22,7 +22,7 @@ import type { Actor } from '@/lib/server/policy/types'
  * `retrieveKbArticles`'s own ranking — merging and re-ranking a single
  * source's already-sorted output changes nothing.
  */
-import type { PrincipalId, ConversationId } from '@quackback/ids'
+import type { PrincipalId, ConversationId } from '@zenith/ids'
 import type { ContentAudience } from './audience'
 import { toHelpCenterAudience } from './audience'
 import { retrieveKbArticles } from './retrieval'
@@ -64,7 +64,7 @@ export interface RetrievedItem {
 }
 
 /**
- * One grounding source Quinn can retrieve from. `sourceType` names the kind
+ * One grounding source ZenithAssistant can retrieve from. `sourceType` names the kind
  * of thing the source returns (mirrored on every item it produces).
  * `retrieve` takes the turn's retrieval ceiling (never a raw audience
  * string — see `./audience`) and returns already audience-scoped items; a

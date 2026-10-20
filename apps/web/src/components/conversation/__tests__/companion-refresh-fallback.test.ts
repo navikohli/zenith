@@ -5,7 +5,7 @@
  * list must still refresh, once, after a short wait.
  */
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import type { ConversationId } from '@quackback/ids'
+import type { ConversationId } from '@zenith/ids'
 import type { ConversationStreamEvent } from '@/lib/shared/conversation/types'
 import { companionRefreshFallback } from '../events-reducer'
 

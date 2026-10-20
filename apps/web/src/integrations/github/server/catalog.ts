@@ -9,5 +9,5 @@ export const githubCatalog: IntegrationCatalogEntry = {
   settingsPath: '/admin/settings/integrations/github',
   available: true,
   configurable: true,
-  docsUrl: 'https://www.quackback.io/docs/integrations/github',
+  docsUrl: '/source.html',
 }

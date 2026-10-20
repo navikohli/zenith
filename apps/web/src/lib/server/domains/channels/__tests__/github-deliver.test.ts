@@ -1,5 +1,5 @@
 import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest'
-import type { ConversationId, ConversationMessageId, PrincipalId } from '@quackback/ids'
+import type { ConversationId, ConversationMessageId, PrincipalId } from '@zenith/ids'
 
 const lookup = vi.hoisted(() => vi.fn())
 const findFirst = vi.hoisted(() => vi.fn())

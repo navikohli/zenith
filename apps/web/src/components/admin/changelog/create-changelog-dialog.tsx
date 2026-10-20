@@ -17,7 +17,7 @@ import { ChangelogMetadataSidebar } from './changelog-metadata-sidebar'
 import type { PublishState } from '@/lib/shared/schemas/changelog'
 import type { JSONContent } from '@tiptap/react'
 import type { EditorDocument } from '@/components/ui/rich-text-editor'
-import type { PostId, ChangelogCategoryId, SegmentId } from '@quackback/ids'
+import type { PostId, ChangelogCategoryId, SegmentId } from '@zenith/ids'
 
 // Mobile-only version of the sidebar content for the sheet
 import { ChangelogMetadataSidebarContent } from './changelog-metadata-sidebar-content'

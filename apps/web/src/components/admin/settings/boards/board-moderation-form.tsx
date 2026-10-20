@@ -8,7 +8,7 @@ import { SettingRow, SettingRows } from '@/components/admin/settings/setting-row
 import { useDebouncedSave } from '@/lib/client/hooks/use-debounced-save'
 import { useUpdateBoardAccess } from '@/lib/client/mutations'
 import { settingsQueries } from '@/lib/client/queries/settings'
-import type { BoardId } from '@quackback/ids'
+import type { BoardId } from '@zenith/ids'
 import {
   type BoardAccess,
   DEFAULT_BOARD_ACCESS,

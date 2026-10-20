@@ -16,7 +16,7 @@ function fireReady() {
   window.dispatchEvent(
     new MessageEvent('message', {
       origin: ORIGIN,
-      data: { type: 'quackback:ready' },
+      data: { type: 'zenith:ready' },
     })
   )
 }
@@ -44,14 +44,14 @@ describe('sdk', () => {
   afterEach(() => {
     vi.restoreAllMocks()
     vi.unstubAllGlobals()
-    delete (window as { __QUACKBACK_CONFIG__?: unknown }).__QUACKBACK_CONFIG__
+    delete (window as { __ZENITH_CONFIG__?: unknown }).__ZENITH_CONFIG__
   })
 
   it('init creates a launcher and iframe', () => {
     const sdk = createSDK()
     sdk.dispatch('init', { instanceUrl: ORIGIN })
     expect(document.querySelector('button[aria-label="Open feedback widget"]')).not.toBeNull()
-    expect(document.querySelector('iframe.quackback-widget-iframe')).not.toBeNull()
+    expect(document.querySelector('iframe.zenith-widget-iframe')).not.toBeNull()
   })
 
   it('init with { launcher: false } does not create a button', () => {
@@ -87,7 +87,7 @@ describe('sdk', () => {
     sdk.dispatch('init', { instanceUrl: ORIGIN })
     expect(() => sdk.dispatch('init', { instanceUrl: 'not a url' })).toThrow()
     // The good first instance is untouched.
-    expect(document.querySelector('iframe.quackback-widget-iframe')).not.toBeNull()
+    expect(document.querySelector('iframe.zenith-widget-iframe')).not.toBeNull()
   })
 
   it('init defaults identity to anonymous once iframe is ready', () => {
@@ -96,7 +96,7 @@ describe('sdk', () => {
     sdk.dispatch('init', { instanceUrl: ORIGIN })
     fireReady()
     expect(postMessage).toHaveBeenCalledWith(
-      { type: 'quackback:identify', data: { anonymous: true } },
+      { type: 'zenith:identify', data: { anonymous: true } },
       ORIGIN
     )
     spy.mockRestore()
@@ -111,7 +111,7 @@ describe('sdk', () => {
     })
     fireReady()
     expect(postMessage).toHaveBeenCalledWith(
-      { type: 'quackback:identify', data: { id: 'u1', email: 'a@b.c', name: 'Ada' } },
+      { type: 'zenith:identify', data: { id: 'u1', email: 'a@b.c', name: 'Ada' } },
       ORIGIN
     )
     spy.mockRestore()
@@ -124,7 +124,7 @@ describe('sdk', () => {
     fireReady()
     sdk.dispatch('identify', { id: 'u2', email: 'b@c.d' })
     expect(postMessage).toHaveBeenLastCalledWith(
-      { type: 'quackback:identify', data: { id: 'u2', email: 'b@c.d' } },
+      { type: 'zenith:identify', data: { id: 'u2', email: 'b@c.d' } },
       ORIGIN
     )
     spy.mockRestore()
@@ -148,7 +148,7 @@ describe('sdk', () => {
     stubIframe()
     const sdk = createSDK()
     sdk.dispatch('init', { instanceUrl: ORIGIN })
-    const iframe = document.querySelector('iframe.quackback-widget-iframe') as HTMLIFrameElement
+    const iframe = document.querySelector('iframe.zenith-widget-iframe') as HTMLIFrameElement
     const panel = iframe.parentElement as HTMLElement
     expect(iframe.title).toBe('Help')
     expect(panel.inert).toBe(true)
@@ -162,7 +162,7 @@ describe('sdk', () => {
     const sdk = createSDK()
     sdk.dispatch('init', { instanceUrl: ORIGIN, locale: 'de' })
     expect(
-      (document.querySelector('iframe.quackback-widget-iframe') as HTMLIFrameElement).title
+      (document.querySelector('iframe.zenith-widget-iframe') as HTMLIFrameElement).title
     ).toBe('Hilfe')
   })
 
@@ -187,7 +187,7 @@ describe('sdk', () => {
       new MessageEvent('message', {
         origin: ORIGIN,
         data: {
-          type: 'quackback:identify-result',
+          type: 'zenith:identify-result',
           success: true,
           user: { id: 'u1', name: 'Ada', email: 'a@b.c' },
         },
@@ -218,7 +218,7 @@ describe('sdk', () => {
     fireReady()
     sdk.dispatch('open', { postId: 'post_01h' })
     expect(postMessage).toHaveBeenCalledWith(
-      { type: 'quackback:open', data: { postId: 'post_01h' } },
+      { type: 'zenith:open', data: { postId: 'post_01h' } },
       ORIGIN
     )
     sdk.dispatch('open', {
@@ -229,7 +229,7 @@ describe('sdk', () => {
     })
     expect(postMessage).toHaveBeenLastCalledWith(
       {
-        type: 'quackback:open',
+        type: 'zenith:open',
         data: { view: 'new-post', title: 'Bug:', body: 'steps', board: 'bug-reports' },
       },
       ORIGIN
@@ -245,14 +245,14 @@ describe('sdk', () => {
     sdk.dispatch('metadata', { page: '/settings', app_version: '2.4.1' })
     expect(postMessage).toHaveBeenCalledWith(
       {
-        type: 'quackback:metadata',
+        type: 'zenith:metadata',
         data: { page: '/settings', app_version: '2.4.1' },
       },
       ORIGIN
     )
     sdk.dispatch('metadata', { page: null })
     expect(postMessage).toHaveBeenLastCalledWith(
-      { type: 'quackback:metadata', data: { app_version: '2.4.1' } },
+      { type: 'zenith:metadata', data: { app_version: '2.4.1' } },
       ORIGIN
     )
     spy.mockRestore()
@@ -297,11 +297,11 @@ describe('sdk', () => {
     expect(btn.style.opacity).toBe('1')
   })
 
-  it('baked __QUACKBACK_CONFIG__ reveals the launcher instantly without a config fetch', () => {
+  it('baked __ZENITH_CONFIG__ reveals the launcher instantly without a config fetch', () => {
     stubIframe()
     const fetchMock = vi.fn()
     vi.stubGlobal('fetch', fetchMock)
-    window.__QUACKBACK_CONFIG__ = {
+    window.__ZENITH_CONFIG__ = {
       theme: { lightPrimary: '#ff0000', lightPrimaryForeground: '#ffffff', themeMode: 'light' },
       launcherGreeting: 'Hi there!',
     }
@@ -328,12 +328,12 @@ describe('sdk', () => {
     )
     const sdk = createSDK()
     sdk.dispatch('init', { instanceUrl: ORIGIN })
-    expect(document.querySelector('iframe.quackback-widget-iframe')).toBeNull()
+    expect(document.querySelector('iframe.zenith-widget-iframe')).toBeNull()
     sdk.dispatch('open')
-    expect(document.querySelector('iframe.quackback-widget-iframe')).not.toBeNull()
+    expect(document.querySelector('iframe.zenith-widget-iframe')).not.toBeNull()
     // The idle slot firing later must not create a second panel.
     idleCb?.()
-    expect(document.querySelectorAll('iframe.quackback-widget-iframe')).toHaveLength(1)
+    expect(document.querySelectorAll('iframe.zenith-widget-iframe')).toHaveLength(1)
   })
 
   it('launcher reveals via fallback timer if config fetch never resolves', async () => {
@@ -376,7 +376,7 @@ describe('sdk', () => {
     window.dispatchEvent(
       new MessageEvent('message', {
         origin: ORIGIN,
-        data: { type: 'quackback:navigate', url: 'https://example.com/thing' },
+        data: { type: 'zenith:navigate', url: 'https://example.com/thing' },
       })
     )
     expect(openSpy).toHaveBeenCalledWith(
@@ -395,7 +395,7 @@ describe('sdk', () => {
     window.dispatchEvent(
       new MessageEvent('message', {
         origin: ORIGIN,
-        data: { type: 'quackback:navigate', url: 'javascript:alert(1)' },
+        data: { type: 'zenith:navigate', url: 'javascript:alert(1)' },
       })
     )
     expect(openSpy).not.toHaveBeenCalled()
@@ -406,9 +406,9 @@ describe('sdk', () => {
     stubIframe()
     const sdk = createSDK()
     sdk.dispatch('init', { instanceUrl: ORIGIN })
-    expect(document.querySelector('iframe.quackback-widget-iframe')).not.toBeNull()
+    expect(document.querySelector('iframe.zenith-widget-iframe')).not.toBeNull()
     sdk.dispatch('destroy')
-    expect(document.querySelector('iframe.quackback-widget-iframe')).toBeNull()
+    expect(document.querySelector('iframe.zenith-widget-iframe')).toBeNull()
     expect(document.querySelector('button[aria-label="Open feedback widget"]')).toBeNull()
   })
 
@@ -419,7 +419,7 @@ describe('sdk', () => {
     sdk.dispatch('on', 'unread', handler)
 
     window.dispatchEvent(
-      new MessageEvent('message', { origin: ORIGIN, data: { type: 'quackback:unread', count: 5 } })
+      new MessageEvent('message', { origin: ORIGIN, data: { type: 'zenith:unread', count: 5 } })
     )
 
     // Host subscribers get the count...
@@ -449,12 +449,12 @@ describe('sdk server-driven launcher config', () => {
   afterEach(() => {
     vi.restoreAllMocks()
     vi.unstubAllGlobals()
-    delete (window as { __QUACKBACK_CONFIG__?: unknown }).__QUACKBACK_CONFIG__
+    delete (window as { __ZENITH_CONFIG__?: unknown }).__ZENITH_CONFIG__
   })
 
   it('server config position and label reach the launcher, overriding init placement', () => {
     stubIframe()
-    window.__QUACKBACK_CONFIG__ = { position: 'left', launcherLabel: 'Chat with us' }
+    window.__ZENITH_CONFIG__ = { position: 'left', launcherLabel: 'Chat with us' }
     const sdk = createSDK()
     sdk.dispatch('init', { instanceUrl: ORIGIN, placement: 'right' })
     const btn = document.querySelector('button[aria-label="Chat with us"]') as HTMLButtonElement
@@ -483,7 +483,7 @@ describe('sdk server-driven launcher config', () => {
 
   it('no server position keeps the init placement', () => {
     stubIframe()
-    window.__QUACKBACK_CONFIG__ = { theme: {} }
+    window.__ZENITH_CONFIG__ = { theme: {} }
     const sdk = createSDK()
     sdk.dispatch('init', { instanceUrl: ORIGIN, placement: 'left' })
     const btn = document.querySelector(

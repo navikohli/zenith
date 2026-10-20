@@ -6,7 +6,7 @@
  * only when the actor holds post.vote_on_behalf.
  */
 import { queryOptions, type UseQueryOptions } from '@tanstack/react-query'
-import type { PostId } from '@quackback/ids'
+import type { PostId } from '@zenith/ids'
 import { listPostVotersForVoteManagerFn } from '@/lib/server/functions/post-voters-context'
 
 /** A single voter row as returned to a vote manager on the portal. */

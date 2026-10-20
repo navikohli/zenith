@@ -1,6 +1,6 @@
 /**
  * Server-side AG-UI wire helpers for the assistant surfaces: canonical
- * lifecycle chunk factories, Quackback CUSTOM event factories, and the
+ * lifecycle chunk factories, Zenith CUSTOM event factories, and the
  * forwarding filter that keeps engine-internal lifecycle chunks off the wire.
  *
  * WHY THE FILTER EXISTS (verified against @tanstack/ai 0.40 + ai-client 0.20):
@@ -40,7 +40,7 @@ export function runStartedChunk({ threadId, runId }: WireRunIds): StreamChunk {
  * turn's POST-PROCESSED surface payload (CopilotFinalPayload etc.) — the
  * enriched server result, not the raw model object (which streams separately
  * as the structured-output part). Its presence is what "finalized" means on
- * every Quackback client.
+ * every Zenith client.
  */
 export function runFinishedChunk({ threadId, runId }: WireRunIds, result?: unknown): StreamChunk {
   return {

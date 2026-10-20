@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { requireApiKey, withApiKeyAuth, assertApiPermissions } from '../auth'
 import type { ApiKey, ApiKeyScope } from '@/lib/server/domains/api-keys'
-import type { PrincipalId, ApiKeyId } from '@quackback/ids'
+import type { PrincipalId, ApiKeyId } from '@zenith/ids'
 import { UnauthorizedError, ForbiddenError } from '@/lib/shared/errors'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import type { Role } from '@/lib/shared/roles'

@@ -5,7 +5,7 @@
  * values, only its own), and the conversation/ticket dual target.
  */
 import { describe, it, expect, beforeEach, afterEach, afterAll, vi } from 'vitest'
-import type { ConversationId, TicketId } from '@quackback/ids'
+import type { ConversationId, TicketId } from '@zenith/ids'
 
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import {
@@ -101,7 +101,7 @@ describe.skipIf(!fixture.available)('setConversationAttribute (real DB, rolled b
   beforeEach(() => {
     dispatchConversationAttributeChanged.mockClear()
     getAssistantRuntimeConfig.mockReset().mockResolvedValue({
-      config: { identity: { name: 'Quinn' } },
+      config: { identity: { name: 'Zenith Assistant' } },
     })
     return fixture.begin()
   })
@@ -331,7 +331,7 @@ describe.skipIf(!fixture.available)('setConversationAttribute (real DB, rolled b
 
       expect(dispatchConversationAttributeChanged).toHaveBeenCalledTimes(1)
       expect(dispatchConversationAttributeChanged).toHaveBeenCalledWith(
-        { type: 'service', displayName: 'Quinn' },
+        { type: 'service', displayName: 'Zenith Assistant' },
         conversationRef(conversationId),
         'plan',
         'starter',
@@ -339,7 +339,7 @@ describe.skipIf(!fixture.available)('setConversationAttribute (real DB, rolled b
       )
     })
 
-    it('emits for an AI write with the CONFIGURED assistant name, not a hardcoded "Quinn"', async () => {
+    it('emits for an AI write with the CONFIGURED assistant name, not a hardcoded "Zenith Assistant"', async () => {
       await createConversationAttribute({ key: 'plan', label: 'Plan', fieldType: 'text' })
       const conversationId = await seedConversation()
       getAssistantRuntimeConfig.mockResolvedValue({

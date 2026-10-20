@@ -7,8 +7,8 @@
  * message persistence.
  */
 import { describe, it, expect, beforeEach, afterEach, afterAll, vi } from 'vitest'
-import type { ConversationId, PrincipalId, TicketId, TicketStatusId } from '@quackback/ids'
-import { createId } from '@quackback/ids'
+import type { ConversationId, PrincipalId, TicketId, TicketStatusId } from '@zenith/ids'
+import { createId } from '@zenith/ids'
 
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import {
@@ -105,7 +105,7 @@ describe.skipIf(!fixture.available)('proposePendingAction: propose-time note', (
   })
 
   it('surfaces an inbox note carrying the pending action id, tool name, and summary', async () => {
-    mockGetAssistantPrincipal.mockResolvedValue({ id: 'principal_quinn', displayName: 'Quinn' })
+    mockGetAssistantPrincipal.mockResolvedValue({ id: 'principal_zenithAssistant', displayName: 'Zenith Assistant' })
     const conversationId = await seedConversation()
 
     const proposed = await proposePendingAction({
@@ -122,12 +122,12 @@ describe.skipIf(!fixture.available)('proposePendingAction: propose-time note', (
         toolName: 'close_conversation',
         summary: 'Close this conversation as resolved.',
       },
-      { principalId: 'principal_quinn', displayName: 'Quinn' }
+      { principalId: 'principal_zenithAssistant', displayName: 'Zenith Assistant' }
     )
   })
 
   it('does not fail the proposal when the note append throws', async () => {
-    mockGetAssistantPrincipal.mockResolvedValue({ id: 'principal_quinn', displayName: 'Quinn' })
+    mockGetAssistantPrincipal.mockResolvedValue({ id: 'principal_zenithAssistant', displayName: 'Zenith Assistant' })
     mockAppendNote.mockRejectedValue(new Error('publish boom'))
     const conversationId = await seedConversation()
 
@@ -142,7 +142,7 @@ describe.skipIf(!fixture.available)('proposePendingAction: propose-time note', (
     expect(mockLoggerWarn).toHaveBeenCalled()
   })
 
-  it('skips the note when quinn has not been provisioned yet', async () => {
+  it('skips the note when zenithAssistant has not been provisioned yet', async () => {
     mockGetAssistantPrincipal.mockResolvedValue(null)
     const conversationId = await seedConversation()
 
@@ -157,7 +157,7 @@ describe.skipIf(!fixture.available)('proposePendingAction: propose-time note', (
   })
 
   it('does not re-announce the note when a retry dedupes onto an already-proposed row (S1)', async () => {
-    mockGetAssistantPrincipal.mockResolvedValue({ id: 'principal_quinn', displayName: 'Quinn' })
+    mockGetAssistantPrincipal.mockResolvedValue({ id: 'principal_zenithAssistant', displayName: 'Zenith Assistant' })
     const conversationId = await seedConversation()
     const key = 'conversation_1:conversation_message_1:close_conversation:deadbeef'
 
@@ -183,7 +183,7 @@ describe.skipIf(!fixture.available)('proposePendingAction: propose-time note', (
   })
 
   it('surfaces a plain internal ticket note (not the conversation card note) for a ticket-scoped proposal (unified inbox §2.9)', async () => {
-    mockGetAssistantPrincipal.mockResolvedValue({ id: 'principal_quinn', displayName: 'Quinn' })
+    mockGetAssistantPrincipal.mockResolvedValue({ id: 'principal_zenithAssistant', displayName: 'Zenith Assistant' })
     const ticketId = await seedTicket()
 
     const proposed = await proposePendingAction({
@@ -196,14 +196,14 @@ describe.skipIf(!fixture.available)('proposePendingAction: propose-time note', (
     expect(proposed.ticketId).toBe(ticketId)
     expect(proposed.conversationId).toBeNull()
     expect(mockAddTicketNote).toHaveBeenCalledWith(
-      expect.objectContaining({ principalId: 'principal_quinn' }),
+      expect.objectContaining({ principalId: 'principal_zenithAssistant' }),
       { ticketId, content: 'Requested approval: Create a customer ticket: "x"' }
     )
     expect(mockAppendNote).not.toHaveBeenCalled()
   })
 
   it('does not fail the proposal when the ticket note append throws', async () => {
-    mockGetAssistantPrincipal.mockResolvedValue({ id: 'principal_quinn', displayName: 'Quinn' })
+    mockGetAssistantPrincipal.mockResolvedValue({ id: 'principal_zenithAssistant', displayName: 'Zenith Assistant' })
     mockAddTicketNote.mockRejectedValue(new Error('publish boom'))
     const ticketId = await seedTicket()
 
@@ -317,7 +317,7 @@ describe.skipIf(!fixture.available)('sweepAndNotifyExpiredPendingActions', () =>
   })
 
   it('posts an internal ticket note (not a customer-visible system message) for an expired ticket-scoped proposal', async () => {
-    mockGetAssistantPrincipal.mockResolvedValue({ id: 'principal_quinn', displayName: 'Quinn' })
+    mockGetAssistantPrincipal.mockResolvedValue({ id: 'principal_zenithAssistant', displayName: 'Zenith Assistant' })
     const ticketId = await seedTicket()
 
     const stale = await proposePendingAction({
@@ -336,7 +336,7 @@ describe.skipIf(!fixture.available)('sweepAndNotifyExpiredPendingActions', () =>
     expect(expired.map((r) => r.id)).toEqual([stale.id])
     expect(mockEmitExpired).not.toHaveBeenCalled()
     expect(mockAddTicketNote).toHaveBeenCalledWith(
-      expect.objectContaining({ principalId: 'principal_quinn' }),
+      expect.objectContaining({ principalId: 'principal_zenithAssistant' }),
       { ticketId, content: 'This request timed out before a teammate could review it.' }
     )
   })

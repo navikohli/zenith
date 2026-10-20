@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Per-boot startup for the Quackback Cloud Agent environment.
+# Per-boot startup for the Zenith Cloud Agent environment.
 #
 # Brings up the local datastores the app depends on (PostgreSQL with pg_cron +
 # pgvector, MinIO, Dragonfly, Mailpit) via docker-compose, then applies database
@@ -10,8 +10,8 @@ set -euo pipefail
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$REPO_ROOT"
 
-DB_URL_DEV="postgresql://postgres:password@localhost:5432/quackback"
-DB_URL_TEST="postgresql://postgres:password@localhost:5432/quackback_test"
+DB_URL_DEV="postgresql://postgres:password@localhost:5432/zenith"
+DB_URL_TEST="postgresql://postgres:password@localhost:5432/zenith_test"
 
 echo "[start] Ensuring Docker daemon is running..."
 if ! sudo docker info >/dev/null 2>&1; then
@@ -42,7 +42,7 @@ docker compose up -d --wait postgres minio minio-init dragonfly mailpit
 
 # Create the dev and test databases if they do not exist yet. The test DB is
 # used by the DB-integration parts of `bun run test`.
-for DBNAME in quackback quackback_test; do
+for DBNAME in zenith zenith_test; do
   if ! docker compose exec -T postgres psql -U postgres -tc "SELECT 1 FROM pg_database WHERE datname = '$DBNAME'" | grep -q 1; then
     docker compose exec -T postgres psql -U postgres -c "CREATE DATABASE $DBNAME;"
     echo "[start] Created database $DBNAME"

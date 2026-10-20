@@ -1,14 +1,14 @@
 /**
  * Opening a conversation in the agent inbox fetches the thread and the reads
  * beside it (linked ticket, contact card, company, block state, previous
- * conversations, Quinn's activity, the composer's pickers) in one request,
+ * conversations, ZenithAssistant's activity, the composer's pickers) in one request,
  * and seeds each read's own query from the answer so none of them asks on its
  * own. A read whose cache is still fresh is not asked for again, and the
  * detail panel's own reads are only asked for where the panel shows.
  */
 import { QueryClient } from '@tanstack/react-query'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import type { ConversationId, PrincipalId, TicketId } from '@quackback/ids'
+import type { ConversationId, PrincipalId, TicketId } from '@zenith/ids'
 
 const mockGetConversation = vi.fn()
 vi.mock('@/lib/server/functions/conversation', async (importOriginal) => ({

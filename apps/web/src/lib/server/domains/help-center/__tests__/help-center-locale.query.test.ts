@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import type { KbCategoryId, KbArticleId } from '@quackback/ids'
+import type { KbCategoryId, KbArticleId } from '@zenith/ids'
 
 const mockListPublicCategories = vi.fn()
 const mockGetPublicCategoryBySlug = vi.fn()

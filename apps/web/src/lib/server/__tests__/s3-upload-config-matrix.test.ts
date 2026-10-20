@@ -108,23 +108,23 @@ describe('browser uploads stay on /api/storage', () => {
   })
 
   it('does not bake BASE_URL, a friendly host, or a CDN into either URL', async () => {
-    mockConfig.baseUrl = 'https://acme.quackback.co.uk/'
+    mockConfig.baseUrl = 'https://acme.zenith.co.uk/'
     mockConfig.s3PublicUrl = 'https://cdn.example.com/'
     mockConfig.s3Endpoint = 'http://minio:9000'
     const { uploadUrl, publicUrl } = await generatePresignedUploadUrl(KEY, CT)
     expect(uploadUrl.startsWith(`/api/storage/${KEY}?`)).toBe(true)
     expect(publicUrl).toBe(`/api/storage/${KEY}`)
-    expect(uploadUrl).not.toContain('acme.quackback.co.uk')
+    expect(uploadUrl).not.toContain('acme.zenith.co.uk')
     expect(uploadUrl).not.toContain('cdn.example.com')
     expect(uploadUrl).not.toContain('minio')
-    expect(publicUrl).not.toContain('acme.quackback.co.uk')
+    expect(publicUrl).not.toContain('acme.zenith.co.uk')
     expect(publicUrl).not.toContain('cdn.example.com')
   })
 
   it('stays relative after a friendly URL rename', async () => {
-    mockConfig.baseUrl = 'https://ws-abc123.quackback.co.uk'
+    mockConfig.baseUrl = 'https://ws-abc123.zenith.co.uk'
     const before = await generatePresignedUploadUrl(KEY, CT)
-    mockConfig.baseUrl = 'https://north7f3a2b.quackback.co.uk'
+    mockConfig.baseUrl = 'https://north7f3a2b.zenith.co.uk'
     const after = await generatePresignedUploadUrl(KEY, CT)
     expect(before.uploadUrl.split('?')[0]).toBe(`/api/storage/${KEY}`)
     expect(after.uploadUrl.split('?')[0]).toBe(`/api/storage/${KEY}`)

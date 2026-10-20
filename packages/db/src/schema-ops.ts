@@ -38,7 +38,7 @@ import type postgres from 'postgres'
 import * as schema from './schema'
 
 /**
- * Arbitrary application-chosen key identifying "quackback migrations" for
+ * Arbitrary application-chosen key identifying "zenith migrations" for
  * Postgres advisory locks. Any int8-range value works as long as it is stable
  * across processes; this one is just a readable literal. Cast explicitly to
  * bigint at the call site since it exceeds Postgres' int4 range and postgres-js
@@ -139,7 +139,7 @@ export const MIN_VECTOR_VERSION = '0.5.0'
 export class MigrationPreflightError extends Error {
   constructor(readonly problems: readonly string[]) {
     super(
-      'The database is not ready for this version of Quackback; no migrations were applied.\n' +
+      'The database is not ready for this version of Zenith; no migrations were applied.\n' +
         problems.map((p) => `  - ${p}`).join('\n')
     )
     this.name = 'MigrationPreflightError'

@@ -10,7 +10,7 @@ import {
 } from '@/lib/server/domains/api/responses'
 import { parseTypeId } from '@/lib/server/domains/api/validation'
 import { PERMISSIONS } from '@/lib/shared/permissions'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 
 const updateUserSchema = z.object({
   name: z.string().min(1).max(200).optional(),

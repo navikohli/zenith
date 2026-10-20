@@ -1,6 +1,6 @@
 import { pgTable, text, timestamp, date, integer, index, primaryKey } from 'drizzle-orm/pg-core'
 import { sql } from 'drizzle-orm'
-import { typeIdWithDefault, typeIdColumnNullable } from '@quackback/ids/drizzle'
+import { typeIdWithDefault, typeIdColumnNullable } from '@zenith/ids/drizzle'
 
 /**
  * Raw pageview events for visitor analytics.

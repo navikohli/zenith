@@ -14,7 +14,7 @@ import { mcp } from '@better-auth/mcp'
 import { oauthDeviceAuthorization } from '@better-auth/oauth-provider'
 import { betterAuthMcpResource } from './mcp-plugin-resource'
 import { tanstackStartCookies } from 'better-auth/tanstack-start'
-import { generateId, type PrincipalId, type UserId } from '@quackback/ids'
+import { generateId, type PrincipalId, type UserId } from '@zenith/ids'
 import { API_KEY_SCOPES, MCP_AS_SCOPES } from '@/lib/server/domains/api-keys/api-key-scopes'
 import { config } from '@/lib/server/config'
 import { activeSecretKey } from '@/lib/server/secret-key'
@@ -194,7 +194,7 @@ async function createAuth() {
     twoFactor: twoFactorTable,
     eq,
   } = await import('@/lib/server/db')
-  const { sendPasswordResetEmail, isEmailConfigured } = await import('@quackback/email')
+  const { sendPasswordResetEmail, isEmailConfigured } = await import('@zenith/email')
   const { getPlatformCredentials } =
     await import('@/lib/server/domains/platform-credentials/platform-credential.service')
   const { getAllAuthProviders, socialProviderConfig } = await import('./auth-providers')
@@ -860,7 +860,7 @@ async function createAuth() {
       // No UI yet — surfaced in user profile + sign-in challenge in
       // subsequent tasks.
       twoFactor({
-        issuer: 'Quackback',
+        issuer: 'Zenith',
         totpOptions: {
           period: 30,
           digits: 6,

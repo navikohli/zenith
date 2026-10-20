@@ -40,7 +40,7 @@ import {
   type TicketTypeEntity,
   type Transaction,
 } from '@/lib/server/db'
-import type { TicketTypeId } from '@quackback/ids'
+import type { TicketTypeId } from '@zenith/ids'
 import { TICKET_TYPES, type TicketType } from '@/lib/shared/db-types'
 import { ticketFormSchema, type TicketFormField, type TicketTypeDTO } from '@/lib/shared/tickets'
 import { TAXONOMY_DEFAULT_COLOR } from '@/lib/shared/schemas/taxonomy'

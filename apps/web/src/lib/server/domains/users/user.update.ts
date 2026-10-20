@@ -15,7 +15,7 @@
  */
 
 import { db, eq, and, sql, ne, isNull, principal, user } from '@/lib/server/db'
-import type { PrincipalId, UserId } from '@quackback/ids'
+import type { PrincipalId, UserId } from '@zenith/ids'
 import { ConflictError, NotFoundError, ValidationError } from '@/lib/shared/errors'
 import { acceptableContactEmail } from '@/lib/server/domains/principals/contact-email'
 import { realEmail } from '@/lib/shared/anonymous-email'

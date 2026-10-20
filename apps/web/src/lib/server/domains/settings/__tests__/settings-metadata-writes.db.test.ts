@@ -45,7 +45,7 @@ vi.mock('@/lib/server/cache', async (importOriginal) => ({
 // Same sanctioned direct client import as the db test fixture: this suite
 // builds its own connections rather than going through the global `db`.
 // oxlint-disable-next-line no-restricted-imports
-import { createDbFromSql } from '@quackback/db/client'
+import { createDbFromSql } from '@zenith/db/client'
 import { db, settings, sql } from '@/lib/server/db'
 import { CACHE_KEYS } from '@/lib/server/cache'
 import { getExecuteRows } from '@/lib/server/utils/execute-rows'

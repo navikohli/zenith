@@ -19,7 +19,7 @@ import { logger } from '@/lib/server/logger'
 const log = logger.child({ component: 'moderation' })
 import { db, posts, postComments, boards, sql } from '@/lib/server/db'
 import { notTestPrincipal } from '@/lib/server/test-data'
-import type { PostId, PostCommentId } from '@quackback/ids'
+import type { PostId, PostCommentId } from '@zenith/ids'
 import { requireAuth } from '@/lib/server/functions/auth-helpers'
 import { actorFromAuth } from '@/lib/server/audit/log'
 import { PERMISSIONS } from '@/lib/shared/permissions'

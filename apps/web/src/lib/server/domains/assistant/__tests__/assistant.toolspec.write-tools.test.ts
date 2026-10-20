@@ -470,7 +470,7 @@ describe('create_ticket', () => {
     expect(mockShareTicket).not.toHaveBeenCalled()
   })
 
-  it('drops the live ticket card into the chat as Quinn after linking a customer ticket', async () => {
+  it('drops the live ticket card into the chat as ZenithAssistant after linking a customer ticket', async () => {
     mockLinkTicketToConversation.mockResolvedValue(undefined)
     mockCreateTicket.mockResolvedValue({
       id: 'ticket_1',
@@ -585,7 +585,7 @@ describe('capture_feedback', () => {
         agentPrincipalId: 'principal_assistant',
         agent: expect.objectContaining({
           principalId: 'principal_assistant',
-          displayName: 'Quackback AI',
+          displayName: 'Zenith AI',
         }),
       })
     )
@@ -697,7 +697,7 @@ describe('share_post', () => {
         agentActor: expect.objectContaining({ principalType: 'service' }),
         agent: expect.objectContaining({
           principalId: 'principal_assistant',
-          displayName: 'Quackback AI',
+          displayName: 'Zenith AI',
         }),
       })
     )

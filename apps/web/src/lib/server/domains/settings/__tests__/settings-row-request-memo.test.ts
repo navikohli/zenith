@@ -69,7 +69,7 @@ vi.mock('@/lib/server/domains/platform-credentials/platform-credential.service',
   getConfiguredIntegrationTypes: vi.fn().mockResolvedValue(new Set()),
   getPlatformCredentials: vi.fn().mockResolvedValue(null),
 }))
-vi.mock('@quackback/email', () => ({ isEmailConfigured: vi.fn().mockReturnValue(false) }))
+vi.mock('@zenith/email', () => ({ isEmailConfigured: vi.fn().mockReturnValue(false) }))
 vi.mock('@/lib/server/auth/auth-providers', () => ({
   getAllAuthProviders: vi.fn().mockReturnValue([]),
 }))
@@ -106,7 +106,7 @@ function row(metadata: Record<string, unknown> | null = null) {
     slug: 'acme',
     setupState: COMPLETE_SETUP,
     metadata: metadata ? JSON.stringify(metadata) : null,
-    assistantConfig: { identity: { name: 'Quinn' } },
+    assistantConfig: { identity: { name: 'Zenith Assistant' } },
   }
 }
 
@@ -139,7 +139,7 @@ describe('the cached settings row within a request', () => {
       return requireSettingsCached()
     })
     expect(second.name).toBe('Acme')
-    expect(second.assistantConfig).toEqual({ identity: { name: 'Quinn' } })
+    expect(second.assistantConfig).toEqual({ identity: { name: 'Zenith Assistant' } })
   })
 
   it('stays a fresh read for a read-modify-write', async () => {
@@ -180,7 +180,7 @@ describe('the cached settings row across requests, in production', () => {
       ;(first.assistantConfig as { identity: { name: string } }).identity.name = 'mutated'
     })
     const next = await inRequest(() => requireSettingsCached())
-    expect(next.assistantConfig).toEqual({ identity: { name: 'Quinn' } })
+    expect(next.assistantConfig).toEqual({ identity: { name: 'Zenith Assistant' } })
     expect(mockFindFirst).toHaveBeenCalledTimes(1)
   })
 

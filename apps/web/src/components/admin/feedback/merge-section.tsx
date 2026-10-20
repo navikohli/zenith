@@ -31,7 +31,7 @@ import { findSimilarPostsFn, type SimilarPost } from '@/lib/server/functions/pub
 import { getMergedPostsFn } from '@/lib/server/functions/post-merge'
 import { mergeSuggestionQueries } from '@/lib/client/queries/signals'
 import { inboxKeys } from '@/lib/client/hooks/use-inbox-query'
-import type { PostId } from '@quackback/ids'
+import type { PostId } from '@zenith/ids'
 import type { MergedPostItem } from '@/lib/shared/types/inbox'
 
 // ============================================================================

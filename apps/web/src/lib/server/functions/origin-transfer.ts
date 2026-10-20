@@ -33,7 +33,7 @@ function responseCookies(response: Response): string[] {
  * Internal verify Request for a browser GET that arrived from another origin.
  *
  * Visit workspace is a control-plane POST that 302s here. The GET keeps
- * `Referer: https://app.quackback.io/…` and often a Cookie (CDN, prior
+ * `Referer: /source.html` and often a Cookie (CDN, prior
  * visit). Better Auth CSRF treats Referer as Origin when Origin is
  * absent, and refuses anything not on the workspace allowlist — so a
  * freshly minted OTT looks expired. Verify as this workspace instead.

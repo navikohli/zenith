@@ -1,5 +1,5 @@
 /**
- * Pending actions — a write-tool call Quinn proposed but has not executed,
+ * Pending actions — a write-tool call ZenithAssistant proposed but has not executed,
  * awaiting agent approval within a TTL. Every state change past `proposed` is
  * a conditional UPDATE guarded by the expected prior status (mirrors
  * assistant.involvement's recordOutcome at-most-one guard): two racing
@@ -24,10 +24,10 @@ import type {
   ConversationId,
   TicketId,
   PrincipalId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import type { Executor } from '@/lib/server/domains/principals/principal.factory'
 import { getAssistantPrincipal } from './assistant.principal'
-import { quinnActor } from './assistant.actor'
+import { zenithAssistantActor } from './assistant.actor'
 // Read-only reach into the tickets domain (an existing edge — see
 // assistant.runtime.ts's own comment on the same import) for the ticket-note
 // announcement path. Never edited as part of this task.
@@ -182,7 +182,7 @@ export async function getPendingActionByIdempotencyKey(
 
 /**
  * Announce a fresh proposal in the item's thread so the team sees it without
- * polling. Best-effort: a note failure (or Quinn not yet provisioned) must
+ * polling. Best-effort: a note failure (or ZenithAssistant not yet provisioned) must
  * never fail the proposal itself, since the pending action row is already the
  * source of truth an agent can act on from the approval queue.
  *
@@ -192,7 +192,7 @@ export async function getPendingActionByIdempotencyKey(
  * internal ticket note instead — there is no ticket-scoped approval-queue card
  * UI yet (see functions/assistant-actions.ts's `AssistantPendingActionDTO`
  * comment), so this only needs to make the proposal visible in the thread, not
- * render a card. Posted as Quinn (`quinnActor`), which needs `ticket.note` —
+ * render a card. Posted as ZenithAssistant (`zenithAssistantActor`), which needs `ticket.note` —
  * granted in `assistant.actor.ts`'s `ASSISTANT_PERMISSIONS` alongside its
  * other bounded ticket/conversation authority.
  */
@@ -212,7 +212,7 @@ async function surfacePendingActionNote(row: AssistantPendingAction): Promise<vo
       return
     }
     if (row.ticketId) {
-      await addTicketNote(quinnActor(assistant.id), {
+      await addTicketNote(zenithAssistantActor(assistant.id), {
         ticketId: row.ticketId,
         content: `Requested approval: ${row.summary}`,
       })
@@ -405,7 +405,7 @@ export async function expireStalePendingActions(
 
 /**
  * Sweep + announce: expire stale proposals, then drop a notice on each
- * affected item so nobody is left thinking Quinn is still waiting on a
+ * affected item so nobody is left thinking ZenithAssistant is still waiting on a
  * teammate. Called from the periodic sweep tick alongside the other assistant
  * sweeps (snooze-sweep-queue).
  *
@@ -414,7 +414,7 @@ export async function expireStalePendingActions(
  * failure there must not stop the rest of the batch). A ticket-scoped row
  * (unified inbox §3.3) gets a plain internal ticket note instead (there is no
  * customer side to notify uniformly — a back_office/tracker ticket has none
- * at all), posted as Quinn the same way `surfacePendingActionNote` does;
+ * at all), posted as ZenithAssistant the same way `surfacePendingActionNote` does;
  * wrapped in its own catch per row so one ticket's note failure never drops
  * the rest of the batch's announcements, mirroring the conversation branch's
  * own best-effort contract.
@@ -452,7 +452,7 @@ export async function sweepAndNotifyExpiredPendingActions(
     ),
     ...(assistant
       ? ticketExpired.map((row) =>
-          addTicketNote(quinnActor(assistant.id), {
+          addTicketNote(zenithAssistantActor(assistant.id), {
             ticketId: row.ticketId,
             content: 'This request timed out before a teammate could review it.',
           }).catch((err) => log.warn({ err, pendingActionId: row.id }, 'ticket expiry note failed'))

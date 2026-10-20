@@ -18,7 +18,7 @@ import {
   desc,
   principal as principalTable,
 } from '@/lib/server/db'
-import type { TicketId, PrincipalId } from '@quackback/ids'
+import type { TicketId, PrincipalId } from '@zenith/ids'
 import { logger } from '@/lib/server/logger'
 
 const log = logger.child({ component: 'ticket-activity' })

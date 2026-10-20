@@ -8,7 +8,7 @@ export type GoingLiveSheet = 'invite-team'
  * than a context, keeps the sheets' code out of every page that offers them:
  * the admin layout listens and loads a sheet on its first open.
  */
-export const OPEN_GOING_LIVE_EVENT = 'quackback:open-going-live'
+export const OPEN_GOING_LIVE_EVENT = 'zenith:open-going-live'
 
 export function openGoingLiveSheet(sheet: GoingLiveSheet): void {
   window.dispatchEvent(new CustomEvent(OPEN_GOING_LIVE_EVENT, { detail: sheet }))

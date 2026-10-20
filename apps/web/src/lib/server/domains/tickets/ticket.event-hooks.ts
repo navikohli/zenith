@@ -20,7 +20,7 @@
  * ticket is already open.
  */
 import type { EventData } from '@/lib/server/events/types'
-import type { ConversationId, PrincipalId } from '@quackback/ids'
+import type { ConversationId, PrincipalId } from '@zenith/ids'
 import { logger } from '@/lib/server/logger'
 import { autoReopenOnRequesterReply } from './ticket.service'
 import { resolvePairTicketIdForConversation } from './pair-thread.service'

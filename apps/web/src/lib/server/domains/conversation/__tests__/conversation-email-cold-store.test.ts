@@ -16,7 +16,7 @@
  * exercised it.
  */
 import { describe, it, expect, beforeEach, vi } from 'vitest'
-import type { ChannelAccountId, PrincipalId } from '@quackback/ids'
+import type { ChannelAccountId, PrincipalId } from '@zenith/ids'
 import { parseRawEmail, type ParsedInboundEmail } from '../conversation.email-inbound'
 
 /** Every row the store inserted, in order, keyed by nothing but its shape. */

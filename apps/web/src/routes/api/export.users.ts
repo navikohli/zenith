@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { escapeCSV } from '@/lib/server/utils/csv'
 import { logger } from '@/lib/server/logger'
-import type { SegmentId } from '@quackback/ids'
+import type { SegmentId } from '@zenith/ids'
 
 const log = logger.child({ component: 'export-users' })
 

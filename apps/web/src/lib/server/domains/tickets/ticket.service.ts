@@ -36,7 +36,7 @@ import {
   type ConversationPriority,
 } from '@/lib/server/db'
 import type { SQL } from 'drizzle-orm'
-import type { PrincipalId, TicketId, TicketStatusId } from '@quackback/ids'
+import type { PrincipalId, TicketId, TicketStatusId } from '@zenith/ids'
 import { can } from '@/lib/server/policy/authorize'
 import type { Actor } from '@/lib/server/policy/types'
 import { ticketFilter } from '@/lib/server/policy/tickets'

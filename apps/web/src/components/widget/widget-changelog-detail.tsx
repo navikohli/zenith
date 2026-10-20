@@ -8,7 +8,7 @@ import { appendWidgetOtt } from './build-portal-url'
 import { widgetQueryKeys, widgetQueryKeyEquals } from '@/lib/client/hooks/use-widget-vote'
 import { RichTextContent, isRichTextContent } from '@/components/ui/rich-text-content'
 import { EmbedHydration } from '@/components/shared/embed-hydration'
-import type { ChangelogId } from '@quackback/ids'
+import type { ChangelogId } from '@zenith/ids'
 import type { JSONContent } from '@tiptap/react'
 import { WidgetPortalTitle } from './widget-portal-title'
 import { sendToHost } from '@/lib/client/widget-bridge'
@@ -48,7 +48,7 @@ export function WidgetChangelogDetail({ entryId }: WidgetChangelogDetailProps) {
       isIdentified && canPortalHandoff,
       ott
     )
-    sendToHost({ type: 'quackback:navigate', url })
+    sendToHost({ type: 'zenith:navigate', url })
   }, [changelogEntryId, isIdentified, canPortalHandoff])
 
   if (isLoading) {

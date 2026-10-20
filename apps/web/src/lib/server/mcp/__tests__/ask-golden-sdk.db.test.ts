@@ -1,4 +1,4 @@
-import { createId } from '@quackback/ids'
+import { createId } from '@zenith/ids'
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest'
 import {
   settings,

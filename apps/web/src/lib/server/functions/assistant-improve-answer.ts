@@ -1,13 +1,13 @@
 /**
- * Improve-answer server fn: a teammate marks a Quinn answer unhelpful and
+ * Improve-answer server fn: a teammate marks a ZenithAssistant answer unhelpful and
  * attaches the ideal answer. One call appends the outcome event and persists
  * the correction as a retrievable snippet (domains/assistant/answer-correction.ts).
  * Gated on conversation.reply — the teammates who answer conversations are the
- * ones who review and correct Quinn's answers.
+ * ones who review and correct ZenithAssistant's answers.
  */
 import { z } from 'zod'
 import { createServerFn } from '@tanstack/react-start'
-import type { ConversationId, TicketId } from '@quackback/ids'
+import type { ConversationId, TicketId } from '@zenith/ids'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import { logger } from '@/lib/server/logger'
 import { requireAuth } from './auth-helpers'

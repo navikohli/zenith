@@ -1,5 +1,5 @@
 import { afterAll, afterEach, beforeEach, expect, it, vi } from 'vitest'
-import { createId, type PrincipalId } from '@quackback/ids'
+import { createId, type PrincipalId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import {
   principal,
@@ -38,8 +38,8 @@ vi.mock('@/lib/server/events/hook-context', () => ({
 vi.mock('@/lib/server/domains/settings/settings.support', () => ({
   isPortalSupportEnabled: async () => false,
 }))
-vi.mock('@quackback/email', async (original) => ({
-  ...(await original<typeof import('@quackback/email')>()),
+vi.mock('@zenith/email', async (original) => ({
+  ...(await original<typeof import('@zenith/email')>()),
   sendConversationMessageEmail: sendEmail,
 }))
 

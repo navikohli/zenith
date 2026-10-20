@@ -22,7 +22,7 @@ import { AnalyticsStatRow } from '@/components/admin/analytics/analytics-stat-ro
 import { helpCenterQueries } from '@/lib/client/queries/help-center'
 import { Route } from '@/routes/admin/help-center'
 import type { ArticlePerformanceRow } from '@/lib/server/domains/help-center/help-center.article-performance.query'
-import type { KbArticleId } from '@quackback/ids'
+import type { KbArticleId } from '@zenith/ids'
 
 /**
  * Share of an article's feedback votes that were "helpful", as a whole

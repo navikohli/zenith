@@ -155,13 +155,13 @@ describe('Widget Config Types', () => {
           routing: { enabled: true, strategy: 'auto_assign_active' },
         },
         {
-          name: 'Quinn',
+          name: 'Zenith Assistant',
           avatarUrl: null,
         }
       )
       expect(projected.assistant).toEqual({
         enabled: true,
-        name: 'Quinn',
+        name: 'Zenith Assistant',
         avatarUrl: null,
       })
       expect('routing' in projected).toBe(false)

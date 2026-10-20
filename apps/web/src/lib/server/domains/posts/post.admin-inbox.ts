@@ -3,7 +3,7 @@
  * count of each post on it: the duplicate badge its row shows. Counting with
  * the page saves the list a second request per page for its badges.
  */
-import type { PostId } from '@quackback/ids'
+import type { PostId } from '@zenith/ids'
 import { getMergeSuggestionCountsForPosts } from '@/lib/server/domains/merge-suggestions/merge-suggestion.service'
 import { listInboxPosts } from './post.inbox'
 

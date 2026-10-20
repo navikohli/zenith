@@ -5,7 +5,7 @@ import { XMarkIcon } from '@heroicons/react/24/solid'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { changelogCategoryQueries } from '@/lib/client/queries/changelog'
 import { cn } from '@/lib/shared/utils'
-import type { ChangelogCategoryId } from '@quackback/ids'
+import type { ChangelogCategoryId } from '@zenith/ids'
 
 interface ChangelogCategorySelectProps {
   value: ChangelogCategoryId[]

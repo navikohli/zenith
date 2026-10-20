@@ -7,7 +7,7 @@ import {
   type ConnectorToolPolicies,
 } from '@/lib/server/db'
 import type { Executor } from '@/lib/server/domains/principals/principal.factory'
-import type { ConnectorId, PrincipalId } from '@quackback/ids'
+import type { ConnectorId, PrincipalId } from '@zenith/ids'
 import { encrypt, decrypt } from '@/lib/server/encryption'
 import { ValidationError } from '@/lib/shared/errors'
 import { validationError } from '@/lib/server/domains/assistant/validation-error'

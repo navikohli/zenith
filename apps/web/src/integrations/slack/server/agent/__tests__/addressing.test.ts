@@ -41,7 +41,7 @@ it('enqueues subscribed lifecycle events the worker handles', () => {
       type: 'message',
       channel_type: 'channel',
       thread_ts: '1.2',
-      bot_profile: { name: 'Quinn' },
+      bot_profile: { name: 'Zenith Assistant' },
     })
   ).toBe(false)
 })

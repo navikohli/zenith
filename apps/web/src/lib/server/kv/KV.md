@@ -39,7 +39,7 @@ what it replaces; it is the same value, moved from a string prefix into a key
 column. On a single-workspace install it is `'_'`, exactly as every key used to be
 prefixed `t:_:`.
 
-Under `QUACKBACK_TENANCY=pooled` the row is _additionally_ in the workspace's own
+Under `ZENITH_TENANCY=pooled` the row is _additionally_ in the workspace's own
 database, so cross-workspace observation needs both barriers to fail at once.
 
 A key column is also strictly stronger than the prefix it replaces, for a reason

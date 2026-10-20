@@ -21,7 +21,7 @@ export type ChatFeature =
   | 'merge'
   | 'helpCenterAnswers'
   | 'helpCenterTranslate'
-  // The in-product AI agent (Quinn). No per-feature model override today: it
+  // The in-product AI agent (ZenithAssistant). No per-feature model override today: it
   // rides the chat role default so BYOK config stays one dial.
   | 'assistant'
   // Two-way inbox translation (P2-D.1): customer-language detection plus the

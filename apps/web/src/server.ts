@@ -19,7 +19,7 @@ assertBootConfigurationOrExit()
 // reaches the handler, the import cache is warm and the connection pools
 // are established. All probes are fire-and-forget; the actual query path
 // retries from cold if the warmup fails.
-if (process.env.QUACKBACK_BUILD !== '1') {
+if (process.env.ZENITH_BUILD !== '1') {
   Promise.all([
     import('@/lib/server/db').then(({ db, sql }) => db.execute(sql`SELECT 1`)),
     import('@/lib/server/auth/index'),

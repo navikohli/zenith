@@ -9,5 +9,5 @@ export const trelloCatalog: IntegrationCatalogEntry = {
   settingsPath: '/admin/settings/integrations/trello',
   available: true,
   configurable: true,
-  docsUrl: 'https://www.quackback.io/docs/integrations/trello',
+  docsUrl: '/source.html',
 }

@@ -12,7 +12,7 @@ import { describe, it, expect, afterEach, vi } from 'vitest'
 import { render, screen, cleanup, fireEvent, act, waitFor } from '@testing-library/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { IntlProvider } from 'react-intl'
-import type { PostId } from '@quackback/ids'
+import type { PostId } from '@zenith/ids'
 
 type OnChange = (json: unknown, html: string, markdown: string) => void
 type Doc = { json(): unknown; html(): string; markdown(): string }

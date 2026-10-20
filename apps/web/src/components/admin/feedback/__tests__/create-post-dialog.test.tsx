@@ -7,7 +7,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { IntlProvider } from 'react-intl'
-import { createId } from '@quackback/ids'
+import { createId } from '@zenith/ids'
 import { createPostSchema } from '@/lib/shared/schemas/posts'
 
 const mutate = vi.hoisted(() => vi.fn())

@@ -16,7 +16,7 @@ let saved: NodeJS.ProcessEnv
 beforeEach(() => {
   saved = { ...process.env }
   for (const key of [
-    'QUACKBACK_TENANCY',
+    'ZENITH_TENANCY',
     'POSTHOG_KEY',
     'POSTHOG_HOST',
     'POSTHOG_UI_HOST',
@@ -28,7 +28,7 @@ beforeEach(() => {
   Object.assign(process.env, {
     BASE_URL: 'https://app.example.com',
     SECRET_KEY: 'x'.repeat(48),
-    DATABASE_URL: 'postgresql://app@localhost:5432/quackback',
+    DATABASE_URL: 'postgresql://app@localhost:5432/zenith',
   })
 })
 

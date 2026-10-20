@@ -184,7 +184,7 @@ describe('console mode returns { sent: false }', () => {
   it('sendRawEmail drops a synthetic anonymous recipient', async () => {
     const result = await sendRawEmail({
       from: sendingAs('support@acme.com'),
-      to: 'temp-abc123@anon.quackback.io',
+      to: 'temp-abc123@anon.zenith.io',
       subject: 'x',
       html: '<p>x</p>',
     })

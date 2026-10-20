@@ -1,7 +1,7 @@
-import { isValidTypeId } from '@quackback/ids'
+import { isValidTypeId } from '@zenith/ids'
 
 /**
- * A parsed reference to an embeddable Quackback entity. Produced by
+ * A parsed reference to an embeddable Zenith entity. Produced by
  * {@link parseEmbedUrl} when a pasted/typed URL points at a feedback post,
  * a published changelog entry, or a help-center article; consumed by the
  * embed resolver/card.
@@ -22,7 +22,7 @@ export function isValidArticleSlug(id: string): boolean {
 //   - changelog: /changelog/<changelog-id>                     → TypeID (validated)
 //   - article:   /hc/articles/<category-slug>/<article-slug>   → slug (pattern-checked)
 //   - ticket:    /support/ticket/<ticket-id>                   → TypeID (validated)
-// Note the changelog prefix is `changelog_` (per @quackback/ids ID_PREFIXES), not `clog_`.
+// Note the changelog prefix is `changelog_` (per @zenith/ids ID_PREFIXES), not `clog_`.
 // Article public URLs are slug-based, not TypeID-based, so the captured group is
 // the article slug; validity is checked against the slug charset below.
 const POST_PATH = /^\/b\/[^/]+\/posts\/(post_[0-9a-z]+)$/i
@@ -49,7 +49,7 @@ export const ARTICLE_URL_PASTE_RE =
 export const TICKET_URL_PASTE_RE = /https?:\/\/[^\s]+\/support\/ticket\/(ticket_[0-9a-z]+)\b/gi
 
 /**
- * Parse a Quackback URL into a typed embed reference, or `null` when the URL
+ * Parse a Zenith URL into a typed embed reference, or `null` when the URL
  * is malformed, points elsewhere, or carries an id that isn't a valid TypeID
  * of the expected kind. Never throws — an unparseable string is just `null`.
  */

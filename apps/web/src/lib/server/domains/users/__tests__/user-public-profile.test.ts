@@ -11,7 +11,7 @@
  *  - the public payload carries NO email / company / segments / lastSeenAt.
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 import type { Actor } from '@/lib/server/policy/types'
 
 // --- Hoisted mock state ---
@@ -326,7 +326,7 @@ describe('getProfileTeamContext', () => {
         {
           principalId: PRINCIPAL_ID,
           userId: 'user_1',
-          email: 'temp-abc123@anon.quackback.io',
+          email: 'temp-abc123@anon.zenith.io',
           emailVerified: false,
           blockedAt: null,
           contactEmail: null,

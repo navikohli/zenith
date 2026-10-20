@@ -24,7 +24,7 @@ import {
   type WorkflowRun,
   type WorkflowRunState,
 } from '@/lib/server/db'
-import type { ConversationId, PrincipalId } from '@quackback/ids'
+import type { ConversationId, PrincipalId } from '@zenith/ids'
 import type { Actor } from '@/lib/server/policy/types'
 import { boundedServiceActor } from '@/lib/server/policy/service-actor'
 import { logger } from '@/lib/server/logger'
@@ -376,7 +376,7 @@ async function runPlanAndSettle(
   if (plan.status === 'waiting' && (plan.waitKind === 'input' || plan.waitKind === 'assistant')) {
     // Interactive block / let_assistant_answer park: no BullMQ timer for
     // either — resumed by event-trigger.ts on a matching structured reply
-    // ('input') or Quinn's own hand-off/close signal ('assistant'), never a
+    // ('input') or ZenithAssistant's own hand-off/close signal ('assistant'), never a
     // clock (see workflow-wait-queue.ts's WaitCursor doc for why the orphan
     // sweeper must never touch either of these). Only 'input' carries the
     // extra block-correlation fields; 'assistant' has nothing else to
@@ -384,7 +384,7 @@ async function runPlanAndSettle(
     const waitSeq = (readCursor(run).waitSeq ?? 0) + 1
     // Abandoned-journey auto-close (rides the sweeper's expiry pass,
     // workflow-sweep.ts): only an 'input' park is ever abandoned by the
-    // customer — an 'assistant' park ends via Quinn's own hand-off/close
+    // customer — an 'assistant' park ends via ZenithAssistant's own hand-off/close
     // signal, never customer silence, so it is never stamped with an
     // expiry regardless of this setting. Read once, only for an 'input'
     // park, so an 'assistant' park never pays for a settings lookup it
@@ -393,7 +393,7 @@ async function runPlanAndSettle(
       const autoClose = await getWorkflowAbandonedAutoCloseSettings()
       if (!autoClose.enabled) {
         // Assistant waits always get a default expiry so a declined/silent
-        // Quinn cannot hold the exclusive lock forever.
+        // ZenithAssistant cannot hold the exclusive lock forever.
         if (plan.waitKind === 'assistant') {
           return new Date(Date.now() + 10 * 60_000).toISOString()
         }
@@ -593,7 +593,7 @@ export async function resumeWorkflowRun(
  * still exactly the right behavior:
  *
  *  - `excludeWaitKind` — event-trigger.ts passes `'assistant'` ONLY on a
- *    VISITOR message.created: a multi-turn conversation with Quinn is normal,
+ *    VISITOR message.created: a multi-turn conversation with ZenithAssistant is normal,
  *    so a visitor's message must never end a parked let_assistant_answer
  *    wait. A teammate message passes no exclusion (a human taking over ends
  *    the assistant's turn same as everything else); neither does a close (see

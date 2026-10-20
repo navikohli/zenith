@@ -1,4 +1,4 @@
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 import type { ConversationStatus, ConversationEndReason } from '@/lib/shared/conversation/types'
 import type { ChannelReopenOnReply } from '@/lib/shared/channels'
 

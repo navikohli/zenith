@@ -39,8 +39,8 @@ import {
   postTags,
   helpCenterArticles,
   helpCenterCategories,
-} from '@quackback/db/schema'
-import { generateId, type PostId, type KbArticleId } from '@quackback/ids'
+} from '@zenith/db/schema'
+import { generateId, type PostId, type KbArticleId } from '@zenith/ids'
 import { getOpenAI } from '../src/lib/server/domains/ai/config'
 import { getChatModel, getEmbeddingModel } from '../src/lib/server/domains/ai/models'
 
@@ -615,7 +615,7 @@ async function backfillArticleEmbeddings(
 
 // Main
 async function main() {
-  console.log('🦆 Quackback AI Backfill\n')
+  console.log('🦆 Zenith AI Backfill\n')
   console.log('Configuration:')
   console.log(`  Mode: ${dryRun ? 'DRY RUN (no changes)' : 'LIVE'}`)
   // A phase runs only when its model is configured (central config, #206)

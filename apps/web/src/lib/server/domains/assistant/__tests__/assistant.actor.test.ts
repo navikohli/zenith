@@ -1,13 +1,13 @@
 import { describe, it, expect } from 'vitest'
-import { quinnActor, ASSISTANT_PERMISSIONS } from '../assistant.actor'
+import { zenithAssistantActor, ASSISTANT_PERMISSIONS } from '../assistant.actor'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import { can } from '@/lib/server/policy/authorize'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 
 describe('assistant.actor', () => {
-  it('quinnActor returns a service actor with given principalId', () => {
+  it('zenithAssistantActor returns a service actor with given principalId', () => {
     const principalId = 'principal_xyz123' as PrincipalId
-    const actor = quinnActor(principalId)
+    const actor = zenithAssistantActor(principalId)
 
     expect(actor.principalId).toBe(principalId)
     expect(actor.principalType).toBe('service')
@@ -15,18 +15,18 @@ describe('assistant.actor', () => {
     expect(actor.segmentIds.size).toBe(0)
   })
 
-  it('quinnActor has explicit permissions set (no role fallback)', () => {
+  it('zenithAssistantActor has explicit permissions set (no role fallback)', () => {
     const principalId = 'principal_xyz123' as PrincipalId
-    const actor = quinnActor(principalId)
+    const actor = zenithAssistantActor(principalId)
 
     // Explicitly set, not undefined (ensures can() uses the set, not role fallback)
     expect(actor.permissions).toBeDefined()
     expect(actor.permissions).toEqual(new Set(ASSISTANT_PERMISSIONS))
   })
 
-  it('quinnActor can view and reply to conversations, publish team-only action notices, and record attributes', () => {
+  it('zenithAssistantActor can view and reply to conversations, publish team-only action notices, and record attributes', () => {
     const principalId = 'principal_xyz123' as PrincipalId
-    const actor = quinnActor(principalId)
+    const actor = zenithAssistantActor(principalId)
 
     expect(can(actor, PERMISSIONS.CONVERSATION_VIEW)).toBe(true)
     expect(can(actor, PERMISSIONS.CONVERSATION_VIEW_ALL)).toBe(true)
@@ -51,9 +51,9 @@ describe('assistant.actor', () => {
     )
   })
 
-  it('quinnActor cannot perform operations outside the permission set', () => {
+  it('zenithAssistantActor cannot perform operations outside the permission set', () => {
     const principalId = 'principal_xyz123' as PrincipalId
-    const actor = quinnActor(principalId)
+    const actor = zenithAssistantActor(principalId)
 
     // Permissions outside the assistant boundary: workflow state and
     // customer-visible publishing stay teammate-approved.

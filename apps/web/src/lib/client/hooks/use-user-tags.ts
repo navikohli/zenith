@@ -6,7 +6,7 @@
  * People-list tag filter matches) and the per-principal tag query.
  */
 import { queryOptions, useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import type { PrincipalId, UserTagId } from '@quackback/ids'
+import type { PrincipalId, UserTagId } from '@zenith/ids'
 import {
   listUserTagsFn,
   listUserTagsForPrincipalFn,

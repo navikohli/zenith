@@ -41,7 +41,7 @@ import { getWidgetAuthHeaders } from '@/lib/client/widget-auth'
 import { cn } from '@/lib/shared/utils'
 import { useWidgetAuth } from './widget-auth-provider'
 import { sendToHost } from '@/lib/client/widget-bridge'
-import type { PostId } from '@quackback/ids'
+import type { PostId } from '@zenith/ids'
 import {
   LazyRichTextEditor,
   RichTextEditorPlaceholder,
@@ -688,7 +688,7 @@ export function WidgetHomeAnimated({
       if (!hmacRequired && onPostSelect) {
         onPostSelect(postId)
       } else {
-        sendToHost({ type: 'quackback:navigate', url: `${window.location.origin}/auth/login` })
+        sendToHost({ type: 'zenith:navigate', url: `${window.location.origin}/auth/login` })
       }
     },
     [hmacRequired, onPostSelect]
@@ -745,7 +745,7 @@ export function WidgetHomeAnimated({
           // Anonymous visitor on a members-only board: identity comes from the
           // host app's SSO identify or a portal sign-in, never inline email
           // capture (GH issue #300).
-          sendToHost({ type: 'quackback:navigate', url: `${window.location.origin}/auth/login` })
+          sendToHost({ type: 'zenith:navigate', url: `${window.location.origin}/auth/login` })
           setIsSubmitting(false)
           return
         }
@@ -960,7 +960,7 @@ export function WidgetHomeAnimated({
                           images: true,
                           videos: true,
                           embeds: true,
-                          quackbackEmbeds: true,
+                          zenithEmbeds: true,
                           bubbleMenu: true,
                           slashMenu: true,
                         }}

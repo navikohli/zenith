@@ -13,7 +13,7 @@ describe('assumedResolutionEligible', () => {
     expect(assumedResolutionEligible(base)).toBe(true)
   })
 
-  it('never counts when Quinn only greeted (no real answer)', () => {
+  it('never counts when ZenithAssistant only greeted (no real answer)', () => {
     expect(assumedResolutionEligible({ ...base, gaveRealAnswer: false })).toBe(false)
   })
 

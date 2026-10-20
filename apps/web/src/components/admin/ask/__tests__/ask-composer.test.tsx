@@ -25,7 +25,7 @@ function mount(overrides: Partial<AskComposerProps> = {}) {
 describe('the separate search palette', () => {
   it('focuses the accessible search input when mounted', () => {
     mount()
-    expect(document.activeElement).toBe(screen.getByRole('combobox', { name: 'Search Quackback' }))
+    expect(document.activeElement).toBe(screen.getByRole('combobox', { name: 'Search Zenith' }))
   })
 
   it('shows local Jump to results while entity search is loading', () => {

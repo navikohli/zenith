@@ -10,7 +10,7 @@ import { parseTypeId } from '@/lib/server/domains/api/validation'
 import { serviceActorFromApiAuth } from '@/lib/server/domains/api/service-actor'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import type { z as zType } from 'zod'
-import type { ConversationId, ConversationTagId } from '@quackback/ids'
+import type { ConversationId, ConversationTagId } from '@zenith/ids'
 
 const tagSchema = z.object({
   tagId: z.string().min(1),

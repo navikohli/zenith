@@ -1,5 +1,5 @@
 import { describe, expect, it, vi, beforeEach } from 'vitest'
-import { generateId } from '@quackback/ids'
+import { generateId } from '@zenith/ids'
 import { NotFoundError } from '@/lib/shared/errors'
 
 const mockGetPublicChangelogById = vi.fn()

@@ -25,7 +25,7 @@ it('counts each time the host shows the frame', () => {
 
 it('ignores other messages and other windows', () => {
   const { result } = renderHook(() => useHostVisibleCount())
-  send({ type: 'quackback:open' }, window.parent)
+  send({ type: 'zenith:open' }, window.parent)
   send({ type: HOST_VISIBLE_MESSAGE }, null)
   send(null, window.parent)
   expect(result.current).toBe(0)

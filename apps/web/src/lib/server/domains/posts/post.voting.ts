@@ -16,7 +16,7 @@ import {
   eq,
   and,
 } from '@/lib/server/db'
-import { createId, fromUuid, toUuid, type PostId, type PrincipalId } from '@quackback/ids'
+import { createId, fromUuid, toUuid, type PostId, type PrincipalId } from '@zenith/ids'
 import { relatedPostIdsSql } from './post.merge-ids'
 import { getExecuteRows } from '@/lib/server/utils'
 import { NotFoundError } from '@/lib/shared/errors'

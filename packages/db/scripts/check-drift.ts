@@ -89,7 +89,7 @@ const { pushSchema } = await import('drizzle-kit/api')
 
 const ADMIN_URL =
   process.env.DRIFT_CHECK_DATABASE_URL ?? 'postgresql://postgres:password@localhost:5432/postgres'
-const SCRATCH_DB = 'quackback_drift_check'
+const SCRATCH_DB = 'zenith_drift_check'
 
 /**
  * DDL that the raw SQL migrations own on purpose and the TS schema cannot

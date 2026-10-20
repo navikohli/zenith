@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import type { ConversationMessageId } from '@quackback/ids'
+import type { ConversationMessageId } from '@zenith/ids'
 import type { AgentConversationMessageDTO } from '@/lib/shared/conversation/types'
 import { buildAdminConversationRows } from '../admin-conversation-rows'
 

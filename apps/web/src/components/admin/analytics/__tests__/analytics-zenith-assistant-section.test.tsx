@@ -1,6 +1,6 @@
 // @vitest-environment happy-dom
 /**
- * The Quinn section reads its headline figures, outcome bar, actions and
+ * The ZenithAssistant section reads its headline figures, outcome bar, actions and
  * Copilot rows from the same server results, over the one range the page's
  * period names.
  */
@@ -9,19 +9,19 @@ import type { ReactElement } from 'react'
 import { cleanup, render, screen, within } from '@testing-library/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
-const hoisted = vi.hoisted(() => ({ quinn: vi.fn(), tools: vi.fn(), copilot: vi.fn() }))
+const hoisted = vi.hoisted(() => ({ zenithAssistant: vi.fn(), tools: vi.fn(), copilot: vi.fn() }))
 
 vi.mock('@/lib/server/functions/assistant-analytics', () => ({
-  getQuinnPerformanceFn: hoisted.quinn,
+  getZenithAssistantPerformanceFn: hoisted.zenithAssistant,
 }))
 vi.mock('@/lib/server/functions/assistant-tools-analytics', () => ({
-  getQuinnToolMetricsFn: hoisted.tools,
+  getZenithAssistantToolMetricsFn: hoisted.tools,
 }))
 vi.mock('@/lib/server/functions/assistant-copilot-analytics', () => ({
   getCopilotUsageMetricsFn: hoisted.copilot,
 }))
 
-import { AnalyticsQuinnSection } from '../analytics-quinn-section'
+import { AnalyticsZenithAssistantSection } from '../analytics-zenith-assistant-section'
 
 afterEach(() => {
   cleanup()
@@ -35,7 +35,7 @@ function renderSection(ui: ReactElement) {
   return render(<QueryClientProvider client={queryClient}>{ui}</QueryClientProvider>)
 }
 
-const QUINN = {
+const ZENITH_ASSISTANT = {
   involvements: 40,
   conversations: 100,
   involvementRate: 40,
@@ -67,13 +67,13 @@ const COPILOT = {
   totalInserted: 13,
 }
 
-describe('AnalyticsQuinnSection', () => {
-  it('shows the headline figures from the Quinn performance result', async () => {
-    hoisted.quinn.mockResolvedValue(QUINN)
+describe('AnalyticsZenithAssistantSection', () => {
+  it('shows the headline figures from the ZenithAssistant performance result', async () => {
+    hoisted.zenithAssistant.mockResolvedValue(ZENITH_ASSISTANT)
     hoisted.tools.mockResolvedValue(TOOLS)
     hoisted.copilot.mockResolvedValue(COPILOT)
     const { container } = renderSection(
-      <AnalyticsQuinnSection range={RANGE} periodLabel="Last 30 days" />
+      <AnalyticsZenithAssistantSection range={RANGE} periodLabel="Last 30 days" />
     )
     await screen.findByText('Conversations involved')
     // The headline row is the first card; "Escalated" also labels an outcome below it.
@@ -93,10 +93,10 @@ describe('AnalyticsQuinnSection', () => {
   })
 
   it('draws the outcome bar from the same counts as the headline', async () => {
-    hoisted.quinn.mockResolvedValue(QUINN)
+    hoisted.zenithAssistant.mockResolvedValue(ZENITH_ASSISTANT)
     hoisted.tools.mockResolvedValue([])
     hoisted.copilot.mockResolvedValue(COPILOT)
-    renderSection(<AnalyticsQuinnSection range={RANGE} periodLabel="Last 30 days" />)
+    renderSection(<AnalyticsZenithAssistantSection range={RANGE} periodLabel="Last 30 days" />)
 
     const outcomes = (await screen.findByText('Outcomes')).closest('[data-slot="card"]')!
     const legend = (label: string) =>
@@ -109,10 +109,10 @@ describe('AnalyticsQuinnSection', () => {
   })
 
   it('lists system errors in the outcomes only when there were some', async () => {
-    hoisted.quinn.mockResolvedValue({ ...QUINN, systemErrors: 3, pending: 7 })
+    hoisted.zenithAssistant.mockResolvedValue({ ...ZENITH_ASSISTANT, systemErrors: 3, pending: 7 })
     hoisted.tools.mockResolvedValue([])
     hoisted.copilot.mockResolvedValue(COPILOT)
-    renderSection(<AnalyticsQuinnSection range={RANGE} periodLabel="Last 30 days" />)
+    renderSection(<AnalyticsZenithAssistantSection range={RANGE} periodLabel="Last 30 days" />)
     const outcomes = (await screen.findByText('Outcomes')).closest('[data-slot="card"]')!
     expect(
       within(outcomes as HTMLElement).getByText('System errors').parentElement!.textContent
@@ -120,10 +120,10 @@ describe('AnalyticsQuinnSection', () => {
   })
 
   it('tables the actions per tool and the Copilot activity under the period label', async () => {
-    hoisted.quinn.mockResolvedValue(QUINN)
+    hoisted.zenithAssistant.mockResolvedValue(ZENITH_ASSISTANT)
     hoisted.tools.mockResolvedValue(TOOLS)
     hoisted.copilot.mockResolvedValue(COPILOT)
-    renderSection(<AnalyticsQuinnSection range={RANGE} periodLabel="Last 7 days" />)
+    renderSection(<AnalyticsZenithAssistantSection range={RANGE} periodLabel="Last 7 days" />)
 
     const ticketRow = (await screen.findByText('Create a ticket')).closest('tr')!
     // attempted = succeeded + failed + denied
@@ -144,20 +144,20 @@ describe('AnalyticsQuinnSection', () => {
   })
 
   it('asks every server function for the one range', async () => {
-    hoisted.quinn.mockResolvedValue(QUINN)
+    hoisted.zenithAssistant.mockResolvedValue(ZENITH_ASSISTANT)
     hoisted.tools.mockResolvedValue(TOOLS)
     hoisted.copilot.mockResolvedValue(COPILOT)
-    renderSection(<AnalyticsQuinnSection range={RANGE} periodLabel="Last 30 days" />)
+    renderSection(<AnalyticsZenithAssistantSection range={RANGE} periodLabel="Last 30 days" />)
     await screen.findByText('Create a ticket')
-    for (const fn of [hoisted.quinn, hoisted.tools, hoisted.copilot]) {
+    for (const fn of [hoisted.zenithAssistant, hoisted.tools, hoisted.copilot]) {
       expect(fn).toHaveBeenCalledTimes(1)
       expect(fn.mock.calls[0][0]).toEqual({ data: RANGE })
     }
   })
 
-  it('says so when Quinn handled nothing, and still shows the other cards', async () => {
-    hoisted.quinn.mockResolvedValue({
-      ...QUINN,
+  it('says so when ZenithAssistant handled nothing, and still shows the other cards', async () => {
+    hoisted.zenithAssistant.mockResolvedValue({
+      ...ZENITH_ASSISTANT,
       involvements: 0,
       resolvedConfirmed: 0,
       resolvedAssumed: 0,
@@ -167,7 +167,7 @@ describe('AnalyticsQuinnSection', () => {
     })
     hoisted.tools.mockResolvedValue([])
     hoisted.copilot.mockResolvedValue(COPILOT)
-    renderSection(<AnalyticsQuinnSection range={RANGE} periodLabel="Last 30 days" />)
+    renderSection(<AnalyticsZenithAssistantSection range={RANGE} periodLabel="Last 30 days" />)
     expect(
       await screen.findByText("The AI agent hasn't handled any conversations this period")
     ).toBeInTheDocument()
@@ -177,10 +177,10 @@ describe('AnalyticsQuinnSection', () => {
   })
 
   it('reads a missing CSAT as a hyphen', async () => {
-    hoisted.quinn.mockResolvedValue({ ...QUINN, csat: { avgRating: 0, responseCount: 0 } })
+    hoisted.zenithAssistant.mockResolvedValue({ ...ZENITH_ASSISTANT, csat: { avgRating: 0, responseCount: 0 } })
     hoisted.tools.mockResolvedValue([])
     hoisted.copilot.mockResolvedValue(COPILOT)
-    renderSection(<AnalyticsQuinnSection range={RANGE} periodLabel="Last 30 days" />)
+    renderSection(<AnalyticsZenithAssistantSection range={RANGE} periodLabel="Last 30 days" />)
     const csat = (await screen.findByText('AI CSAT')).parentElement!
     expect(within(csat).getByText('-')).toBeInTheDocument()
   })

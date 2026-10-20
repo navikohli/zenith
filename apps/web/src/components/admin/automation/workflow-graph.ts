@@ -301,7 +301,7 @@ export const CONDITION_FIELD_META: Record<ConditionField, ConditionFieldMeta> = 
   'conversation.status': {
     label: 'Conversation status',
     kind: 'choice',
-    // Mirrors CONVERSATION_STATUSES in @quackback/db/types.
+    // Mirrors CONVERSATION_STATUSES in @zenith/db/types.
     options: [
       { value: 'open', label: 'Open' },
       { value: 'snoozed', label: 'Snoozed' },

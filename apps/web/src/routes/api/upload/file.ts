@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import type { UserId } from '@quackback/ids'
+import type { UserId } from '@zenith/ids'
 import { auth } from '@/lib/server/auth'
 import { toSessionScope } from '@/lib/shared/roles'
 import { db, eq, principal } from '@/lib/server/db'

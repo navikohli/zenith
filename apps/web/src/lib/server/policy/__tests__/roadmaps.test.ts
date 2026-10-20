@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { createId, type PrincipalId, type SegmentId } from '@quackback/ids'
+import { createId, type PrincipalId, type SegmentId } from '@zenith/ids'
 import { ANONYMOUS_ACTOR, type Actor } from '../types'
 import { canViewRoadmap } from '../roadmaps'
 

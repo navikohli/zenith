@@ -9,7 +9,7 @@ import type {
   OAuthClientInformationMixed,
   OAuthTokens,
 } from '@modelcontextprotocol/sdk/shared/auth.js'
-import type { ConnectorId } from '@quackback/ids'
+import type { ConnectorId } from '@zenith/ids'
 import { eq } from 'drizzle-orm'
 import { db as defaultDb, connectors } from '@/lib/server/db'
 import { encrypt, decrypt } from '@/lib/server/encryption'
@@ -92,7 +92,7 @@ export function createConnectorOAuthProvider(
     },
     get clientMetadata() {
       return {
-        client_name: 'Quackback',
+        client_name: 'Zenith',
         redirect_uris: [callback],
         grant_types: ['authorization_code', 'refresh_token'],
         response_types: ['code'],

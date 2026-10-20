@@ -6,7 +6,7 @@
  */
 
 import { db, eq, and, sql, postComments, posts, principal } from '@/lib/server/db'
-import { type PostCommentId, type PostId, type PrincipalId } from '@quackback/ids'
+import { type PostCommentId, type PostId, type PrincipalId } from '@zenith/ids'
 import { NotFoundError, ValidationError, ForbiddenError } from '@/lib/shared/errors'
 import { isTeamMember, Role } from '@/lib/shared/roles'
 import { createActivity } from '@/lib/server/domains/activity/activity.service'

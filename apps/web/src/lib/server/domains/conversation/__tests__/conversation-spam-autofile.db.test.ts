@@ -8,10 +8,10 @@
  * is real.
  */
 import { describe, it, expect, beforeEach, afterEach, afterAll, vi } from 'vitest'
-import { createId, type PrincipalId, type TeamId, type UserId } from '@quackback/ids'
+import { createId, type PrincipalId, type TeamId, type UserId } from '@zenith/ids'
 import type { Actor } from '@/lib/server/policy/types'
 
-process.env.BASE_URL = 'https://quackback.test'
+process.env.BASE_URL = 'https://zenith.test'
 process.env.SECRET_KEY ||= 'x'.repeat(32)
 
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
@@ -112,7 +112,7 @@ async function seedWorkspace(trustedSenders: string[] = []): Promise<void> {
     owningTeamId: team.id as TeamId,
     role: 'inbound',
     channel: 'email',
-    address: 'support@quackback.io',
+    address: 'support@zenith.io',
     inboundTrust: 'strict',
   })
   // Exactly one settings row inside the rolled-back transaction, so
@@ -147,7 +147,7 @@ function agentActor(): Actor {
 }
 
 const coldEmail = (over: Partial<ParsedInboundEmail> = {}): ParsedInboundEmail => ({
-  toAddresses: ['support@quackback.io'],
+  toAddresses: ['support@zenith.io'],
   ccAddresses: [],
   replyToAddresses: [],
   from: 'customer@acme.com',
@@ -161,7 +161,7 @@ const coldEmail = (over: Partial<ParsedInboundEmail> = {}): ParsedInboundEmail =
   autoResponseSuppress: null,
   precedence: null,
   hasListHeaders: false,
-  authenticationResults: 'mx.quackback.io; spf=pass; dmarc=pass (p=reject) header.from=acme.com',
+  authenticationResults: 'mx.zenith.io; spf=pass; dmarc=pass (p=reject) header.from=acme.com',
   ...over,
 })
 
@@ -318,7 +318,7 @@ describe.skipIf(!fixture.available)('inbound auto-spam filter (real DB, rolled b
       coldEmail({
         from: 'spoofer@lookalike.example',
         authenticationResults:
-          'mx.quackback.io; spf=fail; dmarc=fail (p=none) header.from=lookalike.example',
+          'mx.zenith.io; spf=fail; dmarc=fail (p=none) header.from=lookalike.example',
       })
     )
     expect(res.status).toBe('ingested')
@@ -388,7 +388,7 @@ describe.skipIf(!fixture.available)('inbound auto-spam filter (real DB, rolled b
     const res = await ingestParsedEmail(
       coldEmail({
         from: 'spoofer@acme.com',
-        authenticationResults: 'mx.quackback.io; dmarc=fail (p=reject) header.from=acme.com',
+        authenticationResults: 'mx.zenith.io; dmarc=fail (p=reject) header.from=acme.com',
       })
     )
 

@@ -19,7 +19,7 @@
  * minted by the app (an identified widget visitor, an anonymous visitor)
  * rather than by anyone signing in here.
  */
-import type { UserId } from '@quackback/ids'
+import type { UserId } from '@zenith/ids'
 import { getRequestSession } from '@/lib/server/auth/request-session'
 import { RECENT_SIGN_IN_WINDOW_MS, RecentSignInRequiredError } from '@/lib/shared/recent-sign-in'
 import { toSessionScope } from '@/lib/shared/roles'

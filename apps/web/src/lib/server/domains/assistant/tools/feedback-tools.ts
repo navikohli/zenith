@@ -181,7 +181,7 @@ export async function executeFeedbackStats(
     )
     .groupBy(groupId, group)
   // Post IDs from raw aggregates are UUIDs; preserve the app's TypeID contract.
-  const { fromUuid } = await import('@quackback/ids')
+  const { fromUuid } = await import('@zenith/ids')
   const groups = rows.map((row) => {
     const id = fromUuid('post', row.postId)
     const url = `${getBaseUrl()}/admin/feedback?post=${id}`

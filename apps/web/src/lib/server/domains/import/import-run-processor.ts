@@ -6,7 +6,7 @@
  * unit-testable without the job queue: the queue's job handler is a thin call into
  * `runImportCommitJob`.
  */
-import type { ImportRunId } from '@quackback/ids'
+import type { ImportRunId } from '@zenith/ids'
 import type { ImportRunSource } from '@/lib/server/db'
 import type { ImportInput } from './types'
 import { processImport } from './import-service'

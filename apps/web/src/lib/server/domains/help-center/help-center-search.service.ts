@@ -53,7 +53,7 @@ export const KEYWORD_RANK_FLOOR = 0.3
  * article, so as a query term it is pure noise that inflates the keyword score
  * of unrelated articles. Dropped before building the tsquery.
  */
-const CORPUS_STOPWORDS = new Set(['quackback'])
+const CORPUS_STOPWORDS = new Set(['zenith'])
 
 /**
  * Build an OR-of-terms tsquery. websearch_to_tsquery ANDs every term by default,

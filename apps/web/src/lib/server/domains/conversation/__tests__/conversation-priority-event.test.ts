@@ -5,7 +5,7 @@
  * nothing. The event is internal-only: the visitor channel never sees it.
  */
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import type { PrincipalId, ConversationId } from '@quackback/ids'
+import type { PrincipalId, ConversationId } from '@zenith/ids'
 import type { Actor } from '@/lib/server/policy/types'
 
 const publishConversationUpdate = vi.fn()

@@ -24,7 +24,7 @@ const githubHeaders = (accessToken: string) => ({
   Authorization: `Bearer ${accessToken}`,
   Accept: 'application/vnd.github+json',
   'Content-Type': 'application/json',
-  'User-Agent': 'quackback',
+  'User-Agent': 'zenith',
   'X-GitHub-Api-Version': '2022-11-28',
 })
 

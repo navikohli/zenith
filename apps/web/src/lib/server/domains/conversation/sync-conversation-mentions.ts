@@ -20,12 +20,12 @@
  */
 
 // Per .oxlintrc.json — app files import schema via @/lib/server/db, never
-// directly from @quackback/db.
+// directly from @zenith/db.
 import { db, conversationMessageMentions, principal, and, eq, inArray } from '@/lib/server/db'
 import { dispatchConversationNoteMentioned } from '@/lib/server/events/dispatch'
 import type { EventActor } from '@/lib/server/events/types'
 import { truncate } from '@/lib/shared/utils/string'
-import type { ConversationMessageId, ConversationId, PrincipalId } from '@quackback/ids'
+import type { ConversationMessageId, ConversationId, PrincipalId } from '@zenith/ids'
 import { logger } from '@/lib/server/logger'
 
 const log = logger.child({ component: 'conversation-mentions' })

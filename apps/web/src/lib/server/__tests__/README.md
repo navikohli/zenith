@@ -42,8 +42,8 @@ describe.skipIf(!fixture.available)('my flow', () => {
 ```
 
 Setup: the test DB must be migrated. CI already runs `bun run db:migrate`
-against `quackback_test`; locally, after adding migrations run
-`DATABASE_URL=postgresql://postgres:password@localhost:5432/quackback_test bun run db:migrate`.
+against `zenith_test`; locally, after adding migrations run
+`DATABASE_URL=postgresql://postgres:password@localhost:5432/zenith_test bun run db:migrate`.
 Availability/skip semantics follow `policy/__tests__/board-view-filter-parity.test.ts`
 (probe `DATABASE_URL`, fall back to the dev DB, skip when neither works — safe
 because every write rolls back). One fixture per file; no `it.concurrent`.

@@ -3,7 +3,7 @@
  * duration walker the SLA clocks run on. The workspace schedule itself lives in
  * the settings blob (settings.office-hours.ts, the canonical source every
  * consumer — Messenger reply-expectations, the workflows office-hours
- * condition, Quinn handover, SLA clocks — reads); this module adapts that
+ * condition, ZenithAssistant handover, SLA clocks — reads); this module adapts that
  * schedule to the engine shape and does the math. An empty schedule is 24/7.
  * Holidays (calendar dates the office is fully closed) ride the same engine
  * shape: the walker skips a holiday's schedule-local date like any other
@@ -17,10 +17,10 @@ import {
   type OfficeHoursSchedule,
   type OfficeHoursInterval,
 } from '@/lib/server/db'
-import type { OfficeHoursId } from '@quackback/ids'
+import type { OfficeHoursId } from '@zenith/ids'
 import { logger } from '@/lib/server/logger'
 // The DST-safe timezone primitives live in one place (shared with Messenger /
-// Quinn / the settings resolver) so office-hours math can never drift.
+// ZenithAssistant / the settings resolver) so office-hours math can never drift.
 import {
   zonedParts,
   zonedWallClockToUtc,

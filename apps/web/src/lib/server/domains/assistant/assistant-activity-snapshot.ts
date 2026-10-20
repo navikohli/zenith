@@ -1,5 +1,5 @@
 /**
- * Ephemeral snapshot of Quinn's live activity trace, held in the Postgres KV
+ * Ephemeral snapshot of ZenithAssistant's live activity trace, held in the Postgres KV
  * cache.
  *
  * The widget's working trace ("Thinking...", "Searching the knowledge
@@ -16,7 +16,7 @@
  * never fail the turn or the stream.
  */
 import { cacheGet, cacheSet, cacheDel } from '@/lib/server/cache'
-import type { ConversationId } from '@quackback/ids'
+import type { ConversationId } from '@zenith/ids'
 
 /** Comfortably longer than the gap between activity publishes in a live turn;
  *  refreshed on every write, so this only bounds how long a crashed turn's

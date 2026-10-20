@@ -1,7 +1,7 @@
 /**
  * `handleProfileRefreshAfter`: keep an account's name and avatar in step with
  * its identity provider after an OIDC callback, without ever overwriting what a
- * person chose in Quackback.
+ * person chose in Zenith.
  *
  *  - An empty avatar is filled from the provider's avatar, for every provider.
  *    Better-Auth writes `image` only when it CREATES the user, and

@@ -43,7 +43,7 @@ export default defineConfig({
     env: {
       DATABASE_URL:
         process.env.TEST_DATABASE_URL ??
-        'postgresql://postgres:password@localhost:5432/quackback_test',
+        'postgresql://postgres:password@localhost:5432/zenith_test',
     },
     deps: {
       optimizer: {
@@ -61,20 +61,20 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@quackback/db/client': path.resolve(__dirname, './packages/db/src/client.ts'),
-      '@quackback/db/schema-version': path.resolve(
+      '@zenith/db/client': path.resolve(__dirname, './packages/db/src/client.ts'),
+      '@zenith/db/schema-version': path.resolve(
         __dirname,
         './packages/db/src/schema-version.ts'
       ),
-      '@quackback/db/schema-ops': path.resolve(__dirname, './packages/db/src/schema-ops.ts'),
-      '@quackback/db/migrate': path.resolve(__dirname, './packages/db/src/migrate-runtime.ts'),
-      '@quackback/db/schema': path.resolve(__dirname, './packages/db/src/schema/index.ts'),
-      '@quackback/db/types': path.resolve(__dirname, './packages/db/src/types.ts'),
-      '@quackback/db/email/personal-email-domains': path.resolve(
+      '@zenith/db/schema-ops': path.resolve(__dirname, './packages/db/src/schema-ops.ts'),
+      '@zenith/db/migrate': path.resolve(__dirname, './packages/db/src/migrate-runtime.ts'),
+      '@zenith/db/schema': path.resolve(__dirname, './packages/db/src/schema/index.ts'),
+      '@zenith/db/types': path.resolve(__dirname, './packages/db/src/types.ts'),
+      '@zenith/db/email/personal-email-domains': path.resolve(
         __dirname,
         './packages/db/src/email/personal-email-domains.ts'
       ),
-      '@quackback/db': path.resolve(__dirname, './packages/db/index.ts'),
+      '@zenith/db': path.resolve(__dirname, './packages/db/index.ts'),
       // Path alias for apps/web (matches tsconfig.json baseUrl: "./src" + "@/*": ["./*"])
       '@': path.resolve(__dirname, './apps/web/src'),
     },

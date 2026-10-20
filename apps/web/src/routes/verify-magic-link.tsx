@@ -82,7 +82,7 @@ function InvitationVerifyPage({
   useEffect(() => {
     getInviteBrandingFn({ data: invitationId })
       .then(setBranding)
-      .catch(() => setBranding({ workspaceName: 'Quackback', logoUrl: null, inviterName: null }))
+      .catch(() => setBranding({ workspaceName: 'Zenith', logoUrl: null, inviterName: null }))
   }, [invitationId])
 
   function handleAccept() {
@@ -241,7 +241,7 @@ function PageShell({ children }: { children: React.ReactNode }) {
       <div className="relative w-full max-w-md py-12">
         <div className="mb-8 flex items-center justify-center gap-2">
           <img src="/logo.png" alt="" className="h-6 w-6 rounded" />
-          <span className="text-sm font-medium text-muted-foreground">Quackback</span>
+          <span className="text-sm font-medium text-muted-foreground">Zenith</span>
         </div>
         {children}
       </div>

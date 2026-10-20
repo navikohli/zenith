@@ -702,7 +702,7 @@ describe('assembleAssistantToolset: write-tool pipeline (autonomous mode)', () =
       return { closed: true }
     })
 
-    const c = autonomousCtx({ assistantName: 'Quinn' })
+    const c = autonomousCtx({ assistantName: 'Zenith Assistant' })
     const tool = await findTool(c, 'close_conversation', [makeFakeWriteSpec({ permissions: [] })])
     // The turn itself runs as background work.
     await runWithAuditAttribution({ channel: 'system' }, () =>
@@ -710,7 +710,7 @@ describe('assembleAssistantToolset: write-tool pipeline (autonomous mode)', () =
     )
 
     expect(seen).toEqual([
-      { channel: 'assistant', clientName: 'Quinn', onBehalfOfPrincipalId: null },
+      { channel: 'assistant', clientName: 'Zenith Assistant', onBehalfOfPrincipalId: null },
     ])
   })
 })
@@ -966,12 +966,12 @@ describe('executeApprovedPendingAction', () => {
       executeApprovedPendingAction(
         makeFakeWriteSpec(),
         fakePendingAction(),
-        ctx({ actor: teammate, assistantName: 'Quinn' })
+        ctx({ actor: teammate, assistantName: 'Zenith Assistant' })
       )
     )
 
     expect(seen).toEqual([
-      { channel: 'assistant', clientName: 'Quinn', onBehalfOfPrincipalId: 'principal_teammate' },
+      { channel: 'assistant', clientName: 'Zenith Assistant', onBehalfOfPrincipalId: 'principal_teammate' },
     ])
   })
 })
@@ -1248,10 +1248,10 @@ describe('Home-only knowledge search and connector approval', () => {
       (spec) => spec.name === 'search_knowledge'
     )!
     expect(homeSpec.description).toContain('workspace knowledge sources')
-    const quinn = (
+    const zenithAssistant = (
       await assembleAssistantToolset(ctx({ conversationId: 'conversation_1' as never }))
     ).activeSpecs.find((spec) => spec.name === 'search')!
-    expect(quinn.description).toBe(
+    expect(zenithAssistant.description).toBe(
       'Search the published help center for articles the current viewer can see.'
     )
   })

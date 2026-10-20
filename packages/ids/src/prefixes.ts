@@ -76,7 +76,7 @@ export const ID_PREFIXES = {
   assistant_involvement: 'assistant_involvement',
   assistant_guidance: 'assistant_guidance',
   assistant_action: 'assistant_action',
-  // Custom action DEFINITIONS (the shared library, QUINN-TWO-AGENT-SPEC D6).
+  // Custom action DEFINITIONS (the shared library, ZENITH_ASSISTANT-TWO-AGENT-SPEC D6).
   // Distinct from `assistant_action` above, which is the pending-action row a
   // write-tool proposal mints (AssistantPendingActionId) — an unfortunate but
   // load-bearing name collision, so the definition table gets its own prefix.

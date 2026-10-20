@@ -1,8 +1,8 @@
 import { parseBillingProjection, type BillingProjection } from './billing-projection'
 import { verifyWorkspaceProjectionToken } from './workspace-projection.signature'
 
-export const BILLING_PROJECTION_ISSUER = 'quackback-control-plane'
-export const BILLING_PROJECTION_AUDIENCE = 'quackback-workspace-billing-projection'
+export const BILLING_PROJECTION_ISSUER = 'zenith-control-plane'
+export const BILLING_PROJECTION_AUDIENCE = 'zenith-workspace-billing-projection'
 export const BILLING_PROJECTION_TYPE = 'billing-projection+jwt'
 
 export interface VerifiedBillingProjection {
@@ -13,7 +13,7 @@ export interface VerifiedBillingProjection {
 /** The signed token is both delivery authentication and cross-workspace binding. */
 export async function verifyBillingProjectionToken(
   token: string,
-  publicKeyPem = process.env.QUACKBACK_CP_PROJECTION_PUBLIC_KEY
+  publicKeyPem = process.env.ZENITH_CP_PROJECTION_PUBLIC_KEY
 ): Promise<VerifiedBillingProjection> {
   return verifyWorkspaceProjectionToken({
     token,

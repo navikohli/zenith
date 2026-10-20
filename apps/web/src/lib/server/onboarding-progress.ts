@@ -1,4 +1,4 @@
-import type { UserId } from '@quackback/ids'
+import type { UserId } from '@zenith/ids'
 import { db, eq, user } from '@/lib/server/db'
 
 export interface OnboardingProgress {

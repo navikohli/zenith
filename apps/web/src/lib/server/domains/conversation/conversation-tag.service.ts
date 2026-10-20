@@ -22,7 +22,7 @@ import {
   macros,
   type ConversationTag,
 } from '@/lib/server/db'
-import type { ConversationTagId, ConversationId } from '@quackback/ids'
+import type { ConversationTagId, ConversationId } from '@zenith/ids'
 import { ValidationError, NotFoundError } from '@/lib/shared/errors'
 import { notTestPrincipal } from '@/lib/server/test-data'
 import { TAXONOMY_DEFAULT_COLOR } from '@/lib/shared/schemas/taxonomy'

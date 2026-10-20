@@ -4,7 +4,7 @@
  * inbox channel (the visitor never saw the note, so its id must not surface).
  */
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import type { PrincipalId, ConversationMessageId } from '@quackback/ids'
+import type { PrincipalId, ConversationMessageId } from '@zenith/ids'
 import type { Actor } from '@/lib/server/policy/types'
 import { ForbiddenError, NotFoundError } from '@/lib/shared/errors'
 import { PERMISSIONS } from '@/lib/shared/permissions'

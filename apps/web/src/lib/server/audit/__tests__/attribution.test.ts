@@ -3,7 +3,7 @@
  * for whom. Boundaries set it once; every audit write reads it.
  */
 import { describe, it, expect } from 'vitest'
-import type { ApiKeyId, PrincipalId } from '@quackback/ids'
+import type { ApiKeyId, PrincipalId } from '@zenith/ids'
 import {
   apiKeyAttribution,
   auditAttributionColumns,
@@ -40,7 +40,7 @@ describe('audit attribution context', () => {
   it('lets an inner boundary override the outer one for its subtree only', async () => {
     await runWithAuditAttribution(UI_ATTRIBUTION, async () => {
       const inner = await runWithAuditAttribution(
-        { channel: 'assistant', clientName: 'Quinn', onBehalfOfPrincipalId: CREATOR },
+        { channel: 'assistant', clientName: 'Zenith Assistant', onBehalfOfPrincipalId: CREATOR },
         async () => {
           await tick()
           return getAuditAttribution()

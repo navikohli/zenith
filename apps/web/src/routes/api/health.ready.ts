@@ -108,7 +108,7 @@ export function resetReadinessCache(): void {
 
 /**
  * There is deliberately NO readiness check for MIN_SCHEMA_VERSION or
- * QUACKBACK_ROLE.
+ * ZENITH_ROLE.
  *
  * `boot-config.ts` validates both at server entry and exits non-zero, so a
  * process serving this route cannot have bad configuration — a check for it

@@ -17,8 +17,8 @@ import { PgTable, getTableConfig } from 'drizzle-orm/pg-core'
 // The walk must see the FULL schema; the app barrel (@/lib/server/db) is a
 // curated re-export, and a table missing from it would escape this audit.
 // oxlint-disable-next-line no-restricted-imports
-import * as schema from '@quackback/db/schema'
-import { toUuid } from '@quackback/ids'
+import * as schema from '@zenith/db/schema'
+import { toUuid } from '@zenith/ids'
 import {
   DELETED_USER_PRINCIPAL_ID,
   REATTRIBUTE_STEPS,

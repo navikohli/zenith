@@ -225,7 +225,7 @@ describe('factory resolution across every import spelling', () => {
   // Round 2 resolved `@/` and relative specifiers only. Six more spellings
   // passed straight through, and each was planted as a real file before being
   // pinned here. #7 was not the documented third-party limit —
-  // `@quackback/logger` is first-party and `packages/logger/src` IS a scanned
+  // `@zenith/logger` is first-party and `packages/logger/src` IS a scanned
   // root — and #8 is the widest: 88 files in the scanned roots already use
   // `export … from`, so any factory moved behind a barrel vanished silently.
   const FACTORY = `export function makeStash<T>() {
@@ -265,7 +265,7 @@ describe('factory resolution across every import spelling', () => {
   const cases: Array<[string, string, string]> = [
     [
       'a workspace package specifier',
-      `import { makeStash } from '@quackback/logger'
+      `import { makeStash } from '@zenith/logger'
        const pkgStash = makeStash<string>()
        export const put = (k: string, v: string) => pkgStash.set(k, v)\n`,
       'factory:pkgStash',

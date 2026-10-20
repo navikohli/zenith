@@ -1,5 +1,5 @@
 /**
- * Conversation summary service (Quinn P2-A.4: past-conversation grounding).
+ * Conversation summary service (ZenithAssistant P2-A.4: past-conversation grounding).
  *
  * Generates a short AI summary of a conversation's customer-visible
  * transcript when it closes, so a later conversation with the SAME customer
@@ -46,7 +46,7 @@ import {
   type TriggeringClose,
 } from './close-summary'
 import { buildConversationTranscript, GROUNDING_CHAR_BUDGET } from './transcript'
-import { createId, type ConversationId } from '@quackback/ids'
+import { createId, type ConversationId } from '@zenith/ids'
 import { logger } from '@/lib/server/logger'
 
 const log = logger.child({ component: 'conversation-summary' })

@@ -25,7 +25,7 @@ import {
   type PostTagId,
   type PrincipalId,
   type SegmentId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import type { PublicPostListResult } from './post.types'
 import type { RespondedFilter } from '@/lib/shared/types/filters'
 import { postViewFilter, isTeamActor, ANONYMOUS_ACTOR, type Actor } from '@/lib/server/policy'
@@ -442,7 +442,7 @@ export async function getAllUserVotedPostIds(principalId: PrincipalId): Promise<
 
 export async function getBoardByPostId(
   postId: PostId
-): Promise<import('@quackback/db').Board | null> {
+): Promise<import('@zenith/db').Board | null> {
   const post = await db.query.posts.findFirst({
     where: eq(posts.id, postId),
     with: { board: true },

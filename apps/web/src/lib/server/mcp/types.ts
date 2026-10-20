@@ -1,4 +1,4 @@
-import type { PrincipalId, UserId } from '@quackback/ids'
+import type { PrincipalId, UserId } from '@zenith/ids'
 import type { Role } from '@/lib/shared/roles'
 import type { PermissionKey } from '@/lib/shared/permissions'
 import type { ApiKeyScope } from '@/lib/server/domains/api-keys/api-key-scopes'

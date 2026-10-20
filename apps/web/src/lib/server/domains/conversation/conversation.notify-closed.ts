@@ -1,5 +1,5 @@
 import { db, eq, and, conversations, emailLog, principal, user } from '@/lib/server/db'
-import type { ConversationId, PrincipalId } from '@quackback/ids'
+import type { ConversationId, PrincipalId } from '@zenith/ids'
 import { resolveReplyRecipient } from './conversation.recipient'
 import { resolveConversationFrom } from '@/lib/server/domains/channel-accounts/channel-account.service'
 import { formatNamedSendingAddress } from '@/lib/server/domains/channel-accounts/channel-account.service'
@@ -91,7 +91,7 @@ export async function notifyConversationClosed(opts: {
       ]
     }
 
-    const { sendConversationClosedEmail } = await import('@quackback/email')
+    const { sendConversationClosedEmail } = await import('@zenith/email')
     const result = await sendConversationClosedEmail({
       to: recipient,
       workspaceName: ctx.workspaceName,

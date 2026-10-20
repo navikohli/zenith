@@ -13,8 +13,8 @@ import type {
   ImportRunTotals,
   ImportRunErrorEntry,
 } from '@/lib/server/db'
-import { createId } from '@quackback/ids'
-import type { ImportRunId, PrincipalId, PostTagId } from '@quackback/ids'
+import { createId } from '@zenith/ids'
+import type { ImportRunId, PrincipalId, PostTagId } from '@zenith/ids'
 import { NotFoundError } from '@/lib/shared/errors'
 
 export interface ImportRunRecord {

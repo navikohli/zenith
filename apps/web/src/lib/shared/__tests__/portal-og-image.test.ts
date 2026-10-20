@@ -15,17 +15,17 @@ describe('resolvePortalOgImageUrl', () => {
   })
 
   it('joins a relative fallback to the supplied origin', () => {
-    expect(resolvePortalOgImageUrl({ logoUrl: null }, 'https://ws-abc.quackback.co.uk')).toBe(
-      'https://ws-abc.quackback.co.uk/logo.png'
+    expect(resolvePortalOgImageUrl({ logoUrl: null }, 'https://ws-abc.zenith.co.uk')).toBe(
+      'https://ws-abc.zenith.co.uk/logo.png'
     )
   })
 
   it('keeps an already-absolute logo URL', () => {
     expect(
       resolvePortalOgImageUrl(
-        { logoUrl: 'https://ws-abc.quackback.co.uk/api/storage/logos/logo.png' },
-        'https://acme.quackback.co.uk'
+        { logoUrl: 'https://ws-abc.zenith.co.uk/api/storage/logos/logo.png' },
+        'https://acme.zenith.co.uk'
       )
-    ).toBe('https://ws-abc.quackback.co.uk/api/storage/logos/logo.png')
+    ).toBe('https://ws-abc.zenith.co.uk/api/storage/logos/logo.png')
   })
 })

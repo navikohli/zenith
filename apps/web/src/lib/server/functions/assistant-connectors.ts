@@ -5,7 +5,7 @@
 import { z } from 'zod'
 import { createServerFn } from '@tanstack/react-start'
 import { getRequestHeaders } from '@tanstack/react-start/server'
-import type { ConnectorId } from '@quackback/ids'
+import type { ConnectorId } from '@zenith/ids'
 import {
   connectorCreateInputSchema,
   connectorUpdateInputSchema,
@@ -22,8 +22,8 @@ async function loadBuiltinConnector(): Promise<BuiltinConnectorDTO> {
   const { resolveToolSpecs } = await import('@/lib/server/domains/assistant/assistant.toolspec')
   const specs = await resolveToolSpecs()
   return {
-    id: 'quackback',
-    name: 'Quackback',
+    id: 'zenith',
+    name: 'Zenith',
     builtin: true,
     tools: specs
       .filter((spec) => spec.risk !== 'control')
@@ -53,7 +53,7 @@ export const getConnectorFn = createServerFn({ method: 'GET' })
   .validator(idSchema)
   .handler(async ({ data }) => {
     assertAnyPermission(await requireAuth(), AI_ANY_PERMISSIONS)
-    if (data.id === 'quackback') {
+    if (data.id === 'zenith') {
       return { builtin: await loadBuiltinConnector(), connector: null }
     }
     const { getConnector, toConnectorDTO } =

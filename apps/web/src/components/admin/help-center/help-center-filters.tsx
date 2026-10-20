@@ -6,7 +6,7 @@ import { FilterList } from '@/components/admin/feedback/single-select-filter-lis
 import { HelpCenterCategoryTree, type CategoryActions } from './help-center-category-tree'
 import { helpCenterQueries } from '@/lib/client/queries/help-center'
 import type { HelpCenterStatusFilter } from './use-help-center-filters'
-import type { KbCategoryId } from '@quackback/ids'
+import type { KbCategoryId } from '@zenith/ids'
 
 interface HelpCenterFiltersProps {
   status: HelpCenterStatusFilter

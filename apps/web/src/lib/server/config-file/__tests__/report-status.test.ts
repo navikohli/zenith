@@ -21,9 +21,9 @@ vi.mock('@/lib/server/logger', () => {
 const ORIGINAL_ENV = { ...process.env }
 
 beforeEach(() => {
-  delete process.env.QUACKBACK_CP_STATUS_URL
-  delete process.env.QUACKBACK_CP_INTERNAL_TOKEN
-  delete process.env.QUACKBACK_INSTANCE_ID
+  delete process.env.ZENITH_CP_STATUS_URL
+  delete process.env.ZENITH_CP_INTERNAL_TOKEN
+  delete process.env.ZENITH_INSTANCE_ID
 })
 
 afterEach(() => {
@@ -40,9 +40,9 @@ describe('makeReportStatus', () => {
   })
 
   it('is a no-op when only some status-reporter env vars are present', async () => {
-    process.env.QUACKBACK_CP_STATUS_URL = 'http://cp/api/v1/internal/config-status'
-    process.env.QUACKBACK_CP_INTERNAL_TOKEN = 'tok'
-    // QUACKBACK_INSTANCE_ID intentionally unset
+    process.env.ZENITH_CP_STATUS_URL = 'http://cp/api/v1/internal/config-status'
+    process.env.ZENITH_CP_INTERNAL_TOKEN = 'tok'
+    // ZENITH_INSTANCE_ID intentionally unset
     const fetchSpy = vi.spyOn(globalThis, 'fetch')
     const report = makeReportStatus()
     await report({ kind: 'ok' })
@@ -50,9 +50,9 @@ describe('makeReportStatus', () => {
   })
 
   it('POSTs the status payload with bearer auth when env vars are set', async () => {
-    process.env.QUACKBACK_CP_STATUS_URL = 'http://cp/api/v1/internal/config-status'
-    process.env.QUACKBACK_CP_INTERNAL_TOKEN = 'tok'
-    process.env.QUACKBACK_INSTANCE_ID = 'inst_123'
+    process.env.ZENITH_CP_STATUS_URL = 'http://cp/api/v1/internal/config-status'
+    process.env.ZENITH_CP_INTERNAL_TOKEN = 'tok'
+    process.env.ZENITH_INSTANCE_ID = 'inst_123'
 
     const fetchSpy = vi
       .spyOn(globalThis, 'fetch')
@@ -77,9 +77,9 @@ describe('makeReportStatus', () => {
   })
 
   it('treats 400 responses as success (stale-write rejection is benign)', async () => {
-    process.env.QUACKBACK_CP_STATUS_URL = 'http://cp/api/v1/internal/config-status'
-    process.env.QUACKBACK_CP_INTERNAL_TOKEN = 'tok'
-    process.env.QUACKBACK_INSTANCE_ID = 'inst_123'
+    process.env.ZENITH_CP_STATUS_URL = 'http://cp/api/v1/internal/config-status'
+    process.env.ZENITH_CP_INTERNAL_TOKEN = 'tok'
+    process.env.ZENITH_INSTANCE_ID = 'inst_123'
 
     const fetchSpy = vi
       .spyOn(globalThis, 'fetch')
@@ -93,9 +93,9 @@ describe('makeReportStatus', () => {
   })
 
   it('retries once on a 5xx and succeeds the second time', async () => {
-    process.env.QUACKBACK_CP_STATUS_URL = 'http://cp/api/v1/internal/config-status'
-    process.env.QUACKBACK_CP_INTERNAL_TOKEN = 'tok'
-    process.env.QUACKBACK_INSTANCE_ID = 'inst_123'
+    process.env.ZENITH_CP_STATUS_URL = 'http://cp/api/v1/internal/config-status'
+    process.env.ZENITH_CP_INTERNAL_TOKEN = 'tok'
+    process.env.ZENITH_INSTANCE_ID = 'inst_123'
 
     const fetchSpy = vi
       .spyOn(globalThis, 'fetch')
@@ -114,9 +114,9 @@ describe('makeReportStatus', () => {
   })
 
   it('logs but does not throw when both attempts fail', async () => {
-    process.env.QUACKBACK_CP_STATUS_URL = 'http://cp/api/v1/internal/config-status'
-    process.env.QUACKBACK_CP_INTERNAL_TOKEN = 'tok'
-    process.env.QUACKBACK_INSTANCE_ID = 'inst_123'
+    process.env.ZENITH_CP_STATUS_URL = 'http://cp/api/v1/internal/config-status'
+    process.env.ZENITH_CP_INTERNAL_TOKEN = 'tok'
+    process.env.ZENITH_INSTANCE_ID = 'inst_123'
 
     vi.spyOn(globalThis, 'fetch').mockRejectedValue(new Error('network down'))
     logSpies.error.mockClear()

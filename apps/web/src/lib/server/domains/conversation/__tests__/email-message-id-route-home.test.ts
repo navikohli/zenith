@@ -18,8 +18,8 @@
  * it look load-bearing. What has to hold is that the reply comes home.
  */
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { sendViaSes } from '@quackback/email/ses'
-import type { SesSendClient } from '@quackback/email/ses'
+import { sendViaSes } from '@zenith/email/ses'
+import type { SesSendClient } from '@zenith/email/ses'
 
 /** The one table this suite needs, standing in for the tenant database. */
 let outboundRows: Array<{ messageId: string; conversationId: string }> = []
@@ -91,7 +91,7 @@ import {
   resolveConversationByMessageIds,
   threadIdsForOutbound,
 } from '../conversation.email-store'
-import type { ConversationId } from '@quackback/ids'
+import type { ConversationId } from '@zenith/ids'
 
 const CONVERSATION = 'conversation_01k9route' as ConversationId
 

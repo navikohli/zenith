@@ -7,7 +7,7 @@ import { EmptyState } from '@/components/shared/empty-state'
 import { cn } from '@/lib/shared/utils'
 import { publicChangelogQueries, changelogCategoryQueries } from '@/lib/client/queries/changelog'
 import { DocumentTextIcon } from '@heroicons/react/24/outline'
-import type { ChangelogCategoryId } from '@quackback/ids'
+import type { ChangelogCategoryId } from '@zenith/ids'
 
 export function ChangelogListPublic() {
   const intl = useIntl()

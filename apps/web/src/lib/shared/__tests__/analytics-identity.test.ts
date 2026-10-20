@@ -21,7 +21,7 @@ describe('analyticsWorkspaceKey', () => {
   })
 
   it('pins the derivation, which other apps reproduce byte for byte', async () => {
-    // sha256('quackback-analytics-workspace:inst_abc'), first 24 hex chars.
+    // sha256('zenith-analytics-workspace:inst_abc'), first 24 hex chars.
     expect(await analyticsWorkspaceKey('inst_abc', null)).toBe('ws_30472172391e32087b26a741')
   })
 

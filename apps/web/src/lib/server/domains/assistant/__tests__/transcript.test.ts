@@ -140,7 +140,7 @@ describe('attachment notes', () => {
  * must never need to understand `block`/`blockReply` — every block kind's
  * honest plain-text fallback lives in `content` by construction (the
  * contract's core guarantee), so the existing content-only renderer already
- * grounds Quinn correctly on a block-bearing thread with no code change.
+ * grounds ZenithAssistant correctly on a block-bearing thread with no code change.
  */
 describe('conversational block messages (Phase C, slice C-1) render from content alone', () => {
   it('renders every block kind as an ordinary Agent line, using content only', () => {

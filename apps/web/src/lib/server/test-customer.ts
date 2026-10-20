@@ -1,5 +1,5 @@
 import { createIntl } from 'react-intl'
-import { createId, type PrincipalId } from '@quackback/ids'
+import { createId, type PrincipalId } from '@zenith/ids'
 import {
   db,
   principal,

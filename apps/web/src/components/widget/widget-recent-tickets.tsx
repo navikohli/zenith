@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { FormattedMessage } from 'react-intl'
-import type { ConversationId } from '@quackback/ids'
+import type { ConversationId } from '@zenith/ids'
 import { widgetGetMyTicketsFn } from '@/lib/server/functions/widget/tickets'
 import { getWidgetAuthHeaders } from '@/lib/client/widget-auth'
 import { useWidgetAuth } from './widget-auth-provider'

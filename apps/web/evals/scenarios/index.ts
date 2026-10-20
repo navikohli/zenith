@@ -1,5 +1,5 @@
 /**
- * The seed golden set (QUINN-TWO-AGENT-SPEC §7.3, scenarios 1–25) plus the
+ * The seed golden set (ZENITH_ASSISTANT-TWO-AGENT-SPEC §7.3, scenarios 1–25) plus the
  * grounding-source set (§7.6): closed-ticket summaries + changelog entries
  * (26–29) enabled via per-agent config v3 knowledge maps, and the real-time
  * get_status tool (30, Phase 3).

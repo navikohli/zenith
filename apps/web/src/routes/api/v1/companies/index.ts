@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { withApiKeyAuth } from '@/lib/server/domains/api/auth'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import { successResponse, handleDomainError } from '@/lib/server/domains/api/responses'
-import type { CompanyId } from '@quackback/ids'
+import type { CompanyId } from '@zenith/ids'
 import { serializeCompany } from './-serialize'
 
 export const Route = createFileRoute('/api/v1/companies/')({
@@ -30,7 +30,7 @@ export const Route = createFileRoute('/api/v1/companies/')({
           const tagIdParam = url.searchParams.get('tag_id') ?? undefined
           const segmentIdParam = url.searchParams.get('segment_id') ?? undefined
 
-          const { isValidTypeId } = await import('@quackback/ids')
+          const { isValidTypeId } = await import('@zenith/ids')
           const cursorId =
             cursor && isValidTypeId(cursor, 'company') ? (cursor as CompanyId) : undefined
           const tagId = tagIdParam && isValidTypeId(tagIdParam, 'user_tag') ? tagIdParam : undefined

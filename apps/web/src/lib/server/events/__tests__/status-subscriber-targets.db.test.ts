@@ -56,7 +56,7 @@ import {
   type SegmentId,
   type StatusComponentId,
   type StatusIncidentId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import { getStatusSubscriberTargets } from '../targets'
 import type { EventData } from '../types'
 import type { HookContext } from '../hook-context'

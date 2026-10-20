@@ -15,7 +15,7 @@ import {
 } from '@/lib/server/domains/changelog/changelog.service'
 import type { PublishState } from '@/lib/shared/schemas/changelog'
 import { PERMISSIONS } from '@/lib/shared/permissions'
-import type { ChangelogId, PostId } from '@quackback/ids'
+import type { ChangelogId, PostId } from '@zenith/ids'
 import { formatChangelogResponse } from './-serialize'
 
 // Input validation schema

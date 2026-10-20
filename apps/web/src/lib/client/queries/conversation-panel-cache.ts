@@ -12,7 +12,7 @@
  * matches its read's own query factory, which the tests pin.
  */
 import type { QueryClient } from '@tanstack/react-query'
-import type { ConversationId, PrincipalId, TicketId } from '@quackback/ids'
+import type { ConversationId, PrincipalId, TicketId } from '@zenith/ids'
 import type { AgentConversationPanel } from '@/lib/shared/conversation/agent-panels'
 import type { AgentConversationPanels } from '@/lib/server/functions/conversation-panels'
 import type { LinkedTicketSummary } from '@/lib/shared/inbox/items'

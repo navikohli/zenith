@@ -10,7 +10,7 @@
  */
 import { useMemo } from 'react'
 import { useQuery, keepPreviousData } from '@tanstack/react-query'
-import type { CompanyId } from '@quackback/ids'
+import type { CompanyId } from '@zenith/ids'
 import type { ConversationPriority } from '@/lib/shared/conversation/types'
 import type { Channel } from '@/lib/shared/channels'
 import {
@@ -43,7 +43,7 @@ export interface UseInboxListSourceParams {
    *  list — the legacy query stays disabled until then, mirroring the
    *  pre-extraction `!!activeView` guard). */
   activeViewFilters?: ConversationViewFilters
-  /** Quinn-view sub-filter (Resolved / Escalated / Pending) — legacy path only. */
+  /** ZenithAssistant-view sub-filter (Resolved / Escalated / Pending) — legacy path only. */
   aiBucket?: 'resolved' | 'escalated' | 'pending'
   /** The "Saved for later" scope shows flagged MESSAGES, not a list — both
    *  queries stay idle there (the route renders `SavedMessagesColumn` instead). */

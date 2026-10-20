@@ -12,7 +12,7 @@ vi.mock('@/lib/server/db', async (importOriginal) => ({
   db: (await import('@/lib/server/__tests__/db-test-fixture')).testDb,
 }))
 
-import { getQuinnToolMetrics } from '../quinn-tools'
+import { getZenithAssistantToolMetrics } from '../zenith-assistant-tools'
 
 const fixture = await createDbTestFixture({
   probe: async (db) => {
@@ -40,12 +40,12 @@ async function seedToolCall(overrides: {
   })
 }
 
-describe.skipIf(!fixture.available)('quinn-tools (real DB, rolled back)', () => {
+describe.skipIf(!fixture.available)('zenith-assistant-tools (real DB, rolled back)', () => {
   beforeEach(fixture.begin)
   afterEach(fixture.rollback)
   afterAll(fixture.close)
 
-  describe('getQuinnToolMetrics', () => {
+  describe('getZenithAssistantToolMetrics', () => {
     it('counts calls per tool by status over the range', async () => {
       await seedToolCall({ toolName: '__qtt_search_kb', status: 'succeeded' })
       await seedToolCall({ toolName: '__qtt_search_kb', status: 'succeeded' })
@@ -53,7 +53,7 @@ describe.skipIf(!fixture.available)('quinn-tools (real DB, rolled back)', () => 
       await seedToolCall({ toolName: '__qtt_search_kb', status: 'denied' })
       await seedToolCall({ toolName: '__qtt_search_kb', status: 'skipped_duplicate' })
 
-      const metrics = await getQuinnToolMetrics(FROM, TO)
+      const metrics = await getZenithAssistantToolMetrics(FROM, TO)
       const tool = metrics.find((m) => m.toolName === '__qtt_search_kb')
       expect(tool).toMatchObject({
         toolName: '__qtt_search_kb',
@@ -70,7 +70,7 @@ describe.skipIf(!fixture.available)('quinn-tools (real DB, rolled back)', () => 
       await seedToolCall({ toolName: '__qtt_close_conversation', status: 'succeeded' })
       await seedToolCall({ toolName: '__qtt_close_conversation', status: 'failed' })
 
-      const metrics = await getQuinnToolMetrics(FROM, TO)
+      const metrics = await getZenithAssistantToolMetrics(FROM, TO)
       const tool = metrics.find((m) => m.toolName === '__qtt_close_conversation')
       expect(tool?.successRate).toBe(75)
     })
@@ -78,7 +78,7 @@ describe.skipIf(!fixture.available)('quinn-tools (real DB, rolled back)', () => 
     it('reports a null success rate, not NaN, when there are no succeeded/failed/denied calls', async () => {
       await seedToolCall({ toolName: '__qtt_refund_charge', status: 'skipped_duplicate' })
 
-      const metrics = await getQuinnToolMetrics(FROM, TO)
+      const metrics = await getZenithAssistantToolMetrics(FROM, TO)
       const tool = metrics.find((m) => m.toolName === '__qtt_refund_charge')
       expect(tool?.successRate).toBeNull()
     })
@@ -88,7 +88,7 @@ describe.skipIf(!fixture.available)('quinn-tools (real DB, rolled back)', () => 
       await seedToolCall({ toolName: '__qtt_lookup_order', status: 'succeeded', latencyMs: 300 })
       await seedToolCall({ toolName: '__qtt_lookup_order', status: 'failed', latencyMs: 5000 })
 
-      const metrics = await getQuinnToolMetrics(FROM, TO)
+      const metrics = await getZenithAssistantToolMetrics(FROM, TO)
       const tool = metrics.find((m) => m.toolName === '__qtt_lookup_order')
       expect(tool?.avgLatencyMs).toBe(200)
     })
@@ -96,7 +96,7 @@ describe.skipIf(!fixture.available)('quinn-tools (real DB, rolled back)', () => 
     it('reports a null avg latency when there were no succeeded calls', async () => {
       await seedToolCall({ toolName: '__qtt_escalate', status: 'failed', latencyMs: 50 })
 
-      const metrics = await getQuinnToolMetrics(FROM, TO)
+      const metrics = await getZenithAssistantToolMetrics(FROM, TO)
       const tool = metrics.find((m) => m.toolName === '__qtt_escalate')
       expect(tool?.avgLatencyMs).toBeNull()
     })
@@ -108,7 +108,7 @@ describe.skipIf(!fixture.available)('quinn-tools (real DB, rolled back)', () => 
         createdAt: new Date('2026-05-01T00:00:00Z'),
       })
 
-      const metrics = await getQuinnToolMetrics(FROM, TO)
+      const metrics = await getZenithAssistantToolMetrics(FROM, TO)
       expect(metrics.find((m) => m.toolName === '__qtt_outside_range')).toBeUndefined()
     })
 
@@ -118,7 +118,7 @@ describe.skipIf(!fixture.available)('quinn-tools (real DB, rolled back)', () => 
       await seedToolCall({ toolName: '__qtt_aaa_high_volume', status: 'succeeded' })
       await seedToolCall({ toolName: '__qtt_aaa_high_volume', status: 'failed' })
 
-      const metrics = await getQuinnToolMetrics(FROM, TO)
+      const metrics = await getZenithAssistantToolMetrics(FROM, TO)
       const names = metrics.map((m) => m.toolName)
       expect(names.indexOf('__qtt_aaa_high_volume')).toBeLessThan(
         names.indexOf('__qtt_zzz_low_volume')

@@ -27,7 +27,7 @@ const catalogue: BillingCatalogue = {
       priceMonthlyCents: 0,
       priceYearlyCents: 0,
       billedPer: 'workspace',
-      bestFor: 'For trying Quackback out',
+      bestFor: 'For trying Zenith out',
       highlights: ['1 seat'],
       recommended: false,
     },
@@ -194,7 +194,7 @@ describe('CheckoutBuilder', () => {
 
   it('adds branding removal to the same checkout when ticked', () => {
     const { onChange } = renderBuilder(freeOverview)
-    expect(screen.getByText('Remove Quackback branding')).toBeInTheDocument()
+    expect(screen.getByText('Remove Zenith branding')).toBeInTheDocument()
     expect(screen.getByText('$590/yr')).toBeInTheDocument()
     expect(checkoutForm()?.querySelector('input[name="brandingRemoval"]')).toBeNull()
 

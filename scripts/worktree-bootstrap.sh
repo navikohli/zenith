@@ -75,7 +75,7 @@ port_in_use() {
 # container_name entries) — pin the project name via .env so `docker compose
 # up` recognizes them instead of trying to stand up a second stack under
 # this worktree's directory name (which conflicts on container names).
-set_env COMPOSE_PROJECT_NAME quackback
+set_env COMPOSE_PROJECT_NAME zenith
 
 slug="$(basename "$WORKTREE_ROOT" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/_/g; s/^_+|_+$//g')"
 slug="${slug:0:40}"
@@ -83,7 +83,7 @@ slug="${slug:0:40}"
 # Reuse the worktree's own PORT on a re-run, but not one it merely inherited
 # by copying the main checkout's .env — that would collide with the main dev
 # server. A value equal to main's counts as unassigned, so fall through to
-# allocation (mirrors the DATABASE_URL != "quackback" guard below).
+# allocation (mirrors the DATABASE_URL != "zenith" guard below).
 main_port=""
 [ -f "$MAIN_ROOT/.env" ] && main_port="$(sed -n -E 's/^PORT=([0-9]+).*/\1/p' "$MAIN_ROOT/.env" | head -1)"
 existing_port="$(read_env PORT)"
@@ -114,10 +114,10 @@ else
 fi
 
 existing_database_url="$(read_env DATABASE_URL)"
-if [[ "$existing_database_url" =~ /([A-Za-z0-9_]+)$ ]] && [ "${BASH_REMATCH[1]}" != "quackback" ]; then
+if [[ "$existing_database_url" =~ /([A-Za-z0-9_]+)$ ]] && [ "${BASH_REMATCH[1]}" != "zenith" ]; then
   db_name="${BASH_REMATCH[1]}"
 else
-  db_name="quackback_${slug}"
+  db_name="zenith_${slug}"
 fi
 
 set_env PORT "$port"
@@ -136,15 +136,15 @@ docker compose up -d postgres minio minio-init mailpit
 echo ""
 
 echo "Waiting for Postgres..."
-until docker exec quackback-db pg_isready -U postgres >/dev/null 2>&1; do sleep 1; done
+until docker exec zenith-db pg_isready -U postgres >/dev/null 2>&1; do sleep 1; done
 
 # ---------------------------------------------------------------------------
 # 5. This worktree's own database
 # ---------------------------------------------------------------------------
-exists="$(docker exec quackback-db psql -U postgres -tAc "SELECT 1 FROM pg_database WHERE datname='${db_name}'")"
+exists="$(docker exec zenith-db psql -U postgres -tAc "SELECT 1 FROM pg_database WHERE datname='${db_name}'")"
 if [ "$exists" != "1" ]; then
   echo "Creating database ${db_name}..."
-  docker exec quackback-db createdb -U postgres "$db_name"
+  docker exec zenith-db createdb -U postgres "$db_name"
 fi
 
 echo "Running migrations..."
@@ -194,4 +194,4 @@ echo ""
 echo "Next steps:"
 echo "  bun run dev              # dev server at http://localhost:${port}"
 echo "  bun run db:seed          # optional demo data"
-echo "  bun run test             # unit tests (uses the shared quackback_test DB)"
+echo "  bun run test             # unit tests (uses the shared zenith_test DB)"

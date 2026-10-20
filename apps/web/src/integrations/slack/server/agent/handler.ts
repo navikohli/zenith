@@ -5,7 +5,7 @@ import { createHash } from 'node:crypto'
 import { WebClient } from '@slack/web-api'
 import type { ChatStopStreamArguments } from '@slack/web-api'
 type KnownBlock = NonNullable<ChatStopStreamArguments['blocks']>[number]
-import { generateId, isTypeId, type AssistantPendingActionId } from '@quackback/ids'
+import { generateId, isTypeId, type AssistantPendingActionId } from '@zenith/ids'
 import { db, integrations, assistantEvents, slackUserLinks, eq, and, sql } from '@/lib/server/db'
 import { decryptSecrets } from '@/lib/server/integrations/encryption'
 import type { ClaimedJob } from '@/lib/server/jobs/job-queue'
@@ -123,7 +123,7 @@ export async function handleSlackDecision(
       client,
       channel,
       user,
-      'Only linked Quackback team members can decide proposals.'
+      'Only linked Zenith team members can decide proposals.'
     )
     return
   }
@@ -168,7 +168,7 @@ export async function handleSlackDecision(
     getToolSpecByName(pending.toolName) ??
     (actor
       ? ((await getConnectorSpecByToolName(pending.toolName, 'workspace')) ??
-        (await getWorkspaceMcpSpecByName(pending.toolName, actor, 'Quackback AI')))
+        (await getWorkspaceMcpSpecByName(pending.toolName, actor, 'Zenith AI')))
       : null)
   if (
     !terminal &&
@@ -228,7 +228,7 @@ export async function handleSlackDecision(
       ? `Approved${result.decidedById && result.decidedById !== person.id ? '' : ` by <@${user}>`}${link ? ` → <${link}|Open>` : ''}`
       : result.status === 'rejected'
         ? `Rejected${result.decidedById && result.decidedById !== person.id ? '' : ` by <@${user}>`}`
-        : 'The action could not be completed. Check Quackback before retrying.'
+        : 'The action could not be completed. Check Zenith before retrying.'
   const blocks = (payload.message?.blocks ?? []).map((block: Payload) =>
     block.type === 'actions' &&
     block.elements?.some(
@@ -435,11 +435,11 @@ export async function handleSlackHookJob(job: ClaimedJob): Promise<void> {
   const command =
     kind === 'commands' &&
     typeof payload.command === 'string' &&
-    (payload.command === '/quackback' || payload.command === '/qbdev')
+    (payload.command === '/zenith' || payload.command === '/qbdev')
   const shortcut =
     kind === 'interactions' &&
     payload.type === 'message_action' &&
-    payload.callback_id === 'send_to_quackback'
+    payload.callback_id === 'send_to_zenith'
   const isMention = event?.type === 'app_mention'
   const isDm = event?.type === 'message' && event.channel_type === 'im'
   // Slack emits both `app_mention` and `message` for the same @mention. DMs
@@ -522,15 +522,15 @@ async function handleSlackQuestion(input: {
       !runtime.config.agents.workspace.slack.enabled ||
       !runtime.config.agents.workspace.capabilities.qa
     ) {
-      await replyError('Enable the AI assistant in Quackback’s Slack settings first.')
+      await replyError('Enable the AI assistant in Zenith’s Slack settings first.')
       return
     }
     if (!isAssistantConfigured()) {
-      await replyError('Configure an AI model in Quackback first.')
+      await replyError('Configure an AI model in Zenith first.')
       return
     }
     if (!(await hasEntitlement('aiDrafts'))) {
-      await replyError('Your Quackback plan does not include teammate AI.')
+      await replyError('Your Zenith plan does not include teammate AI.')
       return
     }
     if (turnAbort.signal.aborted) return
@@ -542,20 +542,20 @@ async function handleSlackQuestion(input: {
     }
     if (turnAbort.signal.aborted) return
     if (missingSlackScopes(installation.scopes).length) {
-      await replyError('Reconnect Slack in Quackback to grant the assistant permissions.')
+      await replyError('Reconnect Slack in Zenith to grant the assistant permissions.')
       return
     }
     const person = await resolveSlackPrincipal(team, user, client)
     if (turnAbort.signal.aborted) return
     if (!person) {
       await replyError(
-        `I can only answer for Quackback team members. Sign in at ${getBaseUrl()}/admin with the email you use in Slack, then mention me again.`
+        `I can only answer for Zenith team members. Sign in at ${getBaseUrl()}/admin with the email you use in Slack, then mention me again.`
       )
       return
     }
     const actor = await slackMemberActor(person)
     if (!can(actor, PERMISSIONS.COPILOT_USE)) {
-      await replyError('You do not have permission to use Quackback’s AI assistant.')
+      await replyError('You do not have permission to use Zenith’s AI assistant.')
       return
     }
     if (turnAbort.signal.aborted) return
@@ -700,7 +700,7 @@ async function handleSlackQuestion(input: {
     if (stream && !stopped)
       await stream
         .stop({
-          markdown_text: `Something went wrong on my side. Try again in a moment.\n_AI-generated · ${escapeSlack(state?.config.identity.name ?? 'Quackback')} for ${escapeSlack(state?.workspaceName ?? '')}_`,
+          markdown_text: `Something went wrong on my side. Try again in a moment.\n_AI-generated · ${escapeSlack(state?.config.identity.name ?? 'Zenith')} for ${escapeSlack(state?.workspaceName ?? '')}_`,
         })
         .catch(() => {})
     else if (command) await replyError('Something went wrong on my side. Try again in a moment.')

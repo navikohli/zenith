@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest'
 import { eq, getTableColumns, getTableName } from 'drizzle-orm'
 import { drizzle } from 'drizzle-orm/postgres-js'
 import postgres from 'postgres'
-import { generateId } from '@quackback/ids'
+import { generateId } from '@zenith/ids'
 import { twoFactor } from '../schema/auth'
 
 /**

@@ -117,7 +117,7 @@ describe('POST /api/export/workspace', () => {
     expect(body.runId).toBe(RUN.id)
 
     expect(hoisted.mockCreateExportRun).toHaveBeenCalledWith({
-      fileName: expect.stringMatching(/^quackback-export-acme-\d{4}-\d{2}-\d{2}\.zip$/),
+      fileName: expect.stringMatching(/^zenith-export-acme-\d{4}-\d{2}-\d{2}\.zip$/),
       initiatedByPrincipalId: 'principal_admin',
     })
     expect(hoisted.mockEnqueue).toHaveBeenCalledWith({ runId: RUN.id, workspaceSlug: 'acme' })

@@ -10,7 +10,7 @@
  */
 
 import { db, eq, and, isNull, inArray, sql, posts, postStatuses, asc } from '@/lib/server/db'
-import { toUuid, type PostStatusId } from '@quackback/ids'
+import { toUuid, type PostStatusId } from '@zenith/ids'
 import { assertHexColor, positionCaseSql } from '@/lib/server/utils'
 import {
   NotFoundError,

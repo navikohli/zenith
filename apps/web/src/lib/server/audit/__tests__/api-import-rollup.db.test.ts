@@ -11,7 +11,7 @@ if (!process.env.BASE_URL?.startsWith('http')) process.env.BASE_URL = 'http://lo
 process.env.SECRET_KEY ??= 'test-secret-key-with-at-least-32-characters'
 
 import { db, sql } from '@/lib/server/db'
-import { createId, type PrincipalId } from '@quackback/ids'
+import { createId, type PrincipalId } from '@zenith/ids'
 import { apiKeyAttribution, runWithAuditAttribution, setAuditAttribution } from '../attribution'
 import { recordApiWrite } from '../api-write'
 

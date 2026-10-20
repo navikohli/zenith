@@ -7,7 +7,7 @@
 import { describe, it, expect, vi } from 'vitest'
 import { render, screen, fireEvent } from '@testing-library/react'
 import { UsersBulkSegmentBar } from '../users-bulk-segment-bar'
-import type { SegmentId } from '@quackback/ids'
+import type { SegmentId } from '@zenith/ids'
 
 const MANUAL_SEGMENTS = [
   { id: 'seg_beta' as SegmentId, name: 'Beta Testers', color: '#3b82f6' },

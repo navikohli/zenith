@@ -19,7 +19,7 @@ function message(overrides: Partial<ConversationMessage> = {}): ConversationMess
     id: 'conversation_msg_1',
     conversationId: 'conversation_1',
     ticketId: null,
-    principalId: 'principal_quinn',
+    principalId: 'principal_zenithAssistant',
     senderType: 'agent',
     content: 'Hi Jane!',
     contentJson: null,
@@ -133,9 +133,9 @@ describe('toMessageDTO — block/blockReply projection', () => {
       kind: 'message' as const,
     }
     const dto = toMessageDTO(
-      message({ principalId: 'principal_quinn', metadata: { block: blockPayload } }),
+      message({ principalId: 'principal_zenithAssistant', metadata: { block: blockPayload } }),
       null,
-      'principal_quinn' as ConversationMessage['principalId']
+      'principal_zenithAssistant' as ConversationMessage['principalId']
     )
     expect(dto.isAssistant).toBe(true)
     expect(dto.block).toEqual(blockPayload)

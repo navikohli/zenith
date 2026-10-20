@@ -1,7 +1,7 @@
 /**
  * page_views partition maintenance — a daily job that pre-creates day
  * partitions a week ahead and drops partitions past the retention window (see
- * @quackback/db page-view-partitions).
+ * @zenith/db page-view-partitions).
  *
  * Runs on the Postgres job queue (`lib/server/jobs`). Schedule and retry policy
  * live in `jobs/definitions.ts`.

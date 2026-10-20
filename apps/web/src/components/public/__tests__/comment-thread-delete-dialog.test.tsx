@@ -9,7 +9,7 @@ import { render, screen, cleanup, fireEvent } from '@testing-library/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { IntlProvider } from 'react-intl'
 import type { PublicCommentView } from '@/lib/client/queries/portal-detail'
-import type { PostCommentId, PostId, PrincipalId } from '@quackback/ids'
+import type { PostCommentId, PostId, PrincipalId } from '@zenith/ids'
 
 const dialogModule = vi.hoisted(() => ({ loaded: false }))
 

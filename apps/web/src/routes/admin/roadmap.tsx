@@ -1,7 +1,7 @@
 import { createFileRoute, redirect } from '@tanstack/react-router'
 import { z } from 'zod'
 import type { QueryClient } from '@tanstack/react-query'
-import type { RoadmapId } from '@quackback/ids'
+import type { RoadmapId } from '@zenith/ids'
 import { adminQueries } from '@/lib/client/queries/admin'
 import { readBatch } from '@/lib/client/queries/read-batch'
 import { RoadmapAdmin } from '@/components/admin/roadmap-admin'

@@ -6,7 +6,7 @@ import {
   type Database,
   type Transaction,
 } from '@/lib/server/db'
-import type { IdentityProviderId } from '@quackback/ids'
+import type { IdentityProviderId } from '@zenith/ids'
 import { cacheGet, cacheSet, CACHE_KEYS } from '@/lib/server/cache'
 import { localCacheGet, localCacheSet, settingsLocalTtlMs } from '@/lib/server/local-cache'
 import { memoizePerRequest } from '@/lib/server/request-memo'
@@ -139,7 +139,7 @@ function filterOAuthByCredentials(
  * would silently fail.
  */
 async function getEmailDependentPassthroughKeys(): Promise<string[]> {
-  const { isEmailConfigured } = await import('@quackback/email')
+  const { isEmailConfigured } = await import('@zenith/email')
   return isEmailConfigured() ? ['magicLink', 'password'] : ['password']
 }
 

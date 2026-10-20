@@ -7,7 +7,7 @@
  * fixture per file. Runs inside the rollback transaction.
  */
 import { describe, it, expect, vi, beforeEach, afterEach, afterAll } from 'vitest'
-import { createId, type PrincipalId, type UserId } from '@quackback/ids'
+import { createId, type PrincipalId, type UserId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { principal, user } from '@/lib/server/db'
 
@@ -66,7 +66,7 @@ async function seedLead(opts: {
   await testDb.insert(user).values({
     id: userId,
     name: opts.name ?? 'Anonymous',
-    email: `temp-${runSuffix()}@anon.quackback.io`,
+    email: `temp-${runSuffix()}@anon.zenith.io`,
     isAnonymous: true,
   })
   await testDb.insert(principal).values({

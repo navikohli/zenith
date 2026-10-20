@@ -345,19 +345,19 @@ describe('getPostOwnerAssignedTargets', () => {
 describe('getAssistantHandedOffTargets', () => {
   it("targets the assigned team's members when the conversation has one", async () => {
     conversationRows = [{ assignedTeamId: 'team_1' }]
-    listTeamMemberPrincipalIds.mockResolvedValue(['principal_a', 'principal_quinn'])
+    listTeamMemberPrincipalIds.mockResolvedValue(['principal_a', 'principal_zenithAssistant'])
     const event = {
       id: 'evt-9',
       type: 'assistant.handed_off',
       timestamp: '2026-01-01T00:00:00Z',
-      actor: { type: 'service', principalId: 'principal_quinn', displayName: 'Quinn' },
+      actor: { type: 'service', principalId: 'principal_zenithAssistant', displayName: 'Zenith Assistant' },
       data: { conversationId: 'conversation_1', reason: 'low confidence' },
     } as EventData
 
     const target = await getAssistantHandedOffTargets(event)
     expect(listTeamMemberPrincipalIds).toHaveBeenCalledWith('team_1')
     expect(listAssignableTeammates).not.toHaveBeenCalled()
-    // Quinn (the actor) is excluded.
+    // ZenithAssistant (the actor) is excluded.
     expect(target).toEqual({
       type: 'notification',
       target: { principalIds: ['principal_a'] },
@@ -375,7 +375,7 @@ describe('getAssistantHandedOffTargets', () => {
       id: 'evt-10',
       type: 'assistant.handed_off',
       timestamp: '2026-01-01T00:00:00Z',
-      actor: { type: 'service', principalId: 'principal_quinn', displayName: 'Quinn' },
+      actor: { type: 'service', principalId: 'principal_zenithAssistant', displayName: 'Zenith Assistant' },
       data: { conversationId: 'conversation_1', reason: 'escalation requested' },
     } as EventData
 
@@ -387,13 +387,13 @@ describe('getAssistantHandedOffTargets', () => {
   it('is a no-op when the only eligible recipient is the actor', async () => {
     conversationRows = [{ assignedTeamId: null }]
     listAssignableTeammates.mockResolvedValue([
-      { principalId: 'principal_quinn', name: 'Quinn', email: null },
+      { principalId: 'principal_zenithAssistant', name: 'Zenith Assistant', email: null },
     ])
     const event = {
       id: 'evt-11',
       type: 'assistant.handed_off',
       timestamp: '2026-01-01T00:00:00Z',
-      actor: { type: 'service', principalId: 'principal_quinn', displayName: 'Quinn' },
+      actor: { type: 'service', principalId: 'principal_zenithAssistant', displayName: 'Zenith Assistant' },
       data: { conversationId: 'conversation_1', reason: 'no one else around' },
     } as EventData
 

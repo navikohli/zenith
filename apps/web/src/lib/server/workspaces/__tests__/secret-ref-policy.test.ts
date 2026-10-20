@@ -62,7 +62,7 @@ describe('env refs stay inside the reserved namespace', () => {
     expect(isValidSecretRef('env://AWS_SECRET_ACCESS_KEY')).toBe(false)
   })
   it('accepts the reserved namespace', () => {
-    expect(isValidSecretRef('env://QUACKBACK_TENANT_SECRET_X')).toBe(true)
+    expect(isValidSecretRef('env://ZENITH_TENANT_SECRET_X')).toBe(true)
   })
 })
 
@@ -111,7 +111,7 @@ describe('per-field policy', () => {
     // A database credential is issued by a provider or a vault. It is never a
     // value this system chooses, so nothing derivable belongs here.
     ['database', 'openbao+static-role://qb_role', false],
-    ['database', 'env://QUACKBACK_TENANT_SECRET_DB', true],
+    ['database', 'env://ZENITH_TENANT_SECRET_DB', true],
     ['database', 'openbao+kv://apps/workspace', false],
     ['database', 'derived+hkdf://v1/t/app-secrets', false],
     ['database', 'sealed+aead://v1/t/db/' + 'A'.repeat(20), true],
@@ -119,14 +119,14 @@ describe('per-field policy', () => {
 
     ['appSecrets', 'derived+hkdf://v1/t/app-secrets', true],
     ['appSecrets', 'openbao+kv://apps/workspace', false],
-    ['appSecrets', 'env://QUACKBACK_TENANT_SECRET_APP', true],
+    ['appSecrets', 'env://ZENITH_TENANT_SECRET_APP', true],
     // Names a Postgres role, which is not an app-secret bundle.
     ['appSecrets', 'openbao+static-role://qb_role', false],
     ['appSecrets', 'sealed+aead://v1/t/db/' + 'A'.repeat(20), false],
 
     ['storage', 'sealed+aead://v1/t/storage/' + 'A'.repeat(20), true],
     ['storage', 'openbao+kv://apps/workspace', false],
-    ['storage', 'env://QUACKBACK_TENANT_SECRET_STORAGE', true],
+    ['storage', 'env://ZENITH_TENANT_SECRET_STORAGE', true],
     // A scheme that would silently invent a plausible-looking key pair for a
     // real bucket is worse than one that refuses.
     ['storage', 'derived+hkdf://v1/t/storage', false],

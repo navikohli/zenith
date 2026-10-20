@@ -275,7 +275,7 @@ export function workspaceAppSecretVariable(workspaceKey: string): string {
     )
   }
   const digest = createHash('sha256').update(workspaceKey).digest('hex').slice(0, 8).toUpperCase()
-  return `QUACKBACK_TENANT_SECRET_${suffix}_${digest}_APP`
+  return `ZENITH_TENANT_SECRET_${suffix}_${digest}_APP`
 }
 
 /** Serialise credentials for sealing. The inverse of {@link parseStorageCredentials}. */
@@ -308,7 +308,7 @@ function requireRootKey(ref: SecretRef, rootKey: string | null): string {
   if (!rootKey) {
     throw new WorkspaceSecretResolutionError(
       'root_key_missing',
-      `${redactRef(ref)} needs the fleet root key; QUACKBACK_FLEET_ROOT_KEY is unset in this process`,
+      `${redactRef(ref)} needs the fleet root key; ZENITH_FLEET_ROOT_KEY is unset in this process`,
     )
   }
   return rootKey

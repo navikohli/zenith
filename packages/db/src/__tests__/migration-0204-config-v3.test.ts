@@ -155,7 +155,7 @@ describe.skipIf(!dbAvailable)('migration 0204 config v3', () => {
         // A v2-shaped settings row: flat voice, identity, no agents object.
         await tx.execute(sql`
           INSERT INTO _m0204_settings (assistant_config, managed_field_paths) VALUES (
-            '{"version":2,"identity":{"name":"Quinn","avatarUrl":null},"voice":{"tone":"warm","responseLength":"detailed","additionalInstructions":"Be kind"}}'::jsonb,
+            '{"version":2,"identity":{"name":"Zenith Assistant","avatarUrl":null},"voice":{"tone":"warm","responseLength":"detailed","additionalInstructions":"Be kind"}}'::jsonb,
             '["assistant.voice","assistant.voice.tone","assistant.identity.name"]'::jsonb
           )
         `)
@@ -228,7 +228,7 @@ describe.skipIf(!dbAvailable)('migration 0204 config v3', () => {
         expect(config.agents.agent.voice.tone).toBe('warm')
         expect(config.agents.agent.voice.additionalInstructions).toBe('Be kind')
         // Copilot initialized to defaults; identity carried over.
-        expect(config.identity.name).toBe('Quinn')
+        expect(config.identity.name).toBe('Zenith Assistant')
         expect(config.agents.copilot.capabilities).toEqual({ qa: true, suggestedReplies: true })
 
         // Voice paths rewritten; unrelated managed paths untouched.

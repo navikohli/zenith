@@ -17,7 +17,7 @@
  */
 
 import { db, eq, user } from '@/lib/server/db'
-import { generateId, type PrincipalId, type UserId } from '@quackback/ids'
+import { generateId, type PrincipalId, type UserId } from '@zenith/ids'
 import { createPrincipal } from '@/lib/server/domains/principals/principal.factory'
 import { recordAuditEvent, type AuditActor } from '@/lib/server/audit/log'
 import { ValidationError } from '@/lib/shared/errors'

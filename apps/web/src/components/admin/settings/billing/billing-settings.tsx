@@ -393,7 +393,7 @@ function SeatsBlock(props: { overview: BillingProjectionOverview; purchased: num
   )
 }
 
-/** Seats live on the current-plan card; Quinn tokens are the usage meter. */
+/** Seats live on the current-plan card; ZenithAssistant tokens are the usage meter. */
 const USAGE_CARD_SKIP = new Set(['maxTeamSeats', 'aiTokensPerMonth'])
 
 function usageMeterLabel(line: { key: string; label: string }): string {
@@ -572,9 +572,9 @@ function AddOnsCard(props: {
       <div data-settings-card="" className="overflow-hidden rounded-xl border bg-card">
         <div className="flex items-center justify-between gap-3 px-4 py-3">
           <div className="min-w-0">
-            <div className="text-[13px] font-medium">Remove Quackback branding</div>
+            <div className="text-[13px] font-medium">Remove Zenith branding</div>
             <div className="text-[12px] text-muted-foreground">
-              Hide &quot;Powered by Quackback&quot; on the portal, widget, and emails. {price}.
+              Hide &quot;Powered by Zenith&quot; on the portal, widget, and emails. {price}.
             </div>
           </div>
           {props.hideBranding ? (
@@ -649,7 +649,7 @@ function PlanCard(props: {
           </div>
           <p className="mt-1 text-[13px] leading-snug text-muted-foreground">{plan.bestFor}</p>
           <a
-            href="https://quackback.io/pricing"
+            href="/source.html"
             target="_blank"
             rel="noreferrer"
             className={`${INLINE_LINK} mt-1 inline-flex items-center gap-1 text-[13px]`}

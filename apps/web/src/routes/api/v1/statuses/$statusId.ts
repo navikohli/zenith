@@ -10,7 +10,7 @@ import {
 import { parseTypeId } from '@/lib/server/domains/api/validation'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import { HexColorSchema, TaxonomyNameSchema } from '@/lib/shared/schemas/taxonomy'
-import type { PostStatusId } from '@quackback/ids'
+import type { PostStatusId } from '@zenith/ids'
 
 // Input validation schema - matches UpdateStatusInput from service
 const updateStatusSchema = z.object({

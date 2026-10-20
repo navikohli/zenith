@@ -3,7 +3,7 @@
  * Postgres fixed-window primitive, which fails open on store errors so an outage
  * never blocks legitimate messaging. Agent (team) actions are not throttled here.
  */
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 import { incrementBucket, bucketRetryAfter } from '@/lib/server/utils/rate-bucket'
 
 // Generous enough for fast back-and-forth typing, tight enough to stop a script

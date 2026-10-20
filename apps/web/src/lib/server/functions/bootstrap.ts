@@ -17,7 +17,7 @@ import {
 } from '@/lib/shared/db-types'
 import type { Session, PrincipalType } from '@/lib/server/auth/session'
 import type { WorkspaceSettings } from '@/lib/server/domains/settings'
-import type { SessionId, UserId } from '@quackback/ids'
+import type { SessionId, UserId } from '@zenith/ids'
 import type { StoredCloudConfig } from '@/lib/shared/db-types'
 import { resolveCloudConfig } from '@/lib/server/domains/settings/cloud/cloud.service'
 import { logger } from '@/lib/server/logger'
@@ -46,7 +46,7 @@ export interface BootstrapData {
    *  null when the browser didn't send the hint (e.g. Firefox/Safari, or a
    *  first visit); the document then resolves it in a <head> script. */
   prefersColorScheme: 'light' | 'dark' | null
-  /** Dot-paths managed by `/etc/quackback/config.yaml`. The matching
+  /** Dot-paths managed by `/etc/zenith/config.yaml`. The matching
    *  in-app form controls render disabled when the path appears here.
    *  Empty list = nothing locked. */
   managedFieldPaths: string[]
@@ -206,7 +206,7 @@ const getBootstrapDataInternal = createServerOnlyFn(async (): Promise<BootstrapD
   // Role-gated, and the gate is not cosmetic. Telemetry is default-on and this
   // path had none, so a `role=web` replica walked every workspace in the registry
   // once an hour — which is precisely what SAAS-HOSTING-STACK.md §1's
-  // scale-to-zero argument says a web replica does not do ("a QUACKBACK_ROLE=web
+  // scale-to-zero argument says a web replica does not do ("a ZENITH_ROLE=web
   // replica runs none of them"), and what Piece 2 measured. Fixing the
   // wrong-workspace problem by making the sweep fleet-wide widened its blast
   // radius from one workspace's database to every workspace's, including on replicas

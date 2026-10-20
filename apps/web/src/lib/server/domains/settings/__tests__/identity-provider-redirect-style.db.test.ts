@@ -62,7 +62,7 @@ vi.mock('@/lib/server/domains/platform-credentials/platform-credential.service',
 // Same sanctioned direct client import as the db test fixture: this suite
 // builds its own connection rather than going through the global `db`.
 // oxlint-disable-next-line no-restricted-imports
-import { createDbFromSql } from '@quackback/db/client'
+import { createDbFromSql } from '@zenith/db/client'
 import { db, identityProvider, settings } from '@/lib/server/db'
 import { buildGenericOAuthConfigs } from '@/lib/server/auth/build-oauth-configs'
 import {

@@ -7,7 +7,7 @@
  * assert that the strings I wrote are the strings I wrote.
  *
  * The suite is scoped to unique queue names because `DATABASE_URL` points every
- * worktree on this machine at one shared `quackback_test`.
+ * worktree on this machine at one shared `zenith_test`.
  */
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
 import {

@@ -45,7 +45,7 @@ const EMAIL = 'someone@acme.example'
 const seen: Array<string | undefined> = []
 
 const auth = betterAuth({
-  baseURL: 'https://acme.quackback.io',
+  baseURL: 'https://acme.zenith.io',
   secret: 'test-secret-not-used-for-anything-real',
   database: memoryAdapter({ user: [], session: [], account: [], verification: [] }),
   emailAndPassword: { enabled: true },

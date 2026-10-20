@@ -8,7 +8,7 @@ import { z } from 'zod'
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
 import { CONVERSATION_STATUSES } from '@/lib/shared/db-types'
 import { realEmail } from '@/lib/shared/anonymous-email'
-import type { PostId, BoardId, ConversationId, PrincipalId } from '@quackback/ids'
+import type { PostId, BoardId, ConversationId, PrincipalId } from '@zenith/ids'
 import type { McpAuthContext } from '../types'
 import {
   registerTool,

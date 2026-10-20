@@ -35,7 +35,7 @@ import {
   type Database,
   type Transaction,
 } from '@/lib/server/db'
-import { generateId, type PrincipalId, type RoleId, type UserId } from '@quackback/ids'
+import { generateId, type PrincipalId, type RoleId, type UserId } from '@zenith/ids'
 import { isTeamMember, type Role, type PrincipalType } from '@/lib/shared/roles'
 import { presetForLegacyRole } from '@/lib/shared/permissions'
 import { cacheDel, CACHE_KEYS } from '@/lib/server/cache'

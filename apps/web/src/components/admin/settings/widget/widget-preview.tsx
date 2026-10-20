@@ -122,8 +122,8 @@ export function WidgetPreview({
     function onMessage(event: MessageEvent) {
       if (event.origin !== window.location.origin) return
       const msg = event.data as { type?: string; count?: number } | null
-      if (msg?.type === 'quackback:close') setIsOpen(false)
-      if (msg?.type === 'quackback:unread') {
+      if (msg?.type === 'zenith:close') setIsOpen(false)
+      if (msg?.type === 'zenith:unread') {
         launcherRef.current?.setUnread(typeof msg.count === 'number' ? msg.count : 0)
       }
     }

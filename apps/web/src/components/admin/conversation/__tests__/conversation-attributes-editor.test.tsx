@@ -11,7 +11,7 @@ import { describe, it, expect, afterEach, vi } from 'vitest'
 import type { ReactElement } from 'react'
 import { render, screen, cleanup } from '@testing-library/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import type { ConversationId } from '@quackback/ids'
+import type { ConversationId } from '@zenith/ids'
 
 const DEFINITIONS = [
   {

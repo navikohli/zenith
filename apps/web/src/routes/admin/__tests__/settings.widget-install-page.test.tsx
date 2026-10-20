@@ -122,8 +122,8 @@ describe('WidgetInstallPage', () => {
 
     const snippet = screen.getByText(/Init first so anonymous visitors/i).closest('code')
     expect(snippet?.textContent).toContain('ssoToken')
-    expect(snippet?.textContent).toContain('Quackback("init")')
-    expect(snippet?.textContent).not.toContain('QUACKBACK_WIDGET_SECRET')
+    expect(snippet?.textContent).toContain('Zenith("init")')
+    expect(snippet?.textContent).not.toContain('ZENITH_WIDGET_SECRET')
     expect(snippet?.textContent).not.toContain('wgt_testsecret')
   })
 

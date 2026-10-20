@@ -71,7 +71,7 @@ vi.mock('@/lib/server/domains/settings/settings.widget', () => ({
 vi.mock('@/lib/server/domains/settings/portal-access', () => ({
   evaluatePortalAccess: vi.fn(),
 }))
-vi.mock('@quackback/ids', () => ({}))
+vi.mock('@zenith/ids', () => ({}))
 
 // ---------------------------------------------------------------------------
 // Handler index

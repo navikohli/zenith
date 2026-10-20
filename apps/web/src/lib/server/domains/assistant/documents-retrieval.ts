@@ -1,5 +1,5 @@
 /**
- * Knowledge-document grounding source for Quinn.
+ * Knowledge-document grounding source for ZenithAssistant.
  *
  * A `KnowledgeSource` (see `./retrieval-sources`) over `assistant_documents`:
  * the same hybrid retrieval shape as the changelog source — semantic

@@ -34,7 +34,7 @@
  * it stamps the metadata bag, the stamp's original home.
  */
 import { describe, it, expect, vi, beforeEach, afterEach, afterAll } from 'vitest'
-import { createId, type PrincipalId, type UserId } from '@quackback/ids'
+import { createId, type PrincipalId, type UserId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { settings, principal, user, invitation, sql, DEFAULT_SETUP_STATE } from '@/lib/server/db'
 import { finishIdentityOnboarding } from '@/lib/server/setup-state'
@@ -445,7 +445,7 @@ describe.skipIf(!fixture.available)('isAccountCreationAllowed', () => {
 
     it('is not closed by an anonymous visitor who arrived first', async () => {
       hoisted.getWorkspaceSettings.mockResolvedValue(null)
-      await seedAccount('temp-visitor@anon.quackback.io', 'anonymous')
+      await seedAccount('temp-visitor@anon.zenith.io', 'anonymous')
 
       expect(await isAccountCreationAllowed('first@acme.example', 'portal')).toBe(true)
     })

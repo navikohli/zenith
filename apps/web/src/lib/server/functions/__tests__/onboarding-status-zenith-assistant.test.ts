@@ -1,8 +1,8 @@
 /**
- * The Home checklist offers "Set up Quinn" only where Quinn can answer. The
+ * The Home checklist offers "Set up ZenithAssistant" only where ZenithAssistant can answer. The
  * status reports that as `features.assistant`: the plan includes the AI
  * assistant and an AI model is configured. Without it the step would read done
- * from the deployment defaults while Quinn cannot reply.
+ * from the deployment defaults while ZenithAssistant cannot reply.
  */
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
@@ -82,23 +82,23 @@ const status = () =>
     }>
   )()
 
-describe('fetchOnboardingStatus Quinn availability', () => {
+describe('fetchOnboardingStatus ZenithAssistant availability', () => {
   beforeEach(() => {
     hoisted.entitled = true
     hoisted.configured = true
     hoisted.assistant = undefined
   })
 
-  it('reports Quinn available when the plan includes it and a model is configured', async () => {
+  it('reports ZenithAssistant available when the plan includes it and a model is configured', async () => {
     expect((await status()).features.assistant).toBe(true)
   })
 
-  it('reports Quinn unavailable when the plan lacks the AI assistant', async () => {
+  it('reports ZenithAssistant unavailable when the plan lacks the AI assistant', async () => {
     hoisted.entitled = false
     expect((await status()).features.assistant).toBe(false)
   })
 
-  it('reports Quinn unavailable when no AI model is configured', async () => {
+  it('reports ZenithAssistant unavailable when no AI model is configured', async () => {
     hoisted.configured = false
     expect((await status()).features.assistant).toBe(false)
   })

@@ -14,7 +14,7 @@ import { db, userSegments, eq, and, inArray, sql } from '@/lib/server/db'
 import { recordAuditEvent, type AuditActor } from '@/lib/server/audit/log'
 import { memoizePerRequest } from '@/lib/server/request-memo'
 import { forgetRequestSegmentIds, SEGMENT_IDS_MEMO_PREFIX } from '@/lib/server/auth/request-session'
-import type { PrincipalId, SegmentId } from '@quackback/ids'
+import type { PrincipalId, SegmentId } from '@zenith/ids'
 
 export type MembershipSource = 'manual' | 'sso' | 'widget' | 'api' | 'dynamic'
 

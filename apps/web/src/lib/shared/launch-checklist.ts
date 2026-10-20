@@ -67,7 +67,7 @@ export interface LaunchStatus {
     statusPage: boolean
     integrations: boolean
     changelog?: boolean
-    /** Quinn can answer: the plan includes the AI assistant and an AI model is configured. */
+    /** ZenithAssistant can answer: the plan includes the AI assistant and an AI model is configured. */
     assistant?: boolean
   }
 }
@@ -252,8 +252,8 @@ export function withLaunchTaskResolution(
   return Object.keys(all).length > 0 ? all : undefined
 }
 
-/** Steps setup completes on its own: the seeded board and service, and Quinn, on by default. */
-const READY_TASK_IDS = new Set(['create-board', 'set-up-quinn', 'add-status-service'])
+/** Steps setup completes on its own: the seeded board and service, and ZenithAssistant, on by default. */
+const READY_TASK_IDS = new Set(['create-board', 'set-up-zenithAssistant', 'add-status-service'])
 
 function materializeTask(task: LaunchTaskInput, resolutions: TaskResolutionMap): LaunchTask {
   const stored = resolutions[task.id]
@@ -362,8 +362,8 @@ function buildOutcomeTasks(
     actionLabel: 'Connect Messenger',
     completedLabel: 'View installation',
   }
-  const setUpQuinn: LaunchTaskInput = {
-    id: 'set-up-quinn',
+  const setUpZenithAssistant: LaunchTaskInput = {
+    id: 'set-up-zenithAssistant',
     title: 'Set up the AI agent',
     description:
       'The AI agent answers customers in Messenger. Check its name, voice and knowledge.',
@@ -435,7 +435,7 @@ function buildOutcomeTasks(
   const integration: LaunchTaskInput = {
     id: 'connect-integration',
     title: 'Connect an integration',
-    description: 'Keep Quackback in sync with the tools your team already uses.',
+    description: 'Keep Zenith in sync with the tools your team already uses.',
     completed: Boolean(status.hasIntegration),
     canAct: permissions.integrationManage,
     ...(features.integrations
@@ -462,7 +462,7 @@ function buildOutcomeTasks(
   if (status.hasPublicBoard) inputs.push(distributeFeedback)
   if (features.changelog) inputs.push(publishChangelog)
   if (features.supportInbox) inputs.push(connectMessenger)
-  if (features.supportInbox && features.assistant) inputs.push(setUpQuinn)
+  if (features.supportInbox && features.assistant) inputs.push(setUpZenithAssistant)
   if (features.helpCenter) inputs.push(helpDraft)
   if (features.statusPage) inputs.push(addStatusService)
   if (features.statusPage && outcome === 'status_page') inputs.push(shareStatusPage)
@@ -496,7 +496,7 @@ export function buildLaunchTasks(
   const taskIds: Record<OnboardingOutcome, readonly string[]> = {
     product_feedback: ['create-board', 'distribute-feedback'],
     internal: ['create-board', 'invite-team'],
-    customer_support: ['connect-messenger', 'set-up-quinn'],
+    customer_support: ['connect-messenger', 'set-up-zenithAssistant'],
     help_center: ['help-article'],
     status_page: ['share-status-page', 'add-status-service'],
   }
@@ -506,7 +506,7 @@ export function buildLaunchTasks(
     const outcome = goal === 'product_feedback' && status.feedbackPrivate ? 'internal' : goal
     for (const task of buildOutcomeTasks(status, outcome, resolutions)) {
       if (!taskIds[outcome].includes(task.id) || seen.has(task.id)) continue
-      tasks.push(task.id === 'set-up-quinn' ? { ...task, classification: 'polish' } : task)
+      tasks.push(task.id === 'set-up-zenithAssistant' ? { ...task, classification: 'polish' } : task)
       seen.add(task.id)
     }
   }

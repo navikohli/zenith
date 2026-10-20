@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import type { PrincipalId, SegmentId } from '@quackback/ids'
+import type { PrincipalId, SegmentId } from '@zenith/ids'
 import { categoryGateAllows } from '../changelog-category.service'
 import { ANONYMOUS_ACTOR, type Actor } from '@/lib/server/policy/types'
 

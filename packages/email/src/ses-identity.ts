@@ -43,10 +43,10 @@ import type {
   GetEmailIdentityCommandOutput,
   PutEmailIdentityMailFromAttributesCommandOutput,
 } from '@aws-sdk/client-sesv2'
-import { createLogger } from '@quackback/logger'
+import { createLogger } from '@zenith/logger'
 import { safeDetail, sesRegion } from './ses'
 
-const log = createLogger({ base: { service_name: 'quackback-email' } }).child({
+const log = createLogger({ base: { service_name: 'zenith-email' } }).child({
   component: 'email-ses-identity',
 })
 

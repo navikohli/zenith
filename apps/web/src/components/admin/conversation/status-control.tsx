@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { ChevronDownIcon } from '@heroicons/react/24/solid'
 import { toast } from 'sonner'
-import type { ConversationId } from '@quackback/ids'
+import type { ConversationId } from '@zenith/ids'
 import type { ConversationEndReason, ConversationStatus } from '@/lib/shared/conversation/types'
 import { isMissingRequiredAttributesMessage } from '@/lib/shared/conversation/attribute-values'
 import {

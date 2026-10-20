@@ -12,7 +12,7 @@ interface VerifyAddressEmailProps {
  * Proves control of an address someone is adding to, or moving, their account.
  *
  * Deliberately NOT the sign-in template. That one is headed "Sign in to
- * Quackback", and showing it to someone who just asked to change their address
+ * Zenith", and showing it to someone who just asked to change their address
  * reads as a phishing attempt — the action they took and the mail they received
  * would not match. Same code presentation, different sentence.
  *

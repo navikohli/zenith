@@ -3,7 +3,7 @@
  * getTierLimits(). Default (no row) is OSS_TIER_LIMITS — unlimited
  * everything, all features on. Operators can write a tighter row to
  * cap a workspace; the canonical writer is the declarative config
- * file (/etc/quackback/config.yaml), reconciled into
+ * file (/etc/zenith/config.yaml), reconciled into
  * settings.tier_limits.
  *
  * Null in any numeric field = unlimited.

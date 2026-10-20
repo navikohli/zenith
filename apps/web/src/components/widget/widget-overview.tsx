@@ -21,7 +21,7 @@ import { firstNameOf } from '@/lib/shared/conversation/personalize'
 import { WidgetResumeCard } from './widget-resume-card'
 import { WidgetRecentTicketsCard } from './widget-recent-tickets'
 import { WidgetChangelogTeaser } from './widget-changelog-teaser'
-import type { ConversationId } from '@quackback/ids'
+import type { ConversationId } from '@zenith/ids'
 import { type EnabledTabs } from './widget-nav'
 
 /** Canonical Home card chrome — every card shares it so the surface reads as

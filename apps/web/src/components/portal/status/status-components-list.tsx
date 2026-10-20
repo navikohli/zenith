@@ -10,7 +10,7 @@ import {
   worstComponentStatus,
 } from './status-colors'
 import { StatusUptimeBar, type StatusUptimeDay } from './status-uptime-bar'
-import type { StatusComponentId, StatusComponentGroupId } from '@quackback/ids'
+import type { StatusComponentId, StatusComponentGroupId } from '@zenith/ids'
 import type { StatusComponentStatus } from '@/lib/server/domains/status'
 
 export interface StatusComponentData {

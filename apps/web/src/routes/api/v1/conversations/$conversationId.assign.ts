@@ -10,7 +10,7 @@ import { parseTypeId } from '@/lib/server/domains/api/validation'
 import { serviceActorFromApiAuth } from '@/lib/server/domains/api/service-actor'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import { serializeConversation } from './-serialize'
-import type { ConversationId, PrincipalId } from '@quackback/ids'
+import type { ConversationId, PrincipalId } from '@zenith/ids'
 
 // null or omitted = unassign; no 'me' sentinel for a service key (it has no
 // personal identity to resolve to).

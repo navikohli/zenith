@@ -3,7 +3,7 @@
  * at the team board the win is judged on, not at a public board.
  */
 import { afterAll, afterEach, beforeEach, expect, it, vi } from 'vitest'
-import { createId, type PrincipalId, type UserId } from '@quackback/ids'
+import { createId, type PrincipalId, type UserId } from '@zenith/ids'
 import type { BoardAccess } from '@/lib/shared/db-types'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { boards, principal, settings, user, type SetupState } from '@/lib/server/db'

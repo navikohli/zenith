@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import { EyeIcon } from '@heroicons/react/24/outline'
 import { changelogQueries } from '@/lib/client/queries/changelog'
 import { useFormatNumber } from '@/components/ui/format-number'
-import type { ChangelogId } from '@quackback/ids'
+import type { ChangelogId } from '@zenith/ids'
 
 interface ChangelogTopViewedProps {
   onSelect?: (id: ChangelogId) => void

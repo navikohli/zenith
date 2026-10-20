@@ -4,7 +4,7 @@
  * do not. The purchased cap is the projected maxTeamSeats limit.
  */
 import { afterAll, afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { createId, type PrincipalId, type UserId } from '@quackback/ids'
+import { createId, type PrincipalId, type UserId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { eq, invitation, principal, settings, sql, user } from '@/lib/server/db'
 import { storedCloud } from '@/lib/server/domains/settings/cloud/__tests__/cloud-fixture'

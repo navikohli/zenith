@@ -27,7 +27,7 @@ import {
 import { helpCenterQueries } from '@/lib/client/queries/help-center'
 import { listSegmentsFn } from '@/lib/server/functions/admin'
 import { getInitialContentJson } from '@/components/admin/feedback/detail/post-utils'
-import type { ArticleId } from '@quackback/ids'
+import type { ArticleId } from '@zenith/ids'
 import type { JSONContent } from '@tiptap/react'
 import type { EditorDocument } from '@/components/ui/rich-text-editor'
 

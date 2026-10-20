@@ -9,7 +9,7 @@
  * returning []. It never imports `@tiptap/extension-emoji`.
  */
 
-export const EMOJI_RECENT_STORAGE_KEY = 'quackback:emoji-recent'
+export const EMOJI_RECENT_STORAGE_KEY = 'zenith:emoji-recent'
 export const MAX_RECENT_EMOJIS = 8
 export const MAX_EMOJI_SUGGESTIONS = 12
 

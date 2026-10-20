@@ -164,7 +164,7 @@ describe('AdminSidebar: workspace switcher', () => {
       {
         instanceId: 'inst_south',
         displayName: 'South',
-        url: 'https://south63792f.quackback.co.uk',
+        url: 'https://south63792f.zenith.co.uk',
       },
     ]
     renderSidebar('admin')
@@ -184,12 +184,12 @@ describe('AdminSidebar: workspace switcher', () => {
       {
         instanceId: 'inst_south',
         displayName: 'South',
-        url: 'https://south63792f.quackback.co.uk',
+        url: 'https://south63792f.zenith.co.uk',
       },
       {
         instanceId: 'inst_raw',
         displayName: 'Untitled workspace',
-        url: 'https://ws-4a048e07941c5e7840e986c0.quackback.co.uk',
+        url: 'https://ws-4a048e07941c5e7840e986c0.zenith.co.uk',
       },
     ]
     renderSidebar('admin')
@@ -394,7 +394,7 @@ describe('AdminSidebar rail', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Open menu' }))
     const title = await screen.findByRole('dialog')
     expect(title.textContent).toContain('Acme Feedback')
-    expect(title.textContent).not.toContain('Quackback')
+    expect(title.textContent).not.toContain('Zenith')
   })
 
   it('lists Home first in the mobile menu', async () => {
@@ -478,13 +478,13 @@ describe('AdminSidebar: help and the phone menu', () => {
 
   it('offers Contact us in Help on cloud, opening the help launcher it hides', async () => {
     const calls: unknown[][] = []
-    window.Quackback = ((...args: unknown[]) => calls.push(args)) as never
+    window.Zenith = ((...args: unknown[]) => calls.push(args)) as never
     renderSidebar('admin', { cloudEnabled: true })
     const user = userEvent.setup()
     await user.click(screen.getByRole('button', { name: 'Help' }))
     await user.click(await screen.findByRole('menuitem', { name: 'Contact us' }))
     expect(calls).toContainEqual(['open'])
-    delete window.Quackback
+    delete window.Zenith
   })
 
   it('has no Contact us where there is no help launcher', async () => {
@@ -530,7 +530,7 @@ describe('AdminSidebar: help and the phone menu', () => {
 
   it('carries the launch plan and the trial in the phone menu, and names Changelog once', () => {
     localStorage.setItem(
-      'quackback:launch-plan-dock:user_1',
+      'zenith:launch-plan-dock:user_1',
       JSON.stringify({ step: 2, total: 3, resolved: false })
     )
     renderSidebar('admin', {

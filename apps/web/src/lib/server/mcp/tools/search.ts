@@ -20,7 +20,7 @@ import {
   getArticleById,
   getCategoryById,
 } from '@/lib/server/domains/help-center/help-center.service'
-import { ensureTypeId, getTypeIdPrefix } from '@quackback/ids'
+import { ensureTypeId, getTypeIdPrefix } from '@zenith/ids'
 import { truncate } from '@/lib/shared/utils/string'
 import { contentJsonToMarkdown } from '@/lib/server/markdown-tiptap'
 import type { CommentTreeNode } from '@/lib/shared/comment-tree'
@@ -32,7 +32,7 @@ import type {
   KbArticleId,
   KbCategoryId,
   PrincipalId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import type { McpAuthContext } from '../types'
 import { getBaseUrl } from '@/lib/server/config'
 import {

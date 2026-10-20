@@ -140,7 +140,7 @@ export type WorkspaceRecord = {
      *
      * Never derive this from the platform's own public domain: once a wildcard
      * custom domain is attached, that value is the literal string
-     * `*.quackback.io` (SAAS-HOSTING-STACK.md §9).
+     * `*.zenith.io` (SAAS-HOSTING-STACK.md §9).
      */
     baseUrl: string
   }
@@ -168,7 +168,7 @@ export type WorkspaceRecord = {
   fingerprint: WorkspaceFingerprintExpectation
 
   secrets: {
-    /** SECRET_KEY, ADMIN_API_TOKEN, QUACKBACK_CP_INTERNAL_TOKEN, S3 keys. */
+    /** SECRET_KEY, ADMIN_API_TOKEN, ZENITH_CP_INTERNAL_TOKEN, S3 keys. */
     appSecretsRef: SecretRef
   }
 
@@ -254,7 +254,7 @@ export const mailSlugSchema = z
  *
  * A ref names a secret, and refs come out of a database, so the rules about
  * WHICH secret a ref may name (an env ref may only reach the reserved
- * QUACKBACK_TENANT_SECRET_* namespace; a KV path may not traverse) have to hold
+ * ZENITH_TENANT_SECRET_* namespace; a KV path may not traverse) have to hold
  * at write time and read time, not just at resolve time. Enforcing them only in
  * the resolver leaves a record that looks valid, reads valid, and fails at the
  * moment a request needs it.
@@ -388,7 +388,7 @@ export function checkWorkspaceRecordInvariants(record: WorkspaceRecord): string[
   // and an `env://` ref carries it in the variable name — so all three are
   // checkable here, and the resolver refuses each of them at read time. The
   // invariant this restores is that the WRITER refuses what the READER would
-  // reject: without it the database accepted `env://QUACKBACK_TENANT_SECRET_FOO`,
+  // reject: without it the database accepted `env://ZENITH_TENANT_SECRET_FOO`,
   // the control plane returned `ok`, and only the fleet refused — fail-closed,
   // but the failure arrived at a customer's request instead of at the write.
   for (const [label, ref, purpose] of [
@@ -404,7 +404,7 @@ export function checkWorkspaceRecordInvariants(record: WorkspaceRecord): string[
     if (named !== null) problems.push(`${label} ref ${named}`)
   }
 
-  // baseUrl pinned to the primary hostname. Catches the `https://*.quackback.io`
+  // baseUrl pinned to the primary hostname. Catches the `https://*.zenith.io`
   // trap and any drift between the routing key and the origin used for cookies.
   let baseHost: string | null = null
   try {
@@ -597,7 +597,7 @@ export function evaluateFingerprint(
     return {
       ok: false,
       code: 'settings_row_missing',
-      detail: 'workspace database has no settings row — not migrated, or not a Quackback database',
+      detail: 'workspace database has no settings row — not migrated, or not a Zenith database',
     }
   }
   if (observed.settingsRowCount !== 1) {

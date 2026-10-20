@@ -9,7 +9,7 @@
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import { z } from 'zod'
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
-import type { TicketId, TicketTypeId, PrincipalId, CompanyId } from '@quackback/ids'
+import type { TicketId, TicketTypeId, PrincipalId, CompanyId } from '@zenith/ids'
 import type {
   TicketType,
   TicketStatusCategory,

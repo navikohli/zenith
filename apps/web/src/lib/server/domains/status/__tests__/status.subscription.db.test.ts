@@ -4,7 +4,7 @@
  * prove that someone who unsubscribed stays unsubscribed.
  */
 import { afterAll, afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { createId, type PrincipalId } from '@quackback/ids'
+import { createId, type PrincipalId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { eq, principal, statusSubscriptions, user } from '@/lib/server/db'
 

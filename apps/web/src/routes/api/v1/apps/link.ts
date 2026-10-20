@@ -4,7 +4,7 @@ import { withApiKeyAuth } from '@/lib/server/domains/api/auth'
 import { badRequestResponse, handleDomainError } from '@/lib/server/domains/api/responses'
 import { parseTypeId } from '@/lib/server/domains/api/validation'
 import { PERMISSIONS } from '@/lib/shared/permissions'
-import type { PostId } from '@quackback/ids'
+import type { PostId } from '@zenith/ids'
 import { appJsonResponse, preflightResponse } from '@/lib/server/integrations/apps/cors'
 
 const linkSchema = z.object({

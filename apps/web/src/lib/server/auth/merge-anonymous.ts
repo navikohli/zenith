@@ -15,7 +15,7 @@
  *   the real identity. Used by onLinkAccount when the link target is a fresh
  *   account.
  */
-import type { PrincipalId, UserId } from '@quackback/ids'
+import type { PrincipalId, UserId } from '@zenith/ids'
 import { db, account, session, user, principal, eq } from '@/lib/server/db'
 import { isTeamMember } from '@/lib/shared/roles'
 import { isTestCustomer } from '@/lib/server/test-data'

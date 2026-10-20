@@ -2,14 +2,14 @@
 
 Implemented in two worktrees on `feat/slack-agent-integration-gateway`:
 
-- Tenant: `/home/james/quackback/.worktrees/slack-agent` (base `b8dcf27e5`).
-- Control plane: `/home/james/quackback/.worktrees/slack-gateway-cp` (base `c7562d5c`).
+- Tenant: `/home/james/zenith/.worktrees/slack-agent` (base `b8dcf27e5`).
+- Control plane: `/home/james/zenith/.worktrees/slack-gateway-cp` (base `c7562d5c`).
 
 ## Results
 
 | Check                                                                                                                    | Result                                                                             |
 | ------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------- |
-| Tenant migrations against fresh `quackback_slack_agent` local DB                                                         | Passed, including declared table/column and index postconditions                   |
+| Tenant migrations against fresh `zenith_slack_agent` local DB                                                         | Passed, including declared table/column and index postconditions                   |
 | CP gateway/install API/forwarding/encryption/parity tests                                                                | 56 passed                                                                          |
 | Tenant focused unit tests: assistant runtime/tools/config, Slack identity/presentation/decisions, receipt authentication | 267 passed                                                                         |
 | Tenant integration/credentials/settings/pending-action database regression suite                                         | 258 passed                                                                         |

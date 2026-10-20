@@ -9,8 +9,8 @@ import {
   desc,
   sql,
 } from '@/lib/server/db'
-import { createId } from '@quackback/ids'
-import type { KbArticleFeedbackId, KbArticleId, PrincipalId } from '@quackback/ids'
+import { createId } from '@zenith/ids'
+import type { KbArticleFeedbackId, KbArticleId, PrincipalId } from '@zenith/ids'
 import { ValidationError } from '@/lib/shared/errors'
 import { ARTICLE_FEEDBACK_REASON_MAX_LENGTH } from '@/lib/shared/schemas/help-center'
 import { logger } from '@/lib/server/logger'

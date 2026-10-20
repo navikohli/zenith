@@ -11,7 +11,7 @@ import { evaluateInboundAuth } from '../email-auth'
 describe('evaluateInboundAuth', () => {
   it('passes a DMARC-aligned message', () => {
     const h =
-      'mx.quackback.io; spf=pass smtp.mailfrom=acme.com; dkim=pass header.d=acme.com; dmarc=pass (p=reject sp=reject dis=none) header.from=acme.com'
+      'mx.zenith.io; spf=pass smtp.mailfrom=acme.com; dkim=pass header.d=acme.com; dmarc=pass (p=reject sp=reject dis=none) header.from=acme.com'
     expect(evaluateInboundAuth(h)).toMatchObject({
       verdict: 'pass',
       dmarc: 'pass',
@@ -22,7 +22,7 @@ describe('evaluateInboundAuth', () => {
 
   it('rejects a hard DMARC fail under p=reject', () => {
     const h =
-      'mx.quackback.io; spf=fail smtp.mailfrom=spoof.com; dkim=none; dmarc=fail (p=reject dis=reject) header.from=acme.com'
+      'mx.zenith.io; spf=fail smtp.mailfrom=spoof.com; dkim=none; dmarc=fail (p=reject dis=reject) header.from=acme.com'
     expect(evaluateInboundAuth(h)).toMatchObject({
       verdict: 'reject',
       dmarc: 'fail',
@@ -77,7 +77,7 @@ describe('evaluateInboundAuth — ARC (forwarded mail)', () => {
   // the message, so this is what a real mail relayed through a customer's own
   // security gateway looks like when it reaches us.
   const forwarded =
-    'mx.quackback.io; spf=fail smtp.mailfrom=gateway.example; dkim=fail header.d=acme.com; dmarc=fail (p=reject dis=reject) header.from=acme.com; arc=pass (i=1 spf=pass dkim=pass dmarc=pass)'
+    'mx.zenith.io; spf=fail smtp.mailfrom=gateway.example; dkim=fail header.d=acme.com; dmarc=fail (p=reject dis=reject) header.from=acme.com; arc=pass (i=1 spf=pass dkim=pass dmarc=pass)'
 
   it('downgrades a hard reject to unverified on a validated ARC chain', () => {
     const result = evaluateInboundAuth(forwarded)
@@ -113,7 +113,7 @@ describe('evaluateInboundAuth — ARC (forwarded mail)', () => {
 
   it('still drops a hard reject when the chain did not validate', () => {
     const base =
-      'mx.quackback.io; spf=fail smtp.mailfrom=gateway.example; dkim=fail header.d=acme.com; dmarc=fail (p=reject dis=reject) header.from=acme.com'
+      'mx.zenith.io; spf=fail smtp.mailfrom=gateway.example; dkim=fail header.d=acme.com; dmarc=fail (p=reject dis=reject) header.from=acme.com'
     for (const arc of ['', '; arc=fail', '; arc=none (0)', '; arc=permerror']) {
       expect(evaluateInboundAuth(base + arc)).toMatchObject({
         verdict: 'reject',
@@ -124,7 +124,7 @@ describe('evaluateInboundAuth — ARC (forwarded mail)', () => {
 
   it('reads arc only from a leading methodspec, never from a propspec or a comment', () => {
     const base =
-      'mx.quackback.io; spf=fail; dkim=fail; dmarc=fail (p=reject dis=reject) header.from=acme.com'
+      'mx.zenith.io; spf=fail; dkim=fail; dmarc=fail (p=reject dis=reject) header.from=acme.com'
     // `arc=pass` glued onto another method's property list is not a methodspec.
     expect(evaluateInboundAuth(`${base}; dkim=fail header.d=acme.com arc=pass`).verdict).toBe(
       'reject'
@@ -140,7 +140,7 @@ describe('evaluateInboundAuth — ARC (forwarded mail)', () => {
     // may legally contain `;` and `=` — so a sender can name their own mailbox
     // after the token they want us to read.
     const echoed =
-      'mx.quackback.io; spf=fail smtp.mailfrom="x; arc=pass"@evil.example; dmarc=fail (p=reject dis=reject) header.from=acme.com'
+      'mx.zenith.io; spf=fail smtp.mailfrom="x; arc=pass"@evil.example; dmarc=fail (p=reject dis=reject) header.from=acme.com'
     expect(evaluateInboundAuth(echoed)).toMatchObject({
       verdict: 'reject',
       arc: 'unknown',
@@ -153,7 +153,7 @@ describe('evaluateInboundAuth — Exchange Online shapes', () => {
   // Captured from a real message: note the lowercase field name, the `;` with no
   // following space, and `cv=none` on the seal marking the first chain hop.
   const captured =
-    'dkim=none (message not signed) header.d=none;dmarc=none action=none header.from=quackback.io;'
+    'dkim=none (message not signed) header.d=none;dmarc=none action=none header.from=zenith.io;'
 
   it('reads a captured Exchange Online authentication-results', () => {
     expect(evaluateInboundAuth(captured)).toMatchObject({
@@ -194,7 +194,7 @@ describe('evaluateInboundAuth — Exchange Online shapes', () => {
     // Captured alongside the header above. Every token in it is written by the
     // intermediary and validated by nobody here, so it must contribute nothing.
     const arcAuthResults =
-      'ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass smtp.mailfrom=quackback.io; dmarc=pass action=none header.from=quackback.io; dkim=pass header.d=quackback.io; arc=none'
+      'ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass smtp.mailfrom=zenith.io; dmarc=pass action=none header.from=zenith.io; dkim=pass header.d=zenith.io; arc=none'
     expect(evaluateInboundAuth(arcAuthResults)).toMatchObject({
       verdict: 'unverified',
       dmarc: 'unknown',
@@ -208,8 +208,8 @@ describe('evaluateInboundAuth — only the topmost instance counts', () => {
   // RFC 8601 §5: a receiver ignores any Authentication-Results it did not add.
   // Ours is the one our MTA prepended, so it is the first one.
   const ourReject =
-    'mx.quackback.io; spf=fail smtp.mailfrom=spoof.example; dkim=none; dmarc=fail (p=reject dis=reject) header.from=acme.com'
-  const forged = 'mx.quackback.io; dmarc=pass header.from=acme.com; arc=pass'
+    'mx.zenith.io; spf=fail smtp.mailfrom=spoof.example; dkim=none; dmarc=fail (p=reject dis=reject) header.from=acme.com'
+  const forged = 'mx.zenith.io; dmarc=pass header.from=acme.com; arc=pass'
 
   it('ignores a second instance joined onto the value', () => {
     expect(evaluateInboundAuth(`${ourReject}, ${forged}`)).toMatchObject({
@@ -222,7 +222,7 @@ describe('evaluateInboundAuth — only the topmost instance counts', () => {
   it('does not let a second instance supply a token the topmost one lacks', () => {
     // The dangerous shape: our MTA reported no DMARC at all, so a scan of the
     // whole string would find only the forged token and read it as ours.
-    const ourPartial = 'mx.quackback.io; spf=fail smtp.mailfrom=spoof.example'
+    const ourPartial = 'mx.zenith.io; spf=fail smtp.mailfrom=spoof.example'
     expect(evaluateInboundAuth(`${ourPartial}, ${forged}`)).toMatchObject({
       verdict: 'unverified',
       dmarc: 'unknown',
@@ -239,7 +239,7 @@ describe('evaluateInboundAuth — only the topmost instance counts', () => {
     // Folding is one header split over lines, so the continuation is still ours
     // and dropping it would lose the policy that makes this a drop.
     const folded =
-      'mx.quackback.io; spf=fail smtp.mailfrom=spoof.example; dkim=none;\r\n dmarc=fail (p=reject dis=reject) header.from=acme.com'
+      'mx.zenith.io; spf=fail smtp.mailfrom=spoof.example; dkim=none;\r\n dmarc=fail (p=reject dis=reject) header.from=acme.com'
     expect(evaluateInboundAuth(folded)).toMatchObject({ verdict: 'reject', policy: 'reject' })
   })
 
@@ -251,7 +251,7 @@ describe('evaluateInboundAuth — only the topmost instance counts', () => {
     // An ARC comment legitimately spells out the results of an EARLIER hop. Read
     // as our MTA's own verdict it turns a hard failure into an aligned pass.
     const arcFirst =
-      'mx.quackback.io; arc=pass (i=1 spf=pass dkim=pass dmarc=pass); dmarc=fail (p=reject dis=reject) header.from=acme.com'
+      'mx.zenith.io; arc=pass (i=1 spf=pass dkim=pass dmarc=pass); dmarc=fail (p=reject dis=reject) header.from=acme.com'
     expect(evaluateInboundAuth(arcFirst)).toMatchObject({
       verdict: 'unverified',
       dmarc: 'fail',

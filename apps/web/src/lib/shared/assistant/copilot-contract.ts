@@ -44,7 +44,7 @@ export interface CopilotCitation {
  * Which affordance a copilot answer's text is FOR — the intent signal the
  * sidebar reads to decide whether "Add to composer" (a customer-facing reply
  * draft) is the primary action or the answer is read-only text (internal
- * analysis/guidance for the teammate). Quinn self-classifies it as a field on
+ * analysis/guidance for the teammate). ZenithAssistant self-classifies it as a field on
  * its structured output (see `buildCopilotFramingPrompt`); the server
  * defaults it to `draft_reply` whenever the model omits it, so an
  * un-classified answer keeps the historical "Add to composer primary"
@@ -89,7 +89,7 @@ export type CopilotInsertDestination = (typeof COPILOT_INSERT_DESTINATIONS)[numb
 /**
  * A write-tool call this copilot turn turned into a pending-approval row
  * (P2-C.4, "act-on-approval"): a Copilot answer can propose a real action and a
- * teammate approves it inline, without Quinn ever running it directly from the
+ * teammate approves it inline, without ZenithAssistant ever running it directly from the
  * Q&A turn. Mirrors `CopilotCitation`'s role for citations: the client-safe
  * shape of `AssistantProposedAction`.
  */
@@ -107,7 +107,7 @@ export interface CopilotProposedAction {
 
 /**
  * The completed turn (RUN_FINISHED.result). `suppressed` carries the silence-rule
- * reason on the rare turn Quinn was muted for (text is then empty and
+ * reason on the rare turn ZenithAssistant was muted for (text is then empty and
  * `internalSourced` is always false). `internalSourced` is `true` when any
  * citation in the answer is internal: the server-computed gate the sidebar's
  * leak-gate confirm dialog reads. `proposedActions` is empty outside a turn
@@ -122,7 +122,7 @@ export interface CopilotFinalPayload {
   proposedActions: CopilotProposedAction[]
   /** Whether `text` is a customer-facing reply draft or internal analysis; see
    *  `CopilotAnswerType`. Always `draft_reply` on a suppressed turn (no text,
-   *  no action buttons), and defaulted to `draft_reply` whenever Quinn omits it. */
+   *  no action buttons), and defaulted to `draft_reply` whenever ZenithAssistant omits it. */
   answerType: CopilotAnswerType
 }
 

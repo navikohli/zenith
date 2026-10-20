@@ -6,7 +6,7 @@
  * help-center segment-gate integration test; this pins the wiring.
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import type { PrincipalId, SegmentId } from '@quackback/ids'
+import type { PrincipalId, SegmentId } from '@zenith/ids'
 
 const mockIsFeatureEnabled = vi.fn()
 const mockGetHelpCenterConfig = vi.fn()

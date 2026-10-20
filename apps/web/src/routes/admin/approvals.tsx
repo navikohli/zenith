@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { isValidTypeId } from '@quackback/ids'
+import { isValidTypeId } from '@zenith/ids'
 import { ApprovalsPage } from '@/components/admin/approvals/approvals-page'
 import { adminPageHead } from '@/lib/client/admin-head'
 

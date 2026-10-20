@@ -1,5 +1,5 @@
 import { queryOptions } from '@tanstack/react-query'
-import type { PostId, RoadmapId } from '@quackback/ids'
+import type { PostId, RoadmapId } from '@zenith/ids'
 import type { AdminPostPanel } from '@/lib/server/domains/posts/post.admin-panels'
 import {
   fetchTagsList,

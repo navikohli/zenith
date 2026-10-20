@@ -324,7 +324,7 @@ describe('gap-fill for providers that release no email or name', () => {
   it('leaves a provider that sends an email completely untouched', async () => {
     const cfg = await buildWithPlaceholder(
       { claimMapping: { profile: { allowMissingEmail: true } } },
-      async () => 'should-not-be-used@anon.quackback.io'
+      async () => 'should-not-be-used@anon.zenith.io'
     )
     const info = await cfg.getUserInfo?.({
       idToken: idToken({ sub: 's1', email: 'real@x.com', name: 'Real Person' }),
@@ -338,7 +338,7 @@ describe('gap-fill for providers that release no email or name', () => {
     // allowMissingEmail is off by default and minting is one-way, so an
     // unconfigured provider must keep failing rather than quietly create
     // accounts nobody can reach.
-    const cfg = await buildWithPlaceholder({}, async () => 'minted@anon.quackback.io')
+    const cfg = await buildWithPlaceholder({}, async () => 'minted@anon.zenith.io')
     const info = await cfg.getUserInfo?.({
       idToken: idToken({ sub: 's1' }),
       accessToken: undefined,
@@ -349,13 +349,13 @@ describe('gap-fill for providers that release no email or name', () => {
   it('mints an address when opted in and the provider sends none', async () => {
     const cfg = await buildWithPlaceholder(
       { claimMapping: { profile: { allowMissingEmail: true } } },
-      async () => 'sso-oidc-abc-deadbeef@anon.quackback.io'
+      async () => 'sso-oidc-abc-deadbeef@anon.zenith.io'
     )
     const info = await cfg.getUserInfo?.({
       idToken: idToken({ sub: 's1' }),
       accessToken: undefined,
     })
-    expect(info?.email).toBe('sso-oidc-abc-deadbeef@anon.quackback.io')
+    expect(info?.email).toBe('sso-oidc-abc-deadbeef@anon.zenith.io')
   })
 
   it('asks for the address by account identity, so a returning user keeps theirs', async () => {
@@ -367,7 +367,7 @@ describe('gap-fill for providers that release no email or name', () => {
       { claimMapping: { profile: { allowMissingEmail: true } } },
       async (registrationId, accountId) => {
         seen.push([registrationId, accountId])
-        return 'stored@anon.quackback.io'
+        return 'stored@anon.zenith.io'
       }
     )
     await cfg.getUserInfo?.({ idToken: idToken({ sub: 'subject-9' }), accessToken: undefined })
@@ -571,7 +571,7 @@ describe('production profile mapping adapter', () => {
   })
 
   it('mints a placeholder when opted in and leaves mapped email missing unverified', async () => {
-    const placeholderEmailFor = vi.fn(async () => 'sso-oidc-abc-deadbeef@anon.quackback.io')
+    const placeholderEmailFor = vi.fn(async () => 'sso-oidc-abc-deadbeef@anon.zenith.io')
     const cfgs = await buildGenericOAuthConfigs({
       providers: [
         row({
@@ -594,7 +594,7 @@ describe('production profile mapping adapter', () => {
       accessToken: undefined,
     })
     expect(placeholderEmailFor).toHaveBeenCalledWith('oidc_abc', 's1')
-    expect(info?.email).toBe('sso-oidc-abc-deadbeef@anon.quackback.io')
+    expect(info?.email).toBe('sso-oidc-abc-deadbeef@anon.zenith.io')
     expect(info?.emailVerified).toBe(false)
     expect(info?.email_verified).toBe(false)
     expect(mapProfileClaims(info).emailVerified).toBe(false)
@@ -610,7 +610,7 @@ describe('production profile mapping adapter', () => {
         providers: [row({ claimMapping })] as never,
         creds: async () => ({ clientId: 'c', clientSecret: 's' }),
         tierAllowsOidc: true,
-        placeholderEmailFor: async () => 'sso-oidc-abc-deadbeef@anon.quackback.io',
+        placeholderEmailFor: async () => 'sso-oidc-abc-deadbeef@anon.zenith.io',
         onProviderEmail,
       })
 
@@ -628,7 +628,7 @@ describe('production profile mapping adapter', () => {
   })
 
   it('does not mint a placeholder when the mapped email is missing and opt-in is off', async () => {
-    const placeholderEmailFor = vi.fn(async () => 'should-not-mint@anon.quackback.io')
+    const placeholderEmailFor = vi.fn(async () => 'should-not-mint@anon.zenith.io')
     const onIdentityFailure = vi.fn()
     const cfgs = await buildGenericOAuthConfigs({
       providers: [

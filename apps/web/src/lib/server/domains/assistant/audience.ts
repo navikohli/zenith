@@ -1,9 +1,9 @@
 /**
- * Content-audience classification for anything Quinn can retrieve and cite.
+ * Content-audience classification for anything ZenithAssistant can retrieve and cite.
  *
  * `AssistantSurface` (widget/email/workflow_step/copilot) is the ONLY signal
  * that distinguishes a customer-facing turn from a teammate-facing one —
- * `quinnActor` is always a 'service' principal, so `principalType` cannot be
+ * `zenithAssistantActor` is always a 'service' principal, so `principalType` cannot be
  * used for this. `resolveContentAudience` is the single mint point for any
  * audience above 'public': every other piece of code that needs a
  * `ContentAudience` must go through it (or through a value that already came

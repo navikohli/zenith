@@ -19,7 +19,7 @@ import { sendMagicLinkEmail } from '../index'
 import { sealedTo } from './brands'
 
 /**
- * The synthetic anonymous placeholder domain (temp-<id>@anon.quackback.io) is
+ * The synthetic anonymous placeholder domain (temp-<id>@anon.zenith.io) is
  * never deliverable. Even with a provider fully configured, the email transport
  * must refuse to deliver there — a last line of defense if a caller forgets to
  * sanitize via realEmail().
@@ -58,7 +58,7 @@ describe('sendEmail anon-domain delivery guard', () => {
   })
 
   it('is reserved for synthetic anonymous placeholders', () => {
-    expect(ANON_EMAIL_DOMAIN).toBe('anon.quackback.io')
+    expect(ANON_EMAIL_DOMAIN).toBe('anon.zenith.io')
   })
 
   it('does not deliver to a synthetic anonymous address', async () => {
@@ -74,7 +74,7 @@ describe('sendEmail anon-domain delivery guard', () => {
 
   it('matches the anon domain case-insensitively', async () => {
     const result = await sendMagicLinkEmail({
-      to: sealedTo('temp-abc@ANON.QUACKBACK.IO'),
+      to: sealedTo('temp-abc@ANON.ZENITH.IO'),
       signInUrl: 'https://example.com/verify-magic-link?token=abc',
       code: '123456',
     })

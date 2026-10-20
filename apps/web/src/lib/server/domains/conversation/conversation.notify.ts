@@ -37,13 +37,13 @@ import {
   resolveConversationFrom,
 } from '@/lib/server/domains/channel-accounts/channel-account.service'
 import { randomUUID } from 'node:crypto'
-import { agentReplyDisplayName, assembleOutboundThreading } from '@quackback/email'
-import { withEmailIdempotencyKey } from '@quackback/email/idempotency'
-import type { EmailAttachment } from '@quackback/email'
+import { agentReplyDisplayName, assembleOutboundThreading } from '@zenith/email'
+import { withEmailIdempotencyKey } from '@zenith/email/idempotency'
+import type { EmailAttachment } from '@zenith/email'
 import { getChannelDescriptor } from '@/lib/shared/channels'
 import { requireChannelAdapter } from '@/lib/server/domains/channels'
 import type { Conversation, ConversationAttachment } from '@/lib/server/db'
-import type { ConversationId, ConversationMessageId, PrincipalId } from '@quackback/ids'
+import type { ConversationId, ConversationMessageId, PrincipalId } from '@zenith/ids'
 import type { JSONContent } from '@tiptap/core'
 import { generateContentHTML } from '@/lib/shared/content-html'
 import { withEmailProxyHint } from '@/lib/server/content/email-image-proxy'
@@ -299,7 +299,7 @@ export async function notifyVisitorMessage(opts: {
       const ctx = await buildHookContext()
       if (!ctx) return
       const ctaUrl = `${ctx.portalBaseUrl.replace(/\/$/, '')}/admin/inbox?i=${opts.conversation.id}`
-      const { sendConversationMessageEmail } = await import('@quackback/email')
+      const { sendConversationMessageEmail } = await import('@zenith/email')
       const { teamThreadRootMessageId, mintTeamOutboundMessageId } =
         await import('@/lib/server/domains/conversation/conversation.email-channel')
       const teamRoot = teamThreadRootMessageId(opts.conversation.id)
@@ -479,7 +479,7 @@ export async function sendVisitorConversationEmail(opts: {
     resolvedFrom && fromDisplayName
       ? formatNamedSendingAddress(resolvedFrom, fromDisplayName)
       : resolvedFrom
-  const { sendConversationMessageEmail } = await import('@quackback/email')
+  const { sendConversationMessageEmail } = await import('@zenith/email')
   const resolvedBody = await resolvedMessageBody(opts.content, opts.contentJson, opts.attachments)
   // One key for every attempt of this send, opened outside the retry loop for
   // the same reason the threading is minted there: a provider that accepted an

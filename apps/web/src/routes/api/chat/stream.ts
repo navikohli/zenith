@@ -10,7 +10,7 @@ import {
   conversationMessages,
   principal,
 } from '@/lib/server/db'
-import type { ConversationId, PrincipalId, TicketId } from '@quackback/ids'
+import type { ConversationId, PrincipalId, TicketId } from '@zenith/ids'
 import { auth } from '@/lib/server/auth'
 import { verifyStreamToken } from '@/lib/server/realtime/stream-token'
 import {
@@ -346,7 +346,7 @@ export const Route = createFileRoute('/api/chat/stream')({
             }
             unsubscribe = unsub
 
-            // Replay Quinn's in-flight activity trace, if any: a subscriber
+            // Replay ZenithAssistant's in-flight activity trace, if any: a subscriber
             // connecting mid-turn (most visibly a brand-new conversation,
             // where the stream opens after the turn already started) would
             // otherwise miss every "thinking" / "searching" frame published

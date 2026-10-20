@@ -56,7 +56,7 @@ function CheckoutPage() {
     >
       {!billingEnabled || !overview ? (
         <p className="text-sm text-muted-foreground">
-          Plan and billing is available only in a Quackback Cloud workspace.
+          Plan and billing is available only in a Zenith Cloud workspace.
         </p>
       ) : catalogue.isLoading ? (
         <p className="text-sm text-muted-foreground">Loading plans…</p>

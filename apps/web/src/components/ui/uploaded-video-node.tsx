@@ -54,7 +54,7 @@ export const UploadedVideo = Node.create({
   parseHTML() {
     return [
       {
-        tag: 'video[data-quackback-video]',
+        tag: 'video[data-zenith-video]',
         getAttrs: (element) => ({
           src: (element as HTMLElement).getAttribute('src'),
           mimeType: (element as HTMLElement).getAttribute('type') || 'video/mp4',
@@ -68,7 +68,7 @@ export const UploadedVideo = Node.create({
     return [
       'video',
       {
-        'data-quackback-video': '1',
+        'data-zenith-video': '1',
         src: HTMLAttributes.src,
         type: HTMLAttributes.mimeType,
         title: HTMLAttributes.title,

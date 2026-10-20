@@ -4,7 +4,7 @@
 import { teams } from '@/lib/server/db'
 import type { TeamAssignmentMethod } from '@/lib/shared/db-types'
 
-export type { TeamId, TeamMemberId, PrincipalId } from '@quackback/ids'
+export type { TeamId, TeamMemberId, PrincipalId } from '@zenith/ids'
 
 /** A team row, inferred from the schema. */
 export type Team = typeof teams.$inferSelect

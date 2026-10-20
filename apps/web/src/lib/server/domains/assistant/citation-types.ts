@@ -1,5 +1,5 @@
 /**
- * The kinds of source a Quinn citation / retrieved item can point at. The
+ * The kinds of source a ZenithAssistant citation / retrieved item can point at. The
  * single source of truth for both `AssistantCitation.type`
  * (assistant.toolspec.ts) and `RetrievedItem.sourceType` / `KnowledgeSource`
  * (retrieval-sources.ts) — kept in this tiny leaf module so neither of those

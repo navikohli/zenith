@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import * as mail from '@quackback/email'
+import * as mail from '@zenith/email'
 
 /**
  * Every mail template must be classified before it can ship.
@@ -83,7 +83,7 @@ describe('mail class coverage', () => {
   })
 
   it('every exported sender has a billable class', async () => {
-    const { EMAIL_BILLABLE } = await import('@quackback/email')
+    const { EMAIL_BILLABLE } = await import('@zenith/email')
     const exported = Object.keys(mail).filter((k) => /^send\w*Email$/.test(k))
     const missing = exported.filter((k) => {
       const emailType = k.slice(4)

@@ -13,7 +13,7 @@ import {
   recipientLocale,
 } from '../onboarding-email-copy'
 
-const BASE = 'https://acme.quackback.test'
+const BASE = 'https://acme.zenith.test'
 const SHARE_STEP = {
   id: 'distribute-feedback',
   title: 'Share your board',
@@ -54,14 +54,14 @@ describe('readyEmailCopy', () => {
     expect(copy.lang).toBe('en')
     expect(copy.dir).toBe('ltr')
     expect(copy.paragraphs).toEqual([
-      'Your board is live at acme.quackback.test.',
+      'Your board is live at acme.zenith.test.',
       'One step gets you to your first customer idea: share the link.',
       'You are on a 14-day Pro trial. No card needed, and Acme moves to Free if you do nothing.',
     ])
     expect(copy.share).toEqual({
       label: 'Your board link to share',
       url: `${BASE}/`,
-      text: 'acme.quackback.test',
+      text: 'acme.zenith.test',
     })
     expect(copy.cta).toEqual({ label: 'Open Acme', url: `${BASE}/admin` })
     expect(copy.footer.unsubscribeLabel).toBe('Stop setup tips')
@@ -77,7 +77,7 @@ describe('readyEmailCopy', () => {
     expect(copy.lang).toBe('de')
     expect(copy.subject).not.toBe('Acme is ready, Sam')
     expect(copy.subject).toContain('Acme')
-    expect(copy.paragraphs[0]).toContain('acme.quackback.test')
+    expect(copy.paragraphs[0]).toContain('acme.zenith.test')
   })
 
   it('is right to left in Arabic', async () => {

@@ -19,7 +19,7 @@ import {
   foreignKey,
 } from 'drizzle-orm/pg-core'
 import { sql } from 'drizzle-orm'
-import { typeIdWithDefault, typeIdColumn, typeIdColumnNullable } from '@quackback/ids/drizzle'
+import { typeIdWithDefault, typeIdColumn, typeIdColumnNullable } from '@zenith/ids/drizzle'
 import { apiKeys } from './api-keys'
 import { integrations } from './integrations'
 import { companies } from './companies'
@@ -127,7 +127,7 @@ export interface StoredCloudIdentityProjection {
   version: number
   displayName: string
   canonicalOrigin: string
-  /** Friendly Quackback hostname, null until the owner chooses one. */
+  /** Friendly Zenith hostname, null until the owner chooses one. */
   platformHostname: string | null
   customDomains: StoredCloudCustomDomain[]
   updatedAt: string
@@ -445,7 +445,7 @@ export const settings = pgTable('settings', {
     .notNull()
     .default({
       version: 4,
-      identity: { name: 'Quinn', avatarUrl: null },
+      identity: { name: 'Zenith Assistant', avatarUrl: null },
       agents: {
         workspace: {
           capabilities: { qa: true },
@@ -557,7 +557,7 @@ export const settings = pgTable('settings', {
   cloudIdentityRevision: integer('cloud_identity_revision').notNull().default(0),
   /**
    * JSON array of dot-paths whose values are managed by the
-   * declarative config file (`/etc/quackback/config.yaml`). When a
+   * declarative config file (`/etc/zenith/config.yaml`). When a
    * path is in this list, the in-app UI mutator for that field
    * returns 403 and the form control is rendered disabled. The list
    * is rebuilt from scratch on every file reconcile, so removing a

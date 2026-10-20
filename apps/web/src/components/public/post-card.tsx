@@ -30,7 +30,7 @@ import { usePostVote } from '@/lib/client/hooks/use-post-vote'
 import { cn } from '@/lib/shared/utils'
 import { useEnsureAnonSession } from '@/lib/client/hooks/use-ensure-anon-session'
 import { AuthorHoverCard } from '@/components/public/author-hover-card'
-import type { PostId, PostStatusId, PrincipalId } from '@quackback/ids'
+import type { PostId, PostStatusId, PrincipalId } from '@zenith/ids'
 import { InlineModerationActions } from '@/components/shared/inline-moderation-actions'
 
 interface PostCardProps {

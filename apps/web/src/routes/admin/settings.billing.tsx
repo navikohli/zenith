@@ -101,7 +101,7 @@ function BillingPage() {
         <BillingSettings />
       ) : (
         <p className="text-sm text-muted-foreground">
-          Plan and billing is available only in a Quackback Cloud workspace.
+          Plan and billing is available only in a Zenith Cloud workspace.
         </p>
       )}
     </SettingsPage>

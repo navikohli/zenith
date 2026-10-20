@@ -20,7 +20,7 @@ import {
   tagForVersion,
   UnknownSchemaVersion,
   type AppliedLedger,
-} from '@quackback/db/schema-version'
+} from '@zenith/db/schema-version'
 import {
   __resetSchemaFloorMemo,
   assertSchemaFloorConfigured,

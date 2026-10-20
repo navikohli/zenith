@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { boardIdSchema, postStatusIdSchema, tagIdsSchema } from '@quackback/ids/zod'
+import { boardIdSchema, postStatusIdSchema, tagIdsSchema } from '@zenith/ids/zod'
 import type { TiptapContent as DbTiptapContent } from '@/lib/shared/db-types'
 import { PageLimitSchema } from './taxonomy'
 

@@ -30,13 +30,13 @@ const publishesEverything = async () => [
   [PUBLISHED],
   [SPF_VALUE],
   [DKIM_TARGET],
-  ['quackback-domain-verification=6f1c2a9e4b8d0f37'],
+  ['zenith-domain-verification=6f1c2a9e4b8d0f37'],
 ]
 
 const ownership: SendingDomainOwnershipRecord = {
   type: 'TXT',
-  host: '_quackback',
-  value: 'quackback-domain-verification=6f1c2a9e4b8d0f37',
+  host: '_zenith',
+  value: 'zenith-domain-verification=6f1c2a9e4b8d0f37',
   purpose: 'ownership',
 }
 
@@ -52,7 +52,7 @@ describe('ownershipRecordSatisfied', () => {
 
   it('rejects another workspace’s token for the same domain', () => {
     expect(
-      ownershipRecordSatisfied(['quackback-domain-verification=0000000000000000'], ownership)
+      ownershipRecordSatisfied(['zenith-domain-verification=0000000000000000'], ownership)
     ).toBe(false)
   })
 

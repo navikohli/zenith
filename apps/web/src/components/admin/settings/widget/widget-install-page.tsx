@@ -15,7 +15,6 @@ import { WidgetSigningSecret } from '@/components/admin/settings/widget/widget-s
 import { copyWithFallback } from '@/components/admin/activation-action-button'
 import { CopyAgentPromptButton } from '@/components/admin/settings/widget/copy-agent-prompt-button'
 import {
-  WIDGET_SKILL_REPO,
   buildWidgetInstallPrompt,
   buildWidgetInstallSnippet,
 } from '@/lib/shared/widget/install-prompt'
@@ -79,12 +78,12 @@ export function WidgetInstallPage() {
       <p className="mt-3 text-xs text-muted-foreground">
         The agent installs the widget and turns it on. You never paste the signing secret.{' '}
         <a
-          href={WIDGET_SKILL_REPO}
+          href="/source.html"
           target="_blank"
           rel="noreferrer"
           className={`${INLINE_LINK} text-[13px]`}
         >
-          What the agent does
+          Source and licenses
           <NewTabHint />
         </a>
       </p>
@@ -94,7 +93,7 @@ export function WidgetInstallPage() {
   const handInstall = (
     <InstallSection
       title="Install without an agent"
-      description="Copy the snippet, or add the npm package."
+      description="Copy the snippet into your application."
     >
       <pre className="max-h-72 overflow-auto rounded-lg bg-zinc-950 p-4 text-xs text-zinc-100">
         <code>{snippet}</code>
@@ -106,8 +105,8 @@ export function WidgetInstallPage() {
         </Button>
       </div>
       <p className="mt-3 text-xs text-muted-foreground">
-        Or add <code className="rounded bg-muted px-1 py-0.5">@quackback/widget</code> and call{' '}
-        <code className="rounded bg-muted px-1 py-0.5">Quackback.init</code> with this instance URL.
+        The SDK is served by this Zenith instance. Call{' '}
+        <code className="rounded bg-muted px-1 py-0.5">Zenith("init")</code> after loading it.
       </p>
     </InstallSection>
   )

@@ -16,28 +16,28 @@ describe('unavailableResponse', () => {
   })
 
   it('points whoever runs the workspace at the control plane when it is configured', async () => {
-    vi.stubEnv('QUACKBACK_CONTROL_PLANE_URL', 'https://app.example.com/')
+    vi.stubEnv('ZENITH_CONTROL_PLANE_URL', 'https://app.example.com/')
     const res = await unavailableResponse(browser(), 'paused', {
       status: 503,
       host: 't1.example.com',
     })
     const html = await res.text()
     expect(html).toContain('href="https://app.example.com/login"')
-    expect(html).toContain('Sign in to Quackback')
+    expect(html).toContain('Sign in to Zenith')
     expect(html).toContain('This workspace is paused')
   })
 
   it('leaves the sign-in line out where there is no control plane, as on a self-hosted install', async () => {
-    vi.stubEnv('QUACKBACK_CONTROL_PLANE_URL', '')
+    vi.stubEnv('ZENITH_CONTROL_PLANE_URL', '')
     const html = await (
       await unavailableResponse(browser(), 'deleted', { status: 404, host: 't1.example.com' })
     ).text()
-    expect(html).not.toContain('Sign in to Quackback')
+    expect(html).not.toContain('Sign in to Zenith')
     expect(html).toContain('t1.example.com has been deleted by the team that ran it.')
   })
 
   it('never links to a control plane that is not https', async () => {
-    vi.stubEnv('QUACKBACK_CONTROL_PLANE_URL', 'http://app.example.com')
+    vi.stubEnv('ZENITH_CONTROL_PLANE_URL', 'http://app.example.com')
     const html = await (
       await unavailableResponse(browser(), 'unknown', { status: 404, host: 't1.example.com' })
     ).text()

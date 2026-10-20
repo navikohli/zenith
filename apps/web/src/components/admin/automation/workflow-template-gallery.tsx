@@ -41,7 +41,7 @@ export function WorkflowTemplateGallery({
   const templates = workflowTemplatesByCategory(category)
   const settings = useWorkspaceSettings()
   const assistant = settings?.publicWidgetConfig?.messenger?.assistant
-  const quinnOn = Boolean(assistant?.enabled && assistant?.respond)
+  const zenithAssistantOn = Boolean(assistant?.enabled && assistant?.respond)
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -96,7 +96,7 @@ export function WorkflowTemplateGallery({
                 <TemplateCard
                   key={template.id}
                   template={template}
-                  chips={templateGalleryChips(template, { quinnOn })}
+                  chips={templateGalleryChips(template, { zenithAssistantOn })}
                   onSelect={onSelect}
                 />
               ))}

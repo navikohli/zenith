@@ -30,7 +30,7 @@ export function buildShortcutStoryBody(
     '---',
     `**Submitted by:** ${author}`,
     `**Board:** ${post.boardSlug}`,
-    `[View in Quackback](${postUrl})`,
+    `[View in Zenith](${postUrl})`,
   ].join('\n')
 
   const title = truncate(post.title, 512)

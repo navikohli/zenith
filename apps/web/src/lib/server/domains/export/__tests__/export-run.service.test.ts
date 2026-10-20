@@ -51,7 +51,7 @@ vi.mock('@/lib/server/db', () => ({
   lt: (...args: unknown[]) => ({ lt: args }),
 }))
 
-vi.mock('@quackback/ids', () => ({
+vi.mock('@zenith/ids', () => ({
   createId: (prefix: string) => `${prefix}_generated`,
 }))
 
@@ -77,13 +77,13 @@ describe('createExportRun', () => {
   it('inserts a pending run with the given filename and initiator', async () => {
     hoisted.insertReturning.mockResolvedValue([{ id: 'export_run_generated', status: 'pending' }])
     const run = await createExportRun({
-      fileName: 'quackback-export-acme-2026-07-17.zip',
+      fileName: 'zenith-export-acme-2026-07-17.zip',
       initiatedByPrincipalId: 'principal_1' as never,
     })
     expect(run.id).toBe('export_run_generated')
     expect(hoisted.insertValues).toHaveBeenCalledWith({
       id: 'export_run_generated',
-      fileName: 'quackback-export-acme-2026-07-17.zip',
+      fileName: 'zenith-export-acme-2026-07-17.zip',
       initiatedByPrincipalId: 'principal_1',
       status: 'pending',
     })

@@ -28,7 +28,7 @@
  * resolution, whose Set-Cookie headers reach the response exactly as before; a
  * repeat lookup in the same request would have found nothing left to do.
  */
-import type { PrincipalId, UserId } from '@quackback/ids'
+import type { PrincipalId, UserId } from '@zenith/ids'
 import { getRequestHeaders } from '@tanstack/react-start/server'
 import type { auth } from '@/lib/server/auth/index'
 import { db, principal, eq, type PermissionKey, type Principal } from '@/lib/server/db'

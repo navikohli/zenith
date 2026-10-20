@@ -4,7 +4,7 @@
  * and domain notify without a new `channel ===` arm in those modules.
  */
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import type { ConversationId, PrincipalId } from '@quackback/ids'
+import type { ConversationId, PrincipalId } from '@zenith/ids'
 import type { ChannelDescriptor } from '@/lib/shared/channels'
 import {
   listChannelDescriptors,

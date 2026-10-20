@@ -29,8 +29,8 @@ import type {
   PrincipalId,
   TeamId,
   CompanyId,
-} from '@quackback/ids'
-import type { ConversationId } from '@quackback/ids'
+} from '@zenith/ids'
+import type { ConversationId } from '@zenith/ids'
 import type { TicketStatusCategory } from '@/lib/shared/db-types'
 import type { JsonValue } from '@/lib/shared/json'
 import { formatTicketNumber, type TicketStageLabels } from '@/lib/shared/tickets'

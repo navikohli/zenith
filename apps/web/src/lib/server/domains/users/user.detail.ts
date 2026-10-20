@@ -29,7 +29,7 @@ import {
   principalRoleAssignments,
   roles,
 } from '@/lib/server/db'
-import type { PrincipalId, SegmentId } from '@quackback/ids'
+import type { PrincipalId, SegmentId } from '@zenith/ids'
 import { InternalError } from '@/lib/shared/errors'
 import { realEmail } from '@/lib/shared/anonymous-email'
 import { truncate } from '@/lib/shared/utils/string'

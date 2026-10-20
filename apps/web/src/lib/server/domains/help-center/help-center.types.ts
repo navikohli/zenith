@@ -9,7 +9,7 @@ import type {
   PrincipalId,
   KbArticleTranslationId,
   KbCategoryTranslationId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 
 // Re-export input types from shared schemas (single source of truth)
 export type {

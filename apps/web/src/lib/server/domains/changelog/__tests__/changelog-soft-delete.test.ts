@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import type { ChangelogId } from '@quackback/ids'
+import type { ChangelogId } from '@zenith/ids'
 // Static imports (vitest hoists the vi.mock below above them, so the db mock
 // still applies). Importing the module graph here — at file load rather than
 // inside each test via `await import()` — keeps its transform cost out of the

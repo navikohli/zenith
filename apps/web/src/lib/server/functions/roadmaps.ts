@@ -7,8 +7,8 @@ import type {
   RoadmapColumnId,
   RoadmapId,
   SegmentId,
-} from '@quackback/ids'
-import { postStatusIdSchema, roadmapColumnIdSchema, roadmapIdSchema } from '@quackback/ids/zod'
+} from '@zenith/ids'
+import { postStatusIdSchema, roadmapColumnIdSchema, roadmapIdSchema } from '@zenith/ids/zod'
 import { requireAuth } from './auth-helpers'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import {

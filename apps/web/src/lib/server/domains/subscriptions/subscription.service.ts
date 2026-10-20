@@ -32,7 +32,7 @@ import {
   user,
   type Transaction,
 } from '@/lib/server/db'
-import { toUuid, type PrincipalId, type PostId } from '@quackback/ids'
+import { toUuid, type PrincipalId, type PostId } from '@zenith/ids'
 import { relatedPostIdsSql } from '@/lib/server/domains/posts/post.merge-ids'
 import { randomUUID } from 'crypto'
 import { logger } from '@/lib/server/logger'

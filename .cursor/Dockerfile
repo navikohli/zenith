@@ -1,4 +1,4 @@
-# Base image for the Quackback Cloud Agent environment.
+# Base image for the Zenith Cloud Agent environment.
 #
 # Provides the slow, stable system layer: Bun (pinned to the repo's
 # packageManager version), Docker Engine + Compose (used to run the local

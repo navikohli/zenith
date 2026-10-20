@@ -4,7 +4,7 @@
 import { z } from 'zod'
 import { createServerFn } from '@tanstack/react-start'
 import { getRequestHeaders } from '@tanstack/react-start/server'
-import type { SkillId } from '@quackback/ids'
+import type { SkillId } from '@zenith/ids'
 import {
   skillInputSchema,
   skillUpdateInputSchema,

@@ -13,7 +13,7 @@ import {
 } from '@/components/ui/form'
 import { useNavigate } from '@tanstack/react-router'
 import { useUpdateBoard } from '@/lib/client/mutations'
-import type { BoardId } from '@quackback/ids'
+import type { BoardId } from '@zenith/ids'
 
 interface Board {
   id: BoardId

@@ -10,7 +10,7 @@
  * completeness audit flagged.
  *
  * Every test runs inside the db-test-fixture rollback transaction, so
- * quackback_test stays clean. The global `db` is rebound to that transaction
+ * zenith_test stays clean. The global `db` is rebound to that transaction
  * via the importOriginal-spread mock, so the REAL merge orchestrators run
  * unmodified (their db.transaction becomes a savepoint).
  */
@@ -24,7 +24,7 @@ import {
   type PostId,
   type PrincipalId,
   type UserId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import {
   account,

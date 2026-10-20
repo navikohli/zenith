@@ -1,5 +1,5 @@
 import { eq, sql, user } from '@/lib/server/db'
-import type { UserId } from '@quackback/ids'
+import type { UserId } from '@zenith/ids'
 import { mergeUserAttributes } from '../user-sync-handler'
 import type { SyncClaim } from './types'
 import type { SyncTransaction } from './ledger'

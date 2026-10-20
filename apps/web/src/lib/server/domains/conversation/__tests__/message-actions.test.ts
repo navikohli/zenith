@@ -5,7 +5,7 @@
  * agent gate and the system/deleted-message guards are exercised too.
  */
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import type { PrincipalId, ConversationMessageId } from '@quackback/ids'
+import type { PrincipalId, ConversationMessageId } from '@zenith/ids'
 import type { Actor } from '@/lib/server/policy/types'
 import { NotFoundError } from '@/lib/shared/errors'
 

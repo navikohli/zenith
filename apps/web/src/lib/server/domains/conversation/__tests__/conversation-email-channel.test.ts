@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import type { ConversationId, TicketId } from '@quackback/ids'
+import type { ConversationId, TicketId } from '@zenith/ids'
 import {
   isEmailInboundConfigured,
   isEmailInboundWebhookConfigured,
@@ -874,11 +874,11 @@ describe('outbound Message-ID threading', () => {
     // shared domain and the fleet's transport replaces them anyway.
     const env = { ...FROM_ENV, EMAIL_INBOUND_DOMAIN: 'x.resend.app' }
     expect(ownMessageIdDomains(env)).toEqual(new Set(['acme.example', 'x.resend.app']))
-    expect(ownMessageIdDomains({ ...env, QUACKBACK_TENANCY: 'pooled' })).toEqual(new Set())
+    expect(ownMessageIdDomains({ ...env, ZENITH_TENANCY: 'pooled' })).toEqual(new Set())
     // The install-level set is unchanged by tenancy: it answers a different
     // question (what this process sends and receives on) and other readers
     // depend on that answer.
-    expect(ownEmailDomains({ ...env, QUACKBACK_TENANCY: 'pooled' }).size).toBe(2)
+    expect(ownEmailDomains({ ...env, ZENITH_TENANCY: 'pooled' }).size).toBe(2)
   })
 
   it('holds every domain in the spelling a Message-ID actually arrives in', () => {

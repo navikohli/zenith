@@ -25,7 +25,7 @@ function attribute(tag: string, name: string): string {
 
 function fileName(url: string): string {
   try {
-    const path = new URL(url, 'https://quackback.invalid').pathname
+    const path = new URL(url, 'https://zenith.invalid').pathname
     return decodeURIComponent(path.split('/').pop() || 'recording')
   } catch {
     return 'recording'
@@ -71,7 +71,7 @@ function extractMedia(content: string, rootUrl: string): PostMedia[] {
   return media
 }
 
-/** Make app-relative markdown assets fetchable outside Quackback, preserving formatting. */
+/** Make app-relative markdown assets fetchable outside Zenith, preserving formatting. */
 export function absolutizeMarkdownUrls(
   content: string,
   rootUrl: string,

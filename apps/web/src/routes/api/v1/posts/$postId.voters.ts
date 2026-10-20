@@ -3,7 +3,7 @@ import { withApiKeyAuth } from '@/lib/server/domains/api/auth'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import { successResponse, handleDomainError } from '@/lib/server/domains/api/responses'
 import { parseTypeId } from '@/lib/server/domains/api/validation'
-import type { PostId, PostVoteId } from '@quackback/ids'
+import type { PostId, PostVoteId } from '@zenith/ids'
 
 export const Route = createFileRoute('/api/v1/posts/$postId/voters')({
   server: {
@@ -25,7 +25,7 @@ export const Route = createFileRoute('/api/v1/posts/$postId/voters')({
             Math.max(1, parseInt(url.searchParams.get('limit') ?? '20', 10) || 20)
           )
 
-          const { isValidTypeId } = await import('@quackback/ids')
+          const { isValidTypeId } = await import('@zenith/ids')
           const cursorVoteId =
             cursor && isValidTypeId(cursor, 'post_vote') ? (cursor as PostVoteId) : undefined
 

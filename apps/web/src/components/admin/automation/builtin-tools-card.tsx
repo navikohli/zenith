@@ -1,5 +1,5 @@
 /**
- * Per-tool permission dials for Quinn's BUILT-IN write tools: one card whose
+ * Per-tool permission dials for ZenithAssistant's BUILT-IN write tools: one card whose
  * Agent / Copilot switch picks the agent being edited, sharing the
  * remote-connector dial's control (Allow / Ask / Never). An absent rule
  * leaves the turn's role policy deciding, so the dial shows that policy until

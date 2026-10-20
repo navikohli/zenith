@@ -7,7 +7,7 @@
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import type { ConversationAttachment } from '@/lib/server/db'
-import { MAX_EMAIL_ATTACHMENT_BYTES } from '@quackback/email'
+import { MAX_EMAIL_ATTACHMENT_BYTES } from '@zenith/email'
 
 const getS3Object = vi.fn<(key: string) => Promise<unknown>>()
 const getEmailSafeUrl = vi.fn<(key: string | null | undefined) => string | null>()

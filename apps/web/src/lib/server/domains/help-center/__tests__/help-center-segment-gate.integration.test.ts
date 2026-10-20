@@ -12,7 +12,7 @@
  * generation is mocked to null so search/retrieval deterministically take the
  * keyword path (no network, no model config dependency).
  *
- * Connects via DATABASE_URL (vitest pins quackback_test), falling back to the
+ * Connects via DATABASE_URL (vitest pins zenith_test), falling back to the
  * dev DB; skips gracefully when neither is reachable — same pattern as
  * board-view-filter-parity.test.ts.
  */
@@ -29,14 +29,14 @@ vi.mock('../help-center-embedding.service', () => ({
 
 import { helpCenterArticles, helpCenterCategories, principal, type Database } from '@/lib/server/db'
 // oxlint-disable-next-line no-restricted-imports -- legitimate createDb caller: this file owns the global db for its worker (see board-view-filter-parity.test.ts)
-import { createDb } from '@quackback/db/client'
+import { createDb } from '@zenith/db/client'
 import {
   createId,
   type KbArticleId,
   type KbCategoryId,
   type PrincipalId,
   type SegmentId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import { ANONYMOUS_ACTOR, type Actor } from '@/lib/server/policy/types'
 import { NotFoundError } from '@/lib/shared/errors'
 import { hybridSearch, searchArticleIdsRanked } from '../help-center-search.service'
@@ -79,7 +79,7 @@ const team: Actor = {
 
 const CANDIDATE_URLS = [
   process.env.DATABASE_URL,
-  'postgresql://postgres:password@localhost:5432/quackback',
+  'postgresql://postgres:password@localhost:5432/zenith',
 ].filter((u): u is string => !!u)
 
 async function pickWorkingDb(): Promise<{ db: Database; close: () => Promise<void> } | null> {

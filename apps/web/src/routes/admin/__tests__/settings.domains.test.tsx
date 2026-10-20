@@ -7,14 +7,14 @@ vi.mock('@/components/admin/upgrade', () => ({
   UpgradeNotice: () => <p>Custom domains are a Pro feature. Upgrade to Pro to enable it.</p>,
 }))
 
-const { DomainsCard, QuackbackUrlCard } = await import('@/components/admin/settings/domains-cards')
+const { DomainsCard, ZenithUrlCard } = await import('@/components/admin/settings/domains-cards')
 
 const PENDING = {
   hostname: 'feedback.acme.test',
   readiness: 'pending' as const,
   isPrimary: false,
   updatedAt: '2026-08-15T12:00:00.000Z',
-  cnameTarget: 'customers.quackback.co.uk',
+  cnameTarget: 'customers.zenith.co.uk',
   ownershipTxt: { name: '_cf-custom-hostname.feedback.acme.test', value: 'token-1' },
 }
 
@@ -55,7 +55,7 @@ describe('domains card', () => {
       />
     )
     expect(screen.getAllByText('feedback.acme.test').length).toBeGreaterThan(0)
-    expect(screen.getByText(/customers\.quackback\.co\.uk/)).toBeInTheDocument()
+    expect(screen.getByText(/customers\.zenith\.co\.uk/)).toBeInTheDocument()
     expect(screen.queryByText(/_cf-custom-hostname/)).not.toBeInTheDocument()
     expect(screen.queryByText(/token-1/)).not.toBeInTheDocument()
     expect(screen.queryByText(/TXT/)).not.toBeInTheDocument()
@@ -68,9 +68,9 @@ describe('domains card', () => {
 describe('Workspace URL card', () => {
   it('does not prefill a generated host into the URL field', () => {
     render(
-      <QuackbackUrlCard
+      <ZenithUrlCard
         platformLabel=""
-        domainSuffix="quackback.co.uk"
+        domainSuffix="zenith.co.uk"
         pending={false}
         error={null}
         onPlatformLabelChange={vi.fn()}
@@ -84,9 +84,9 @@ describe('Workspace URL card', () => {
   it('shows the suffix in the field and one save action, not preview or current lines', () => {
     const save = vi.fn()
     render(
-      <QuackbackUrlCard
+      <ZenithUrlCard
         platformLabel="ws-generated"
-        domainSuffix="quackback.co.uk"
+        domainSuffix="zenith.co.uk"
         pending={false}
         error={null}
         onPlatformLabelChange={vi.fn()}
@@ -95,7 +95,7 @@ describe('Workspace URL card', () => {
     )
 
     expect(screen.getByLabelText('Workspace URL')).toHaveValue('ws-generated')
-    expect(screen.getByText('.quackback.co.uk')).toBeInTheDocument()
+    expect(screen.getByText('.zenith.co.uk')).toBeInTheDocument()
     expect(screen.queryByText(/Preview:/)).not.toBeInTheDocument()
     expect(screen.queryByText(/Current:/)).not.toBeInTheDocument()
     const buttons = screen.getAllByRole('button')

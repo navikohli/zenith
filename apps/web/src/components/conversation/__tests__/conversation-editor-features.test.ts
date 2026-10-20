@@ -22,7 +22,7 @@ const REPLY: EditorFeatures = {
   images: false,
   blockquotes: true,
   embeds: true,
-  quackbackEmbeds: true,
+  zenithEmbeds: true,
   emojiPicker: true,
   slashMenu: true,
   bubbleMenu: true,

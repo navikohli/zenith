@@ -9,7 +9,7 @@
  * Runs inside the db-test-fixture rollback transaction.
  */
 import { describe, it, expect, vi, beforeEach, afterEach, afterAll } from 'vitest'
-import { createId, type PrincipalId, type UserId } from '@quackback/ids'
+import { createId, type PrincipalId, type UserId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { account, principal, user, eq } from '@/lib/server/db'
 
@@ -73,7 +73,7 @@ async function seedLead(opts: {
 }): Promise<{ userId: UserId; principalId: PrincipalId; placeholderEmail: string }> {
   const userId = createId('user') as UserId
   const principalId = createId('principal') as PrincipalId
-  const placeholderEmail = `temp-${runSuffix()}@anon.quackback.io`
+  const placeholderEmail = `temp-${runSuffix()}@anon.zenith.io`
   await testDb.insert(user).values({
     id: userId,
     name: opts.name ?? 'Anonymous',
@@ -177,7 +177,7 @@ describe.skipIf(!fixture.available)('updatePortalUserProfile', () => {
     await expect(
       updatePortalUserProfile({
         principalId: lead.principalId,
-        email: `temp-${runSuffix()}@anon.quackback.io`,
+        email: `temp-${runSuffix()}@anon.zenith.io`,
       })
     ).rejects.toThrow()
   })

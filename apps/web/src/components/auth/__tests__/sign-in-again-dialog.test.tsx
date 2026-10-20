@@ -58,7 +58,7 @@ const { SignInAgainDialog } = await import('../sign-in-again-dialog')
 
 const PAGE = '/admin/approvals?status=open'
 const RETURN = '/admin/approvals?status=open&signedInAgain=approve%3Aact_1'
-const STASH_KEY = 'quackback:sign-in-again'
+const STASH_KEY = 'zenith:sign-in-again'
 
 const okta = { id: 'oidc_okta', name: 'Okta', type: 'oidc' as const }
 

@@ -41,7 +41,7 @@ describe('isJumboEmojiMessage', () => {
       false
     )
     expect(
-      isJumboEmojiMessage('🎉', doc({ type: 'quackbackEmbed', attrs: { kind: 'post', id: 'x' } }))
+      isJumboEmojiMessage('🎉', doc({ type: 'zenithEmbed', attrs: { kind: 'post', id: 'x' } }))
     ).toBe(false)
   })
 })

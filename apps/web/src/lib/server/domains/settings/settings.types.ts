@@ -756,7 +756,7 @@ export const DEFAULT_MESSENGER_CONFIG: MessengerConfig = {
   enabled: false,
   welcomeMessage: DEFAULT_WELCOME_MESSAGE,
   offlineMessage: "We're away right now. Leave a message and we'll get back to you by email.",
-  // AI-first: identity on, and Quinn answers when a model is configured.
+  // AI-first: identity on, and ZenithAssistant answers when a model is configured.
   // Admins pause replies under Automation → Agent. The widget master stays
   // off until Support is turned on (or Show on your website) so a pasted
   // snippet does not go live by itself.
@@ -776,7 +776,7 @@ export const DEFAULT_WIDGET_CONFIG: WidgetConfig = {
 }
 
 /**
- * Defaults that were live before Messenger / Quinn replies / changelog tab
+ * Defaults that were live before Messenger / ZenithAssistant replies / changelog tab
  * flipped on. Stored JSON is merged over this object so missing nested keys
  * stay off. Null/empty blobs pick up {@link DEFAULT_WIDGET_CONFIG} instead.
  */
@@ -1101,7 +1101,7 @@ export interface WorkspaceSettings {
   featureFlags: FeatureFlags
   brandingData: SettingsBrandingData
   faviconData: { url: string } | null
-  /** Dot-paths managed by `/etc/quackback/config.yaml`. Matching in-app
+  /** Dot-paths managed by `/etc/zenith/config.yaml`. Matching in-app
    *  form controls render disabled when the path appears here. Empty
    *  list = nothing locked. */
   managedFieldPaths: string[]

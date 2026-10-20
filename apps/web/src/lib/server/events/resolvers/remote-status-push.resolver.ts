@@ -1,5 +1,5 @@
 /**
- * Resolve outbound status proposals for Sync history. When a Quackback
+ * Resolve outbound status proposals for Sync history. When a Zenith
  * post/ticket status changes, each linked item with external statuses
  * and a matching `pushStatusMappings` entry gets a review operation.
  * No adapter currently supports a verified conditional remote write.
@@ -33,7 +33,7 @@ export interface PushLinkRow {
   integrationType: string
   /** The integration's service-principal id — the loop-safety key. */
   integrationPrincipalId: string | null
-  /** `pushStatusMappings` (posts) / `ticketPushStatusMappings` (tickets): Quackback statusId → remote status. */
+  /** `pushStatusMappings` (posts) / `ticketPushStatusMappings` (tickets): Zenith statusId → remote status. */
   pushStatusMappings: Record<string, string> | undefined
 }
 

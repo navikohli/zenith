@@ -86,7 +86,7 @@ vi.mock('../index', () => ({
   getOTP: vi.fn(() => '123456'),
 }))
 
-vi.mock('@quackback/email', () => ({
+vi.mock('@zenith/email', () => ({
   isEmailConfigured: () => true,
   sendMagicLinkEmail: hoisted.sendMagicLinkEmail,
   sendSignupNotAllowedEmail: hoisted.sendSignupNotAllowedEmail,
@@ -94,7 +94,7 @@ vi.mock('@quackback/email', () => ({
 
 vi.mock('@/lib/server/storage/s3', () => ({ getEmailSafeUrl: () => null }))
 vi.mock('@/lib/server/config', () => ({
-  config: { baseUrl: 'https://acme.quackback.io', trustedProxyHops: 1 },
+  config: { baseUrl: 'https://acme.zenith.io', trustedProxyHops: 1 },
 }))
 
 vi.mock('@/lib/server/auth/signin-rate-limit', () => ({

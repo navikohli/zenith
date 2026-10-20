@@ -11,7 +11,7 @@
  * rename-by-id only (option ids are what values store, labels are display).
  */
 import { pgTable, text, timestamp, jsonb, boolean, uniqueIndex } from 'drizzle-orm/pg-core'
-import { typeIdWithDefault } from '@quackback/ids/drizzle'
+import { typeIdWithDefault } from '@zenith/ids/drizzle'
 
 /** Supported field types (immutable after creation). */
 export type ConversationAttributeFieldType =

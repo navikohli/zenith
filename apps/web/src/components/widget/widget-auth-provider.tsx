@@ -40,9 +40,9 @@ interface WidgetAuthContextValue {
   isIdentified: boolean
   /**
    * Whether the widget knows yet who this visitor is. False from mount until
-   * the portal session hydrates or the SDK's first `quackback:identify`
+   * the portal session hydrates or the SDK's first `zenith:identify`
    * (named, anonymous, or clear) has been handled — the SDK always sends one
-   * right after `quackback:ready`. While false, `isIdentified === false` means
+   * right after `zenith:ready`. While false, `isIdentified === false` means
    * "not yet", not "anonymous"; identity-dependent chrome (the Tickets tab)
    * should hold its initial state rather than commit to the anonymous shape.
    */
@@ -90,7 +90,7 @@ interface WidgetAuthProviderProps {
   /** Locale resolved on the server (Accept-Language header + ?locale=
    *  override). Deriving it from navigator at render time diverges from
    *  SSR and triggers React hydration error #418 — see issue #133. An SDK
-   *  postMessage (quackback:locale) still overrides it after mount. */
+   *  postMessage (zenith:locale) still overrides it after mount. */
   initialLocale?: SupportedLocale
   /** Catalog slice for `initialLocale`, loaded server-side in the widget
    *  layout loader so the first render is translated without a client
@@ -155,7 +155,7 @@ export function WidgetAuthProvider({
   const messages = useIntlSetup(locale, initialMessages)
 
   // The widget is its own iframe document, and its locale can change at runtime
-  // (the `quackback:locale` postMessage below). Unlike the portal, the root
+  // (the `zenith:locale` postMessage below). Unlike the portal, the root
   // document can't track that, so the widget owns its own `<html lang>`/`dir`,
   // formatted the same way the root document does.
   useEffect(() => {
@@ -287,8 +287,8 @@ export function WidgetAuthProvider({
           new Set<string>(result.votedPostIds)
         )
       }
-      sendToHost({ type: 'quackback:identify-result', success: true, user: result.user })
-      sendToHost({ type: 'quackback:auth-change', user: result.user })
+      sendToHost({ type: 'zenith:identify-result', success: true, user: result.user })
+      sendToHost({ type: 'zenith:auth-change', user: result.user })
     },
     [storeToken, queryClient]
   )
@@ -318,8 +318,8 @@ export function WidgetAuthProvider({
     if (portalUser) {
       setUser(portalUser)
       setCanPortalHandoff(canPortalHandoffFromPortal !== false)
-      sendToHost({ type: 'quackback:identify-result', success: true, user: portalUser })
-      sendToHost({ type: 'quackback:auth-change', user: portalUser })
+      sendToHost({ type: 'zenith:identify-result', success: true, user: portalUser })
+      sendToHost({ type: 'zenith:auth-change', user: portalUser })
     }
     setIdentityResolved(true)
   }, [portalSessionToken, portalSessionAdopted, portalUser, canPortalHandoffFromPortal, storeToken])
@@ -339,12 +339,12 @@ export function WidgetAuthProvider({
   }, [portalSessionToken, acquireSession])
 
   const closeWidget = useCallback(() => {
-    sendToHost({ type: 'quackback:close' })
+    sendToHost({ type: 'zenith:close' })
   }, [])
 
   const emitEvent = useCallback(
     <T extends WidgetEventName>(name: T, payload: WidgetEventMap[T]) => {
-      sendToHost({ type: 'quackback:event', name, payload })
+      sendToHost({ type: 'zenith:event', name, payload })
     },
     []
   )
@@ -375,7 +375,7 @@ export function WidgetAuthProvider({
         if (!response.ok) {
           const err = await response.json().catch(() => ({ error: { code: 'NETWORK_ERROR' } }))
           sendToHost({
-            type: 'quackback:identify-result',
+            type: 'zenith:identify-result',
             success: false,
             error: err.error?.code || 'SERVER_ERROR',
           })
@@ -384,7 +384,7 @@ export function WidgetAuthProvider({
 
         applyIdentifyResult(await response.json())
       } catch {
-        sendToHost({ type: 'quackback:identify-result', success: false, error: 'NETWORK_ERROR' })
+        sendToHost({ type: 'zenith:identify-result', success: false, error: 'NETWORK_ERROR' })
       } finally {
         // Resolved only once the round trip settles: between the message and
         // the response `user` is still null, and consumers must not read that
@@ -399,8 +399,8 @@ export function WidgetAuthProvider({
       setUser(null)
       setCanPortalHandoff(true)
       setIdentityResolved(true)
-      sendToHost({ type: 'quackback:identify-result', success: true, user: null })
-      sendToHost({ type: 'quackback:auth-change', user: null })
+      sendToHost({ type: 'zenith:identify-result', success: true, user: null })
+      sendToHost({ type: 'zenith:auth-change', user: null })
     }
 
     function handleMessage(event: MessageEvent) {
@@ -409,24 +409,24 @@ export function WidgetAuthProvider({
       const msg = event.data
       if (!msg || typeof msg !== 'object' || typeof msg.type !== 'string') return
 
-      if (msg.type === 'quackback:metadata' && msg.data && typeof msg.data === 'object') {
+      if (msg.type === 'zenith:metadata' && msg.data && typeof msg.data === 'object') {
         setWidgetMetadata(msg.data as WidgetMetadata)
         return
       }
 
-      if (msg.type === 'quackback:locale' && typeof msg.data === 'string') {
+      if (msg.type === 'zenith:locale' && typeof msg.data === 'string') {
         const normalized = normalizeLocale(msg.data)
         if (normalized) setLocale(normalized)
         return
       }
 
-      if (msg.type === 'quackback:device' && typeof msg.data === 'string' && msg.data) {
+      if (msg.type === 'zenith:device' && typeof msg.data === 'string' && msg.data) {
         deviceIdRef.current = msg.data.slice(0, 128)
         attemptDeviceLink()
         return
       }
 
-      if (msg.type === 'quackback:identify') {
+      if (msg.type === 'zenith:identify') {
         const action = resolveIdentifyAction({
           identifyData: msg.data,
           hasPortalSession: !!portalSessionToken,
@@ -444,8 +444,8 @@ export function WidgetAuthProvider({
             setUser(null)
             setCanPortalHandoff(true)
             setIdentityResolved(true)
-            sendToHost({ type: 'quackback:identify-result', success: true, user: null })
-            sendToHost({ type: 'quackback:auth-change', user: null })
+            sendToHost({ type: 'zenith:identify-result', success: true, user: null })
+            sendToHost({ type: 'zenith:auth-change', user: null })
             break
           case 'anonymous':
             handleAnonymousIdentify()
@@ -457,15 +457,15 @@ export function WidgetAuthProvider({
           case 'skip':
             // Portal session takes precedence — ack without changing state
             setIdentityResolved(true)
-            sendToHost({ type: 'quackback:identify-result', success: true, user: user ?? null })
-            sendToHost({ type: 'quackback:auth-change', user: user ?? null })
+            sendToHost({ type: 'zenith:identify-result', success: true, user: user ?? null })
+            sendToHost({ type: 'zenith:auth-change', user: user ?? null })
             break
         }
       }
     }
 
     window.addEventListener('message', handleMessage)
-    sendToHost({ type: 'quackback:ready' })
+    sendToHost({ type: 'zenith:ready' })
 
     return () => window.removeEventListener('message', handleMessage)
   }, [storeToken, applyIdentifyResult])

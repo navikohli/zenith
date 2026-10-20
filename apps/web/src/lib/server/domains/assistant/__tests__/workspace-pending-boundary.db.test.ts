@@ -1,5 +1,5 @@
 import { afterAll, afterEach, beforeEach, expect, it, vi } from 'vitest'
-import { createId } from '@quackback/ids'
+import { createId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { principal, user, assistantPendingActions, eq } from '@/lib/server/db'
 import { PERMISSIONS } from '@/lib/shared/permissions'

@@ -38,7 +38,7 @@ import {
 import { MemberActions } from '@/components/admin/settings/team/member-actions'
 import { CloudOwnershipActions } from '@/components/admin/settings/team/cloud-ownership-actions'
 import { seatInviteBlocked } from '@/components/admin/settings/team/seat-usage'
-import type { UserId, PrincipalId } from '@quackback/ids'
+import type { UserId, PrincipalId } from '@zenith/ids'
 import { isAdmin } from '@/lib/shared/roles'
 import { useSessionContext, useWorkspaceSettings } from '@/lib/client/hooks/use-root-context'
 import { useOpenedOnce } from '@/lib/client/hooks/use-opened-once'

@@ -10,7 +10,7 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react
 import type { ReactNode, RefObject } from 'react'
 import { useVirtualizer, type Virtualizer } from '@tanstack/react-virtual'
 import type { JSONContent } from '@tiptap/core'
-import type { ConversationId } from '@quackback/ids'
+import type { ConversationId } from '@zenith/ids'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { useVisitorSurfaceRpc, type VisitorSurfaceRpc } from '@/lib/client/visitor-surface-rpc'
 import { useHostShown } from '@/lib/client/hooks/use-host-shown'
@@ -32,7 +32,7 @@ export function docHasContentNode(doc: JSONContent | null): boolean {
       (n) =>
         n.type === 'resizableImage' ||
         n.type === 'image' ||
-        n.type === 'quackbackEmbed' ||
+        n.type === 'zenithEmbed' ||
         walk(n.content)
     )
   return walk(doc.content)

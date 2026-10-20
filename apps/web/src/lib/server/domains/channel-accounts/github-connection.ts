@@ -13,7 +13,7 @@ import {
   integrations,
   type ChannelAccount,
 } from '@/lib/server/db'
-import type { IntegrationId, TeamId } from '@quackback/ids'
+import type { IntegrationId, TeamId } from '@zenith/ids'
 import { defaultTeamId } from './channel-account.service'
 import { logger } from '@/lib/server/logger'
 

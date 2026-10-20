@@ -9,7 +9,7 @@
  */
 import { z } from 'zod'
 import { createServerFn, createServerOnlyFn } from '@tanstack/react-start'
-import { isValidTypeId } from '@quackback/ids'
+import { isValidTypeId } from '@zenith/ids'
 import type {
   ConversationId,
   ConversationMessageId,
@@ -21,7 +21,7 @@ import type {
   CompanyId,
   TeamId,
   MacroId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import {
   MAX_CONVERSATION_MESSAGE_LENGTH,
   MAX_CONVERSATION_ATTACHMENTS,
@@ -121,14 +121,14 @@ const listConversationsSchema = z.object({
   companyId: z.string().optional(),
   // 'mentions' = only conversations whose internal notes @-mention the
   // requesting agent (the principal is resolved server-side from auth).
-  // 'quinn' = only conversations Quinn engaged (see the `ai` bucket).
+  // 'zenithAssistant' = only conversations ZenithAssistant engaged (see the `ai` bucket).
   // 'spam' = the Spam view: only spam-ended conversations (every other scope
   // excludes them).
   // 'created_by_me' = only conversations the requesting agent started (their
   // first message is agent-authored by them).
   // 'test' = only test conversations.
-  view: z.enum(['all', 'mentions', 'quinn', 'spam', 'created_by_me', 'test']).optional(),
-  // Quinn-inbox sub-filter by involvement outcome; omitted = any Quinn-engaged.
+  view: z.enum(['all', 'mentions', 'zenithAssistant', 'spam', 'created_by_me', 'test']).optional(),
+  // ZenithAssistant-inbox sub-filter by involvement outcome; omitted = any ZenithAssistant-engaged.
   ai: z.enum(['resolved', 'escalated', 'pending']).optional(),
   before: z.string().optional(),
   // Custom-attribute view rules (§C2.7): each ANDs a jsonb predicate against
@@ -434,7 +434,7 @@ export const runGetMyConversation = createServerOnlyFn(async function runGetMyCo
   const { isConversationsEnabledFor } =
     await import('@/lib/server/domains/settings/settings.support')
   const { getSettings } = await import('./workspace')
-  const { isEmailConfigured } = await import('@quackback/email')
+  const { isEmailConfigured } = await import('@zenith/email')
   const { canEmailVisitor } = await import('@/lib/shared/conversation/reply-capability')
   const { widgetTranslationFor } = await import('@/lib/shared/widget/translations')
   const { assistantConfigSchema, DEFAULT_ASSISTANT_CONFIG } =
@@ -935,10 +935,10 @@ export const listConversationsFn = createServerFn({ method: 'GET' })
         // Spam view: the only scope that lists spam-ended conversations.
         spamOnly: data.view === 'spam',
         testOnly: data.view === 'test',
-        // Quinn view: a chosen bucket narrows to its statuses; none = any Quinn
+        // ZenithAssistant view: a chosen bucket narrows to its statuses; none = any ZenithAssistant
         // involvement (every bucket).
         assistantStatuses:
-          data.view === 'quinn'
+          data.view === 'zenithAssistant'
             ? data.ai
               ? AI_INBOX_BUCKETS[data.ai]
               : Object.values(AI_INBOX_BUCKETS).flat()
@@ -963,7 +963,7 @@ export const listConversationsFn = createServerFn({ method: 'GET' })
     return { ...page, searchSnippets }
   })
 
-/** Conversation counts per Quinn-inbox bucket (Resolved / Escalated / Pending),
+/** Conversation counts per ZenithAssistant-inbox bucket (Resolved / Escalated / Pending),
  *  for the inbox nav badges. */
 export const fetchAssistantInboxCountsFn = createServerFn({ method: 'GET' }).handler(async () => {
   await requireAuth({ permission: PERMISSIONS.CONVERSATION_VIEW })
@@ -972,8 +972,8 @@ export const fetchAssistantInboxCountsFn = createServerFn({ method: 'GET' }).han
   return countAssistantInboxBuckets()
 })
 
-/** Quinn's activity on one conversation for the agent details panel: outcome,
- *  KB sources cited, escalation reason, CSAT. Null when Quinn never engaged. */
+/** ZenithAssistant's activity on one conversation for the agent details panel: outcome,
+ *  KB sources cited, escalation reason, CSAT. Null when ZenithAssistant never engaged. */
 export const getConversationAssistantActivityFn = createServerFn({ method: 'GET' })
   .validator(z.object({ conversationId: z.string() }))
   .handler(async ({ data }): Promise<ConversationAssistantActivity | null> => {

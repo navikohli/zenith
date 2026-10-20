@@ -5,7 +5,7 @@
  * mock-based suite cannot see whether Better-Auth accepts the row it writes.
  */
 import { afterAll, afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { createId, type UserId } from '@quackback/ids'
+import { createId, type UserId } from '@zenith/ids'
 import { eq } from 'drizzle-orm'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { user, verification } from '@/lib/server/db'

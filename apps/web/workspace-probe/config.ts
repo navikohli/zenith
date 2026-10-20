@@ -14,7 +14,7 @@ export const DEFAULT_REQUEST_TIMEOUT_MS = 20_000
 export class ConfigError extends Error {}
 
 const USAGE = `
-quackback workspace-isolation probe
+zenith workspace-isolation probe
 
   bun apps/web/workspace-probe/cli.ts --alpha <url> --bravo <url> [options]
 

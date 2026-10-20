@@ -116,7 +116,7 @@ describe('SECRET_KEY failures refuse the workspace', () => {
   })
 
   it('refuses when the fleet root key is absent', () => {
-    expect(() => resolve({ rootKey: null })).toThrow(/QUACKBACK_FLEET_ROOT_KEY is unset/)
+    expect(() => resolve({ rootKey: null })).toThrow(/ZENITH_FLEET_ROOT_KEY is unset/)
   })
 
   it('refuses an env ref whose variable is unset, rather than returning empty', () => {
@@ -156,7 +156,7 @@ describe('SECRET_KEY failures refuse the workspace', () => {
     const bravos = workspaceAppSecretVariable('inst_bravo')
     expect(() =>
       resolve({ appSecretsRef: `env://${bravos}`, env: { [bravos]: 'shared-key-000000000000000' } })
-    ).toThrow(/must be held in QUACKBACK_TENANT_SECRET_INST_ALPHA_/)
+    ).toThrow(/must be held in ZENITH_TENANT_SECRET_INST_ALPHA_/)
   })
 
   it('gives two workspaces different variable names, so they cannot collide', () => {

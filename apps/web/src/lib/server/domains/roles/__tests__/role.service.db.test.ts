@@ -5,7 +5,7 @@
  * in-use delete + reassignment, and the tier cap seam.
  */
 import { describe, it, expect, vi, beforeEach, afterEach, afterAll } from 'vitest'
-import { createId, type PrincipalId, type RoleId, type UserId } from '@quackback/ids'
+import { createId, type PrincipalId, type RoleId, type UserId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import {
   and,

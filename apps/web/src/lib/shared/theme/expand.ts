@@ -37,7 +37,7 @@ type ThemeColorBase = Omit<
  * built from these same constants, which keeps the two from drifting apart.
  */
 export const DEFAULT_LIGHT_BASE: ThemeColorBase = {
-  primary: 'oklch(0.886 0.176 86)',
+  primary: 'oklch(0.80 0.13 175)',
   background: '#ffffff',
   foreground: '#0a0a0a',
   card: '#ffffff',
@@ -49,7 +49,7 @@ export const DEFAULT_LIGHT_BASE: ThemeColorBase = {
 }
 
 export const DEFAULT_DARK_BASE: ThemeColorBase = {
-  primary: 'oklch(0.886 0.176 86)',
+  primary: 'oklch(0.80 0.13 175)',
   background: '#0a0a0a',
   foreground: '#fafafa',
   card: '#0f0f0f',
@@ -188,7 +188,7 @@ export function generateChartColors(primary: string): [string, string, string, s
   const parsed = parseOklch(primary)
   if (!parsed) {
     return [
-      'oklch(0.886 0.176 86)',
+      'oklch(0.80 0.13 175)',
       'oklch(0.696 0.149 163)',
       'oklch(0.769 0.165 70)',
       'oklch(0.645 0.215 16)',

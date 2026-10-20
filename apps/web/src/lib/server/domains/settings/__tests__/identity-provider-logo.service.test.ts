@@ -54,7 +54,7 @@ import {
   saveIdentityProviderLogoKey,
   deleteIdentityProviderLogoKey,
 } from '../identity-provider-logo.service'
-import type { IdentityProviderId } from '@quackback/ids'
+import type { IdentityProviderId } from '@zenith/ids'
 
 const ID = 'idp_abc' as IdentityProviderId
 

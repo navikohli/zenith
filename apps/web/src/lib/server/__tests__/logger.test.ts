@@ -27,26 +27,26 @@ describe('serviceNameForProcess', () => {
   })
 
   it('maps the process role onto the service identity', () => {
-    expect(serviceNameForProcess({ QUACKBACK_ROLE: 'worker' })).toBe('quackback-worker')
-    expect(serviceNameForProcess({ QUACKBACK_ROLE: 'migrator' })).toBe('quackback-migrator')
-    expect(serviceNameForProcess({ QUACKBACK_ROLE: 'web' })).toBe('quackback-web')
-    expect(serviceNameForProcess({ QUACKBACK_ROLE: 'all' })).toBe('quackback-web')
-    expect(serviceNameForProcess({})).toBe('quackback-web')
+    expect(serviceNameForProcess({ ZENITH_ROLE: 'worker' })).toBe('zenith-worker')
+    expect(serviceNameForProcess({ ZENITH_ROLE: 'migrator' })).toBe('zenith-migrator')
+    expect(serviceNameForProcess({ ZENITH_ROLE: 'web' })).toBe('zenith-web')
+    expect(serviceNameForProcess({ ZENITH_ROLE: 'all' })).toBe('zenith-web')
+    expect(serviceNameForProcess({})).toBe('zenith-web')
   })
 
   it('trims the role the same way the role parser does', () => {
-    expect(serviceNameForProcess({ QUACKBACK_ROLE: '  worker' })).toBe('quackback-worker')
-    expect(serviceNameForProcess({ QUACKBACK_ROLE: 'migrator ' })).toBe('quackback-migrator')
+    expect(serviceNameForProcess({ ZENITH_ROLE: '  worker' })).toBe('zenith-worker')
+    expect(serviceNameForProcess({ ZENITH_ROLE: 'migrator ' })).toBe('zenith-migrator')
   })
 
   it('does not fold case — a typo is not a worker', () => {
-    expect(serviceNameForProcess({ QUACKBACK_ROLE: 'Worker' })).toBe('quackback-web')
-    expect(serviceNameForProcess({ QUACKBACK_ROLE: 'MIGRATOR' })).toBe('quackback-web')
+    expect(serviceNameForProcess({ ZENITH_ROLE: 'Worker' })).toBe('zenith-web')
+    expect(serviceNameForProcess({ ZENITH_ROLE: 'MIGRATOR' })).toBe('zenith-web')
   })
 
   it('lets OTEL_SERVICE_NAME override the derived name', () => {
     expect(
-      serviceNameForProcess({ QUACKBACK_ROLE: 'worker', OTEL_SERVICE_NAME: 'fleet-worker-a' })
+      serviceNameForProcess({ ZENITH_ROLE: 'worker', OTEL_SERVICE_NAME: 'fleet-worker-a' })
     ).toBe('fleet-worker-a')
   })
 })
@@ -57,7 +57,7 @@ describe('logger', () => {
   })
 
   it('emits flat JSON with a string level, service_name, env and msg', () => {
-    vi.stubEnv('QUACKBACK_ROLE', undefined)
+    vi.stubEnv('ZENITH_ROLE', undefined)
     vi.stubEnv('OTEL_SERVICE_NAME', undefined)
     const sink = capture()
     const log = createLogger({ destination: sink.destination, level: 'info' })
@@ -67,27 +67,27 @@ describe('logger', () => {
     const rec = sink.last()
     expect(rec.level).toBe('info') // string, not numeric — Loki level detection
     expect(rec.msg).toBe('hello')
-    expect(rec.service_name).toBe('quackback-web')
+    expect(rec.service_name).toBe('zenith-web')
     expect(rec.env).toBeUndefined() // env is not stamped on log lines
     expect(typeof rec.time).toBe('number') // epoch ms (Pino default)
   })
 
-  it('stamps quackback-worker when QUACKBACK_ROLE=worker', () => {
-    vi.stubEnv('QUACKBACK_ROLE', 'worker')
+  it('stamps zenith-worker when ZENITH_ROLE=worker', () => {
+    vi.stubEnv('ZENITH_ROLE', 'worker')
     vi.stubEnv('OTEL_SERVICE_NAME', undefined)
     const sink = capture()
     const log = createLogger({ destination: sink.destination, level: 'info' })
     log.info('drain')
-    expect(sink.last().service_name).toBe('quackback-worker')
+    expect(sink.last().service_name).toBe('zenith-worker')
   })
 
-  it('stamps quackback-migrator when QUACKBACK_ROLE=migrator', () => {
-    vi.stubEnv('QUACKBACK_ROLE', 'migrator')
+  it('stamps zenith-migrator when ZENITH_ROLE=migrator', () => {
+    vi.stubEnv('ZENITH_ROLE', 'migrator')
     vi.stubEnv('OTEL_SERVICE_NAME', undefined)
     const sink = capture()
     const log = createLogger({ destination: sink.destination, level: 'info' })
     log.info('enrol')
-    expect(sink.last().service_name).toBe('quackback-migrator')
+    expect(sink.last().service_name).toBe('zenith-migrator')
   })
 
   it('stamps the active request context onto every line', () => {

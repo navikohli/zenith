@@ -8,7 +8,7 @@
  * quietly addressing something else."
  */
 import { describe, expect, it } from 'vitest'
-import { fromUuid } from '@quackback/ids'
+import { fromUuid } from '@zenith/ids'
 import {
   composeNamespacedKey,
   StorageNamespaceViolation,

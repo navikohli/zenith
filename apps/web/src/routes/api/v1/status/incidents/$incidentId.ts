@@ -3,7 +3,7 @@ import { withApiKeyAuth } from '@/lib/server/domains/api/auth'
 import { successResponse, handleDomainError } from '@/lib/server/domains/api/responses'
 import { parseTypeId } from '@/lib/server/domains/api/validation'
 import { serializeIncidentDetails } from '../-serialize'
-import type { StatusIncidentId } from '@quackback/ids'
+import type { StatusIncidentId } from '@zenith/ids'
 
 export const Route = createFileRoute('/api/v1/status/incidents/$incidentId')({
   server: {

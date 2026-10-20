@@ -8,7 +8,7 @@
 import { db, posts, and, isNull, isNotNull, ne, desc, asc, sql } from '@/lib/server/db'
 import { logger } from '@/lib/server/logger'
 import { notTestPrincipal } from '@/lib/server/test-data'
-import type { PostId } from '@quackback/ids'
+import type { PostId } from '@zenith/ids'
 
 const log = logger.child({ component: 'merge-search' })
 

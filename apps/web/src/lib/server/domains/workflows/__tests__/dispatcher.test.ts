@@ -5,7 +5,7 @@
  * pins orchestration only; the guards are tested against a real DB separately.
  */
 import { describe, it, expect, beforeEach, vi } from 'vitest'
-import type { ConversationId } from '@quackback/ids'
+import type { ConversationId } from '@zenith/ids'
 
 const {
   listLiveWorkflowsForTrigger,

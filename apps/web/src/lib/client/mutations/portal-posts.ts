@@ -20,7 +20,7 @@ import { portalDetailQueries, type PublicPostDetailView } from '@/lib/client/que
 import { adminQueries } from '@/lib/client/queries/admin'
 import type { PublicPostListItem } from '@/lib/shared/types'
 import type { JSONContent } from '@tiptap/react'
-import type { PostId, BoardId, PostStatusId } from '@quackback/ids'
+import type { PostId, BoardId, PostStatusId } from '@zenith/ids'
 
 // ============================================================================
 // Types

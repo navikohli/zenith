@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { isValidTypeId, type FileId } from '@quackback/ids'
+import { isValidTypeId, type FileId } from '@zenith/ids'
 import { enforcePerIpLimit } from '@/lib/server/widget/public-endpoint'
 import { recordFileOpen } from '@/lib/server/domains/files/files.service'
 

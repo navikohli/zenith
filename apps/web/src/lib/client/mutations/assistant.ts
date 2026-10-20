@@ -1,6 +1,6 @@
 /** Revision-aware AI agent configuration and guidance mutations. */
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import type { AssistantGuidanceRuleId } from '@quackback/ids'
+import type { AssistantGuidanceRuleId } from '@zenith/ids'
 import type { AssistantAgentKind } from '@/lib/shared/assistant/config'
 import {
   createGuidanceRuleFn,

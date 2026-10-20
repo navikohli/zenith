@@ -25,7 +25,7 @@ import { SystemEventNotice } from './system-event-notice'
 import { conversationAvailable } from '@/lib/shared/conversation/presence'
 import { ArrowUpIcon, ChevronDownIcon } from '@heroicons/react/24/solid'
 import { ChatBubbleLeftRightIcon, PaperClipIcon, BookOpenIcon } from '@heroicons/react/24/outline'
-import type { ConversationId } from '@quackback/ids'
+import type { ConversationId } from '@zenith/ids'
 import { Avatar } from '@/components/ui/avatar'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { TypingDots } from '@/components/shared/typing-dots'
@@ -65,7 +65,7 @@ import {
   type VisitorThreadCache,
 } from '@/components/conversation/events-reducer'
 import { conversationKeys } from '@/components/conversation/query-keys'
-import type { EmbedOpenMode } from '@/components/shared/quackback-embed-card'
+import type { EmbedOpenMode } from '@/components/shared/zenith-embed-card'
 import { LinkPreviews } from '@/components/shared/link-preview-card'
 import type { ConversationMessageDTO } from '@/lib/shared/conversation/types'
 import { CSAT_FACES } from '@/lib/shared/db-types'
@@ -1084,10 +1084,10 @@ export function VisitorConversationThread({
           </div>
         )
       case 'assistant-activity':
-        // Quinn's live working trace (thinking → searching the knowledge base).
+        // ZenithAssistant's live working trace (thinking → searching the knowledge base).
         return <AssistantWorkingTrace status={row.status} />
       case 'assistant-stream':
-        // Quinn's answer as it streams, before the persisted message lands.
+        // ZenithAssistant's answer as it streams, before the persisted message lands.
         return <AssistantStreamingBubble text={row.text} />
 
       case 'csat':

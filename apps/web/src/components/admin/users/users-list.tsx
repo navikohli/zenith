@@ -69,7 +69,7 @@ const SORT_OPTIONS = [
   { value: 'name', label: 'Name A-Z' },
 ]
 
-const SHOW_COUNTRY_STORAGE_KEY = 'quackback:users-list:show-country'
+const SHOW_COUNTRY_STORAGE_KEY = 'zenith:users-list:show-country'
 
 /**
  * The Country column opt-in persists per teammate in localStorage, so the

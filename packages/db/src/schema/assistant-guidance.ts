@@ -1,7 +1,7 @@
-/** Situational guidance owned by exactly one Quinn agent (D4). */
+/** Situational guidance owned by exactly one ZenithAssistant agent (D4). */
 import { pgTable, text, boolean, integer, timestamp, index, check } from 'drizzle-orm/pg-core'
 import { relations, sql } from 'drizzle-orm'
-import { typeIdWithDefault, typeIdColumnNullable } from '@quackback/ids/drizzle'
+import { typeIdWithDefault, typeIdColumnNullable } from '@zenith/ids/drizzle'
 import { principal } from './auth'
 
 export const assistantGuidanceRules = pgTable(

@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import type { KbArticleId, KbCategoryId } from '@quackback/ids'
+import type { KbArticleId, KbCategoryId } from '@zenith/ids'
 
 const mockArticleTranslationFindMany = vi.fn()
 const mockArticleTranslationFindFirst = vi.fn()

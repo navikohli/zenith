@@ -7,7 +7,7 @@
  * and the open inbox thread updates over SSE.
  */
 import { db, eq, integrations, conversations, conversationMessages } from '@/lib/server/db'
-import type { ChannelAccountId, ConversationId, IntegrationId } from '@quackback/ids'
+import type { ChannelAccountId, ConversationId, IntegrationId } from '@zenith/ids'
 import { githubLoginsMatch, githubThreadKey } from '@/lib/server/domains/channels/github-thread'
 import { getLiveGitHubConnectionAccount } from '@/lib/server/domains/channel-accounts/github-connection'
 import { logger } from '@/lib/server/logger'

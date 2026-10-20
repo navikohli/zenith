@@ -1,7 +1,7 @@
 // @vitest-environment happy-dom
 import { describe, it, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
-import { generateId } from '@quackback/ids'
+import { generateId } from '@zenith/ids'
 import { OutcomePreviewRail } from '../outcome-preview-rail'
 import type { SsoTestCapture } from '@/lib/shared/sso-test-capture'
 import type { IdentityProviderClaimMapping } from '@/lib/shared/oidc-claim-mapping'

@@ -115,7 +115,7 @@ beforeEach(() => {
   mocks.runtime.mockResolvedValue({
     config: {
       agents: { workspace: { slack: { enabled: true }, capabilities: { qa: true } } },
-      identity: { name: 'Quinn' },
+      identity: { name: 'Zenith Assistant' },
     },
     workspaceName: 'Acme',
   })

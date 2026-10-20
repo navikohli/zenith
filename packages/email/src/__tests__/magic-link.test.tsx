@@ -8,7 +8,7 @@ describe('MagicLinkEmail', () => {
       <MagicLinkEmail signInUrl="https://acme.example/verify" code="123456" workspaceName="Acme" />
     )
     expect(html).toMatch(/<h1[^>]*>Sign in to Acme<\/h1>/)
-    expect(html).not.toContain('Sign in to Quackback')
+    expect(html).not.toContain('Sign in to Zenith')
   })
 
   it('says plain Sign in when the workspace has no name', async () => {

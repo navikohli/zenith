@@ -10,13 +10,13 @@ import {
   customType,
 } from 'drizzle-orm/pg-core'
 import { relations, sql } from 'drizzle-orm'
-import { typeIdWithDefault, typeIdColumn, typeIdColumnNullable } from '@quackback/ids/drizzle'
+import { typeIdWithDefault, typeIdColumn, typeIdColumnNullable } from '@zenith/ids/drizzle'
 import { conversations } from './conversation'
 import { principal } from './auth'
 
 /**
  * Assistant involvement record — the audit/KPI unit for the in-product AI
- * agent (Quinn). One row per conversation the assistant engages, carrying how
+ * agent (ZenithAssistant). One row per conversation the assistant engages, carrying how
  * it was triggered, its terminal status, the structured hand-off reason (if
  * any), the sources it cited, and a CSAT rating once the assistant was the last
  * handler. Turn-level detail (tool calls, tokens) lives on message metadata and
@@ -83,11 +83,11 @@ export const assistantInvolvements = pgTable(
     handoffReason: text('handoff_reason', { enum: ASSISTANT_HANDOFF_REASONS }),
     sources: jsonb('sources').$type<AssistantInvolvementSource[]>().notNull().default([]),
     rating: integer('rating'),
-    // When Quinn made its single escalation offer. Its presence is the
+    // When ZenithAssistant made its single escalation offer. Its presence is the
     // "already offered" flag: the engine escalates straight to hand-off on a
     // repeat rather than offering a human twice.
     escalationOfferedAt: timestamp('escalation_offered_at', { withTimezone: true }),
-    // When Quinn last gave a substantive answer. Drives the assumed-resolution
+    // When ZenithAssistant last gave a substantive answer. Drives the assumed-resolution
     // inactivity sweep — a quiet thread past the window is resolved as assumed.
     lastAssistantAnswerAt: timestamp('last_assistant_answer_at', { withTimezone: true }),
     createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
@@ -100,7 +100,7 @@ export const assistantInvolvements = pgTable(
     index('assistant_involvements_active_answer_idx')
       .on(t.lastAssistantAnswerAt)
       .where(sql`${t.status} = 'active'`),
-    // Drives the Quinn performance dashboard's date-range scan.
+    // Drives the ZenithAssistant performance dashboard's date-range scan.
     index('assistant_involvements_created_at_idx').on(t.createdAt),
   ]
 )
@@ -128,9 +128,9 @@ export const ASSISTANT_SNIPPET_AUDIENCES = ['public', 'team', 'internal'] as con
 export type AssistantSnippetAudience = (typeof ASSISTANT_SNIPPET_AUDIENCES)[number]
 
 /**
- * Snippets — short, private facts an admin curates for Quinn to ground
+ * Snippets — short, private facts an admin curates for ZenithAssistant to ground
  * answers on, alongside the knowledge base and (when enabled) feedback
- * posts. Unlike a guidance rule (which steers HOW Quinn answers), a snippet
+ * posts. Unlike a guidance rule (which steers HOW ZenithAssistant answers), a snippet
  * IS an answerable fact: it is embedded on write and retrieved the same way
  * a KB article is (`assistant/snippets-retrieval.ts`), scoped by its own
  * `audience` ceiling rather than a surface allowlist. No vector index
@@ -179,7 +179,7 @@ export const assistantSnippetsRelations = relations(assistantSnippets, ({ one })
 
 /**
  * Knowledge documents — admin-uploaded files (today: PDFs) whose extracted
- * text grounds Quinn's answers, alongside the curated snippets above. Unlike
+ * text grounds ZenithAssistant's answers, alongside the curated snippets above. Unlike
  * a snippet (a short typed fact), a document is an uploaded artifact: the
  * extracted full text lives in `content` and is embedded on ingest
  * (`assistant/document.service.ts`) for the same hybrid retrieval the

@@ -24,7 +24,7 @@
  * "nobody scheduled this".
  */
 
-import type { SegmentId } from '@quackback/ids'
+import type { SegmentId } from '@zenith/ids'
 import { db, segments, eq, and, isNull, type EvaluationSchedule } from '@/lib/server/db'
 import { TerminalJobError, type DynamicSchedule } from '@/lib/server/jobs/definitions'
 import { nextSlotAfter, parseCron } from '@/lib/server/jobs/cron'

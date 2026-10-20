@@ -23,7 +23,7 @@
  * is accepted rather than serialized behind an advisory lock.
  */
 
-import type { IdentityProviderId } from '@quackback/ids'
+import type { IdentityProviderId } from '@zenith/ids'
 import type { IdentityProvider } from '@/lib/server/domains/settings/identity-providers.service'
 import { isSignInMethodEnabled } from '@/lib/shared/signin-methods'
 
@@ -122,7 +122,7 @@ async function gatherWorkingMethodInputs(
   const { listIdentityProviders } =
     await import('@/lib/server/domains/settings/identity-providers.service')
   const { getTierLimits } = await import('@/lib/server/domains/settings/tier-limits.service')
-  const { isEmailConfigured } = await import('@quackback/email')
+  const { isEmailConfigured } = await import('@zenith/email')
   const { AUTH_PROVIDERS } = await import('@/lib/server/auth/auth-providers')
 
   const [configuredTypes, providers, tierLimits] = await Promise.all([

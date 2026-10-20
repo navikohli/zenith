@@ -8,7 +8,7 @@ import {
   submitArticleFeedbackReasonFn,
 } from '@/lib/server/functions/help-center'
 import { ARTICLE_FEEDBACK_REASON_MAX_LENGTH } from '@/lib/shared/schemas/help-center'
-import type { KbArticleFeedbackId, KbArticleId } from '@quackback/ids'
+import type { KbArticleFeedbackId, KbArticleId } from '@zenith/ids'
 
 interface HelpCenterArticleFeedbackProps {
   articleId: string

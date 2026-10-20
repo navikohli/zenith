@@ -9,7 +9,7 @@ import { createServerFn } from '@tanstack/react-start'
 import { requireAuth } from './auth-helpers'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import { WEBHOOK_EVENTS } from '@/lib/server/events/integrations/webhook/constants'
-import type { WebhookId } from '@quackback/ids'
+import type { WebhookId } from '@zenith/ids'
 import { logger } from '@/lib/server/logger'
 
 const log = logger.child({ component: 'webhooks' })

@@ -16,7 +16,7 @@ import {
   toAttachments,
   markdownToSanitizedJson,
 } from './-validation'
-import type { ConversationId } from '@quackback/ids'
+import type { ConversationId } from '@zenith/ids'
 
 const replySchema = z.object({
   content: messageContentSchema,

@@ -189,7 +189,7 @@ describe('wireSink forwarding', () => {
       streamOf([
         { type: 'RUN_STARTED' },
         { type: 'TOOL_CALL_START', toolCallName: 'search', toolCallId: 'c1' },
-        { type: 'CUSTOM', name: 'quackback:activity', value: { status: 'searching_kb' } },
+        { type: 'CUSTOM', name: 'zenith:activity', value: { status: 'searching_kb' } },
         { type: 'TOOL_CALL_END', toolCallId: 'c1' },
         { type: 'TEXT_MESSAGE_CONTENT', delta: JSON.stringify(GOOD_OBJECT) },
         { type: 'CUSTOM', name: 'structured-output.complete', value: { object: GOOD_OBJECT } },
@@ -200,7 +200,7 @@ describe('wireSink forwarding', () => {
     await settle(runSynthesis(baseOptions({ wireSink: (c) => wire.push(c as Chunk) })))
 
     const custom = wire.filter((c) => c.type === 'CUSTOM') as Array<Chunk & { name: string }>
-    expect(custom.map((c) => c.name)).toEqual(['quackback:activity', 'structured-output.complete'])
+    expect(custom.map((c) => c.name)).toEqual(['zenith:activity', 'structured-output.complete'])
   })
 
   it('is inert when no wireSink is provided', async () => {

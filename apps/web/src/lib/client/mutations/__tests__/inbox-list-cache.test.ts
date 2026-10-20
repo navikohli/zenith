@@ -1,6 +1,6 @@
 import { QueryClient } from '@tanstack/react-query'
 import { describe, expect, it } from 'vitest'
-import type { PostId } from '@quackback/ids'
+import type { PostId } from '@zenith/ids'
 import { inboxKeys } from '@/lib/client/hooks/use-inbox-query'
 import {
   isInboxInfiniteList,

@@ -13,7 +13,7 @@
  * sibling claim.
  */
 import { describe, it, expect, beforeEach, afterEach, afterAll, vi } from 'vitest'
-import { createId, type PrincipalId, type UserId, type ConversationId } from '@quackback/ids'
+import { createId, type PrincipalId, type UserId, type ConversationId } from '@zenith/ids'
 
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { conversations, slaEvents, user, principal, eq } from '@/lib/server/db'

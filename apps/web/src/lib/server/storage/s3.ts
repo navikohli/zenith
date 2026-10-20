@@ -86,7 +86,7 @@
  */
 
 import { createHash, createHmac, timingSafeEqual } from 'node:crypto'
-import type { WorkspaceId } from '@quackback/ids'
+import type { WorkspaceId } from '@zenith/ids'
 import { config } from '@/lib/server/config'
 import {
   canonicalizeVideoMime,

@@ -15,8 +15,8 @@ describe('SECTION_NAV_ITEMS', () => {
     expect(item('changelog').icon).toBe(ENTITY_ICONS.changelog)
   })
 
-  it('names the assistant section Quackback AI', () => {
-    expect(item('ai').label).toBe('Quackback AI')
+  it('names the assistant section Zenith AI', () => {
+    expect(item('ai').label).toBe('Zenith AI')
   })
 })
 

@@ -10,7 +10,7 @@ import type {
   PostStatusId,
   PrincipalId,
   PostCommentId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import type { CommentReactionCount, CommentStatusChange } from '@/lib/shared'
 
 /**
@@ -129,7 +129,7 @@ export interface InboxPostListParams {
   statusSlugs?: string[]
   tagIds?: PostTagId[]
   /** Filter by segment IDs - posts whose author is in any of these segments */
-  segmentIds?: import('@quackback/ids').SegmentId[]
+  segmentIds?: import('@zenith/ids').SegmentId[]
   ownerId?: string | null
   /** Filter to posts authored by this teammate. */
   authorId?: PrincipalId

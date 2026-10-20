@@ -4,7 +4,7 @@
  * These provide role-based authentication checks for use in server function handlers.
  */
 
-import type { UserId, PrincipalId, WorkspaceId } from '@quackback/ids'
+import type { UserId, PrincipalId, WorkspaceId } from '@zenith/ids'
 import type { Role } from '@/lib/server/auth'
 import { toSessionScope, sessionRole, type SessionScope } from '@/lib/shared/roles'
 import { getRequestHeaders } from '@tanstack/react-start/server'

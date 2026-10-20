@@ -20,7 +20,7 @@
  */
 import type { z } from 'zod'
 import { chatParamsFromRequestBody } from '@tanstack/ai'
-import type { ConversationId, TicketId } from '@quackback/ids'
+import type { ConversationId, TicketId } from '@zenith/ids'
 import type { Actor } from '@/lib/server/policy/types'
 import {
   requireAuth,

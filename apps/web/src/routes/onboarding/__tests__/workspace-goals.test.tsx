@@ -234,7 +234,7 @@ describe('self-hosted ready step', () => {
   it('opens at the top with focus on its heading and a title of its own', async () => {
     const scrollTo = vi.spyOn(window, 'scrollTo').mockImplementation(() => {})
     renderStep({ managedFieldPaths: [], goals: ['product_feedback'] })
-    expect(document.title).toBe('Name your workspace · Quackback')
+    expect(document.title).toBe('Name your workspace · Zenith')
 
     fireEvent.click(screen.getByRole('button', { name: 'Create workspace' }))
     const heading = await screen.findByRole('heading', { level: 1, name: 'Acme is ready' })
@@ -242,7 +242,7 @@ describe('self-hosted ready step', () => {
     await waitFor(() => expect(heading).toHaveFocus())
     expect(heading).toHaveAttribute('tabindex', '-1')
     expect(scrollTo).toHaveBeenCalledWith(expect.objectContaining({ top: 0 }))
-    expect(document.title).toBe('Acme is ready · Quackback')
+    expect(document.title).toBe('Acme is ready · Zenith')
     scrollTo.mockRestore()
   })
 

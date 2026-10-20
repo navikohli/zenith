@@ -25,7 +25,7 @@
  * ## Namespace confinement is part of the scheme, not a caller's job
  *
  * A ref comes out of a database. It is input. `env://` is confined to
- * `QUACKBACK_TENANT_SECRET_*` for that reason — otherwise a mistaken or
+ * `ZENITH_TENANT_SECRET_*` for that reason — otherwise a mistaken or
  * tampered row saying `env://STRIPE_SECRET_KEY` resolves happily.
  *
  * ## Which field may name which scheme
@@ -138,8 +138,8 @@ export function isValidSecretRef(ref: unknown): ref is SecretRef {
  * happily. Refs come out of a database, so they are input, and input does not
  * get to choose which variable it reads.
  */
-const ENV_REF_PREFIX = 'QUACKBACK_TENANT_SECRET_'
-const ENV_REF_NAME_RE = /^QUACKBACK_TENANT_SECRET_[A-Z0-9_]+$/
+const ENV_REF_PREFIX = 'ZENITH_TENANT_SECRET_'
+const ENV_REF_NAME_RE = /^ZENITH_TENANT_SECRET_[A-Z0-9_]+$/
 
 /** `derived+hkdf://v<generation>/<workspaceKey>/<purpose>`. */
 const DERIVED_REF_RE = /^v([1-9][0-9]{0,3})\/([A-Za-z0-9][A-Za-z0-9_.-]{0,127})\/([a-z][a-z-]{0,31})$/

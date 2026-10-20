@@ -1,5 +1,5 @@
 import { randomUUID } from 'node:crypto'
-import { createId } from '@quackback/ids'
+import { createId } from '@zenith/ids'
 import {
   db,
   eq,

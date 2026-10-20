@@ -5,7 +5,7 @@
  * rather than only exercised indirectly through the component.
  */
 import { describe, it, expect } from 'vitest'
-import type { NotificationId } from '@quackback/ids'
+import type { NotificationId } from '@zenith/ids'
 import { getNotificationTarget } from '../notification-target'
 import type { SerializedNotification } from '@/lib/client/hooks/use-notifications-queries'
 

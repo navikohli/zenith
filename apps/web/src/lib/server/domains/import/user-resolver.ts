@@ -12,7 +12,7 @@
  */
 
 import { db, eq, and, isNull, sql, asc, user, principal } from '@/lib/server/db'
-import { createId, type PrincipalId, type UserId } from '@quackback/ids'
+import { createId, type PrincipalId, type UserId } from '@zenith/ids'
 import { createPrincipals } from '@/lib/server/domains/principals/principal.factory'
 
 interface PendingUser {

@@ -4,7 +4,7 @@
  * db-test-fixture rollback transaction (see server/__tests__/README.md).
  */
 import { describe, it, expect, vi, beforeEach, afterEach, afterAll } from 'vitest'
-import { createId, type PrincipalId, type TypeId, type UserId } from '@quackback/ids'
+import { createId, type PrincipalId, type TypeId, type UserId } from '@zenith/ids'
 
 type CompanyId = TypeId<'company'>
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'

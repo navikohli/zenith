@@ -3,7 +3,7 @@
  * member tier: reading, matching, editing, diffing, save risks and preview.
  */
 import { describe, it, expect } from 'vitest'
-import { createId } from '@quackback/ids'
+import { createId } from '@zenith/ids'
 import { claimMappingFor, type IdentityProviderClaimMapping } from '../oidc-claim-mapping'
 import { resolveSsoRoleMatch } from '../resolve-sso-role'
 import {

@@ -4,7 +4,7 @@
  * the public default; `visibility` wins when both are sent.
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { generateId } from '@quackback/ids'
+import { generateId } from '@zenith/ids'
 
 const mockCreateRoadmap = vi.fn()
 const mockUpdateRoadmap = vi.fn()

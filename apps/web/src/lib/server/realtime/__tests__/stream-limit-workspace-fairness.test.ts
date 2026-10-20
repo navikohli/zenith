@@ -8,7 +8,7 @@
  * - The **global** cap describes the process. File descriptors are not
  *   partitioned by workspace, so it stays shared deliberately.
  * - The **per-IP** cap describes a client of a workspace, and sharing it is a
- *   real cross-workspace effect with no upside: a NAT'd office using two Quackback
+ *   real cross-workspace effect with no upside: a NAT'd office using two Zenith
  *   workspaces has the second one's streams refused because of the first's.
  *
  * So a per-workspace cap is added below the global one, and the per-IP counter is

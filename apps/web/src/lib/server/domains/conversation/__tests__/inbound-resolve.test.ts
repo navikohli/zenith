@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { resolveInboundConversation } from '../conversation.inbound-resolve'
-import type { ConversationId } from '@quackback/ids'
+import type { ConversationId } from '@zenith/ids'
 
 const ID = 'conversation_01kw8qxn1eeh4t2rek7varh032' as ConversationId
 

@@ -1,12 +1,12 @@
 #!/usr/bin/env bun
 /**
- * Quackback Data Import CLI
+ * Zenith Data Import CLI
  *
- * Import posts, comments, votes, and notes from CSV files into Quackback via
+ * Import posts, comments, votes, and notes from CSV files into Zenith via
  * the REST API — no direct database access needed.
  *
  * Usage:
- *   bun scripts/import/cli.ts intermediate --posts posts.csv --quackback-url URL --quackback-key KEY
+ *   bun scripts/import/cli.ts intermediate --posts posts.csv --zenith-url URL --zenith-key KEY
  *
  * Run with --help for full options.
  */
@@ -41,16 +41,16 @@ interface CliArgs {
   comments?: string
   votes?: string
   notes?: string
-  // Quackback API options (required)
-  quackbackUrl?: string
-  quackbackKey?: string
+  // Zenith API options (required)
+  zenithUrl?: string
+  zenithKey?: string
 }
 
 function printUsage(): void {
   console.log(`
-Quackback Data Import CLI
+Zenith Data Import CLI
 
-Imports CSV data via the Quackback REST API — no direct database access
+Imports CSV data via the Zenith REST API — no direct database access
 needed. To migrate from another tool (Canny, UserVoice, ...), export your
 data there and map it onto the intermediate CSV columns.
 
@@ -62,8 +62,8 @@ Commands:
   help            Show this help message
 
 Required Options:
-  --quackback-url <url>   Quackback instance URL (or set QUACKBACK_URL env var)
-  --quackback-key <key>   Quackback admin API key (or set QUACKBACK_API_KEY env var)
+  --zenith-url <url>   Zenith instance URL (or set ZENITH_URL env var)
+  --zenith-key <key>   Zenith admin API key (or set ZENITH_API_KEY env var)
 
 Common Options:
   --dry-run           Validate and show summary, don't insert data
@@ -87,19 +87,19 @@ Examples:
     --posts data/posts.csv \\
     --comments data/comments.csv \\
     --board features \\
-    --quackback-url https://feedback.yourapp.com \\
-    --quackback-key qb_xxx
+    --zenith-url https://feedback.yourapp.com \\
+    --zenith-key qb_xxx
 
   # Dry run (validate without importing)
   bun scripts/import/cli.ts intermediate \\
     --posts data/posts.csv \\
-    --quackback-url https://feedback.yourapp.com \\
-    --quackback-key qb_xxx \\
+    --zenith-url https://feedback.yourapp.com \\
+    --zenith-key qb_xxx \\
     --dry-run --verbose
 
 Environment Variables:
-  QUACKBACK_URL         Quackback instance URL (alternative to --quackback-url)
-  QUACKBACK_API_KEY     Quackback admin API key (alternative to --quackback-key)
+  ZENITH_URL         Zenith instance URL (alternative to --zenith-url)
+  ZENITH_API_KEY     Zenith admin API key (alternative to --zenith-key)
 `)
 }
 
@@ -168,11 +168,11 @@ function parseArgs(args: string[]): CliArgs {
       case '--notes':
         result.notes = getNextArg(i++, '--notes')
         break
-      case '--quackback-url':
-        result.quackbackUrl = getNextArg(i++, '--quackback-url')
+      case '--zenith-url':
+        result.zenithUrl = getNextArg(i++, '--zenith-url')
         break
-      case '--quackback-key':
-        result.quackbackKey = getNextArg(i++, '--quackback-key')
+      case '--zenith-key':
+        result.zenithKey = getNextArg(i++, '--zenith-key')
         break
       case '--help':
       case '-h':
@@ -188,16 +188,16 @@ function parseArgs(args: string[]): CliArgs {
   return result
 }
 
-function resolveQuackbackConfig(args: CliArgs): { url: string; key: string } {
-  const url = args.quackbackUrl ?? process.env.QUACKBACK_URL
-  const key = args.quackbackKey ?? process.env.QUACKBACK_API_KEY
+function resolveZenithConfig(args: CliArgs): { url: string; key: string } {
+  const url = args.zenithUrl ?? process.env.ZENITH_URL
+  const key = args.zenithKey ?? process.env.ZENITH_API_KEY
 
   if (!url) {
-    console.error('Error: --quackback-url is required (or set QUACKBACK_URL env var)')
+    console.error('Error: --zenith-url is required (or set ZENITH_URL env var)')
     process.exit(1)
   }
   if (!key) {
-    console.error('Error: --quackback-key is required (or set QUACKBACK_API_KEY env var)')
+    console.error('Error: --zenith-key is required (or set ZENITH_API_KEY env var)')
     process.exit(1)
   }
 
@@ -227,7 +227,7 @@ function validateFile(
 }
 
 async function runIntermediateImport(args: CliArgs): Promise<void> {
-  const { url, key } = resolveQuackbackConfig(args)
+  const { url, key } = resolveZenithConfig(args)
 
   const postsFile = validateFile(args.posts, 'posts', false)
   const commentsFile = validateFile(args.comments, 'comments', false)
@@ -298,12 +298,12 @@ async function runIntermediateImport(args: CliArgs): Promise<void> {
     console.log('\n⚠️  DRY RUN MODE - No data will be inserted\n')
   }
 
-  console.log(`\n🚀 Importing via Quackback API: ${url}`)
+  console.log(`\n🚀 Importing via Zenith API: ${url}`)
 
   try {
     const result = await runApiImport({
-      quackbackUrl: url,
-      quackbackKey: key,
+      zenithUrl: url,
+      zenithKey: key,
       data,
       dryRun: args.dryRun,
       verbose: args.verbose,

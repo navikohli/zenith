@@ -76,7 +76,7 @@ describe('WidgetAuthProvider — anonymous session restore on mount (P0.3)', () 
   })
 
   it('refreshes the persisted token expiry on successful restore (rolling client window)', async () => {
-    const KEY = `quackback:anon-token:${window.location.origin}`
+    const KEY = `zenith:anon-token:${window.location.origin}`
     const nearExpiry = Date.now() + 60_000
     window.localStorage.setItem(
       KEY,

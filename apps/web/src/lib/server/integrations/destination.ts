@@ -1,4 +1,4 @@
-import type { IntegrationId } from '@quackback/ids'
+import type { IntegrationId } from '@zenith/ids'
 import { db, integrations, eq } from '@/lib/server/db'
 import { ValidationError } from '@/lib/shared/errors'
 import { getIntegrationAuth } from './token-refresh'

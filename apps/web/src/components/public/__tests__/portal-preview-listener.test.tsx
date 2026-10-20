@@ -71,16 +71,16 @@ describe('PortalPreviewProvider', () => {
   })
 
   it('re-renders only the stylesheet reader for a stylesheet draft', () => {
-    post({ type: 'quackback:preview-css', css: ':root { --font-sans: Inter }' })
+    post({ type: 'zenith:preview-css', css: ':root { --font-sans: Inter }' })
 
     expect(screen.getByTestId('css').textContent).toBe(':root { --font-sans: Inter }')
     expect(renders).toEqual({ nav: 1, welcomeCard: 1, css: 2 })
   })
 
   it('keeps the navigation as it was when only the welcome card changes', () => {
-    post({ type: 'quackback:preview-draft', draft: { nav, welcomeCard: { body: 'Hi' } } })
+    post({ type: 'zenith:preview-draft', draft: { nav, welcomeCard: { body: 'Hi' } } })
     post({
-      type: 'quackback:preview-draft',
+      type: 'zenith:preview-draft',
       draft: { nav: structuredClone(nav), welcomeCard: { body: 'Hello' } },
     })
 
@@ -97,7 +97,7 @@ describe('PortalPreviewProvider', () => {
       'body { --radius: 0.5rem; } html body { font-family: "Roboto", sans-serif !important; }'
     document.head.append(saved)
     post({
-      type: 'quackback:preview-css',
+      type: 'zenith:preview-css',
       css: ':root { --radius: 1rem; --font-sans: "Inter", sans-serif; }',
     })
 
@@ -108,8 +108,8 @@ describe('PortalPreviewProvider', () => {
   })
 
   it('treats an emptied stylesheet as no draft', () => {
-    post({ type: 'quackback:preview-css', css: ':root {}' })
-    post({ type: 'quackback:preview-css', css: '' })
+    post({ type: 'zenith:preview-css', css: ':root {}' })
+    post({ type: 'zenith:preview-css', css: '' })
 
     expect(screen.getByTestId('css').textContent).toBe('saved')
   })

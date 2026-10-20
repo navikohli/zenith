@@ -7,12 +7,12 @@
  * the actions funnel off assistant_pending_actions (including the
  * approved-then-executed/failed fold-in and the expired bucket), the
  * per-teammate cap + display-name join, and date-window exclusion. Runs
- * inside the db-test-fixture rollback transaction. Mirrors quinn-tools.test.ts
+ * inside the db-test-fixture rollback transaction. Mirrors zenith-assistant-tools.test.ts
  * and guidance-stats.test.ts's real-DB house pattern.
  */
 import { describe, it, expect, beforeEach, afterEach, afterAll, vi } from 'vitest'
-import { createId } from '@quackback/ids'
-import type { ConversationId, KbArticleId, KbCategoryId, PrincipalId } from '@quackback/ids'
+import { createId } from '@zenith/ids'
+import type { ConversationId, KbArticleId, KbCategoryId, PrincipalId } from '@zenith/ids'
 
 vi.mock('@/lib/server/db', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/lib/server/db')>()),

@@ -61,10 +61,10 @@ const cases = [
     name: 'Azure DevOps',
     handler: azureDevOpsInboundHandler,
     header: 'Authorization',
-    valid: `Basic ${Buffer.from(`quackback:${secret}`).toString('base64')}`,
+    valid: `Basic ${Buffer.from(`zenith:${secret}`).toString('base64')}`,
     // Same Basic-auth shape, but the decoded password is shorter than the
     // configured secret — isolates the password.length === secret.length guard.
-    lengthMismatch: `Basic ${Buffer.from(`quackback:${secret.slice(0, -2)}`).toString('base64')}`,
+    lengthMismatch: `Basic ${Buffer.from(`zenith:${secret.slice(0, -2)}`).toString('base64')}`,
   },
 ] as const
 

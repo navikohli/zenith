@@ -6,7 +6,7 @@ import {
   getChangelogSubscriptionStatusFn,
   setChangelogSubscriptionFn,
 } from '@/lib/server/functions/changelog-subscriptions'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 
 function statusKey(principalId: PrincipalId) {
   return ['admin', 'changelog-subscription', principalId] as const

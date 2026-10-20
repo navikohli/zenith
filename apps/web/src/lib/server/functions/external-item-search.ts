@@ -7,7 +7,7 @@
  */
 import { createServerFn } from '@tanstack/react-start'
 import { z } from 'zod'
-import type { IntegrationId } from '@quackback/ids'
+import type { IntegrationId } from '@zenith/ids'
 import { requireAuth } from './auth-helpers'
 import { db, integrations, eq } from '@/lib/server/db'
 import type { RemoteItemMatch } from '@/lib/server/integrations/types'

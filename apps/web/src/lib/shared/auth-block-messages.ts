@@ -111,5 +111,5 @@ export const AUTH_BLOCK_MESSAGES: Record<AuthBlockCode, string> = {
   oauth_provider_not_found:
     "That sign-in provider isn't available right now. It may have been disabled by an administrator.",
   handoff_failed:
-    'That workspace handoff expired or was already used. Sign in here, or reopen the workspace from Quackback.',
+    'That workspace handoff expired or was already used. Sign in here, or reopen the workspace from Zenith.',
 }

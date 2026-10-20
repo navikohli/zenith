@@ -1,9 +1,9 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
-  "name": "io.github.QuackbackIO/quackback",
+  "name": "io.github.Zenith/zenith",
   "description": "Open-source feedback and support platform: feedback, conversations, tickets, changelog, help center.",
   "repository": {
-    "url": "https://github.com/QuackbackIO/quackback",
+    "url": "https://github.com/Zenith/zenith",
     "source": "github"
   },
   "version": "1.0.0",
@@ -13,7 +13,7 @@
       "url": "https://{host}/api/mcp",
       "variables": {
         "host": {
-          "description": "Hostname of your Quackback instance (e.g., feedback.yourcompany.com)",
+          "description": "Hostname of your Zenith instance (e.g., feedback.yourcompany.com)",
           "isRequired": true,
           "format": "string"
         }
@@ -179,7 +179,7 @@
     },
     {
       "name": "widget_install_status",
-      "description": "Read whether the Quackback widget is connected on the customer site"
+      "description": "Read whether the Zenith widget is connected on the customer site"
     }
   ]
 }

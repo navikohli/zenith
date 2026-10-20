@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import type { AssistantPendingActionId } from '@quackback/ids'
+import type { AssistantPendingActionId } from '@zenith/ids'
 import { Button } from '@/components/ui/button'
 import { assistantPendingActionQueries } from '@/lib/client/queries/assistant-pending-actions'
 import type { CopilotProposedAction } from '@/lib/shared/assistant/copilot-contract'

@@ -11,7 +11,7 @@
  */
 import { z } from 'zod'
 import { createServerFn } from '@tanstack/react-start'
-import type { WorkflowId, WorkflowRunId } from '@quackback/ids'
+import type { WorkflowId, WorkflowRunId } from '@zenith/ids'
 import type { WorkflowRunState } from '@/lib/server/db'
 import { requireAuth } from './auth-helpers'
 import { PERMISSIONS } from '@/lib/shared/permissions'

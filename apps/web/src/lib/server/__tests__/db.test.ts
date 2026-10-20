@@ -10,7 +10,7 @@ const originalEnv = { ...process.env }
 
 // Set up minimal config for tests
 function setupMinimalConfig() {
-  process.env.DATABASE_URL = 'postgres://localhost/quackback'
+  process.env.DATABASE_URL = 'postgres://localhost/zenith'
   process.env.BASE_URL = 'http://localhost:3000'
   process.env.SECRET_KEY = 'test-secret-key-that-is-at-least-32-characters-long'
 }
@@ -24,7 +24,7 @@ const { mockCreateDb } = vi.hoisted(() => {
 })
 
 // Mock createDb
-vi.mock('@quackback/db/client', () => ({
+vi.mock('@zenith/db/client', () => ({
   createDb: mockCreateDb,
 }))
 
@@ -58,7 +58,7 @@ describe('db module', () => {
       const query = db.query
 
       expect(mockCreateDb).toHaveBeenCalledTimes(1)
-      expect(mockCreateDb).toHaveBeenCalledWith('postgres://localhost/quackback', {
+      expect(mockCreateDb).toHaveBeenCalledWith('postgres://localhost/zenith', {
         max: 10,
         idleTimeout: 20,
         logger: countingQueryLogger,

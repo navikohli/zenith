@@ -10,7 +10,7 @@
  * per-scope conversation memory keep matching.
  */
 import { queryOptions } from '@tanstack/react-query'
-import type { ConversationId, CompanyId } from '@quackback/ids'
+import type { ConversationId, CompanyId } from '@zenith/ids'
 import {
   listConversationsFn,
   getConversationFn,
@@ -57,8 +57,8 @@ export const conversationInboxQueries = {
     // scopes and the key-parity test still passes.
     sort?: ConversationSort,
     customParams?: ConversationViewListParams,
-    // Quinn-view sub-filter (Resolved / Escalated / Pending); only set on the
-    // 'quinn' scope, so it leaves every other scope's key byte-identical.
+    // ZenithAssistant-view sub-filter (Resolved / Escalated / Pending); only set on the
+    // 'zenithAssistant' scope, so it leaves every other scope's key byte-identical.
     aiBucket?: AiBucket,
     channel?: Channel
   ) => {
@@ -137,7 +137,7 @@ export const conversationInboxQueries = {
       staleTime: 60_000,
     }),
 
-  /** Conversation counts per Quinn-inbox bucket (drives the Quinn sub-filter badges). */
+  /** Conversation counts per ZenithAssistant-inbox bucket (drives the ZenithAssistant sub-filter badges). */
   assistantCounts: () =>
     queryOptions({
       queryKey: ['admin', 'inbox', 'assistant-counts'] as const,

@@ -1,5 +1,5 @@
 import { queryOptions } from '@tanstack/react-query'
-import type { IdentityProviderId, UserId } from '@quackback/ids'
+import type { IdentityProviderId, UserId } from '@zenith/ids'
 import {
   fetchBrandingConfig,
   fetchPortalConfig,

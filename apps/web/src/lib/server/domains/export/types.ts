@@ -20,7 +20,7 @@ export interface EntityExporter<Row = unknown> {
 /** manifest.json contents — format_version lets future readers gate parsing. */
 export interface WorkspaceExportManifest {
   format_version: 1
-  generator: 'quackback'
+  generator: 'zenith'
   workspace_slug: string
   exported_at: string
   entities: Record<string, number>

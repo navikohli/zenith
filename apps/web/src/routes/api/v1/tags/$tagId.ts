@@ -10,7 +10,7 @@ import {
 import { parseTypeId } from '@/lib/server/domains/api/validation'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import { HexColorSchema, TaxonomyNameSchema } from '@/lib/shared/schemas/taxonomy'
-import type { PostTagId } from '@quackback/ids'
+import type { PostTagId } from '@zenith/ids'
 
 // Input validation schema
 const updateTagSchema = z.object({

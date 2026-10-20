@@ -4,7 +4,7 @@
 
 import { z } from 'zod'
 import { createServerFn } from '@tanstack/react-start'
-import type { PostStatusId } from '@quackback/ids'
+import type { PostStatusId } from '@zenith/ids'
 import { requireAuth } from './auth-helpers'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import { HexColorFormatSchema, TaxonomyNameSchema } from '@/lib/shared/schemas/taxonomy'

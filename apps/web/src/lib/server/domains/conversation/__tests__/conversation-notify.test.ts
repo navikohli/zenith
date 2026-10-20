@@ -5,7 +5,7 @@
  * dependency errors rather than reject.
  */
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import type { PrincipalId, ConversationId } from '@quackback/ids'
+import type { PrincipalId, ConversationId } from '@zenith/ids'
 import { mailSlugFor, withWorkspace } from '@/lib/server/__tests__/workspace-scope'
 import type { Conversation } from '@/lib/server/db'
 import { conversationIdFromInboundAddress } from '../conversation.email-channel'
@@ -50,8 +50,8 @@ vi.mock('@/lib/server/events/hook-context', () => ({
 }))
 
 // notify.ts imports this dynamically inside the email branches.
-vi.mock('@quackback/email', async (importOriginal) => {
-  const actual = await importOriginal<typeof import('@quackback/email')>()
+vi.mock('@zenith/email', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@zenith/email')>()
   return {
     ...actual,
     sendConversationMessageEmail: (...a: [Record<string, unknown>]) =>
@@ -521,7 +521,7 @@ describe('notifyAgentReply', () => {
   describe('inbound-email Reply-To', () => {
     const prevDomain = process.env.EMAIL_INBOUND_DOMAIN
     const prevSecret = process.env.EMAIL_INBOUND_SIGNING_SECRET
-    const prevTenancy = process.env.QUACKBACK_TENANCY
+    const prevTenancy = process.env.ZENITH_TENANCY
 
     /** The one Reply-To the send layer was handed, or undefined. */
     async function replyToOf(run: (fn: () => Promise<void>) => Promise<void>): Promise<unknown> {
@@ -547,8 +547,8 @@ describe('notifyAgentReply', () => {
       else process.env.EMAIL_INBOUND_DOMAIN = prevDomain
       if (prevSecret === undefined) delete process.env.EMAIL_INBOUND_SIGNING_SECRET
       else process.env.EMAIL_INBOUND_SIGNING_SECRET = prevSecret
-      if (prevTenancy === undefined) delete process.env.QUACKBACK_TENANCY
-      else process.env.QUACKBACK_TENANCY = prevTenancy
+      if (prevTenancy === undefined) delete process.env.ZENITH_TENANCY
+      else process.env.ZENITH_TENANCY = prevTenancy
     })
 
     // An inbound address names the workspace it belongs to, because one inbound
@@ -558,7 +558,7 @@ describe('notifyAgentReply', () => {
     it('advertises an address under the active workspace’s mail slug', async () => {
       process.env.EMAIL_INBOUND_DOMAIN = 'tenaevexeo.resend.app'
       process.env.EMAIL_INBOUND_SIGNING_SECRET = 'whsec_test'
-      process.env.QUACKBACK_TENANCY = 'pooled'
+      process.env.ZENITH_TENANCY = 'pooled'
 
       const replyTo = await replyToOf((fn) => withWorkspace('ws-t2', fn))
 
@@ -577,7 +577,7 @@ describe('notifyAgentReply', () => {
       // here would end reply-by-email for every self-hoster on upgrade.
       process.env.EMAIL_INBOUND_DOMAIN = 'tenaevexeo.resend.app'
       process.env.EMAIL_INBOUND_SIGNING_SECRET = 'whsec_test'
-      delete process.env.QUACKBACK_TENANCY
+      delete process.env.ZENITH_TENANCY
 
       const replyTo = await replyToOf(bare)
 
@@ -592,7 +592,7 @@ describe('notifyAgentReply', () => {
       // route it: better no route home than one that does not exist.
       process.env.EMAIL_INBOUND_DOMAIN = 'tenaevexeo.resend.app'
       process.env.EMAIL_INBOUND_SIGNING_SECRET = 'whsec_test'
-      process.env.QUACKBACK_TENANCY = 'pooled'
+      process.env.ZENITH_TENANCY = 'pooled'
 
       expect(await replyToOf(bare)).toBeUndefined()
     })
@@ -663,7 +663,7 @@ describe('conversation email send retry', () => {
   it('sends one idempotency key for every attempt of one email, and a new one per email', async () => {
     isPrincipalOnline.mockResolvedValue(false)
     visitorRows = [{ type: 'user', email: 'account@x.com' }]
-    const { currentEmailIdempotencyKey } = await import('@quackback/email/idempotency')
+    const { currentEmailIdempotencyKey } = await import('@zenith/email/idempotency')
     const keys: Array<string | undefined> = []
     sendConversationMessageEmail
       .mockImplementationOnce(async () => {

@@ -152,8 +152,8 @@ describe('Webhook Handler', () => {
       const [url, init] = h.safeFetch.mock.calls[0]
       expect(url).toBe(target.url)
       expect(init.method).toBe('POST')
-      expect(init.headers['X-Quackback-Event']).toBe('post.created')
-      expect(init.headers['X-Quackback-Signature']).toMatch(/^sha256=/)
+      expect(init.headers['X-Zenith-Event']).toBe('post.created')
+      expect(init.headers['X-Zenith-Signature']).toMatch(/^sha256=/)
       expect(h.complete).toHaveBeenCalledOnce()
       expect(h.release).not.toHaveBeenCalled()
       expect(h.fail).not.toHaveBeenCalled()
@@ -275,12 +275,12 @@ describe('Webhook Handler', () => {
       // secret, not anything present in the job's config.
       const [, init] = h.safeFetch.mock.calls[0]
       const body = init.body as string
-      const timestamp = init.headers['X-Quackback-Timestamp'] as string
+      const timestamp = init.headers['X-Zenith-Timestamp'] as string
       const expectedSignature = crypto
         .createHmac('sha256', 'whsec_live')
         .update(`${timestamp}.${body}`)
         .digest('hex')
-      expect(init.headers['X-Quackback-Signature']).toBe(`sha256=${expectedSignature}`)
+      expect(init.headers['X-Zenith-Signature']).toBe(`sha256=${expectedSignature}`)
     })
 
     it('fails permanently when the webhook row is gone (deleted after enqueue)', async () => {

@@ -11,7 +11,7 @@
  * it is exempt from the anonymous-to-identified principal re-point.
  */
 import { pgTable, text, timestamp, jsonb } from 'drizzle-orm/pg-core'
-import { typeIdWithDefault, typeIdColumnNullable } from '@quackback/ids/drizzle'
+import { typeIdWithDefault, typeIdColumnNullable } from '@zenith/ids/drizzle'
 import { principal } from './auth'
 
 /** Where a macro is offered: the support inbox, the feedback surfaces, or both. */

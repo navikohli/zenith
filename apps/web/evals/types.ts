@@ -1,5 +1,5 @@
 /**
- * Declarative scenario contract for the golden eval set (QUINN-TWO-AGENT-SPEC
+ * Declarative scenario contract for the golden eval set (ZENITH_ASSISTANT-TWO-AGENT-SPEC
  * §7.2). A scenario is data: fixtures to seed, a prompt/thread to send, and the
  * assertions that grade the outcome. The runner (harness/run.ts) expands each
  * role-tagged scenario across its applicable roles and evaluates it.
@@ -52,7 +52,7 @@ export interface SeedKbArticle {
 
 /**
  * A closed-ticket resolution summary seeded (with a real embedding) for the
- * team-only ticket-grounding source (Quinn Phase 4). Backed by a throwaway
+ * team-only ticket-grounding source (ZenithAssistant Phase 4). Backed by a throwaway
  * ticket + status the seeder creates to satisfy the FK.
  */
 export interface SeedTicketSummary {
@@ -61,7 +61,7 @@ export interface SeedTicketSummary {
 
 /**
  * A changelog entry seeded (with a real embedding) for the changelog-grounding
- * source (Quinn Phase 4). Published entries are customer-visible; a draft
+ * source (ZenithAssistant Phase 4). Published entries are customer-visible; a draft
  * (`published: false`) is team-only and trips the copilot leak gate.
  */
 export interface SeedChangelogEntry {

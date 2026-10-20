@@ -101,7 +101,7 @@ describe('generateThemeCSS with a partially-specified config', () => {
     // A config with no dark half still gets the dark base, so the page paints a
     // complete theme in either mode.
     expect(readVar(css, DARK, '--background')).toBe('#0a0a0a')
-    expect(readVar(css, DARK, '--primary')).toBe('oklch(0.886 0.176 86)')
+    expect(readVar(css, DARK, '--primary')).toBe('oklch(0.80 0.13 175)')
   })
 
   it('renders a dark config that sets only a primary colour', () => {
@@ -155,7 +155,7 @@ describe('generateThemeCSS with a partially-specified config', () => {
 
     expect(readVar(css, ROOT, '--destructive')).toBe('oklch(0.95 0.05 27)')
     expect(readVar(css, ROOT, '--destructive-foreground')).toBe('oklch(0.145 0 0)')
-    expect(readVar(css, ROOT, '--primary')).toBe('oklch(0.886 0.176 86)')
+    expect(readVar(css, ROOT, '--primary')).toBe('oklch(0.80 0.13 175)')
   })
 
   it('treats a null-valued variable as unset rather than as a choice', () => {
@@ -164,7 +164,7 @@ describe('generateThemeCSS with a partially-specified config', () => {
 
     const css = generateThemeCSS(config as ThemeConfig)
 
-    expect(readVar(css, ROOT, '--primary')).toBe('oklch(0.886 0.176 86)')
+    expect(readVar(css, ROOT, '--primary')).toBe('oklch(0.80 0.13 175)')
     expect(readVar(css, ROOT, '--card')).toBe('oklch(0.98 0 0)')
   })
 
@@ -181,7 +181,7 @@ describe('generateThemeCSS with a partially-specified config', () => {
 
     // An empty half is still a half: it renders the base theme, not a crash.
     const css = generateThemeCSS({ light: {} })
-    expect(readVar(css, ROOT, '--primary')).toBe('oklch(0.886 0.176 86)')
+    expect(readVar(css, ROOT, '--primary')).toBe('oklch(0.80 0.13 175)')
     expect(readVar(css, ROOT, '--background')).toBe('#ffffff')
     // No font was chosen, so none is forced onto the page.
     expect(css).not.toContain('--font-sans')

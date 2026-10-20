@@ -8,7 +8,7 @@ import {
   type BrandingConfig,
   type UpdatePortalConfigInput,
 } from '@/lib/server/domains/settings'
-import { userIdSchema, type UserId } from '@quackback/ids'
+import { userIdSchema, type UserId } from '@zenith/ids'
 import {
   getPortalConfig,
   getPublicPortalConfig,
@@ -1108,7 +1108,7 @@ const moderationDefaultSchema = z.object({
 export const getEmailChannelStatusFn = createServerFn({ method: 'GET' }).handler(async () => {
   log.debug('get email channel status')
   await requireAuth({ permission: PERMISSIONS.SETTINGS_MANAGE })
-  const { getEmailProvider, getEmailFrom } = await import('@quackback/email')
+  const { getEmailProvider, getEmailFrom } = await import('@zenith/email')
   const { isEmailInboundConfigured, inboundMintDomain } =
     await import('@/lib/server/domains/conversation/conversation.email-channel')
   let fromAddress: string | null = null

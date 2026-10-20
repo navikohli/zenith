@@ -21,8 +21,8 @@ import {
   boards,
   type Transaction,
 } from '@/lib/server/db'
-import type { NotificationId, PrincipalId } from '@quackback/ids'
-import { createId } from '@quackback/ids'
+import type { NotificationId, PrincipalId } from '@zenith/ids'
+import { createId } from '@zenith/ids'
 import { NotFoundError } from '@/lib/shared/errors'
 import {
   ANONYMOUS_ACTOR,

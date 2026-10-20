@@ -4,7 +4,7 @@
  * role that proposed it and the kind of thread it came from.
  */
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { createId } from '@quackback/ids'
+import { createId } from '@zenith/ids'
 
 const lookups = vi.hoisted(() => ({ count: 0 }))
 

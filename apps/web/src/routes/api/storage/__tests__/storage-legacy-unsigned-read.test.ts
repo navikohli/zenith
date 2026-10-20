@@ -131,11 +131,11 @@ beforeEach(() => {
   buckets.clear()
   missingStatus.value = 404
   mockConfig.isPooledTenancy = false
-  delete process.env.QUACKBACK_TENANCY
+  delete process.env.ZENITH_TENANCY
 })
 
 afterEach(() => {
-  delete process.env.QUACKBACK_TENANCY
+  delete process.env.ZENITH_TENANCY
 })
 
 describe('a link from before read tokens, on a single-workspace install', () => {
@@ -211,7 +211,7 @@ describe('everything else still needs the token', () => {
   })
 
   it('never allows it under pooled tenancy, where a bare key is nobody’s', async () => {
-    process.env.QUACKBACK_TENANCY = 'pooled'
+    process.env.ZENITH_TENANCY = 'pooled'
     mockConfig.isPooledTenancy = true
     const key = freshKey('chat-images')
     seedLegacy(key)

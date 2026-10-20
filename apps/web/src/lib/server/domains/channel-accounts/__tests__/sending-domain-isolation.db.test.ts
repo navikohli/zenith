@@ -19,7 +19,7 @@ import {
   type PrincipalId,
   type TeamId,
   type UserId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import {
@@ -102,8 +102,8 @@ async function seedVerifiedDomain(owningTeamId: TeamId, domain: string): Promise
     dnsRecords: [
       {
         type: 'TXT',
-        host: '_quackback',
-        value: 'quackback-domain-verification=6f1c2a9e4b8d0f37',
+        host: '_zenith',
+        value: 'zenith-domain-verification=6f1c2a9e4b8d0f37',
         purpose: 'ownership',
       },
     ],
@@ -114,8 +114,8 @@ describe.skipIf(!fixture.available)('sending-domain isolation (real DB, rolled b
   beforeEach(async () => {
     await fixture.begin()
     // A fleet: more than one workspace behind one provider account.
-    vi.stubEnv('QUACKBACK_TENANCY', 'pooled')
-    vi.stubEnv('EMAIL_FROM', 'Quackback <notifications@mail.platform.test>')
+    vi.stubEnv('ZENITH_TENANCY', 'pooled')
+    vi.stubEnv('EMAIL_FROM', 'Zenith <notifications@mail.platform.test>')
     vi.stubEnv('EMAIL_INBOUND_DOMAIN', 'mail.platform.test')
   })
   afterEach(async () => {
@@ -226,7 +226,7 @@ describe.skipIf(!fixture.available)('sending-domain isolation (real DB, rolled b
   it('stands down on a single-workspace install', async () => {
     // Same unverified row, one workspace on its own provider account. Refusing
     // here would break a self-hosted deployment to defend against nobody.
-    vi.stubEnv('QUACKBACK_TENANCY', '')
+    vi.stubEnv('ZENITH_TENANCY', '')
     const teamId = await seedTeam()
     await createSendingAddress({
       owningTeamId: teamId,

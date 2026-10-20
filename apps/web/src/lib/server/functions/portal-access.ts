@@ -5,7 +5,7 @@
 import { z } from 'zod'
 import { sessionRole, toSessionScope, type Role } from '@/lib/shared/roles'
 import { createServerFn, createServerOnlyFn } from '@tanstack/react-start'
-import type { UserId, PrincipalId, SegmentId } from '@quackback/ids'
+import type { UserId, PrincipalId, SegmentId } from '@zenith/ids'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import { logger } from '@/lib/server/logger'
 import type { RequestSession } from '@/lib/server/auth/request-session'

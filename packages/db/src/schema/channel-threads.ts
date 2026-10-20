@@ -4,7 +4,7 @@
  * other channels store their thread keys here.
  */
 import { pgTable, text, timestamp, uniqueIndex, index, foreignKey } from 'drizzle-orm/pg-core'
-import { typeIdWithDefault, typeIdColumn } from '@quackback/ids/drizzle'
+import { typeIdWithDefault, typeIdColumn } from '@zenith/ids/drizzle'
 import { channelAccounts } from './channel-accounts'
 import { conversations } from './conversation'
 

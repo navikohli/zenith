@@ -173,7 +173,7 @@ describe('deriveInWorker ending a worker', () => {
   })
 
   it('reports a worker that cannot start as a deployment fault', async () => {
-    const workerUrl = script('broken.mjs', `import 'quackback-no-such-package'`)
+    const workerUrl = script('broken.mjs', `import 'zenith-no-such-package'`)
     const err = await deriveInWorker(
       { kind: 'text', bytes: strToU8('x'), contentType: 'text/plain', deadlineAt: soon() },
       { workerUrl }

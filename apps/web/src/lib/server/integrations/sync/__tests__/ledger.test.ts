@@ -5,7 +5,7 @@ vi.mock('@/lib/server/secret-key', () => ({
 }))
 vi.mock('@/lib/server/db', async (original) => {
   // oxlint-disable-next-line no-restricted-imports
-  const { createDb } = await import('@quackback/db/client')
+  const { createDb } = await import('@zenith/db/client')
   return {
     ...(await original<typeof import('@/lib/server/db')>()),
     db: createDb(process.env.DATABASE_URL!, { max: 8, prepare: false }),
@@ -31,7 +31,7 @@ import { syncHash, canonicalJson, syncOperationKey } from '../identity'
 import { deliveryError, syncErrorOutcome } from '../outcomes'
 import type { SyncIntent } from '../types'
 import { PERMISSIONS } from '@/lib/shared/permissions'
-import { createId } from '@quackback/ids'
+import { createId } from '@zenith/ids'
 
 const fixtures: string[] = []
 function intent(): SyncIntent {

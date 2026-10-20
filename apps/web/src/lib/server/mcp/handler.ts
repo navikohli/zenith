@@ -40,7 +40,7 @@ import {
 } from '@/lib/server/audit/attribution'
 import { createMcpServer } from './server'
 import { readOAuthPrincipal } from './oauth-principal'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 import type { McpAuthContext, McpScope } from './types'
 
 /** Build a JSON-RPC error response (used for MCP-level denials). */

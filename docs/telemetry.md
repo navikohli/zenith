@@ -1,6 +1,6 @@
 # Telemetry
 
-Quackback sends one anonymous snapshot a day so the project can see which versions, setups and features are in use. Set `DISABLE_TELEMETRY=true` to turn it off.
+Zenith sends one anonymous snapshot a day so the project can see which versions, setups and features are in use. Set `DISABLE_TELEMETRY=true` to turn it off.
 
 ## What it never contains
 

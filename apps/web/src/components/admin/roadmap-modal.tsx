@@ -24,7 +24,7 @@ import {
   useUnpinComment,
   useSetPostEta,
 } from '@/lib/client/mutations'
-import { type PostId, type PostStatusId, type PostTagId } from '@quackback/ids'
+import { type PostId, type PostStatusId, type PostTagId } from '@zenith/ids'
 import type { PostDetails, CurrentUser } from '@/lib/shared/types'
 import type { PublicPostDetailView } from '@/lib/client/queries/portal-detail'
 import { toPortalComments } from '@/components/admin/feedback/detail/post-utils'

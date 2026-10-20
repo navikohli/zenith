@@ -1,7 +1,7 @@
 import { assistantGateEnvelopeSchema, withGateEnvelope } from './tool-output'
 
 /**
- * Quinn's tool catalogue: one spec per tool, describing what it does, who can
+ * ZenithAssistant's tool catalogue: one spec per tool, describing what it does, who can
  * use it, and how it runs, alongside the model-facing definition and its
  * server implementation. `assistant.tools.ts` assembles the catalogue into
  * TanStack AI server tools; nothing here talks to the model runtime directly.
@@ -37,7 +37,7 @@ import {
   type TicketId,
   type AssistantInvolvementId,
   type SegmentId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import { type ContentAudience } from './audience'
 import { agentKindForTurn, isHomeTurn } from './workspace-safety'
 import type { AssistantAttributeCatalogueEntry } from './prompt-catalogues'
@@ -67,7 +67,7 @@ import { formatTicketNumber } from '@/lib/shared/tickets'
 import { ConflictError } from '@/lib/shared/errors'
 import { createPostFromConversation } from '@/lib/server/domains/conversation/conversation.convert'
 import { sharePost, shareTicket } from '@/lib/server/domains/conversation/conversation.cards'
-import { quinnActor } from './assistant.actor'
+import { zenithAssistantActor } from './assistant.actor'
 import { RETRIEVED_CONTENT_NOTE } from './injection-guard'
 import { logger } from '@/lib/server/logger'
 
@@ -126,7 +126,7 @@ export interface AssistantToolOutcome {
   outcome: 'read' | 'simulated' | 'proposed' | 'executed' | 'failed'
 }
 
-/** A handoff Quinn explicitly requested through the handoff tool this attempt. */
+/** A handoff ZenithAssistant explicitly requested through the handoff tool this attempt. */
 export interface AssistantHandoffRequest {
   reason: AssistantHandoffReason
   customerNeed: string
@@ -208,7 +208,7 @@ export function makeAssistantToolLedger(): AssistantToolLedger {
 
 /**
  * Request-local context threaded to server tools (and middleware). Carries the
- * workspace db handle, Quinn's service principal, the viewer audience for
+ * workspace db handle, ZenithAssistant's service principal, the viewer audience for
  * retrieval scoping, the linked conversation (null in the sandbox), and a
  * mutable `ledger` of sources surfaced and decisions emitted this run. It is
  * passed to `chat({ context })` and NEVER serialized into the model prompt.
@@ -292,7 +292,7 @@ export interface AssistantToolContext {
    * in the loop.
    * 'propose' (P2-C.4, the copilot Q&A surface) resolves every write to a
    * pending-action proposal. From a Copilot chat the proposal card itself is
-   * the confirmation UX, so nothing fires without a human decision. Quinn must
+   * the confirmation UX, so nothing fires without a human decision. ZenithAssistant must
    * never act in the conversation from a teammate's Q&A about it, only ever
    * suggest an action for a human to approve.
    * See `resolveEffectiveToolMode` in assistant.tools.ts.
@@ -308,7 +308,7 @@ export interface AssistantToolContext {
   /** The customer message this turn answers, keying the write-tool idempotency key. Null in the sandbox. */
   latestCustomerMessageId: string | null
   /**
-   * The bounded actor the pipeline authorizes and executes as. Quinn's actor
+   * The bounded actor the pipeline authorizes and executes as. ZenithAssistant's actor
    * by default; a future teammate-facing surface substitutes an
    * on-behalf-of-teammate actor without touching the pipeline or executors.
    */
@@ -329,7 +329,7 @@ export interface AssistantToolContext {
 
 /**
  * Build a tool context with the shared defaults (fresh source ledger, zeroed
- * search budget, Quinn's bounded actor, sandbox-derived simulate). The single
+ * search budget, ZenithAssistant's bounded actor, sandbox-derived simulate). The single
  * construction point: the turn runtime and the approved-action executor both
  * use it, so a new context field lands everywhere at once.
  */
@@ -382,7 +382,7 @@ export function makeAssistantToolContext(init: {
     skills: init.skills,
     involvementId: init.involvementId ?? null,
     latestCustomerMessageId: init.latestCustomerMessageId ?? null,
-    actor: init.actor ?? quinnActor(init.assistantPrincipalId),
+    actor: init.actor ?? zenithAssistantActor(init.assistantPrincipalId),
     attributeCatalogue: init.attributeCatalogue,
     mcpSession: init.mcpSession,
     mcpConnectorSessions: init.mcpConnectorSessions,
@@ -418,7 +418,7 @@ type AssistantGateEnvelope = z.infer<typeof assistantGateEnvelopeSchema>
 type ToolSuccessOutput<TDef> = Exclude<InferToolOutput<TDef>, AssistantGateEnvelope>
 
 /**
- * One entry in Quinn's tool catalogue. Bundles the model-facing `definition`
+ * One entry in ZenithAssistant's tool catalogue. Bundles the model-facing `definition`
  * with the admin-facing metadata (label/description/risk/permissions) needed
  * to list, gate, and audit the tool, plus the actual `execute` body kept
  * separate from `definition` so the execution pipeline can wrap it without
@@ -1496,7 +1496,7 @@ const SPECS: readonly AssistantToolSpec[] = [
 ]
 
 /**
- * Static registry of Quinn's built-in tools, keyed by name: the read tools
+ * Static registry of ZenithAssistant's built-in tools, keyed by name: the read tools
  * plus the write tools that act on the conversation, a ticket, or a feedback
  * post.
  */
@@ -1505,7 +1505,7 @@ export const ASSISTANT_TOOL_SPECS: Record<string, AssistantToolSpec> = Object.fr
 )
 
 /**
- * Return Quinn's built-in tool catalogue. The registry is code-defined and
+ * Return ZenithAssistant's built-in tool catalogue. The registry is code-defined and
  * never reads workspace data.
  */
 export function resolveToolSpecs(): AssistantToolSpec[] {

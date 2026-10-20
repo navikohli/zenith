@@ -145,7 +145,7 @@ export function SlackConfig({
     <div className="space-y-6">
       {missingSlackScopes(initialConfig.scopes).length > 0 && (
         <div className="rounded-lg border p-4 text-sm">
-          <p className="font-medium">Reconnect to enable @Quackback</p>
+          <p className="font-medium">Reconnect to enable @Zenith</p>
           <p className="text-muted-foreground">
             Grant the new Slack permissions to use the assistant. Your notifications keep working.
           </p>

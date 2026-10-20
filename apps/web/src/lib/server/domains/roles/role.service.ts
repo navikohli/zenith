@@ -40,7 +40,7 @@ import {
 } from '@/lib/server/db'
 
 type Executor = Database | Transaction
-import { generateId, type PrincipalId, type RoleId } from '@quackback/ids'
+import { generateId, type PrincipalId, type RoleId } from '@zenith/ids'
 import { ALL_PERMISSIONS, SYSTEM_ROLES, type PermissionKey } from '@/lib/shared/permissions'
 
 /** Keys the catalogue still defines; a retired key's grants linger in the database for older app versions. */

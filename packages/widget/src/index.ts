@@ -26,7 +26,7 @@ export type {
 
 const sdk = createSDK()
 
-export const Quackback = {
+export const Zenith = {
   version: SDK_VERSION,
   init(options: InitOptions): void {
     sdk.dispatch('init', options)
@@ -73,4 +73,4 @@ export const Quackback = {
   },
 }
 
-export default Quackback
+export default Zenith

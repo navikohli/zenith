@@ -44,7 +44,7 @@ describe('resolveHelpCenterDomainRedirect', () => {
     expect(
       resolveHelpCenterDomainRedirect({
         domainConfig: { domain: null, verifiedAt: null },
-        currentHost: 'app.quackback.io',
+        currentHost: 'app.zenith.io',
         pathname: '/hc',
         search: '',
       })
@@ -55,7 +55,7 @@ describe('resolveHelpCenterDomainRedirect', () => {
     expect(
       resolveHelpCenterDomainRedirect({
         domainConfig: unverifiedDomain,
-        currentHost: 'app.quackback.io',
+        currentHost: 'app.zenith.io',
         pathname: '/hc',
         search: '',
       })
@@ -77,7 +77,7 @@ describe('resolveHelpCenterDomainRedirect', () => {
     expect(
       resolveHelpCenterDomainRedirect({
         domainConfig: verifiedDomain,
-        currentHost: 'app.quackback.io',
+        currentHost: 'app.zenith.io',
         pathname: '/hc/articles/billing/invoices',
         search: '?utm_source=x',
       })
@@ -88,7 +88,7 @@ describe('resolveHelpCenterDomainRedirect', () => {
     expect(
       resolveHelpCenterDomainRedirect({
         domainConfig: verifiedDomain,
-        currentHost: 'app.quackback.io:3000',
+        currentHost: 'app.zenith.io:3000',
         pathname: '/hc',
         search: '',
       })
@@ -108,13 +108,13 @@ describe('resolveHelpCenterDomainRedirect', () => {
 })
 
 describe('resolveHelpCenterBaseUrl', () => {
-  const fallback = 'https://app.quackback.io'
+  const fallback = '/source.html'
 
   it('falls back to BASE_URL when no domain is configured', () => {
     expect(
       resolveHelpCenterBaseUrl({
         domainConfig: { domain: null, verifiedAt: null },
-        currentHost: 'app.quackback.io',
+        currentHost: 'app.zenith.io',
         fallback,
       })
     ).toBe(fallback)
@@ -134,7 +134,7 @@ describe('resolveHelpCenterBaseUrl', () => {
     expect(
       resolveHelpCenterBaseUrl({
         domainConfig: verifiedDomain,
-        currentHost: 'app.quackback.io',
+        currentHost: 'app.zenith.io',
         fallback,
       })
     ).toBe(fallback)

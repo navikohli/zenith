@@ -33,13 +33,13 @@ describe('withEmailProxyHint', () => {
           ])
         ),
       {
-        storage: { publicUrl: 'https://ws-abc123.quackback.co.uk/api/storage' },
-        baseUrl: 'https://acme.quackback.co.uk',
+        storage: { publicUrl: 'https://ws-abc123.zenith.co.uk/api/storage' },
+        baseUrl: 'https://acme.zenith.co.uk',
       }
     )
 
     expect(rewritten.content?.[0]?.attrs?.src).toBe(
-      'https://ws-abc123.quackback.co.uk/api/storage/changelog-images/a.png?email=1'
+      'https://ws-abc123.zenith.co.uk/api/storage/changelog-images/a.png?email=1'
     )
   })
 
@@ -51,19 +51,19 @@ describe('withEmailProxyHint', () => {
           doc([
             {
               type: 'chatImage',
-              attrs: { src: 'https://acme.quackback.co.uk/api/storage/chat-images/a.png' },
+              attrs: { src: 'https://acme.zenith.co.uk/api/storage/chat-images/a.png' },
             },
           ])
         ),
       {
-        storage: { publicUrl: 'https://ws-abc123.quackback.co.uk/api/storage' },
-        baseUrl: 'https://acme.quackback.co.uk',
+        storage: { publicUrl: 'https://ws-abc123.zenith.co.uk/api/storage' },
+        baseUrl: 'https://acme.zenith.co.uk',
       }
     )
 
     const src = rewritten.content?.[0]?.attrs?.src as string
     expect(
-      src.startsWith('https://ws-abc123.quackback.co.uk/api/storage/chat-images/a.png?read=')
+      src.startsWith('https://ws-abc123.zenith.co.uk/api/storage/chat-images/a.png?read=')
     ).toBe(true)
     expect(src).toContain('email=1')
   })
@@ -81,15 +81,15 @@ describe('withEmailProxyHint', () => {
           ])
         ),
       {
-        storage: { publicUrl: 'https://ws-abc123.quackback.co.uk/api/storage' },
-        baseUrl: 'https://acme.quackback.co.uk',
+        storage: { publicUrl: 'https://ws-abc123.zenith.co.uk/api/storage' },
+        baseUrl: 'https://acme.zenith.co.uk',
         secrets: { storage: { accessKeyId: 'shared-key', secretAccessKey: 'shared-secret' } },
       }
     )
 
     const src = rewritten.content?.[0]?.attrs?.src as string
     expect(
-      src.startsWith('https://ws-abc123.quackback.co.uk/api/storage/uploads/2026/07/logo.png?read=')
+      src.startsWith('https://ws-abc123.zenith.co.uk/api/storage/uploads/2026/07/logo.png?read=')
     ).toBe(true)
     expect(src).toContain('email=1')
   })

@@ -10,7 +10,7 @@ import { isAiClientConfigured } from '@/lib/server/domains/ai/config'
 import { structuredChat } from '@/lib/server/domains/ai/structured-chat'
 import { enforceAiTokenBudget } from '@/lib/server/domains/settings/tier-enforce'
 import { logger } from '@/lib/server/logger'
-import type { PostId } from '@quackback/ids'
+import type { PostId } from '@zenith/ids'
 import { truncate } from '@/lib/shared/utils/string'
 import type { MergeCandidate } from './merge-search.service'
 

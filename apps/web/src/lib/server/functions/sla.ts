@@ -10,8 +10,8 @@
  */
 import { z } from 'zod'
 import { createServerFn } from '@tanstack/react-start'
-import { isValidTypeId } from '@quackback/ids'
-import type { ConversationId, OfficeHoursId, SlaPolicyId } from '@quackback/ids'
+import { isValidTypeId } from '@zenith/ids'
+import type { ConversationId, OfficeHoursId, SlaPolicyId } from '@zenith/ids'
 import { requireAuth } from './auth-helpers'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import { slaTargetsSummary } from '@/lib/shared/conversation/sla'

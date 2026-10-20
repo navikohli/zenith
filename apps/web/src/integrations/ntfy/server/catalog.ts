@@ -10,5 +10,5 @@ export const ntfyCatalog: IntegrationCatalogEntry = {
   settingsPath: '/admin/settings/integrations/ntfy',
   available: true,
   configurable: false,
-  docsUrl: 'https://www.quackback.io/docs/integrations/ntfy',
+  docsUrl: '/source.html',
 }

@@ -9,5 +9,5 @@ export const slackCatalog: IntegrationCatalogEntry = {
   settingsPath: '/admin/settings/integrations/slack',
   available: true,
   configurable: true,
-  docsUrl: 'https://www.quackback.io/docs/integrations/slack',
+  docsUrl: '/source.html',
 }

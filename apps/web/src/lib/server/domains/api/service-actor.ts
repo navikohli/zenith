@@ -13,7 +13,7 @@
  */
 import type { Actor } from '@/lib/server/policy/types'
 import type { ApiAuthContext } from '@/lib/server/domains/api/auth'
-import type { SegmentId } from '@quackback/ids'
+import type { SegmentId } from '@zenith/ids'
 
 export function serviceActorFromApiAuth(auth: ApiAuthContext): Actor {
   return {

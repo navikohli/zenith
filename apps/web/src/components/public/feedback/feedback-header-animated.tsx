@@ -1,4 +1,4 @@
-import type { BoardId } from '@quackback/ids'
+import type { BoardId } from '@zenith/ids'
 import { Suspense, useState, useCallback, useEffect, useRef, type RefObject } from 'react'
 import { createValueStore, useStoreValue, type ValueStore } from '@/lib/client/value-store'
 import { useIntl, FormattedMessage } from 'react-intl'

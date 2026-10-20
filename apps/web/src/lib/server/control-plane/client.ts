@@ -7,7 +7,7 @@ import {
 
 export class ControlPlaneUnavailableError extends Error {
   constructor(
-    message = 'Quackback Cloud is temporarily unavailable. Please try again.',
+    message = 'Zenith Cloud is temporarily unavailable. Please try again.',
     public readonly status?: number
   ) {
     super(message)
@@ -75,12 +75,12 @@ export async function fetchWorkspaceCustomDomains(): Promise<CustomDomainInstruc
 export function deriveControlPlaneCredential(workspaceSecretKey: string): string {
   if (workspaceSecretKey.length < 32) throw new Error('workspace secret key is too short')
   return `qbint_${createHmac('sha256', workspaceSecretKey)
-    .update('quackback-control-plane-credential-v1')
+    .update('zenith-control-plane-credential-v1')
     .digest('base64url')}`
 }
 
 function controlPlaneOrigin(): URL {
-  const raw = process.env.QUACKBACK_CONTROL_PLANE_URL
+  const raw = process.env.ZENITH_CONTROL_PLANE_URL
   if (!raw) throw new ControlPlaneUnavailableError()
   const origin = new URL(raw)
   if (
@@ -92,7 +92,7 @@ function controlPlaneOrigin(): URL {
     origin.search ||
     origin.hash
   ) {
-    throw new Error('QUACKBACK_CONTROL_PLANE_URL must be an HTTPS origin')
+    throw new Error('ZENITH_CONTROL_PLANE_URL must be an HTTPS origin')
   }
   return origin
 }

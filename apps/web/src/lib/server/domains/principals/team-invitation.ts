@@ -9,7 +9,7 @@ import {
   type PrincipalId,
   type RoleId,
   type UserId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import {
   and,
   db,
@@ -22,7 +22,7 @@ import {
   type Database,
   type Transaction,
 } from '@/lib/server/db'
-import { sendInvitationEmail } from '@quackback/email'
+import { sendInvitationEmail } from '@zenith/email'
 import { getBaseUrl } from '@/lib/server/config'
 import {
   INVITATION_EXPIRY_MS,

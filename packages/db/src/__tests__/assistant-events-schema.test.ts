@@ -6,7 +6,7 @@ import { getTableConfig } from 'drizzle-orm/pg-core'
 import { assistantEvents } from '../schema/assistant-events'
 
 /**
- * Pins the assistant_events usage-event log (migration 0189, the Quinn
+ * Pins the assistant_events usage-event log (migration 0189, the ZenithAssistant
  * Copilot outcome loop) to the shape its writers and readers assume:
  * append-only rows keyed by an open-text event_type, both item FKs nullable
  * (an event is telemetry, not a child of the item), and the

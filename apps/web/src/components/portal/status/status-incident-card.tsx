@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl'
 import { cn } from '@/lib/shared/utils'
 import { TimeAgo } from '@/components/ui/time-ago'
 import { IMPACT_STYLE, IMPACT_LABEL, LIFECYCLE_LABEL } from './status-colors'
-import type { StatusIncidentId, StatusComponentId } from '@quackback/ids'
+import type { StatusIncidentId, StatusComponentId } from '@zenith/ids'
 import type { StatusIncidentImpact } from '@/lib/server/domains/status'
 import type { LifecycleStatus } from './status-colors'
 

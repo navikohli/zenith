@@ -138,7 +138,7 @@ export function structuredOutputProviderOptions(): {
  * models whose providers do not advertise `reasoning` (GLM 5.3 Flash). Set
  * `AI_REASONING_EXCLUDE=true` for reasoning models such as DeepSeek v4 Flash,
  * whose json_schema streams otherwise prefix thinking as whitespace and kill
- * Ask AI. Callers that must round-trip `reasoning_details` (Quinn's tool loop)
+ * Ask AI. Callers that must round-trip `reasoning_details` (ZenithAssistant's tool loop)
  * should skip this helper.
  */
 export function reasoningExcludeProviderOptions(): { reasoning?: { exclude: true } } {

@@ -38,7 +38,7 @@ describe('resolveReplyRecipient', () => {
     // sees a reply that was never delivered.
     expect(
       resolveReplyRecipient(
-        { type: 'user', email: 'sso-oidc-01j9-abc@anon.quackback.io' },
+        { type: 'user', email: 'sso-oidc-01j9-abc@anon.zenith.io' },
         'real@x.com',
         null
       )
@@ -48,7 +48,7 @@ describe('resolveReplyRecipient', () => {
   it('returns null rather than a placeholder when nothing real is on file', () => {
     expect(
       resolveReplyRecipient(
-        { type: 'user', email: 'sso-oidc-01j9-abc@anon.quackback.io' },
+        { type: 'user', email: 'sso-oidc-01j9-abc@anon.zenith.io' },
         null,
         null
       )

@@ -10,7 +10,7 @@
  */
 import { z } from 'zod'
 import { createServerFn, createServerOnlyFn } from '@tanstack/react-start'
-import { isValidTypeId } from '@quackback/ids'
+import { isValidTypeId } from '@zenith/ids'
 import type {
   TicketId,
   TicketStatusId,
@@ -21,7 +21,7 @@ import type {
   CompanyId,
   ConversationId,
   ConversationMessageId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import {
   TICKET_TYPES,

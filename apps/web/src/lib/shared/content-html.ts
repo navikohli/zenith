@@ -223,7 +223,7 @@ export function generateContentHTML(content: JSONContent): string {
         return `<span data-type="emoji"${dataNameAttr}>${escaped}</span>`
       }
 
-      case 'quackbackEmbed': {
+      case 'zenithEmbed': {
         // Atom block. Saved content isn't rendered through a live editor on
         // display surfaces, so we emit a static placeholder div that survives
         // DOMPurify; EmbedHydration portals a live card into it client-side.
@@ -232,7 +232,7 @@ export function generateContentHTML(content: JSONContent): string {
         const kind = String(node.attrs?.kind ?? '')
         const id = String(node.attrs?.id ?? '')
         if ((kind !== 'post' && kind !== 'changelog') || !id) return ''
-        return `<div data-quackback-embed="1" data-kind="${escapeHtmlAttr(kind)}" data-id="${escapeHtmlAttr(id)}" class="quackback-embed-placeholder"></div>`
+        return `<div data-zenith-embed="1" data-kind="${escapeHtmlAttr(kind)}" data-id="${escapeHtmlAttr(id)}" class="zenith-embed-placeholder"></div>`
       }
 
       default:

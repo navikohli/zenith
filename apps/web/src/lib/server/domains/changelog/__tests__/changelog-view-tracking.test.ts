@@ -5,7 +5,7 @@
  * must NOT increment.
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import type { ChangelogId } from '@quackback/ids'
+import type { ChangelogId } from '@zenith/ids'
 // Static SUT import (vi.mock below is hoisted above it) so the module's
 // transform is paid at file load, not inside a 5s-timed test — which it blew
 // under a saturated parallel run via the per-test `await import()`.

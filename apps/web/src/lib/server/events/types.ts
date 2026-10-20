@@ -546,7 +546,7 @@ export interface EventTicketMessageData {
 }
 
 /**
- * Payload for assistant.handed_off — fired when Quinn escalates a conversation
+ * Payload for assistant.handed_off — fired when ZenithAssistant escalates a conversation
  * to the human team, once per hand-off decision.
  */
 export interface AssistantHandedOffPayload {

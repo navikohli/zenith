@@ -39,7 +39,7 @@ import {
   type ApprovalRisk,
 } from '@/lib/server/db'
 import type { SQL } from 'drizzle-orm'
-import type { AssistantPendingActionId, PrincipalId } from '@quackback/ids'
+import type { AssistantPendingActionId, PrincipalId } from '@zenith/ids'
 import type { Actor } from '@/lib/server/policy/types'
 import { permissionsForPrincipal, resolveActorPermissions } from '@/lib/server/policy/permissions'
 import { getBaseUrl } from '@/lib/server/config'

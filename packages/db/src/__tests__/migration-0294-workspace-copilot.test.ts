@@ -18,7 +18,7 @@ const validation = readFileSync(
   .filter(Boolean)
 it('replays without changing data or constraints and enforces private run dedupe', async () => {
   const db = createDb(
-    process.env.DATABASE_URL ?? 'postgresql://postgres:password@localhost:5432/quackback_test',
+    process.env.DATABASE_URL ?? 'postgresql://postgres:password@localhost:5432/zenith_test',
     { max: 1 }
   )
   const rollback = new Error('owned migration fixture rollback')

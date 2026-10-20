@@ -1,5 +1,5 @@
 import { afterAll, afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { createId, type PrincipalId, type UserId, type WorkspaceId } from '@quackback/ids'
+import { createId, type PrincipalId, type UserId, type WorkspaceId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import {
   and,
@@ -82,13 +82,13 @@ const fixture = await createDbTestFixture({
     const current = getExecuteRows<{ name: string }>(
       await db.execute(sql`select current_database() as name`)
     )[0]
-    if (!current?.name.startsWith('quackback_test'))
-      throw new Error('Automatic branding requires a quackback_test database')
+    if (!current?.name.startsWith('zenith_test'))
+      throw new Error('Automatic branding requires a zenith_test database')
     await db.select({ metadata: settings.metadata }).from(settings).limit(0)
   },
 })
 if (!fixture.available)
-  throw new Error('Migrate a quackback_test database before running automatic branding tests')
+  throw new Error('Migrate a zenith_test database before running automatic branding tests')
 let actor: Actor, other: Actor, settingsId: WorkspaceId
 const good: WebsiteBranding = {
   domain: 'example.com',

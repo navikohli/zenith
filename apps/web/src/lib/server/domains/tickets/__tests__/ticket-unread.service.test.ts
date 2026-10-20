@@ -14,7 +14,7 @@ import {
   type TicketId,
   type TicketStatusId,
   type ConversationMessageId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import type { Actor } from '@/lib/server/policy/types'
 import { NotFoundError, ForbiddenError } from '@/lib/shared/errors'
 

@@ -351,7 +351,7 @@ describe('assistant production system prompt', () => {
   it('declares synthetic anonymous placeholder addresses non-repeatable (every role)', () => {
     for (const role of ['customer_support', 'copilot_qa'] as const) {
       const prompt = joined({ role })
-      expect(prompt).toContain('@anon.quackback.io are internal placeholders')
+      expect(prompt).toContain('@anon.zenith.io are internal placeholders')
       expect(prompt).toContain('Never repeat, confirm, or quote such an address')
     }
   })
@@ -429,7 +429,7 @@ describe('knowledge search guidance per role', () => {
     expect(home).toContain(`- search_knowledge: ${GENERIC}`)
     expect(home).not.toContain(`- search: ${GENERIC}`)
   })
-  it('keeps the line on search for Slack and Quinn', () => {
+  it('keeps the line on search for Slack and ZenithAssistant', () => {
     for (const overrides of [
       { role: 'workspace_assistant' as const, surface: 'slack' as const },
       { role: 'customer_support' as const },
@@ -444,7 +444,7 @@ describe('knowledge search guidance per role', () => {
 })
 
 describe('dash-free replies', () => {
-  it('tells Quinn and Copilot never to write em dashes', () => {
+  it('tells ZenithAssistant and Copilot never to write em dashes', () => {
     for (const overrides of [
       {},
       { role: 'workspace_assistant' as const, agentKind: 'copilot' as const },

@@ -92,20 +92,20 @@ it('rejects a cross-origin token POST', async () => {
 })
 
 it('accepts the tenant browser handoff after a shared OAuth gateway bounce', async () => {
-  vi.stubEnv('INTEGRATION_OAUTH_GATEWAY_URL', 'https://app.quackback.io')
+  vi.stubEnv('INTEGRATION_OAUTH_GATEWAY_URL', '/source.html')
   const response = await handleOAuthCallback(request('POST'), 'trello')
   expect(response.status).toBe(302)
   expect(mocks.exchange).toHaveBeenCalledWith(
     'private-token',
-    'https://app.quackback.io/oauth/trello/callback',
+    '/source.html',
     undefined,
     undefined
   )
 })
 it('does not accept the gateway as the browser origin on a tenant token POST', async () => {
-  vi.stubEnv('INTEGRATION_OAUTH_GATEWAY_URL', 'https://app.quackback.io')
+  vi.stubEnv('INTEGRATION_OAUTH_GATEWAY_URL', '/source.html')
   const input = request('POST')
-  input.headers.set('origin', 'https://app.quackback.io')
+  input.headers.set('origin', '/source.html')
   expect((await handleOAuthCallback(input, 'trello')).status).toBe(403)
   expect(mocks.exchange).not.toHaveBeenCalled()
 })

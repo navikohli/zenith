@@ -18,7 +18,7 @@ import { logger } from '@/lib/server/logger'
 
 const log = logger.child({ component: 'db' })
 
-const METRICS_KEY = Symbol.for('quackback.requestMetrics')
+const METRICS_KEY = Symbol.for('zenith.requestMetrics')
 
 export interface RequestMetrics {
   /** Statements sent to Postgres, one per round trip Drizzle makes. */

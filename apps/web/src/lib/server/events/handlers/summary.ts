@@ -8,7 +8,7 @@
 import type { HookHandler, HookResult } from '../hook-types'
 import type { EventData } from '../types'
 import { generateAndSavePostSummary } from '@/lib/server/domains/summary/summary.service'
-import type { PostId } from '@quackback/ids'
+import type { PostId } from '@zenith/ids'
 import { TierLimitError } from '@/lib/server/errors/tier-limit-error'
 import { logger } from '@/lib/server/logger'
 

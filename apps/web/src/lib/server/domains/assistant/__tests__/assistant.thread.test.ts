@@ -5,7 +5,7 @@ import type {
   ConversationMessageDTO,
   ConversationAttachment,
 } from '@/lib/shared/conversation/types'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 import type { FileExcerptRow } from '@/lib/server/domains/files/files.excerpts'
 
 const ASSISTANT = 'principal_assistant' as PrincipalId
@@ -104,11 +104,11 @@ describe('mapRowsToThreadMessages', () => {
 })
 
 /**
- * Non-image attachments with a fileId (documents) make Quinn's thread mapper
+ * Non-image attachments with a fileId (documents) make ZenithAssistant's thread mapper
  * surface a bracketed note plus the extracted excerpt, when one is loaded —
  * exactly like message text (same `content` field, same customer turn), so
  * no weaker or separate framing is invented for it. Files without an excerpt
- * still get their bracket line, so Quinn knows one exists but cannot read it.
+ * still get their bracket line, so ZenithAssistant knows one exists but cannot read it.
  */
 describe('mapRowsToThreadMessages: attached documents', () => {
   function docAttachment(overrides: Partial<ConversationAttachment> = {}): ConversationAttachment {
@@ -204,7 +204,7 @@ describe('mapRowsToThreadMessages: attached documents', () => {
     const rows = [msg({ senderType: 'visitor', content: '', attachments })]
     const out = mapRowsToThreadMessages(rows, ASSISTANT, fileExcerpts)
     // Every file's bracket line still appears, even once the thread-wide
-    // 24,000-char excerpt budget runs out — so Quinn always knows how many
+    // 24,000-char excerpt budget runs out — so ZenithAssistant always knows how many
     // files there are.
     for (const a of attachments) {
       expect(out[0].content).toContain(`[Attached file: ${a.name} (PDF)]`)

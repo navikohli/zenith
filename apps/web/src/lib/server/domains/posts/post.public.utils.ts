@@ -11,7 +11,7 @@ import {
   postVotes,
   postSubscriptions,
 } from '@/lib/server/db'
-import { toUuid, type PostId, type PostStatusId, type PrincipalId } from '@quackback/ids'
+import { toUuid, type PostId, type PostStatusId, type PrincipalId } from '@zenith/ids'
 import { relatedPostIdsSql } from './post.merge-ids'
 import type { RoadmapPostListResult } from './post.types'
 import { getExecuteRows } from '@/lib/server/utils'

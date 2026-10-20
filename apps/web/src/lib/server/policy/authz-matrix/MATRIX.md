@@ -217,7 +217,7 @@ Profiles: **Owner** = admin class + an admin-owned full API key (scoped keys hol
 | `lib/server/functions/ask-search.ts`::searchAskEntitiesFn | DYNAMIC (post.view_private | help_center.manage | changelog.view_draft | changelog.manage | conversation.view | ticket.view) |
 | `lib/server/functions/assistant-actions.ts`::approveAssistantActionFn | DYNAMIC (conversation.view | ticket.view | copilot.use | settings.manage | settings.branding | office_hours.manage | changelog.manage | conversation.set_attributes | conversation.set_status | ticket.create | post.create | post.vote_on_behalf) |
 | `lib/server/functions/assistant-actions.ts`::rejectAssistantActionFn | DYNAMIC (conversation.view | ticket.view | copilot.use) |
-| `lib/server/functions/assistant-analytics.ts`::getQuinnPerformanceFn | analytics.view |
+| `lib/server/functions/assistant-analytics.ts`::getZenithAssistantPerformanceFn | analytics.view |
 | `lib/server/functions/assistant-connectors.ts`::listConnectorsFn | DYNAMIC (ai.customer.manage | ai.teammate.manage) |
 | `lib/server/functions/assistant-connectors.ts`::getConnectorFn | DYNAMIC (ai.customer.manage | ai.teammate.manage) |
 | `lib/server/functions/assistant-connectors.ts`::createConnectorFn | DYNAMIC (ai.customer.manage | ai.teammate.manage) |
@@ -254,7 +254,7 @@ Profiles: **Owner** = admin class + an admin-owned full API key (scoped keys hol
 | `lib/server/functions/assistant-snippets.ts`::createSnippetFn | DYNAMIC (ai.customer.manage | ai.teammate.manage) |
 | `lib/server/functions/assistant-snippets.ts`::updateSnippetFn | DYNAMIC (ai.customer.manage | ai.teammate.manage) |
 | `lib/server/functions/assistant-snippets.ts`::deleteSnippetFn | DYNAMIC (ai.customer.manage | ai.teammate.manage) |
-| `lib/server/functions/assistant-tools-analytics.ts`::getQuinnToolMetricsFn | analytics.view |
+| `lib/server/functions/assistant-tools-analytics.ts`::getZenithAssistantToolMetricsFn | analytics.view |
 | `lib/server/functions/assistant-web-sources.ts`::listWebSourcesFn | DYNAMIC (ai.customer.manage | ai.teammate.manage) |
 | `lib/server/functions/assistant-web-sources.ts`::addWebSourceFn | DYNAMIC (ai.customer.manage | ai.teammate.manage) |
 | `lib/server/functions/assistant-web-sources.ts`::setWebSourceEnabledFn | DYNAMIC (ai.customer.manage | ai.teammate.manage) |

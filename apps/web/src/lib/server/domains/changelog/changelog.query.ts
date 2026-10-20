@@ -20,7 +20,7 @@ import {
   inArray,
   sql,
 } from '@/lib/server/db'
-import type { BoardId, ChangelogId, PrincipalId, PostId, PostStatusId } from '@quackback/ids'
+import type { BoardId, ChangelogId, PrincipalId, PostId, PostStatusId } from '@zenith/ids'
 import { computeStatus } from './changelog.service'
 import { getCategoriesForEntries } from './changelog-category.service'
 import { contentJsonForClient } from '@/lib/server/content/storage-read-urls'

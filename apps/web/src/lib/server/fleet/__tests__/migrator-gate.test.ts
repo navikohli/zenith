@@ -16,7 +16,7 @@ import {
   MIGRATIONS_DIR,
   latestBundledVersion,
   type AppliedLedger,
-} from '@quackback/db/schema-version'
+} from '@zenith/db/schema-version'
 import { assessReplaySafety } from '@/lib/server/policy/migration-contract/replay-safety'
 import { gapHealVerdict, ledgerGapFor, planFor, replayGateVerdict, replaySetFor } from '../migrator'
 

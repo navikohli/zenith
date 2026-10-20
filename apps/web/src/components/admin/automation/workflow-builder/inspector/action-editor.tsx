@@ -365,7 +365,7 @@ export function ActionEditor({
             inputMode="url"
             value={action.url}
             onChange={(e) => onChange({ ...action, url: e.target.value })}
-            placeholder="https://example.com/hooks/quackback"
+            placeholder="https://example.com/hooks/zenith"
           />
           <p className="mt-1 text-[11px] text-muted-foreground">
             Sends an idempotent POST with the workflow run and conversation context.

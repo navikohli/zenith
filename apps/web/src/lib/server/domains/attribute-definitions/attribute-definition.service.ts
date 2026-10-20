@@ -21,7 +21,7 @@
  */
 import { z } from 'zod'
 import { db, eq, asc, userAttributeDefinitions, companyAttributeDefinitions } from '@/lib/server/db'
-import { createId } from '@quackback/ids'
+import { createId } from '@zenith/ids'
 import { NotFoundError, ValidationError, ConflictError, InternalError } from '@/lib/shared/errors'
 import { normalizeAttributeKey } from '@/lib/shared/normalize-attribute-key'
 import { isUniqueViolation } from '@/lib/server/utils'

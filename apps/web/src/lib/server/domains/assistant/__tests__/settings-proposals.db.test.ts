@@ -1,5 +1,5 @@
 import { afterAll, afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { createId, type PrincipalId, type UserId, type WorkspaceId } from '@quackback/ids'
+import { createId, type PrincipalId, type UserId, type WorkspaceId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import {
   eq,
@@ -70,13 +70,13 @@ const fixture = await createDbTestFixture({
     const current = getExecuteRows<{ name: string }>(
       await db.execute(sql`select current_database() as name`)
     )[0]
-    if (!current?.name.startsWith('quackback_test'))
-      throw new Error('Settings proposals tests require a quackback_test database')
+    if (!current?.name.startsWith('zenith_test'))
+      throw new Error('Settings proposals tests require a zenith_test database')
     await db.select({ id: settings.id }).from(settings).limit(0)
   },
 })
 if (!fixture.available)
-  throw new Error('Migrate quackback_test before running settings proposal tests')
+  throw new Error('Migrate zenith_test before running settings proposal tests')
 let actor: Actor
 let settingsId: WorkspaceId
 if (fixture.available) {

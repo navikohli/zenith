@@ -3,7 +3,7 @@
  * earlier event left (SLA clocks, pair-ticket reopen, CSAT confirm; see
  * `event-reactions.ts`, including why they do not rely on the queue's order).
  */
-import type { ConversationId } from '@quackback/ids'
+import type { ConversationId } from '@zenith/ids'
 import { confirmResolutionFromCsat } from '@/lib/server/domains/assistant/assistant.involvement'
 import { recordSlaFromEvent } from '@/lib/server/domains/sla/sla.event-hooks'
 import { autoReopenPairTicketFromEvent } from '@/lib/server/domains/tickets/ticket.event-hooks'

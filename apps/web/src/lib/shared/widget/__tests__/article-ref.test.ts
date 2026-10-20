@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { generateId } from '@quackback/ids'
+import { generateId } from '@zenith/ids'
 import { canonicalArticleTypeId, isArticleTypeId } from '../article-ref'
 
 describe('article TypeID refs', () => {

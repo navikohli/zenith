@@ -4,7 +4,7 @@
  * second request per page for the badges.
  */
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import type { PostId } from '@quackback/ids'
+import type { PostId } from '@zenith/ids'
 
 const mockListInboxPosts = vi.fn()
 vi.mock('../post.inbox', () => ({

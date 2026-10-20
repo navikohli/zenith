@@ -20,7 +20,7 @@ import {
   sql,
   user,
 } from '@/lib/server/db'
-import type { InviteId, PrincipalId, RoleId, UserId } from '@quackback/ids'
+import type { InviteId, PrincipalId, RoleId, UserId } from '@zenith/ids'
 import { z } from 'zod'
 import { ANON_EMAIL_DOMAIN, realEmail } from '@/lib/shared/anonymous-email'
 import { getAuthProviderByProviderId } from '@/lib/server/auth/auth-providers'

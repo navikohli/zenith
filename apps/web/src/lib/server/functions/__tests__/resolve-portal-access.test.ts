@@ -251,7 +251,7 @@ describe('resolvePortalAccessForRequest — private portal', () => {
     // An anonymous Better Auth session must not count as authenticated.
     mockGetSession.mockResolvedValue({
       session: { id: 'sess_1', scope: 'dashboard' },
-      user: { id: 'user_anon', email: 'anon@anon.quackback.io', emailVerified: false },
+      user: { id: 'user_anon', email: 'anon@anon.zenith.io', emailVerified: false },
     })
     mockPrincipalFindFirst.mockResolvedValue({ type: 'anonymous', role: 'user' })
     mockGetPortalConfig.mockResolvedValue({

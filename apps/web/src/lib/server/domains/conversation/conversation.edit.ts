@@ -22,7 +22,7 @@ import {
   type ConversationMessage,
   type ConversationMessageMetadata,
 } from '@/lib/server/db'
-import type { ConversationMessageId, PrincipalId } from '@quackback/ids'
+import type { ConversationMessageId, PrincipalId } from '@zenith/ids'
 import { NotFoundError, ForbiddenError, ValidationError } from '@/lib/shared/errors'
 import { canEditMessage, canViewConversation } from '@/lib/server/policy/conversation'
 import type { Actor } from '@/lib/server/policy/types'

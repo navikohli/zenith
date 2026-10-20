@@ -1,4 +1,4 @@
-name: Publish @quackback/widget
+name: Publish @zenith/widget
 on:
   push:
     tags: ['widget-v*']
@@ -20,9 +20,9 @@ jobs:
         with:
           bun-version: 1.4.0
       - run: bun install --frozen-lockfile
-      - run: bun run --filter @quackback/widget test
-      - run: bun run --filter @quackback/widget typecheck
-      - run: bun run --filter @quackback/widget build
+      - run: bun run --filter @zenith/widget test
+      - run: bun run --filter @zenith/widget typecheck
+      - run: bun run --filter @zenith/widget build
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: '22'

@@ -44,7 +44,7 @@ import {
   isNull,
   sql,
 } from '@/lib/server/db'
-import type { TicketId, ConversationMessageId } from '@quackback/ids'
+import type { TicketId, ConversationMessageId } from '@zenith/ids'
 import { publishTicketEvent } from '@/lib/server/realtime/conversation-channels'
 import { unreadWatermarkFromAnchor } from '@/lib/server/domains/conversation/conversation.lifecycle'
 import { assertTicketVisible } from './ticket.service'

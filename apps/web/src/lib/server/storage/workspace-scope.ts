@@ -63,7 +63,7 @@
  * every self-hosted install. So the repair was structural — the factory stopped
  * being exported, and this function became the only way to obtain a client.
  */
-import { fromUuid, type WorkspaceId } from '@quackback/ids'
+import { fromUuid, type WorkspaceId } from '@zenith/ids'
 import { db } from '@/lib/server/db'
 import { getWorkspaceScope } from '@/lib/server/workspaces/workspace-context'
 import { WorkspaceKeyedCache } from '@/lib/server/workspaces/workspace-keyed'

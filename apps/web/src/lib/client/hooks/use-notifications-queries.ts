@@ -6,7 +6,7 @@
  */
 
 import { queryOptions, useQuery, useInfiniteQuery } from '@tanstack/react-query'
-import type { NotificationId } from '@quackback/ids'
+import type { NotificationId } from '@zenith/ids'
 import type { NotificationType } from '@/lib/shared/types'
 import { getNotificationsFn, getUnreadCountFn } from '@/lib/server/functions/notifications'
 import type { NotificationTextParams } from '@/lib/shared/notifications/text-params'

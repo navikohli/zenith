@@ -6,7 +6,7 @@
  * adding them to the team). Other callers keep the portal-user-only lookup.
  */
 import { describe, it, expect, vi, beforeEach, afterEach, afterAll } from 'vitest'
-import { createId, type PrincipalId, type RoleId, type UserId } from '@quackback/ids'
+import { createId, type PrincipalId, type RoleId, type UserId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import {
   account,

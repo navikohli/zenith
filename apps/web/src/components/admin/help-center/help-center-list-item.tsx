@@ -9,7 +9,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { EllipsisHorizontalIcon, PencilIcon, TrashIcon } from '@heroicons/react/24/outline'
-import type { KbArticleId } from '@quackback/ids'
+import type { KbArticleId } from '@zenith/ids'
 import { stripMarkdownPreview } from '@/lib/shared/utils'
 
 interface HelpCenterListItemProps {

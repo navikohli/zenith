@@ -28,7 +28,7 @@ import {
   sql,
   exists,
 } from '@/lib/server/db'
-import type { PostId, PostCommentId } from '@quackback/ids'
+import type { PostId, PostCommentId } from '@zenith/ids'
 import { recordAuditEvent, type AuditActor } from '@/lib/server/audit/log'
 import { NotFoundError, ConflictError } from '@/lib/shared/errors'
 import { announcePublishedPost } from '@/lib/server/domains/posts/post.announce'

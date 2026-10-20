@@ -1,5 +1,5 @@
 /**
- * Closed-ticket grounding source for Quinn (Quinn Phase 4).
+ * Closed-ticket grounding source for ZenithAssistant (ZenithAssistant Phase 4).
  *
  * A `KnowledgeSource` (see `./retrieval-sources`) over `ticket_summaries`
  * rows (see `./ticket-summary.service`), one AI resolution summary per closed

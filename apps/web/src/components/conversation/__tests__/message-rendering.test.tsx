@@ -30,7 +30,7 @@ const citation: ConversationMessageCitation = {
   type: 'article',
   id: 'article_1',
   title: 'AI features',
-  url: 'https://quackback.io/hc/en/articles/64-ai-features',
+  url: '/source.html',
 }
 
 function message(
@@ -46,7 +46,7 @@ function message(
     content,
     contentJson,
     createdAt: '2026-10-02T10:59:00.000Z',
-    author: { principalId: 'principal_1' as never, displayName: 'Quinn', avatarUrl: null },
+    author: { principalId: 'principal_1' as never, displayName: 'Zenith Assistant', avatarUrl: null },
     attachments: [],
     citations: [citation],
     isAssistant,
@@ -81,13 +81,13 @@ for (const surface of ['admin', 'widget'] as const) {
   describe(`${surface} message rendering`, () => {
     it('renders the screenshot link as a clickable label', () => {
       const { container } = bubble(
-        'For **Quackback Cloud**, AI is included. [Use AI-powered features](https://quackback.io/hc/en/articles/64-ai-features)'
+        'For **Zenith Cloud**, AI is included. [Use AI-powered features](/source.html)'
       )
       expect(screen.getByRole('link', { name: 'Use AI-powered features' })).toHaveAttribute(
         'href',
         citation.url
       )
-      expect(container.querySelector('strong')).toHaveTextContent('Quackback Cloud')
+      expect(container.querySelector('strong')).toHaveTextContent('Zenith Cloud')
       expect(container.textContent).not.toContain('](https://')
     })
 

@@ -63,7 +63,7 @@ import { MergeLeadControl } from '@/components/admin/users/merge-lead-control'
 import type { RoleChoice } from '@/components/admin/settings/team/add-people'
 import { useUpdatePortalUser } from '@/lib/client/mutations'
 import { listConversationsForUserFn, getConversationFn } from '@/lib/server/functions/conversation'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 import { useSessionContext, useWorkspaceSettings } from '@/lib/client/hooks/use-root-context'
 import { useOpenedOnce } from '@/lib/client/hooks/use-opened-once'
 

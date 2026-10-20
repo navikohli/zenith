@@ -8,7 +8,7 @@ import { useEnsureAnonSession } from '@/lib/client/hooks/use-ensure-anon-session
 import { useCreateComment } from '@/lib/client/mutations/portal-comments'
 import type { PublicCommentView } from '@/lib/client/queries/portal-detail'
 import type { ReplyPolicy } from '@/lib/shared/db-types'
-import type { PostCommentId, PostId, PrincipalId } from '@quackback/ids'
+import type { PostCommentId, PostId, PrincipalId } from '@zenith/ids'
 import { resolveCommentingState } from '@/components/public/comment-permission'
 import { useSessionContext, useWorkspaceSettings } from '@/lib/client/hooks/use-root-context'
 import { shownName } from '@/lib/shared/greeting-name'

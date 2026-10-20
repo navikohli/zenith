@@ -13,7 +13,7 @@ import { voteOnPost, addVoteOnBehalf, removeVote } from '@/lib/server/domains/po
 import { mergePost, unmergePost } from '@/lib/server/domains/posts/post.merge'
 import { softDeletePost, restorePost } from '@/lib/server/domains/posts/post.user-actions'
 import { getActivityForPost, createActivity } from '@/lib/server/domains/activity/activity.service'
-import type { PostId, BoardId, PostTagId, PostStatusId, PrincipalId } from '@quackback/ids'
+import type { PostId, BoardId, PostTagId, PostStatusId, PrincipalId } from '@zenith/ids'
 import type { McpAuthContext } from '../types'
 import { withItemFacts } from '../untrusted'
 import {
@@ -63,7 +63,7 @@ function permissionsForTriage(args: TriagePostArgs): PermissionKey[] {
 }
 
 const createPostSchema = {
-  boardId: z.string().describe('Board TypeID (use quackback://boards resource to find IDs)'),
+  boardId: z.string().describe('Board TypeID (use zenith://boards resource to find IDs)'),
   title: z.string().max(200).describe('Post title (max 200 characters)'),
   content: z
     .string()

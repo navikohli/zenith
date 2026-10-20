@@ -11,7 +11,7 @@
 import { useCallback, useState } from 'react'
 import { useQueryClient } from '@tanstack/react-query'
 import type { QueryKey } from '@tanstack/react-query'
-import type { PostId } from '@quackback/ids'
+import type { PostId } from '@zenith/ids'
 import { fetchPublicPostDetail } from '@/lib/server/functions/portal'
 import { widgetFetchPublicPostDetailFn } from '@/lib/server/functions/widget/posts'
 import { fetchPostWithDetails } from '@/lib/server/functions/posts'

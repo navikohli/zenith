@@ -170,7 +170,7 @@ vi.mock('@/lib/server/domains/boards/board.service', () => ({
 const DEFAULT_RUNTIME_CONFIG: AssistantRuntimeConfig = {
   config: {
     version: 4 as const,
-    identity: { name: 'Quackback AI', avatarUrl: null },
+    identity: { name: 'Zenith AI', avatarUrl: null },
     agents: {
       workspace: structuredClone(DEFAULT_WORKSPACE_ASSISTANT),
       agent: {
@@ -205,7 +205,7 @@ const DEFAULT_RUNTIME_CONFIG: AssistantRuntimeConfig = {
     },
   },
   revision: 1,
-  workspaceName: 'Quackback',
+  workspaceName: 'Zenith',
 }
 
 const mockGetAssistantRuntimeConfig = vi.fn()
@@ -427,7 +427,7 @@ describe('respondEligible (silence rule)', () => {
     expect(respondEligible([{ sender: 'customer', content: 'hi' }])).toBe(true)
   })
 
-  it('mutes Quinn after a human teammate replies past its last message', () => {
+  it('mutes ZenithAssistant after a human teammate replies past its last message', () => {
     expect(
       respondEligible([
         { sender: 'customer', content: 'hi' },
@@ -438,7 +438,7 @@ describe('respondEligible (silence rule)', () => {
     ).toBe(false)
   })
 
-  it('stays eligible when Quinn spoke after the human teammate', () => {
+  it('stays eligible when ZenithAssistant spoke after the human teammate', () => {
     expect(
       respondEligible([
         { sender: 'human_agent', content: 'earlier note' },
@@ -448,7 +448,7 @@ describe('respondEligible (silence rule)', () => {
     ).toBe(true)
   })
 
-  it('mutes when a human is already handling and Quinn never spoke', () => {
+  it('mutes when a human is already handling and ZenithAssistant never spoke', () => {
     expect(
       respondEligible([
         { sender: 'customer', content: 'hi' },
@@ -846,7 +846,7 @@ describe('runAssistantTurn', () => {
     expect(mockDocumentsRetrieve).not.toHaveBeenCalled()
   })
 
-  it('requires a requesting actor for workspace turns instead of falling back to Quinn', async () => {
+  it('requires a requesting actor for workspace turns instead of falling back to ZenithAssistant', async () => {
     await expect(
       runAssistantTurn({
         ...copilotQaInput,
@@ -892,7 +892,7 @@ describe('runAssistantTurn', () => {
     mockLoadAskingTeammateIdentity.mockResolvedValue({
       principalId: 'principal_member',
       displayName: 'James',
-      email: 'james@quackback.io',
+      email: 'james@zenith.io',
       role: 'member',
     })
     mockChat.mockImplementation(() =>
@@ -911,7 +911,7 @@ describe('runAssistantTurn', () => {
       mockChat.mock.calls.at(-1)?.[0] as { systemPrompts: string[] }
     ).systemPrompts.join('\n')
     expect(prompt).toContain('Asking teammate: James (principal id principal_member, role member).')
-    expect(prompt).toContain('Email: james@quackback.io.')
+    expect(prompt).toContain('Email: james@zenith.io.')
     expect(prompt).toContain('"Me"/"I"/"my" always means this person')
     expect(prompt).toContain('posts created by me')
     expect(prompt).toContain('Treat "me", "I", "my", and "myself" as this teammate')
@@ -1342,7 +1342,7 @@ describe('runAssistantTurn', () => {
     })
   })
 
-  it('throws after both attempts hard-fail instead of publishing a canned Quinn reply', async () => {
+  it('throws after both attempts hard-fail instead of publishing a canned ZenithAssistant reply', async () => {
     mockChat.mockImplementation(() =>
       chunkStream([{ type: 'RUN_ERROR', message: 'provider exploded' }])
     )
@@ -2733,7 +2733,7 @@ describe('streamAssistantTurn (AG-UI wire shape)', () => {
     return out
   }
 
-  it('wraps a successful turn in exactly one canonical lifecycle pair with quackback:final before RUN_FINISHED', async () => {
+  it('wraps a successful turn in exactly one canonical lifecycle pair with zenith:final before RUN_FINISHED', async () => {
     const object = { text: 'Answer text here.', citations: [] }
     mockChat.mockReturnValue(chunkStream(completeRun(object)))
 
@@ -2767,7 +2767,7 @@ describe('streamAssistantTurn (AG-UI wire shape)', () => {
     expect(finished.result).toEqual({ status: 'answered' })
   })
 
-  it('emits only the lifecycle pair around quackback:final for a suppressed turn (no model call)', async () => {
+  it('emits only the lifecycle pair around zenith:final for a suppressed turn (no model call)', async () => {
     const chunks = await collect({
       input: {
         ...baseInput,
@@ -2808,7 +2808,7 @@ describe('streamAssistantTurn (AG-UI wire shape)', () => {
     // A committed attempt that dies mid-message: START + CONTENT, no END, then
     // a RUN_ERROR. Committed ⇒ no transport re-dial; salvage recovers a final
     // from the raw text, so the turn still succeeds — but the wire's open
-    // message triad must be closed before quackback:final/RUN_FINISHED.
+    // message triad must be closed before zenith:final/RUN_FINISHED.
     const object = { text: 'Answer text here.', citations: [] }
     mockChat.mockReturnValue(
       chunkStream([

@@ -5,7 +5,7 @@
  * queries with it), and that the owner roster stays behind post.set_owner.
  */
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import type { PostId, PrincipalId } from '@quackback/ids'
+import type { PostId, PrincipalId } from '@zenith/ids'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 
 const mockGetPostVoters = vi.fn()

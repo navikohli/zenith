@@ -25,7 +25,7 @@ export function WhoRepliesFirstCard() {
   const onAgentPage = pathname === '/admin/settings/agent'
   const onWorkflowsPage =
     pathname === '/admin/settings/workflows' || pathname.startsWith('/admin/settings/workflows/')
-  const showManageQuinn = canAgent && !onAgentPage
+  const showManageZenithAssistant = canAgent && !onAgentPage
   const showManageWorkflows = canWorkflows && Boolean(flags?.supportInbox) && !onWorkflowsPage
   const showOfficeHours = canOfficeHours && Boolean(flags?.supportInbox)
 
@@ -57,15 +57,15 @@ export function WhoRepliesFirstCard() {
           </li>
         ))}
       </ol>
-      {(showManageQuinn || showManageWorkflows || showOfficeHours) && (
+      {(showManageZenithAssistant || showManageWorkflows || showOfficeHours) && (
         <div className="mt-2 flex flex-wrap gap-3.5 text-xs">
-          {showManageQuinn && (
+          {showManageZenithAssistant && (
             <Link
               to="/admin/settings/agent"
               className={`${INLINE_LINK} focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50`}
             >
               {intl.formatMessage({
-                id: 'automation.whoRepliesFirst.manageQuinn',
+                id: 'automation.whoRepliesFirst.manageZenithAssistant',
                 defaultMessage: 'Manage the agent',
               })}
             </Link>

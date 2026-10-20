@@ -14,7 +14,7 @@ import {
   user,
   files,
 } from '@/lib/server/db'
-import { createId, type PrincipalId, type UserId } from '@quackback/ids'
+import { createId, type PrincipalId, type UserId } from '@zenith/ids'
 import type { ConversationAttachment } from '@/lib/shared/conversation/types'
 
 vi.mock('@/lib/server/db', async (importOriginal) => ({

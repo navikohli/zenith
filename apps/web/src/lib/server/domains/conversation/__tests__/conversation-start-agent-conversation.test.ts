@@ -7,7 +7,7 @@
  * and unreachable visitors are rejected before any write.
  */
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 import type { Actor } from '@/lib/server/policy/types'
 import { ForbiddenError, NotFoundError, ValidationError } from '@/lib/shared/errors'
 
@@ -242,7 +242,7 @@ describe('startAgentConversation target validation', () => {
     mocks.state.targetRow = {
       type: 'user',
       role: 'user',
-      email: 'temp-abc123@anon.quackback.io',
+      email: 'temp-abc123@anon.zenith.io',
       contactEmail: null,
     }
     await expect(

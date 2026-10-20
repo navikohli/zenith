@@ -42,8 +42,8 @@ const ROW: {
   contract_version: 1,
   state: 'active',
   state_reason: null,
-  primary_hostname: 'ws-t1.quackback.co.uk',
-  base_url: 'https://ws-t1.quackback.co.uk',
+  primary_hostname: 'ws-t1.zenith.co.uk',
+  base_url: 'https://ws-t1.zenith.co.uk',
   db_pooled_url: 'postgresql://qb_ws_t1@db-pooler.example.com/qb_ws_t1?sslmode=require',
   db_direct_url: 'postgresql://qb_ws_t1@db.example.com/qb_ws_t1?sslmode=require',
   db_name: 'qb_ws_t1',
@@ -58,16 +58,16 @@ const ROW: {
     endpoint: 'https://cloud-account.r2.cloudflarestorage.com',
     region: 'auto',
     forcePathStyle: false,
-    publicUrl: 'https://ws-t1.quackback.co.uk/api/storage',
-    credentialRef: 'env://QUACKBACK_TENANT_SECRET_INST_GAUNTLET_WS_T1_STORAGE',
+    publicUrl: 'https://ws-t1.zenith.co.uk/api/storage',
+    credentialRef: 'env://ZENITH_TENANT_SECRET_INST_GAUNTLET_WS_T1_STORAGE',
   },
-  email_from: 'Quackback Cloud <noreply@notifications.quackback.io>',
+  email_from: 'Zenith Cloud <noreply@notifications.zenith.io>',
   mail_slug: 'ws-t1',
   ai_enabled: false,
   revision: 2,
   pg_database_oid: 4242,
   pg_cluster_id: 'fleet-a',
-  hostnames: ['ws-t1.quackback.co.uk', 't1.localhost'],
+  hostnames: ['ws-t1.zenith.co.uk', 't1.localhost'],
 }
 
 type Row = typeof ROW
@@ -89,15 +89,15 @@ describe('interpretRow', () => {
     const result = interpretRow(
       row({
         requested_kind: 'platform_redirect',
-        redirect_to_hostname: 'new-name.quackback.co.uk',
+        redirect_to_hostname: 'new-name.zenith.co.uk',
       }),
-      'old-name.quackback.co.uk'
+      'old-name.zenith.co.uk'
     )
     expect(result).toEqual({
       kind: 'redirect',
       workspaceKey: 'inst_cloud_ws_t1',
-      hostname: 'old-name.quackback.co.uk',
-      location: 'https://new-name.quackback.co.uk',
+      hostname: 'old-name.zenith.co.uk',
+      location: 'https://new-name.zenith.co.uk',
     })
     assertCarriesNoDsn(result)
   })
@@ -105,7 +105,7 @@ describe('interpretRow', () => {
   it('fails closed when a redirect-only hostname has no destination', () => {
     const result = interpretRow(
       row({ requested_kind: 'platform_redirect', redirect_to_hostname: null }),
-      'old-name.quackback.co.uk'
+      'old-name.zenith.co.uk'
     )
     expect(result.kind).toBe('invalid')
     assertCarriesNoDsn(result)
@@ -206,7 +206,7 @@ describe('interpretRow', () => {
   })
 
   it('refuses a base URL that does not match the primary hostname', () => {
-    // The `https://*.quackback.io` trap: once a wildcard domain is attached to
+    // The `https://*.zenith.io` trap: once a wildcard domain is attached to
     // the fleet, the platform's own public domain is that literal string, and a
     // baseUrl derived from it would poison cookies, email links and every
     // absolute asset URL.
@@ -335,8 +335,8 @@ describe('the projection', () => {
 
 describe('normalizeHostHeader', () => {
   it.each([
-    ['ws-t1.quackback.co.uk', 'ws-t1.quackback.co.uk'],
-    ['Ws-T1.Quackback.Co.Uk', 'ws-t1.quackback.co.uk'],
+    ['ws-t1.zenith.co.uk', 'ws-t1.zenith.co.uk'],
+    ['Ws-T1.Zenith.Co.Uk', 'ws-t1.zenith.co.uk'],
     ['t1.localhost:3000', 't1.localhost'],
     ['t1.localhost.', 't1.localhost'],
     ['  t1.localhost  ', 't1.localhost'],
@@ -348,7 +348,7 @@ describe('normalizeHostHeader', () => {
     ['a path', 'evil.com/../t1.localhost'],
     ['userinfo', 'user@t1.localhost'],
     ['an IPv6 literal', '[::1]'],
-    ['a wildcard', '*.quackback.io'],
+    ['a wildcard', '*.zenith.io'],
     ['empty', ''],
     ['only a port', ':3000'],
     ['a bare dot', '.'],

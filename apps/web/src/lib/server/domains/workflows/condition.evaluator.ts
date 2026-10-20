@@ -50,7 +50,7 @@ export interface ConditionContext {
   person?: {
     segmentIds: string[]
     /** realEmail()-sanitized — the synthetic anonymous placeholder
-     *  (temp-<id>@anon.quackback.io) never surfaces here, so `person.email`
+     *  (temp-<id>@anon.zenith.io) never surfaces here, so `person.email`
      *  reads as unresolved (MISSING) for an anonymous visitor, same as one
      *  with no email captured at all. */
     email?: string | null
@@ -97,12 +97,12 @@ export interface ConditionContext {
    *  from "resuming this exact node" (route/write and continue) apart — see
    *  graph.ts's per-kind handling. Absent on every ordinary trigger walk. */
   blockAnswer?: BlockAnswer | null
-  /** How Quinn's turn ended, threaded in ONLY when resuming a run parked at
+  /** How ZenithAssistant's turn ended, threaded in ONLY when resuming a run parked at
    *  a `let_assistant_answer` wait (resumeWorkflowRun's assistantOutcome
    *  option) — the walker's equivalent of blockAnswer for that node kind
    *  (Phase C, slice C-6). 'escalated' = assistant.handed_off fired for this
    *  conversation (a human is needed); 'resolved' = the conversation closed
-   *  while parked there (read as "Quinn resolved it" — the classic
+   *  while parked there (read as "ZenithAssistant resolved it" — the classic
    *  resolved-then-follow-up pattern). Absent on every ordinary trigger walk. */
   assistantOutcome?: AssistantOutcome | null
 }

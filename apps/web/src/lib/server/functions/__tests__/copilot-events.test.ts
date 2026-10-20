@@ -1,5 +1,5 @@
 /**
- * `recordCopilotEventFn` (Quinn Copilot outcome loop): the panel's
+ * `recordCopilotEventFn` (ZenithAssistant Copilot outcome loop): the panel's
  * fire-and-forget usage-event writer. Covers the gate order (copilot.use ->
  * assistant configured -> item viewable, via the
  * shared `gateCopilotFn` — exercised for real over these mocked seams, not
@@ -11,7 +11,7 @@
  * so the real zod validator runs.
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { createId, type ConversationId, type TicketId } from '@quackback/ids'
+import { createId, type ConversationId, type TicketId } from '@zenith/ids'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 
 vi.mock('@tanstack/react-start', () => ({

@@ -16,7 +16,7 @@ import {
   STATUS_INCIDENT_LIFECYCLE_STATUSES,
   parseOptionalDate,
 } from '../-validation'
-import type { StatusComponentId } from '@quackback/ids'
+import type { StatusComponentId } from '@zenith/ids'
 
 const affectedComponentSchema = z.object({
   componentId: z.string(),

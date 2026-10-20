@@ -1,5 +1,5 @@
 /**
- * Changelog embedding service (Quinn Phase 4: changelog grounding).
+ * Changelog embedding service (ZenithAssistant Phase 4: changelog grounding).
  *
  * Embeds a published changelog entry for semantic retrieval
  * (changelog-retrieval.ts), mirroring the post-embedding hook pattern
@@ -18,7 +18,7 @@
  * they are edited or (re)published.
  */
 import { db, changelogEntries, eq, isNull, sql, and, isNotNull, lte } from '@/lib/server/db'
-import type { ChangelogId } from '@quackback/ids'
+import type { ChangelogId } from '@zenith/ids'
 import { generateEmbedding } from '@/lib/server/domains/embeddings/embedding.service'
 import { getEmbeddingModel } from '@/lib/server/domains/ai/models'
 import { logger } from '@/lib/server/logger'

@@ -6,7 +6,7 @@
  * name is historical.
  */
 import { db, principal, user, eq, inArray } from '@/lib/server/db'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 import { getPublicUrlOrNull } from '@/lib/server/storage/s3'
 import type { ConversationAuthorDTO } from '@/lib/shared/conversation/types'
 import { rememberTestOwner } from '@/lib/server/test-data'

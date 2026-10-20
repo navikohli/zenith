@@ -14,7 +14,7 @@ import type {
   StatusIncidentId,
   StatusIncidentTemplateId,
   SegmentId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import { NotFoundError } from '@/lib/shared/errors'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import { EntityIdSchema, PageLimitSchema, ReorderIdsSchema } from '@/lib/shared/schemas/taxonomy'

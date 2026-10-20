@@ -8,7 +8,7 @@
  */
 import { afterAll, afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { randomUUID } from 'node:crypto'
-import { createId } from '@quackback/ids'
+import { createId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 vi.mock('@/lib/server/db', async (original) => ({
   ...(await original<typeof import('@/lib/server/db')>()),

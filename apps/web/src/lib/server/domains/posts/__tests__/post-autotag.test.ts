@@ -10,7 +10,7 @@
  * ticket-field-suggestion.service.test.ts's mocking idiom.
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import type { PostId, PostTagId } from '@quackback/ids'
+import type { PostId, PostTagId } from '@zenith/ids'
 import { TierLimitError } from '@/lib/server/errors/tier-limit-error'
 
 const mockConfig = vi.hoisted(() => ({

@@ -31,7 +31,7 @@ vi.mock('@/lib/server/logger', () => {
 // A listener that really waits for a probe to arrive through `onPayload`, the
 // same path a NOTIFY takes. A pooled connection never calls it.
 vi.mock('../pg-listener', () => ({
-  REALTIME_CHANNEL: 'quackback_realtime',
+  REALTIME_CHANNEL: 'zenith_realtime',
   openRealtimeListener: async (input: { onPayload: (raw: string) => void }) => {
     hoisted.opens += 1
     return {

@@ -39,7 +39,7 @@ import type {
   PrincipalId,
   SegmentId,
   TeamId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import { NotFoundError, ValidationError, ForbiddenError } from '@/lib/shared/errors'
 import {
   channelFromVisitorTransport,
@@ -517,7 +517,7 @@ export async function sendVisitorMessage(
       .catch((err) => log.warn({ err }, 'spam classification failed'))
   }
 
-  // Quinn, out of band: a widget customer message may trigger an assistant turn.
+  // ZenithAssistant, out of band: a widget customer message may trigger an assistant turn.
   // Fire-and-forget with full error isolation so it never blocks or fails the
   // customer's send; the deep gate (respond flag, AI configured, silence rule)
   // lives inside the orchestration, which the assistant domain owns.
@@ -527,7 +527,7 @@ export async function sendVisitorMessage(
   // and the gate applies identically to the intake opening message and every
   // later visitor message on the pair. The workflow engine's explicit
   // `let_assistant_answer` action is NOT gated — a graph that deliberately
-  // hands a thread to Quinn is the workspace's own choice, and the intake
+  // hands a thread to ZenithAssistant is the workspace's own choice, and the intake
   // table's "workflows FIRE" row keeps those graphs working.
   if (shouldConsiderAssistant(txResult.conversation, priorStatus)) {
     void isPairedWithCustomerTicket(txResult.conversation.id)
@@ -1031,7 +1031,7 @@ export async function setConversationStatus(
   }
   // AI attribute classification (AI-ATTRIBUTES-PARITY-SPEC.md Phase 1,
   // detectOnClose): the teammate-close moment, only for a REAL teammate
-  // (principalType 'user') — never Quinn's own end_conversation tool or a
+  // (principalType 'user') — never ZenithAssistant's own end_conversation tool or a
   // workflow's `close` action, both of which also call this same function
   // but with a bounded service actor and have their own dedicated
   // classification hooks (assistant_closed / handoff). Fire-and-forget: the
@@ -1932,7 +1932,7 @@ export async function recordCsat(
     )
   }
 
-  // Mirror the CSAT rating onto Quinn's involvement when it was the last handler
+  // Mirror the CSAT rating onto ZenithAssistant's involvement when it was the last handler
   // (best-effort — never fails the rating; the assistant domain owns it). The
   // resolved_confirmed trigger rides the csat_submitted event instead: the
   // assistant reaction in events/event-reactions.ts confirms the involvement off the
@@ -2061,17 +2061,17 @@ export async function markConversationUnreadFromMessage(
   await applyAgentUnreadWatermark(conversation, message.createdAt)
 }
 
-// -------------------------------------------------------------- assistant (Quinn) ---
+// -------------------------------------------------------------- assistant (ZenithAssistant) ---
 
-/** Actor for an assistant-authored write: the system actor, carrying Quinn's principal id. */
+/** Actor for an assistant-authored write: the system actor, carrying ZenithAssistant's principal id. */
 function assistantActor(principalId: PrincipalId): Actor {
   return { ...systemActor(), principalId }
 }
 
 /**
  * Cheap synchronous gate before spending on an assistant turn: only the widget
- * channel triggers Quinn today (email + other sources join later phases), and a
- * thread a human deliberately closed must not summon Quinn on the reopen.
+ * channel triggers ZenithAssistant today (email + other sources join later phases), and a
+ * thread a human deliberately closed must not summon ZenithAssistant on the reopen.
  *
  * CONVERGENCE PHASE 1b: a conversation PAIRED with a customer ticket (a
  * "backing conversation") is additionally gated out at the dispatch site via
@@ -2094,11 +2094,11 @@ export function shouldConsiderAssistant(
  * this conversation is PAIRED with a CUSTOMER ticket — one `ticket_conversations`
  * row, ticket_type 'customer' (at most one can exist, per the partial unique
  * index). Pair conversations are gated OUT of the assistant turn: the thread
- * is the ticket's, governed by the ticket workflow, and Quinn fronting it
- * would double up. This is the PRIMARY Quinn gate (the intake-time source
+ * is the ticket's, governed by the ticket workflow, and ZenithAssistant fronting it
+ * would double up. This is the PRIMARY ZenithAssistant gate (the intake-time source
  * label only covers 1b-created rows) and it applies to every visitor message
  * on the pair, which closes the Phase 1a flag — a portal/widget requester
- * reply redirected onto the pair conversation no longer summons Quinn.
+ * reply redirected onto the pair conversation no longer summons ZenithAssistant.
  *
  * The probe lives here rather than in the tickets domain's pair-thread.service
  * because conversation.service.ts imports nothing from the tickets domain
@@ -2122,8 +2122,8 @@ export async function isPairedWithCustomerTicket(conversationId: ConversationId)
 
 /**
  * Append a reply authored by the assistant service principal — the message-
- * append primitive for Quinn. Like an agent reply it bumps the last-message
- * preview and reopens a closed thread, but it never claims assignment (Quinn
+ * append primitive for ZenithAssistant. Like an agent reply it bumps the last-message
+ * preview and reopens a closed thread, but it never claims assignment (ZenithAssistant
  * fronts, it does not own) and it never marks the agent side read. `waiting`
  * controls the customer wait clock: an answer stops it; a hand-off restarts it
  * so the team sees a thread waiting on a human. Delivered over the normal
@@ -2133,7 +2133,7 @@ export async function isPairedWithCustomerTicket(conversationId: ConversationId)
  *
  * `contentJson`/`metadata` (Phase C conversational block layer): a block send
  * carries its resolved rich body as contentJson and its structured payload as
- * metadata.block. Both default to null/undefined so Quinn's own two call
+ * metadata.block. Both default to null/undefined so ZenithAssistant's own two call
  * sites (a plain-text answer, the handover line) are unaffected. Returns the
  * posted message's DTO so a block send can read back its id (stamped onto an
  * InputWaitCursor when the plan parks right after).
@@ -2199,7 +2199,7 @@ export async function appendAssistantReply(
     },
     { conversationUpdated: true }
   )
-  // isFirstMessage only matters for a VISITOR message — this is Quinn's own
+  // isFirstMessage only matters for a VISITOR message — this is ZenithAssistant's own
   // reply, so false.
   void emitMessageCreated(
     assistantActor(author.principalId),
@@ -2212,7 +2212,7 @@ export async function appendAssistantReply(
 }
 
 /**
- * Post an agent-only internal note (authored by Quinn) recording why it handed
+ * Post an agent-only internal note (authored by ZenithAssistant) recording why it handed
  * off, so the teammate who picks the conversation up has context at a glance.
  * Inbox channel only — it never reaches the visitor, mirroring `addNote`.
  */
@@ -2252,7 +2252,7 @@ export async function appendAssistantHandoffNote(
 }
 
 /**
- * Post an agent-only internal note (authored by Quinn) announcing a write-tool
+ * Post an agent-only internal note (authored by ZenithAssistant) announcing a write-tool
  * proposal awaiting a teammate's approval. Inbox channel only, mirroring
  * `appendAssistantHandoffNote`; the note is a point-in-time snapshot, the
  * pending action row (not this message) drives the actual approve/reject.
@@ -2289,9 +2289,9 @@ export async function emitAssistantActionExpiredSystemMessage(
 }
 
 /**
- * Execute a hand-off Quinn decided on: record the structured reason on the
+ * Execute a hand-off ZenithAssistant decided on: record the structured reason on the
  * conversation for the receiving human, keep it open, and route it to a
- * teammate via the existing auto-assign strategy (Quinn never opens a stream, so
+ * teammate via the existing auto-assign strategy (ZenithAssistant never opens a stream, so
  * it is never a routing candidate). If nobody is routable it stays in the
  * unassigned queue with the wait clock running.
  */
@@ -2320,7 +2320,7 @@ export async function executeAssistantHandoff(
     log.warn({ err, conversationId }, 'failed to write escalation reason attribute')
   }
   // A visitor-visible transition marker so the customer clearly sees the shift
-  // from Quinn to the human team (localized on the client via systemEvent.kind).
+  // from ZenithAssistant to the human team (localized on the client via systemEvent.kind).
   await emitSystemMessage(conversationId, 'Connecting you to the team', {
     kind: 'assistant_handoff',
   })
@@ -2346,9 +2346,9 @@ export async function executeAssistantHandoff(
   } catch (err) {
     log.warn({ err, conversationId }, 'pre-handoff attribute classification failed')
   }
-  // Let workflows/webhooks react to the hand-off — Quinn (the assistant service
+  // Let workflows/webhooks react to the hand-off — ZenithAssistant (the assistant service
   // principal) performed it, so the actor mirrors other service-authored events.
-  // The caller already holds Quinn's identity; no principal lookup needed here.
+  // The caller already holds ZenithAssistant's identity; no principal lookup needed here.
   void dispatchAssistantHandedOff(
     buildEventActor({
       principalId: author.principalId,

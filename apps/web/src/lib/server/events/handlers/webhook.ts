@@ -10,7 +10,7 @@ import crypto from 'crypto'
 import type { HookHandler, HookResult, HookRunContext } from '../hook-types'
 import type { EventData } from '../types'
 import type { WebhookTarget, WebhookConfig } from '../integrations/webhook/constants'
-import type { WebhookId } from '@quackback/ids'
+import type { WebhookId } from '@zenith/ids'
 import { safeFetch, SsrfError, TimeoutError } from '@/lib/server/content/ssrf-guard'
 import { isRetryableError } from '../hook-utils'
 import {
@@ -28,7 +28,7 @@ export type { WebhookTarget, WebhookConfig }
 const log = logger.child({ component: 'webhook' })
 
 const TIMEOUT_MS = 5_000 // 5s timeout for single attempt
-const USER_AGENT = 'Quackback-Webhook/1.0 (+https://quackback.io)'
+const USER_AGENT = 'Zenith-Webhook/1.0 (+/source.html)'
 
 export const webhookHook: HookHandler = {
   async run(
@@ -98,9 +98,9 @@ export const webhookHook: HookHandler = {
     const headers = {
       'Content-Type': 'application/json',
       'User-Agent': USER_AGENT,
-      'X-Quackback-Signature': `sha256=${signature}`,
-      'X-Quackback-Timestamp': String(timestamp),
-      'X-Quackback-Event': event.type,
+      'X-Zenith-Signature': `sha256=${signature}`,
+      'X-Zenith-Timestamp': String(timestamp),
+      'X-Zenith-Event': event.type,
     }
 
     try {

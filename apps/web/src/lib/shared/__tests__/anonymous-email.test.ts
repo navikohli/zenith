@@ -12,11 +12,11 @@ describe('anonymous email', () => {
   })
 
   it('matches the domain case-insensitively', () => {
-    expect(isSyntheticAnonEmail(`temp-abc@ANON.QUACKBACK.IO`)).toBe(true)
+    expect(isSyntheticAnonEmail(`temp-abc@ANON.ZENITH.IO`)).toBe(true)
   })
 
   it('does not match a lookalike domain', () => {
-    expect(isSyntheticAnonEmail('real@notanon.quackback.io.evil.com')).toBe(false)
+    expect(isSyntheticAnonEmail('real@notanon.zenith.io.evil.com')).toBe(false)
   })
 
   it('realEmail returns null for synthetic / empty and the address otherwise', () => {

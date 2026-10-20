@@ -5,7 +5,7 @@
  * type error to catch it.
  */
 import { describe, it, expect } from 'vitest'
-import type { ConversationId } from '@quackback/ids'
+import type { ConversationId } from '@zenith/ids'
 import { conversationKeys } from './conversation-keys'
 
 const convId = 'conversation_z' as ConversationId

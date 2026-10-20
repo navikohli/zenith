@@ -352,7 +352,7 @@ describe('handleAutoProvisionAfter -- claim-driven provisioning is domain-indepe
     mockIdTokenClaims({ roles: ['member'] })
     await callHandlerWith({
       // Not at acme.com (the provider's only verified domain).
-      email: 'james@quackback.io',
+      email: 'james@zenith.io',
       ssoOidc: {
         // Default role is the no-promote sentinel; ONLY the claim should drive
         // promotion, proving the role came from the assertion, not the default.
@@ -376,7 +376,7 @@ describe('handleAutoProvisionAfter -- claim-driven provisioning is domain-indepe
     mockFindFirst.mockResolvedValue({ role: 'user' })
     mockIdTokenClaims({ roles: ['guest'] })
     await callHandlerWith({
-      email: 'james@quackback.io',
+      email: 'james@zenith.io',
       ssoOidc: {
         autoProvisionRole: 'member',
         roleMapping: {
@@ -398,7 +398,7 @@ describe('handleAutoProvisionAfter -- returning user whose principal was soft-re
     mockFindFirst.mockResolvedValue(undefined) // principal was soft-removed
     mockIdTokenClaims({ roles: ['member'] })
     await callHandlerWith({
-      email: 'james@quackback.io',
+      email: 'james@zenith.io',
       ssoOidc: {
         autoProvisionRole: 'user',
         roleMapping: {
@@ -437,7 +437,7 @@ describe('handleAutoProvisionAfter -- returning user whose principal was soft-re
     mockFindFirst.mockResolvedValue(undefined)
     mockIdTokenClaims({ roles: ['unmatched'] })
     await callHandlerWith({
-      email: 'james@quackback.io',
+      email: 'james@zenith.io',
       ssoOidc: {
         autoProvisionRole: 'member',
         roleMapping: {

@@ -27,9 +27,9 @@ describe('job-wake publisher', () => {
     log.warn.mockReset()
     log.error.mockReset()
     log.debug.mockReset()
-    delete process.env.QUACKBACK_JOB_WORKER_URL
-    delete process.env.QUACKBACK_FLEET_INTERNAL_TOKEN
-    process.env.QUACKBACK_ROLE = 'web'
+    delete process.env.ZENITH_JOB_WORKER_URL
+    delete process.env.ZENITH_FLEET_INTERNAL_TOKEN
+    process.env.ZENITH_ROLE = 'web'
   })
 
   afterEach(async () => {
@@ -37,16 +37,16 @@ describe('job-wake publisher', () => {
     __resetJobWakePublisherForTests()
     const { __resetAfterCommitForTests } = await import('@/lib/server/workspaces/after-commit')
     __resetAfterCommitForTests()
-    delete process.env.QUACKBACK_ROLE
-    delete process.env.QUACKBACK_JOB_WORKER_URL
-    delete process.env.QUACKBACK_FLEET_INTERNAL_TOKEN
+    delete process.env.ZENITH_ROLE
+    delete process.env.ZENITH_JOB_WORKER_URL
+    delete process.env.ZENITH_FLEET_INTERNAL_TOKEN
     vi.useRealTimers()
   })
 
   it('does not subscribe when ROLE is not web', async () => {
-    process.env.QUACKBACK_ROLE = 'all'
-    process.env.QUACKBACK_JOB_WORKER_URL = 'http://worker:3000'
-    process.env.QUACKBACK_FLEET_INTERNAL_TOKEN = 'token'
+    process.env.ZENITH_ROLE = 'all'
+    process.env.ZENITH_JOB_WORKER_URL = 'http://worker:3000'
+    process.env.ZENITH_FLEET_INTERNAL_TOKEN = 'token'
     const { startJobWakePublisher } = await import('../wake')
     const { noteDurableWork } = await import('@/lib/server/workspaces/after-commit')
     startJobWakePublisher()
@@ -56,8 +56,8 @@ describe('job-wake publisher', () => {
 
   it('POSTs workspace key and job ids after commit, coalesced', async () => {
     vi.useFakeTimers()
-    process.env.QUACKBACK_JOB_WORKER_URL = 'http://worker.railway.internal:3000'
-    process.env.QUACKBACK_FLEET_INTERNAL_TOKEN = 'fleet-token'
+    process.env.ZENITH_JOB_WORKER_URL = 'http://worker.railway.internal:3000'
+    process.env.ZENITH_FLEET_INTERNAL_TOKEN = 'fleet-token'
     const { startJobWakePublisher } = await import('../wake')
     const { noteDurableWork } = await import('@/lib/server/workspaces/after-commit')
     startJobWakePublisher()
@@ -78,8 +78,8 @@ describe('job-wake publisher', () => {
 
   it('retries a failed POST and succeeds without throwing', async () => {
     vi.useFakeTimers()
-    process.env.QUACKBACK_JOB_WORKER_URL = 'http://worker.railway.internal:3000'
-    process.env.QUACKBACK_FLEET_INTERNAL_TOKEN = 'fleet-token'
+    process.env.ZENITH_JOB_WORKER_URL = 'http://worker.railway.internal:3000'
+    process.env.ZENITH_FLEET_INTERNAL_TOKEN = 'fleet-token'
     fetchMock
       .mockRejectedValueOnce(new Error('network down'))
       .mockResolvedValue(new Response(null, { status: 202 }))
@@ -95,8 +95,8 @@ describe('job-wake publisher', () => {
 
   it('retries a failing POST three times and does not throw', async () => {
     vi.useFakeTimers()
-    process.env.QUACKBACK_JOB_WORKER_URL = 'http://worker.railway.internal:3000'
-    process.env.QUACKBACK_FLEET_INTERNAL_TOKEN = 'fleet-token'
+    process.env.ZENITH_JOB_WORKER_URL = 'http://worker.railway.internal:3000'
+    process.env.ZENITH_FLEET_INTERNAL_TOKEN = 'fleet-token'
     fetchMock.mockRejectedValue(new Error('network down'))
     const { startJobWakePublisher } = await import('../wake')
     const { noteDurableWork } = await import('@/lib/server/workspaces/after-commit')
@@ -113,20 +113,20 @@ describe('job-wake publisher', () => {
   })
 
   it('does not subscribe when the fleet token is missing', async () => {
-    process.env.QUACKBACK_JOB_WORKER_URL = 'http://worker:3000'
+    process.env.ZENITH_JOB_WORKER_URL = 'http://worker:3000'
     const { startJobWakePublisher } = await import('../wake')
     const { noteDurableWork } = await import('@/lib/server/workspaces/after-commit')
     startJobWakePublisher()
     noteDurableWork('inst_a', { jobId: 'job_01aaaaaaaaaaaaaaaaaaaaaaaa' })
     expect(fetchMock).not.toHaveBeenCalled()
     expect(log.warn).toHaveBeenCalledWith(
-      'QUACKBACK_FLEET_INTERNAL_TOKEN unset — job-wake publisher idle; poll is the floor'
+      'ZENITH_FLEET_INTERNAL_TOKEN unset — job-wake publisher idle; poll is the floor'
     )
   })
 
   it('does not subscribe when the worker URL includes credentials', async () => {
-    process.env.QUACKBACK_JOB_WORKER_URL = 'http://user:pass@worker:3000'
-    process.env.QUACKBACK_FLEET_INTERNAL_TOKEN = 'token'
+    process.env.ZENITH_JOB_WORKER_URL = 'http://user:pass@worker:3000'
+    process.env.ZENITH_FLEET_INTERNAL_TOKEN = 'token'
     const { startJobWakePublisher } = await import('../wake')
     const { noteDurableWork } = await import('@/lib/server/workspaces/after-commit')
     startJobWakePublisher()
@@ -134,26 +134,26 @@ describe('job-wake publisher', () => {
     expect(fetchMock).not.toHaveBeenCalled()
     expect(log.warn).toHaveBeenCalledWith(
       { reason: 'credentials' },
-      'QUACKBACK_JOB_WORKER_URL rejected — job-wake publisher idle; poll is the floor'
+      'ZENITH_JOB_WORKER_URL rejected — job-wake publisher idle; poll is the floor'
     )
   })
 
   it('does not subscribe when the worker URL is not http(s)', async () => {
-    process.env.QUACKBACK_JOB_WORKER_URL = 'ftp://worker:3000'
-    process.env.QUACKBACK_FLEET_INTERNAL_TOKEN = 'token'
+    process.env.ZENITH_JOB_WORKER_URL = 'ftp://worker:3000'
+    process.env.ZENITH_FLEET_INTERNAL_TOKEN = 'token'
     const { startJobWakePublisher } = await import('../wake')
     startJobWakePublisher()
     expect(fetchMock).not.toHaveBeenCalled()
     expect(log.warn).toHaveBeenCalledWith(
       { reason: 'protocol' },
-      'QUACKBACK_JOB_WORKER_URL rejected — job-wake publisher idle; poll is the floor'
+      'ZENITH_JOB_WORKER_URL rejected — job-wake publisher idle; poll is the floor'
     )
   })
 
   it('retries a 503 and does not treat it as delivered', async () => {
     vi.useFakeTimers()
-    process.env.QUACKBACK_JOB_WORKER_URL = 'http://worker.railway.internal:3000'
-    process.env.QUACKBACK_FLEET_INTERNAL_TOKEN = 'fleet-token'
+    process.env.ZENITH_JOB_WORKER_URL = 'http://worker.railway.internal:3000'
+    process.env.ZENITH_FLEET_INTERNAL_TOKEN = 'fleet-token'
     fetchMock.mockResolvedValue(new Response(null, { status: 503 }))
     const { startJobWakePublisher } = await import('../wake')
     const { noteDurableWork } = await import('@/lib/server/workspaces/after-commit')
@@ -168,8 +168,8 @@ describe('job-wake publisher', () => {
   })
 
   it('POSTs an abort payload immediately when the publisher can send', async () => {
-    process.env.QUACKBACK_JOB_WORKER_URL = 'http://worker.railway.internal:3000'
-    process.env.QUACKBACK_FLEET_INTERNAL_TOKEN = 'fleet-token'
+    process.env.ZENITH_JOB_WORKER_URL = 'http://worker.railway.internal:3000'
+    process.env.ZENITH_FLEET_INTERNAL_TOKEN = 'fleet-token'
     const { postJobWakeAbort } = await import('../wake')
     postJobWakeAbort({ team: 'T1', channel: 'C1', thread: '1.2' })
     await vi.waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(1))
@@ -181,7 +181,7 @@ describe('job-wake publisher', () => {
   })
 
   it('does not POST an abort when the fleet token is missing', async () => {
-    process.env.QUACKBACK_JOB_WORKER_URL = 'http://worker:3000'
+    process.env.ZENITH_JOB_WORKER_URL = 'http://worker:3000'
     const { postJobWakeAbort } = await import('../wake')
     postJobWakeAbort({ team: 'T1', channel: 'C1', thread: '1.2' })
     await Promise.resolve()

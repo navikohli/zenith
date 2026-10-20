@@ -8,7 +8,7 @@
  * existing invalidations keep matching.
  */
 import { useMutation, useQueryClient, type QueryClient } from '@tanstack/react-query'
-import type { TicketId, TicketStatusId, PrincipalId } from '@quackback/ids'
+import type { TicketId, TicketStatusId, PrincipalId } from '@zenith/ids'
 import type { ConversationPriority } from '@/lib/shared/db-types'
 import type { TicketDTO, CreateTicketInput } from '@/lib/server/domains/tickets'
 import type { TicketWatchStatus } from '@/lib/server/domains/tickets/ticket-subscription.service'

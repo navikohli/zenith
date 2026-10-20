@@ -5,7 +5,7 @@
  */
 
 import { queryOptions, infiniteQueryOptions, keepPreviousData } from '@tanstack/react-query'
-import type { ChangelogId } from '@quackback/ids'
+import type { ChangelogId } from '@zenith/ids'
 import {
   listChangelogsFn,
   getChangelogFn,

@@ -17,7 +17,7 @@
  *     other property is pinned here.
  */
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
-import type { WorkflowId } from '@quackback/ids'
+import type { WorkflowId } from '@zenith/ids'
 
 // Queued results for the gate's select(...).from(...).where(...).limit(...)
 // read, consumed FIFO, plus a counter — the counter is what proves a call was

@@ -50,7 +50,7 @@ import {
   type CompanyId,
   type TeamId,
   type TicketId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import {
   defaultConversationSort,
   type ConversationSort,
@@ -240,7 +240,7 @@ async function loadFlagsForMessages(
  * `listMessages` from the rows it already loaded) — it is NOT re-read here, so
  * there's no second `SELECT metadata` round-trip. The map is keyed by message id
  * and only ever carries internal-note suggestions. `pendingActionPointers`
- * mirrors it for Quinn's approval-gated proposals: a pointer only, not the
+ * mirrors it for ZenithAssistant's approval-gated proposals: a pointer only, not the
  * live status — the approval card re-fetches the pending-action row itself.
  */
 export async function enrichMessagesForAgent(
@@ -947,7 +947,7 @@ function compareMessagesNewestFirst(a: ConversationMessage, b: ConversationMessa
  */
 // The assistant's service principal is a workspace singleton; the memoized id
 // resolver lives in messages/assistant-principal (shared with the pair-thread
-// union loader) so message loads can flag Quinn's turns (`isAssistant`)
+// union loader) so message loads can flag ZenithAssistant's turns (`isAssistant`)
 // without a per-load lookup.
 export async function listMessages(
   conversationId: ConversationId,
@@ -1166,7 +1166,7 @@ export interface ConversationListFilter {
    *  does not count — the opener owns the thread's origin. Always the
    *  requesting agent, resolved server-side like mentionedPrincipalId. */
   startedByPrincipalId?: PrincipalId
-  /** "Quinn AI" view: only conversations with an `assistant_involvements` row in
+  /** "ZenithAssistant AI" view: only conversations with an `assistant_involvements` row in
    *  ANY of these lifecycle statuses (Resolved / Escalated / Pending buckets). */
   assistantStatuses?: AssistantInvolvementStatus[]
   /** Custom-attribute view rules (§C2.7): every entry ANDs an additional
@@ -1765,7 +1765,7 @@ export async function listConversationsForAgent(
                 )
             )
           : undefined,
-        // Quinn AI view: restrict to conversations Quinn engaged whose involvement
+        // ZenithAssistant AI view: restrict to conversations ZenithAssistant engaged whose involvement
         // is in one of the requested lifecycle buckets. Distinct subquery keeps the
         // outer select shape (conversations only), like the mentions predicate.
         filter.assistantStatuses && filter.assistantStatuses.length > 0

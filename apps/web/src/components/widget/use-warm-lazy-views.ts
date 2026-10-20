@@ -7,7 +7,7 @@ import { useEffect } from 'react'
  * Embedded by the SDK, the widget is a hidden iframe that the host page
  * preloads on every page view and shows only when the visitor opens it.
  * Warming there would download every view for visitors who never open the
- * widget, so a framed widget waits for the host's first `quackback:open` (or
+ * widget, so a framed widget waits for the host's first `zenith:open` (or
  * any interaction, for a frame shown without the SDK). A top-level document is
  * already on screen and warms right away. Either way the fetches wait for an
  * idle moment so they never compete with first paint.
@@ -23,7 +23,7 @@ export function useWarmLazyViews(loaders: readonly (() => Promise<unknown>)[]): 
     }
     const onMessage = (event: MessageEvent) => {
       if (event.source !== window.parent) return
-      if ((event.data as { type?: unknown } | null)?.type === 'quackback:open') start()
+      if ((event.data as { type?: unknown } | null)?.type === 'zenith:open') start()
     }
     const detach = () => {
       window.removeEventListener('message', onMessage)

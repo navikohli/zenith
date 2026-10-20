@@ -33,7 +33,7 @@ import { useLoadMorePortalComments } from '@/lib/client/mutations/load-more-comm
 import { toast } from 'sonner'
 import { PortalMergeBanner } from '@/components/public/post-detail/merge-banner'
 import { similarPostsQuery } from '@/components/public/post-detail/similar-posts-section'
-import { isValidTypeId, type PostCommentId, type PostId } from '@quackback/ids'
+import { isValidTypeId, type PostCommentId, type PostId } from '@zenith/ids'
 import type { TiptapContent } from '@/lib/shared/schemas/posts'
 import type { PostStatusEntity } from '@/lib/shared/db-types'
 import { isProductEnabled } from '@/lib/shared/types/settings'

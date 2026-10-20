@@ -1,5 +1,5 @@
 import { afterAll, afterEach, beforeEach, expect, it, vi } from 'vitest'
-import { createId, type PrincipalId } from '@quackback/ids'
+import { createId, type PrincipalId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import {
   user,
@@ -55,7 +55,7 @@ let rows: Record<
 
 beforeEach(async () => {
   expect(fixture.available).toBe(true)
-  expect(process.env.DATABASE_URL).toMatch(/\/quackback_test(?:_\w+)?(?:\?|$)/)
+  expect(process.env.DATABASE_URL).toMatch(/\/zenith_test(?:_\w+)?(?:\?|$)/)
   await fixture.begin()
   delivered.mockClear()
   owner = createId('principal')

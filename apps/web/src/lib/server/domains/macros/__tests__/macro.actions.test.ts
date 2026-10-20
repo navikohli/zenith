@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import type { ConversationId } from '@quackback/ids'
+import type { ConversationId } from '@zenith/ids'
 import type { Actor } from '@/lib/server/policy/types'
 import type { MacroAction } from '@/lib/server/db'
 

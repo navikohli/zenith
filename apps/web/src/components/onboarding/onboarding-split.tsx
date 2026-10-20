@@ -6,7 +6,7 @@ import { cn } from '@/lib/shared/utils'
  * and a footer in a left column, and a full-height panel on the right for the
  * portal preview. Below the large breakpoint the panel hides and the column
  * fills the page. Cloud signup uses the same split, so both ways into
- * Quackback read as one product.
+ * Zenith read as one product.
  */
 export function OnboardingSplit({
   children,
@@ -24,7 +24,7 @@ export function OnboardingSplit({
       <div className="flex min-h-dvh flex-col px-5 pt-8 pb-8 sm:px-10 lg:pt-14 lg:pr-16 lg:pb-12 lg:pl-20 xl:pl-28">
         <div className="inline-flex items-center gap-2.5 self-start">
           <img src="/logo.png" alt="" width={30} height={30} className="size-[30px]" />
-          <span className="text-lg font-bold tracking-[-0.01em]">Quackback</span>
+          <span className="text-lg font-bold tracking-[-0.01em]">Zenith</span>
         </div>
         <main className="flex flex-1 flex-col pt-10 animate-in fade-in slide-in-from-bottom-2 duration-300 motion-reduce:animate-none">
           {children}
@@ -151,7 +151,7 @@ export function OnboardingPreviewPanel({
 }
 
 /**
- * The host this browser reached Quackback on, for the preview's address bar.
+ * The host this browser reached Zenith on, for the preview's address bar.
  * Read after mount: the server renders the page without it, and reading it
  * during render would differ between the two.
  */

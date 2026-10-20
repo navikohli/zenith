@@ -10,7 +10,7 @@ import type {
   ConversationAttachment,
   ConversationMessageDTO,
 } from '@/lib/shared/conversation/types'
-import type { ConversationMessageId, PrincipalId, TicketId } from '@quackback/ids'
+import type { ConversationMessageId, PrincipalId, TicketId } from '@zenith/ids'
 
 const TICKET_ID = 'ticket_01h455vb4pex5vsknk084sn02q' as TicketId
 

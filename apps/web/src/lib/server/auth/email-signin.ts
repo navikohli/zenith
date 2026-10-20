@@ -68,7 +68,7 @@ export async function requestEmailSignin(opts: {
 
   const { db } = await import('@/lib/server/db')
   const { isEmailConfigured, sendMagicLinkEmail, sendSignupNotAllowedEmail } =
-    await import('@quackback/email')
+    await import('@zenith/email')
   const { getEmailSafeUrl } = await import('@/lib/server/storage/s3')
 
   // Read before the branch, not inside it: both outcomes mail something, and

@@ -241,9 +241,9 @@ export interface ConversationRowsInput {
   showSeen: boolean
   /** Agent typing indicator. */
   showTyping: boolean
-  /** Quinn's current working status while its turn runs (null when idle). */
+  /** ZenithAssistant's current working status while its turn runs (null when idle). */
   assistantActivity: AssistantActivityStatus | null
-  /** Quinn's answer as it streams, before the persisted message lands (''=none). */
+  /** ZenithAssistant's answer as it streams, before the persisted message lands (''=none). */
   assistantStream: string
   /** Post-conversation CSAT prompt / thanks. */
   showCsat: boolean

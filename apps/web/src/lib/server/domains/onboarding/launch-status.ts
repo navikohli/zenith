@@ -4,7 +4,7 @@
  * setup emails both build their steps from this, so a step an email links to
  * is the step the plan shows.
  */
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 import {
   db,
   and,
@@ -193,7 +193,7 @@ export async function loadLaunchStatus(caller: LaunchStatusCaller) {
       statusPage: flags.statusPage,
       changelog: flags.changelog,
       integrations: tierLimits.features.integrations,
-      // Quinn can answer only on a plan that includes it and with a model configured.
+      // ZenithAssistant can answer only on a plan that includes it and with a model configured.
       assistant: assistantEntitled && isAssistantConfigured(),
     },
   }

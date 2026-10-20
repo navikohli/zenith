@@ -41,11 +41,11 @@ export async function handleAppHook(
   }
   if (
     config.isPooledTenancy &&
-    (request.headers.get('x-quackback-gateway-provider') !== type ||
+    (request.headers.get('x-zenith-gateway-provider') !== type ||
       !verifyGatewayForward(
         rawBody,
-        request.headers.get('x-quackback-gateway-timestamp'),
-        request.headers.get('x-quackback-gateway-signature'),
+        request.headers.get('x-zenith-gateway-timestamp'),
+        request.headers.get('x-zenith-gateway-signature'),
         config.integrationGatewayForwardSecret
       ))
   )
@@ -54,8 +54,8 @@ export async function handleAppHook(
   if (config.isPooledTenancy) {
     const receivedAt = verifyGatewayReceipt(
       rawBody,
-      request.headers.get('x-quackback-gateway-received-at'),
-      request.headers.get('x-quackback-gateway-receipt-signature'),
+      request.headers.get('x-zenith-gateway-received-at'),
+      request.headers.get('x-zenith-gateway-receipt-signature'),
       config.integrationGatewayForwardSecret
     )
     if (receivedAt === null) return new Response(null, { status: 401 })

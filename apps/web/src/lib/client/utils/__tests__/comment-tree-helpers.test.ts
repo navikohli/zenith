@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { addReplyToTree, replaceOptimisticInTree } from '../comment-tree-helpers'
-import type { PostCommentId } from '@quackback/ids'
+import type { PostCommentId } from '@zenith/ids'
 
 interface TestComment {
   id: string

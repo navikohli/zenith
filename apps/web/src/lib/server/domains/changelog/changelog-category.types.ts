@@ -1,7 +1,7 @@
 /**
  * Input/Output types for the changelog categories (labels) domain.
  */
-import type { ChangelogCategoryId } from '@quackback/ids'
+import type { ChangelogCategoryId } from '@zenith/ids'
 
 export interface ChangelogCategory {
   id: ChangelogCategoryId

@@ -7,7 +7,7 @@
  * mocking idiom.
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import type { PostId, PostTagId } from '@quackback/ids'
+import type { PostId, PostTagId } from '@zenith/ids'
 
 const mockConfig = vi.hoisted(() => ({
   openaiApiKey: 'test-key' as string | undefined,

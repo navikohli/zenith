@@ -2,7 +2,7 @@
  * Ticket full-text search (support platform §4.2, "one primitive, every
  * surface"). One `searchTickets(actor, {query, audience})` over the ticket title
  * and its messages' generated `search_vector` (0151), consumed by the portal, the
- * admin, and later the REST/MCP/Quinn surfaces. Audience scoping lives IN the
+ * admin, and later the REST/MCP/ZenithAssistant surfaces. Audience scoping lives IN the
  * primitive: an agent sees per `ticketFilter`; a requester sees only their own
  * customer tickets, and only customer-visible (non-internal) message matches.
  */
@@ -20,7 +20,7 @@ import {
 } from '@/lib/server/db'
 import type { SQL } from 'drizzle-orm'
 import type { Actor } from '@/lib/server/policy/types'
-import type { TicketId } from '@quackback/ids'
+import type { TicketId } from '@zenith/ids'
 import { ticketFilter } from '@/lib/server/policy/tickets'
 import { buildTicketContext, ticketToDTO } from './ticket.dto'
 import type { TicketDTO } from './ticket.types'

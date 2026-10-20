@@ -18,7 +18,7 @@ import {
   asc,
   isNull,
 } from '@/lib/server/db'
-import type { ConversationViewId, PrincipalId } from '@quackback/ids'
+import type { ConversationViewId, PrincipalId } from '@zenith/ids'
 import type {
   ConversationViewDTO,
   ConversationViewFilters,

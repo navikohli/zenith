@@ -1,7 +1,7 @@
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest'
 // oxlint-disable-next-line no-restricted-imports -- this suite owns and closes its real test connection
-import { createDb } from '@quackback/db/client'
-import { createId } from '@quackback/ids'
+import { createDb } from '@zenith/db/client'
+import { createId } from '@zenith/ids'
 import {
   principal,
   boards,
@@ -26,9 +26,9 @@ import {
 import type { Sql } from 'postgres'
 
 const url =
-  process.env.DATABASE_URL ?? 'postgresql://postgres:password@localhost:5432/quackback_test'
-if (!new URL(url).pathname.startsWith('/quackback_test'))
-  throw new Error('This suite requires a quackback_test database')
+  process.env.DATABASE_URL ?? 'postgresql://postgres:password@localhost:5432/zenith_test'
+if (!new URL(url).pathname.startsWith('/zenith_test'))
+  throw new Error('This suite requires a zenith_test database')
 const connection = createDb(url, { max: 2, prepare: false })
 const token = `ask${Date.now()}${Math.random().toString(36).slice(2)}`
 const ownerId = createId('principal')

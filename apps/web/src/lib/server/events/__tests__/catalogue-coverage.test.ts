@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { ID_PREFIXES } from '@quackback/ids'
+import { ID_PREFIXES } from '@zenith/ids'
 import { PERMISSION_CATEGORIES } from '@/lib/shared/permissions'
 import { API_KEY_SCOPES } from '@/lib/shared/api-key-scopes'
 import { EVENT_TYPES } from '../types'
@@ -105,7 +105,7 @@ describe('event catalogue coverage', () => {
     'component_changed',
   ])
 
-  it('every entity is a @quackback/ids key (or an allowlisted virtual entity)', () => {
+  it('every entity is a @zenith/ids key (or an allowlisted virtual entity)', () => {
     const idKeys = new Set(Object.keys(ID_PREFIXES))
     const bad = allEventDefinitions()
       .map((d) => d.entity)

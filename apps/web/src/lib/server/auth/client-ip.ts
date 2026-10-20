@@ -22,7 +22,7 @@
 import { isIP } from 'node:net'
 import { getClientIp } from '@/lib/server/domains/api/rate-limit'
 
-export const CLIENT_IP_HEADER = 'x-quackback-client-ip'
+export const CLIENT_IP_HEADER = 'x-zenith-client-ip'
 
 /** `advanced.ipAddress` for the Better Auth instance: read only the private header. */
 export const betterAuthIpAddressOptions = {

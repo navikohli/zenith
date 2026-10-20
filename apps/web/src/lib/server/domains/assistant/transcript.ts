@@ -1,5 +1,5 @@
 /**
- * Shared transcript rendering + budgeting for Quinn's grounding and summary
+ * Shared transcript rendering + budgeting for ZenithAssistant's grounding and summary
  * paths. A thread (oldest-first) renders to plain "Speaker: content" lines; a
  * rendered transcript can then be bounded to a char budget with a head+tail
  * window so a long thread never silently loses its opening messages.

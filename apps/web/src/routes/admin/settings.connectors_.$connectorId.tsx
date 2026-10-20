@@ -127,7 +127,7 @@ function ConnectorDetailPage() {
   if (detail.isPending) {
     return <p className="text-sm text-muted-foreground">Loading…</p>
   }
-  if (builtin || connectorId === 'quackback') {
+  if (builtin || connectorId === 'zenith') {
     return <Navigate to="/admin/settings/connectors" />
   }
   if (!connector) {
@@ -240,7 +240,7 @@ function ConnectorDetailPage() {
         open={confirmDelete}
         onOpenChange={setConfirmDelete}
         title="Disconnect this connector?"
-        description="Quackback AI will stop calling its tools. Existing approval cards fail closed."
+        description="Zenith AI will stop calling its tools. Existing approval cards fail closed."
         confirmLabel="Disconnect"
         onConfirm={() => {
           remove.mutate(connector.id, {

@@ -1,7 +1,7 @@
 import { randomUUID } from 'node:crypto'
 import postgres from 'postgres'
 // oxlint-disable-next-line no-restricted-imports -- this isolated fixture owns and closes its connection
-import { createDbFromSql, type Database } from '@quackback/db/client'
+import { createDbFromSql, type Database } from '@zenith/db/client'
 import {
   createWorkspaceScope,
   runWithWorkspaceScope,
@@ -21,9 +21,9 @@ interface AskMcpFixtureOptions {
 /** Real migrated tables and foreign keys, isolated from every other suite's rows. */
 export async function createAskMcpFixture(options: AskMcpFixtureOptions = {}) {
   const url =
-    process.env.DATABASE_URL ?? 'postgresql://postgres:password@localhost:5432/quackback_test'
-  if (!new URL(url).pathname.startsWith('/quackback_test'))
-    throw new Error('Ask evaluations require a quackback_test database')
+    process.env.DATABASE_URL ?? 'postgresql://postgres:password@localhost:5432/zenith_test'
+  if (!new URL(url).pathname.startsWith('/zenith_test'))
+    throw new Error('Ask evaluations require a zenith_test database')
   const schema = `ask_golden_${randomUUID().replaceAll('-', '')}`
   const raw = postgres(url, { max: 1, prepare: false })
   const [version] = await raw`select workspace_thread_key from conversation_messages limit 0`

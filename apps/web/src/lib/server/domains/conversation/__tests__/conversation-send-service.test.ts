@@ -3,7 +3,7 @@
  * sender type, and conversation creation on first message.
  */
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import type { PrincipalId, ConversationId } from '@quackback/ids'
+import type { PrincipalId, ConversationId } from '@zenith/ids'
 import type { Actor } from '@/lib/server/policy/types'
 import { ValidationError, ForbiddenError } from '@/lib/shared/errors'
 

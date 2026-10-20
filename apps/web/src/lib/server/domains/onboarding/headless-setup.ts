@@ -14,7 +14,7 @@
  */
 import { createHash, randomBytes, timingSafeEqual } from 'node:crypto'
 import { z } from 'zod'
-import type { PrincipalId, UserId } from '@quackback/ids'
+import type { PrincipalId, UserId } from '@zenith/ids'
 import { db, eq, principal, session, user } from '@/lib/server/db'
 import { recordAuditEvent } from '@/lib/server/audit/log'
 import { createApiKey } from '@/lib/server/domains/api-keys/api-key.service'

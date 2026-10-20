@@ -20,7 +20,7 @@ import {
 } from '@/lib/server/domains/help-center/help-center.service'
 import { isCategoryIconName } from '@/lib/server/domains/help-center/category-icons'
 import { parseOptionalTypeId, parseTypeId } from '@/lib/server/domains/api/validation'
-import type { PrincipalId, KbArticleId, KbCategoryId } from '@quackback/ids'
+import type { PrincipalId, KbArticleId, KbCategoryId } from '@zenith/ids'
 import type { McpAuthContext } from '../types'
 import {
   registerTool,
@@ -41,7 +41,7 @@ import {
 const createHelpCenterArticleSchema = {
   categoryId: z
     .string()
-    .describe('Category TypeID (use quackback://help-center/categories resource to find IDs)'),
+    .describe('Category TypeID (use zenith://help-center/categories resource to find IDs)'),
   title: z.string().max(200).describe('Article title (max 200 characters)'),
   content: z
     .string()

@@ -11,7 +11,7 @@ import { serviceActorFromApiAuth } from '@/lib/server/domains/api/service-actor'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import { serializeTicket } from './-serialize'
 import type { AssignTicketInput } from '@/lib/server/domains/tickets/ticket.types'
-import type { TicketId, PrincipalId, TeamId } from '@quackback/ids'
+import type { TicketId, PrincipalId, TeamId } from '@zenith/ids'
 
 // Both keys are optional AND nullable: an absent key leaves that side untouched,
 // an explicit null clears it (mirrors `functions/tickets.ts`, minus the 'me'

@@ -35,7 +35,7 @@
  * Only `files/` objects are ever deleted. A row or preview key that names
  * anything else is left for whoever owns it.
  */
-import type { FileId } from '@quackback/ids'
+import type { FileId } from '@zenith/ids'
 import { db, files, and, asc, gt, isNull, isNotNull, like, lt, sql, eq } from '@/lib/server/db'
 import type { SQL } from 'drizzle-orm'
 import { deleteObject } from '@/lib/server/storage/s3'

@@ -14,7 +14,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/solid'
-import type { IdentityProviderId } from '@quackback/ids'
+import type { IdentityProviderId } from '@zenith/ids'
 import { Badge } from '@/components/ui/badge'
 import { Switch } from '@/components/ui/switch'
 import { SettingsPage } from '@/components/admin/settings/settings-page'

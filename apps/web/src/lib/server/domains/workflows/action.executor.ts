@@ -24,12 +24,12 @@
  * even though they execute under the engine's service actor.
  *
  * Block-sending (`send_block`) posts an assistant-persona message through the
- * SAME write path Quinn's own replies use (conversation.service.ts's
+ * SAME write path ZenithAssistant's own replies use (conversation.service.ts's
  * appendAssistantReply) — reused, not duplicated — with the resolved rich body
  * (variables interpolated server-side; see workflow-variables.ts +
  * lib/shared/workflows/interpolate.ts) as contentJson and an honest plain-text
  * fallback as content, plus the metadata.block payload the DTO projects.
- * `let_assistant_answer` hands the turn to Quinn via the same out-of-band seam
+ * `let_assistant_answer` hands the turn to ZenithAssistant via the same out-of-band seam
  * sendVisitorMessage uses for an ordinary customer message
  * (assistant.orchestrator's runAssistantTurnForConversation) — see that case's
  * comment for why it's a dynamic import. `record_csat` writes through
@@ -79,7 +79,7 @@ import type {
   ConversationMessageId,
   TicketStatusId,
   TicketTypeId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import type {
   ConversationPriority,
   WorkflowBlockPayload,
@@ -272,7 +272,7 @@ export interface ActionResult {
    *  can stamp it onto the InputWaitCursor as blockMessageId when the plan
    *  parks right after. */
   blockMessageId?: ConversationMessageId
-  /** Set by `let_assistant_answer` when Quinn will not run (greet-only,
+  /** Set by `let_assistant_answer` when ZenithAssistant will not run (greet-only,
    *  unconfigured, token budget, silence). The engine resumes escalated. */
   assistantDeclined?: boolean
 }
@@ -375,7 +375,7 @@ function buildBlockPayload(
 }
 
 /**
- * Post a block message through the same write path Quinn's own replies use
+ * Post a block message through the same write path ZenithAssistant's own replies use
  * (appendAssistantReply). Resolves variables server-side (a raw `{token}`
  * never reaches storage) and derives the honest content fallback. Returns the
  * posted message's id for the caller to stamp onto an InputWaitCursor.
@@ -424,7 +424,7 @@ async function sendBlock(
     {
       // Our own turn just spoke; nobody is "waiting on us" until the customer
       // replies again (which sets waitingSince through the ordinary visitor
-      // send path) — same as Quinn's normal (non-handover) answer.
+      // send path) — same as ZenithAssistant's normal (non-handover) answer.
       waiting: false,
       contentJson: block.kind === 'replyTime' ? null : resolvedBody,
       metadata: { block: buildBlockPayload(block, { runId, nodeId }, replyTimeStatus) },
@@ -557,8 +557,8 @@ export async function applyAction(
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-Quackback-Event': 'workflow.send_webhook',
-          'X-Quackback-Delivery-Id': deliveryId,
+          'X-Zenith-Event': 'workflow.send_webhook',
+          'X-Zenith-Delivery-Id': deliveryId,
           'Idempotency-Key': deliveryId,
         },
         body: JSON.stringify({

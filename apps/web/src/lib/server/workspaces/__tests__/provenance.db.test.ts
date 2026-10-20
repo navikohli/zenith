@@ -30,7 +30,7 @@
  * values and the `to_jsonb` read are the real ones and all roll back.
  */
 import { describe, it, expect, vi, beforeEach, afterEach, afterAll } from 'vitest'
-import { createId } from '@quackback/ids'
+import { createId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { settings, sql } from '@/lib/server/db'
 

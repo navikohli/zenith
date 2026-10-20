@@ -25,7 +25,7 @@ export function PortalBrandMark({ variant = 'stack' }: PortalBrandMarkProps) {
     select: (context) =>
       (context as { settings?: { brandingData?: SettingsBrandingData } }).settings?.brandingData,
   })
-  const name = branding?.name ?? 'Quackback'
+  const name = branding?.name ?? 'Zenith'
   const logo = branding?.headerLogoUrl ?? branding?.logoUrl ?? null
   const initial = nameInitial(name)
 

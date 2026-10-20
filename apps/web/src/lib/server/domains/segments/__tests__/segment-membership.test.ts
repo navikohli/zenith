@@ -203,7 +203,7 @@ import {
   type MembershipSource,
 } from '../segment-membership.service'
 import { forgetRequestSegmentIds } from '@/lib/server/auth/request-session'
-import type { PrincipalId, SegmentId } from '@quackback/ids'
+import type { PrincipalId, SegmentId } from '@zenith/ids'
 import { db } from '@/lib/server/db'
 import { runWithLogContext } from '@/lib/server/log-context'
 

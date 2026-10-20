@@ -16,7 +16,7 @@ import {
   deleteRedirectRule,
   resolveRedirectRule,
 } from '@/lib/server/domains/help-center/help-center-redirect-rules.service'
-import type { HcRedirectRuleId } from '@quackback/ids'
+import type { HcRedirectRuleId } from '@zenith/ids'
 
 /**
  * Public (unauthenticated) lookup used by the /hc 404 handler -- any visitor

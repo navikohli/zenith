@@ -16,7 +16,7 @@ import {
   user,
   type Workflow,
 } from '@/lib/server/db'
-import { createId, type ConversationId, type PrincipalId, type UserId } from '@quackback/ids'
+import { createId, type ConversationId, type PrincipalId, type UserId } from '@zenith/ids'
 
 vi.mock('@/lib/server/db', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/lib/server/db')>()),

@@ -22,12 +22,12 @@ const localCopies = new WorkspaceKeyedCache<{ value: unknown; expiresAt: number 
 export const SETTINGS_LOCAL_TTL_MS = 5_000
 
 /**
- * The window in effect: QUACKBACK_SETTINGS_CACHE_MS overrides it (0 turns the
+ * The window in effect: ZENITH_SETTINGS_CACHE_MS overrides it (0 turns the
  * copies off). The perf bench pins it long, so its counts measure a warm process
  * rather than whichever side of the window a request happened to land on.
  */
 export function settingsLocalTtlMs(): number {
-  const override = Number(process.env.QUACKBACK_SETTINGS_CACHE_MS)
+  const override = Number(process.env.ZENITH_SETTINGS_CACHE_MS)
   return Number.isFinite(override) && override >= 0 ? override : SETTINGS_LOCAL_TTL_MS
 }
 

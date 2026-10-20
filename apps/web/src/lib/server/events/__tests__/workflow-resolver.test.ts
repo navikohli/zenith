@@ -15,7 +15,7 @@ vi.mock('@/lib/server/domains/workflows/workflow-dispatch-queue', () => ({
   enqueueWorkflowDispatch: h.enqueueWorkflowDispatch,
 }))
 
-import { createId } from '@quackback/ids'
+import { createId } from '@zenith/ids'
 import { workflowTriggerResolver } from '../resolvers/workflow.resolver'
 import { workflowHook } from '../handlers/workflow'
 import type { DomainEvent } from '../envelope'

@@ -12,11 +12,11 @@
  * AFTER the visitor's first contact badge as new.
  */
 
-const SEEN_KEY = 'quackback:changelog-seen-at'
+const SEEN_KEY = 'zenith:changelog-seen-at'
 
 /** Event name dispatched on window after the marker advances, so open widget
  *  views re-read it without a reload. */
-export const CHANGELOG_SEEN_EVENT = 'quackback:changelog-seen'
+export const CHANGELOG_SEEN_EVENT = 'zenith:changelog-seen'
 
 export function getChangelogSeenAt(storage?: Storage): string | null {
   try {

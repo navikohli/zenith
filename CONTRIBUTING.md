@@ -1,13 +1,13 @@
-# Contributing to Quackback
+# Contributing to Zenith
 
-Thank you for your interest in contributing to Quackback! This guide will help you get started.
+Thank you for your interest in contributing to Zenith! This guide will help you get started.
 
 ## Quick Start
 
 ```bash
 # Clone the repository
-git clone https://github.com/quackbackio/quackback.git
-cd quackback
+git clone https://github.com/zenith/zenith.git
+cd zenith
 
 # Run setup (installs dependencies, starts Docker, runs migrations, seeds demo data)
 bun run setup
@@ -20,11 +20,11 @@ Open http://localhost:3000 to see the app.
 
 ## Working in a Git Worktree
 
-Quackback supports developing multiple branches at once with `git worktree`:
+Zenith supports developing multiple branches at once with `git worktree`:
 
 ```bash
-git worktree add ../quackback-my-feature -b my-feature
-cd ../quackback-my-feature
+git worktree add ../zenith-my-feature -b my-feature
+cd ../zenith-my-feature
 bun run worktree:bootstrap
 ```
 
@@ -32,7 +32,7 @@ The bootstrap script:
 
 - Installs dependencies with a real `bun install`, not a symlink to the main checkout's `node_modules` (a symlink would silently resolve `packages/*` back to the main checkout, so edits to a package there never show up in the worktree)
 - Builds the widget bundle and generates `apps/web/src/routeTree.gen.ts`, both gitignored artifacts the app needs before it can run
-- Creates a `.env` for the worktree from the main checkout's `.env`, then assigns it a free port, its own Postgres database (`quackback_<worktree-directory-name>`), and its own Redis DB index, so it can run alongside other worktrees without touching their dev data
+- Creates a `.env` for the worktree from the main checkout's `.env`, then assigns it a free port, its own Postgres database (`zenith_<worktree-directory-name>`), and its own Redis DB index, so it can run alongside other worktrees without touching their dev data
 - Runs migrations against that new database
 
 Every worktree shares the same Postgres/MinIO/Mailpit containers (started by `bun run setup`); only the database name differs per worktree. Re-run the script any time, for example after pulling new migrations. It reuses the existing `.env` values and is safe to run repeatedly.
@@ -40,13 +40,13 @@ Every worktree shares the same Postgres/MinIO/Mailpit containers (started by `bu
 Removing a worktree does not drop its database. Clean it up manually if you want to reclaim it:
 
 ```bash
-docker exec quackback-db dropdb --if-exists quackback_my_feature
+docker exec zenith-db dropdb --if-exists zenith_my_feature
 ```
 
 ## Project Structure
 
 ```
-quackback/
+zenith/
 ├── apps/web/              # TanStack Start application
 │   ├── src/
 │   │   ├── routes/        # File-based routing (TanStack Router)
@@ -63,7 +63,7 @@ quackback/
 
 ## Architecture
 
-Quackback uses **TanStack Start** with **TanStack Router** for file-based routing and server functions.
+Zenith uses **TanStack Start** with **TanStack Router** for file-based routing and server functions.
 
 ### Server Functions (`apps/web/src/lib/server/functions/`)
 
@@ -98,7 +98,7 @@ export async function createPost(input: CreatePostInput, author: Author) {
 
 ### Database Access
 
-Server code imports from `@/lib/server/db`; client-safe types import from `@/lib/shared/db-types`. Do not import `@quackback/db` directly from application code.
+Server code imports from `@/lib/server/db`; client-safe types import from `@/lib/shared/db-types`. Do not import `@zenith/db` directly from application code.
 
 ```typescript
 import { db, posts, eq } from '@/lib/server/db'
@@ -140,7 +140,7 @@ We require all contributors to sign our [Contributor License Agreement (CLA)](CL
 
 **Why a CLA?**
 
-The CLA allows Quackback to:
+The CLA allows Zenith to:
 
 - Offer the software under dual licenses (AGPL-3.0 for open source, commercial for enterprise)
 - Defend the project against legal issues
@@ -153,7 +153,7 @@ The CLA allows Quackback to:
 3. If not, the bot will prompt you to sign by commenting on the PR
 4. Once signed, your signature applies to all future contributions
 
-The CLA is based on the Apache Individual Contributor License Agreement and grants Quackback the right to use your contributions under any license terms.
+The CLA is based on the Apache Individual Contributor License Agreement and grants Zenith the right to use your contributions under any license terms.
 
 ## Pull Request Process
 
@@ -187,4 +187,4 @@ When reporting bugs, include:
 
 ## License
 
-Quackback core is licensed under AGPL-3.0. See [LICENSE](LICENSE) for details.
+Zenith core is licensed under AGPL-3.0. See [LICENSE](LICENSE) for details.

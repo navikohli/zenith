@@ -10,7 +10,7 @@ import { parseTypeId } from '@/lib/server/domains/api/validation'
 import { serviceActorFromApiAuth } from '@/lib/server/domains/api/service-actor'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import { serializeTicket } from './-serialize'
-import type { TicketId, TicketStatusId } from '@quackback/ids'
+import type { TicketId, TicketStatusId } from '@zenith/ids'
 
 const statusSchema = z.object({
   statusId: z.string().min(1),

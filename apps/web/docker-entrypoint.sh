@@ -2,16 +2,16 @@
 set -e
 
 echo "========================================"
-echo "  Quackback starting..."
+echo "  Zenith starting..."
 echo "========================================"
 
 # Fleet migrator is a command, not a server. The default path below would
 # otherwise run single-DB migrate.mjs against DATABASE_URL and bind PORT —
-# which is the operator trap for QUACKBACK_ROLE=migrator on this entrypoint.
+# which is the operator trap for ZENITH_ROLE=migrator on this entrypoint.
 # Exact match: process-role trims, but the image contract is the env value.
-if [ "$QUACKBACK_ROLE" = "migrator" ]; then
+if [ "$ZENITH_ROLE" = "migrator" ]; then
   echo ""
-  echo "QUACKBACK_ROLE=migrator — running fleet migrator (no HTTP server, no single-DB migrate)"
+  echo "ZENITH_ROLE=migrator — running fleet migrator (no HTTP server, no single-DB migrate)"
   exec sh -c "bun /app/fleet-migrator.mjs enrol && bun /app/fleet-migrator.mjs run"
 fi
 
@@ -38,6 +38,6 @@ fi
 
 # Start the application
 echo ""
-echo "Starting Quackback server on port ${PORT:-3000}..."
+echo "Starting Zenith server on port ${PORT:-3000}..."
 echo "========================================"
 exec bun .output/server/index.mjs

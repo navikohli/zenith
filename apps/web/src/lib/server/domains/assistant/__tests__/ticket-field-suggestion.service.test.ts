@@ -10,7 +10,7 @@
  * mirrors ai-classification.service.test.ts's mocking idiom.
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import type { ConversationId, TicketId, TicketTypeId } from '@quackback/ids'
+import type { ConversationId, TicketId, TicketTypeId } from '@zenith/ids'
 import { TierLimitError } from '@/lib/server/errors/tier-limit-error'
 import type { TicketFormField } from '@/lib/shared/tickets'
 

@@ -15,7 +15,7 @@
  */
 
 import { writeFileSync } from 'node:fs'
-import { createLogger } from '@quackback/logger'
+import { createLogger } from '@zenith/logger'
 import { ConfigError, parseConfig, usage, wantsHelp } from './config'
 import { renderHumanSummary } from './report'
 import { exitCodeFor, runSuite } from './runner'
@@ -44,7 +44,7 @@ try {
   throw e
 }
 
-const pino = createLogger({ base: { service_name: 'quackback-workspace-probe' } })
+const pino = createLogger({ base: { service_name: 'zenith-workspace-probe' } })
 const log: ProbeLogger = {
   debug: (obj, msg) => pino.debug(obj, msg),
   info: (obj, msg) => pino.info(obj, msg),

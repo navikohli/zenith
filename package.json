@@ -1,5 +1,5 @@
 {
-  "name": "quackback",
+  "name": "zenith",
   "devDependencies": {
     "@testing-library/jest-dom": "^7.0.1",
     "@types/node": "^26.2.0",
@@ -34,12 +34,12 @@
   "scripts": {
     "setup": "./scripts/setup.sh",
     "worktree:bootstrap": "./scripts/worktree-bootstrap.sh",
-    "dev": "bun run --filter @quackback/web dev",
-    "build": "bun run --filter @quackback/web build",
+    "dev": "bun run --filter @zenith/web dev",
+    "build": "bun run --filter @zenith/web build",
     "lint": "oxlint",
     "test": "vitest",
     "test:api": "cd apps/web && vitest src/lib/server/domains/api/__tests__/api-integration.test.ts",
-    "test:e2e": "bun run --filter @quackback/web test:e2e",
+    "test:e2e": "bun run --filter @zenith/web test:e2e",
     "db:generate": "bun run --cwd packages/db db:generate",
     "db:migrate": "bun run --cwd packages/db db:migrate",
     "db:check-drift": "bun run --cwd packages/db db:check-drift",

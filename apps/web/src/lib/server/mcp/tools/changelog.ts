@@ -12,7 +12,7 @@ import {
   deleteChangelog,
 } from '@/lib/server/domains/changelog/changelog.service'
 import { publishedAtToPublishState, type PublishState } from '@/lib/shared/schemas/changelog'
-import type { PostId, ChangelogId } from '@quackback/ids'
+import type { PostId, ChangelogId } from '@zenith/ids'
 import type { McpAuthContext } from '../types'
 import {
   registerTool,

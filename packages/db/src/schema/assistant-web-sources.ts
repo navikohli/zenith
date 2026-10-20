@@ -1,5 +1,5 @@
 /**
- * Web sources — public pages an admin adds by URL for Quinn to ground
+ * Web sources — public pages an admin adds by URL for ZenithAssistant to ground
  * answers on, alongside the knowledge base and snippets. The crawled text
  * (extracted at add time by `assistant/web-source.service.ts`, through the
  * SSRF guard) is what retrieval searches; the original URL is what a
@@ -7,7 +7,7 @@
  * publicly fetchable), so rows carry no audience tier.
  */
 import { pgTable, text, boolean, timestamp, index, uniqueIndex } from 'drizzle-orm/pg-core'
-import { typeIdWithDefault, typeIdColumnNullable } from '@quackback/ids/drizzle'
+import { typeIdWithDefault, typeIdColumnNullable } from '@zenith/ids/drizzle'
 import { principal } from './auth'
 
 export const assistantWebSources = pgTable(

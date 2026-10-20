@@ -4,7 +4,7 @@ import {
   type PermissionKey,
 } from '@/lib/shared/permissions'
 import type { Role } from '@/lib/shared/roles'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 import {
   and,
   db,

@@ -80,7 +80,7 @@ const visitorActor: Actor = {
 const anonAuthor: ConversationAuthorInput = {
   principalId: 'principal_v',
   displayName: 'A visitor',
-  email: 'temp-abc@anon.quackback.io',
+  email: 'temp-abc@anon.zenith.io',
 }
 
 const message = {

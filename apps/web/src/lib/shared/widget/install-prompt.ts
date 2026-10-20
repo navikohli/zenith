@@ -1,17 +1,13 @@
-export const WIDGET_SKILL_REPO = 'https://github.com/QuackbackIO/skills'
-export const WIDGET_SKILL_RAW =
-  'https://raw.githubusercontent.com/QuackbackIO/skills/main/skills/quackback/install-widget/SKILL.md'
-
 export function trimTrailingSlash(url: string): string {
   return url.replace(/\/+$/, '')
 }
 
-/** Short prompt an agent pastes: install the public skill, then use these credentials. */
+/** Short prompt an agent pastes: use the instance SDK and these credentials. */
 export function buildWidgetInstallPrompt(instanceUrl: string, pairingCode: string): string {
   const base = trimTrailingSlash(instanceUrl)
   const redeemUrl = `${base}/api/widget/install-context`
 
-  return `# Install the Quackback widget
+  return `# Install the Zenith widget
 
 Redeem the pairing code over HTTP; do not ask the user for the HMAC signing secret. Never invent a secret. Never print the signing secret after redeem.
 
@@ -24,22 +20,20 @@ The launcher must appear for anonymous visitors after init. If this app already 
 - Pairing code: ${pairingCode.trim()}
 
 ## What to do
-1. Fetch and follow the \`install-widget\` skill:
-   - ${WIDGET_SKILL_RAW}
+1. Use the SDK script and the manual snippet on this instance’s Widget Install settings page.
 2. POST JSON \`{ "code": "<pairing code>" }\` to the redeem URL. Write \`signingSecret\` to a **server-only** host env var (any name). Do not commit it, log it, or put it in public env. Redeeming turns on Show on your website.
 3. Add the snippet or npm package and call init so anonymous visitors see the launcher.
 4. If this app has login / a session / a current user: identify signed-in users with a backend-signed ssoToken, once per session. If it does not, stop. Leave the secret in env for later.
 5. Open a page with the widget so Admin → Settings → Widget → Install can flip to connected. If the launcher stays hidden, ask the user to turn on Show on your website.
 6. Do not invent APIs.
 
-Repo: ${WIDGET_SKILL_REPO}
 `
 }
 
 function widgetLoader(instanceUrl: string): string {
   const sdk = `${trimTrailingSlash(instanceUrl)}/api/widget/sdk.js`
-  return `(function(w,d){if(w.Quackback)return;w.Quackback=function(){
-    (w.Quackback.q=w.Quackback.q||[]).push(arguments)};
+  return `(function(w,d){if(w.Zenith)return;w.Zenith=function(){
+    (w.Zenith.q=w.Zenith.q||[]).push(arguments)};
     var s=d.createElement("script");s.async=true;
     s.src="${sdk}";
     d.head.appendChild(s)})(window,document);`
@@ -53,7 +47,7 @@ function widgetLoader(instanceUrl: string): string {
 export function buildWidgetLoaderSnippet(instanceUrl: string): string {
   return `<script>
   ${widgetLoader(instanceUrl)}
-  Quackback("init");
+  Zenith("init");
 </script>`
 }
 
@@ -79,9 +73,9 @@ export function isTestSiteHost(host: string): boolean {
 export function buildWidgetInstallSnippet(instanceUrl: string): string {
   const loader = widgetLoader(instanceUrl)
   return `<script>
-  // Quackback widget. Init first so anonymous visitors still get the launcher.
+  // Zenith widget. Init first so anonymous visitors still get the launcher.
   ${loader}
-  Quackback("init");
+  Zenith("init");
 
   // Identify signed-in users once per session so threads attach to a person.
   // Call when you first know who they are: app load if already signed in,
@@ -95,7 +89,7 @@ export function buildWidgetInstallSnippet(instanceUrl: string): string {
   // Hand { ssoToken } to the page however you already expose session data.
   // Never put the secret in the browser. Never send raw id or email.
   //
-  // Quackback("identify", { ssoToken });
-  // Quackback("logout");
+  // Zenith("identify", { ssoToken });
+  // Zenith("logout");
 </script>`
 }

@@ -7,7 +7,7 @@ import {
   type Database,
   type Transaction,
 } from '@/lib/server/db'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 import { isTeamMember } from '@/lib/shared/roles'
 import { WorkspaceKeyedCache } from '@/lib/server/workspaces/workspace-keyed'
 // From the package itself, so suites that stub `@/lib/server/db` keep the real
@@ -18,7 +18,7 @@ export {
   notTestPrincipal,
   notTestConversation,
   notTestTicket,
-} from '@quackback/db'
+} from '@zenith/db'
 
 /*
  * A principal's test owner is written once, when the server creates the test

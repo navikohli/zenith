@@ -4,7 +4,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { StatusBadge } from '@/components/ui/status-badge'
 import { cn } from '@/lib/shared/utils'
 import type { PostStatusEntity } from '@/lib/shared/db-types'
-import type { PostStatusId } from '@quackback/ids'
+import type { PostStatusId } from '@zenith/ids'
 
 interface StatusDropdownProps {
   currentStatus: PostStatusEntity | undefined

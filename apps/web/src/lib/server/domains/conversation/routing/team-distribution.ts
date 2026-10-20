@@ -11,7 +11,7 @@
  * null pick, so the conversation is simply assigned to the team with no member.
  */
 import type { Team } from '@/lib/server/db'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 import { listOnlineAgentIds, listAvailableAgentIds } from '@/lib/server/realtime/presence'
 import { pickLeastLoaded, countOpenConversationLoad } from './strategies/auto-assign-active'
 import { listTeamMemberPrincipalIds, setRoundRobinCursor } from '@/lib/server/domains/teams'

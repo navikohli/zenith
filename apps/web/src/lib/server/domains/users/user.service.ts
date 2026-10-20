@@ -36,7 +36,7 @@ import {
   userTagAssignments,
   visitorDevices,
 } from '@/lib/server/db'
-import type { PrincipalId, SegmentId, UserTagId } from '@quackback/ids'
+import type { PrincipalId, SegmentId, UserTagId } from '@zenith/ids'
 import {
   DELETED_USER_PRINCIPAL_ID,
   reattributeAuthoredContent,

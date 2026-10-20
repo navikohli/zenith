@@ -99,13 +99,13 @@ const ALLOWED_ATTRIBUTE_KEYS = new Set([
   'gen_ai.usage.output_tokens',
   'gen_ai.usage.total_tokens',
   'gen_ai.tool.name',
-  'quackback.assistant.role',
-  'quackback.assistant.surface',
-  'quackback.assistant.prompt_version',
-  'quackback.assistant.config_revision',
-  'quackback.assistant.tool_call_count',
-  'quackback.assistant.tool.ok',
-  'quackback.assistant.tool.duration_ms',
+  'zenith.assistant.role',
+  'zenith.assistant.surface',
+  'zenith.assistant.prompt_version',
+  'zenith.assistant.config_revision',
+  'zenith.assistant.tool_call_count',
+  'zenith.assistant.tool.ok',
+  'zenith.assistant.tool.duration_ms',
 ])
 
 const SECRET_ARGS = { q: 'SECRET_CUSTOMER_QUESTION' }
@@ -149,21 +149,21 @@ describe('createAssistantTracingMiddleware', () => {
     expect(spans).toHaveLength(2)
 
     // Root: non-textual turn vocabulary only.
-    expect(root.attributes['quackback.assistant.role']).toBe('customer_support')
-    expect(root.attributes['quackback.assistant.surface']).toBe('widget')
-    expect(root.attributes['quackback.assistant.prompt_version']).toBe('v9')
-    expect(root.attributes['quackback.assistant.config_revision']).toBe(42)
+    expect(root.attributes['zenith.assistant.role']).toBe('customer_support')
+    expect(root.attributes['zenith.assistant.surface']).toBe('widget')
+    expect(root.attributes['zenith.assistant.prompt_version']).toBe('v9')
+    expect(root.attributes['zenith.assistant.config_revision']).toBe(42)
     expect(root.attributes['gen_ai.request.model']).toBe('test-model')
     expect(root.attributes['gen_ai.response.finish_reason']).toBe('stop')
     expect(root.attributes['gen_ai.usage.input_tokens']).toBe(100)
     expect(root.attributes['gen_ai.usage.output_tokens']).toBe(20)
     expect(root.attributes['gen_ai.usage.total_tokens']).toBe(120)
-    expect(root.attributes['quackback.assistant.tool_call_count']).toBe(1)
+    expect(root.attributes['zenith.assistant.tool_call_count']).toBe(1)
 
     // Tool child: name + outcome shape only.
     expect(tool.attributes['gen_ai.tool.name']).toBe('search')
-    expect(tool.attributes['quackback.assistant.tool.ok']).toBe(true)
-    expect(tool.attributes['quackback.assistant.tool.duration_ms']).toBe(12)
+    expect(tool.attributes['zenith.assistant.tool.ok']).toBe(true)
+    expect(tool.attributes['zenith.assistant.tool.duration_ms']).toBe(12)
 
     // Every span closed.
     expect(root.ended).toBe(true)

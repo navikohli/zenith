@@ -34,7 +34,7 @@ export function toPostHogEvent(
       $set: snapshot,
       $geoip_disable: true,
       $ip: null,
-      $lib: 'quackback-server',
+      $lib: 'zenith-server',
       ...(payload.cloud && opts.workspaceId ? { $groups: { workspace: opts.workspaceId } } : {}),
     },
   }

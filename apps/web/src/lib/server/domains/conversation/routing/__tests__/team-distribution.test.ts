@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { pickRoundRobin } from '../team-distribution'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 
 const p = (s: string) => s as PrincipalId
 

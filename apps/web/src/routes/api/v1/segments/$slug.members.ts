@@ -10,7 +10,7 @@ import {
 import { db, segments, principal, eq, and, isNull, inArray } from '@/lib/server/db'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import { addMember, removeMember } from '@/lib/server/domains/segments/segment-membership.service'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 
 const MutateBody = z.object({
   principalIds: z.array(z.string()).min(1).max(1000),

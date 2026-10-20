@@ -7,7 +7,7 @@
  * (requireAuth({ permission })); this only decides what UI renders.
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import type { PrincipalId, UserId, WorkspaceId } from '@quackback/ids'
+import type { PrincipalId, UserId, WorkspaceId } from '@zenith/ids'
 import { SYSTEM_ROLE_PERMISSIONS } from '@/lib/shared/permissions'
 import type { AuthContext } from '../auth-helpers'
 

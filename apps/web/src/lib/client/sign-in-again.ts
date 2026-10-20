@@ -20,7 +20,7 @@ export const SIGN_IN_AGAIN_PARAM = 'signedInAgain'
 /** Parameters the auth server appends to the return address on failure. */
 const ERROR_PARAMS = ['error', 'error_description']
 
-const STASH_KEY = 'quackback:sign-in-again'
+const STASH_KEY = 'zenith:sign-in-again'
 
 /** The current page as a same-origin path, marked with `action`. The hash is
  *  left off: the auth server appends its error after the address it is given. */

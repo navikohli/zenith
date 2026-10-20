@@ -4,7 +4,7 @@ import { config } from '@/lib/server/config'
 import { publicWorkspaceCacheHeaders } from '@/lib/server/workspaces/http-cache'
 // Vite `?raw` imports ship the bundle content as a string at build time.
 // packages/widget/dist/browser.js must exist — produced by `bun run --filter
-// @quackback/widget build` before the web app builds.
+// @zenith/widget build` before the web app builds.
 import widgetBundle from '../../../../../../packages/widget/dist/browser.js?raw'
 
 /**
@@ -70,20 +70,20 @@ export const Route = createFileRoute('/api/widget/sdk.js')({
         ])
         if (!enabled) {
           return jsResponse(
-            '/* Quackback widget is disabled */ console.warn("Quackback: Widget is disabled for this workspace.");',
+            '/* Zenith widget is disabled */ console.warn("Zenith: Widget is disabled for this workspace.");',
             60,
             acceptEncoding
           )
         }
         // Prepend the workspace URL and the public server config. The bundle
-        // reads window.__QUACKBACK_URL__ during browser-queue init to
-        // auto-fire Quackback.init when the script loads via a raw
-        // <script src="/api/widget/sdk.js"> tag; window.__QUACKBACK_CONFIG__
+        // reads window.__ZENITH_URL__ during browser-queue init to
+        // auto-fire Zenith.init when the script loads via a raw
+        // <script src="/api/widget/sdk.js"> tag; window.__ZENITH_CONFIG__
         // lets the SDK paint the launcher in brand colors and reveal it
         // immediately, with no config.json round trip.
         const prelude =
-          `window.__QUACKBACK_URL__=${JSON.stringify(config.baseUrl)};` +
-          `window.__QUACKBACK_CONFIG__=${JSON.stringify(serverConfig)};`
+          `window.__ZENITH_URL__=${JSON.stringify(config.baseUrl)};` +
+          `window.__ZENITH_CONFIG__=${JSON.stringify(serverConfig)};`
         return jsResponse(prelude + (widgetBundle as string), 3600, acceptEncoding)
       },
     },

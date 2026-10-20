@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import type { RoadmapView } from '@/lib/client/hooks/use-roadmaps-query'
 import type { PostStatusEntity } from '@/lib/shared/db-types'
-import type { BoardId, PostStatusId, PostTagId, RoadmapColumnId, SegmentId } from '@quackback/ids'
+import type { BoardId, PostStatusId, PostTagId, RoadmapColumnId, SegmentId } from '@zenith/ids'
 import type { RoadmapFrequency, RoadmapType, RoadmapVisibility } from '@/lib/shared/roadmap-config'
 
 export interface RoadmapBuilderValue {

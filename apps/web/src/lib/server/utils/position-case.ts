@@ -1,5 +1,5 @@
 import { sql, type SQL, type AnyColumn } from 'drizzle-orm'
-import { toUuid } from '@quackback/ids'
+import { toUuid } from '@zenith/ids'
 
 /**
  * CASE expression for batch position reorders: each id's array index becomes

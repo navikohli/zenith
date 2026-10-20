@@ -212,7 +212,7 @@ test.describe('Admin MCP Settings', () => {
     await expect(referenceLink).toBeVisible({ timeout: 10000 })
 
     const href = await referenceLink.getAttribute('href')
-    expect(href).toContain('quackback.io/docs/mcp')
+    expect(href).toContain('zenith.io/docs/mcp')
   })
 
   test('Claude Code API Key variant shows Authorization Bearer config', async ({ page }) => {
@@ -220,7 +220,7 @@ test.describe('Admin MCP Settings', () => {
     const apiKeyVariant = page.getByRole('button', { name: 'API key', exact: true })
     if ((await apiKeyVariant.count()) > 0) {
       await apiKeyVariant.first().click()
-      await expect(page.getByText(/QUACKBACK_API_KEY/).first()).toBeVisible({ timeout: 5000 })
+      await expect(page.getByText(/ZENITH_API_KEY/).first()).toBeVisible({ timeout: 5000 })
     }
   })
 })

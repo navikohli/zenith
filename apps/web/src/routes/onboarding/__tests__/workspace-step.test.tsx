@@ -36,7 +36,7 @@ vi.mock('@/lib/client/analytics', () => ({ track: vi.fn() }))
 
 import { WorkspaceStep } from '../-workspace-step'
 
-const DRAFT_KEY = 'quackback:onboarding:workspace-name'
+const DRAFT_KEY = 'zenith:onboarding:workspace-name'
 
 function renderStep() {
   return render(

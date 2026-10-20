@@ -29,7 +29,7 @@
  *
  * The **per-IP** number describes a *client of a workspace*, and sharing it
  * across workspaces is a real cross-workspace effect with no upside: a NAT'd office
- * whose staff use two Quackback workspaces would have the second workspace's
+ * whose staff use two Zenith workspaces would have the second workspace's
  * streams refused because of the first's, and a single abusive workspace could
  * deny service to every other workspace behind the same corporate egress IP. So it
  * is counted per (workspace, IP).

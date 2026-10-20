@@ -26,7 +26,7 @@ import { MentionExtension } from './mention-extension'
 import { createSuggestionPopup, createSuggestionPositioner } from './suggestion-popup'
 import { applySuggestionListKey } from './suggestion-list-keys'
 import { HighlightQuery, emojiSuggestionLabel } from './highlight-query'
-import { QuackbackEmbed } from './quackback-embed-extension'
+import { ZenithEmbed } from './zenith-embed-extension'
 import { UploadedVideo } from './uploaded-video-node'
 import { Markdown } from '@tiptap/markdown'
 import { Extension, getHTMLFromFragment } from '@tiptap/core'
@@ -239,8 +239,8 @@ export function buildExtensions(
       allowBase64: false,
     }),
     // Always register so saved embed nodes round-trip in any editor; paste rules
-    // only fire when quackbackEmbeds is enabled for this editor.
-    QuackbackEmbed.configure({ enablePaste: !!features.quackbackEmbeds }),
+    // only fire when zenithEmbeds is enabled for this editor.
+    ZenithEmbed.configure({ enablePaste: !!features.zenithEmbeds }),
     // Always register so previously saved native videos remain editable even
     // when uploads are disabled for the current viewer.
     UploadedVideo,
@@ -575,10 +575,10 @@ export interface EditorFeatures {
   dividers?: boolean
   /** Enable YouTube/Figma/Loom embeds */
   embeds?: boolean
-  /** Enable pasting Quackback post/changelog URLs as live embed cards.
+  /** Enable pasting Zenith post/changelog URLs as live embed cards.
    * Independent of `embeds` — the embed node is always in the schema (so saved
    * embeds render everywhere); this flag only turns on the paste-to-embed rule. */
-  quackbackEmbeds?: boolean
+  zenithEmbeds?: boolean
   /** Enable `:` emoji picker (default: true). Uses TipTap's Unicode emoji
    * set; emojis are inserted as nodes and serialize to native Unicode
    * characters in markdown. */
@@ -1443,7 +1443,7 @@ function RichTextEditorBase({
       features.taskLists,
       features.tables,
       features.embeds,
-      features.quackbackEmbeds,
+      features.zenithEmbeds,
       features.slashMenu,
       features.emojiPicker,
       features.enterAsHardBreak,
@@ -1893,7 +1893,7 @@ const FEATURE_FLAGS: Record<keyof EditorFeatures, true> = {
   tables: true,
   dividers: true,
   embeds: true,
-  quackbackEmbeds: true,
+  zenithEmbeds: true,
   emojiPicker: true,
   enterAsHardBreak: true,
   mentions: true,

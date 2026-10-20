@@ -4,7 +4,7 @@
  * message is just what the visitor actually wrote.
  */
 import { describe, it, expect } from 'vitest'
-import type { ConversationId } from '@quackback/ids'
+import type { ConversationId } from '@zenith/ids'
 import {
   parseInboundEmail,
   parseRawEmail,
@@ -309,17 +309,17 @@ describe('parseRawEmail', () => {
     // (§4.8) turns this value into an attach-or-drop decision, so picking the
     // wrong instance is a stranger choosing whether we treat them as verified.
     const raw = [
-      'Authentication-Results: mx.quackback.io; spf=fail smtp.mailfrom=spoof.example;' +
+      'Authentication-Results: mx.zenith.io; spf=fail smtp.mailfrom=spoof.example;' +
         ' dmarc=fail (p=reject dis=reject) header.from=acme.com',
-      'Received: from spoof.example by mx.quackback.io',
+      'Received: from spoof.example by mx.zenith.io',
       'From: "Chief Executive" <ceo@acme.com>',
       'Subject: wire transfer',
-      'Authentication-Results: mx.quackback.io; dmarc=pass header.from=acme.com',
+      'Authentication-Results: mx.zenith.io; dmarc=pass header.from=acme.com',
       '',
       'body',
     ].join('\r\n')
     expect(parseRawEmail(raw).authenticationResults).toBe(
-      'mx.quackback.io; spf=fail smtp.mailfrom=spoof.example; dmarc=fail (p=reject dis=reject) header.from=acme.com'
+      'mx.zenith.io; spf=fail smtp.mailfrom=spoof.example; dmarc=fail (p=reject dis=reject) header.from=acme.com'
     )
   })
 

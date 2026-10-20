@@ -9,7 +9,7 @@
  * refused as before. A panel whose read fails is left out the same way, so it
  * never fails the thread.
  */
-import type { ConversationId, PrincipalId, UserId } from '@quackback/ids'
+import type { ConversationId, PrincipalId, UserId } from '@zenith/ids'
 import type { Conversation } from '@/lib/server/db'
 import type { Actor } from '@/lib/server/policy/types'
 import type { TicketDTO } from '@/lib/server/domains/tickets'
@@ -43,7 +43,7 @@ export interface AgentConversationPanels {
   teamMembers?: TeamMember[]
 }
 
-/** Quinn's latest involvement in a conversation, as `getConversationAssistantActivityFn` returns it. */
+/** ZenithAssistant's latest involvement in a conversation, as `getConversationAssistantActivityFn` returns it. */
 export async function loadConversationAssistantActivity(
   conversationId: ConversationId
 ): Promise<ConversationAssistantActivity | null> {

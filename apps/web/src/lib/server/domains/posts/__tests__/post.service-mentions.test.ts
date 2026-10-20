@@ -8,7 +8,7 @@
  */
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import type { JSONContent } from '@tiptap/core'
-import type { BoardId, PrincipalId, PostStatusId } from '@quackback/ids'
+import type { BoardId, PrincipalId, PostStatusId } from '@zenith/ids'
 
 const insertedRows: Record<string, unknown[]> = { posts: [], votes: [], postTagAssignments: [] }
 const subscribeToPost = vi.fn()
@@ -333,7 +333,7 @@ describe('updatePost mention dispatch', () => {
 
     const actorPrincipal = 'principal_actor' as unknown as PrincipalId
     await updatePost(
-      'post_update' as unknown as import('@quackback/ids').PostId,
+      'post_update' as unknown as import('@zenith/ids').PostId,
       {
         contentJson: newContent as unknown as import('@/lib/server/db').TiptapContent,
       },
@@ -361,7 +361,7 @@ describe('updatePost mention dispatch', () => {
 
     const actorPrincipal = 'principal_actor' as unknown as PrincipalId
     await updatePost(
-      'post_update' as unknown as import('@quackback/ids').PostId,
+      'post_update' as unknown as import('@zenith/ids').PostId,
       {
         contentJson: newContent as unknown as import('@/lib/server/db').TiptapContent,
       },
@@ -385,7 +385,7 @@ describe('updatePost mention dispatch', () => {
 
     const actorPrincipal = 'principal_actor' as unknown as PrincipalId
     await updatePost(
-      'post_update' as unknown as import('@quackback/ids').PostId,
+      'post_update' as unknown as import('@zenith/ids').PostId,
       { title: 'New title only' },
       { principalId: actorPrincipal }
     )

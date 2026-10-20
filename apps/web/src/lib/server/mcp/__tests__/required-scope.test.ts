@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { generateId } from '@quackback/ids'
+import { generateId } from '@zenith/ids'
 import { registerTools } from '@/lib/server/mcp/tools'
 import { registerResources } from '@/lib/server/mcp/server'
 import {
@@ -59,7 +59,7 @@ describe('requiredScopeForMcpRpc', () => {
         jsonrpc: '2.0',
         id: 1,
         method: 'resources/read',
-        params: { uri: 'quackback://help-center/categories' },
+        params: { uri: 'zenith://help-center/categories' },
       })
     ).toBe('read:article')
   })
@@ -149,7 +149,7 @@ describe('requiredScopeForMcpRpc', () => {
         jsonrpc: '2.0',
         id: 1,
         method: 'resources/read',
-        params: { uri: 'quackback://not-a-resource' },
+        params: { uri: 'zenith://not-a-resource' },
       })
     ).toBeNull()
   })

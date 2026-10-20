@@ -22,7 +22,7 @@
  * Only that exact call shape is intercepted: a single argument that is an
  * unhandled `HTTPError`. Every other `console.error` call passes through.
  */
-import type { AppLogger } from '@quackback/logger'
+import type { AppLogger } from '@zenith/logger'
 import { logger } from '@/lib/server/logger'
 
 /**
@@ -32,7 +32,7 @@ import { logger } from '@/lib/server/logger'
  * lives on the console): the old wrapper and the reloaded boundary must read
  * and write the same set.
  */
-const accountedKey = Symbol.for('quackback.runtimeErrorLog.accounted')
+const accountedKey = Symbol.for('zenith.runtimeErrorLog.accounted')
 const accountedFor: WeakSet<object> = ((globalThis as Record<symbol, unknown>)[accountedKey] ??=
   new WeakSet<object>()) as WeakSet<object>
 
@@ -80,7 +80,7 @@ function isUnhandledHttpError(value: unknown): value is UnhandledHttpError {
   return (value as { unhandled?: unknown }).unhandled === true
 }
 
-const installed = Symbol.for('quackback.runtimeErrorLog')
+const installed = Symbol.for('zenith.runtimeErrorLog')
 
 interface ConsoleLike {
   error: (...args: unknown[]) => void

@@ -32,7 +32,7 @@ import {
   workflowRunEvents,
   type WorkflowRunState,
 } from '@/lib/server/db'
-import type { WorkflowId, WorkflowRunId, ConversationId } from '@quackback/ids'
+import type { WorkflowId, WorkflowRunId, ConversationId } from '@zenith/ids'
 
 export interface WorkflowEffectiveness {
   workflowId: WorkflowId

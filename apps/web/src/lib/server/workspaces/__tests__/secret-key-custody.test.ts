@@ -24,7 +24,7 @@
  * |       | authenticated request 500s on a JWKS the resolved key cannot decrypt |
  *
  * The canary was absent at 14:32, and an absent canary is treated as greenfield
- * by the writer (`quackback-cp` `stampSecretKeyCanary` only refuses a canary that
+ * by the writer (`zenith-cp` `stampSecretKeyCanary` only refuses a canary that
  * is *present* and unopenable). But absent does not mean "nothing to protect", it
  * means "no record of which key this database's ciphertext was written under",
  * and the database held an obvious sample either way.
@@ -85,7 +85,7 @@ const KEY_AFTER_CUSTODY_CHANGE = 'b'.repeat(64)
  */
 function sealStoredValue(masterSecret: string, plaintext: string): string {
   const key = Buffer.from(
-    hkdfSync('sha256', masterSecret, 'quackback-encryption-salt-v1', 'quackback:v1:probe', 32)
+    hkdfSync('sha256', masterSecret, 'zenith-encryption-salt-v1', 'zenith:v1:probe', 32)
   )
   const iv = randomBytes(12)
   const cipher = createCipheriv('aes-256-gcm', key, iv, { authTagLength: 16 })
@@ -100,7 +100,7 @@ function sealStoredValue(masterSecret: string, plaintext: string): string {
 function opensStoredValue(masterSecret: string, ciphertext: string): boolean {
   const [ivB64, tagB64, bodyB64] = ciphertext.split('.')
   const key = Buffer.from(
-    hkdfSync('sha256', masterSecret, 'quackback-encryption-salt-v1', 'quackback:v1:probe', 32)
+    hkdfSync('sha256', masterSecret, 'zenith-encryption-salt-v1', 'zenith:v1:probe', 32)
   )
   try {
     const decipher = createDecipheriv('aes-256-gcm', key, Buffer.from(ivB64!, 'base64url'), {
@@ -379,9 +379,9 @@ describe('the verdict, once it can see a real sample', () => {
 })
 
 function sealPlatformCreds(masterSecret: string, workspaceKey: string, plaintext: string): string {
-  const info = `quackback:v1:t:${workspaceKey}:${PLATFORM_CREDENTIALS_PURPOSE}`
+  const info = `zenith:v1:t:${workspaceKey}:${PLATFORM_CREDENTIALS_PURPOSE}`
   const key = Buffer.from(
-    hkdfSync('sha256', masterSecret, 'quackback-encryption-salt-v1', info, 32)
+    hkdfSync('sha256', masterSecret, 'zenith-encryption-salt-v1', info, 32)
   )
   const iv = randomBytes(12)
   const cipher = createCipheriv('aes-256-gcm', key, iv, { authTagLength: 16 })
@@ -420,9 +420,9 @@ describe('platform-credential corroboration at checkout', () => {
 
   it('refuses when JWKS opens but platform credentials were sealed under historical info', async () => {
     const stored = await sealAuthSigningKey(KEY_AT_WRITE_TIME, JWK)
-    const historicalInfo = `quackback:v1:${PLATFORM_CREDENTIALS_PURPOSE}`
+    const historicalInfo = `zenith:v1:${PLATFORM_CREDENTIALS_PURPOSE}`
     const key = Buffer.from(
-      hkdfSync('sha256', KEY_AT_WRITE_TIME, 'quackback-encryption-salt-v1', historicalInfo, 32)
+      hkdfSync('sha256', KEY_AT_WRITE_TIME, 'zenith-encryption-salt-v1', historicalInfo, 32)
     )
     const iv = randomBytes(12)
     const cipher = createCipheriv('aes-256-gcm', key, iv, { authTagLength: 16 })
@@ -476,8 +476,8 @@ describe('platform-credential corroboration at checkout', () => {
         hkdfSync(
           'sha256',
           KEY_AT_WRITE_TIME,
-          'quackback-encryption-salt-v1',
-          `quackback:v1:${PLATFORM_CREDENTIALS_PURPOSE}`,
+          'zenith-encryption-salt-v1',
+          `zenith:v1:${PLATFORM_CREDENTIALS_PURPOSE}`,
           32
         )
       )

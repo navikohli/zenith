@@ -17,14 +17,14 @@ vi.mock('@/lib/client/hooks/use-permission', () => ({
   usePermission: (key: string) => key === 'ai.customer.manage' && hoisted.canManage,
 }))
 
-const { QuinnViewHeader } = await import('../quinn-view-header')
+const { ZenithAssistantViewHeader } = await import('../zenith-assistant-view-header')
 
 afterEach(cleanup)
 
-describe('QuinnViewHeader', () => {
+describe('ZenithAssistantViewHeader', () => {
   it('links an assistant manager to the Agent settings', () => {
     hoisted.canManage = true
-    render(<QuinnViewHeader onChange={() => {}} />)
+    render(<ZenithAssistantViewHeader onChange={() => {}} />)
     expect(screen.getByRole('link', { name: 'Configure the agent' }).getAttribute('href')).toBe(
       '/admin/settings/agent'
     )
@@ -32,7 +32,7 @@ describe('QuinnViewHeader', () => {
 
   it('shows no link to someone who cannot manage the assistant', () => {
     hoisted.canManage = false
-    render(<QuinnViewHeader onChange={() => {}} />)
+    render(<ZenithAssistantViewHeader onChange={() => {}} />)
     expect(screen.queryByRole('link', { name: 'Configure the agent' })).toBeNull()
   })
 
@@ -40,7 +40,7 @@ describe('QuinnViewHeader', () => {
     hoisted.canManage = false
     const onChange = vi.fn()
     render(
-      <QuinnViewHeader counts={{ resolved: 4, escalated: 2, pending: 1 }} onChange={onChange} />
+      <ZenithAssistantViewHeader counts={{ resolved: 4, escalated: 2, pending: 1 }} onChange={onChange} />
     )
     expect(screen.getByRole('button', { name: /All\s*7/ })).toBeInTheDocument()
     fireEvent.click(screen.getByRole('button', { name: /Escalated\s*2/ }))

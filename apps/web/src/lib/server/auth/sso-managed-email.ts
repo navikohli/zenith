@@ -9,7 +9,7 @@
  * provider released no email may add their address at its domain, and an
  * address there may be corrected to another one there.
  */
-import type { UserId } from '@quackback/ids'
+import type { UserId } from '@zenith/ids'
 import { and, db, eq, account } from '@/lib/server/db'
 import { ValidationError } from '@/lib/shared/errors'
 import { SSO_MANAGED_EMAIL_MESSAGE } from '@/lib/shared/sso-managed-email'

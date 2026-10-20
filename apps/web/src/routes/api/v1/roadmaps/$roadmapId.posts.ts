@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { withApiKeyAuth } from '@/lib/server/domains/api/auth'
 import { successResponse, handleDomainError } from '@/lib/server/domains/api/responses'
 import { parseTypeId } from '@/lib/server/domains/api/validation'
-import type { RoadmapId, PostStatusId } from '@quackback/ids'
+import type { RoadmapId, PostStatusId } from '@zenith/ids'
 import { toIsoStringOrNull } from '@/lib/shared/utils'
 
 export const Route = createFileRoute('/api/v1/roadmaps/$roadmapId/posts')({

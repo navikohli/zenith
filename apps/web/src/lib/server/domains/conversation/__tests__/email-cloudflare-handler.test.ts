@@ -96,12 +96,12 @@ vi.mock('@/lib/server/workspaces/workspace-context', async (importOriginal) => {
     },
   }
 })
-vi.mock('@quackback/db/client', async (importOriginal) => {
-  const actual = await importOriginal<typeof import('@quackback/db/client')>()
+vi.mock('@zenith/db/client', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@zenith/db/client')>()
   return {
     ...actual,
     createDb: (...args: Parameters<typeof actual.createDb>) => {
-      dbTouches.push('@quackback/db/client#createDb')
+      dbTouches.push('@zenith/db/client#createDb')
       return actual.createDb(...args)
     },
   }
@@ -168,7 +168,7 @@ import {
 const SECRET = 'worker-inbound-test-key'
 /** The plus-address signing secret: a different key with a different job. */
 const ADDRESS_SECRET = 'whsec_dGVzdHNlY3JldA=='
-const DOMAIN = 'quackback.co.uk'
+const DOMAIN = 'zenith.co.uk'
 /** A domain this install still RECEIVES on and no longer mints addresses on. */
 const RETIRED_DOMAIN = 'mail.retired.test'
 const SLUG = mailSlugFor('ws-t1')
@@ -308,7 +308,7 @@ beforeEach(() => {
   vi.clearAllMocks()
   dbTouches.length = 0
   logLines.length = 0
-  vi.stubEnv('QUACKBACK_TENANCY', 'pooled')
+  vi.stubEnv('ZENITH_TENANCY', 'pooled')
   vi.stubEnv('INBOUND_HMAC_SECRET', SECRET)
   vi.stubEnv('EMAIL_INBOUND_DOMAIN', DOMAIN)
   // The addressing half of the channel. Set for every case because a front door
@@ -710,9 +710,9 @@ describe('the guard', () => {
     // when the envelope names a DIFFERENT workspace" would wave every one of
     // these through, because none of them names one at all.
     for (const envelopeTo of [
-      'NOT_A_SLUG!!@quackback.co.uk',
+      'NOT_A_SLUG!!@zenith.co.uk',
       'a.very.long.customer.local.part@example.com',
-      '@quackback.co.uk',
+      '@zenith.co.uk',
       'not-an-address-at-all',
       '',
     ]) {

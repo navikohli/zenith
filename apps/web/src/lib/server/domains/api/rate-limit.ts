@@ -39,7 +39,7 @@ function warnIfForwardedHeaders(headers: Headers): void {
   warnedForwardedHeaders = true
   log.warn(
     {},
-    'Request carries forwarding headers while TRUSTED_PROXY_HOPS is 0. If Quackback runs behind a reverse proxy, set TRUSTED_PROXY_HOPS to the number of proxies in front of it, otherwise every client shares one rate-limit bucket. If clients connect directly, ignore this and keep 0.'
+    'Request carries forwarding headers while TRUSTED_PROXY_HOPS is 0. If Zenith runs behind a reverse proxy, set TRUSTED_PROXY_HOPS to the number of proxies in front of it, otherwise every client shares one rate-limit bucket. If clients connect directly, ignore this and keep 0.'
   )
 }
 
@@ -60,7 +60,7 @@ function warnEdgeClientIpRejected(reason: EdgeClientIpRejection): void {
   lastEdgeRejectionWarnAt = now
   log.warn(
     { reason },
-    'Ignoring a signed edge client address. Until the edge proxy and this process agree on QUACKBACK_SAAS_EDGE_SECRET, clock and trusted origin, custom-host visitors share one rate-limit bucket.'
+    'Ignoring a signed edge client address. Until the edge proxy and this process agree on ZENITH_SAAS_EDGE_SECRET, clock and trusted origin, custom-host visitors share one rate-limit bucket.'
   )
 }
 
@@ -234,7 +234,7 @@ function requestHostname(source: Request | Headers, headers: Headers): string | 
  * serves custom hostnames (see `edgeClientIp` in workspaces/saas-edge-host):
  * that proxy is the TCP peer and the last X-Forwarded-For hop of every such
  * request, so either rule alone would put all of its visitors in one bucket.
- * The signed address is honored only with QUACKBACK_SAAS_EDGE_SECRET set and
+ * The signed address is honored only with ZENITH_SAAS_EDGE_SECRET set and
  * a verified customer host on the same request; otherwise both headers are
  * ignored and the rules above apply unchanged.
  *

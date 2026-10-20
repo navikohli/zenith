@@ -12,7 +12,7 @@
  * `bun run check:server-fn-manifest` guards the general case.
  */
 
-import type { UserId } from '@quackback/ids'
+import type { UserId } from '@zenith/ids'
 import { sessionRole, type Role } from '@/lib/shared/roles'
 import { db } from '@/lib/server/db'
 import { getSession } from '@/lib/server/auth/session'

@@ -77,7 +77,7 @@ describe('stage marker storage', () => {
   })
 
   it('ignores a corrupted stored value instead of throwing', () => {
-    window.localStorage.setItem('quackback:ticket-stages-seen', '{not json')
+    window.localStorage.setItem('zenith:ticket-stages-seen', '{not json')
     expect(getTicketStagesSeen()).toBeNull()
   })
 })

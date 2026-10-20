@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { z } from 'zod'
-import { generateId } from '@quackback/ids'
-import type { UserId, PrincipalId, SegmentId } from '@quackback/ids'
+import { generateId } from '@zenith/ids'
+import type { UserId, PrincipalId, SegmentId } from '@zenith/ids'
 import {
   db,
   user,

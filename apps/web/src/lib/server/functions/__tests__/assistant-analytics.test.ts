@@ -1,7 +1,7 @@
 /**
- * Quinn performance server fn: gates on analytics.view and delegates to the
+ * ZenithAssistant performance server fn: gates on analytics.view and delegates to the
  * domain query with parsed dates. Domain math is covered directly in
- * domains/analytics/__tests__/quinn-performance.test.ts; this only exercises
+ * domains/analytics/__tests__/zenith-assistant-performance.test.ts; this only exercises
  * the fn's own wiring.
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest'
@@ -31,15 +31,15 @@ vi.mock('@tanstack/react-start', () => ({
 
 const hoisted = vi.hoisted(() => ({
   requireAuth: vi.fn(),
-  getQuinnPerformance: vi.fn(),
+  getZenithAssistantPerformance: vi.fn(),
 }))
 
 vi.mock('@/lib/server/functions/auth-helpers', () => ({ requireAuth: hoisted.requireAuth }))
-vi.mock('@/lib/server/domains/analytics/quinn-performance', () => ({
-  getQuinnPerformance: hoisted.getQuinnPerformance,
+vi.mock('@/lib/server/domains/analytics/zenith-assistant-performance', () => ({
+  getZenithAssistantPerformance: hoisted.getZenithAssistantPerformance,
 }))
 
-import { getQuinnPerformanceFn } from '../assistant-analytics'
+import { getZenithAssistantPerformanceFn } from '../assistant-analytics'
 
 const SUMMARY = {
   involvements: 4,
@@ -57,29 +57,29 @@ const SUMMARY = {
 beforeEach(() => {
   vi.clearAllMocks()
   hoisted.requireAuth.mockResolvedValue({})
-  hoisted.getQuinnPerformance.mockResolvedValue(SUMMARY)
+  hoisted.getZenithAssistantPerformance.mockResolvedValue(SUMMARY)
 })
 
-describe('getQuinnPerformanceFn', () => {
+describe('getZenithAssistantPerformanceFn', () => {
   it('gates on analytics.view', async () => {
-    await getQuinnPerformanceFn({
+    await getZenithAssistantPerformanceFn({
       data: { from: '2026-06-01T00:00:00Z', to: '2026-07-01T00:00:00Z' },
     })
     expect(hoisted.requireAuth).toHaveBeenCalledWith({ permission: PERMISSIONS.ANALYTICS_VIEW })
   })
 
   it('parses the range into Dates and delegates to the domain query', async () => {
-    await getQuinnPerformanceFn({
+    await getZenithAssistantPerformanceFn({
       data: { from: '2026-06-01T00:00:00Z', to: '2026-07-01T00:00:00Z' },
     })
-    expect(hoisted.getQuinnPerformance).toHaveBeenCalledWith(
+    expect(hoisted.getZenithAssistantPerformance).toHaveBeenCalledWith(
       new Date('2026-06-01T00:00:00Z'),
       new Date('2026-07-01T00:00:00Z')
     )
   })
 
   it('returns the domain summary verbatim', async () => {
-    const out = await getQuinnPerformanceFn({
+    const out = await getZenithAssistantPerformanceFn({
       data: { from: '2026-06-01T00:00:00Z', to: '2026-07-01T00:00:00Z' },
     })
     expect(out).toEqual(SUMMARY)
@@ -87,7 +87,7 @@ describe('getQuinnPerformanceFn', () => {
 
   it('rejects a non-ISO-datetime range before it reaches the auth gate', async () => {
     await expect(
-      getQuinnPerformanceFn({ data: { from: 'not-a-date', to: '2026-07-01T00:00:00Z' } })
+      getZenithAssistantPerformanceFn({ data: { from: 'not-a-date', to: '2026-07-01T00:00:00Z' } })
     ).rejects.toThrow()
     expect(hoisted.requireAuth).not.toHaveBeenCalled()
   })
@@ -95,8 +95,8 @@ describe('getQuinnPerformanceFn', () => {
   it('propagates a denied auth gate without calling the domain query', async () => {
     hoisted.requireAuth.mockRejectedValue(new Error('Access denied'))
     await expect(
-      getQuinnPerformanceFn({ data: { from: '2026-06-01T00:00:00Z', to: '2026-07-01T00:00:00Z' } })
+      getZenithAssistantPerformanceFn({ data: { from: '2026-06-01T00:00:00Z', to: '2026-07-01T00:00:00Z' } })
     ).rejects.toThrow('Access denied')
-    expect(hoisted.getQuinnPerformance).not.toHaveBeenCalled()
+    expect(hoisted.getZenithAssistantPerformance).not.toHaveBeenCalled()
   })
 })

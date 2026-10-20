@@ -34,7 +34,7 @@ import type {
   UsageInfo,
 } from '@tanstack/ai'
 
-const TRACER_NAME = 'quackback.assistant'
+const TRACER_NAME = 'zenith.assistant'
 
 /**
  * The non-identifying, non-textual turn attributes the caller resolves once and
@@ -101,10 +101,10 @@ export function createAssistantTracingMiddleware(
           'gen_ai.operation.name': 'chat',
           'gen_ai.request.model': ctx.model,
           'gen_ai.provider.name': ctx.provider,
-          'quackback.assistant.role': attributes.role,
-          'quackback.assistant.surface': attributes.surface,
-          'quackback.assistant.prompt_version': attributes.promptVersion,
-          'quackback.assistant.config_revision': attributes.configRevision,
+          'zenith.assistant.role': attributes.role,
+          'zenith.assistant.surface': attributes.surface,
+          'zenith.assistant.prompt_version': attributes.promptVersion,
+          'zenith.assistant.config_revision': attributes.configRevision,
         },
       })
       turns.set(ctx.requestId, {
@@ -137,8 +137,8 @@ export function createAssistantTracingMiddleware(
       state.toolSpans.delete(info.toolCallId)
       // Outcome shape only: ok flag and duration. Never info.result / info.error
       // bodies (they can carry tool output or customer text).
-      span.setAttribute('quackback.assistant.tool.ok', info.ok)
-      span.setAttribute('quackback.assistant.tool.duration_ms', info.duration)
+      span.setAttribute('zenith.assistant.tool.ok', info.ok)
+      span.setAttribute('zenith.assistant.tool.duration_ms', info.duration)
       span.setStatus({
         code: info.ok ? SpanStatusCode.OK : SpanStatusCode.ERROR,
       })
@@ -166,14 +166,14 @@ export function createAssistantTracingMiddleware(
       endTurn(ctx, (state) => {
         if (info.finishReason)
           state.root.setAttribute('gen_ai.response.finish_reason', info.finishReason)
-        state.root.setAttribute('quackback.assistant.tool_call_count', state.toolCallCount)
+        state.root.setAttribute('zenith.assistant.tool_call_count', state.toolCallCount)
         state.root.setStatus({ code: SpanStatusCode.OK })
       })
     },
 
     onError(ctx: ChatMiddlewareContext, info: ErrorInfo) {
       endTurn(ctx, (state) => {
-        state.root.setAttribute('quackback.assistant.tool_call_count', state.toolCallCount)
+        state.root.setAttribute('zenith.assistant.tool_call_count', state.toolCallCount)
         // Record the infra error (message/stack only — an infra failure, not
         // customer text). Deliberately does not attach any run content.
         if (info.error instanceof Error) state.root.recordException(info.error)
@@ -186,7 +186,7 @@ export function createAssistantTracingMiddleware(
 
     onAbort(ctx: ChatMiddlewareContext) {
       endTurn(ctx, (state) => {
-        state.root.setAttribute('quackback.assistant.tool_call_count', state.toolCallCount)
+        state.root.setAttribute('zenith.assistant.tool_call_count', state.toolCallCount)
         state.root.setStatus({ code: SpanStatusCode.ERROR, message: 'aborted' })
       })
     },

@@ -4,7 +4,7 @@
  * the admin, where the plan is, instead of the public portal.
  */
 import { db, and, eq, principal, settings } from '@/lib/server/db'
-import type { UserId } from '@quackback/ids'
+import type { UserId } from '@zenith/ids'
 import { isAdmin } from '@/lib/shared/roles'
 import { getSetupState } from '@/lib/shared/db-types'
 import { isLaunchWindowOpen, launchWindowFor } from '@/lib/shared/launch-window'

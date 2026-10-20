@@ -8,7 +8,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { act, cleanup, fireEvent, render, screen } from '@testing-library/react'
 import { useCallback, useState } from 'react'
-import type { PostId } from '@quackback/ids'
+import type { PostId } from '@zenith/ids'
 import type { PostListItem, PostStatusEntity } from '@/lib/shared/db-types'
 import type { InboxFilters } from '@/components/admin/feedback/use-inbox-filters'
 

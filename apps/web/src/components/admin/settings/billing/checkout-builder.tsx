@@ -41,7 +41,7 @@ export type CheckoutSelectionChange = Partial<{
 }>
 
 const PLANS_PATH = '/admin/settings/billing'
-const COMPARE_FEATURES_HREF = 'https://quackback.io/pricing'
+const COMPARE_FEATURES_HREF = '/source.html'
 
 /**
  * The plan configurator: billing cycle, plan, and add-ons on the left,
@@ -338,10 +338,10 @@ function BrandingAddOnRow(props: {
         ) : null}
         <div className="min-w-0">
           <label htmlFor={boxId} className="block cursor-pointer text-[13px] font-medium">
-            Remove Quackback branding
+            Remove Zenith branding
           </label>
           <div className="text-[12px] text-muted-foreground">
-            Hide &quot;Powered by Quackback&quot; on the portal, widget, and emails. Billed with
+            Hide &quot;Powered by Zenith&quot; on the portal, widget, and emails. Billed with
             your plan on the same {props.period === 'annual' ? 'yearly' : 'monthly'} cycle.
           </div>
         </div>

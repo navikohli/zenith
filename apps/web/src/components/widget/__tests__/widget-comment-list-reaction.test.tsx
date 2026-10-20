@@ -10,7 +10,7 @@ import type { ReactNode } from 'react'
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { IntlProvider } from 'react-intl'
-import type { PostCommentId } from '@quackback/ids'
+import type { PostCommentId } from '@zenith/ids'
 import type { PublicCommentView } from '@/lib/client/queries/portal-detail'
 
 const session = { token: null as string | null, version: 0 }

@@ -9,7 +9,7 @@
  * `validateTicketIntakeValues`.
  */
 import { db, eq, and, isNull, asc, ticketTypes, type TicketTypeEntity } from '@/lib/server/db'
-import { isValidTypeId, type TicketTypeId } from '@quackback/ids'
+import { isValidTypeId, type TicketTypeId } from '@zenith/ids'
 import { validateTicketIntakeValues, type TicketIntakeType } from '@/lib/shared/tickets'
 import { ValidationError } from '@/lib/shared/errors'
 

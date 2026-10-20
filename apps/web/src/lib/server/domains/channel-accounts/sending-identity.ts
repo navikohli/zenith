@@ -34,7 +34,7 @@
  * ## Where the provider calls run
  *
  * In this tier, with a credential that is not the sending credential and that
- * carries no delete. See `@quackback/email/ses-identity` for what that
+ * carries no delete. See `@zenith/email/ses-identity` for what that
  * credential needs and why deletion is excluded from it.
  */
 import { randomBytes } from 'node:crypto'
@@ -47,10 +47,10 @@ import {
   sesMailFromMxValue,
   SES_MAIL_FROM_MX_PRIORITY,
   SES_MAIL_FROM_SPF_VALUE,
-} from '@quackback/email/ses-identity'
-import type { SesDomainIdentity } from '@quackback/email/ses-identity'
-import { sesRegion } from '@quackback/email/ses'
-import type { SendingDomainId, TeamId } from '@quackback/ids'
+} from '@zenith/email/ses-identity'
+import type { SesDomainIdentity } from '@zenith/email/ses-identity'
+import { sesRegion } from '@zenith/email/ses'
+import type { SendingDomainId, TeamId } from '@zenith/ids'
 import { logger } from '@/lib/server/logger'
 import {
   db,
@@ -81,10 +81,10 @@ const log = logger.child({
  * machine rather than a host, and it keeps the name out of the space a domain
  * owner might already be using for something real.
  */
-export const OWNERSHIP_RECORD_HOST = '_quackback'
+export const OWNERSHIP_RECORD_HOST = '_zenith'
 
 /** The prefix on the ownership TXT value, so a zone's owner can see what it is for. */
-export const OWNERSHIP_VALUE_PREFIX = 'quackback-domain-verification='
+export const OWNERSHIP_VALUE_PREFIX = 'zenith-domain-verification='
 
 /**
  * The subdomain the envelope sender moves to.

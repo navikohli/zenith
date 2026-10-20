@@ -12,7 +12,7 @@
  *     config reconcile and a billing write cannot lose each other's changes.
  *  2. **The config file's whole-block lock is honoured.** `tierLimits` is a
  *     whole-block managed path, so an operator who pins limits in
- *     `/etc/quackback/config.yaml` keeps them: the billing writer is refused
+ *     `/etc/zenith/config.yaml` keeps them: the billing writer is refused
  *     rather than silently overriding the operator.
  *  3. **It is idempotent.** An unchanged plan does not rewrite the row or bust
  *     the caches, which matters because a provider redelivers webhooks.

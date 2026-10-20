@@ -6,7 +6,7 @@
  * unit-testable without the job queue: the queue's job handler is a thin call into
  * `runWorkspaceExportJob`.
  */
-import type { ExportRunId } from '@quackback/ids'
+import type { ExportRunId } from '@zenith/ids'
 import { buildWorkspaceExport, cleanupExpiredExports } from './workspace-export'
 import { markExportRunRunning, completeExportRun, failExportRun } from './export-run.service'
 import { logger } from '@/lib/server/logger'

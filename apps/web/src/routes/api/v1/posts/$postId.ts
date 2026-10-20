@@ -15,7 +15,7 @@ import {
   parseTypeIdArray,
 } from '@/lib/server/domains/api/validation'
 import { contentJsonToMarkdown } from '@/lib/server/markdown-tiptap'
-import type { PostId, PostStatusId, PostTagId, PrincipalId } from '@quackback/ids'
+import type { PostId, PostStatusId, PostTagId, PrincipalId } from '@zenith/ids'
 import type { MergedPostSummary } from '@/lib/server/domains/posts/post.types'
 
 // Input validation schema

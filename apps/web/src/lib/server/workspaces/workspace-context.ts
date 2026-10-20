@@ -22,7 +22,7 @@
  *    failure mode — serving another workspace's data while every permission check
  *    passes — would come back.
  */
-import type { Database } from '@quackback/db/client'
+import type { Database } from '@zenith/db/client'
 import type { Sql } from 'postgres'
 import { getLogContext, runWithLogContext, setLogContext } from '@/lib/server/log-context'
 import type { WorkspaceDescriptor } from './registry'
@@ -36,7 +36,7 @@ import type {
  * a module twice across the SSR/route graph, and two private symbols would give
  * the middleware and the `db` trap two different slots on the same store.
  */
-const WORKSPACE_SCOPE_KEY = Symbol.for('quackback.workspaceScope')
+const WORKSPACE_SCOPE_KEY = Symbol.for('zenith.workspaceScope')
 
 /**
  * Where a scope's secrets actually sit.
@@ -51,7 +51,7 @@ const WORKSPACE_SCOPE_KEY = Symbol.for('quackback.workspaceScope')
  * an `Object.keys` walk nor a structured log of the scope. It is reachable by
  * anyone who computes the same `Symbol.for` — see the seal suite's closing note.
  */
-const SCOPE_SECRETS_KEY = Symbol.for('quackback.workspaceScope.secrets')
+const SCOPE_SECRETS_KEY = Symbol.for('zenith.workspaceScope.secrets')
 
 /** Why a scope exists. Only for logging and the scope audit; never a policy input. */
 export type WorkspaceScopeOrigin = 'request' | 'sweep' | 'queue' | 'script' | 'migration' | 'test'
@@ -111,7 +111,7 @@ export class WorkspaceScopeMissingError extends Error {
   constructor(detail: string) {
     super(
       `No workspace scope is active. ${detail} ` +
-        'Under QUACKBACK_TENANCY=pooled every database access must run inside ' +
+        'Under ZENITH_TENANCY=pooled every database access must run inside ' +
         'runWithWorkspaceScope() — a request scope opened by the workspace middleware, ' +
         'or an explicit scope opened by a background subsystem.'
     )

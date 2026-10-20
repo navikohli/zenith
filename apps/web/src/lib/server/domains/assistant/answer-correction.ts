@@ -1,5 +1,5 @@
 /**
- * Answer-correction loop: a teammate marks a Quinn answer unhelpful and
+ * Answer-correction loop: a teammate marks a ZenithAssistant answer unhelpful and
  * attaches the ideal answer. The correction rides the existing pipelines
  * rather than a new store:
  *   - the outcome signal is one append-only `assistant_events` row
@@ -17,7 +17,7 @@ import type {
   ConversationId,
   PrincipalId,
   TicketId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import { ValidationError } from '@/lib/shared/errors'
 import { createSnippet, type SnippetInput } from './snippet.service'
 
@@ -27,15 +27,15 @@ import { createSnippet, type SnippetInput } from './snippet.service'
 const QUESTION_TITLE_MAX_LENGTH = 120
 
 export interface AnswerCorrectionInput {
-  /** The question Quinn answered badly — becomes the snippet title. */
+  /** The question ZenithAssistant answered badly — becomes the snippet title. */
   question: string
-  /** The answer Quinn should have given — becomes the snippet content. */
+  /** The answer ZenithAssistant should have given — becomes the snippet content. */
   idealAnswer: string
   /** Why the original answer was unhelpful, stored on the event only. */
   reason?: string
   conversationId?: ConversationId
   ticketId?: TicketId
-  /** The message id of the Quinn answer being corrected, when known. */
+  /** The message id of the ZenithAssistant answer being corrected, when known. */
   messageId?: string
   /** Snippet audience override; defaults to 'team' (snippet.service default). */
   audience?: SnippetInput['audience']

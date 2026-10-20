@@ -13,7 +13,7 @@
  * anyone can send one. An import (an admin key with `x-import-mode`) is
  * summarised as `api.import`, one row per key per minute with a count.
  */
-import { isUuid, isValidTypeId } from '@quackback/ids'
+import { isUuid, isValidTypeId } from '@zenith/ids'
 import { logger } from '@/lib/server/logger'
 import { getAuditAttribution, getAuditBoundaryActor, isAuditImportMode } from './attribution'
 import { recordAuditEvent, recordAuditRollup, type AuditTarget } from './log'

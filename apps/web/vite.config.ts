@@ -20,7 +20,7 @@ import { serverWorkers } from './src/lib/build/server-workers'
 function stubServerLoggerInClient(): PluginOption {
   const stub = path.resolve(__dirname, 'src/lib/server/logger.client-stub.ts')
   return {
-    name: 'quackback:stub-server-logger-in-client',
+    name: 'zenith:stub-server-logger-in-client',
     enforce: 'pre',
     resolveId(id) {
       // `this.environment` is available in per-environment plugin pipelines.
@@ -28,8 +28,8 @@ function stubServerLoggerInClient(): PluginOption {
       if (
         id === '@/lib/server/logger' ||
         id === '@/lib/server/log-context' ||
-        id === '@quackback/logger' ||
-        id === '@quackback/logger/context' ||
+        id === '@zenith/logger' ||
+        id === '@zenith/logger/context' ||
         /\/lib\/server\/logger(\.ts)?$/.test(id) ||
         /\/lib\/server\/log-context(\.ts)?$/.test(id)
       ) {
@@ -72,12 +72,12 @@ function stubServerLoggerInClient(): PluginOption {
  * own module graph.
  */
 function keepSsrOnlyDepsOutOfClientOptimizer(): PluginOption {
-  const VIRTUAL_PREFIX = '\0quackback:ssr-only-dep:'
+  const VIRTUAL_PREFIX = '\0zenith:ssr-only-dep:'
   // Same shape as Vite's bareImportRE: a package name, not a path.
   const bareSpecifierRE = /^[\w@][^:]*$/
   const stylesheetRE = /\.(css|less|sass|scss|styl|stylus|pcss|postcss|sss)(?:$|\?)/
   return {
-    name: 'quackback:keep-ssr-only-deps-out-of-client-optimizer',
+    name: 'zenith:keep-ssr-only-deps-out-of-client-optimizer',
     apply: 'serve',
     enforce: 'pre',
     resolveId(id, importer, options) {
@@ -105,7 +105,7 @@ function keepSsrOnlyDepsOutOfClientOptimizer(): PluginOption {
  */
 function letNitroServeStorageAssets(): PluginOption {
   return {
-    name: 'quackback:let-nitro-serve-storage-assets',
+    name: 'zenith:let-nitro-serve-storage-assets',
     apply: 'serve',
     configureServer(server) {
       server.middlewares.use((req, _res, next) => {

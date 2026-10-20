@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import type { ChangelogCategoryId } from '@quackback/ids'
+import type { ChangelogCategoryId } from '@zenith/ids'
 import { ConflictError, ValidationError, NotFoundError } from '@/lib/shared/errors'
 
 const mockCategoryFindFirst = vi.fn()

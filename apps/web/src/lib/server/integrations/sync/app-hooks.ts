@@ -1,7 +1,7 @@
 import { db, eq, sql, integrations } from '@/lib/server/db'
 import type { JobSqlExecutor } from '@/lib/server/jobs/job-queue'
 import { getExecuteRows } from '@/lib/server/utils/execute-rows'
-import { fromUuid } from '@quackback/ids'
+import { fromUuid } from '@zenith/ids'
 import { queueSyncOperation } from './ledger'
 import { installationIdentity, syncOperationKey } from './identity'
 

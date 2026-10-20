@@ -9,7 +9,7 @@
  */
 import { z } from 'zod'
 import { createServerFn } from '@tanstack/react-start'
-import type { WorkflowId, WorkflowVersionId, ConversationId } from '@quackback/ids'
+import type { WorkflowId, WorkflowVersionId, ConversationId } from '@zenith/ids'
 import { requireAuth } from './auth-helpers'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import type { Workflow, WorkflowClass, WorkflowStatus, WorkflowRunState } from '@/lib/server/db'

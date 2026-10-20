@@ -1,5 +1,5 @@
 /**
- * The worker's timers and the one-shot `QUACKBACK_CRON_JOB` bodies must stay
+ * The worker's timers and the one-shot `ZENITH_CRON_JOB` bodies must stay
  * one list.
  *
  * Under pooled tenancy every scheduled sweep funnels through `withSweepLock`,
@@ -63,7 +63,7 @@ describe('the sweep inventory', () => {
   it('is not duplicated back into startup.ts', () => {
     // startup.ts used to hold these bodies inline. The schedule must keep
     // calling `jobs.run…()` rather than taking the lock itself, or a one-shot
-    // `QUACKBACK_CRON_JOB` run would drift from the live timers.
+    // `ZENITH_CRON_JOB` run would drift from the live timers.
     expect(sweepLockNames(startupSource).size).toBe(0)
   })
 

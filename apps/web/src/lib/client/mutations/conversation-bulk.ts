@@ -6,7 +6,7 @@
  * priority/labels) along with each affected open thread.
  */
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import type { ConversationId } from '@quackback/ids'
+import type { ConversationId } from '@zenith/ids'
 import type { ConversationPriority } from '@/lib/shared/conversation/types'
 import { bulkUpdateConversationsFn } from '@/lib/server/functions/conversation'
 import { conversationKeys } from '@/lib/client/queries/conversation-keys'

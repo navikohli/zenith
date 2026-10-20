@@ -8,7 +8,7 @@
  * duplicated literal (see that describe block's own doc).
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import type { ConversationId, PrincipalId } from '@quackback/ids'
+import type { ConversationId, PrincipalId } from '@zenith/ids'
 
 let secretKey = 'test-secret-key-csat-email-0123456789'
 vi.mock('@/lib/server/config', () => ({
@@ -47,7 +47,7 @@ vi.mock('@/lib/server/domains/conversation/conversation.service', () => ({ recor
 import { recordCsatViaTokenFn } from '../csat-email'
 import { mintCsatEmailToken } from '@/lib/server/domains/conversation/csat-email-token'
 import { CSAT_FACES } from '@/lib/shared/db-types'
-import { CSAT_REQUEST_EMAIL_FACES } from '@quackback/email'
+import { CSAT_REQUEST_EMAIL_FACES } from '@zenith/email'
 
 const conversationId = 'conversation_1' as ConversationId
 const principalId = 'principal_visitor' as PrincipalId
@@ -140,7 +140,7 @@ describe('mintCsatEmailToken / recordCsatViaTokenFn round trip', () => {
 
 /**
  * packages/email's csat-request template hardcodes its own 5-emoji literal
- * (that package has no dependency on @quackback/db, so it can't import the
+ * (that package has no dependency on @zenith/db, so it can't import the
  * canonical CSAT_FACES — see the template's own doc comment) with nothing at
  * either end tying it back to packages/db's CSAT_FACES (packages/db/src/
  * types.ts) — the ORDER (worst to best) and the exact emoji both have to stay

@@ -46,7 +46,7 @@ vi.mock('../connectors/connector-tools', () => ({
 }))
 vi.mock('../mcp-workspace-tools', () => ({ getWorkspaceMcpSpecByName: async () => null }))
 vi.mock('../assistant.principal', () => ({
-  ensureAssistantPrincipal: async () => ({ id: 'principal_assistant', displayName: 'Quinn' }),
+  ensureAssistantPrincipal: async () => ({ id: 'principal_assistant', displayName: 'Zenith Assistant' }),
 }))
 vi.mock('../tool-audit', () => ({
   claimToolCall: async (input: { pendingActionId: string }) => ({

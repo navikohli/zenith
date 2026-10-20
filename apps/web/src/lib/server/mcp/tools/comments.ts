@@ -11,7 +11,7 @@ import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
 import { createComment, deleteComment } from '@/lib/server/domains/comments/comment.service'
 import { userEditComment } from '@/lib/server/domains/comments/comment.permissions'
 import { addReaction, removeReaction } from '@/lib/server/domains/comments/comment.reactions'
-import type { PostId, PostCommentId } from '@quackback/ids'
+import type { PostId, PostCommentId } from '@zenith/ids'
 import type { McpAuthContext } from '../types'
 import {
   registerTool,

@@ -27,14 +27,14 @@ describe('saas-edge-host', () => {
   it('uses the signed customer host only on a trusted Railway origin', () => {
     const sig = signCustomerHost(SECRET, CUSTOMER)
     const env = {
-      QUACKBACK_SAAS_RAILWAY_ORIGIN: RAILWAY,
-      QUACKBACK_SAAS_EDGE_SECRET: SECRET,
+      ZENITH_SAAS_RAILWAY_ORIGIN: RAILWAY,
+      ZENITH_SAAS_EDGE_SECRET: SECRET,
     } as NodeJS.ProcessEnv
     expect(
       requestWorkspaceHost(
         request(RAILWAY, {
-          'x-quackback-customer-host': CUSTOMER,
-          'x-quackback-customer-host-sig': sig,
+          'x-zenith-customer-host': CUSTOMER,
+          'x-zenith-customer-host-sig': sig,
         }),
         env
       )
@@ -46,12 +46,12 @@ describe('saas-edge-host', () => {
     expect(
       requestWorkspaceHost(
         request(FIRST_PARTY, {
-          'x-quackback-customer-host': CUSTOMER,
-          'x-quackback-customer-host-sig': sig,
+          'x-zenith-customer-host': CUSTOMER,
+          'x-zenith-customer-host-sig': sig,
         }),
         {
-          QUACKBACK_SAAS_RAILWAY_ORIGIN: RAILWAY,
-          QUACKBACK_SAAS_EDGE_SECRET: SECRET,
+          ZENITH_SAAS_RAILWAY_ORIGIN: RAILWAY,
+          ZENITH_SAAS_EDGE_SECRET: SECRET,
         } as NodeJS.ProcessEnv
       )
     ).toBe(FIRST_PARTY)
@@ -61,10 +61,10 @@ describe('saas-edge-host', () => {
     expect(
       requestWorkspaceHost(
         request(RAILWAY, {
-          'x-quackback-customer-host': CUSTOMER,
-          'x-quackback-customer-host-sig': signCustomerHost(SECRET, CUSTOMER),
+          'x-zenith-customer-host': CUSTOMER,
+          'x-zenith-customer-host-sig': signCustomerHost(SECRET, CUSTOMER),
         }),
-        { QUACKBACK_SAAS_RAILWAY_ORIGIN: RAILWAY } as NodeJS.ProcessEnv
+        { ZENITH_SAAS_RAILWAY_ORIGIN: RAILWAY } as NodeJS.ProcessEnv
       )
     ).toBe(RAILWAY)
   })
@@ -89,16 +89,16 @@ describe('saas-edge-host', () => {
 
   it('trusts the vector request at the app boundary', () => {
     const headers = new Headers({
-      'x-quackback-customer-host': 'feedback.example.com',
-      'x-quackback-customer-host-sig':
+      'x-zenith-customer-host': 'feedback.example.com',
+      'x-zenith-customer-host-sig':
         '8a538cb1c6461eec6841832c5070f220a2e1004e46b75606c0c29e5e2320125e',
-      'x-quackback-edge-client-ip': '203.0.113.45',
-      'x-quackback-edge-client-ip-sig':
+      'x-zenith-edge-client-ip': '203.0.113.45',
+      'x-zenith-edge-client-ip-sig':
         '1767225600.ca65233f4c87b76e0394a68b6b857855cd9295730a259e6cb6ab8fd8e06188d6',
     })
     const env = {
-      QUACKBACK_SAAS_RAILWAY_ORIGIN: RAILWAY,
-      QUACKBACK_SAAS_EDGE_SECRET: ' edge-ip-vector-secret\n',
+      ZENITH_SAAS_RAILWAY_ORIGIN: RAILWAY,
+      ZENITH_SAAS_EDGE_SECRET: ' edge-ip-vector-secret\n',
     } as NodeJS.ProcessEnv
     expect(edgeClientIp(headers, RAILWAY, env, 1767225600_000)).toBe('203.0.113.45')
     expect(edgeClientIp(headers, RAILWAY, env, 1767225901_000)).toBeNull()

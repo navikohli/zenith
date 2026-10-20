@@ -16,7 +16,7 @@ import { deriveWorkspaceSecret, sealSecretKeyCanary } from '../vendor/fleet-secr
 
 /** The fleet root this fixture derives every workspace's SECRET_KEY from. */
 const ROOT_KEY = 'pool-cache-test-fleet-root-key-0123456789'
-const STORAGE_ENV_VAR = 'QUACKBACK_TENANT_SECRET_STORAGE_TEST'
+const STORAGE_ENV_VAR = 'ZENITH_TENANT_SECRET_STORAGE_TEST'
 
 /** The canary a workspace's own derived key opens. */
 function canaryFor(workspaceKey: string): string {
@@ -56,7 +56,7 @@ const postgresFactory = vi.fn((dsn: string, options?: Record<string, unknown>) =
 
 vi.mock('postgres', () => ({ default: postgresFactory }))
 
-vi.mock('@quackback/db/client', async (importOriginal) => {
+vi.mock('@zenith/db/client', async (importOriginal) => {
   const actual = await importOriginal<Record<string, unknown>>()
   return { ...actual, createDbFromSql: vi.fn((sql: unknown) => ({ boundTo: sql })) }
 })
@@ -88,7 +88,7 @@ function descriptor(id: string, revision = 1) {
       directUrl: `postgresql://role_${id}@direct.example/${id}`,
       name: id,
       role: `role_${id}`,
-      credentialRef: 'env://QUACKBACK_TENANT_SECRET_TEST',
+      credentialRef: 'env://ZENITH_TENANT_SECRET_TEST',
     },
     fingerprint: { expectedWorkspaceKey: id, expectedSelfReportedWorkspaceId: 'w', stampedAt: 's' },
     secrets: { appSecretsRef: `derived+hkdf://v1/${id}/app-secrets` },
@@ -102,11 +102,11 @@ function descriptor(id: string, revision = 1) {
 async function loadCache() {
   vi.stubEnv('BASE_URL', 'http://localhost:3000')
   vi.stubEnv('SECRET_KEY', 'a'.repeat(64))
-  vi.stubEnv('QUACKBACK_TENANCY', 'pooled')
+  vi.stubEnv('ZENITH_TENANCY', 'pooled')
   vi.stubEnv('DATABASE_URL', '')
-  vi.stubEnv('QUACKBACK_CONTROL_DATABASE_URL', 'postgresql://u@localhost:5432/control')
-  vi.stubEnv('QUACKBACK_TENANT_SECRET_TEST', 'hunter2')
-  vi.stubEnv('QUACKBACK_FLEET_ROOT_KEY', ROOT_KEY)
+  vi.stubEnv('ZENITH_CONTROL_DATABASE_URL', 'postgresql://u@localhost:5432/control')
+  vi.stubEnv('ZENITH_TENANT_SECRET_TEST', 'hunter2')
+  vi.stubEnv('ZENITH_FLEET_ROOT_KEY', ROOT_KEY)
   vi.stubEnv(STORAGE_ENV_VAR, '{"accessKeyId":"AK","secretAccessKey":"SK-0123456789abcdef"}')
   return import('../pool-cache')
 }
@@ -365,9 +365,9 @@ describe('workspace pool cache', () => {
     // Left to the driver, a throwing password provider surfaces fifteen seconds
     // later as CONNECT_TIMEOUT — slow, and naming the wrong cause.
     const cache = await loadCache()
-    vi.stubEnv('QUACKBACK_TENANT_SECRET_TEST', '')
+    vi.stubEnv('ZENITH_TENANT_SECRET_TEST', '')
     await expect(cache.acquireWorkspacePool(descriptor('t1'))).rejects.toThrow(
-      /QUACKBACK_TENANT_SECRET_TEST, which is unset/
+      /ZENITH_TENANT_SECRET_TEST, which is unset/
     )
     expect(cache.getPoolCacheStats().live).toBe(0)
   })

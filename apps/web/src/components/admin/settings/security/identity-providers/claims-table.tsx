@@ -1,5 +1,5 @@
 /**
- * The Profile table: which provider claim sets each Quackback field.
+ * The Profile table: which provider claim sets each Zenith field.
  * Presentation only; the card owns the draft and persists through the
  * operations API.
  *

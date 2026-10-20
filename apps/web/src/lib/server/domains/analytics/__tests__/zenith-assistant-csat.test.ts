@@ -1,21 +1,21 @@
 /**
- * Real-DB coverage for the Quinn CSAT slice of the performance report: only
- * rated conversations that Quinn was actually involved in count — a rated
+ * Real-DB coverage for the ZenithAssistant CSAT slice of the performance report: only
+ * rated conversations that ZenithAssistant was actually involved in count — a rated
  * conversation with no assistant involvement is excluded, and unrated
- * Quinn-handled conversations don't drag the average down.
+ * ZenithAssistant-handled conversations don't drag the average down.
  */
 import { describe, it, expect, beforeEach, afterEach, afterAll, vi } from 'vitest'
 
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { assistantInvolvements, conversations, principal } from '@/lib/server/db'
-import type { ConversationId } from '@quackback/ids'
+import type { ConversationId } from '@zenith/ids'
 
 vi.mock('@/lib/server/db', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/lib/server/db')>()),
   db: (await import('@/lib/server/__tests__/db-test-fixture')).testDb,
 }))
 
-import { getQuinnPerformance } from '../quinn-performance'
+import { getZenithAssistantPerformance } from '../zenith-assistant-performance'
 
 const fixture = await createDbTestFixture({
   probe: async (db) => {
@@ -58,31 +58,31 @@ async function seedInvolvement(conversationId: ConversationId): Promise<void> {
   })
 }
 
-describe.skipIf(!fixture.available)('getQuinnPerformance csat (real DB, rolled back)', () => {
+describe.skipIf(!fixture.available)('getZenithAssistantPerformance csat (real DB, rolled back)', () => {
   beforeEach(fixture.begin)
   afterEach(fixture.rollback)
   afterAll(fixture.close)
 
-  it('averages ratings only over Quinn-handled conversations', async () => {
-    const quinnRated = await seedConversation({
+  it('averages ratings only over ZenithAssistant-handled conversations', async () => {
+    const zenithAssistantRated = await seedConversation({
       csatRating: 5,
       csatSubmittedAt: new Date('2026-06-12T09:00:00Z'),
     })
-    await seedInvolvement(quinnRated)
-    const quinnRatedLow = await seedConversation({
+    await seedInvolvement(zenithAssistantRated)
+    const zenithAssistantRatedLow = await seedConversation({
       csatRating: 3,
       csatSubmittedAt: new Date('2026-06-13T09:00:00Z'),
     })
-    await seedInvolvement(quinnRatedLow)
-    // Rated, but Quinn never touched it: must not enter the Quinn average.
+    await seedInvolvement(zenithAssistantRatedLow)
+    // Rated, but ZenithAssistant never touched it: must not enter the ZenithAssistant average.
     await seedConversation({ csatRating: 1, csatSubmittedAt: new Date('2026-06-12T10:00:00Z') })
 
-    const report = await getQuinnPerformance(FROM, TO)
+    const report = await getZenithAssistantPerformance(FROM, TO)
     expect(report.csat.responseCount).toBe(2)
     expect(report.csat.avgRating).toBe(4)
   })
 
-  it('ignores unrated Quinn-handled conversations and out-of-range ratings', async () => {
+  it('ignores unrated ZenithAssistant-handled conversations and out-of-range ratings', async () => {
     const unrated = await seedConversation({})
     await seedInvolvement(unrated)
     const stale = await seedConversation({
@@ -91,12 +91,12 @@ describe.skipIf(!fixture.available)('getQuinnPerformance csat (real DB, rolled b
     })
     await seedInvolvement(stale)
 
-    const report = await getQuinnPerformance(FROM, TO)
+    const report = await getZenithAssistantPerformance(FROM, TO)
     expect(report.csat.responseCount).toBe(0)
     expect(report.csat.avgRating).toBe(0)
   })
 
-  it('counts a conversation once even when Quinn was involved more than once', async () => {
+  it('counts a conversation once even when ZenithAssistant was involved more than once', async () => {
     const rated = await seedConversation({
       csatRating: 4,
       csatSubmittedAt: new Date('2026-06-12T09:00:00Z'),
@@ -104,7 +104,7 @@ describe.skipIf(!fixture.available)('getQuinnPerformance csat (real DB, rolled b
     await seedInvolvement(rated)
     await seedInvolvement(rated)
 
-    const report = await getQuinnPerformance(FROM, TO)
+    const report = await getZenithAssistantPerformance(FROM, TO)
     expect(report.csat.responseCount).toBe(1)
   })
 })

@@ -3,7 +3,7 @@ import { defineConfig, devices } from '@playwright/test'
 const baseURL = process.env.PLAYWRIGHT_BASE_URL ?? 'http://acme.localhost:3000'
 
 /**
- * Playwright configuration for Quackback E2E tests
+ * Playwright configuration for Zenith E2E tests
  * @see https://playwright.dev/docs/test-configuration
  */
 export default defineConfig({

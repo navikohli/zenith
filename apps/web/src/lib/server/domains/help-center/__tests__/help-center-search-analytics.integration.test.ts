@@ -12,12 +12,12 @@ import { sql } from 'drizzle-orm'
 
 import { helpCenterSearchQueries, type Database } from '@/lib/server/db'
 // oxlint-disable-next-line no-restricted-imports -- legitimate createDb caller: this file owns the global db for its worker (see help-center-segment-gate.integration.test.ts)
-import { createDb } from '@quackback/db/client'
+import { createDb } from '@zenith/db/client'
 import { recordSearchQuery, listTopSearchTerms } from '../help-center.search-analytics'
 
 const CANDIDATE_URLS = [
   process.env.DATABASE_URL,
-  'postgresql://postgres:password@localhost:5432/quackback',
+  'postgresql://postgres:password@localhost:5432/zenith',
 ].filter((u): u is string => !!u)
 
 async function pickWorkingDb(): Promise<{ db: Database; close: () => Promise<void> } | null> {

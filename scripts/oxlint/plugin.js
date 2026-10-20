@@ -133,7 +133,7 @@ const noWithErrorLog = {
 }
 
 export default {
-  meta: { name: 'quackback' },
+  meta: { name: 'zenith' },
   rules: {
     'no-small-menu-text': noSmallMenuText,
     'no-sub-11px-text': noSub11pxText,

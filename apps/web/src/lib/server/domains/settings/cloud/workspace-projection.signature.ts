@@ -17,7 +17,7 @@ export async function verifyWorkspaceProjectionToken<T>(options: {
   const publicKey = await importSPKI(normalizePem(options.publicKeyPem), 'EdDSA')
   const { payload } = await jwtVerify(options.token, publicKey, {
     algorithms: ['EdDSA'],
-    issuer: 'quackback-control-plane',
+    issuer: 'zenith-control-plane',
     audience: options.audience,
     typ: options.type,
     requiredClaims: ['iat', 'workspaceKey', options.claim],

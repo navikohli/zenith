@@ -1,5 +1,5 @@
 /**
- * Headless data + mutations for a single Quinn pending-action proposal: the
+ * Headless data + mutations for a single ZenithAssistant pending-action proposal: the
  * live status query, approve/reject mutations, busy flags, and an inline
  * error string. Both proposed-action cards need the exact same wiring
  * (components/conversation/pending-action-card.tsx for the inbox thread
@@ -18,7 +18,7 @@
  */
 import { useState } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
-import type { AssistantPendingActionId } from '@quackback/ids'
+import type { AssistantPendingActionId } from '@zenith/ids'
 import type { AssistantPendingActionDTO } from '@/lib/server/functions/assistant-actions'
 import { assistantPendingActionQueries } from '@/lib/client/queries/assistant-pending-actions'
 import {

@@ -5,7 +5,7 @@ import {
   type PrincipalId,
   type SlaPolicyId,
   type TicketId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import {
   conversations,

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { createId } from '@quackback/ids'
+import { createId } from '@zenith/ids'
 import { approvalIdFromReference, approvalPath } from '../approvals'
 
 describe('the approval page', () => {

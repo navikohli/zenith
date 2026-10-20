@@ -20,7 +20,7 @@
 import { z } from 'zod'
 import type { StreamChunk } from '@tanstack/ai'
 import { db, conversationMessages, eq, and, desc, isNull } from '@/lib/server/db'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 import { getChatModel } from '@/lib/server/domains/ai/models'
 import type { TransformKind } from '@/lib/shared/assistant/copilot-contract'
 import { runSynthesis, salvageJsonWithSchema } from './synthesis-core'

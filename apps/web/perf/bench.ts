@@ -9,7 +9,7 @@
  *
  * It boots the production build (`bun run build` first) against the bench
  * database (`bun perf/setup-db.ts`) and reads per-request query counts from the
- * server's own log, which QUACKBACK_SERVER_TIMING=1 makes complete.
+ * server's own log, which ZENITH_SERVER_TIMING=1 makes complete.
  *
  *   bun perf/bench.ts                  measure, compare with budgets.json
  *   bun perf/bench.ts --update         lower every ceiling a journey came in under

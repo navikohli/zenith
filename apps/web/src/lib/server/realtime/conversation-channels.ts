@@ -15,7 +15,7 @@
  * routes/api/chat/stream.ts's `ticketId` scope gate): both channels a ticket
  * event reaches are agent audiences, so the full event is safe on both.
  */
-import type { ConversationId, PrincipalId, TicketId } from '@quackback/ids'
+import type { ConversationId, PrincipalId, TicketId } from '@zenith/ids'
 import type {
   ConversationStreamEvent,
   ConversationDTO,

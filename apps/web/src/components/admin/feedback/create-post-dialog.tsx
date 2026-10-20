@@ -217,7 +217,7 @@ export function CreatePostDialog({
                                 videos: true,
                                 tables: true,
                                 embeds: true,
-                                quackbackEmbeds: true,
+                                zenithEmbeds: true,
                                 bubbleMenu: true,
                                 slashMenu: true,
                               }}

@@ -8,7 +8,7 @@
  * that used to abort or destroy, and runs the real executor over the rest.
  *
  * Each run gets its own scratch database and its own staged migrations folder,
- * so nothing depends on the shared `quackback_test`.
+ * so nothing depends on the shared `zenith_test`.
  */
 import { randomUUID } from 'node:crypto'
 import {
@@ -24,13 +24,13 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import postgres from 'postgres'
-import { runMigrations, type MigrationProgress } from '@quackback/db/migrate'
+import { runMigrations, type MigrationProgress } from '@zenith/db/migrate'
 import {
   CONCURRENT_INDEX_SPECS,
   MigrationPreflightError,
   type IndexBuildEvent,
-} from '@quackback/db/schema-ops'
-import { BUNDLED_MIGRATIONS, MIGRATIONS_DIR } from '@quackback/db/schema-version'
+} from '@zenith/db/schema-ops'
+import { BUNDLED_MIGRATIONS, MIGRATIONS_DIR } from '@zenith/db/schema-version'
 
 const ADMIN_URL =
   process.env.DRIFT_CHECK_DATABASE_URL ?? 'postgresql://postgres:password@localhost:5432/postgres'

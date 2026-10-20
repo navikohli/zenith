@@ -15,7 +15,7 @@ permissions:
   contents: read
 
 env:
-  DATABASE_URL: postgresql://postgres:password@localhost:5432/quackback_test
+  DATABASE_URL: postgresql://postgres:password@localhost:5432/zenith_test
   BETTER_AUTH_SECRET: test-secret-for-ci-only-must-be-at-least-32-characters
   BASE_URL: http://localhost:3000
 
@@ -34,7 +34,7 @@ jobs:
       # Build the widget bundle first — apps/web imports
       # packages/widget/dist/browser.js via Vite ?raw, so it must exist
       # before the web build runs.
-      - run: bun run --filter @quackback/widget build
+      - run: bun run --filter @zenith/widget build
       - run: bun run build
         env:
           SKIP_ENV_VALIDATION: true
@@ -46,7 +46,7 @@ jobs:
       # The embeddable widget's eager JavaScript (bytes, chunk count, and
       # libraries that must stay lazy) against its budget.
       - run: bun run --cwd apps/web check:widget-bundle
-      - run: bun run --filter @quackback/web typecheck
+      - run: bun run --filter @zenith/web typecheck
       - run: bun run --cwd packages/widget typecheck
       - run: bun run --cwd packages/widget test
       - run: bun run --cwd packages/db typecheck
@@ -68,7 +68,7 @@ jobs:
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: password
-          POSTGRES_DB: quackback_test
+          POSTGRES_DB: zenith_test
         ports:
           - 5432:5432
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
@@ -113,7 +113,7 @@ jobs:
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: password
-          POSTGRES_DB: quackback_test
+          POSTGRES_DB: zenith_test
         ports:
           - 5432:5432
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
@@ -143,7 +143,7 @@ jobs:
           EOF
       # apps/web imports packages/widget/dist/browser.js via Vite ?raw — the
       # bundle must exist before the dev server starts.
-      - run: bun run --filter @quackback/widget build
+      - run: bun run --filter @zenith/widget build
       - run: bun run db:migrate
       - run: bun run db:seed
       # bunx re-resolves playwright from the registry and can hang for the
@@ -170,7 +170,7 @@ jobs:
           PLAYWRIGHT_REUSE_SERVER: '1'
         run: |
           bun --env-file=.env --cwd apps/web vite dev --host 0.0.0.0 --port 3000 \
-            > /tmp/quackback-e2e.log 2>&1 &
+            > /tmp/zenith-e2e.log 2>&1 &
           ready=0
           for attempt in $(seq 1 90); do
             if curl --fail --silent "$BASE_URL/api/health/ready" > /dev/null; then
@@ -181,7 +181,7 @@ jobs:
           done
           if [ "$ready" -ne 1 ]; then
             echo '===== server log (never became ready) ====='
-            cat /tmp/quackback-e2e.log
+            cat /tmp/zenith-e2e.log
             exit 1
           fi
           # Explicit spec files (not just the tag) so an unrelated spec with a
@@ -196,7 +196,7 @@ jobs:
             tests/widget/identified.spec.ts \
             --grep "@smoke"); then
             echo '===== server log (playwright failed) ====='
-            cat /tmp/quackback-e2e.log
+            cat /tmp/zenith-e2e.log
             exit 1
           fi
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
@@ -220,7 +220,7 @@ jobs:
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: password
-          POSTGRES_DB: quackback_test
+          POSTGRES_DB: zenith_test
         ports: ['5432:5432']
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     steps:
@@ -234,7 +234,7 @@ jobs:
           key: bun-${{ runner.os }}-${{ hashFiles('bun.lock') }}
           restore-keys: bun-${{ runner.os }}-
       - run: bun install --frozen-lockfile
-      - run: bun run --filter @quackback/widget build
+      - run: bun run --filter @zenith/widget build
       - run: bun run build
         env:
           SKIP_ENV_VALIDATION: true
@@ -272,7 +272,7 @@ jobs:
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: password
-          POSTGRES_DB: quackback_test
+          POSTGRES_DB: zenith_test
         ports: ['5432:5432']
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     env:
@@ -289,7 +289,7 @@ jobs:
       - name: Map workspace hostname to loopback
         run: echo "127.0.0.1 acme.localhost" | sudo tee -a /etc/hosts
       - run: bun install --frozen-lockfile
-      - run: bun run --filter @quackback/widget build
+      - run: bun run --filter @zenith/widget build
       - run: bun run db:migrate
       - run: bun run db:seed
       - name: Write runtime environment
@@ -309,7 +309,7 @@ jobs:
           # Bind every interface. Vite's default localhost is sometimes
           # IPv6-only while Node fetch of *.localhost uses 127.0.0.1.
           bun --env-file=.env --cwd apps/web vite dev --host 0.0.0.0 --port 3000 \
-            > /tmp/quackback-live-api.log 2>&1 &
+            > /tmp/zenith-live-api.log 2>&1 &
           ready=0
           for attempt in $(seq 1 90); do
             if curl --fail --silent "$BASE_URL/api/health/ready" > /dev/null; then
@@ -320,13 +320,13 @@ jobs:
           done
           if [ "$ready" -ne 1 ]; then
             echo '===== server log (never became ready) ====='
-            cat /tmp/quackback-live-api.log
+            cat /tmp/zenith-live-api.log
             exit 1
           fi
           if ! (cd apps/web && bunx vitest run --config vitest.config.ts \
             src/lib/server/domains/api/__tests__/api-integration.test.ts); then
             echo '===== server log (vitest failed) ====='
-            cat /tmp/quackback-live-api.log
+            cat /tmp/zenith-live-api.log
             ss -lntp || true
             exit 1
           fi
@@ -341,7 +341,7 @@ jobs:
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: password
-          POSTGRES_DB: quackback_test
+          POSTGRES_DB: zenith_test
         ports: ['5432:5432']
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     env:
@@ -362,7 +362,7 @@ jobs:
           SECRET_KEY=$SECRET_KEY
           BASE_URL=$BASE_URL
           EOF
-      - run: bun run --filter @quackback/widget build
+      - run: bun run --filter @zenith/widget build
       - run: bun run db:migrate
       - run: bun run db:seed
       - uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0

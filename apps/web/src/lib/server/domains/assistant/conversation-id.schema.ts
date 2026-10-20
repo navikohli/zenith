@@ -5,7 +5,7 @@
  * re-declaring the same `.refine(isValidTypeId...)` call.
  */
 import { z } from 'zod'
-import { isValidTypeId } from '@quackback/ids'
+import { isValidTypeId } from '@zenith/ids'
 
 export const conversationIdSchema = z
   .string()

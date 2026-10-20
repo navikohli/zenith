@@ -17,7 +17,7 @@ import { memoryAdapter } from 'better-auth/adapters/memory'
 import { emailOTP } from 'better-auth/plugins'
 import { HTTP_DISABLED_AUTH_PATHS } from '../http-disabled-paths'
 
-const ORIGIN = 'https://acme.quackback.io'
+const ORIGIN = 'https://acme.zenith.io'
 
 const auth = betterAuth({
   baseURL: ORIGIN,

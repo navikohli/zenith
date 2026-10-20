@@ -4,7 +4,7 @@ import { handleDomainError } from '@/lib/server/domains/api/responses'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import { appJsonResponse, preflightResponse } from '@/lib/server/integrations/apps/cors'
 import type { Actor } from '@/lib/server/policy'
-import type { SegmentId } from '@quackback/ids'
+import type { SegmentId } from '@zenith/ids'
 
 export const Route = createFileRoute('/api/v1/apps/search')({
   server: {

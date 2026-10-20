@@ -5,7 +5,7 @@
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { z } from 'zod'
-import type { PrincipalId, UserId } from '@quackback/ids'
+import type { PrincipalId, UserId } from '@zenith/ids'
 import type { CallToolResult } from '@modelcontextprotocol/sdk/types.js'
 import { NotFoundError } from '@/lib/shared/errors'
 
@@ -227,13 +227,13 @@ describe('MCP tool-call audit', () => {
     // The assistant drives the same catalogue in-process for a teammate.
     const call = register({ handler: async () => jsonResult({ id: COMMENT_ID }) })
     await runWithAuditAttribution(
-      { channel: 'assistant', clientName: 'Quinn', onBehalfOfPrincipalId: PRINCIPAL },
+      { channel: 'assistant', clientName: 'Zenith Assistant', onBehalfOfPrincipalId: PRINCIPAL },
       () => call({ postId: POST_ID, content: 'x' })
     )
     expect(mockInsertValues.mock.calls[0][0]).toMatchObject({
       eventType: 'mcp.tool_call',
       channel: 'assistant',
-      clientName: 'Quinn',
+      clientName: 'Zenith Assistant',
       onBehalfOfPrincipalId: PRINCIPAL,
       actorIp: null,
     })

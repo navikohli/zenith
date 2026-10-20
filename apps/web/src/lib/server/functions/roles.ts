@@ -5,7 +5,7 @@
  */
 import { createServerFn } from '@tanstack/react-start'
 import { z } from 'zod'
-import { isValidTypeId, type RoleId } from '@quackback/ids'
+import { isValidTypeId, type RoleId } from '@zenith/ids'
 import { PERMISSIONS, type PermissionKey } from '@/lib/shared/permissions'
 import { requireAuth } from './auth-helpers'
 import { actorFromAuth } from '@/lib/server/audit/log'

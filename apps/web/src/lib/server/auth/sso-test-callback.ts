@@ -20,7 +20,7 @@ import {
   SSO_TEST_NONCE_NOT_RETURNED_LABEL,
   SSO_TEST_POSTMESSAGE_SOURCE,
 } from '@/lib/shared/sso-test-keys'
-import type { UserId } from '@quackback/ids'
+import type { UserId } from '@zenith/ids'
 import { escapeHtmlAttr } from '@/lib/shared/utils/sanitize'
 import { logger } from '@/lib/server/logger'
 import type { SsoTestDiagnostic, TestSession } from '@/lib/server/functions/sso-test'

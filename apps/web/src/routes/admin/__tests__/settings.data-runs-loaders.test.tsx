@@ -47,7 +47,7 @@ vi.mock('@/lib/server/domains/export/export-run.service', () => ({
       {
         id: 'export_run_1',
         status: 'completed',
-        fileName: 'quackback-export-acme.zip',
+        fileName: 'zenith-export-acme.zip',
         s3Key: 'exports/export_run_1.zip',
         sizeBytes: 2048,
         entityCounts: { posts: 12 },

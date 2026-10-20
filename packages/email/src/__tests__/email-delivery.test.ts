@@ -69,15 +69,15 @@ describe.skipIf(!mailpitAvailable)('email delivery (real SMTP via mailpit)', () 
   })
 
   it('preserves the RFC 5322 threading headers a reply depends on', async () => {
-    const parentId = 'conv-42-msg-1@quackback.test'
-    const rootId = 'conv-42-root@quackback.test'
+    const parentId = 'conv-42-msg-1@zenith.test'
+    const rootId = 'conv-42-root@zenith.test'
 
     await sendRawEmail({
       from: sendingAs('Support <support@acme.test>'),
       to: 'customer@example.test',
       subject: 'Re: your question',
       html: '<p>Following up.</p>',
-      messageId: 'conv-42-msg-2@quackback.test',
+      messageId: 'conv-42-msg-2@zenith.test',
       inReplyTo: parentId,
       references: [rootId, parentId],
     })
@@ -88,7 +88,7 @@ describe.skipIf(!mailpitAvailable)('email delivery (real SMTP via mailpit)', () 
     // Angle brackets are added by buildThreadingHeaders and are what makes a
     // client thread the message rather than start a new conversation.
     expect(headers['Message-Id']?.[0] ?? headers['Message-ID']?.[0]).toBe(
-      '<conv-42-msg-2@quackback.test>'
+      '<conv-42-msg-2@zenith.test>'
     )
     expect(headers['In-Reply-To']?.[0]).toBe(`<${parentId}>`)
     expect(headers['References']?.[0]).toBe(`<${rootId}> <${parentId}>`)
@@ -131,11 +131,11 @@ describe.skipIf(!mailpitAvailable)('email delivery (real SMTP via mailpit)', () 
   })
 
   it('refuses to deliver to a synthetic anonymous address', async () => {
-    // Anonymous principals carry temp-<id>@anon.quackback.io, which is not
+    // Anonymous principals carry temp-<id>@anon.zenith.io, which is not
     // deliverable. The guard should drop it before it reaches the transport.
     const result = await sendRawEmail({
       from: sendingAs('Support <support@acme.test>'),
-      to: 'temp-abc123@anon.quackback.io',
+      to: 'temp-abc123@anon.zenith.io',
       subject: 'Should never arrive',
       html: '<p>nope</p>',
     })

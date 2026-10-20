@@ -90,7 +90,7 @@ export function CreateApiKeyDialog({ open, onOpenChange, onKeyCreated }: CreateA
         <DialogHeader>
           <DialogTitle>Create API key</DialogTitle>
           <DialogDescription>
-            Create a new API key to authenticate with the Quackback API.
+            Create a new API key to authenticate with the Zenith API.
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit}>

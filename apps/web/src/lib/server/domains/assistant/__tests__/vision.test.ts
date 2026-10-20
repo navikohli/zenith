@@ -1,5 +1,5 @@
 /**
- * Quinn vision: a customer screenshot reaches the model as image input ONLY
+ * ZenithAssistant vision: a customer screenshot reaches the model as image input ONLY
  * when the effective assistant chat model accepts image input; on a text-only
  * model the same thread degrades to a textual "[image attached]" note and not
  * a single image part is ever emitted.

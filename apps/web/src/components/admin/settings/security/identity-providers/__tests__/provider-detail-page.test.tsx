@@ -15,7 +15,7 @@ import { render, screen, fireEvent, waitFor, within } from '@testing-library/rea
 import { IntlProvider } from 'react-intl'
 import userEvent from '@testing-library/user-event'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import type { IdentityProviderId } from '@quackback/ids'
+import type { IdentityProviderId } from '@zenith/ids'
 import type { IdentityProvider } from '@/lib/server/domains/settings/identity-providers.service'
 import type { VerifiedDomain } from '@/lib/server/domains/settings/settings.types'
 import { ProviderDetailPage } from '../provider-detail-page'
@@ -349,7 +349,7 @@ describe('<ProviderDetailPage> page shell', () => {
       'Roles',
     ])
     expect(
-      screen.getByText('What Quackback takes from Acme SSO for each person.')
+      screen.getByText('What Zenith takes from Acme SSO for each person.')
     ).toBeInTheDocument()
     expect(screen.getAllByRole('navigation')).toHaveLength(1)
     expect(screen.queryByRole('heading', { name: /Delete|Remove|Danger/ })).not.toBeInTheDocument()

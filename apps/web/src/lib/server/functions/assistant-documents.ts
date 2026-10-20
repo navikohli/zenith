@@ -1,6 +1,6 @@
 /**
  * Knowledge-document server fns: upload (base64 body), list, and delete for
- * admin-uploaded PDFs and Word documents Quinn grounds answers on. Gates on
+ * admin-uploaded PDFs and Word documents ZenithAssistant grounds answers on. Gates on
  * either AI permission, same as snippets (assistant-snippets.ts) and
  * assistant-settings.ts.
  *
@@ -12,7 +12,7 @@
  */
 import { z } from 'zod'
 import { createServerFn } from '@tanstack/react-start'
-import type { AssistantDocumentId } from '@quackback/ids'
+import type { AssistantDocumentId } from '@zenith/ids'
 import { logger } from '@/lib/server/logger'
 import { requireAuth, assertAnyPermission } from './auth-helpers'
 import { AI_ANY_PERMISSIONS } from '@/lib/shared/ai-permissions'

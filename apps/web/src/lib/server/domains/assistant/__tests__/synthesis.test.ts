@@ -239,7 +239,7 @@ describe('synthesizeAnswer', () => {
     const mistyped = 'kb_article_01m1cxgr9qf22rxtv2wk5jrchg'
     const object = {
       kind: 'grounded',
-      answer: 'Quackback collects feedback [1].',
+      answer: 'Zenith collects feedback [1].',
       sources: [{ articleId: mistyped }],
     }
     mockChat.mockReturnValueOnce(chunkStream(completeRun(object, JSON.stringify(object))))
@@ -248,7 +248,7 @@ describe('synthesizeAnswer', () => {
 
     expect(result).toEqual({
       kind: 'grounded',
-      answer: 'Quackback collects feedback [1].',
+      answer: 'Zenith collects feedback [1].',
       sources: [{ articleId: realId }],
     })
   })
@@ -278,7 +278,7 @@ describe('synthesizeAnswer', () => {
     const garbled = 'kb_article_01m1cxgr1qf22rxv2wk5jrchg'
     const object = {
       kind: 'grounded',
-      answer: 'Quackback collects feedback [1].',
+      answer: 'Zenith collects feedback [1].',
       sources: [{ articleId: garbled }],
     }
     mockChat.mockReturnValueOnce(chunkStream(completeRun(object, JSON.stringify(object))))
@@ -287,7 +287,7 @@ describe('synthesizeAnswer', () => {
 
     expect(result).toEqual({
       kind: 'grounded',
-      answer: 'Quackback collects feedback [1].',
+      answer: 'Zenith collects feedback [1].',
       sources: [{ articleId: realId }],
     })
   })

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Quackback</title>
+  <title>Zenith</title>
   <style>
     body { margin: 0; font-family: system-ui, sans-serif; }
     .loading { display: flex; align-items: center; justify-content: center; height: 100vh; color: #666; font-size: 14px; }
@@ -19,17 +19,17 @@
       var client = ZAFClient.init();
 
       client.metadata().then(function(metadata) {
-        var baseUrl = metadata.settings.quackback_url;
+        var baseUrl = metadata.settings.zenith_url;
         if (!baseUrl) {
           document.getElementById('app').className = 'error';
-          document.getElementById('app').textContent = 'Quackback URL not configured. Go to app settings.';
+          document.getElementById('app').textContent = 'Zenith URL not configured. Go to app settings.';
           return;
         }
 
         // Remove trailing slash
         baseUrl = baseUrl.replace(/\/+$/, '');
 
-        // Redirect the iframe to the Quackback sidebar route.
+        // Redirect the iframe to the Zenith sidebar route.
         // Pass app_guid and origin so ZAFClient.init() works in the new page.
         var params = new URLSearchParams(window.location.search);
         var sidebarUrl = baseUrl + '/apps/zendesk/sidebar'

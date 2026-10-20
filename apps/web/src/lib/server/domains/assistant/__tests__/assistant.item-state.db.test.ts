@@ -11,7 +11,7 @@
  * pairing notes at both sites).
  *
  * Every test runs inside the db-test-fixture rollback transaction, so
- * quackback_test stays clean.
+ * zenith_test stays clean.
  */
 import { describe, it, expect, beforeEach, afterEach, afterAll, vi } from 'vitest'
 import {
@@ -22,7 +22,7 @@ import {
   type TicketId,
   type TicketStatusId,
   type UserId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import {
   conversations,

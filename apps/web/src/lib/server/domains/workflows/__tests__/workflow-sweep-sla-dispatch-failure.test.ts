@@ -16,7 +16,7 @@ import { describe, it, expect, beforeEach, afterEach, afterAll, vi } from 'vites
 
 import { createDbTestFixture } from '@/lib/server/__tests__/db-test-fixture'
 import { workflows } from '@/lib/server/db'
-import type { ConversationId, SlaPolicyId } from '@quackback/ids'
+import type { ConversationId, SlaPolicyId } from '@zenith/ids'
 import type { WorkflowGraph } from '../graph'
 import type { EventConversationRef } from '@/lib/server/events/types'
 

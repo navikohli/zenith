@@ -4,7 +4,7 @@
  */
 import { useQuery } from '@tanstack/react-query'
 import { useServerFn } from '@tanstack/react-start'
-import type { IdentityProviderId } from '@quackback/ids'
+import type { IdentityProviderId } from '@zenith/ids'
 import { listProviderAdminsFn } from '@/lib/server/functions/sso'
 import type { ProviderAdmin } from '@/lib/server/domains/settings/identity-provider-accounts'
 import { IDENTITY_PROVIDERS_KEY } from './provider-shared'

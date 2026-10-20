@@ -9,7 +9,7 @@
  * client holding the source still mutates the surviving thread.
  */
 import { db, posts, postVotes, postComments, boards, eq, sql } from '@/lib/server/db'
-import { isValidTypeId, toUuid, type PostId } from '@quackback/ids'
+import { isValidTypeId, toUuid, type PostId } from '@zenith/ids'
 import { getExecuteRows } from '@/lib/server/utils'
 import { notTestPrincipal } from '@/lib/server/test-data'
 

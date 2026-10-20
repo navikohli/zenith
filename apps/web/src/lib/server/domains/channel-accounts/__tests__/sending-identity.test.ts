@@ -4,7 +4,7 @@
  * a domain is verified.
  */
 import { describe, it, expect } from 'vitest'
-import type { SesDomainIdentity } from '@quackback/email/ses-identity'
+import type { SesDomainIdentity } from '@zenith/email/ses-identity'
 import {
   MAIL_FROM_LABEL,
   OWNERSHIP_RECORD_HOST,
@@ -133,7 +133,7 @@ describe('the records a domain owner has to publish', () => {
     // while looking checked. Treated as absent, so a real one is re-issued.
     expect(
       ownershipRecordsOf([
-        { type: 'TXT', host: '_quackback', value: 'v=spf1 -all', purpose: 'ownership' },
+        { type: 'TXT', host: '_zenith', value: 'v=spf1 -all', purpose: 'ownership' },
       ])
     ).toEqual([])
     // And the record's TYPE is checked too, not only its purpose.
@@ -141,7 +141,7 @@ describe('the records a domain owner has to publish', () => {
       ownershipRecordsOf([
         {
           type: 'CNAME',
-          host: '_quackback',
+          host: '_zenith',
           value: `${OWNERSHIP_VALUE_PREFIX}tok`,
           purpose: 'ownership',
         },
@@ -156,7 +156,7 @@ describe('the records a domain owner has to publish', () => {
 
 describe('domains that may never be claimed', () => {
   const env = {
-    EMAIL_FROM: 'Quackback <notifications@mail.platform.test>',
+    EMAIL_FROM: 'Zenith <notifications@mail.platform.test>',
     EMAIL_INBOUND_DOMAIN: 'inbound.platform.test',
   }
 

@@ -23,7 +23,7 @@ import { WidgetCommentForm } from './widget-comment-form'
 import { WidgetPortalTitle } from './widget-portal-title'
 import { WidgetPostDetailSkeleton } from './widget-skeletons'
 import type { TiptapContent } from '@/lib/shared/db-types'
-import type { PostId } from '@quackback/ids'
+import type { PostId } from '@zenith/ids'
 import { useWidgetMediaUpload } from './use-widget-image-upload'
 
 interface StatusInfo {
@@ -103,7 +103,7 @@ export function WidgetPostDetail({ postId, statuses }: WidgetPostDetailProps) {
       isIdentified: isIdentified && canPortalHandoff,
       ott,
     })
-    sendToHost({ type: 'quackback:navigate', url })
+    sendToHost({ type: 'zenith:navigate', url })
   }, [post, isIdentified, canPortalHandoff])
 
   /** Submit a comment (root or reply). */

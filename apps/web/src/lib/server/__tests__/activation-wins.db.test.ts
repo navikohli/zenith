@@ -1,6 +1,6 @@
 import { afterAll, afterEach, beforeEach, expect, it, vi } from 'vitest'
 import { createDbTestFixture, testDb } from './db-test-fixture'
-import { createId, type PrincipalId, type UserId } from '@quackback/ids'
+import { createId, type PrincipalId, type UserId } from '@zenith/ids'
 import {
   boards,
   conversationMessages,

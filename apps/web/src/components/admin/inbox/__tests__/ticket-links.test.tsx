@@ -2,7 +2,7 @@
 import { describe, expect, it, vi, afterEach } from 'vitest'
 import { render, screen, cleanup } from '@testing-library/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import type { TicketId } from '@quackback/ids'
+import type { TicketId } from '@zenith/ids'
 import type { TicketDTO } from '@/lib/server/domains/tickets'
 
 // ticketQueries imports the whole ticket fn module; stub it so no server code loads.

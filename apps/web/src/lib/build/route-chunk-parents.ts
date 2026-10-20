@@ -59,7 +59,7 @@ export function routeChunksImportTheirParent(routeTreeFile: string): Plugin {
   let parents: Map<string, string | null> | undefined
   const exportsComponent = new Map<string, Promise<boolean>>()
   return {
-    name: 'quackback:route-chunks-import-their-parent',
+    name: 'zenith:route-chunks-import-their-parent',
     apply: 'build',
     enforce: 'post',
     transform: {

@@ -10,7 +10,7 @@ import {
   useRoadmapPostsByRoadmap,
   flattenRoadmapViewPosts,
 } from '@/lib/client/hooks/use-roadmap-posts-query'
-import type { RoadmapId, PostStatusId } from '@quackback/ids'
+import type { RoadmapId, PostStatusId } from '@zenith/ids'
 import { useIntl } from 'react-intl'
 import type { RoadmapFilters } from '@/lib/shared/types'
 

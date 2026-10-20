@@ -1,5 +1,5 @@
 import { queryOptions } from '@tanstack/react-query'
-import type { PostId, TicketId } from '@quackback/ids'
+import type { PostId, TicketId } from '@zenith/ids'
 import { fetchActivityForPost } from '@/lib/server/functions/activity'
 import { fetchTicketActivityFn } from '@/lib/server/functions/tickets'
 

@@ -5,7 +5,7 @@
  */
 
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import type { KbCategoryId, KbArticleId } from '@quackback/ids'
+import type { KbCategoryId, KbArticleId } from '@zenith/ids'
 import {
   createCategoryFn,
   updateCategoryFn,

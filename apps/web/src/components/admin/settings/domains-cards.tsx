@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import type { CustomDomainInstruction } from '@/lib/server/control-plane/client'
 
-export function QuackbackUrlCard(props: {
+export function ZenithUrlCard(props: {
   platformLabel: string
   domainSuffix: string
   pending: boolean

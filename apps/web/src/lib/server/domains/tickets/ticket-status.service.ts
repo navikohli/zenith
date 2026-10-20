@@ -22,7 +22,7 @@ import {
   type TicketStatusCategory,
   type TicketStage,
 } from '@/lib/server/db'
-import type { TicketStatusId } from '@quackback/ids'
+import type { TicketStatusId } from '@zenith/ids'
 import {
   assertHexColor,
   assertTrimmedName,

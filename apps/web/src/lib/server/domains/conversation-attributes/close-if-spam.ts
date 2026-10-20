@@ -1,5 +1,5 @@
 /**
- * Close-spam harvest: when Quinn classifies a conversation as spam (select
+ * Close-spam harvest: when ZenithAssistant classifies a conversation as spam (select
  * key `spam`, option label `Spam`) and the workspace setting is on, close
  * via a bounded service actor — the same close a workflow `close` action
  * uses, not the inbound spam-file primitive. A service-actor close is what
@@ -7,7 +7,7 @@
  * AI-sourced attribute writes land — teammate-authored flips must never
  * reach this function.
  */
-import type { ConversationId } from '@quackback/ids'
+import type { ConversationId } from '@zenith/ids'
 import { logger } from '@/lib/server/logger'
 import { boundedServiceActor } from '@/lib/server/policy/service-actor'
 import { AUTOMATION_PERMISSIONS } from '@/lib/server/domains/workflows/workflow-actor-permissions'

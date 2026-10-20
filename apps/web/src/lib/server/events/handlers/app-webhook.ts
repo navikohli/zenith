@@ -1,7 +1,7 @@
 /**
  * App-webhook delivery hook (EVENTING-V2 WO-13). Signed HTTP delivery to a
  * third-party app's endpoint, mirroring the customer-webhook hook: HMAC-SHA256
- * over `${timestamp}.${payload}`, X-Quackback-* headers, safeFetch (SSRF
+ * over `${timestamp}.${payload}`, X-Zenith-* headers, safeFetch (SSRF
  * chokepoint), and hook_deliveries idempotency. The app's signing secret lives
  * in apps.webhook_secret_enc (encrypted via integrations/encryption) and is
  * decrypted just-in-time here — it never travels in the BullMQ job payload.
@@ -25,7 +25,7 @@ import { appMatches } from '../resolvers/app-webhook.resolver'
 
 const log = logger.child({ component: 'app-webhook' })
 const TIMEOUT_MS = 5_000
-const USER_AGENT = 'Quackback-Webhook/1.0 (+https://quackback.io)'
+const USER_AGENT = 'Zenith-Webhook/1.0 (+/source.html)'
 
 interface AppWebhookConfig {
   appId: string
@@ -94,9 +94,9 @@ export const appWebhookHook: HookHandler = {
         headers: {
           'Content-Type': 'application/json',
           'User-Agent': USER_AGENT,
-          'X-Quackback-Signature': `sha256=${signature}`,
-          'X-Quackback-Timestamp': String(timestamp),
-          'X-Quackback-Event': event.type,
+          'X-Zenith-Signature': `sha256=${signature}`,
+          'X-Zenith-Timestamp': String(timestamp),
+          'X-Zenith-Event': event.type,
         },
         body: payload,
         timeoutMs: TIMEOUT_MS,

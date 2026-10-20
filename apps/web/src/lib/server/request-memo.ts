@@ -32,7 +32,7 @@
 import { getLogContext } from '@/lib/server/log-context'
 import { currentWorkspaceNamespace } from '@/lib/server/workspaces/workspace-keyed'
 
-const MEMO_KEY = Symbol.for('quackback.authRequestMemo')
+const MEMO_KEY = Symbol.for('zenith.authRequestMemo')
 
 interface AuthMemo {
   [key: string]: Promise<unknown> | undefined

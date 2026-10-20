@@ -46,7 +46,7 @@ function makeEntry(over: Partial<IntegrationSettingsEntry> = {}): IntegrationSet
     setup: {
       title: 'Connect your Slack workspace',
       description: 'Notifications when users submit feedback.',
-      steps: [<p key="1">Authorize Quackback</p>],
+      steps: [<p key="1">Authorize Zenith</p>],
     },
     renderConfig: () => <p>channel config</p>,
     ...over,
@@ -118,7 +118,7 @@ describe('IntegrationDetail before connecting', () => {
 
   it('keeps the setup steps and uses the one-clause catalog description', () => {
     renderDetail()
-    expect(screen.getByText('Authorize Quackback')).toBeInTheDocument()
+    expect(screen.getByText('Authorize Zenith')).toBeInTheDocument()
     expect(
       screen.getByText('Send feedback from Slack and get notified about changes.')
     ).toBeInTheDocument()
@@ -152,7 +152,7 @@ describe('IntegrationDetail once connected', () => {
     expect(screen.getByText('Health')).toBeInTheDocument()
     expect(screen.getByText('channel config')).toBeInTheDocument()
     expect(within(header(container)).getByRole('button', { name: 'Disconnect' })).toBeTruthy()
-    expect(screen.queryByText('Authorize Quackback')).toBeNull()
+    expect(screen.queryByText('Authorize Zenith')).toBeNull()
   })
 
   it('names the workspace in the description', () => {

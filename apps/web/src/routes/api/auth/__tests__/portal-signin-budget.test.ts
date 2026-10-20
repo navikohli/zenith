@@ -99,7 +99,7 @@ vi.mock('@/lib/server/domains/principals/bootstrap-admin', () => ({
   findSetupClaimant: async () => undefined,
 }))
 
-vi.mock('@quackback/email', () => ({
+vi.mock('@zenith/email', () => ({
   isEmailConfigured: () => true,
   sendMagicLinkEmail: hoisted.sendMagicLinkEmail,
   sendSignupNotAllowedEmail: hoisted.sendSignupNotAllowedEmail,
@@ -107,7 +107,7 @@ vi.mock('@quackback/email', () => ({
 
 vi.mock('@/lib/server/storage/s3', () => ({ getEmailSafeUrl: () => null }))
 vi.mock('@/lib/server/config', () => ({
-  config: { baseUrl: 'https://acme.quackback.io', trustedProxyHops: 1 },
+  config: { baseUrl: 'https://acme.zenith.io', trustedProxyHops: 1 },
 }))
 vi.mock('@/lib/server/audit/log', () => ({ recordAuditEvent: async () => undefined }))
 vi.mock('@/lib/server/auth/widget-rate-limit', () => ({
@@ -186,7 +186,7 @@ const KNOWN = 'regular@acme.example'
 const STRANGER = 'stranger@evil.example'
 
 function post(email: string): Request {
-  return new Request('https://acme.quackback.io/api/auth/portal-signin', {
+  return new Request('https://acme.zenith.io/api/auth/portal-signin', {
     method: 'POST',
     headers: { 'content-type': 'application/json', 'x-forwarded-for': IP },
     body: JSON.stringify({ email, callbackURL: '/' }),

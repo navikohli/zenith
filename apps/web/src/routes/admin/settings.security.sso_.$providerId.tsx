@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import type { IdentityProviderId } from '@quackback/ids'
+import type { IdentityProviderId } from '@zenith/ids'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import { assertRoutePermission } from '@/lib/shared/route-permission'
 import { settingsQueries } from '@/lib/client/queries/settings'

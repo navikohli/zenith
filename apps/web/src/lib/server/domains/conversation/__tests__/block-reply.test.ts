@@ -4,7 +4,7 @@
  * mismatched kind, stale/second). No DB — sendVisitorMessage does the lookups.
  */
 import { describe, it, expect } from 'vitest'
-import type { ConversationMessageId } from '@quackback/ids'
+import type { ConversationMessageId } from '@zenith/ids'
 import { resolveBlockReply, type BlockMessageRef } from '../block-reply'
 
 const blockId = 'conversation_msg_block1' as ConversationMessageId

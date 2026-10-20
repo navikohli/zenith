@@ -39,7 +39,7 @@ import {
 import { cn, formatMonthYear } from '@/lib/shared/utils'
 import type { PostStatusEntity } from '@/lib/shared/db-types'
 import type { OwnerRef } from '@/lib/server/functions/post-owner-context'
-import type { PostId, PostStatusId, PostTagId, BoardId, PrincipalId } from '@quackback/ids'
+import type { PostId, PostStatusId, PostTagId, BoardId, PrincipalId } from '@zenith/ids'
 
 export function MetadataSidebarSkeleton({
   variant = 'column',

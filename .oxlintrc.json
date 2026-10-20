@@ -40,14 +40,14 @@
       {
         "patterns": [
           {
-            "group": ["@quackback/db", "@quackback/db/*"],
+            "group": ["@zenith/db", "@zenith/db/*"],
             "message": "Import from '@/lib/server/db' (server) or '@/lib/shared/db-types' (client) instead."
           }
         ]
       }
     ],
-    "quackback/no-small-menu-text": "error",
-    "quackback/no-sub-11px-text": "error"
+    "zenith/no-small-menu-text": "error",
+    "zenith/no-sub-11px-text": "error"
   },
   "overrides": [
     {
@@ -88,7 +88,7 @@
           {
             "patterns": [
               {
-                "group": ["@quackback/db", "@quackback/db/*"],
+                "group": ["@zenith/db", "@zenith/db/*"],
                 "message": "Import from '@/lib/server/db' (server) or '@/lib/shared/db-types' (client) instead."
               },
               {
@@ -104,8 +104,8 @@
       "files": ["**/src/lib/server/functions/**/*.ts"],
       "excludeFiles": ["**/__tests__/**"],
       "rules": {
-        "quackback/no-server-fn-log-rethrow": "error",
-        "quackback/no-with-error-log": "error"
+        "zenith/no-server-fn-log-rethrow": "error",
+        "zenith/no-with-error-log": "error"
       }
     },
     {

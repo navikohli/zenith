@@ -52,9 +52,9 @@ async function serve(
 describe('resolveWorkspaceAndContinue', () => {
   beforeEach(() => {
     vi.clearAllMocks()
-    delete process.env.QUACKBACK_SAAS_FALLBACK_ORIGIN
-    delete process.env.QUACKBACK_SAAS_RAILWAY_ORIGIN
-    delete process.env.QUACKBACK_SAAS_EDGE_SECRET
+    delete process.env.ZENITH_SAAS_FALLBACK_ORIGIN
+    delete process.env.ZENITH_SAAS_RAILWAY_ORIGIN
+    delete process.env.ZENITH_SAAS_EDGE_SECRET
   })
 
   it('serves the workspace inside the workspace scope when the record is good', async () => {
@@ -140,8 +140,8 @@ describe('resolveWorkspaceAndContinue', () => {
   })
 
   it('resolves a third-party custom host from a signed customer-host header on a trusted origin', async () => {
-    process.env.QUACKBACK_SAAS_FALLBACK_ORIGIN = 'origin.saas.example'
-    process.env.QUACKBACK_SAAS_EDGE_SECRET = 'test-edge-secret'
+    process.env.ZENITH_SAAS_FALLBACK_ORIGIN = 'origin.saas.example'
+    process.env.ZENITH_SAAS_EDGE_SECRET = 'test-edge-secret'
     const { signCustomerHost } = await import('../saas-edge-host')
     acquireScopeForHost.mockResolvedValue({
       kind: 'unknown_host',
@@ -152,8 +152,8 @@ describe('resolveWorkspaceAndContinue', () => {
       request: new Request('http://origin.saas.example/', {
         headers: {
           host: 'origin.saas.example',
-          'x-quackback-customer-host': 'shop.customer.test',
-          'x-quackback-customer-host-sig': signCustomerHost(
+          'x-zenith-customer-host': 'shop.customer.test',
+          'x-zenith-customer-host-sig': signCustomerHost(
             'test-edge-secret',
             'shop.customer.test'
           ),
@@ -166,8 +166,8 @@ describe('resolveWorkspaceAndContinue', () => {
   })
 
   it('ignores a spoofed customer-host header when the request Host is not a trusted origin', async () => {
-    process.env.QUACKBACK_SAAS_FALLBACK_ORIGIN = 'origin.saas.example'
-    process.env.QUACKBACK_SAAS_EDGE_SECRET = 'test-edge-secret'
+    process.env.ZENITH_SAAS_FALLBACK_ORIGIN = 'origin.saas.example'
+    process.env.ZENITH_SAAS_EDGE_SECRET = 'test-edge-secret'
     const { signCustomerHost } = await import('../saas-edge-host')
     acquireScopeForHost.mockResolvedValue({ kind: 'unknown_host', hostname: 'south.example.com' })
     const { resolveWorkspaceAndContinue } = await import('../request-scope')
@@ -175,8 +175,8 @@ describe('resolveWorkspaceAndContinue', () => {
       request: new Request('http://south.example.com/', {
         headers: {
           host: 'south.example.com',
-          'x-quackback-customer-host': 'shop.customer.test',
-          'x-quackback-customer-host-sig': signCustomerHost(
+          'x-zenith-customer-host': 'shop.customer.test',
+          'x-zenith-customer-host-sig': signCustomerHost(
             'test-edge-secret',
             'shop.customer.test'
           ),
@@ -189,8 +189,8 @@ describe('resolveWorkspaceAndContinue', () => {
   })
 
   it('ignores a customer-host header on the Railway origin when the HMAC is missing or wrong', async () => {
-    process.env.QUACKBACK_SAAS_RAILWAY_ORIGIN = 'app.up.example'
-    process.env.QUACKBACK_SAAS_EDGE_SECRET = 'test-edge-secret'
+    process.env.ZENITH_SAAS_RAILWAY_ORIGIN = 'app.up.example'
+    process.env.ZENITH_SAAS_EDGE_SECRET = 'test-edge-secret'
     acquireScopeForHost.mockResolvedValue({
       kind: 'unknown_host',
       hostname: 'app.up.example',
@@ -200,8 +200,8 @@ describe('resolveWorkspaceAndContinue', () => {
       request: new Request('http://app.up.example/', {
         headers: {
           host: 'app.up.example',
-          'x-quackback-customer-host': 'shop.customer.test',
-          'x-quackback-customer-host-sig': '00'.repeat(32),
+          'x-zenith-customer-host': 'shop.customer.test',
+          'x-zenith-customer-host-sig': '00'.repeat(32),
         },
       }),
       next: async () => 'served',
@@ -223,15 +223,15 @@ describe('resolveWorkspaceAndContinue', () => {
       acquireScopeForHost.mockResolvedValue({
         kind: 'redirect',
         workspaceKey: 'inst_a',
-        hostname: 'old.quackback.co.uk',
-        location: 'https://new.quackback.co.uk',
+        hostname: 'old.zenith.co.uk',
+        location: 'https://new.zenith.co.uk',
       })
-      const res = (await serve('old.quackback.co.uk', {
+      const res = (await serve('old.zenith.co.uk', {
         method,
-        url: 'http://old.quackback.co.uk/posts/one?sort=new',
+        url: 'http://old.zenith.co.uk/posts/one?sort=new',
       })) as Response
       expect(res.status).toBe(308)
-      expect(res.headers.get('location')).toBe('https://new.quackback.co.uk/posts/one?sort=new')
+      expect(res.headers.get('location')).toBe('https://new.zenith.co.uk/posts/one?sort=new')
       expect(res.headers.get('cache-control')).toBe('no-store')
     }
   )
@@ -242,10 +242,10 @@ describe('resolveWorkspaceAndContinue', () => {
       acquireScopeForHost.mockResolvedValue({
         kind: 'redirect',
         workspaceKey: 'inst_a',
-        hostname: 'old.quackback.co.uk',
-        location: 'https://new.quackback.co.uk',
+        hostname: 'old.zenith.co.uk',
+        location: 'https://new.zenith.co.uk',
       })
-      const res = (await serve('old.quackback.co.uk', { method })) as Response
+      const res = (await serve('old.zenith.co.uk', { method })) as Response
       expect(res.status).toBe(409)
       expect(res.headers.get('location')).toBeNull()
     }
@@ -298,7 +298,7 @@ describe('resolveWorkspaceAndContinue', () => {
     expect(html).toContain('This workspace isn&#39;t available')
     expect(html).toContain('&lt;img src=x onerror=alert(1)&gt;')
     expect(html).not.toContain('<img src=x')
-    expect(html).toContain('Powered by Quackback')
+    expect(html).toContain('Powered by Zenith')
   })
 
   it('answers a JSON client with a stable code and no reason', async () => {

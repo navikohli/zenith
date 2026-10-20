@@ -1,4 +1,4 @@
-import type { ConversationMessageId } from '@quackback/ids'
+import type { ConversationMessageId } from '@zenith/ids'
 import type { AgentConversationMessageDTO } from '@/lib/shared/conversation/types'
 import type { BlockState } from '@/lib/shared/conversation/types'
 

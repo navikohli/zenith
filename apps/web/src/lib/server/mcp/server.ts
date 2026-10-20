@@ -17,7 +17,7 @@ type ResourceUri = keyof typeof RESOURCE_SCOPES
 export function createMcpServer(auth: McpAuthContext): McpServer {
   const server = new McpServer(
     {
-      name: 'quackback',
+      name: 'zenith',
       version: '1.0.0',
     },
     { instructions: MCP_SERVER_INSTRUCTIONS }
@@ -56,12 +56,12 @@ function scopeGated(
   }
 }
 
-/** Build a JSON resource result for a quackback:// URI. */
+/** Build a JSON resource result for a zenith:// URI. */
 function jsonResource(name: string, data: unknown): Awaited<ReturnType<ReadResourceCallback>> {
   return {
     contents: [
       {
-        uri: `quackback://${name}`,
+        uri: `zenith://${name}`,
         mimeType: 'application/json',
         text: JSON.stringify(data, null, 2),
       },
@@ -72,9 +72,9 @@ function jsonResource(name: string, data: unknown): Awaited<ReturnType<ReadResou
 export function registerResources(server: McpServer, auth: McpAuthContext) {
   server.resource(
     'boards',
-    'quackback://boards',
+    'zenith://boards',
     { description: 'List all boards' },
-    scopeGated(auth, 'quackback://boards', async () => {
+    scopeGated(auth, 'zenith://boards', async () => {
       const { listBoards } = await import('@/lib/server/domains/boards/board.service')
       const boards = await listBoards()
       return jsonResource(
@@ -86,9 +86,9 @@ export function registerResources(server: McpServer, auth: McpAuthContext) {
 
   server.resource(
     'statuses',
-    'quackback://statuses',
+    'zenith://statuses',
     { description: 'List all statuses' },
-    scopeGated(auth, 'quackback://statuses', async () => {
+    scopeGated(auth, 'zenith://statuses', async () => {
       const { listStatuses } = await import('@/lib/server/domains/statuses/status.service')
       const statuses = await listStatuses()
       return jsonResource(
@@ -100,9 +100,9 @@ export function registerResources(server: McpServer, auth: McpAuthContext) {
 
   server.resource(
     'tags',
-    'quackback://tags',
+    'zenith://tags',
     { description: 'List all tags' },
-    scopeGated(auth, 'quackback://tags', async () => {
+    scopeGated(auth, 'zenith://tags', async () => {
       const { listPostTags } = await import('@/lib/server/domains/post-tags/post-tag.service')
       const tags = await listPostTags()
       return jsonResource(
@@ -114,9 +114,9 @@ export function registerResources(server: McpServer, auth: McpAuthContext) {
 
   server.resource(
     'roadmaps',
-    'quackback://roadmaps',
+    'zenith://roadmaps',
     { description: 'List all roadmaps' },
-    scopeGated(auth, 'quackback://roadmaps', async () => {
+    scopeGated(auth, 'zenith://roadmaps', async () => {
       const { listRoadmaps } = await import('@/lib/server/domains/roadmaps/roadmap.service')
       const roadmaps = await listRoadmaps()
       return jsonResource(
@@ -128,9 +128,9 @@ export function registerResources(server: McpServer, auth: McpAuthContext) {
 
   server.resource(
     'members',
-    'quackback://members',
+    'zenith://members',
     { description: 'List all team members (emails stripped)' },
-    scopeGated(auth, 'quackback://members', async () => {
+    scopeGated(auth, 'zenith://members', async () => {
       const { listTeamMembers } = await import('@/lib/server/domains/principals/principal.service')
       const members = await listTeamMembers()
       return jsonResource(
@@ -142,15 +142,15 @@ export function registerResources(server: McpServer, auth: McpAuthContext) {
 
   server.resource(
     'help-center-categories',
-    'quackback://help-center/categories',
+    'zenith://help-center/categories',
     { description: 'List all help center categories with article counts' },
-    scopeGated(auth, 'quackback://help-center/categories', async () => {
+    scopeGated(auth, 'zenith://help-center/categories', async () => {
       const { isFeatureEnabled } = await import('@/lib/server/domains/settings/settings.service')
       if (!(await isFeatureEnabled('helpCenter'))) {
         return {
           contents: [
             {
-              uri: 'quackback://help-center/categories',
+              uri: 'zenith://help-center/categories',
               mimeType: 'text/plain',
               text: 'Help center is not enabled. Enable it in Settings → General.',
             },
@@ -165,7 +165,7 @@ export function registerResources(server: McpServer, auth: McpAuthContext) {
         return {
           contents: [
             {
-              uri: 'quackback://help-center/categories',
+              uri: 'zenith://help-center/categories',
               mimeType: 'text/plain',
               text: 'Error: This resource requires a team member (admin or member) role.',
             },

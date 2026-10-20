@@ -1,8 +1,8 @@
-// Workspace Quackback URL — e.g. "https://feedback.acme.com"
+// Workspace Zenith URL — e.g. "https://feedback.acme.com"
 export type InstanceUrl = string
 
 /**
- * Languages Quackback ships catalogs for, as BCP-47 tags (autocomplete hints
+ * Languages Zenith ships catalogs for, as BCP-47 tags (autocomplete hints
  * for the `locale` option). This is the single source for the `locale` type
  * below. The widget is a standalone published package and can't import the
  * app's `SUPPORTED_LOCALES`, so a parity test in apps/web guarantees this list
@@ -24,9 +24,9 @@ export const WIDGET_LOCALES = [
   'uk',
 ] as const
 
-/** Passed to `Quackback("init", ...)` or `Quackback.init(...)`. */
+/** Passed to `Zenith("init", ...)` or `Zenith.init(...)`. */
 export interface InitOptions {
-  /** Workspace Quackback instance URL — required when using the npm package. */
+  /** Workspace Zenith instance URL — required when using the npm package. */
   instanceUrl: InstanceUrl
   placement?: 'left' | 'right'
   defaultBoard?: string
@@ -34,8 +34,8 @@ export interface InitOptions {
   launcher?: boolean
   /**
    * Override the auto-detected UI language. Accepts any BCP-47 tag — the host
-   * forwards it and the Quackback instance resolves the closest catalog it has.
-   * The literals are autocomplete hints for the languages Quackback ships today
+   * forwards it and the Zenith instance resolves the closest catalog it has.
+   * The literals are autocomplete hints for the languages Zenith ships today
    * (see WIDGET_LOCALES).
    */
   locale?: (typeof WIDGET_LOCALES)[number] | (string & {})
@@ -56,7 +56,7 @@ export type Identity =
   | ({ id: string; email: string; name?: string; avatarURL?: string } & Record<string, unknown>)
 
 /**
- * Arguments to `Quackback.open(...)`. Discriminated on the target:
+ * Arguments to `Zenith.open(...)`. Discriminated on the target:
  * - omit the payload or `{ view: 'home' }` to open the home view
  * - `{ view: 'new-post', title?, body?, board? }` pre-fills the new-post form
  * - `{ view: 'changelog', entryId? }` opens the changelog, optionally to one entry

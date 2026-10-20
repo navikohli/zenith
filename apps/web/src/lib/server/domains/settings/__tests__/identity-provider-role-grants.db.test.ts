@@ -8,7 +8,7 @@
  * bundle needs the same acknowledgement as an admin rule.
  */
 import { describe, it, expect, vi, beforeEach, afterEach, afterAll } from 'vitest'
-import { createId, type IdentityProviderId, type RoleId } from '@quackback/ids'
+import { createId, type IdentityProviderId, type RoleId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { eq, identityProvider, permissions, rolePermissions, roles } from '@/lib/server/db'
 import { ALL_PERMISSIONS, PERMISSIONS, SYSTEM_ROLES } from '@/lib/shared/permissions'

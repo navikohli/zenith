@@ -16,8 +16,8 @@ afterEach(() => {
   rmSync(dir, { recursive: true, force: true })
 })
 
-const validYaml = `apiVersion: quackback.io/v1
-kind: QuackbackConfig
+const validYaml = `apiVersion: zenith.io/v1
+kind: ZenithConfig
 spec:
   workspace:
     name: Acme
@@ -77,7 +77,7 @@ describe('watchConfigFile', () => {
     await wait(50)
     writeFileSync(
       path,
-      `apiVersion: quackback.io/v1\nkind: QuackbackConfig\nspec: { workspace: { name: Different } }\n`
+      `apiVersion: zenith.io/v1\nkind: ZenithConfig\nspec: { workspace: { name: Different } }\n`
     )
     await wait(80)
     stop()
@@ -99,17 +99,17 @@ describe('watchConfigFile', () => {
     await wait(20)
     writeFileSync(
       path,
-      `apiVersion: quackback.io/v1\nkind: QuackbackConfig\nspec: { workspace: { name: A } }\n`
+      `apiVersion: zenith.io/v1\nkind: ZenithConfig\nspec: { workspace: { name: A } }\n`
     )
     await wait(5)
     writeFileSync(
       path,
-      `apiVersion: quackback.io/v1\nkind: QuackbackConfig\nspec: { workspace: { name: B } }\n`
+      `apiVersion: zenith.io/v1\nkind: ZenithConfig\nspec: { workspace: { name: B } }\n`
     )
     await wait(5)
     writeFileSync(
       path,
-      `apiVersion: quackback.io/v1\nkind: QuackbackConfig\nspec: { workspace: { name: C } }\n`
+      `apiVersion: zenith.io/v1\nkind: ZenithConfig\nspec: { workspace: { name: C } }\n`
     )
     await wait(200)
     stop()

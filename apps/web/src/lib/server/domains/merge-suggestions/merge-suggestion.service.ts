@@ -21,7 +21,7 @@ import {
 import { mergePost } from '@/lib/server/domains/posts/post.merge'
 import { logger } from '@/lib/server/logger'
 import { NotFoundError } from '@/lib/shared/errors'
-import type { PostId, PrincipalId, PostMergeSuggestionId } from '@quackback/ids'
+import type { PostId, PrincipalId, PostMergeSuggestionId } from '@zenith/ids'
 
 const log = logger.child({ component: 'merge-suggestion' })
 

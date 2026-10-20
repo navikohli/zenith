@@ -38,7 +38,7 @@ import {
   getTeamSeatsFn,
   searchPeopleToAddFn,
 } from '@/lib/server/functions/team-people'
-import type { InviteId } from '@quackback/ids'
+import type { InviteId } from '@zenith/ids'
 import {
   chipKey,
   checkSeats,

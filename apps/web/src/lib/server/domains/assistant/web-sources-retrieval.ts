@@ -1,5 +1,5 @@
 /**
- * Web-source grounding for Quinn.
+ * Web-source grounding for ZenithAssistant.
  *
  * A `KnowledgeSource` (see `./retrieval-sources`) over admin-added
  * `assistant_web_sources` rows (see `./web-source.service`): pages crawled

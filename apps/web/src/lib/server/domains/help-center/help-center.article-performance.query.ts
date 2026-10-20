@@ -1,5 +1,5 @@
 import { db, helpCenterCategories, helpCenterArticles, eq, isNull, desc } from '@/lib/server/db'
-import type { KbArticleId } from '@quackback/ids'
+import type { KbArticleId } from '@zenith/ids'
 
 /** Default row cap for {@link listArticlePerformance} -- the admin table reads
  *  as a ranked top list, not a paginated archive. */

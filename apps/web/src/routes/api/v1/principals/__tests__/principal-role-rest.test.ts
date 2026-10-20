@@ -6,7 +6,7 @@
  * an API actor so the change is audited, and answer with the new teammate.
  */
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { createId } from '@quackback/ids'
+import { createId } from '@zenith/ids'
 
 const mockWithApiKeyAuth = vi.fn()
 const mockUpdateMemberRole = vi.fn()

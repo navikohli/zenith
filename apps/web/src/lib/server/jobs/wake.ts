@@ -3,7 +3,7 @@
  *
  * After-commit on ROLE=web POSTs `{ workspaceKey, jobIds }` to the worker
  * private URL. Subscribes only when both the origin and
- * `QUACKBACK_FLEET_INTERNAL_TOKEN` are present. Fail-open: unset/rejected URL,
+ * `ZENITH_FLEET_INTERNAL_TOKEN` are present. Fail-open: unset/rejected URL,
  * missing token, or POST still failing after retries, leaves the row until a
  * later wake or an activity refresh that starts the loop. Never awaited from
  * `handleAppHook`.
@@ -44,7 +44,7 @@ type JobWorkerUrlParse =
   | { ok: false; reason: 'unset' | 'protocol' | 'credentials' | 'parse' }
 
 function parseJobWorkerUrl(): JobWorkerUrlParse {
-  const raw = process.env.QUACKBACK_JOB_WORKER_URL?.trim()
+  const raw = process.env.ZENITH_JOB_WORKER_URL?.trim()
   if (!raw) return { ok: false, reason: 'unset' }
   try {
     const url = new URL(raw)
@@ -158,17 +158,17 @@ export function startJobWakePublisher(): void {
   const parsed = parseJobWorkerUrl()
   if (!parsed.ok) {
     if (parsed.reason === 'unset') {
-      log.info('QUACKBACK_JOB_WORKER_URL unset — job-wake publisher idle; poll is the floor')
+      log.info('ZENITH_JOB_WORKER_URL unset — job-wake publisher idle; poll is the floor')
     } else {
       log.warn(
         { reason: parsed.reason },
-        'QUACKBACK_JOB_WORKER_URL rejected — job-wake publisher idle; poll is the floor'
+        'ZENITH_JOB_WORKER_URL rejected — job-wake publisher idle; poll is the floor'
       )
     }
     return
   }
   if (!token()) {
-    log.warn('QUACKBACK_FLEET_INTERNAL_TOKEN unset — job-wake publisher idle; poll is the floor')
+    log.warn('ZENITH_FLEET_INTERNAL_TOKEN unset — job-wake publisher idle; poll is the floor')
     return
   }
   unsubscribe = onDurableWorkCommitted((work) => schedule(work))

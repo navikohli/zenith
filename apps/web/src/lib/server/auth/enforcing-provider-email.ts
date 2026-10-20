@@ -20,7 +20,7 @@
  * The write only lands while the account still holds the asserted address.
  */
 import { and, db, eq, sql, account, session, user } from '@/lib/server/db'
-import type { UserId } from '@quackback/ids'
+import type { UserId } from '@zenith/ids'
 import { logger } from '@/lib/server/logger'
 import type { ProviderWithDomains } from './provider-ids'
 import { ssoManagingProvider } from './auth-restrictions'

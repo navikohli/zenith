@@ -5,7 +5,7 @@
  * db-test-fixture rollback transaction.
  */
 import { describe, it, expect, beforeEach, afterEach, afterAll, vi } from 'vitest'
-import { type TeamId } from '@quackback/ids'
+import { type TeamId } from '@zenith/ids'
 
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { mailSlugFor, withWorkspace } from '@/lib/server/__tests__/workspace-scope'
@@ -124,8 +124,8 @@ describe.skipIf(!fixture.available)('channel-account.service (real DB, rolled ba
       dnsRecords: [
         {
           type: 'TXT',
-          host: '_quackback',
-          value: 'quackback-domain-verification=6f1c2a9e4b8d0f37',
+          host: '_zenith',
+          value: 'zenith-domain-verification=6f1c2a9e4b8d0f37',
           purpose: 'ownership',
         },
       ],

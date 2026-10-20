@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import type { PostId, PostVoteId, PrincipalId } from '@quackback/ids'
+import type { PostId, PostVoteId, PrincipalId } from '@zenith/ids'
 
 const mockWithApiKeyAuth = vi.fn()
 const mockListPostVoters = vi.fn()

@@ -55,7 +55,7 @@ beforeEach(() => {
   mocks.apiCall.mockResolvedValue({ ok: true })
   mocks.ephemeral.mockResolvedValue({ ok: true })
   mocks.runtime.mockResolvedValue({
-    config: { identity: { name: 'Quinn' } },
+    config: { identity: { name: 'Zenith Assistant' } },
     workspaceName: 'Acme',
   })
 })

@@ -13,7 +13,7 @@
 
 import { createServerFn } from '@tanstack/react-start'
 import { z } from 'zod'
-import type { UserId } from '@quackback/ids'
+import type { UserId } from '@zenith/ids'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import { queryAuditEvents, type AuditEventRow } from '@/lib/server/audit/log'
 import { requireAuth } from './auth-helpers'

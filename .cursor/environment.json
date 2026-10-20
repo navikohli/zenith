@@ -1,5 +1,5 @@
 {
-  "name": "Quackback",
+  "name": "Zenith",
   "user": "ubuntu",
   "build": {
     "dockerfile": "Dockerfile"
@@ -10,7 +10,7 @@
     {
       "name": "dev",
       "command": "bun run dev",
-      "description": "Quackback web app (TanStack Start) — http://localhost:3000"
+      "description": "Zenith web app (TanStack Start) — http://localhost:3000"
     }
   ],
   "ports": [

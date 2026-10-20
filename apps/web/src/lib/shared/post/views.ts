@@ -7,12 +7,12 @@
  * state client-side and reusing the same list query. This module is the single
  * source of truth for the shape — the admin bundle and the server domain both
  * import it (the server can import shared; the client can't import
- * @quackback/db). The schema mirrors the saveable subset of `InboxFilters`
+ * @zenith/db). The schema mirrors the saveable subset of `InboxFilters`
  * (lib/shared/types/filters.ts): everything except the free-text `search`,
  * which is a query, not a filter.
  */
 import { z } from 'zod'
-import type { PostViewId } from '@quackback/ids'
+import type { PostViewId } from '@zenith/ids'
 import type { InboxFilters } from '@/lib/shared/types'
 
 // ── Filters ──────────────────────────────────────────────────────────────────

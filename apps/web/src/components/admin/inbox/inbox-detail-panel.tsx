@@ -21,7 +21,7 @@ import {
   TicketIcon,
   UserCircleIcon,
 } from '@heroicons/react/24/outline'
-import type { ConversationId, PrincipalId, TicketId } from '@quackback/ids'
+import type { ConversationId, PrincipalId, TicketId } from '@zenith/ids'
 import {
   HANDOFF_REASON_LABELS,
   CONVERSATION_END_REASON_LABELS,
@@ -274,7 +274,7 @@ export interface InboxDetailPanelProps {
  * type), assembled from the existing per-kind pieces. Section order: Contact
  * (requester principal, hidden for back_office/tracker), Ticket card (ticket
  * properties + the create-ticket empty slot), Properties, Attributes
- * (conversation-only), Links, Quinn activity (conversation-only). Details/
+ * (conversation-only), Links, ZenithAssistant activity (conversation-only). Details/
  * Copilot tabs unchanged from the pre-M5 conversation-only panel.
  */
 export const InboxDetailPanel = memo(function InboxDetailPanel({
@@ -857,7 +857,7 @@ export const InboxDetailPanel = memo(function InboxDetailPanel({
           </Collapsible>
         )}
 
-        {/* 7. Quinn AI activity — conversation-only. */}
+        {/* 7. ZenithAssistant AI activity — conversation-only. */}
         {!isTicketItem && aiActivity && (
           <div className="space-y-2.5 border-t border-border/30 pt-4">
             <div className="flex items-center justify-between">

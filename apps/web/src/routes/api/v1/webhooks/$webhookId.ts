@@ -11,7 +11,7 @@ import { parseTypeId, parseTypeIdArray } from '@/lib/server/domains/api/validati
 import { WEBHOOK_EVENTS } from '@/lib/server/events/integrations/webhook/constants'
 import { toWebhookResponse } from '@/lib/server/domains/api/webhooks'
 import { PERMISSIONS } from '@/lib/shared/permissions'
-import type { BoardId, WebhookId } from '@quackback/ids'
+import type { BoardId, WebhookId } from '@zenith/ids'
 
 // Input validation schema
 const updateWebhookSchema = z.object({

@@ -11,7 +11,7 @@ import { serviceActorFromApiAuth } from '@/lib/server/domains/api/service-actor'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import { serializeConversation } from './-serialize'
 import { statusEnum } from './-validation'
-import type { ConversationId } from '@quackback/ids'
+import type { ConversationId } from '@zenith/ids'
 
 const statusSchema = z.object({
   status: statusEnum,

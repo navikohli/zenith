@@ -6,8 +6,8 @@
  * segment weighting (e.g., MRR, company size, contract value).
  */
 import { pgTable, text, timestamp, uniqueIndex } from 'drizzle-orm/pg-core'
-import { generateId } from '@quackback/ids'
-import { typeIdTextColumn } from '@quackback/ids/drizzle'
+import { generateId } from '@zenith/ids'
+import { typeIdTextColumn } from '@zenith/ids/drizzle'
 
 /** Supported data types for user attributes */
 export type UserAttributeType = 'string' | 'number' | 'boolean' | 'date' | 'currency'

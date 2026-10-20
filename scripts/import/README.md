@@ -1,10 +1,10 @@
-# Quackback Data Import
+# Zenith Data Import
 
-Import posts, comments, votes, and notes from CSV files into Quackback via the REST API.
+Import posts, comments, votes, and notes from CSV files into Zenith via the REST API.
 
 ## Architecture
 
-All imports go through the Quackback REST API — no direct database access needed.
+All imports go through the Zenith REST API — no direct database access needed.
 
 ```
 Generic CSV files (posts, comments, votes, notes)
@@ -17,11 +17,11 @@ Generic CSV files (posts, comments, votes, notes)
          │
          ▼
 ┌──────────────────┐
-│ API Importer     │  ← Generic: pushes to Quackback REST API
+│ API Importer     │  ← Generic: pushes to Zenith REST API
 └──────────────────┘
          │
          ▼
-    Quackback API
+    Zenith API
 ```
 
 To migrate from another tool (Canny, UserVoice, ...), export your data there and
@@ -38,21 +38,21 @@ bun scripts/import/cli.ts intermediate \
   --posts data/posts.csv \
   --comments data/comments.csv \
   --board features \
-  --quackback-url https://feedback.yourapp.com \
-  --quackback-key qb_xxx
+  --zenith-url https://feedback.yourapp.com \
+  --zenith-key qb_xxx
 ```
 
 ## Prerequisites
 
-1. **Quackback API key**: Create one in **Admin → Settings → API Keys**
-2. **Quackback URL**: Your instance URL (e.g., `https://feedback.yourapp.com`)
+1. **Zenith API key**: Create one in **Admin → Settings → API Keys**
+2. **Zenith URL**: Your instance URL (e.g., `https://feedback.yourapp.com`)
 3. **Boards**: Create target boards in the admin UI before importing
 
 You can set these as environment variables instead of CLI flags:
 
 ```bash
-export QUACKBACK_URL=https://feedback.yourapp.com
-export QUACKBACK_API_KEY=qb_xxx
+export ZENITH_URL=https://feedback.yourapp.com
+export ZENITH_API_KEY=qb_xxx
 ```
 
 ## CLI Reference
@@ -68,8 +68,8 @@ export QUACKBACK_API_KEY=qb_xxx
 
 | Option            | Description             | Env var             |
 | ----------------- | ----------------------- | ------------------- |
-| `--quackback-url` | Quackback instance URL  | `QUACKBACK_URL`     |
-| `--quackback-key` | Quackback admin API key | `QUACKBACK_API_KEY` |
+| `--zenith-url` | Zenith instance URL  | `ZENITH_URL`     |
+| `--zenith-key` | Zenith admin API key | `ZENITH_API_KEY` |
 
 ### Common Options
 
@@ -153,7 +153,7 @@ Always validate before importing:
 
 ```bash
 bun scripts/import/cli.ts intermediate --posts data/posts.csv \
-  --quackback-url URL --quackback-key KEY \
+  --zenith-url URL --zenith-key KEY \
   --dry-run --verbose
 ```
 

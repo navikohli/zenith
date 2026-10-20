@@ -38,7 +38,7 @@ import { encryptSecrets, decryptSecrets } from '../encryption'
 import { getValidAccessToken } from '../token-refresh'
 import { refreshJiraToken } from '@/integrations/jira/server/oauth'
 import { cacheDel, CACHE_KEYS } from '@/lib/server/cache'
-import type { IntegrationId } from '@quackback/ids'
+import type { IntegrationId } from '@zenith/ids'
 
 const fixture = await createDbTestFixture()
 

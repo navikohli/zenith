@@ -22,7 +22,7 @@ import {
   principal,
   user,
 } from '@/lib/server/db'
-import type { ConversationId, PrincipalId } from '@quackback/ids'
+import type { ConversationId, PrincipalId } from '@zenith/ids'
 import type { Actor } from '@/lib/server/policy/types'
 import { realEmail } from '@/lib/shared/anonymous-email'
 import { NotFoundError } from '@/lib/shared/errors'

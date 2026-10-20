@@ -1,5 +1,5 @@
 /**
- * The Approve/Reject card for a Quinn write-tool proposal, rendered on the
+ * The Approve/Reject card for a ZenithAssistant write-tool proposal, rendered on the
  * internal note that announced it (mirrors the postSuggestion chip in
  * message-bubble.tsx — same mount point, same visual language). The note's
  * metadata is only a point-in-time pointer (pendingActionId + toolName +
@@ -8,7 +8,7 @@
  * than the stale snapshot.
  */
 import { CheckIcon, XMarkIcon, ShieldExclamationIcon } from '@heroicons/react/24/solid'
-import type { AssistantPendingActionId } from '@quackback/ids'
+import type { AssistantPendingActionId } from '@zenith/ids'
 import { usePendingActionDecision } from '@/lib/client/hooks/use-pending-action-decision'
 
 /** Terminal-status copy — shown in place of the buttons once a proposal is no

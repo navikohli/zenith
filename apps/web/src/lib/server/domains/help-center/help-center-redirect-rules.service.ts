@@ -23,7 +23,7 @@ import {
   type KbArticleId,
   type KbCategoryId,
   type HcRedirectRuleId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import { NotFoundError, ValidationError, ConflictError, InternalError } from '@/lib/shared/errors'
 import { isUniqueViolation } from '@/lib/server/utils'
 import { logger } from '@/lib/server/logger'

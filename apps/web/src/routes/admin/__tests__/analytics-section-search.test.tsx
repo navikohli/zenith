@@ -67,7 +67,7 @@ describe('AnalyticsPage section from the URL', () => {
     hoisted.search.current = { section: 'ai' }
     const { container } = renderPage()
     const active = container.querySelector('[data-side-pane] [data-active]')
-    expect(active?.textContent).toBe('Quackback AI')
+    expect(active?.textContent).toBe('Zenith AI')
   })
 
   it('opens the overview when the URL names no section', () => {

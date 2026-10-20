@@ -3,7 +3,7 @@
  * membership-sync so a teammate change is not waiting on a control-plane poll.
  */
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import type { PrincipalId, UserId } from '@quackback/ids'
+import type { PrincipalId, UserId } from '@zenith/ids'
 
 const hoisted = vi.hoisted(() => ({
   enqueueMembershipSync: vi.fn(async (..._args: unknown[]) => {}),

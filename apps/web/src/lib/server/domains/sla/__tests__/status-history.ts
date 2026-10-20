@@ -5,7 +5,7 @@
  * event to the SLA reaction writes its row too. Uses the rolled-back fixture
  * transaction.
  */
-import { createId } from '@quackback/ids'
+import { createId } from '@zenith/ids'
 import { testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { events } from '@/lib/server/db'
 

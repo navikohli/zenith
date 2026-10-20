@@ -44,7 +44,7 @@ import {
   deleteCategoryTranslationFn,
 } from '@/lib/server/functions/help-center-translations'
 import { InlineSpinner } from '@/components/admin/settings/inline-spinner'
-import type { KbCategoryId } from '@quackback/ids'
+import type { KbCategoryId } from '@zenith/ids'
 import type { SupportedLocale } from '@/lib/shared/i18n'
 
 const LOCALE_LABELS: Record<string, string> = {

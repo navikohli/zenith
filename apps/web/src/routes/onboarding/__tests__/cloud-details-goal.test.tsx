@@ -25,7 +25,7 @@ function render(ui: ReactElement) {
 const IDENTITY = {
   version: 1,
   displayName: 'Untitled workspace',
-  canonicalOrigin: 'https://ws-a1b2c3.quackback.co.uk',
+  canonicalOrigin: 'https://ws-a1b2c3.zenith.co.uk',
   platformHostname: null,
   customDomains: [],
   updatedAt: '2026-08-14T12:00:00.000Z',
@@ -72,7 +72,7 @@ describe('cloud post-handoff onboarding', () => {
       <CloudWorkspaceDetailsForm
         identity={{
           ...IDENTITY,
-          platformHostname: 'ws-4a048e07941c5e7840e986c0.quackback.co.uk',
+          platformHostname: 'ws-4a048e07941c5e7840e986c0.zenith.co.uk',
         }}
         onSave={vi.fn()}
       />
@@ -82,19 +82,19 @@ describe('cloud post-handoff onboarding', () => {
     expect(screen.queryByText(/ws-4a048e07941c5e7840e986c0/)).not.toBeInTheDocument()
   })
 
-  it('keeps the Quackback suffix when a custom domain is canonical', () => {
+  it('keeps the Zenith suffix when a custom domain is canonical', () => {
     render(
       <CloudWorkspaceDetailsForm
         identity={{
           ...IDENTITY,
           canonicalOrigin: 'https://feedback.example.com',
-          platformHostname: 'awesome.quackback.co.uk',
+          platformHostname: 'awesome.zenith.co.uk',
         }}
         onSave={vi.fn()}
       />
     )
 
-    expect(screen.getByText('.quackback.co.uk')).toBeInTheDocument()
+    expect(screen.getByText('.zenith.co.uk')).toBeInTheDocument()
     expect(screen.queryByText('.example.com')).not.toBeInTheDocument()
   })
 

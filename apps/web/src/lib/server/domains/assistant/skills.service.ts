@@ -7,7 +7,7 @@
 import { and, eq, ne, sql } from 'drizzle-orm'
 import { db as defaultDb, agentSkills } from '@/lib/server/db'
 import type { Executor } from '@/lib/server/domains/principals/principal.factory'
-import type { PrincipalId, SkillId } from '@quackback/ids'
+import type { PrincipalId, SkillId } from '@zenith/ids'
 import { ValidationError } from '@/lib/shared/errors'
 import { validationError } from '@/lib/server/domains/assistant/validation-error'
 import type { AssistantAgentKind as AgentKind } from '@/lib/shared/assistant/config'

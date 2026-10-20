@@ -16,7 +16,7 @@ import {
   inArray,
   sql,
 } from '@/lib/server/db'
-import type { ChangelogId, PostStatusId } from '@quackback/ids'
+import type { ChangelogId, PostStatusId } from '@zenith/ids'
 import { NotFoundError } from '@/lib/shared/errors'
 import { computeStatus } from './changelog.service'
 import { getCategoriesForEntries, categoryGateAllows } from './changelog-category.service'

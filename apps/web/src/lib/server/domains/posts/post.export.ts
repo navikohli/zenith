@@ -5,7 +5,7 @@
  */
 
 import { db, posts, postStatuses, and, inArray, desc, isNull } from '@/lib/server/db'
-import { type BoardId } from '@quackback/ids'
+import { type BoardId } from '@zenith/ids'
 import type { PostForExport } from './post.types'
 import { realEmail } from '@/lib/shared/anonymous-email'
 

@@ -97,15 +97,15 @@ describe('billing projection monotonicity', () => {
   })
 
   it('rejects a valid projection bound to another workspace before any write', async () => {
-    const previous = process.env.QUACKBACK_INSTANCE_ID
-    process.env.QUACKBACK_INSTANCE_ID = 'inst_acme'
+    const previous = process.env.ZENITH_INSTANCE_ID
+    process.env.ZENITH_INSTANCE_ID = 'inst_acme'
     try {
       await expect(writeBillingProjection('inst_other', PROJECTION)).rejects.toMatchObject({
         code: 'workspace_mismatch',
       })
     } finally {
-      if (previous === undefined) delete process.env.QUACKBACK_INSTANCE_ID
-      else process.env.QUACKBACK_INSTANCE_ID = previous
+      if (previous === undefined) delete process.env.ZENITH_INSTANCE_ID
+      else process.env.ZENITH_INSTANCE_ID = previous
     }
   })
 })

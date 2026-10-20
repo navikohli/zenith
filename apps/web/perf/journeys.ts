@@ -351,7 +351,7 @@ export const journeys: Journey[] = [
       await page.context().grantPermissions(['local-network-access'])
       await page.goto(HOST_PAGE)
       await page
-        .frameLocator('iframe.quackback-widget-iframe')
+        .frameLocator('iframe.zenith-widget-iframe')
         .getByRole('button', { name: 'Home', exact: true })
         .waitFor({ state: 'attached' })
     },

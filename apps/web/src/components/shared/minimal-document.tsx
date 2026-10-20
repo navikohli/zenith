@@ -14,7 +14,7 @@ export function MinimalDocument({ children }: Readonly<{ children: ReactNode }>)
         <script dangerouslySetInnerHTML={{ __html: SYSTEM_THEME_SCRIPT }} />
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Quackback</title>
+        <title>Zenith</title>
         <HeadContent />
       </head>
       <body className="min-h-screen bg-background font-sans antialiased">{children}</body>

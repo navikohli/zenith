@@ -33,9 +33,9 @@ import type {
   IntegrationId,
   SendingDomainId,
   TeamId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import { requireChannelDescriptor } from '@/lib/shared/channels'
-import type { SendingIdentity } from '@quackback/email/sender'
+import type { SendingIdentity } from '@zenith/email/sender'
 import { enforceSendingDomainLimit } from '@/lib/server/domains/settings/tier-enforce'
 import { getTierLimits } from '@/lib/server/domains/settings/tier-limits.service'
 import {
@@ -79,7 +79,7 @@ export async function createSendingDomain(input: {
 }): Promise<EmailSendingDomain> {
   const limit = (await getTierLimits()).maxSendingDomains
   return db.transaction(async (tx) => {
-    await tx.execute(sql`SELECT pg_advisory_xact_lock(hashtext('quackback:sending_domain_slot'))`)
+    await tx.execute(sql`SELECT pg_advisory_xact_lock(hashtext('zenith:sending_domain_slot'))`)
     await enforceSendingDomainLimit(limit, tx)
     const [row] = await tx
       .insert(emailSendingDomains)
@@ -125,7 +125,7 @@ export async function getSendingDomain(id: SendingDomainId): Promise<EmailSendin
  * other thing a typo needs.
  *
  * **The provider identity is deliberately left behind.** Nothing in this
- * codebase can delete one — see `@quackback/email/ses-identity` for why the
+ * codebase can delete one — see `@zenith/email/ses-identity` for why the
  * provisioning credential is not granted `ses:DeleteEmailIdentity` — so an
  * identity created for a domain that is then removed stays on the shared
  * account until an operator reaps it from the provider console. That is the

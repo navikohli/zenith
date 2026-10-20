@@ -68,7 +68,7 @@ export function createSDK(): SDK {
   const emitter = createEmitter()
 
   function sendMobileState(): void {
-    if (ready && bridge) bridge.send('quackback:mobile', !!mobileMql?.matches)
+    if (ready && bridge) bridge.send('zenith:mobile', !!mobileMql?.matches)
   }
 
   function iframeOrigin(): string {
@@ -77,46 +77,46 @@ export function createSDK(): SDK {
 
   function onIframeMessage(msg: { type: string; [k: string]: unknown }) {
     switch (msg.type) {
-      case 'quackback:ready':
+      case 'zenith:ready':
         ready = true
         if (pendingIdentifyPresent) {
-          bridge!.send('quackback:identify', pendingIdentify)
+          bridge!.send('zenith:identify', pendingIdentify)
           pendingIdentifyPresent = false
           pendingIdentify = null
         }
-        if (config?.locale) bridge!.send('quackback:locale', config.locale)
-        if (metadata) bridge!.send('quackback:metadata', metadata)
+        if (config?.locale) bridge!.send('zenith:locale', config.locale)
+        if (metadata) bridge!.send('zenith:metadata', metadata)
         if (pendingDevice) {
-          bridge!.send('quackback:device', pendingDevice)
+          bridge!.send('zenith:device', pendingDevice)
           pendingDevice = null
         }
         if (pendingOpen) {
-          bridge!.send('quackback:open', pendingOpen)
+          bridge!.send('zenith:open', pendingOpen)
           pendingOpen = null
         }
         sendMobileState()
         emitter.emit('ready', {})
         break
-      case 'quackback:close':
+      case 'zenith:close':
         dispatch('close')
         break
-      case 'quackback:unread': {
+      case 'zenith:unread': {
         // Total unread from the iframe → the launcher badge (shown only while
         // closed). Coerced defensively; a bad payload clears the badge.
         const count = typeof msg.count === 'number' ? msg.count : 0
         launcher?.setUnread(count)
-        // Also surface it to host SDK subscribers (Quackback.on('unread', ...))
+        // Also surface it to host SDK subscribers (Zenith.on('unread', ...))
         // so a host can mirror the count in its own UI.
         emitter.emit('unread', { count })
         break
       }
-      case 'quackback:expand': {
+      case 'zenith:expand': {
         // Long-form content (article/changelog detail) grows the panel.
         const m = msg as { expanded?: boolean }
         panel?.setExpanded(!!m.expanded)
         break
       }
-      case 'quackback:identify-result': {
+      case 'zenith:identify-result': {
         const m = msg as {
           success?: boolean
           user?: WidgetUser
@@ -131,17 +131,17 @@ export function createSDK(): SDK {
         })
         break
       }
-      case 'quackback:auth-change': {
+      case 'zenith:auth-change': {
         const m = msg as { user?: WidgetUser }
         currentUser = m.user ?? null
         break
       }
-      case 'quackback:event': {
+      case 'zenith:event': {
         const m = msg as { name?: string; payload?: unknown }
         if (m.name) emitter.emit(m.name as EventName, (m.payload ?? {}) as never)
         break
       }
-      case 'quackback:navigate': {
+      case 'zenith:navigate': {
         const m = msg as { url?: string }
         if (m.url && isSafeHttpUrl(m.url)) {
           // noopener: prevent tabnabbing via window.opener on the new tab.
@@ -208,7 +208,7 @@ export function createSDK(): SDK {
   }
 
   function sendIdentity(data: unknown) {
-    if (ready && bridge) bridge.send('quackback:identify', data)
+    if (ready && bridge) bridge.send('zenith:identify', data)
     else {
       pendingIdentify = data
       pendingIdentifyPresent = true
@@ -266,7 +266,7 @@ export function createSDK(): SDK {
       // The iframe links the device to the session's principal; queue
       // until the panel reports ready if it hasn't yet.
       if (deviceId) {
-        if (ready && bridge) bridge.send('quackback:device', deviceId)
+        if (ready && bridge) bridge.send('zenith:device', deviceId)
         else pendingDevice = deviceId
       }
     }
@@ -287,9 +287,9 @@ export function createSDK(): SDK {
     switch (cmd) {
       case 'init': {
         const next = { ...(a as InitOptions) }
-        if (!next.instanceUrl) throw new Error('Quackback: init requires { instanceUrl }')
+        if (!next.instanceUrl) throw new Error('Zenith: init requires { instanceUrl }')
         if (!isSafeHttpUrl(next.instanceUrl))
-          throw new Error('Quackback: instanceUrl must be an http(s) URL')
+          throw new Error('Zenith: instanceUrl must be an http(s) URL')
         // Validate before destroy so a bad re-init leaves the working instance intact.
         if (config) dispatch('destroy')
         config = next
@@ -310,7 +310,7 @@ export function createSDK(): SDK {
         // trips. npm installs fall back to the config fetch.
         const baked =
           typeof window !== 'undefined'
-            ? (window as { __QUACKBACK_CONFIG__?: ServerConfig }).__QUACKBACK_CONFIG__
+            ? (window as { __ZENITH_CONFIG__?: ServerConfig }).__ZENITH_CONFIG__
             : undefined
         if (baked) {
           applyServerConfig(baked, next)
@@ -334,7 +334,7 @@ export function createSDK(): SDK {
         launcher?.setOpen(false)
         panelOpen = false
         currentUser = null
-        if (ready && bridge) bridge.send('quackback:identify', null as unknown as undefined)
+        if (ready && bridge) bridge.send('zenith:identify', null as unknown as undefined)
         else {
           pendingIdentify = null
           pendingIdentifyPresent = true
@@ -343,7 +343,7 @@ export function createSDK(): SDK {
       case 'open': {
         if (!config) return // open before init is a no-op, matching close/hide
         const opts = (a as OpenOptions) ?? {}
-        if (ready && bridge) bridge.send('quackback:open', opts)
+        if (ready && bridge) bridge.send('zenith:open', opts)
         else pendingOpen = opts
         // The idle preload may not have fired yet — create the panel now.
         ensurePanel().show()
@@ -389,7 +389,7 @@ export function createSDK(): SDK {
           if (v === null) delete metadata[k]
           else metadata[k] = String(v)
         }
-        if (ready && bridge) bridge.send('quackback:metadata', metadata)
+        if (ready && bridge) bridge.send('zenith:metadata', metadata)
         return
       }
       case 'destroy':

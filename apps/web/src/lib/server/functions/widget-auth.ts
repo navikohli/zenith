@@ -1,4 +1,4 @@
-import type { PrincipalId, UserId, WorkspaceId } from '@quackback/ids'
+import type { PrincipalId, UserId, WorkspaceId } from '@zenith/ids'
 import { getRequestHeaders } from '@tanstack/react-start/server'
 import type { Role } from '@/lib/server/auth'
 import { isTeamMember, sessionRole } from '@/lib/shared/roles'

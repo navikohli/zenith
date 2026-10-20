@@ -27,7 +27,7 @@ import {
   writeGuardedArticleTranslation,
 } from './help-center-translations.service'
 import { logger } from '@/lib/server/logger'
-import type { KbArticleId } from '@quackback/ids'
+import type { KbArticleId } from '@zenith/ids'
 import type { HelpCenterArticleWithCategory } from './help-center.types'
 
 const log = logger.child({ component: 'help-center-auto-translate' })

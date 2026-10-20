@@ -1,4 +1,4 @@
-# @quackback/db
+# @zenith/db
 
 Drizzle ORM schema, hand-written SQL migrations, and the seed/reset tooling.
 
@@ -34,7 +34,7 @@ bun run db:check-drift          # from packages/db (or the repo root)
 
 What it does:
 
-1. Drops and recreates a scratch database (`quackback_drift_check`) on a local
+1. Drops and recreates a scratch database (`zenith_drift_check`) on a local
    postgres server (default `postgresql://postgres:password@localhost:5432/postgres`,
    override with `DRIFT_CHECK_DATABASE_URL`; the URL's database is only used
    for `CREATE/DROP DATABASE`).

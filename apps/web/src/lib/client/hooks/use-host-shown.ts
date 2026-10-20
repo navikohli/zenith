@@ -6,7 +6,7 @@ import { useSyncExternalStore } from 'react'
  * screen). A hidden frame is not being read, so it leaves new replies unread
  * until it is shown again. A host that never sends it is always shown.
  */
-export const HOST_SHOWN_MESSAGE = 'quackback:shown'
+export const HOST_SHOWN_MESSAGE = 'zenith:shown'
 
 let shown = true
 const listeners = new Set<() => void>()

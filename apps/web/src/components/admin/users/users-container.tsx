@@ -32,7 +32,7 @@ import {
 import { canReadCompanies, companiesDirectoryQueries } from '@/lib/client/queries/users-page'
 import { ConfirmDialog } from '@/components/shared/confirm-dialog'
 import { useOpenedOnce } from '@/lib/client/hooks/use-opened-once'
-import type { PrincipalId, SegmentId } from '@quackback/ids'
+import type { PrincipalId, SegmentId } from '@zenith/ids'
 import type { SegmentCondition } from '@/lib/shared/db-types'
 
 // The segment rule builder and the new-person form load the first time one of

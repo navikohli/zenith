@@ -1,10 +1,10 @@
 /**
  * Inbox nav badges count real work. A teammate's test thread (its visitor is a
- * test customer) adds nothing to the Quinn buckets or the tag counts, while a
+ * test customer) adds nothing to the ZenithAssistant buckets or the tag counts, while a
  * real thread carrying a legacy client `test` attribute still counts.
  */
 import { afterAll, afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { createId, type PrincipalId, type UserId } from '@quackback/ids'
+import { createId, type PrincipalId, type UserId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import {
   assistantInvolvements,
@@ -57,7 +57,7 @@ describe.skipIf(!fixture.available)('inbox badges ignore test threads (real DB)'
     return row.id
   }
 
-  it('keeps test threads out of the Quinn activity buckets', async () => {
+  it('keeps test threads out of the ZenithAssistant activity buckets', async () => {
     const before = await countAssistantInboxBuckets()
     await testDb.insert(assistantInvolvements).values([
       { conversationId: await thread(customer), triggeredBy: 'first_touch', status: 'active' },

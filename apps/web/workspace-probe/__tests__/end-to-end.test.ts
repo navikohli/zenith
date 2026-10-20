@@ -34,7 +34,7 @@ import {
   type FleetLeaks,
 } from './fake-fleet'
 import { FIXTURE } from '../fixtures'
-import { toUuid } from '@quackback/ids'
+import { toUuid } from '@zenith/ids'
 import type { ProbeConfig, ProbeReport, WorkspaceSlot } from '../types'
 
 function configFor(fleet: FakeFleet, over: Partial<ProbeConfig> = {}): ProbeConfig {

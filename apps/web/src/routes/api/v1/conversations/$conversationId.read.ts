@@ -4,7 +4,7 @@ import { successResponse, handleDomainError } from '@/lib/server/domains/api/res
 import { parseTypeId } from '@/lib/server/domains/api/validation'
 import { serviceActorFromApiAuth } from '@/lib/server/domains/api/service-actor'
 import { PERMISSIONS } from '@/lib/shared/permissions'
-import type { ConversationId } from '@quackback/ids'
+import type { ConversationId } from '@zenith/ids'
 
 export const Route = createFileRoute('/api/v1/conversations/$conversationId/read')({
   server: {

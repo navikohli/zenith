@@ -60,7 +60,7 @@ describe('recordRecentEmoji / readRecentEmojis', () => {
   it('ignores blank glyphs and corrupt storage', () => {
     recordRecentEmoji('   ')
     expect(readRecentEmojis()).toEqual([])
-    window.localStorage.setItem('quackback:emoji-recent', '{not json')
+    window.localStorage.setItem('zenith:emoji-recent', '{not json')
     expect(readRecentEmojis()).toEqual([])
   })
 })

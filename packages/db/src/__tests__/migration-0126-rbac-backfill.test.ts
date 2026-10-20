@@ -1,6 +1,6 @@
 import { describe, it, expect, afterAll } from 'vitest'
 import { eq, inArray } from 'drizzle-orm'
-import { generateId, type PrincipalId } from '@quackback/ids'
+import { generateId, type PrincipalId } from '@zenith/ids'
 import { createDb, type Database } from '../client'
 import { principal } from '../schema/auth'
 import { roles, principalRoleAssignments } from '../schema/rbac'
@@ -10,7 +10,7 @@ import { SYSTEM_ROLES } from '../rbac-catalogue'
 // Backfill pin (the migration-0118 txn + __ROLLBACK__ pattern): synthetic
 // principals across the role/type matrix get the non-regressing assignment, and
 // a second seed run adds no duplicates. Skips without Postgres (CI). Requires the
-// 0126 tables (run `bun run db:migrate` against quackback_test first).
+// 0126 tables (run `bun run db:migrate` against zenith_test first).
 const DB_URL = process.env.DATABASE_URL
 let db: Database | null = null
 if (DB_URL) db = createDb(DB_URL, { max: 1 })

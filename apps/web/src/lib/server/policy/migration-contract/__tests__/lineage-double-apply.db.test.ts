@@ -49,8 +49,8 @@ import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import postgres from 'postgres'
-import { runMigrations } from '@quackback/db/migrate'
-import { BUNDLED_MIGRATIONS, MIGRATIONS_DIR } from '@quackback/db/schema-version'
+import { runMigrations } from '@zenith/db/migrate'
+import { BUNDLED_MIGRATIONS, MIGRATIONS_DIR } from '@zenith/db/schema-version'
 import { REPLAY_OVERRIDES, assessReplaySafety } from '../replay-safety'
 
 const ADMIN_URL =

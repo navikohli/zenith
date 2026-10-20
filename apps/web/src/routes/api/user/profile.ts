@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { db, user, eq } from '@/lib/server/db'
-import type { UserId } from '@quackback/ids'
+import type { UserId } from '@zenith/ids'
 import { getSession } from '@/lib/server/auth/session'
 import { toSessionScope } from '@/lib/shared/roles'
 import { deleteObject } from '@/lib/server/storage/s3'

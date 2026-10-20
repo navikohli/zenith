@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import type { PostStatusId, PostTagId, PrincipalId } from '@quackback/ids'
+import type { PostStatusId, PostTagId, PrincipalId } from '@zenith/ids'
 import type { Actor } from '@/lib/server/policy'
 
 const mockEq = vi.fn((col, val) => ({ _tag: 'eq', col, val }))

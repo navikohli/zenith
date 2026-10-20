@@ -1,6 +1,6 @@
 import type { WebClient } from '@slack/web-api'
 import { db, principal, user, slackUserLinks, eq, and, sql } from '@/lib/server/db'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 import { permissionsForPrincipal } from '@/lib/server/policy/permissions'
 import type { Actor } from '@/lib/server/policy/types'
 export type SlackMember = { id: PrincipalId; role: 'admin' | 'member'; displayName: string | null }

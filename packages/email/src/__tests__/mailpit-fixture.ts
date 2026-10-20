@@ -73,7 +73,7 @@ export function useMailpitEnv(): () => void {
   // SES must be unset or it would win provider selection over SMTP.
   delete process.env.EMAIL_SES_ACCESS_KEY_ID
   delete process.env.EMAIL_SES_SECRET_ACCESS_KEY
-  process.env.EMAIL_FROM = 'Quackback Test <test@quackback.test>'
+  process.env.EMAIL_FROM = 'Zenith Test <test@zenith.test>'
 
   return () => {
     for (const k of keys) {

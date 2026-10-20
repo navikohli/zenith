@@ -80,7 +80,7 @@ async function runCronJobAndExit(name: string): Promise<never> {
   if (!isFleetCronJobName(name)) {
     log.error(
       { job: name, known: Object.keys(FLEET_CRON_JOBS) },
-      'QUACKBACK_CRON_JOB names no known job'
+      'ZENITH_CRON_JOB names no known job'
     )
     process.exit(1)
   }
@@ -91,7 +91,7 @@ async function runCronJobAndExit(name: string): Promise<never> {
 export function logStartupBanner(): void {
   // Build evaluation is explicitly selected by the build script. A missing
   // runtime secret must never be mistaken for build mode.
-  if (process.env.QUACKBACK_BUILD === '1') return
+  if (process.env.ZENITH_BUILD === '1') return
 
   if (_logged) return
   _logged = true
@@ -120,7 +120,7 @@ export function logStartupBanner(): void {
   // not use this — hourly and daily sweeps run on the always-on worker — but
   // a container that should do one pass and stop still needs a way to say so.
   // Start none of the long-lived work below, or the process would never exit.
-  const cronJob = process.env.QUACKBACK_CRON_JOB?.trim()
+  const cronJob = process.env.ZENITH_CRON_JOB?.trim()
   if (cronJob) {
     void runCronJobAndExit(cronJob)
     return
@@ -209,8 +209,8 @@ export function logStartupBanner(): void {
       .catch((err) => log.error({ err }, 'failed to prepare the first-run setup token'))
   }
 
-  // Quackback config file watcher — reconciles managed fields from
-  // /etc/quackback/config.yaml on every change. No-op when the file
+  // Zenith config file watcher — reconciles managed fields from
+  // /etc/zenith/config.yaml on every change. No-op when the file
   // is absent (self-host default).
   //
   // Deliberately NOT started under pooled tenancy. The mechanism is a single
@@ -221,16 +221,16 @@ export function logStartupBanner(): void {
   // happened to visit with one file's contents (SAAS-HOSTING-STACK.md §8).
   if (config.isPooledTenancy) {
     log.info(
-      'pooled tenancy — the /etc/quackback/config.yaml watcher is not started; ' +
+      'pooled tenancy — the /etc/zenith/config.yaml watcher is not started; ' +
         'per-workspace config arrives through the control plane'
     )
   } else {
     import('@/lib/server/config-file')
-      .then(({ startQuackbackConfigWatcher }) => startQuackbackConfigWatcher())
+      .then(({ startZenithConfigWatcher }) => startZenithConfigWatcher())
       .catch((err) => log.error({ err }, 'failed to start config-file watcher'))
   }
 
-  // Background processing is role-gated: QUACKBACK_ROLE=web replicas serve
+  // Background processing is role-gated: ZENITH_ROLE=web replicas serve
   // HTTP and enqueue only. Cloud runs a dedicated worker replica.
   import('./jobs/wake')
     .then(({ startJobWakePublisher }) => startJobWakePublisher())
@@ -246,7 +246,7 @@ export function logStartupBanner(): void {
     // workflow will pile up unpublished. Warn (not info) so a web-only
     // topology is loud in the logs.
     log.warn(
-      'QUACKBACK_ROLE=web — queue workers are worker-side; ' +
+      'ZENITH_ROLE=web — queue workers are worker-side; ' +
         'ensure a worker (or role=all) replica is running or events will not be delivered'
     )
   }
@@ -254,7 +254,7 @@ export function logStartupBanner(): void {
 
 /**
  * Boot the background tiers and the periodic sweepers. Runs under
- * `QUACKBACK_ROLE=worker` and the single-process default (`all`), never on
+ * `ZENITH_ROLE=worker` and the single-process default (`all`), never on
  * web-role replicas. Every sweeper holds a cross-instance sweep lock, so
  * multiple worker replicas stay safe.
  *
@@ -306,7 +306,7 @@ function startBackgroundProcessing(): void {
   }
 
   // The scheduled sweeps. Bodies live in `cron/fleet-jobs.ts` so a one-shot
-  // `QUACKBACK_CRON_JOB` run and this timer schedule execute the same code.
+  // `ZENITH_CRON_JOB` run and this timer schedule execute the same code.
   import('@/lib/server/cron/fleet-jobs')
     .then((jobs) => {
       // Space reclamation for the tables that replaced Redis (kv_store,

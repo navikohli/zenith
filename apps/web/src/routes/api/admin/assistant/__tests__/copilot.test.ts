@@ -7,7 +7,7 @@
  * chunks) are pinned in assistant.runtime.test.ts; these tests pin what THIS
  * route does: gating, history mapping onto the runtime's thread vocabulary,
  * turn-input construction (explicit `copilot_qa` boundary), and the
- * CopilotFinalPayload it builds for `quackback:final`.
+ * CopilotFinalPayload it builds for `zenith:final`.
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 
@@ -74,7 +74,7 @@ import { SSE_KEEPALIVE_INTERVAL_MS } from '@/lib/server/domains/assistant/agui'
 import type { StreamAssistantTurnOptions } from '@/lib/server/domains/assistant/assistant.runtime'
 import { TierLimitError } from '@/lib/server/errors/tier-limit-error'
 import { NotFoundError } from '@/lib/shared/errors'
-import { generateId } from '@quackback/ids'
+import { generateId } from '@zenith/ids'
 
 const CONVERSATION_ID = generateId('conversation')
 const TICKET_ID = generateId('ticket')

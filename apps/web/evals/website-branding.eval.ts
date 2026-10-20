@@ -1,5 +1,5 @@
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
-import { createId } from '@quackback/ids'
+import { createId } from '@zenith/ids'
 import { createAskMcpFixture } from '@/lib/server/mcp/evals/ask-mcp-fixture'
 import { seedAskGoldenFixture } from '@/lib/server/mcp/evals/ask-golden-fixtures'
 import { openAskSdkHarness } from '@/lib/server/mcp/evals/ask-sdk-harness'

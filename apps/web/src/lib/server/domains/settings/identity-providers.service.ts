@@ -29,7 +29,7 @@ import {
 } from '@/lib/server/db'
 import type { Database, Transaction } from '@/lib/server/db'
 import { oidcRedirectStyleFrom, type OidcRedirectStyle } from '@/lib/shared/oidc-redirect'
-import type { IdentityProviderId, UserId } from '@quackback/ids'
+import type { IdentityProviderId, UserId } from '@zenith/ids'
 import { parseSsoTestCapture, type SsoTestCapture } from '@/lib/shared/sso-test-capture'
 import {
   applyClaimMappingEdits,

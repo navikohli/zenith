@@ -62,7 +62,7 @@ export function WidgetHelpDetail({
       isIdentified && canPortalHandoff,
       ott
     )
-    sendToHost({ type: 'quackback:navigate', url })
+    sendToHost({ type: 'zenith:navigate', url })
   }, [article, isIdentified, canPortalHandoff])
 
   if (isLoading) {

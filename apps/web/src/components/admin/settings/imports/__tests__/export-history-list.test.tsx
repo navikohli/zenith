@@ -26,7 +26,7 @@ function renderWithClient(ui: React.ReactElement) {
 const completedRun = {
   id: 'export_run_1',
   status: 'completed',
-  fileName: 'quackback-export-acme-2026-07-17.zip',
+  fileName: 'zenith-export-acme-2026-07-17.zip',
   sizeBytes: 4_200_000,
   entityCounts: { posts: 1204, post_votes: 5632, post_comments: 310, users: 86 },
   error: null,

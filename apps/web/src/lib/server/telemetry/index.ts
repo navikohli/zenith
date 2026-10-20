@@ -46,7 +46,7 @@ let started = false
 
 /**
  * @param opts.once - claim the ping and return, arming no interval. A
- *   `QUACKBACK_CRON_JOB=daily` one-shot is itself the schedule, and a
+ *   `ZENITH_CRON_JOB=daily` one-shot is itself the schedule, and a
  *   process that armed an hourly timer would never exit.
  */
 export async function startTelemetry(opts: { once?: boolean } = {}): Promise<void> {

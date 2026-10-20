@@ -17,7 +17,7 @@ export function friendlyPlatformLabel(hostname: string | null | undefined): stri
   return isGeneratedSystemLabel(label) ? '' : label
 }
 
-/** Registrable suffix of a hostname (`acme.quackback.co.uk` → `quackback.co.uk`). */
+/** Registrable suffix of a hostname (`acme.zenith.co.uk` → `zenith.co.uk`). */
 export function hostnameRegistrableSuffix(hostname: string): string {
   return hostname.split('.').slice(1).join('.')
 }

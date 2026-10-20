@@ -9,7 +9,7 @@ import { and, db, conversationMessages, desc, eq, isNotNull, isNull, sql } from 
 import { attachmentForClient } from '@/lib/server/messages/message-core'
 import { loadAuthors, fallbackAuthor } from '@/lib/server/domains/principals/principal-display'
 import type { ConversationAttachment } from '@/lib/shared/conversation/types'
-import type { ConversationId, ConversationMessageId, TicketId } from '@quackback/ids'
+import type { ConversationId, ConversationMessageId, TicketId } from '@zenith/ids'
 
 /** Cap on how many attachments the sidebar reads — plenty for any real
  *  conversation, and a hard ceiling against a pathological thread. */

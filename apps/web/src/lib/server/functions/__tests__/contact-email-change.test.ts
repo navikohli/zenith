@@ -36,7 +36,7 @@ vi.mock('@tanstack/react-start/server', () => ({
   // The client also writes the private client-IP header Better Auth trusts;
   // nothing it forwards may carry that copy.
   getRequestHeaders: () =>
-    new Headers({ 'x-forwarded-for': '9.9.9.9', 'x-quackback-client-ip': '9.9.9.9' }),
+    new Headers({ 'x-forwarded-for': '9.9.9.9', 'x-zenith-client-ip': '9.9.9.9' }),
 }))
 
 const hoisted = vi.hoisted(() => ({
@@ -126,7 +126,7 @@ import {
   confirmEmailChangeFn,
 } from '../contact-email'
 
-const PLACEHOLDER = 'temp-abc123@anon.quackback.io'
+const PLACEHOLDER = 'temp-abc123@anon.zenith.io'
 const REAL = 'pat@example.com'
 
 /** The handlers are plain functions under the mock; the wrappers' types are not. */
@@ -354,7 +354,7 @@ describe('widget-scoped sessions cannot change email', () => {
 describe('headers forwarded to Better Auth', () => {
   /** The client-IP header each Better Auth call received. */
   const forwardedIps = (fn: ReturnType<typeof vi.fn>) =>
-    fn.mock.calls.map(([arg]) => (arg as { headers: Headers }).headers.get('x-quackback-client-ip'))
+    fn.mock.calls.map(([arg]) => (arg as { headers: Headers }).headers.get('x-zenith-client-ip'))
 
   it('carry the resolved client address, never the client-supplied one', async () => {
     accountIs(REAL)

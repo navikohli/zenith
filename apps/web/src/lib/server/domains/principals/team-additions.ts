@@ -7,7 +7,7 @@
  * people-to-add.ts.
  */
 import { and, db, eq, inArray, invitation, sql, user } from '@/lib/server/db'
-import type { InviteId, PrincipalId, RoleId, UserId } from '@quackback/ids'
+import type { InviteId, PrincipalId, RoleId, UserId } from '@zenith/ids'
 import { ConflictError, ValidationError } from '@/lib/shared/errors'
 import { realEmail } from '@/lib/shared/anonymous-email'
 import { recordAuditEvent, type AuditActor } from '@/lib/server/audit/log'

@@ -7,7 +7,7 @@
  * reads it as a stream and stops at the cap instead of parsing a form that was
  * already buffered whole.
  */
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 import { isS3Usable } from '@/lib/server/storage/s3'
 import { readBodyWithLimit } from '@/lib/server/utils/read-body'
 import { familyFor, formatBytes, maxBytesForFamily } from '@/lib/shared/files/file-types'

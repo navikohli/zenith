@@ -6,7 +6,7 @@ import { widgetRecordArticleFeedbackFn } from '@/lib/server/functions/widget/hel
 import { getWidgetAuthHeaders } from '@/lib/client/widget-auth'
 import { cn } from '@/lib/shared/utils'
 import { useWidgetAuth } from './widget-auth-provider'
-import type { KbArticleId } from '@quackback/ids'
+import type { KbArticleId } from '@zenith/ids'
 
 interface WidgetArticleFooterProps {
   articleId: string

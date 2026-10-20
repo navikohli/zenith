@@ -68,7 +68,7 @@
  * guessing which workspace's data to write a stranger's mail into.
  */
 import { createHmac, randomBytes, timingSafeEqual } from 'crypto'
-import { ID_PREFIXES, type ConversationId, type TicketId } from '@quackback/ids'
+import { ID_PREFIXES, type ConversationId, type TicketId } from '@zenith/ids'
 import { normalizeMailDomain } from '@/lib/server/utils/mail-domain'
 import { isPooledTenancy } from '@/lib/server/workspaces/mode'
 import { extractEmailAddress } from './conversation.email-inbound'

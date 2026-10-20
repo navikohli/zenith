@@ -1,4 +1,4 @@
-import { isTypeId, toUuid } from '@quackback/ids'
+import { isTypeId, toUuid } from '@zenith/ids'
 import { db, sql, type Database, type Transaction } from '@/lib/server/db'
 import type { SQL } from 'drizzle-orm'
 import {

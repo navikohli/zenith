@@ -19,7 +19,7 @@
  * alternative is throwing inside the auth callback.
  */
 
-import { isValidTypeId } from '@quackback/ids'
+import { isValidTypeId } from '@zenith/ids'
 import type { IdentityMapping } from './sso-claim-binder'
 import { isPlainRecord as isRecord } from './record'
 import type {

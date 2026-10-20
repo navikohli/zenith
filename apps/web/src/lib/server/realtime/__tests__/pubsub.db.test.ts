@@ -18,7 +18,7 @@ import { describe, it, expect, beforeAll, afterAll, vi } from 'vitest'
 // already points every suite at.
 vi.stubEnv(
   'DATABASE_URL',
-  process.env.DATABASE_URL ?? 'postgresql://postgres:password@localhost:5432/quackback_test'
+  process.env.DATABASE_URL ?? 'postgresql://postgres:password@localhost:5432/zenith_test'
 )
 vi.stubEnv('BASE_URL', 'http://localhost:3000')
 vi.stubEnv('SECRET_KEY', 'test-secret-key-0123456789abcdef0123456789abcdef')
@@ -114,7 +114,7 @@ describe('publish → subscribe', () => {
     // The control for the case above: without the spill, this is what publishing
     // a large event would do.
     await expect(
-      testSql()`SELECT pg_notify('quackback_realtime', ${'y'.repeat(9_000)})`
+      testSql()`SELECT pg_notify('zenith_realtime', ${'y'.repeat(9_000)})`
     ).rejects.toThrow(/payload string too long/i)
   })
 })

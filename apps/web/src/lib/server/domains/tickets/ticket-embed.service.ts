@@ -1,6 +1,6 @@
 /**
  * Viewer-scoped read backing the `ticket` link embed (the live ticket card
- * Quinn drops into a widget conversation). Loads a ticket + its status,
+ * ZenithAssistant drops into a widget conversation). Loads a ticket + its status,
  * projects the status to its customer-facing stage label (never the internal
  * status name), and applies {@link scopeTicketEmbed}: the card resolves only for
  * a team member or the ticket's own requester. Anything else — including a
@@ -8,7 +8,7 @@
  * resolver degrades to "unavailable" without leaking existence.
  */
 import { db, eq, and, tickets, ticketStatuses, ticketConversations } from '@/lib/server/db'
-import type { TicketId } from '@quackback/ids'
+import type { TicketId } from '@zenith/ids'
 import type { Actor } from '@/lib/server/policy/types'
 import { scopeTicketEmbed, type TicketEmbedRow } from '@/lib/server/functions/embeds'
 import { getStageLabels } from '../settings/settings.tickets'

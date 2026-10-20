@@ -1,6 +1,6 @@
 import { z } from 'zod'
-import { boardIdSchema, postStatusIdSchema, segmentIdSchema, tagIdSchema } from '@quackback/ids/zod'
-import type { BoardId, PostStatusId, PostTagId, SegmentId } from '@quackback/ids'
+import { boardIdSchema, postStatusIdSchema, segmentIdSchema, tagIdSchema } from '@zenith/ids/zod'
+import type { BoardId, PostStatusId, PostTagId, SegmentId } from '@zenith/ids'
 
 export const roadmapTypeSchema = z.enum(['column', 'date'])
 export const roadmapDateSourceSchema = z.literal('eta')

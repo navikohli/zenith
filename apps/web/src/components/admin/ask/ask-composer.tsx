@@ -39,7 +39,7 @@ export function AskComposer({
   }, [query, results[0]?.id])
   const placeholder = intl.formatMessage({
     id: 'ask.composer.search',
-    defaultMessage: 'Search Quackback',
+    defaultMessage: 'Search Zenith',
   })
 
   return (

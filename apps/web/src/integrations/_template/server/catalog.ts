@@ -21,5 +21,5 @@ export const templateCatalog: IntegrationCatalogEntry = {
   // can't be connected. A real provider sets `available: true`.
   available: false,
   configurable: true,
-  docsUrl: 'https://www.quackback.io/docs/integrations',
+  docsUrl: '/source.html',
 }

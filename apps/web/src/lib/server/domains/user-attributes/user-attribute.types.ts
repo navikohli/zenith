@@ -1,4 +1,4 @@
-import type { UserAttributeId } from '@quackback/ids'
+import type { UserAttributeId } from '@zenith/ids'
 import type {
   AttributeDefinitionRecord,
   CreateAttributeDefinitionInput,

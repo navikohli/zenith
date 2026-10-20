@@ -8,7 +8,7 @@
  */
 import { afterAll, beforeEach, describe, expect, it, vi } from 'vitest'
 import postgres from 'postgres'
-import { createId, type PrincipalId, type UserId } from '@quackback/ids'
+import { createId, type PrincipalId, type UserId } from '@zenith/ids'
 
 const race = vi.hoisted(() => ({
   schema: `branding_race_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`,
@@ -47,7 +47,7 @@ vi.mock('@/lib/server/domains/settings/settings.helpers', async (importOriginal)
 // Same sanctioned direct client import as the db test fixture: this suite
 // builds its own connections rather than going through the global `db`.
 // oxlint-disable-next-line no-restricted-imports
-import { createDbFromSql } from '@quackback/db/client'
+import { createDbFromSql } from '@zenith/db/client'
 import { db, principal, settings, sql, user } from '@/lib/server/db'
 import { getExecuteRows } from '@/lib/server/utils/execute-rows'
 import type { Actor } from '@/lib/server/policy/types'

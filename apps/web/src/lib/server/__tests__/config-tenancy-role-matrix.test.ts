@@ -2,7 +2,7 @@
  * Which (tenancy, role) configurations a process may boot in.
  *
  * This file used to assert the opposite. An earlier fix put a refusal in the
- * config schema — pooled tenancy would only boot with `QUACKBACK_ROLE=web` —
+ * config schema — pooled tenancy would only boot with `ZENITH_ROLE=web` —
  * and that composed with the pooled job worker, which is gated ON
  * `shouldRunWorkers()` and therefore never starts on `web`, into a fleet with
  * **no runnable pooled configuration at all**. Two guards, each correct alone,
@@ -10,7 +10,7 @@
  *
  * It also contradicted the architecture it was implementing: the job worker
  * must be allowed to boot under pooled tenancy. Cloud now runs that tier
- * in the tenant-facing process (`QUACKBACK_ROLE=all` + scheduler). `worker`
+ * in the tenant-facing process (`ZENITH_ROLE=all` + scheduler). `worker`
  * remains a valid role for leftover soak capacity and for optional scale-out.
  *
  * So the role is free again, and the refusal moved to the noun it was always
@@ -50,7 +50,7 @@ let saved: NodeJS.ProcessEnv
 
 beforeEach(() => {
   saved = { ...process.env }
-  for (const key of ['DATABASE_URL', 'QUACKBACK_ROLE', 'QUACKBACK_TENANCY']) delete process.env[key]
+  for (const key of ['DATABASE_URL', 'ZENITH_ROLE', 'ZENITH_TENANCY']) delete process.env[key]
   Object.assign(process.env, BASE_ENV)
 })
 
@@ -59,15 +59,15 @@ afterEach(() => {
 })
 
 function usePooled(): void {
-  process.env.QUACKBACK_TENANCY = 'pooled'
-  process.env.QUACKBACK_CONTROL_DATABASE_URL = 'postgresql://cp@localhost:5432/control'
+  process.env.ZENITH_TENANCY = 'pooled'
+  process.env.ZENITH_CONTROL_DATABASE_URL = 'postgresql://cp@localhost:5432/control'
   delete process.env.DATABASE_URL
 }
 
 function useSingle(): void {
-  process.env.QUACKBACK_TENANCY = 'single'
-  delete process.env.QUACKBACK_CONTROL_DATABASE_URL
-  process.env.DATABASE_URL = 'postgresql://app@localhost:5432/quackback'
+  process.env.ZENITH_TENANCY = 'single'
+  delete process.env.ZENITH_CONTROL_DATABASE_URL
+  process.env.DATABASE_URL = 'postgresql://app@localhost:5432/zenith'
 }
 
 async function boot(): Promise<{ refused: boolean; paths: string[] }> {
@@ -90,10 +90,10 @@ describe('every role boots under pooled tenancy', () => {
   // is true, so refusing those roles left the fleet with nothing that could
   // drain a queue.
   for (const role of ROLES) {
-    it(`QUACKBACK_ROLE=${role ?? '(unset)'}`, async () => {
+    it(`ZENITH_ROLE=${role ?? '(unset)'}`, async () => {
       usePooled()
-      if (role === undefined) delete process.env.QUACKBACK_ROLE
-      else process.env.QUACKBACK_ROLE = role
+      if (role === undefined) delete process.env.ZENITH_ROLE
+      else process.env.ZENITH_ROLE = role
 
       expect(await boot()).toEqual({ refused: false, paths: [] })
     })
@@ -102,10 +102,10 @@ describe('every role boots under pooled tenancy', () => {
 
 describe('every role boots under single tenancy', () => {
   for (const role of ROLES) {
-    it(`QUACKBACK_ROLE=${role ?? '(unset)'}`, async () => {
+    it(`ZENITH_ROLE=${role ?? '(unset)'}`, async () => {
       useSingle()
-      if (role === undefined) delete process.env.QUACKBACK_ROLE
-      else process.env.QUACKBACK_ROLE = role
+      if (role === undefined) delete process.env.ZENITH_ROLE
+      else process.env.ZENITH_ROLE = role
 
       expect(await boot()).toEqual({ refused: false, paths: [] })
     })
@@ -118,7 +118,7 @@ describe('the database refusals the pooled mode DOES keep', () => {
   // pass for the wrong reason.
   it('refuses a pooled process carrying a fleet-wide DATABASE_URL', async () => {
     usePooled()
-    process.env.DATABASE_URL = 'postgresql://app@localhost:5432/quackback'
+    process.env.DATABASE_URL = 'postgresql://app@localhost:5432/zenith'
 
     const result = await boot()
     expect(result.refused).toBe(true)
@@ -127,7 +127,7 @@ describe('the database refusals the pooled mode DOES keep', () => {
 
   it('refuses a pooled process with no control database', async () => {
     usePooled()
-    delete process.env.QUACKBACK_CONTROL_DATABASE_URL
+    delete process.env.ZENITH_CONTROL_DATABASE_URL
 
     const result = await boot()
     expect(result.refused).toBe(true)
@@ -145,7 +145,7 @@ describe('the database refusals the pooled mode DOES keep', () => {
 })
 
 describe('the role vocabulary has one reader', () => {
-  it('process-role.ts is the only place QUACKBACK_ROLE is interpreted', async () => {
+  it('process-role.ts is the only place ZENITH_ROLE is interpreted', async () => {
     // The config schema no longer parses it, so there is one reader and no
     // second opinion to drift from. Tolerance for a nonsense value lives there
     // too — and it is fail-CLOSED: an unrecognised role resolves to `web` and
@@ -159,7 +159,7 @@ describe('the role vocabulary has one reader', () => {
       ['migrator', 'migrator', false],
       ['nonsense', 'web', false],
     ] as const) {
-      process.env.QUACKBACK_ROLE = raw
+      process.env.ZENITH_ROLE = raw
       expect(getProcessRole(), raw).toBe(role)
       expect(shouldRunWorkers(), raw).toBe(workers)
     }

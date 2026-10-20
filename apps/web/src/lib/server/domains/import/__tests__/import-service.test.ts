@@ -5,7 +5,7 @@
  * duplicating).
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 
 const hoisted = vi.hoisted(() => ({
   findFirstPostStatuses: vi.fn(),

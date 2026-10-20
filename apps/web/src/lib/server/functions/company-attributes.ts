@@ -6,7 +6,7 @@
  * `./companies` so existing `functions/companies` importers keep working.
  */
 import { createServerFn } from '@tanstack/react-start'
-import type { CompanyAttributeId } from '@quackback/ids'
+import type { CompanyAttributeId } from '@zenith/ids'
 import { requireAuth } from './auth-helpers'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import {

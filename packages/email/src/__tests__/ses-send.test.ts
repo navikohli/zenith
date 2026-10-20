@@ -49,8 +49,8 @@ const logWarn = vi.hoisted(() => vi.fn())
 /** The `error` a send failure that will not be retried is asserted to reach. */
 const logError = vi.hoisted(() => vi.fn())
 
-vi.mock('@quackback/logger', async (importOriginal) => {
-  const actual = await importOriginal<typeof import('@quackback/logger')>()
+vi.mock('@zenith/logger', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@zenith/logger')>()
   const logger = {
     debug: vi.fn(),
     info: vi.fn(),
@@ -556,12 +556,12 @@ describe('completing the threading tokens that name an id this transport assigne
         from: 'hi@platform.test',
         to: 'a@b.test',
         subject: 's',
-        headers: { 'X-Quackback-Kind': '<reply>', 'List-Id': '<announce>' },
+        headers: { 'X-Zenith-Kind': '<reply>', 'List-Id': '<announce>' },
       },
       DEPS(client)
     )
     expect(sentSimple(commands)?.Headers).toEqual([
-      { Name: 'X-Quackback-Kind', Value: '<reply>' },
+      { Name: 'X-Zenith-Kind', Value: '<reply>' },
       { Name: 'List-Id', Value: '<announce>' },
     ])
   })
@@ -837,12 +837,12 @@ describe('stripPlatformControlledHeaders', () => {
       'In-Reply-To': '<parent@platform.test>',
       References: '<root@platform.test> <parent@platform.test>',
       Date: 'Mon, 1 Jan 2024 00:00:00 +0000',
-      'X-Quackback-Kind': 'reply',
+      'X-Zenith-Kind': 'reply',
     })
     expect(headers).toEqual({
       'In-Reply-To': '<parent@platform.test>',
       References: '<root@platform.test> <parent@platform.test>',
-      'X-Quackback-Kind': 'reply',
+      'X-Zenith-Kind': 'reply',
     })
     expect(dropped.sort()).toEqual(['Date', 'Message-ID'])
   })
@@ -1081,7 +1081,7 @@ describe('dispatch on the ses rung', () => {
   it('still refuses a synthetic anonymous recipient before any request', async () => {
     const result = await sendRawEmail({
       from: sendingAs('Support <support@platform.test>'),
-      to: 'temp-abc123@anon.quackback.io',
+      to: 'temp-abc123@anon.zenith.io',
       subject: 's',
       html: '<p>hi</p>',
     })

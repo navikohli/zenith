@@ -19,7 +19,7 @@ import {
   createRouter,
   useRouterState,
 } from '@tanstack/react-router'
-import type { PostId } from '@quackback/ids'
+import type { PostId } from '@zenith/ids'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 
 // The modal's heavy children, reduced to render counters: each renders

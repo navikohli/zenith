@@ -1,5 +1,5 @@
 import { existsSync } from 'fs'
-import type { EmailProvider } from '@quackback/email/provider'
+import type { EmailProvider } from '@zenith/email/provider'
 import { getOrCreateInstanceId } from './instance-id'
 import { activeSecretKey } from '@/lib/server/secret-key'
 import {
@@ -270,7 +270,7 @@ async function getPlatform(
     // Leave unknown
   }
   try {
-    const { getEmailProvider } = await import('@quackback/email')
+    const { getEmailProvider } = await import('@zenith/email')
     emailProvider = getEmailProvider()
   } catch {
     // Leave as console: a conflicting configuration never boots, so this is

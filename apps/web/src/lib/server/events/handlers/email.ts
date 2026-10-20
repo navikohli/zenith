@@ -12,9 +12,9 @@ import {
   sendStatusMaintenanceScheduledEmail,
   sendTicketEventEmail,
   sendNoteMentionEmail,
-} from '@quackback/email'
-import type { EmailResult, IncidentImpact } from '@quackback/email'
-import type { TicketId } from '@quackback/ids'
+} from '@zenith/email'
+import type { EmailResult, IncidentImpact } from '@zenith/email'
+import type { TicketId } from '@zenith/ids'
 import type {
   HookHandler,
   HookResult,
@@ -31,9 +31,9 @@ import {
   noteThreadRootMessageId,
   mintNoteOutboundMessageId,
 } from '@/lib/server/domains/conversation/conversation.email-channel'
-import type { ConversationId } from '@quackback/ids'
+import type { ConversationId } from '@zenith/ids'
 import { isRetryableError } from '../hook-utils'
-import { withEmailIdempotencyKey } from '@quackback/email/idempotency'
+import { withEmailIdempotencyKey } from '@zenith/email/idempotency'
 import { permittedSendingIdentity } from '@/lib/server/domains/channel-accounts/outbound-identity'
 import { logger } from '@/lib/server/logger'
 

@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import type { Actor } from '@/lib/server/policy/types'
 import type { AuthContext } from '../auth-helpers'
-import type { PrincipalId, SegmentId, UserId, WorkspaceId } from '@quackback/ids'
+import type { PrincipalId, SegmentId, UserId, WorkspaceId } from '@zenith/ids'
 import { PERMISSIONS, type PermissionKey } from '@/lib/shared/permissions'
 
 vi.mock('@/lib/server/domains/segments/segment-membership.service', () => ({

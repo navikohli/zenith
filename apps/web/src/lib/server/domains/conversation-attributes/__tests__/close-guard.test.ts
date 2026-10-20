@@ -4,7 +4,7 @@
  * AI closes go straight to the conversation service and bypass it by design.
  */
 import { describe, it, expect, beforeEach, afterEach, afterAll, vi } from 'vitest'
-import type { ConversationId } from '@quackback/ids'
+import type { ConversationId } from '@zenith/ids'
 
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { conversationAttributeDefinitions, conversations, principal } from '@/lib/server/db'

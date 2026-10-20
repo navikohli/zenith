@@ -99,7 +99,7 @@ describe('buildConversationRows', () => {
     const m = msg({
       contentJson: {
         type: 'doc',
-        content: [{ type: 'quackbackEmbed', attrs: { kind: 'post', id: 'post_1' } }],
+        content: [{ type: 'zenithEmbed', attrs: { kind: 'post', id: 'post_1' } }],
       } as any,
     })
     const rows = buildConversationRows({ ...base, messages: [m] })

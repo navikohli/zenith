@@ -13,7 +13,7 @@ import type {
   RoadmapColumnId,
   RoadmapId,
   SegmentId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import { fetchRoadmaps, getRoadmapDateBucketsFn } from '@/lib/server/functions/roadmaps'
 import { listPublicRoadmapsFn } from '@/lib/server/functions/public-posts'
 import { fetchPublicRoadmapDateBuckets } from '@/lib/server/functions/portal'

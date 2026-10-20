@@ -238,7 +238,7 @@ export async function openWorkspaceMcp(auth: McpAuthContext): Promise<{
   const [clientTransport, serverTransport] = InMemoryTransport.createLinkedPair()
   await server.connect(serverTransport)
   const session = await openConnectorSession({
-    url: 'https://quackback.invalid/mcp',
+    url: 'https://zenith.invalid/mcp',
     auth: { mode: 'none' },
     transport: clientTransport,
   })

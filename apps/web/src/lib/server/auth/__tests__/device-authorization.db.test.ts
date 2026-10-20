@@ -8,7 +8,7 @@
  * from being claimed by the wrong person.
  */
 import { afterAll, afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { createId, type PrincipalId, type UserId } from '@quackback/ids'
+import { createId, type PrincipalId, type UserId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { deviceCode, oauthResource, principal, session, settings, user } from '@/lib/server/db'
 import { prepareDeviceCodeRequest } from '@/lib/server/auth/device-request'

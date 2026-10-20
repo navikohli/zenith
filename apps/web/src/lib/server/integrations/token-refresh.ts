@@ -7,7 +7,7 @@
  * persistence (never by integrationType — an update keyed on type clobbers
  * sibling integrations of the same provider), and invalidation of cached integration mappings.
  */
-import type { IntegrationId } from '@quackback/ids'
+import type { IntegrationId } from '@zenith/ids'
 import { decryptSecrets, encryptSecrets } from './encryption'
 import { db, integrations, eq } from '@/lib/server/db'
 import { cacheDel, CACHE_KEYS } from '@/lib/server/cache'

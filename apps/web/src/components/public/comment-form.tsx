@@ -26,7 +26,7 @@ import { DeferredRichTextEditor } from '@/components/ui/lazy-rich-text-editor'
 import type { EditorDocument } from '@/components/ui/rich-text-editor'
 import { COMMENT_EDITOR_FEATURES } from './comment-editor-features'
 import type { TiptapContent } from '@/lib/shared/db-types'
-import type { PostId, PostCommentId } from '@quackback/ids'
+import type { PostId, PostCommentId } from '@zenith/ids'
 import { useSessionContext } from '@/lib/client/hooks/use-root-context'
 import { shownName } from '@/lib/shared/greeting-name'
 

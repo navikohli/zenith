@@ -21,7 +21,7 @@ import type {
   PostCommentId,
   ChangelogId,
   UserId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import { installationIdentity, syncHash } from './identity'
 import { permissionsForPrincipal } from '@/lib/server/policy/permissions'
 import { PERMISSIONS } from '@/lib/shared/permissions'

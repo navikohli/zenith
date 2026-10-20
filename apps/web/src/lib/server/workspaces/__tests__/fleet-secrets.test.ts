@@ -32,8 +32,8 @@ const OTHER_ROOT = 'a-completely-different-fleet-root-key-000'
 
 describe('deriveWorkspaceSecret', () => {
   it('matches its pinned vector', () => {
-    // base64url(hkdf-sha256(ikm=ROOT, salt='quackback-fleet-root-v1',
-    //   info='quackback:fleet:derive:v1:inst_alpha:app-secrets', 32))
+    // base64url(hkdf-sha256(ikm=ROOT, salt='zenith-fleet-root-v1',
+    //   info='zenith:fleet:derive:v1:inst_alpha:app-secrets', 32))
     expect(
       deriveWorkspaceSecret(ROOT, {
         generation: 1,
@@ -160,8 +160,8 @@ describe('the AEAD additional data is actually applied', () => {
       hkdfSync(
         'sha256',
         ROOT,
-        'quackback-fleet-root-v1',
-        `quackback:fleet:seal:v${target.generation}:${target.workspaceKey}:${target.purpose}`,
+        'zenith-fleet-root-v1',
+        `zenith:fleet:seal:v${target.generation}:${target.workspaceKey}:${target.purpose}`,
         32
       )
     )

@@ -1,6 +1,6 @@
 // @vitest-environment happy-dom
 /**
- * <CopilotPanel>: the Quinn Copilot sidebar thread (COPILOT-SIDEBAR-UX.md
+ * <CopilotPanel>: the ZenithAssistant Copilot sidebar thread (COPILOT-SIDEBAR-UX.md
  * B.3/B.4). Covers the ask -> stream -> answer flow, the insert eligibility
  * rule ("Add to composer" only on a finalized, non-internal-sourced
  * draft_reply — analysis and internal-sourced answers are read-only text,
@@ -13,7 +13,7 @@ import { render, screen, fireEvent, cleanup, waitFor } from '@testing-library/re
 import userEvent from '@testing-library/user-event'
 import { IntlProvider } from 'react-intl'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import type { ConversationId } from '@quackback/ids'
+import type { ConversationId } from '@zenith/ids'
 import type { FeatureFlags } from '@/lib/shared/types/settings'
 import { installInMemoryLocalStorage } from '@/test/local-storage'
 import { aguiRun, structuredDeltas, mockStreamingResponse } from '@/test/agui'
@@ -44,7 +44,7 @@ const hoisted = vi.hoisted(() => ({
   recordCopilotEvent: vi.fn(),
   runTransform: vi.fn(),
   // Mutable so the configured-name test can swap the assistant's name.
-  widgetConfig: { messenger: { assistant: { name: 'Quinn', avatarUrl: '' } } },
+  widgetConfig: { messenger: { assistant: { name: 'Zenith Assistant', avatarUrl: '' } } },
 }))
 
 vi.mock('@/lib/client/hooks/use-copilot-transform', () => ({
@@ -146,7 +146,7 @@ async function askAnswer(final: Record<string, unknown> = {}, question = 'Questi
 beforeEach(() => {
   vi.clearAllMocks()
   window.localStorage.clear()
-  hoisted.widgetConfig = { messenger: { assistant: { name: 'Quinn', avatarUrl: '' } } }
+  hoisted.widgetConfig = { messenger: { assistant: { name: 'Zenith Assistant', avatarUrl: '' } } }
   hoisted.runTransform.mockResolvedValue('A friendlier answer.')
 })
 
@@ -641,7 +641,7 @@ describe('<CopilotPanel> Answer-sources popover', () => {
     const snippetsRow = await screen.findByText('Snippets')
     fireEvent.click(snippetsRow)
 
-    const stored = window.localStorage.getItem('quackback:copilot-sources:principal_1')
+    const stored = window.localStorage.getItem('zenith:copilot-sources:principal_1')
     expect(stored).not.toBeNull()
     expect(JSON.parse(stored as string)).not.toContain('snippet')
 
@@ -690,7 +690,7 @@ describe('<CopilotPanel> empty state', () => {
   })
 
   it('keeps the teammate-facing Copilot identity separate from the customer assistant', async () => {
-    hoisted.widgetConfig = { messenger: { assistant: { name: 'Quinn', avatarUrl: '' } } }
+    hoisted.widgetConfig = { messenger: { assistant: { name: 'Zenith Assistant', avatarUrl: '' } } }
     vi.stubGlobal('fetch', vi.fn())
     renderPanel()
 

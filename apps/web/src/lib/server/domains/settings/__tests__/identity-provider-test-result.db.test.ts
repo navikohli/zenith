@@ -16,7 +16,7 @@
  */
 import { afterAll, beforeEach, describe, expect, it, vi } from 'vitest'
 import postgres from 'postgres'
-import { fromUuid, type IdentityProviderId } from '@quackback/ids'
+import { fromUuid, type IdentityProviderId } from '@zenith/ids'
 
 const suite = vi.hoisted(() => ({
   schema: `idp_test_result_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`,
@@ -48,7 +48,7 @@ vi.mock('../settings.helpers', async (importOriginal) => ({
 // Same sanctioned direct client import as the db test fixture: this suite
 // builds its own connection rather than going through the global `db`.
 // oxlint-disable-next-line no-restricted-imports
-import { createDbFromSql } from '@quackback/db/client'
+import { createDbFromSql } from '@zenith/db/client'
 import { auditLog, db, eq, identityProvider, settings } from '@/lib/server/db'
 import type { SsoTestCapture } from '@/lib/shared/sso-test-capture'
 import { persistTestResult } from '../identity-providers.service'

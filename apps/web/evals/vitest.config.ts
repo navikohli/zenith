@@ -28,7 +28,7 @@ function loadDotenv(file: string): Record<string, string> {
 }
 
 /**
- * Standalone Vitest project for the Quinn golden eval set (QUINN-TWO-AGENT-SPEC
+ * Standalone Vitest project for the ZenithAssistant golden eval set (ZENITH_ASSISTANT-TWO-AGENT-SPEC
  * §7). Deliberately NOT picked up by `bun run test`:
  *
  *  - The root and app vitest configs glob `**\/*.test.ts`; eval scenarios use
@@ -86,13 +86,13 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@quackback/db/client': path.resolve(repoRoot, 'packages/db/src/client.ts'),
-      '@quackback/db/schema-version': path.resolve(repoRoot, 'packages/db/src/schema-version.ts'),
-      '@quackback/db/schema-ops': path.resolve(repoRoot, 'packages/db/src/schema-ops.ts'),
-      '@quackback/db/migrate': path.resolve(repoRoot, 'packages/db/src/migrate-runtime.ts'),
-      '@quackback/db/schema': path.resolve(repoRoot, 'packages/db/src/schema/index.ts'),
-      '@quackback/db/types': path.resolve(repoRoot, 'packages/db/src/types.ts'),
-      '@quackback/db': path.resolve(repoRoot, 'packages/db/index.ts'),
+      '@zenith/db/client': path.resolve(repoRoot, 'packages/db/src/client.ts'),
+      '@zenith/db/schema-version': path.resolve(repoRoot, 'packages/db/src/schema-version.ts'),
+      '@zenith/db/schema-ops': path.resolve(repoRoot, 'packages/db/src/schema-ops.ts'),
+      '@zenith/db/migrate': path.resolve(repoRoot, 'packages/db/src/migrate-runtime.ts'),
+      '@zenith/db/schema': path.resolve(repoRoot, 'packages/db/src/schema/index.ts'),
+      '@zenith/db/types': path.resolve(repoRoot, 'packages/db/src/types.ts'),
+      '@zenith/db': path.resolve(repoRoot, 'packages/db/index.ts'),
       '@': webSrc,
     },
   },

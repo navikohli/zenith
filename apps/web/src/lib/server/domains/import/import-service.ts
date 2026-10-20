@@ -30,7 +30,7 @@ import {
   type PostTagId,
   type PostVoteId,
   type PrincipalId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import { ValidationError } from '@/lib/shared/errors'
 import type { ImportInput, ImportResult, ImportRowError, ImportVoterRecord } from './types'
 import { ImportUserResolver } from './user-resolver'

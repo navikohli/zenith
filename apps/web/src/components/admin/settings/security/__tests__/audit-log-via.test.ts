@@ -34,10 +34,10 @@ describe('attributionLine', () => {
     )
     expect(
       attributionLine(
-        { channel: 'assistant', clientName: 'Quinn', onBehalfOfName: 'Jane Doe' },
+        { channel: 'assistant', clientName: 'Zenith Assistant', onBehalfOfName: 'Jane Doe' },
         intl
       )
-    ).toBe('via assistant · Quinn for Jane Doe')
+    ).toBe('via assistant · ZenithAssistant for Jane Doe')
   })
 
   it('stays quiet for changes made in the app and for rows with no attribution', () => {

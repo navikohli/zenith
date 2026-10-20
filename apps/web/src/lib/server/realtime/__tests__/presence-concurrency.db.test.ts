@@ -34,7 +34,7 @@ import {
   listOnlineAgentIds,
   PRESENCE_TTL_SECONDS,
 } from '../presence'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 
 const [T] = workspacePair()
 const AGENT = 'principal_01concurrentagent' as PrincipalId

@@ -5,7 +5,7 @@
  * both FKs cascade. Runs inside the db-test-fixture rollback transaction.
  */
 import { describe, it, expect, vi, beforeEach, afterEach, afterAll } from 'vitest'
-import { createId, type PrincipalId, type TicketId, type UserId } from '@quackback/ids'
+import { createId, type PrincipalId, type TicketId, type UserId } from '@zenith/ids'
 
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { tickets, ticketStatuses, ticketSubscriptions, principal, user, eq } from '@/lib/server/db'

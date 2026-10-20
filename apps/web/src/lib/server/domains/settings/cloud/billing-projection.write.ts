@@ -35,7 +35,7 @@ export function decideBillingProjectionWrite(
 }
 
 function expectedWorkspaceKey(): string | null {
-  return getCurrentWorkspace()?.workspaceKey ?? process.env.QUACKBACK_INSTANCE_ID ?? null
+  return getCurrentWorkspace()?.workspaceKey ?? process.env.ZENITH_INSTANCE_ID ?? null
 }
 
 export async function writeBillingProjection(

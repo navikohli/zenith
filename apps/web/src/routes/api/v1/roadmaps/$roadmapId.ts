@@ -8,7 +8,7 @@ import {
   handleDomainError,
 } from '@/lib/server/domains/api/responses'
 import { parseTypeId } from '@/lib/server/domains/api/validation'
-import type { RoadmapId } from '@quackback/ids'
+import type { RoadmapId } from '@zenith/ids'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import {
   applyLegacyRoadmapIsPublic,
@@ -19,7 +19,7 @@ import {
   roadmapVisibilitySchema,
   segmentIdInputSchema,
 } from '@/lib/shared/roadmap-config'
-import { postStatusIdSchema, roadmapColumnIdSchema } from '@quackback/ids/zod'
+import { postStatusIdSchema, roadmapColumnIdSchema } from '@zenith/ids/zod'
 
 const roadmapColumnSchema = z.object({
   id: roadmapColumnIdSchema.optional(),

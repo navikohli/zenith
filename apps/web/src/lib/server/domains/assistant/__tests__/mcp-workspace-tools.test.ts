@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it } from 'vitest'
 import { convertSchemaToJsonSchema, parseWithStandardSchema, type SchemaInput } from '@tanstack/ai'
-import { generateId } from '@quackback/ids'
+import { generateId } from '@zenith/ids'
 import { API_KEY_SCOPES } from '@/lib/shared/api-key-scopes'
 import { openWorkspaceMcp } from '../mcp-workspace-tools'
 import type { McpAuthContext } from '@/lib/server/mcp/types'

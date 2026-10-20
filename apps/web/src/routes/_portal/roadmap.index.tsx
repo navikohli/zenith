@@ -33,7 +33,7 @@ export const Route = createFileRoute('/_portal/roadmap/')({
 
     return {
       firstRoadmapId: roadmaps[0]?.id ?? null,
-      workspaceName: settings?.name ?? 'Quackback',
+      workspaceName: settings?.name ?? 'Zenith',
       baseUrl: baseUrl ?? '',
       userRole: userRole ?? null,
     }

@@ -8,9 +8,9 @@
  * `env -i` with nothing but the fleet-level variables:
  *
  *   env -i PATH=$PATH \
- *     QUACKBACK_TENANCY=pooled \
- *     QUACKBACK_CONTROL_DATABASE_URL=… \
- *     QUACKBACK_FLEET_ROOT_KEY=… \
+ *     ZENITH_TENANCY=pooled \
+ *     ZENITH_CONTROL_DATABASE_URL=… \
+ *     ZENITH_FLEET_ROOT_KEY=… \
  *     SECRET_KEY=… BASE_URL=… \
  *     bun run apps/web/scripts/verify-workspace-secrets.ts a.example b.example
  *

@@ -144,17 +144,17 @@ describe('a configured trusted client address header', () => {
     const origin = 'origin.up.example'
     const customer = 'feedback.customer.test'
     const nowS = 1_800_000_000
-    vi.stubEnv('QUACKBACK_SAAS_EDGE_SECRET', secret)
-    vi.stubEnv('QUACKBACK_SAAS_RAILWAY_ORIGIN', origin)
-    vi.stubEnv('QUACKBACK_SAAS_FALLBACK_ORIGIN', '')
+    vi.stubEnv('ZENITH_SAAS_EDGE_SECRET', secret)
+    vi.stubEnv('ZENITH_SAAS_RAILWAY_ORIGIN', origin)
+    vi.stubEnv('ZENITH_SAAS_FALLBACK_ORIGIN', '')
     const getClientIp = await load()
     const headers = {
       host: origin,
       'x-real-ip': '10.1.1.1',
-      'x-quackback-customer-host': customer,
-      'x-quackback-customer-host-sig': signCustomerHost(secret, customer),
-      'x-quackback-edge-client-ip': CLIENT,
-      'x-quackback-edge-client-ip-sig': `${nowS}.${signEdgeClientIp(secret, customer, CLIENT, nowS)}`,
+      'x-zenith-customer-host': customer,
+      'x-zenith-customer-host-sig': signCustomerHost(secret, customer),
+      'x-zenith-edge-client-ip': CLIENT,
+      'x-zenith-edge-client-ip-sig': `${nowS}.${signEdgeClientIp(secret, customer, CLIENT, nowS)}`,
     }
     expect(getClientIp(new Request(`https://${origin}/`, { headers }))).toBe(CLIENT)
   })

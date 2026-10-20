@@ -2,9 +2,9 @@ import { describe, it, expect, vi } from 'vitest'
 
 vi.mock('@/lib/server/db', async (importOriginal) => {
   // oxlint-disable-next-line no-restricted-imports -- sanctioned test fixture, same as db-test-fixture.ts
-  const { createDb } = await import('@quackback/db/client')
+  const { createDb } = await import('@zenith/db/client')
   const url =
-    process.env.DATABASE_URL ?? 'postgresql://postgres:password@localhost:5432/quackback_test'
+    process.env.DATABASE_URL ?? 'postgresql://postgres:password@localhost:5432/zenith_test'
   return {
     ...(await importOriginal<typeof import('@/lib/server/db')>()),
     db: createDb(url, { max: 5, prepare: false }),
@@ -12,7 +12,7 @@ vi.mock('@/lib/server/db', async (importOriginal) => {
 })
 
 import { db, events, eq } from '@/lib/server/db'
-import { createId } from '@quackback/ids'
+import { createId } from '@zenith/ids'
 import { pruneEventsOutbox } from '../events-sweep'
 
 /**

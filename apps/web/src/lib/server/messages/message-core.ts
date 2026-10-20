@@ -15,7 +15,7 @@ import { truncate } from '@/lib/shared/utils/string'
 import type { TiptapContent } from '@/lib/shared/db-types'
 import { contentJsonForClient } from '@/lib/server/content/storage-read-urls'
 import { tiptapJsonToText, hasTextLeaf } from '@/lib/server/markdown-tiptap'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 import {
   MAX_CONVERSATION_MESSAGE_LENGTH,
   type ConversationAttachment as ClientAttachment,
@@ -121,7 +121,7 @@ export function richMessageFallbackLabel(doc: TiptapContent | null | undefined):
       if (typeof node.attrs?.src === 'string' && node.attrs.src.length > 0) return 'Image'
       continue
     }
-    if (node.type === 'quackbackEmbed') {
+    if (node.type === 'zenithEmbed') {
       return node.attrs?.kind === 'changelog' ? 'Shared an update' : 'Shared a post'
     }
     const nested = richMessageFallbackLabel(node)

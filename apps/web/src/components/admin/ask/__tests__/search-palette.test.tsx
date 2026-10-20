@@ -54,7 +54,7 @@ function mount() {
     </QueryClientProvider>
   )
 }
-const palette = () => screen.queryByRole('combobox', { name: 'Search Quackback' })
+const palette = () => screen.queryByRole('combobox', { name: 'Search Zenith' })
 
 beforeEach(() => {
   state.pathname = '/admin'
@@ -66,7 +66,7 @@ afterEach(cleanup)
 it('searches pages and entities with no AI and never asks Copilot', async () => {
   mount()
   fireEvent.keyDown(window, { key: 'k', ctrlKey: true })
-  const input = await screen.findByRole('combobox', { name: 'Search Quackback' })
+  const input = await screen.findByRole('combobox', { name: 'Search Zenith' })
   fireEvent.change(input, { target: { value: 'refund' } })
   fireEvent.click(await screen.findByRole('option', { name: /Refund policy idea/ }))
   expect(state.navigations).toEqual(['/admin/feedback?post=refund'])
@@ -77,7 +77,7 @@ it('searches pages and entities with no AI and never asks Copilot', async () => 
 it('toggles with Ctrl+K and opens from the Search row', async () => {
   mount()
   fireEvent.click(screen.getAllByRole('button', { name: 'Search' })[0]!)
-  expect(await screen.findByRole('combobox', { name: 'Search Quackback' })).toBeTruthy()
+  expect(await screen.findByRole('combobox', { name: 'Search Zenith' })).toBeTruthy()
   fireEvent.keyDown(window, { key: 'k', ctrlKey: true })
   await waitFor(() => expect(palette()).toBeNull())
 })
@@ -98,7 +98,7 @@ it('leaves Ctrl+K to a handler that already took it, and to the Inbox command ba
   await act(async () => new Promise((resolve) => setTimeout(resolve, 50)))
   expect(palette()).toBeNull()
   fireEvent.click(screen.getAllByRole('button', { name: 'Search' })[0]!)
-  expect(await screen.findByRole('combobox', { name: 'Search Quackback' })).toBeTruthy()
+  expect(await screen.findByRole('combobox', { name: 'Search Zenith' })).toBeTruthy()
 })
 
 it('marks only the sidebar row as the tour stop', () => {

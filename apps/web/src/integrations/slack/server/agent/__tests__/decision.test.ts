@@ -1,5 +1,5 @@
 import { beforeEach, expect, it, vi } from 'vitest'
-import { generateId } from '@quackback/ids'
+import { generateId } from '@zenith/ids'
 const mocks = vi.hoisted(() => ({
   resolve: vi.fn(),
   actor: vi.fn(),
@@ -30,7 +30,7 @@ vi.mock('@/lib/server/domains/assistant/mcp-workspace-tools', () => ({
 vi.mock('@/lib/server/policy/authorize', () => ({ can: mocks.can }))
 vi.mock('@/lib/server/domains/settings/settings.assistant', () => ({
   getAssistantRuntimeConfig: async () => ({
-    config: { identity: { name: 'Quinn' } },
+    config: { identity: { name: 'Zenith Assistant' } },
     workspaceName: 'Test',
   }),
 }))

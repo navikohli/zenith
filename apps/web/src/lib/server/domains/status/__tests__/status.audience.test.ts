@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import type { PrincipalId, SegmentId } from '@quackback/ids'
+import type { PrincipalId, SegmentId } from '@zenith/ids'
 import { isStatusAudienceGranted } from '../status.audience'
 import { canViewStatusComponent } from '@/lib/server/policy/status'
 import { ANONYMOUS_ACTOR, type Actor } from '@/lib/server/policy/types'

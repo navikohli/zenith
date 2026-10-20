@@ -171,7 +171,7 @@ describe('getTicketCreatedEmailTargets', () => {
 
   it('returns [] when the requester email is synthetic-anon', async () => {
     queueSelect([
-      { id: 'principal_requester', email: 'temp-x@anon.quackback.io', contactEmail: null },
+      { id: 'principal_requester', email: 'temp-x@anon.zenith.io', contactEmail: null },
     ])
     expect(await getTicketCreatedEmailTargets(createdEvent(), context)).toEqual([])
   })
@@ -191,7 +191,7 @@ describe('getTicketCreatedEmailTargets', () => {
 
   it('falls back to principal contactEmail when the account email is anon', async () => {
     queueSelect([
-      { id: 'principal_requester', email: 'temp-x@anon.quackback.io', contactEmail: 'real@x.com' },
+      { id: 'principal_requester', email: 'temp-x@anon.zenith.io', contactEmail: 'real@x.com' },
     ])
     const targets = await getTicketCreatedEmailTargets(createdEvent(), context)
     expect(targets[0].target).toMatchObject({ email: 'real@x.com' })
@@ -298,7 +298,7 @@ describe('getTicketRepliedEmailTargets', () => {
   it('drops a synthetic-anon requester', async () => {
     getTicketWatchersForEvent.mockResolvedValue(['principal_requester'])
     queueSelect([
-      { id: 'principal_requester', email: 'temp-x@anon.quackback.io', contactEmail: null },
+      { id: 'principal_requester', email: 'temp-x@anon.zenith.io', contactEmail: null },
     ])
     expect(await getTicketRepliedEmailTargets(repliedEvent(), context)).toEqual([])
   })

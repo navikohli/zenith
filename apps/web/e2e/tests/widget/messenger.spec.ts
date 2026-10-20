@@ -42,7 +42,7 @@ test.describe('Widget messenger (anonymous visitor)', { tag: '@smoke' }, () => {
       .poll(
         () =>
           page.evaluate(() =>
-            window.localStorage.getItem(`quackback:anon-token:${window.location.origin}`)
+            window.localStorage.getItem(`zenith:anon-token:${window.location.origin}`)
           ),
         { timeout: 10000 }
       )
@@ -63,7 +63,7 @@ test.describe('Widget messenger (anonymous visitor)', { tag: '@smoke' }, () => {
       .poll(
         () =>
           page.evaluate(() =>
-            window.localStorage.getItem(`quackback:anon-token:${window.location.origin}`)
+            window.localStorage.getItem(`zenith:anon-token:${window.location.origin}`)
           ),
         { timeout: 10000 }
       )

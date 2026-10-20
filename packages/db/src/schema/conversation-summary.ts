@@ -1,6 +1,6 @@
 import { pgTable, text, timestamp, index, customType } from 'drizzle-orm/pg-core'
 import { relations, sql } from 'drizzle-orm'
-import { typeIdWithDefault, typeIdColumn } from '@quackback/ids/drizzle'
+import { typeIdWithDefault, typeIdColumn } from '@zenith/ids/drizzle'
 import { conversations } from './conversation'
 import { principal } from './auth'
 
@@ -14,7 +14,7 @@ const vector = customType<{ data: number[] }>({
 })
 
 /**
- * One AI-generated summary per closed conversation (Quinn P2-A.4: past-
+ * One AI-generated summary per closed conversation (ZenithAssistant P2-A.4: past-
  * conversation grounding), produced by `conversation-summary.service.ts` on
  * close from the customer-visible transcript — `assistant.thread.ts` already
  * excludes internal notes, so a note never enters a summary — and embedded

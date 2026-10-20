@@ -17,7 +17,7 @@
  * the message's time.
  */
 import { describe, it, expect, beforeEach, afterEach, afterAll, vi } from 'vitest'
-import { createId, type ConversationId, type PrincipalId, type UserId } from '@quackback/ids'
+import { createId, type ConversationId, type PrincipalId, type UserId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import {
   conversationMessages,

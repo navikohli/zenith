@@ -1,5 +1,5 @@
 import { computeManagedPaths } from './managed-paths'
-import type { QuackbackConfigSpec } from './schema'
+import type { ZenithConfigSpec } from './schema'
 import {
   DEFAULT_SETUP_STATE,
   getSetupState,
@@ -7,7 +7,7 @@ import {
   type SetupState,
 } from '@/lib/shared/db-types'
 
-type ConfigWorkspace = NonNullable<QuackbackConfigSpec['workspace']>
+type ConfigWorkspace = NonNullable<ZenithConfigSpec['workspace']>
 
 export interface SettingsRow {
   id: string
@@ -74,7 +74,7 @@ export interface ReconcileDeps {
  * invalidations only fire when something actually changed.
  */
 export async function reconcileFileIntoDb(
-  spec: QuackbackConfigSpec,
+  spec: ZenithConfigSpec,
   deps: ReconcileDeps
 ): Promise<void> {
   const current = await deps.readSettings()

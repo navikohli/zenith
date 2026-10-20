@@ -8,7 +8,7 @@
  *
  * Usage: bun get-mention-target.ts [excludeEmail]
  */
-import { fromUuid } from '@quackback/ids'
+import { fromUuid } from '@zenith/ids'
 import { openDb } from './_lib'
 
 const excludeEmail = process.argv[2] ?? 'demo@example.com'

@@ -531,7 +531,7 @@ export async function observePhysicalIdentity(sql: Sql): Promise<ObservedPhysica
 /**
  * The whole verdict, in the order that produces the most useful refusal.
  *
- * Content first (is this a Quackback database, and whose?), placement second
+ * Content first (is this a Zenith database, and whose?), placement second
  * (is it the *copy* the registry named?). A wrong-database mix-up should not
  * report as a branch problem.
  */

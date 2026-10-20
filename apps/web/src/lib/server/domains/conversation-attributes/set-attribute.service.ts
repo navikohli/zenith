@@ -15,7 +15,7 @@ import {
   conversationAttributeDefinitions,
 } from '@/lib/server/db'
 import type { ConversationAttributeOption } from '@/lib/server/db'
-import type { ConversationId, TicketId } from '@quackback/ids'
+import type { ConversationId, TicketId } from '@zenith/ids'
 import { NotFoundError, ValidationError } from '@/lib/shared/errors'
 import type { JsonValue } from '@/lib/shared/json'
 import {

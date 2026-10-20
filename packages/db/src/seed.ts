@@ -10,7 +10,7 @@ config({ path: '../../.env', quiet: true })
 import { drizzle } from 'drizzle-orm/postgres-js'
 import { eq } from 'drizzle-orm'
 import postgres from 'postgres'
-import { generateId } from '@quackback/ids'
+import { generateId } from '@zenith/ids'
 import type {
   PostTagId,
   BoardId,
@@ -20,7 +20,7 @@ import type {
   UserId,
   WorkspaceId,
   ChangelogId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import { user, account, settings, principal } from './schema/auth'
 import { workspaceExperiments } from './schema/labs'
 import { boards, postTags, roadmaps, roadmapColumns } from './schema/boards'
@@ -91,7 +91,7 @@ const firstNames = [
   'Morgan',
   'Jamie',
   'Riley',
-  'Quinn',
+  'Zenith Assistant',
   'Avery',
   'Blake',
 ]

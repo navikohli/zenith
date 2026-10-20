@@ -7,7 +7,7 @@
 import { afterEach, expect, it } from 'vitest'
 import { cleanup, render, screen } from '@testing-library/react'
 import { IntlProvider } from 'react-intl'
-import type { StatusComponentGroupId, StatusComponentId } from '@quackback/ids'
+import type { StatusComponentGroupId, StatusComponentId } from '@zenith/ids'
 import { StatusComponentsList } from '../status-components-list'
 
 afterEach(cleanup)

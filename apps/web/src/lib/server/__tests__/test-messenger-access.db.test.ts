@@ -1,5 +1,5 @@
 import { afterAll, afterEach, beforeEach, expect, it, vi } from 'vitest'
-import { createId, type PrincipalId, type UserId, type WorkspaceId } from '@quackback/ids'
+import { createId, type PrincipalId, type UserId, type WorkspaceId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from './db-test-fixture'
 import { principal, user, conversations, eq, settings } from '@/lib/server/db'
 import type { AuthContext } from '@/lib/server/functions/auth-helpers'

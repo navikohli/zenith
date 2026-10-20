@@ -31,12 +31,12 @@ import {
   withSendingDisplayName,
   type SendingIdentityContext,
 } from '../outbound-identity'
-import type { SendingIdentity } from '@quackback/email/sender'
+import type { SendingIdentity } from '@zenith/email/sender'
 
 /** Workspace B: on the fleet, with its own slug, owning nothing of its own. */
 const workspaceB: SendingIdentityContext = {
   verifiedDomains: [],
-  platformFrom: 'Quackback <notifications@mail.platform.test>',
+  platformFrom: 'Zenith <notifications@mail.platform.test>',
   inboundDomain: 'mail.platform.test',
   mailSlug: 'beta',
   pooled: true,
@@ -100,7 +100,7 @@ describe('a workspace cannot send from another workspace’s verified domain', (
   })
 
   it('uses the scoped workspace From as platformFrom', async () => {
-    vi.stubEnv('QUACKBACK_TENANCY', 'pooled')
+    vi.stubEnv('ZENITH_TENANCY', 'pooled')
     vi.stubEnv('EMAIL_FROM', 'Fleet <noreply@fleet.example>')
     await withWorkspace('inst_alpha', async () => {
       await expect(permittedSendingIdentity('support@inst_alpha.example.com')).resolves.toBe(
@@ -131,7 +131,7 @@ describe('platformSendingDomains', () => {
   it('collects the default sender’s domain and the shared inbound domain', () => {
     expect(
       platformSendingDomains({
-        EMAIL_FROM: 'Quackback <notifications@mail.platform.test>',
+        EMAIL_FROM: 'Zenith <notifications@mail.platform.test>',
         EMAIL_INBOUND_DOMAIN: 'Inbound.Platform.Test',
       })
     ).toEqual(new Set(['mail.platform.test', 'inbound.platform.test']))
@@ -148,7 +148,7 @@ describe('platformSendingDomains', () => {
     // only ever tightens.
     expect(
       platformSendingDomains({
-        EMAIL_FROM: 'Quackback <notifications@mail.platform.test>',
+        EMAIL_FROM: 'Zenith <notifications@mail.platform.test>',
         EMAIL_INBOUND_DOMAIN: 'Inbound.Platform.Test',
         EMAIL_INBOUND_EXTRA_DOMAINS: 'Old.Platform.Test, older.platform.test',
       })
@@ -221,8 +221,8 @@ describe('withSendingDisplayName', () => {
 
 describe('the send guard reads the minting domain, not the accept-set', () => {
   const env = {
-    QUACKBACK_TENANCY: 'pooled',
-    EMAIL_FROM: 'Quackback <notifications@mail.platform.test>',
+    ZENITH_TENANCY: 'pooled',
+    EMAIL_FROM: 'Zenith <notifications@mail.platform.test>',
     EMAIL_INBOUND_DOMAIN: 'mail.platform.test',
     EMAIL_INBOUND_EXTRA_DOMAINS: 'old.platform.test',
   }

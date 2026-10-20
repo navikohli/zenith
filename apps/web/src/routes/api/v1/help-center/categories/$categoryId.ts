@@ -16,7 +16,7 @@ import {
   updateCategory,
   deleteCategory,
 } from '@/lib/server/domains/help-center/help-center.service'
-import type { KbCategoryId } from '@quackback/ids'
+import type { KbCategoryId } from '@zenith/ids'
 
 const updateCategoryBody = z.object({
   name: z.string().min(1).max(200).optional(),

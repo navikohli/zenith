@@ -31,7 +31,7 @@ export function buildTrelloCard(
     content,
     '',
     '---',
-    `[View in Quackback](${postUrl})`,
+    `[View in Zenith](${postUrl})`,
   ].join('\n')
 
   return { name: post.title, desc }

@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest'
-import type { PostStatusId, PrincipalId } from '@quackback/ids'
+import type { PostStatusId, PrincipalId } from '@zenith/ids'
 import type { Actor } from '@/lib/server/policy/types'
 
 // `createServerFn` needs the TanStack Start build transform; stub it so importing

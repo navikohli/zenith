@@ -3,7 +3,7 @@
  * download of the finished workspace export ZIP.
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { createId } from '@quackback/ids'
+import { createId } from '@zenith/ids'
 
 const hoisted = vi.hoisted(() => ({
   mockValidateAccess: vi.fn(),
@@ -68,7 +68,7 @@ function completedRun(overrides: Record<string, unknown> = {}) {
   return {
     id: RUN_ID,
     status: 'completed',
-    fileName: 'quackback-export-acme-2026-07-17.zip',
+    fileName: 'zenith-export-acme-2026-07-17.zip',
     s3Key: `exports/${RUN_ID}.zip`,
     sizeBytes: 4200,
     expiresAt: new Date(Date.now() + 86400_000),
@@ -137,7 +137,7 @@ describe('GET /api/export/runs/{runId}/download', () => {
     expect(hoisted.mockGeneratePresignedGetUrl).toHaveBeenCalledWith(
       `exports/${RUN_ID}.zip`,
       900,
-      'quackback-export-acme-2026-07-17.zip'
+      'zenith-export-acme-2026-07-17.zip'
     )
     expect(hoisted.mockRecordAuditEvent).toHaveBeenCalledWith(
       expect.objectContaining({
@@ -158,7 +158,7 @@ describe('GET /api/export/runs/{runId}/download', () => {
     const res = await handleDownloadExportRun(RUN_ID, makeRequest())
     expect(res.status).toBe(200)
     expect(res.headers.get('Content-Type')).toBe('application/zip')
-    expect(res.headers.get('Content-Disposition')).toContain('quackback-export-acme-2026-07-17.zip')
+    expect(res.headers.get('Content-Disposition')).toContain('zenith-export-acme-2026-07-17.zip')
     expect(hoisted.mockGeneratePresignedGetUrl).not.toHaveBeenCalled()
   })
 })

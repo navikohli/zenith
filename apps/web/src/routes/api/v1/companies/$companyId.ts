@@ -3,7 +3,7 @@ import { withApiKeyAuth } from '@/lib/server/domains/api/auth'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import { successResponse, handleDomainError } from '@/lib/server/domains/api/responses'
 import { parseTypeId } from '@/lib/server/domains/api/validation'
-import type { CompanyId } from '@quackback/ids'
+import type { CompanyId } from '@zenith/ids'
 import { serializeCompany } from './-serialize'
 
 export const Route = createFileRoute('/api/v1/companies/$companyId')({

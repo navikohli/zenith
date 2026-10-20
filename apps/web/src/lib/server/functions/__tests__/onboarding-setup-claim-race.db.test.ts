@@ -13,7 +13,7 @@
  */
 import { afterAll, beforeEach, describe, expect, it, vi } from 'vitest'
 import postgres from 'postgres'
-import { createId, type PrincipalId, type UserId } from '@quackback/ids'
+import { createId, type PrincipalId, type UserId } from '@zenith/ids'
 
 const race = vi.hoisted(() => ({
   schema: `claim_race_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`,
@@ -54,11 +54,11 @@ vi.mock('@/lib/server/domains/settings/settings.helpers', () => ({
 // Same sanctioned direct client import as the db test fixture: this suite
 // builds its own connections rather than going through the global `db`.
 // oxlint-disable-next-line no-restricted-imports
-import { createDbFromSql } from '@quackback/db/client'
+import { createDbFromSql } from '@zenith/db/client'
 import { db, principal, settings, user, and, eq } from '@/lib/server/db'
 import { saveWorkspaceAndGoalFn } from '../onboarding'
 
-const LOCK_KEY = `hashtextextended('quackback:bootstrap-admin', 0)`
+const LOCK_KEY = `hashtextextended('zenith:bootstrap-admin', 0)`
 
 let admin: postgres.Sql | null = null
 let pool: postgres.Sql | null = null

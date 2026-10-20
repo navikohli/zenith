@@ -7,7 +7,7 @@ checklist.
 
 ## 1. Naming — `<entity>.<verb>`
 
-- **entity** MUST be a `@quackback/ids` key (`ID_PREFIXES`) — e.g. `post`,
+- **entity** MUST be a `@zenith/ids` key (`ID_PREFIXES`) — e.g. `post`,
   `post_comment`, `api_key`, `kb_article`, `conversation_message`. Singletons
   with no TypeID (`settings`) live on the `VIRTUAL_ENTITIES` allowlist. This
   keeps the event's `entity` field usable as a real join key for per-entity
@@ -97,7 +97,7 @@ Reactions to events are **sinks**, not "hooks". Each implements
 - **sink** = a delivery target (email / notification / webhook / app_webhook /
   integration / workflow / ai / summary).
 - **connector** = a first-party integration's outbound `IntegrationDefinition.hook`.
-- **inbound handler** = an external → Quackback webhook receiver.
+- **inbound handler** = an external → Zenith webhook receiver.
 - **auth hook** = better-auth `hooks.before/after` (the only in-request hooks).
 
 **No external before-hooks — ever.** A third party in the write path couples your

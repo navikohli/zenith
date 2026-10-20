@@ -1,4 +1,4 @@
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 import { db, principal, and, eq, inArray, isNotNull, isNull } from '@/lib/server/db'
 import {
   testAliasTokenMatches,

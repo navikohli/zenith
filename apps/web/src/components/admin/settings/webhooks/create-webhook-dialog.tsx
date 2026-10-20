@@ -105,7 +105,7 @@ export function CreateWebhookDialog({
         <div className="text-xs text-muted-foreground space-y-1">
           <p>
             <strong>Verification:</strong> Each webhook includes an{' '}
-            <code className="bg-muted px-1 rounded">X-Quackback-Signature</code> header.
+            <code className="bg-muted px-1 rounded">X-Zenith-Signature</code> header.
           </p>
           <p>
             Compute{' '}

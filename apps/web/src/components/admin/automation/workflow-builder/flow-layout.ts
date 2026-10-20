@@ -181,7 +181,7 @@ export interface FlowLayoutInput {
   labels: EntityLabels
   stepIssues: ReadonlyMap<string, string>
   selectedId: string | null
-  /** Minutes until a silent Quinn park escalates (engine: 10, or auto-close waitMinutes). */
+  /** Minutes until a silent ZenithAssistant park escalates (engine: 10, or auto-close waitMinutes). */
   assistantEscalateMinutes?: number
 }
 

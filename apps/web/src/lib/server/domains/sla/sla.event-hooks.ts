@@ -60,7 +60,7 @@
  * realtime/events), so nothing re-enters the bus.
  */
 import type { EventData } from '@/lib/server/events/types'
-import type { ConversationId, TicketId } from '@quackback/ids'
+import type { ConversationId, TicketId } from '@zenith/ids'
 import {
   recordFirstResponse,
   recordNextResponse,
@@ -88,7 +88,7 @@ export async function recordSlaFromEvent(event: EventData): Promise<void> {
       // the pause ledger, so the ledger is brought up to date first.
       await reconcileSnoozePauses(conversationId, at)
       if (event.data.message.senderType === 'agent' && event.actor?.type !== 'service') {
-        // Service actors (Quinn, workflow blocks) never satisfy human-response
+        // Service actors (ZenithAssistant, workflow blocks) never satisfy human-response
         // semantics, the same vocabulary the wait-interrupt path uses.
         // Ordered: the first-response clock settles first, then the armed
         // next-response cycle (if any): a first reply never double-settles

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { generateId } from '@quackback/ids'
+import { generateId } from '@zenith/ids'
 import { Route } from '../admin/inbox'
 
 const options = (

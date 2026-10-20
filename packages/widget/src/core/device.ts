@@ -7,7 +7,7 @@
  * (private mode, permissions) the widget stays cookieless.
  */
 
-const DEVICE_KEY = 'quackback:device-id'
+const DEVICE_KEY = 'zenith:device-id'
 
 export function getOrCreateDeviceId(): string | null {
   try {

@@ -152,7 +152,7 @@ describe('pickOnboardingStep V2', () => {
           setupOpenToClaim: false,
           setupState: state(),
           principalRecord: { id: 'p_owner', role: 'admin' },
-          platformHostname: 'acme.quackback.co.uk',
+          platformHostname: 'acme.zenith.co.uk',
         },
       })
     ).toBe('/admin')

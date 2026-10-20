@@ -6,7 +6,7 @@
 import { describe, it, expect, beforeEach, afterEach, afterAll, vi } from 'vitest'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { conversationMessages, conversations, eq, files, principal } from '@/lib/server/db'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 
 vi.mock('@/lib/server/db', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/lib/server/db')>()),

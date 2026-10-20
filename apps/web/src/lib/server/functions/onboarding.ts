@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import { createServerFn } from '@tanstack/react-start'
-import type { UserId, PrincipalId } from '@quackback/ids'
+import type { UserId, PrincipalId } from '@zenith/ids'
 import { ONBOARDING_OUTCOMES, type SetupState } from '@/lib/server/db'
 import { isAdmin, toSessionScope } from '@/lib/shared/roles'
 import { getSession } from '@/lib/server/auth/session'
@@ -312,7 +312,7 @@ export const getInstallChecksFn = createServerFn({ method: 'GET' }).handler(
     await requireAuth({ permission: PERMISSIONS.SETTINGS_MANAGE })
     const { config } = await import('@/lib/server/config')
     if (config.isPooledTenancy) return null
-    const { isEmailConfigured } = await import('@quackback/email')
+    const { isEmailConfigured } = await import('@zenith/email')
     const { isS3Usable } = await import('@/lib/server/storage/s3')
     const { getRequestHeaders } = await import('@tanstack/react-start/server')
     const { checkAddress } = await import('@/lib/server/install-checks')

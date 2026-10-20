@@ -6,7 +6,7 @@
  * Reads default at read time (`DEFAULT_SLA_POLICY_SETTINGS`, no policy) so a
  * workspace that never touched it starts conversations without a stamp.
  */
-import { isTypeId } from '@quackback/ids'
+import { isTypeId } from '@zenith/ids'
 import { logger } from '@/lib/server/logger'
 import { ValidationError } from '@/lib/shared/errors'
 import {

@@ -1,7 +1,7 @@
 import { eq } from 'drizzle-orm'
 import { db as defaultDb, connectors } from '@/lib/server/db'
 import type { Executor } from '@/lib/server/domains/principals/principal.factory'
-import type { ConnectorId } from '@quackback/ids'
+import type { ConnectorId } from '@zenith/ids'
 import { logger } from '@/lib/server/logger'
 import { discoverInto, getConnector } from './connectors.service'
 

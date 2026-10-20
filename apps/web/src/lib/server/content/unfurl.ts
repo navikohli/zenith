@@ -39,7 +39,7 @@ const FAVICON_CACHE_NEG_TTL_S = 60 * 60
 /** Negative-cache sentinel — distinguishable from any real proxied URL. */
 const FAVICON_NONE = '__none'
 /** Sent on page and image requests alike; some sites refuse requests without one. */
-const PAGE_USER_AGENT = 'QuackbackLinkPreview/1.0'
+const PAGE_USER_AGENT = 'ZenithLinkPreview/1.0'
 
 /** An extra rule every fetched URL must pass, checked on each redirect hop too. */
 export type UrlGuard = (url: URL) => boolean

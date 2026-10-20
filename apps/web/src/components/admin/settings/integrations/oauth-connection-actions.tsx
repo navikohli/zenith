@@ -43,7 +43,7 @@ export function OAuthConnectionActions({
       searchParams.reason === 'already_connected_elsewhere'
     ) {
       toast.error(
-        `This ${displayName} account is already connected to another Quackback workspace.`
+        `This ${displayName} account is already connected to another Zenith workspace.`
       )
       return
     }

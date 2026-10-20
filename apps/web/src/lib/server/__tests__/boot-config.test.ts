@@ -34,9 +34,9 @@ describe('assertBootConfigurationOrExit', () => {
     expect(run({ MIN_SCHEMA_VERSION: 'nonsense' }).exited).toBe(1)
   })
 
-  it('exits 1 on an unrecognised QUACKBACK_ROLE', () => {
+  it('exits 1 on an unrecognised ZENITH_ROLE', () => {
     for (const role of ['banana', 'MIGRATOR', 'Migrator']) {
-      expect(run({ QUACKBACK_ROLE: role }).exited, role).toBe(1)
+      expect(run({ ZENITH_ROLE: role }).exited, role).toBe(1)
     }
   })
 
@@ -80,17 +80,17 @@ describe('assertBootConfigurationOrExit', () => {
     // Without this, every assertion above would be satisfied by a function that
     // exits unconditionally.
     expect(run({}).exited).toBeNull()
-    expect(run({ MIN_SCHEMA_VERSION: '0248', QUACKBACK_ROLE: 'migrator' }).exited).toBeNull()
-    expect(run({ QUACKBACK_ROLE: 'web' }).exited).toBeNull()
+    expect(run({ MIN_SCHEMA_VERSION: '0248', ZENITH_ROLE: 'migrator' }).exited).toBeNull()
+    expect(run({ ZENITH_ROLE: 'web' }).exited).toBeNull()
   })
 
   it('does not exit during a build, when the environment is not the serving one', () => {
     // The server entry is evaluated to generate the route manifest in an
     // environment that is not the one it will run in, so a build-time reading
     // of these variables says nothing about the deployment.
-    expect(run({ QUACKBACK_BUILD: '1', MIN_SCHEMA_VERSION: '9999' }).exited).toBeNull()
+    expect(run({ ZENITH_BUILD: '1', MIN_SCHEMA_VERSION: '9999' }).exited).toBeNull()
     expect(
-      run({ QUACKBACK_BUILD: '1' }, () => {
+      run({ ZENITH_BUILD: '1' }, () => {
         throw new Error('Config not available during build')
       }).exited
     ).toBeNull()
@@ -100,7 +100,7 @@ describe('assertBootConfigurationOrExit', () => {
     // The failure mode this whole module exists to prevent is a process that
     // carries on after deciding it is unfit. A throw here would be caught by
     // the module system and become 500-everything-forever again.
-    expect(() => run({ QUACKBACK_ROLE: 'banana' })).not.toThrow()
+    expect(() => run({ ZENITH_ROLE: 'banana' })).not.toThrow()
   })
 })
 

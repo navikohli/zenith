@@ -23,7 +23,7 @@ import {
   type PostId,
   type ChangelogCategoryId,
   type SegmentId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import type { JSONContent } from '@tiptap/react'
 import type { EditorDocument } from '@/components/ui/rich-text-editor'
 

@@ -1,9 +1,9 @@
 import { describe, it, expect } from 'vitest'
-import { summarizeQuinnPerformance } from '../quinn-performance'
+import { summarizeZenithAssistantPerformance } from '../zenith-assistant-performance'
 
-describe('summarizeQuinnPerformance', () => {
+describe('summarizeZenithAssistantPerformance', () => {
   it('returns a zeroed summary for no involvements (rates are 0, not NaN)', () => {
-    expect(summarizeQuinnPerformance([], 0, 0)).toEqual({
+    expect(summarizeZenithAssistantPerformance([], 0, 0)).toEqual({
       involvements: 0,
       conversations: 0,
       involvementRate: 0,
@@ -38,7 +38,7 @@ describe('summarizeQuinnPerformance', () => {
         createdAt: '2026-06-01T13:00:00Z',
       },
     ]
-    const s = summarizeQuinnPerformance(rows, 4, 0)
+    const s = summarizeZenithAssistantPerformance(rows, 4, 0)
     expect(s.involvements).toBe(4)
     expect(s.resolvedConfirmed).toBe(1)
     expect(s.resolvedAssumed).toBe(1)
@@ -47,7 +47,7 @@ describe('summarizeQuinnPerformance', () => {
     expect(s.escalationRate).toBe(25) // 1 of 4
   })
 
-  it('counts involvements Quinn has neither resolved nor handed off as pending', () => {
+  it('counts involvements ZenithAssistant has neither resolved nor handed off as pending', () => {
     const at = '2026-06-01T10:00:00Z'
     const rows = [
       { status: 'resolved_confirmed' as const, handoffReason: null, createdAt: at },
@@ -56,7 +56,7 @@ describe('summarizeQuinnPerformance', () => {
       { status: 'active' as const, handoffReason: null, createdAt: at },
       { status: 'active' as const, handoffReason: null, createdAt: at },
     ]
-    const s = summarizeQuinnPerformance(rows, 5, 0)
+    const s = summarizeZenithAssistantPerformance(rows, 5, 0)
     expect(s.pending).toBe(2)
     expect(s.resolvedConfirmed + s.resolvedAssumed + s.handedOff + s.systemErrors + s.pending).toBe(
       s.involvements
@@ -69,18 +69,18 @@ describe('summarizeQuinnPerformance', () => {
       handoffReason: null,
       createdAt: '2026-06-01T10:00:00Z',
     }))
-    const s = summarizeQuinnPerformance(rows, 10, 0)
+    const s = summarizeZenithAssistantPerformance(rows, 10, 0)
     expect(s.involvementRate).toBe(40) // 4 of 10
   })
 
   it('reports a 0 involvement rate (not NaN) when there were no conversations', () => {
-    const s = summarizeQuinnPerformance([], 0, 3)
+    const s = summarizeZenithAssistantPerformance([], 0, 3)
     expect(s.involvementRate).toBe(0)
     expect(s.actionsTaken).toBe(3)
   })
 
   it('passes actionsTaken through unchanged', () => {
-    const s = summarizeQuinnPerformance([], 5, 12)
+    const s = summarizeZenithAssistantPerformance([], 5, 12)
     expect(s.actionsTaken).toBe(12)
   })
 
@@ -93,7 +93,7 @@ describe('summarizeQuinnPerformance', () => {
         createdAt: '2026-06-01T11:00:00Z',
       },
     ]
-    const s = summarizeQuinnPerformance(rows, 2, 0)
+    const s = summarizeZenithAssistantPerformance(rows, 2, 0)
     expect(s.resolvedConfirmed).toBe(1)
     expect(s.resolutionRate).toBe(50)
     expect(s.handedOff).toBe(0)
@@ -119,7 +119,7 @@ describe('summarizeQuinnPerformance', () => {
       },
       { status: 'active' as const, handoffReason: null, createdAt: '2026-06-01T13:00:00Z' },
     ]
-    const s = summarizeQuinnPerformance(rows, 4, 0)
+    const s = summarizeZenithAssistantPerformance(rows, 4, 0)
     expect(s.handedOff).toBe(1)
     expect(s.systemErrors).toBe(1)
     expect(s.escalationRate).toBe(25) // 1 judgment handoff of 4, infra failure excluded
@@ -139,7 +139,7 @@ describe('summarizeQuinnPerformance', () => {
         createdAt: '2026-06-01T23:30:00Z',
       },
     ]
-    const s = summarizeQuinnPerformance(rows, 3, 0)
+    const s = summarizeZenithAssistantPerformance(rows, 3, 0)
     expect(s.dailyTrend).toEqual([
       { date: '2026-06-01', involvements: 2, resolved: 1 },
       { date: '2026-06-02', involvements: 1, resolved: 0 },
@@ -147,7 +147,7 @@ describe('summarizeQuinnPerformance', () => {
   })
 
   it('accepts Date objects as well as ISO strings for createdAt', () => {
-    const s = summarizeQuinnPerformance(
+    const s = summarizeZenithAssistantPerformance(
       [
         {
           status: 'active' as const,

@@ -3,7 +3,7 @@
  * widget, REST, MCP); removing one accepts any stored value.
  */
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import type { PostCommentId, PrincipalId } from '@quackback/ids'
+import type { PostCommentId, PrincipalId } from '@zenith/ids'
 import { ValidationError } from '@/lib/shared/errors'
 
 const insertValues = vi.hoisted(() => vi.fn())

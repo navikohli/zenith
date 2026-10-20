@@ -9,7 +9,7 @@ import { describe, it, expect, afterEach, vi } from 'vitest'
 import { render, screen, cleanup, fireEvent } from '@testing-library/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { IntlProvider } from 'react-intl'
-import type { PostId } from '@quackback/ids'
+import type { PostId } from '@zenith/ids'
 
 const editorModule = vi.hoisted(() => ({ loaded: false }))
 

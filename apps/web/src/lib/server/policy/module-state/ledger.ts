@@ -546,7 +546,7 @@ export const MODULE_STATE_LEDGER: readonly LedgerEntry[] = [
       'BASE_URL stays REQUIRED and is per-workspace by this branch own registry contract, deriving ' +
       'cookie domain and secure flags, trusted origins, email links and every absolute asset URL. ' +
       'Of the ~56 config.baseUrl readers exactly one consults the workspace record, so on the pooled ' +
-      'fleet both workspaces render the same __QUACKBACK_URL__. Host-derived BASE_URL is ' +
+      'fleet both workspaces render the same __ZENITH_URL__. Host-derived BASE_URL is ' +
       'SAAS-HOSTING-STACK.md section 9 work and is deliberately NOT done here; this entry exists so ' +
       'the gap is written down rather than implied to be closed.',
   },
@@ -839,7 +839,7 @@ export const MODULE_STATE_LEDGER: readonly LedgerEntry[] = [
     name: 'warnedInvalid',
     category: 'process-lifetime',
     reason:
-      'Warn-once latch for an invalid QUACKBACK_ROLE, which is a process-level environment variable.',
+      'Warn-once latch for an invalid ZENITH_ROLE, which is a process-level environment variable.',
   },
   {
     file: 'apps/web/src/lib/server/realtime/pubsub.ts',
@@ -959,7 +959,7 @@ export const MODULE_STATE_LEDGER: readonly LedgerEntry[] = [
     reason:
       'A drizzle handle wrapped around the connection above, so it inherits its scope exactly: one ' +
       'control store per fleet. It is memoized lazily rather than at module scope because ' +
-      'getControlSql() throws when QUACKBACK_CONTROL_DATABASE_URL is unset, and a single-workspace ' +
+      'getControlSql() throws when ZENITH_CONTROL_DATABASE_URL is unset, and a single-workspace ' +
       'install that will never reconcile a fleet must still be able to import this file.',
   },
   {
@@ -1001,7 +1001,7 @@ export const MODULE_STATE_LEDGER: readonly LedgerEntry[] = [
     category: 'process-lifetime',
     reason:
       'The AsyncLocalStorage that CARRIES workspace identity, so it is the one instance that must be ' +
-      'shared: one store per process is what lets the web app, @quackback/db and @quackback/email ' +
+      'shared: one store per process is what lets the web app, @zenith/db and @zenith/email ' +
       'read the same request scope. Partitioning it by workspace would be circular, since the store is ' +
       'how the workspace is known. What it holds is per-async-context, never process-global.',
   },

@@ -103,7 +103,7 @@ const RESTORABLE_MEDIA_NODE_TYPES = new Set([...IMAGE_NODE_TYPES, 'video'])
  * Node types this module can faithfully turn into markdown: the server
  * manager's own nodes (see SERVER_EXTENSIONS) plus the two we normalize below
  * (`resizableImage` -> `image`, `mention` -> text). Anything else — `youtube`,
- * `quackbackEmbed`, `emoji`, future custom nodes — would be silently dropped by
+ * `zenithEmbed`, `emoji`, future custom nodes — would be silently dropped by
  * the narrower server manager, so a document containing one keeps its stored
  * markdown (which the client serialized with full coverage) instead.
  */
@@ -132,7 +132,7 @@ const RESERIALIZABLE_NODE_TYPES = new Set([
   'emoji',
   'youtube',
   'video',
-  'quackbackEmbed',
+  'zenithEmbed',
 ])
 
 /**
@@ -248,7 +248,7 @@ function normalizeForMarkdown(node: JSONContent): JSONContent {
         : [{ type: 'text', text: '[video]' }],
     }
   }
-  if (node.type === 'quackbackEmbed') {
+  if (node.type === 'zenithEmbed') {
     const kind = String(node.attrs?.kind ?? 'content')
     const id = String(node.attrs?.id ?? '')
     return {

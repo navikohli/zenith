@@ -89,7 +89,7 @@ describe('the AI client is fleet-wide, and that is checkable', () => {
 
 describe('the email transports are fleet-wide', () => {
   it('selects a provider from environment variables alone', async () => {
-    const email = await import('@quackback/email')
+    const email = await import('@zenith/email')
     const previous = { ...process.env }
     try {
       delete process.env.EMAIL_SMTP_HOST

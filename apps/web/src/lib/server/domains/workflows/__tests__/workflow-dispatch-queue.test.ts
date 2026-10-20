@@ -9,7 +9,7 @@
  * wrote is the number I wrote.
  *
  * Rows are scoped to event ids this file mints, because `DATABASE_URL` points
- * every worktree on this machine at one shared `quackback_test`.
+ * every worktree on this machine at one shared `zenith_test`.
  */
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest'
 import {
@@ -146,7 +146,7 @@ describe('the ordering constraint', () => {
     // The claim is asked for exactly the free slots the SHIPPED definition
     // declares, so raising `concurrency` to 2 makes this test fail rather than
     // silently pass — that is what ties it to the property instead of to a
-    // literal. The queue name is private because `quackback_test` is shared
+    // literal. The queue name is private because `zenith_test` is shared
     // across worktrees and the real queue names are fixed.
     const def = findJobDefinition(WORKFLOW_DISPATCH_QUEUE)
     const slots = concurrencyFor(def!)
@@ -176,7 +176,7 @@ describe('runWorkflowDispatch', () => {
     dispatched.length = 0
     const event = makeEvent(`${RUN}-run`)
     await enqueueWorkflowDispatch(event)
-    // Read the row back rather than claiming: `quackback_test` is shared, so a
+    // Read the row back rather than claiming: `zenith_test` is shared, so a
     // claim on a fixed queue name could hand this test another checkout's job.
     const [row] = (await testSql()`
       SELECT payload FROM job_queue

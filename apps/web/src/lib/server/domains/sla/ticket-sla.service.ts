@@ -38,7 +38,7 @@
  */
 import { db, and, eq, isNull, sql, tickets, ticketStatuses, slaEvents } from '@/lib/server/db'
 import { notTestTicket } from '@/lib/server/test-data'
-import type { SlaPolicyId, TicketId } from '@quackback/ids'
+import type { SlaPolicyId, TicketId } from '@zenith/ids'
 import { NotFoundError, ValidationError } from '@/lib/shared/errors'
 import { getSlaPolicy } from './sla-policy.service'
 import {

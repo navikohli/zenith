@@ -11,7 +11,7 @@
  * shared with status.lifecycle.db.test.ts).
  */
 import { afterAll, afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import type { SegmentId, StatusIncidentId } from '@quackback/ids'
+import type { SegmentId, StatusIncidentId } from '@zenith/ids'
 import { testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { eq, statusIncidents } from '@/lib/server/db'
 

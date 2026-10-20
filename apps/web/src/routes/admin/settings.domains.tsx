@@ -15,7 +15,7 @@ import {
 } from '@/lib/server/functions/cloud-identity'
 import type { CustomDomainInstruction } from '@/lib/server/control-plane/client'
 import { platformUrlSuffix } from '@/lib/shared/platform-label'
-import { DomainsCard, QuackbackUrlCard } from '@/components/admin/settings/domains-cards'
+import { DomainsCard, ZenithUrlCard } from '@/components/admin/settings/domains-cards'
 import { useCloudEnabled } from '@/lib/client/hooks/use-root-context'
 import { adminPageHead } from '@/lib/client/admin-head'
 
@@ -118,12 +118,12 @@ function DomainsSettingsPage() {
     >
       {!cloudEnabled || !allowed ? (
         <p className="text-sm text-muted-foreground">
-          Custom domains are available only in a Quackback Cloud workspace.
+          Custom domains are available only in a Zenith Cloud workspace.
         </p>
       ) : (
         <>
           {cloudIdentity && (
-            <QuackbackUrlCard
+            <ZenithUrlCard
               platformLabel={platformLabel}
               domainSuffix={platformUrlSuffix(cloudIdentity)}
               pending={identityMutation.isPending}

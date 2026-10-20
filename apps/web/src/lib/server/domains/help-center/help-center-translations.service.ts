@@ -12,7 +12,7 @@ import {
   helpCenterCategoryTranslations,
   type TiptapContent,
 } from '@/lib/server/db'
-import type { KbArticleId, KbCategoryId } from '@quackback/ids'
+import type { KbArticleId, KbCategoryId } from '@zenith/ids'
 import { NotFoundError } from '@/lib/shared/errors'
 import { cancelPendingAutoTranslations } from './help-center-translate-jobs'
 import type {

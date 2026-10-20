@@ -10,7 +10,7 @@ import type {
   BoardId,
   PostTagId,
   SegmentId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import type {
   RoadmapBaseFilter,
   RoadmapFrequency,
@@ -64,7 +64,7 @@ export interface UpdateRoadmapInput {
  * Post returned by a derived roadmap view.
  */
 export interface RoadmapViewPost {
-  id: import('@quackback/ids').PostId
+  id: import('@zenith/ids').PostId
   title: string
   voteCount: number
   commentCount: number

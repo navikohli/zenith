@@ -21,8 +21,8 @@ describe('getEmailFrom', () => {
   })
 
   it('reads EMAIL_FROM when no resolver is installed', () => {
-    process.env.EMAIL_FROM = 'Quackback <noreply@example.com>'
-    expect(getEmailFrom()).toBe('Quackback <noreply@example.com>')
+    process.env.EMAIL_FROM = 'Zenith <noreply@example.com>'
+    expect(getEmailFrom()).toBe('Zenith <noreply@example.com>')
   })
 
   it('throws when EMAIL_FROM is unset and no resolver answers', () => {

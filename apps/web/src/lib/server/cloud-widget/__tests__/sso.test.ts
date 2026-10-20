@@ -21,7 +21,7 @@ describe('mintCloudWidgetSsoToken', () => {
     await expect(
       mintCloudWidgetSsoToken({
         id: 'usr_anon',
-        email: 'temp-abc@anon.quackback.io',
+        email: 'temp-abc@anon.zenith.io',
         name: 'Guest',
       })
     ).resolves.toBeNull()

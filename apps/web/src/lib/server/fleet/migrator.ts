@@ -1,5 +1,5 @@
 /**
- * `QUACKBACK_ROLE=migrator` — the fleet migration executor and its reconcile
+ * `ZENITH_ROLE=migrator` — the fleet migration executor and its reconcile
  * pass (SAAS-HOSTING-STACK.md §10.3).
  *
  * ## Why the executor is the app image
@@ -77,7 +77,7 @@
 import postgres from 'postgres'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { runMigrations, PooledDsnRefused, type MigrationStep } from '@quackback/db/migrate'
+import { runMigrations, PooledDsnRefused, type MigrationStep } from '@zenith/db/migrate'
 import { connectSessionMode, SessionModeDsnError } from './session-dsn'
 import {
   BUNDLED_MIGRATIONS,
@@ -87,8 +87,8 @@ import {
   tagForVersion,
   truncateAppliedLedger,
   type AppliedLedger,
-} from '@quackback/db/schema-version'
-import { verifySchemaPostconditions, type PostconditionReport } from '@quackback/db'
+} from '@zenith/db/schema-version'
+import { verifySchemaPostconditions, type PostconditionReport } from '@zenith/db'
 import { logger } from '@/lib/server/logger'
 import {
   assessReplaySafety,

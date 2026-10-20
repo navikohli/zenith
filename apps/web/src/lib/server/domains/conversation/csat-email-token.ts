@@ -23,7 +23,7 @@
  * functions/csat-email.ts's record fn verifies.
  */
 import { createHmac, timingSafeEqual } from 'crypto'
-import type { ConversationId, PrincipalId } from '@quackback/ids'
+import type { ConversationId, PrincipalId } from '@zenith/ids'
 import { activeSecretKey } from '@/lib/server/secret-key'
 
 const DOMAIN_TAG = 'csat-email:v1\n'

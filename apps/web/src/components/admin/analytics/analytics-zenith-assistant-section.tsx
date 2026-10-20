@@ -10,8 +10,8 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import { quinnPerformanceQuery } from '@/lib/client/queries/assistant-analytics'
-import { quinnToolMetricsQuery } from '@/lib/client/queries/assistant-tools-analytics'
+import { zenithAssistantPerformanceQuery } from '@/lib/client/queries/assistant-analytics'
+import { zenithAssistantToolMetricsQuery } from '@/lib/client/queries/assistant-tools-analytics'
 import { copilotUsageMetricsQuery } from '@/lib/client/queries/assistant-copilot-analytics'
 import type { DateRange } from '@/lib/client/queries/analytics'
 import { cn } from '@/lib/shared/utils'
@@ -42,8 +42,8 @@ function ActionLabel({ toolName }: { toolName: string }) {
   )
 }
 
-/** Quinn's outcome split as a proportional bar. System errors (a hand-off the
- *  platform forced, not Quinn's judgment) get a segment only when there were any. */
+/** ZenithAssistant's outcome split as a proportional bar. System errors (a hand-off the
+ *  platform forced, not ZenithAssistant's judgment) get a segment only when there were any. */
 function OutcomeBar({
   confirmed,
   assumed,
@@ -94,9 +94,9 @@ function OutcomeBar({
   )
 }
 
-/** The Quinn section: headline figures, the outcome split, what Quinn did with
+/** The ZenithAssistant section: headline figures, the outcome split, what ZenithAssistant did with
  *  its tools, and how the team used Copilot, all over one range. */
-export function AnalyticsQuinnSection({
+export function AnalyticsZenithAssistantSection({
   range,
   periodLabel,
 }: {
@@ -104,11 +104,11 @@ export function AnalyticsQuinnSection({
   periodLabel: string
 }) {
   const formatNumber = useFormatNumber()
-  const performance = useQuery(quinnPerformanceQuery(range.from, range.to))
-  const tools = useQuery(quinnToolMetricsQuery(range.from, range.to))
+  const performance = useQuery(zenithAssistantPerformanceQuery(range.from, range.to))
+  const tools = useQuery(zenithAssistantToolMetricsQuery(range.from, range.to))
   const copilot = useQuery(copilotUsageMetricsQuery(range.from, range.to))
 
-  const quinn = performance.data
+  const zenithAssistant = performance.data
   const toolList = tools.data ?? []
   const usage = copilot.data
 
@@ -121,9 +121,9 @@ export function AnalyticsQuinnSection({
             onRetry={() => void performance.refetch()}
           />
         </Card>
-      ) : !quinn ? (
+      ) : !zenithAssistant ? (
         <SectionSkeleton section="ai" />
-      ) : quinn.involvements === 0 ? (
+      ) : zenithAssistant.involvements === 0 ? (
         <Card className="overflow-hidden">
           <AnalyticsEmpty message="The AI agent hasn't handled any conversations this period" />
         </Card>
@@ -134,26 +134,26 @@ export function AnalyticsQuinnSection({
               stats={[
                 {
                   label: 'Conversations involved',
-                  value: formatNumber(quinn.involvements),
-                  caption: `${quinn.involvementRate}% of conversations`,
+                  value: formatNumber(zenithAssistant.involvements),
+                  caption: `${zenithAssistant.involvementRate}% of conversations`,
                 },
                 {
                   label: 'Resolved',
-                  value: `${quinn.resolutionRate}%`,
-                  caption: `${formatNumber(quinn.resolvedConfirmed)} confirmed, ${formatNumber(quinn.resolvedAssumed)} assumed`,
+                  value: `${zenithAssistant.resolutionRate}%`,
+                  caption: `${formatNumber(zenithAssistant.resolvedConfirmed)} confirmed, ${formatNumber(zenithAssistant.resolvedAssumed)} assumed`,
                 },
                 {
                   label: 'Escalated',
-                  value: `${quinn.escalationRate}%`,
-                  caption: `${formatNumber(quinn.handedOff)} handed off`,
+                  value: `${zenithAssistant.escalationRate}%`,
+                  caption: `${formatNumber(zenithAssistant.handedOff)} handed off`,
                 },
                 {
                   label: 'AI CSAT',
-                  value: quinn.csat.responseCount > 0 ? quinn.csat.avgRating.toFixed(1) : '-',
-                  suffix: quinn.csat.responseCount > 0 ? '/ 5' : undefined,
+                  value: zenithAssistant.csat.responseCount > 0 ? zenithAssistant.csat.avgRating.toFixed(1) : '-',
+                  suffix: zenithAssistant.csat.responseCount > 0 ? '/ 5' : undefined,
                   caption:
-                    quinn.csat.responseCount > 0
-                      ? `${formatNumber(quinn.csat.responseCount)} ${quinn.csat.responseCount === 1 ? 'rating' : 'ratings'}`
+                    zenithAssistant.csat.responseCount > 0
+                      ? `${formatNumber(zenithAssistant.csat.responseCount)} ${zenithAssistant.csat.responseCount === 1 ? 'rating' : 'ratings'}`
                       : undefined,
                 },
               ]}
@@ -165,11 +165,11 @@ export function AnalyticsQuinnSection({
             </CardHeader>
             <CardContent>
               <OutcomeBar
-                confirmed={quinn.resolvedConfirmed}
-                assumed={quinn.resolvedAssumed}
-                escalated={quinn.handedOff}
-                pending={quinn.pending}
-                systemErrors={quinn.systemErrors}
+                confirmed={zenithAssistant.resolvedConfirmed}
+                assumed={zenithAssistant.resolvedAssumed}
+                escalated={zenithAssistant.handedOff}
+                pending={zenithAssistant.pending}
+                systemErrors={zenithAssistant.systemErrors}
               />
             </CardContent>
           </Card>

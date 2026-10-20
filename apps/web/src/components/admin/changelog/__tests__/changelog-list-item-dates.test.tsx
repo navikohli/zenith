@@ -6,7 +6,7 @@
  */
 import { render, screen, cleanup } from '@testing-library/react'
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import type { ChangelogId } from '@quackback/ids'
+import type { ChangelogId } from '@zenith/ids'
 import { restoreRuntimeLocale, setRuntimeLocale } from '@/test/runtime-locale'
 
 vi.mock('@tanstack/react-router', () => ({

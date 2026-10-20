@@ -7,7 +7,7 @@
  * ticket.service and consumes listLinkedTicketIds here.
  */
 import { db, eq, and, isNull, inArray, ticketLinks, tickets } from '@/lib/server/db'
-import type { TicketId } from '@quackback/ids'
+import type { TicketId } from '@zenith/ids'
 import { can } from '@/lib/server/policy/authorize'
 import type { Actor } from '@/lib/server/policy/types'
 import { PERMISSIONS } from '@/lib/shared/permissions'

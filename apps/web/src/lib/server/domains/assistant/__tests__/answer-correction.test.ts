@@ -1,5 +1,5 @@
 /**
- * Real-DB coverage for the answer-correction loop: a teammate marks a Quinn
+ * Real-DB coverage for the answer-correction loop: a teammate marks a ZenithAssistant
  * answer unhelpful and attaches the ideal answer; the service must append an
  * `assistant_events` row (the outcome signal) AND persist the correction as a
  * snippet so `retrieveSnippets` surfaces it for a future similar question —
@@ -9,7 +9,7 @@ import { describe, it, expect, beforeEach, afterEach, afterAll, vi } from 'vites
 
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { assistantEvents, assistantSnippets, conversations, eq, principal } from '@/lib/server/db'
-import type { ConversationId } from '@quackback/ids'
+import type { ConversationId } from '@zenith/ids'
 
 vi.mock('@/lib/server/db', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/lib/server/db')>()),

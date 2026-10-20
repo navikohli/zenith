@@ -6,7 +6,7 @@
  * routing by side, and the inbox-list refresh predicate.
  */
 import { describe, it, expect } from 'vitest'
-import type { ConversationId, ConversationMessageId, TicketId } from '@quackback/ids'
+import type { ConversationId, ConversationMessageId, TicketId } from '@zenith/ids'
 import type {
   AgentConversationMessageDTO,
   ConversationDTO,

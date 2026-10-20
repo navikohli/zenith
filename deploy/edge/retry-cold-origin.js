@@ -7,7 +7,7 @@
  *
  * ## What was measured before writing this
  *
- * On Railway (2026-08-09, `quackback-web-sleeper`, `deploy.sleepApplication`
+ * On Railway (2026-08-09, `zenith-web-sleeper`, `deploy.sleepApplication`
  * true, `healthcheckPath` set) the platform did **not** surface a 502:
  *
  * - 8 consecutive requests to a service the API reported `SLEEPING`: all 200,
@@ -25,12 +25,12 @@
  *
  * ## Status: NOT DEPLOYED
  *
- * The wildcard `*.quackback.co.uk` is DNS-only (grey cloud) so that Railway's
+ * The wildcard `*.zenith.co.uk` is DNS-only (grey cloud) so that Railway's
  * DNS-01 certificate issues, which means no Cloudflare code is in the request
  * path at all, and this run's Cloudflare API credentials are expired
  * (`/user/tokens/verify` → 6003, the OAuth token → 9109). This file is
  * therefore the artifact, not a running control. Deploy it with a route on
- * `*.quackback.io/*` once the traffic CNAMEs are proxied.
+ * `*.zenith.io/*` once the traffic CNAMEs are proxied.
  *
  * ## Why only idempotent methods are retried
  *
@@ -63,7 +63,7 @@ export default {
         // Mark it so a cold start is visible in analytics rather than invisible:
         // "no user saw an error" must not become "nobody knows it happened".
         const out = new Response(response.body, response)
-        out.headers.set('x-quackback-origin-retries', String(attempt))
+        out.headers.set('x-zenith-origin-retries', String(attempt))
         return out
       }
     }

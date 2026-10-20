@@ -53,7 +53,7 @@ import { updateWorkflowFn } from '../workflows'
 function makeWorkflow(extra: Partial<Workflow> = {}): Workflow {
   return {
     id: 'workflow_1',
-    name: 'Let Quinn answer',
+    name: 'Let ZenithAssistant answer',
     class: 'customer_facing',
     status: 'live',
     sortOrder: 0,

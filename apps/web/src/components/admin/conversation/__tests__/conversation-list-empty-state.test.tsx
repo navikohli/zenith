@@ -10,7 +10,7 @@ import { cleanup, render, screen } from '@testing-library/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { IntlProvider } from 'react-intl'
 import type { ComponentProps } from 'react'
-import type { ConversationId, PrincipalId } from '@quackback/ids'
+import type { ConversationId, PrincipalId } from '@zenith/ids'
 import type { ConversationDTO } from '@/lib/shared/conversation/types'
 import type { InboxItemDTO } from '@/lib/shared/inbox/items'
 

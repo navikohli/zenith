@@ -21,7 +21,7 @@ import {
 } from './-validation'
 import type { TicketType, TicketStatusCategory, TicketStage } from '@/lib/server/db'
 import type { TicketSort } from '@/lib/server/domains/tickets/ticket.types'
-import type { PrincipalId, CompanyId, SegmentId, TicketTypeId } from '@quackback/ids'
+import type { PrincipalId, CompanyId, SegmentId, TicketTypeId } from '@zenith/ids'
 
 const createTicketSchema = z.object({
   // Optional since Phase 4: derivable from ticketTypeId (a mismatched explicit

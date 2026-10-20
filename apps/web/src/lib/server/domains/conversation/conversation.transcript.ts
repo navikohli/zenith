@@ -46,7 +46,7 @@ function defaultName(senderType: MessageSenderType, isAssistant: boolean): strin
   return 'Agent'
 }
 
-/** "Jane (agent)", "Quinn (assistant)", "Jane (agent) · internal note", "System". */
+/** "Jane (agent)", "ZenithAssistant (assistant)", "Jane (agent) · internal note", "System". */
 function speaker(m: TranscriptMessage): string {
   if (m.senderType === 'system') return 'System'
   const roleLabel = m.senderType === 'visitor' ? 'visitor' : m.isAssistant ? 'assistant' : 'agent'

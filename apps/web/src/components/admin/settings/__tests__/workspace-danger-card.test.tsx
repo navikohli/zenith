@@ -36,7 +36,7 @@ describe('WorkspaceDangerCard', () => {
 
   it('names the restore window and what happens after it, and describes no hosting', () => {
     render(<WorkspaceDangerCard cloudEnabled />)
-    expect(screen.getByText(/restore it from your Quackback dashboard for 30 days/i)).toBeTruthy()
+    expect(screen.getByText(/restore it from your Zenith dashboard for 30 days/i)).toBeTruthy()
     expect(screen.queryByText(/until it is purged/i)).toBeNull()
     fireEvent.click(screen.getByRole('button', { name: 'Delete workspace' }))
     const dialog = screen.getByRole('alertdialog').textContent ?? ''

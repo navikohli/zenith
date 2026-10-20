@@ -1,5 +1,5 @@
 /**
- * Reading the workspace registry — the app side of `quackback-cp`'s
+ * Reading the workspace registry — the app side of `zenith-cp`'s
  * `docs/workspace-registry-contract.md`.
  *
  * The control plane owns two tables in its own Postgres:
@@ -186,7 +186,7 @@ export function getControlSql(): postgres.Sql {
   const url = config.controlDatabaseUrl
   if (!url) {
     throw new Error(
-      'QUACKBACK_CONTROL_DATABASE_URL is not set; the workspace registry cannot be read'
+      'ZENITH_CONTROL_DATABASE_URL is not set; the workspace registry cannot be read'
     )
   }
   controlSql = postgres(url, {

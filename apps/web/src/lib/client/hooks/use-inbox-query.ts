@@ -22,7 +22,7 @@ import {
 import type { InboxFilters, PostDetails } from '@/lib/shared/types'
 import { mergeSuggestionQueries } from '@/lib/client/queries/signals'
 import type { PostListItem, InboxPostListResult } from '@/lib/shared/db-types'
-import type { BoardId, PrincipalId, PostId, PostTagId, SegmentId } from '@quackback/ids'
+import type { BoardId, PrincipalId, PostId, PostTagId, SegmentId } from '@zenith/ids'
 
 // ============================================================================
 // Types

@@ -384,11 +384,11 @@ describe('account step — a self-hosted first user', () => {
 
   it('names the browser tab for the step', () => {
     renderStep(selfHosted())
-    expect(document.title).toBe('Create your account · Quackback')
+    expect(document.title).toBe('Create your account · Zenith')
     cleanup()
 
     renderStep(provisioned())
-    expect(document.title).toBe('Sign in · Quackback')
+    expect(document.title).toBe('Sign in · Zenith')
   })
 
   it('asks for name, email and password in one form', () => {

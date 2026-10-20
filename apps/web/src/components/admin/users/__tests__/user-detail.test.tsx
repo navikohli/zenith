@@ -15,7 +15,7 @@ import type { ReactElement, ReactNode } from 'react'
 import { render, screen, cleanup, fireEvent } from '@testing-library/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import type { PortalUserDetail } from '@/lib/shared/types'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 
 vi.mock('@tanstack/react-router', () => ({
   useRouteContext: (opts?: { select?: (context: never) => unknown }) => {

@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import type { KbArticleId, KbCategoryId, HcRedirectRuleId } from '@quackback/ids'
+import type { KbArticleId, KbCategoryId, HcRedirectRuleId } from '@zenith/ids'
 
 const mockArticleFindFirst = vi.fn()
 const mockCategoryFindFirst = vi.fn()
@@ -229,7 +229,7 @@ describe('deleteRedirectRule / deleteRedirectRulesForTarget', () => {
   })
 
   it('matches redirect targets stored as kb_article_ when deleting an article_ id', async () => {
-    const { generateId } = await import('@quackback/ids')
+    const { generateId } = await import('@zenith/ids')
     const canonical = generateId('article')
     const legacy = `kb_article_${canonical.slice('article_'.length)}`
     await deleteRedirectRulesForTarget('article', canonical)

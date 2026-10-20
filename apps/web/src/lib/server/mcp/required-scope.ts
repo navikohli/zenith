@@ -3,7 +3,7 @@
  * needs. Used by the OAuth 403 interceptor so clients can step up; API keys
  * never consult this — they keep HTTP 200 + `isError`.
  */
-import { getTypeIdPrefix } from '@quackback/ids'
+import { getTypeIdPrefix } from '@zenith/ids'
 import type { McpScope } from './types'
 
 export const TOOL_SCOPES: Readonly<Record<string, McpScope>> = {
@@ -53,12 +53,12 @@ export const TOOL_SCOPES: Readonly<Record<string, McpScope>> = {
 }
 
 export const RESOURCE_SCOPES: Readonly<Record<string, McpScope>> = {
-  'quackback://boards': 'read:feedback',
-  'quackback://statuses': 'read:feedback',
-  'quackback://tags': 'read:feedback',
-  'quackback://roadmaps': 'read:feedback',
-  'quackback://members': 'read:feedback',
-  'quackback://help-center/categories': 'read:article',
+  'zenith://boards': 'read:feedback',
+  'zenith://statuses': 'read:feedback',
+  'zenith://tags': 'read:feedback',
+  'zenith://roadmaps': 'read:feedback',
+  'zenith://members': 'read:feedback',
+  'zenith://help-center/categories': 'read:article',
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {

@@ -12,7 +12,7 @@ import {
   conversations,
   conversationAttributeDefinitions,
 } from '@/lib/server/db'
-import type { ConversationId } from '@quackback/ids'
+import type { ConversationId } from '@zenith/ids'
 import { NotFoundError, ValidationError } from '@/lib/shared/errors'
 import {
   missingRequiredAttributes,

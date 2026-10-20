@@ -28,7 +28,7 @@
  * shifting again.
  */
 import { db, slaEvents } from '@/lib/server/db'
-import type { ConversationId, SlaPolicyId, TicketId } from '@quackback/ids'
+import type { ConversationId, SlaPolicyId, TicketId } from '@zenith/ids'
 import { commitStamp, loadSlaApplied, shiftIso, type SlaApplied } from './sla.service'
 import {
   commitTicketStamp,

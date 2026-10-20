@@ -24,7 +24,7 @@ import {
   type Transaction,
   type TicketSubscriptionReason,
 } from '@/lib/server/db'
-import type { TicketId, PrincipalId } from '@quackback/ids'
+import type { TicketId, PrincipalId } from '@zenith/ids'
 import { isTeamMember } from '@/lib/shared/roles'
 import { ValidationError } from '@/lib/shared/errors'
 import { logger } from '@/lib/server/logger'

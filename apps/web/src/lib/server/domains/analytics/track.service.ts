@@ -17,7 +17,7 @@ import { incrementBucket } from '@/lib/server/utils/rate-bucket'
 import { captureCountryFromHeaders } from '@/lib/server/auth/country-capture'
 
 import { dispatchWorkflowTrigger } from '@/lib/server/domains/workflows/dispatcher'
-import type { ConversationId } from '@quackback/ids'
+import type { ConversationId } from '@zenith/ids'
 import { getDailySalt, computeVisitorHash } from './visitor-hash'
 
 const log = logger.child({ component: 'visitor-track' })

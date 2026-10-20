@@ -25,7 +25,7 @@
  * auth/merge-anonymous.ts. Identity teardown afterwards is the factory's
  * deleteAnonymousIdentity.
  */
-import { toUuid, type PrincipalId } from '@quackback/ids'
+import { toUuid, type PrincipalId } from '@zenith/ids'
 import { forgetRequestSegmentIds } from '@/lib/server/auth/request-session'
 import {
   slackUserLinks,
@@ -310,7 +310,7 @@ export const REPOINT_STEPS: RepointStep[] = [
     'conversation_summaries',
     conversationSummaries,
     'visitor_principal_id',
-    'Denormalized from conversations.visitor_principal_id for Quinn past-conversation grounding (P2-A.4) scoping. ON DELETE RESTRICT, same as conversations: a missed re-point would both strand the summary under the old identity (breaking the customer-scoped retrieval it exists for) and abort the merge at teardown.'
+    'Denormalized from conversations.visitor_principal_id for ZenithAssistant past-conversation grounding (P2-A.4) scoping. ON DELETE RESTRICT, same as conversations: a missed re-point would both strand the summary under the old identity (breaking the customer-scoped retrieval it exists for) and abort the merge at teardown.'
   ),
   simpleRepoint(
     'workflow_runs',

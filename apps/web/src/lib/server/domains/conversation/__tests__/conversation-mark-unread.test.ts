@@ -5,7 +5,7 @@
  * gate and the backwards-only watermark.
  */
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import type { PrincipalId, ConversationMessageId, ConversationId } from '@quackback/ids'
+import type { PrincipalId, ConversationMessageId, ConversationId } from '@zenith/ids'
 import type { Actor } from '@/lib/server/policy/types'
 
 const publishConversationEvent = vi.fn()

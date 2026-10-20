@@ -10,7 +10,7 @@ import { renderHook, waitFor, act } from '@testing-library/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { IntlProvider } from 'react-intl'
 import type { ReactNode } from 'react'
-import type { ConversationId } from '@quackback/ids'
+import type { ConversationId } from '@zenith/ids'
 import type { AgentConversationMessageDTO } from '@/lib/shared/conversation/types'
 import de from '@/locales/de.json'
 

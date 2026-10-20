@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import type { KbArticleId } from '@quackback/ids'
+import type { KbArticleId } from '@zenith/ids'
 
 const mockGetChatModel = vi.fn()
 const mockGetHelpCenterConfig = vi.fn()
@@ -88,11 +88,11 @@ describe('buildTranslationPrompt', () => {
     const { system } = buildTranslationPrompt({
       title: 'Refunds',
       description: null,
-      content: 'Contact Quackback support.',
+      content: 'Contact Zenith support.',
       locale: 'de',
-      protectedTerms: ['Quackback', 'API'],
+      protectedTerms: ['Zenith', 'API'],
     })
-    expect(system).toContain('Quackback, API')
+    expect(system).toContain('Zenith, API')
     expect(system).toMatch(/never translate/i)
   })
 
@@ -163,16 +163,16 @@ describe('translateArticleForLocale', () => {
 
   it('writes a draft translation from the AI response', async () => {
     mockGetChatModel.mockReturnValue('gpt-test')
-    mockGetHelpCenterConfig.mockResolvedValue({ autoTranslate: { protectedTerms: ['Quackback'] } })
+    mockGetHelpCenterConfig.mockResolvedValue({ autoTranslate: { protectedTerms: ['Zenith'] } })
     mockGetArticleById.mockResolvedValue({
       title: 'Refunds',
       description: 'How to get one',
-      content: 'Contact Quackback support.',
+      content: 'Contact Zenith support.',
     })
     mockChat.mockResolvedValue({
       title: 'Rückerstattungen',
       description: 'Wie man eine bekommt',
-      content: 'Kontaktieren Sie den Quackback-Support.',
+      content: 'Kontaktieren Sie den Zenith-Support.',
     })
 
     await translateArticleForLocale('article_1' as KbArticleId, 'de')
@@ -183,7 +183,7 @@ describe('translateArticleForLocale', () => {
         locale: 'de',
         title: 'Rückerstattungen',
         description: 'Wie man eine bekommt',
-        content: 'Kontaktieren Sie den Quackback-Support.',
+        content: 'Kontaktieren Sie den Zenith-Support.',
       }),
       { source: 'auto' }
     )

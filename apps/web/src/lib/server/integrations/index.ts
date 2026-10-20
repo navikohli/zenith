@@ -106,7 +106,7 @@ function deriveCapabilities(i: IntegrationDefinition): IntegrationCapability[] {
         i.inbound.statusMode === 'automatic' ? 'Receive status updates' : 'Review status updates',
       description:
         i.inbound.statusMode === 'automatic'
-          ? `Verified status changes in ${name} update linked feedback in Quackback`
+          ? `Verified status changes in ${name} update linked feedback in Zenith`
           : `Status changes from ${name} appear in Sync history for manual review`,
     })
   }
@@ -114,7 +114,7 @@ function deriveCapabilities(i: IntegrationDefinition): IntegrationCapability[] {
   if (i.listExternalStatuses) {
     caps.push({
       label: 'Review outbound status changes',
-      description: `Review mapped Quackback status changes before applying them in ${name}`,
+      description: `Review mapped Zenith status changes before applying them in ${name}`,
     })
   }
 

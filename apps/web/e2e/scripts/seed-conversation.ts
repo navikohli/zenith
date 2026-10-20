@@ -22,7 +22,7 @@
  *
  * Usage: bun seed-conversation.ts "<subject>" [visitor-email] [--legacy-image]
  */
-import { generateId, toUuid } from '@quackback/ids'
+import { generateId, toUuid } from '@zenith/ids'
 import { openDb } from './_lib'
 
 const args = process.argv.slice(2)

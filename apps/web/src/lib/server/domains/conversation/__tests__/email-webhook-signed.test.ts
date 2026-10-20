@@ -36,7 +36,7 @@ vi.mock('@/lib/server/domains/settings/settings.support', () => ({
 
 import { handleInboundEmailWebhook } from '../email-webhook-handler'
 
-const SECRET_KEY = Buffer.from('quackback-inbound-test-key-32byte').toString('base64')
+const SECRET_KEY = Buffer.from('zenith-inbound-test-key-32byte').toString('base64')
 const SECRET = `whsec_${SECRET_KEY}`
 const WEBHOOK_ID = 'msg_2xY3'
 

@@ -50,7 +50,7 @@ vi.mock('@/lib/server/db', async (importOriginal) => ({
   eq: vi.fn(),
 }))
 
-vi.mock('@quackback/email', () => ({
+vi.mock('@zenith/email', () => ({
   isEmailConfigured: () => mockIsEmailConfigured(),
 }))
 

@@ -10,7 +10,7 @@ This file is the cutover record, not a second architecture.
 ## What replaced it
 
 `emit()` writes the `events` row and an `event-dispatch` job in the
-**same transaction**. The job-queue trigger NOTIFYs `quackback_job_wake`
+**same transaction**. The job-queue trigger NOTIFYs `zenith_job_wake`
 on commit. `runEventDispatch` in `event-dispatch-queue.ts` loads the
 authoritative row, resolves destinations, and enqueues hook jobs with
 the same deterministic `<eventId>:<sink>:<target>` keys the relay used.
@@ -46,4 +46,4 @@ See `jobs/JOBS.md` for the remaining always-warm tier.
 - Relay readiness fields (`relayRunning`, `relayLoops`, `relayAttached`)
 - Relay startup from `startup.ts` and the internal wake route
 
-Self-host `QUACKBACK_ROLE=all` starts the job worker only.
+Self-host `ZENITH_ROLE=all` starts the job worker only.

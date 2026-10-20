@@ -1,8 +1,8 @@
 import { createFileRoute } from '@tanstack/react-router'
 import type { Role } from '@/lib/shared/roles'
 import type { AuditActorType } from '@/lib/server/audit/log'
-import { isValidTypeId } from '@quackback/ids'
-import type { ExportRunId } from '@quackback/ids'
+import { isValidTypeId } from '@zenith/ids'
+import type { ExportRunId } from '@zenith/ids'
 import { logger } from '@/lib/server/logger'
 
 const log = logger.child({ component: 'export-run-download' })

@@ -1104,11 +1104,11 @@ export function scanRoots(repoRoot: string, roots: ScanRoot[]): StateSite[] {
     else if (spec.startsWith('./') || spec.startsWith('../'))
       target = posixJoin(posixDirname(fromRel), spec)
     else {
-      // `@quackback/logger` and friends. These are FIRST-PARTY and their source
+      // `@zenith/logger` and friends. These are FIRST-PARTY and their source
       // IS a scanned root, so treating them as unresolvable third-party was not
       // the documented limit — it was a hole. `packages/<name>/src` is the
       // layout every workspace package uses.
-      const workspace = /^@quackback\/([a-z-]+)(?:\/(.*))?$/.exec(spec)
+      const workspace = /^@zenith\/([a-z-]+)(?:\/(.*))?$/.exec(spec)
       if (workspace) target = posixJoin('packages', workspace[1], 'src', workspace[2] ?? 'index')
     }
     if (target === null) return undefined

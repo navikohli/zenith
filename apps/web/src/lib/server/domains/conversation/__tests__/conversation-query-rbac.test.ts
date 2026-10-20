@@ -14,7 +14,7 @@ import {
   type TeamId,
   type UserId,
   type ConversationId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 
 vi.mock('@/lib/server/db', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/lib/server/db')>()),

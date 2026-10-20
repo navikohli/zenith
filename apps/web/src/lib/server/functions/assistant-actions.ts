@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import { createServerFn } from '@tanstack/react-start'
-import type { AssistantPendingActionId } from '@quackback/ids'
+import type { AssistantPendingActionId } from '@zenith/ids'
 import { requireAuth, policyActorFromAuth } from './auth-helpers'
 import type { AssistantPendingAction } from '@/lib/server/domains/assistant/pending-actions.service'
 import type { JsonValue } from '@/lib/shared/json'

@@ -11,7 +11,7 @@ import type { ReactNode } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { renderHook, waitFor } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import type { PostStatusId, RoadmapId } from '@quackback/ids'
+import type { PostStatusId, RoadmapId } from '@zenith/ids'
 
 const calls: string[] = []
 function stub<T>(name: string, value: T | ((args: unknown) => T)) {

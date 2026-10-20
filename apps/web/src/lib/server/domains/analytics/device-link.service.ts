@@ -8,7 +8,7 @@
  * makes the Visitor -> Lead -> User funnel lossless.
  */
 import { db, sql, and, eq, isNull, pageViews, visitorDevices } from '@/lib/server/db'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 
 /** Beacon-path upsert: keep the device row's recency fields fresh. */
 export async function touchVisitorDevice(deviceId: string, country: string | null): Promise<void> {

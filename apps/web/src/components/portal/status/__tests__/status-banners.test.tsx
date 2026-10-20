@@ -9,7 +9,7 @@ import { afterEach, expect, it, vi } from 'vitest'
 import type { ReactNode } from 'react'
 import { cleanup, render, screen } from '@testing-library/react'
 import { IntlProvider } from 'react-intl'
-import type { StatusIncidentId } from '@quackback/ids'
+import type { StatusIncidentId } from '@zenith/ids'
 
 vi.mock('@tanstack/react-router', () => ({
   Link: ({ children, className }: { children: ReactNode; className?: string }) => (

@@ -47,9 +47,9 @@ describe('config.baseUrl', () => {
   beforeEach(() => {
     vi.resetModules()
     stubBaseEnv()
-    vi.stubEnv('QUACKBACK_TENANCY', 'pooled')
+    vi.stubEnv('ZENITH_TENANCY', 'pooled')
     vi.stubEnv('DATABASE_URL', '')
-    vi.stubEnv('QUACKBACK_CONTROL_DATABASE_URL', 'postgresql://u@localhost:5432/control')
+    vi.stubEnv('ZENITH_CONTROL_DATABASE_URL', 'postgresql://u@localhost:5432/control')
   })
 
   afterEach(() => {
@@ -60,11 +60,11 @@ describe('config.baseUrl', () => {
     const { config } = await import('@/lib/server/config')
     const { runWithWorkspaceScope } = await import('@/lib/server/workspaces/workspace-context')
 
-    runWithWorkspaceScope(scopeFor('inst_t1', 'ws-t1.quackback.co.uk'), () => {
-      expect(config.baseUrl).toBe('https://ws-t1.quackback.co.uk')
+    runWithWorkspaceScope(scopeFor('inst_t1', 'ws-t1.zenith.co.uk'), () => {
+      expect(config.baseUrl).toBe('https://ws-t1.zenith.co.uk')
     })
-    runWithWorkspaceScope(scopeFor('inst_t2', 'ws-t2.quackback.co.uk'), () => {
-      expect(config.baseUrl).toBe('https://ws-t2.quackback.co.uk')
+    runWithWorkspaceScope(scopeFor('inst_t2', 'ws-t2.zenith.co.uk'), () => {
+      expect(config.baseUrl).toBe('https://ws-t2.zenith.co.uk')
     })
   })
 
@@ -88,9 +88,9 @@ describe('config.baseUrl', () => {
 
   it('leaves a single-workspace install reading BASE_URL exactly as before', async () => {
     vi.resetModules()
-    vi.stubEnv('QUACKBACK_TENANCY', 'single')
+    vi.stubEnv('ZENITH_TENANCY', 'single')
     vi.stubEnv('DATABASE_URL', 'postgresql://u@localhost:5432/x')
-    vi.stubEnv('QUACKBACK_CONTROL_DATABASE_URL', '')
+    vi.stubEnv('ZENITH_CONTROL_DATABASE_URL', '')
     const { config } = await import('@/lib/server/config')
     expect(config.baseUrl).toBe('https://fleet.example.com')
   })
@@ -105,7 +105,7 @@ describe('a wildcard BASE_URL is refused', () => {
     vi.unstubAllEnvs()
   })
 
-  // `RAILWAY_PUBLIC_DOMAIN` becomes the literal string `*.quackback.co.uk` the
+  // `RAILWAY_PUBLIC_DOMAIN` becomes the literal string `*.zenith.co.uk` the
   // moment a wildcard custom domain is attached, and `deploy/railway-template.yml`
   // sets `BASE_URL: https://${{RAILWAY_PUBLIC_DOMAIN}}`. `new URL()` accepts it,
   // so without this check the only symptom is a dead link in a customer's inbox.
@@ -119,13 +119,13 @@ describe('a wildcard BASE_URL is refused', () => {
   async function baseUrlOutcome(url: string, mode: string): Promise<'threw' | string> {
     vi.resetModules()
     vi.stubEnv('BASE_URL', url)
-    vi.stubEnv('QUACKBACK_TENANCY', mode)
+    vi.stubEnv('ZENITH_TENANCY', mode)
     if (mode === 'single') {
       vi.stubEnv('DATABASE_URL', 'postgresql://u@localhost:5432/x')
-      vi.stubEnv('QUACKBACK_CONTROL_DATABASE_URL', '')
+      vi.stubEnv('ZENITH_CONTROL_DATABASE_URL', '')
     } else {
       vi.stubEnv('DATABASE_URL', '')
-      vi.stubEnv('QUACKBACK_CONTROL_DATABASE_URL', 'postgresql://u@localhost:5432/control')
+      vi.stubEnv('ZENITH_CONTROL_DATABASE_URL', 'postgresql://u@localhost:5432/control')
     }
     const { config } = await import('@/lib/server/config')
     try {
@@ -136,18 +136,18 @@ describe('a wildcard BASE_URL is refused', () => {
   }
 
   it.each(['pooled', 'single'])(
-    'refuses a wildcard and accepts the same fleet otherwise, under QUACKBACK_TENANCY=%s',
+    'refuses a wildcard and accepts the same fleet otherwise, under ZENITH_TENANCY=%s',
     async (mode) => {
-      expect(await baseUrlOutcome('https://*.quackback.co.uk', mode)).toBe('threw')
+      expect(await baseUrlOutcome('https://*.zenith.co.uk', mode)).toBe('threw')
       // The control: identical environment, real hostname.
-      expect(await baseUrlOutcome('https://quackback-production-9e99.up.railway.app', mode)).toBe(
-        'https://quackback-production-9e99.up.railway.app'
+      expect(await baseUrlOutcome('https://zenith-production-9e99.up.railway.app', mode)).toBe(
+        'https://zenith-production-9e99.up.railway.app'
       )
     }
   )
 
   it('refuses a wildcard anywhere in the host, not just the first label', async () => {
-    expect(await baseUrlOutcome('https://workspace.*.quackback.co.uk', 'single')).toBe('threw')
-    expect(await baseUrlOutcome('https://a?b.quackback.co.uk', 'single')).toBe('threw')
+    expect(await baseUrlOutcome('https://workspace.*.zenith.co.uk', 'single')).toBe('threw')
+    expect(await baseUrlOutcome('https://a?b.zenith.co.uk', 'single')).toBe('threw')
   })
 })

@@ -10,7 +10,7 @@ import {
 import { parseTypeId } from '@/lib/server/domains/api/validation'
 import { isFeatureEnabled } from '@/lib/server/domains/settings/settings.service'
 import { recordArticleFeedback } from '@/lib/server/domains/help-center/help-center.service'
-import type { KbArticleId, PrincipalId } from '@quackback/ids'
+import type { KbArticleId, PrincipalId } from '@zenith/ids'
 
 const feedbackBody = z.object({
   helpful: z.boolean(),

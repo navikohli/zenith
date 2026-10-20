@@ -1,12 +1,12 @@
 /**
- * Read-only lookup of a file's extracted text excerpt, for Quinn's thread
+ * Read-only lookup of a file's extracted text excerpt, for ZenithAssistant's thread
  * mapper (assistant.thread.ts) — the only consumer, and the reason this lives
  * apart from files.service.ts rather than adding to it. `textExcerpt` is
  * written by the file-preview job; the other three columns name the file and
  * say whether an excerpt can ever be expected.
  */
 import { and, db, files, inArray, isNull } from '@/lib/server/db'
-import type { FileId } from '@quackback/ids'
+import type { FileId } from '@zenith/ids'
 import type { FileFamily } from '@/lib/shared/files/file-types'
 
 export interface FileExcerptRow {

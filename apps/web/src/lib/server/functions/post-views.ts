@@ -8,7 +8,7 @@
  */
 import { z } from 'zod'
 import { createServerFn } from '@tanstack/react-start'
-import type { PostViewId } from '@quackback/ids'
+import type { PostViewId } from '@zenith/ids'
 import { requireAuth } from './auth-helpers'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import { postViewFiltersSchema } from '@/lib/shared/post/views'

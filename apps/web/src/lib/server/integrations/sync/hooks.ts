@@ -13,7 +13,7 @@ import {
   tickets,
   ticketExternalLinks,
 } from '@/lib/server/db'
-import type { IntegrationId, PostId, TicketId, PostCommentId, ChangelogId } from '@quackback/ids'
+import type { IntegrationId, PostId, TicketId, PostCommentId, ChangelogId } from '@zenith/ids'
 import type { HookJobData } from '@/lib/server/events/hook-job'
 import { getIntegration } from '../index'
 import { getExecuteRows } from '@/lib/server/utils/execute-rows'

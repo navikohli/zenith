@@ -1,4 +1,4 @@
-import { ensureTypeId, isValidTypeId, type ArticleId } from '@quackback/ids'
+import { ensureTypeId, isValidTypeId, type ArticleId } from '@zenith/ids'
 
 /**
  * True for an article TypeID (`article_…` or the retired `kb_article_…` alias).

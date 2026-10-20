@@ -3,10 +3,10 @@
  * replica that is not a tenant).
  *
  * Distinct from:
- *   - per-workspace `QUACKBACK_CP_INTERNAL_TOKEN` (app → CP `/api/v1/internal/*`)
+ *   - per-workspace `ZENITH_CP_INTERNAL_TOKEN` (app → CP `/api/v1/internal/*`)
  *   - identity/billing projection JWTs (CP → web, tenant hostname)
  *
- * The token is a fleet-wide secret (`QUACKBACK_FLEET_INTERNAL_TOKEN`), the same
+ * The token is a fleet-wide secret (`ZENITH_FLEET_INTERNAL_TOKEN`), the same
  * value already declared on every app service. There is one check and it is
  * fail-closed: an unset token refuses every caller rather than treating the
  * fleet as open.
@@ -16,7 +16,7 @@ import { logger } from '@/lib/server/logger'
 
 const log = logger.child({ component: 'fleet-internal-auth' })
 
-export const FLEET_INTERNAL_TOKEN_ENV = 'QUACKBACK_FLEET_INTERNAL_TOKEN'
+export const FLEET_INTERNAL_TOKEN_ENV = 'ZENITH_FLEET_INTERNAL_TOKEN'
 
 function readProvidedToken(request: Request): string | null {
   const authorization = request.headers.get('authorization')
@@ -26,7 +26,7 @@ function readProvidedToken(request: Request): string | null {
   }
   // Same secret, header form — some internal callers send a raw header rather
   // than a Bearer scheme. Either is enough; both are compared the same way.
-  const header = request.headers.get('x-quackback-fleet-internal-token')
+  const header = request.headers.get('x-zenith-fleet-internal-token')
   return header && header.length > 0 ? header : null
 }
 
@@ -41,7 +41,7 @@ function tokensMatch(provided: string, expected: string): boolean {
 export function authorizeFleetInternal(request: Request): boolean {
   const expected = process.env[FLEET_INTERNAL_TOKEN_ENV]
   if (!expected) {
-    log.warn('QUACKBACK_FLEET_INTERNAL_TOKEN is unset — refusing fleet-internal request')
+    log.warn('ZENITH_FLEET_INTERNAL_TOKEN is unset — refusing fleet-internal request')
     return false
   }
   const provided = readProvidedToken(request)

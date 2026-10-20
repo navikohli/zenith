@@ -12,7 +12,7 @@ import type {
   TeamId,
   TicketId,
   UserId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import {
   db,
   eq,
@@ -779,7 +779,7 @@ export async function getTicketAssignedTargets(event: EventData): Promise<HookTa
  * `{ conversationId, reason }`, so this re-reads the conversation for its
  * current team assignment — the assigned team's members when one is set,
  * else every admin/member principal (the whole agent team). The actor
- * (Quinn's service principal) is always excluded.
+ * (ZenithAssistant's service principal) is always excluded.
  */
 export async function getAssistantHandedOffTargets(event: EventData): Promise<HookTarget | null> {
   if (event.type !== 'assistant.handed_off') return null
@@ -1758,7 +1758,7 @@ export async function getChangelogSubscriberTargets(
   const linkedPosts = await db.query.changelogEntryPosts.findMany({
     where: eqOp(
       changelogEntryPosts.changelogEntryId,
-      changelogId as import('@quackback/ids').ChangelogId
+      changelogId as import('@zenith/ids').ChangelogId
     ),
     columns: { postId: true },
   })
@@ -1826,7 +1826,7 @@ export async function getChangelogSubscriberTargets(
   const entryRows = await db
     .select({ segmentIds: changelogEntries.segmentIds })
     .from(changelogEntries)
-    .where(eqOp(changelogEntries.id, changelogId as import('@quackback/ids').ChangelogId))
+    .where(eqOp(changelogEntries.id, changelogId as import('@zenith/ids').ChangelogId))
     .limit(1)
   const targetedSegmentIds = entryRows[0]?.segmentIds ?? []
   if (targetedSegmentIds.length > 0) {

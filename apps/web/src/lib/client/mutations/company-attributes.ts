@@ -5,7 +5,7 @@
  */
 
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import type { CompanyAttributeId } from '@quackback/ids'
+import type { CompanyAttributeId } from '@zenith/ids'
 import {
   createCompanyAttributeFn,
   updateCompanyAttributeFn,

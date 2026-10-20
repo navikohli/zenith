@@ -1,5 +1,5 @@
 import { LaunchPlanDock, LaunchPlanInHelp } from '@/components/onboarding/launch-plan-dock'
-import { openHelpLauncher } from '@/components/shared/cloud-quackback-widget'
+import { openHelpLauncher } from '@/components/shared/cloud-zenith-widget'
 import { PlanNoticeQuiet } from '@/components/admin/plan-notice-banner'
 import type { PlanNotice } from '@/lib/server/domains/settings/tier-limits.types'
 import { SearchTrigger } from '@/components/admin/ask/search-palette'
@@ -352,10 +352,10 @@ export function AdminSidebar({ initialUserData, latestVersion, planNotice }: Adm
     [flags, billingEnabled, cloudEnabled, permissions]
   )
   // The org's own logo (resolved in brandingData by the root loader, same source
-  // PortalBrandMark uses); fall back to the Quackback mark when none is set.
+  // PortalBrandMark uses); fall back to the Zenith mark when none is set.
   const branding = (settings as { brandingData?: SettingsBrandingData } | undefined)?.brandingData
   const orgLogo = branding?.logoUrl ?? branding?.headerLogoUrl ?? '/logo.png'
-  const orgName = branding?.name ?? 'Quackback'
+  const orgName = branding?.name ?? 'Zenith'
 
   // Requests waiting on the viewer. Admins can decide every kind, so they
   // always have Approvals; a member has it while a request waits on them.
@@ -565,7 +565,7 @@ export function AdminSidebar({ initialUserData, latestVersion, planNotice }: Adm
                   )}
                   <DropdownMenuItem asChild>
                     <a
-                      href="https://www.quackback.io/docs/"
+                      href="/source.html"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -575,7 +575,7 @@ export function AdminSidebar({ initialUserData, latestVersion, planNotice }: Adm
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
                     <a
-                      href="https://feedback.quackback.io/changelog"
+                      href="/source.html"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -767,7 +767,7 @@ export function AdminSidebar({ initialUserData, latestVersion, planNotice }: Adm
               </LaunchPlanInHelp>
               <div className="h-px bg-border/40 my-4" />
               <a
-                href="https://www.quackback.io/docs/"
+                href="/source.html"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm text-muted-foreground/80 hover:text-foreground hover:bg-muted/50 transition-colors"
@@ -776,7 +776,7 @@ export function AdminSidebar({ initialUserData, latestVersion, planNotice }: Adm
                 <FormattedMessage id="admin.help.docs" defaultMessage="Documentation" />
               </a>
               <a
-                href="https://feedback.quackback.io/changelog"
+                href="/source.html"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm text-muted-foreground/80 hover:text-foreground hover:bg-muted/50 transition-colors"

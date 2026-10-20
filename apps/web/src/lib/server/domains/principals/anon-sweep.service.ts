@@ -23,7 +23,7 @@
  * leadEngagementWhere() (it protects ANY referenced row, not just engagement),
  * so the two predicates must never be naively unified.
  */
-import type { PrincipalId, UserId } from '@quackback/ids'
+import type { PrincipalId, UserId } from '@zenith/ids'
 import { db, sql } from '@/lib/server/db'
 import { logger } from '@/lib/server/logger'
 import { deleteAnonymousIdentity } from './principal.factory'

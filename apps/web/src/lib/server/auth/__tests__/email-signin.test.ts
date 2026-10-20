@@ -37,7 +37,7 @@ vi.mock('@/lib/server/db', () => ({
   db: { query: { settings: { findFirst: vi.fn(async () => hoisted.settings) } } },
 }))
 
-vi.mock('@quackback/email', () => ({
+vi.mock('@zenith/email', () => ({
   isEmailConfigured: () => true,
   sendMagicLinkEmail: hoisted.mockSendMagicLinkEmail,
   // Present so the module destructure resolves; this suite opens the gate, so
@@ -54,7 +54,7 @@ vi.mock('../registered-providers', () => ({
   getRegisteredOidcProviderIds: vi.fn(async () => new Set()),
 }))
 
-vi.mock('@/lib/server/config', () => ({ config: { baseUrl: 'https://acme.quackback.io' } }))
+vi.mock('@/lib/server/config', () => ({ config: { baseUrl: 'https://acme.zenith.io' } }))
 
 import { requestEmailSignin } from '../email-signin'
 

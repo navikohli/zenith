@@ -10,7 +10,7 @@
  * - Layer 2: DOMPurify on HTML output at render time
  */
 
-import { isValidTypeId } from '@quackback/ids'
+import { isValidTypeId } from '@zenith/ids'
 import {
   sanitizeUrl,
   sanitizeImageUrl,
@@ -67,7 +67,7 @@ const ALLOWED_NODE_TYPES = new Set([
   'tableCell',
   'emoji',
   'mention',
-  'quackbackEmbed',
+  'zenithEmbed',
   'chatImage',
 ])
 
@@ -253,8 +253,8 @@ function sanitizeAttrs(
       return { id, label }
     }
 
-    case 'quackbackEmbed': {
-      // A Quackback link embed carries only `{ kind, id }`. `kind` must be one
+    case 'zenithEmbed': {
+      // A Zenith link embed carries only `{ kind, id }`. `kind` must be one
       // of the embeddable entity types, and `id` must be valid for that kind:
       //   - post / changelog / ticket: a real TypeID (charset + round-trip verified)
       //   - article:                   a help-center article slug (lowercase alphanumeric + hyphens)

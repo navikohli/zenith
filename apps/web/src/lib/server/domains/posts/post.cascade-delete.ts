@@ -6,7 +6,7 @@ import { getIntegration } from '@/lib/server/integrations'
  * Failures are warnings, never blockers -- the post delete always succeeds.
  */
 
-import type { PostId, PostExternalLinkId, PrincipalId } from '@quackback/ids'
+import type { PostId, PostExternalLinkId, PrincipalId } from '@zenith/ids'
 import {
   db,
   eq,

@@ -1,11 +1,11 @@
 /**
  * Post-in-conversation sends: sharePost sends an embed-only agent message whose
- * contentJson is a quackbackEmbed of the post. It routes through sendAgentMessage
+ * contentJson is a zenithEmbed of the post. It routes through sendAgentMessage
  * (server-decided 'agent' sender, conversation touch, realtime broadcast); the
  * empty text is valid because the doc carries the embed node.
  */
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import type { PrincipalId, ConversationId, PostId } from '@quackback/ids'
+import type { PrincipalId, ConversationId, PostId } from '@zenith/ids'
 import type { Actor } from '@/lib/server/policy/types'
 import { ForbiddenError } from '@/lib/shared/errors'
 
@@ -141,7 +141,7 @@ vi.mock('@/lib/server/db', () => {
 })
 
 import { postEmbedDoc, sharePost, ticketEmbedDoc, shareTicket } from '../conversation.cards'
-import type { TicketId } from '@quackback/ids'
+import type { TicketId } from '@zenith/ids'
 
 const conversationId = 'conversation_1' as ConversationId
 const postId = 'post_1' as PostId
@@ -172,12 +172,12 @@ beforeEach(() => {
   vi.clearAllMocks()
 })
 
-/** Find the quackbackEmbed node in a sanitized doc, if any. */
+/** Find the zenithEmbed node in a sanitized doc, if any. */
 function embedNode(doc: unknown): { type: string; attrs?: Record<string, unknown> } | undefined {
   const content = (
     doc as { content?: Array<{ type: string; attrs?: Record<string, unknown> }> } | null
   )?.content
-  return content?.find((n) => n.type === 'quackbackEmbed')
+  return content?.find((n) => n.type === 'zenithEmbed')
 }
 
 describe('postEmbedDoc', () => {
@@ -190,7 +190,7 @@ describe('postEmbedDoc', () => {
 })
 
 describe('sharePost', () => {
-  it('sends an embed-only agent message carrying a quackbackEmbed post node', async () => {
+  it('sends an embed-only agent message carrying a zenithEmbed post node', async () => {
     const shared = await sharePost(
       { conversationId, postId },
       { agentActor, agentPrincipalId, agent }
@@ -222,7 +222,7 @@ describe('ticketEmbedDoc', () => {
 })
 
 describe('shareTicket', () => {
-  it('sends an embed-only agent message carrying a quackbackEmbed ticket node', async () => {
+  it('sends an embed-only agent message carrying a zenithEmbed ticket node', async () => {
     const shared = await shareTicket(
       { conversationId, ticketId },
       { agentActor, agentPrincipalId, agent }

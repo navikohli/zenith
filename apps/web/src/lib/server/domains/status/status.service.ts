@@ -32,7 +32,7 @@ import type {
   StatusIncidentTemplateId,
   StatusComponentId,
   PrincipalId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import { NotFoundError, ValidationError } from '@/lib/shared/errors'
 import { logger } from '@/lib/server/logger'
 import { buildEventActor, type EventActor } from '@/lib/server/events/dispatch'

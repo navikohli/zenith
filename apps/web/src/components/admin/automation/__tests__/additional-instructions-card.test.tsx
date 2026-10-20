@@ -12,7 +12,7 @@ vi.mock('sonner', () => ({ toast: { error: toastError } }))
 
 const config = {
   version: 3 as const,
-  identity: { name: 'Quinn', avatarUrl: null },
+  identity: { name: 'Zenith Assistant', avatarUrl: null },
   agents: {
     agent: {
       voice: {

@@ -3,7 +3,7 @@ import type { EditorFeatures } from '@/components/ui/rich-text-editor'
 /**
  * EditorFeatures presets for conversation composers (agent replies, internal
  * notes, and visitor-facing messengers). Richer than the comment preset — code
- * blocks, blockquotes, and Quackback embeds are on — but still chat-shaped:
+ * blocks, blockquotes, and Zenith embeds are on — but still chat-shaped:
  * headings, tables, task lists, dividers, and inline images stay off (images
  * go through the attachment tray). Enter inserts a line break (a consumer that
  * wants Enter-to-send passes onSubmit to RichTextEditor, which overrides
@@ -20,7 +20,7 @@ export const CONVERSATION_EDITOR_FEATURES: EditorFeatures = {
   images: false,
   blockquotes: true,
   embeds: true,
-  quackbackEmbeds: true,
+  zenithEmbeds: true,
   emojiPicker: true,
   slashMenu: true,
   bubbleMenu: true,
@@ -42,7 +42,7 @@ export const CONVERSATION_NOTE_FEATURES: EditorFeatures = {
   images: false,
   blockquotes: true,
   embeds: true,
-  quackbackEmbeds: true,
+  zenithEmbeds: true,
   emojiPicker: true,
   slashMenu: true,
   bubbleMenu: true,
@@ -63,7 +63,7 @@ export const VISITOR_CONVERSATION_FEATURES: EditorFeatures = {
   images: false,
   blockquotes: true,
   embeds: true,
-  quackbackEmbeds: true,
+  zenithEmbeds: true,
   emojiPicker: true,
   slashMenu: true,
   bubbleMenu: true,

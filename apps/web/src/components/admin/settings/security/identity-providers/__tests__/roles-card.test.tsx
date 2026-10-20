@@ -10,7 +10,7 @@ import { describe, it, expect, beforeAll, beforeEach, vi } from 'vitest'
 import { render, screen, fireEvent, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { generateId, type IdentityProviderId } from '@quackback/ids'
+import { generateId, type IdentityProviderId } from '@zenith/ids'
 import type { IdentityProvider } from '@/lib/server/domains/settings/identity-providers.service'
 import type { VerifiedDomain } from '@/lib/server/domains/settings/settings.types'
 import {

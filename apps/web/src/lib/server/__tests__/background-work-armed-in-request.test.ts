@@ -210,7 +210,7 @@ describe('the production call site, not just the mechanism', () => {
   })
 
   it('gates it behind shouldRunWorkers, so a role=web replica stays silent', () => {
-    // §1's scale-to-zero argument is that "a QUACKBACK_ROLE=web replica runs
+    // §1's scale-to-zero argument is that "a ZENITH_ROLE=web replica runs
     // none of them". Detaching the scope made the sweep fleet-wide, which is
     // right in direction but would have had every web replica walking every
     // workspace hourly — a wider blast radius than the bug it fixed.

@@ -74,7 +74,7 @@ vi.mock('@/lib/server/content/rehost-images', () => ({
 import { createPost } from '../post.service'
 import { getTierLimits } from '@/lib/server/domains/settings/tier-limits.service'
 import { OSS_TIER_LIMITS } from '@/lib/server/domains/settings/tier-limits.types'
-import type { BoardId, PrincipalId } from '@quackback/ids'
+import type { BoardId, PrincipalId } from '@zenith/ids'
 
 describe('createPost — maxPosts enforcement', () => {
   beforeEach(() => {

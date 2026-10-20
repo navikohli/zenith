@@ -10,7 +10,7 @@ import type {
   StatusIncidentTemplateId,
   PrincipalId,
   SegmentId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import type {
   StatusComponentStatus,
   StatusIncidentStatus,

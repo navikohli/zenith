@@ -9,7 +9,7 @@
  *   - request_id, route, workspace_key, user_id   (from the shared ALS context)
  *   - trace_id, span_id            (from the active OpenTelemetry span, if any)
  *
- * `service_name` defaults from OTEL_SERVICE_NAME (else "quackback"); each app
+ * `service_name` defaults from OTEL_SERVICE_NAME (else "zenith"); each app
  * passes its own via `base`. Do NOT use an in-process Pino transport in
  * production (fragile under Bun) — write NDJSON to stdout and let the collector
  * ship it.
@@ -153,10 +153,10 @@ export type AppLogger = pino.Logger
 
 /**
  * Build a logger instance. Consumers usually pass `base.service_name`; the
- * default falls back to OTEL_SERVICE_NAME then "quackback".
+ * default falls back to OTEL_SERVICE_NAME then "zenith".
  */
 export function createLogger(options: CreateLoggerOptions = {}): pino.Logger {
-  const serviceName = process.env.OTEL_SERVICE_NAME ?? 'quackback'
+  const serviceName = process.env.OTEL_SERVICE_NAME ?? 'zenith'
 
   const pinoOptions: pino.LoggerOptions = {
     level: options.level ?? defaultLevel(),

@@ -284,10 +284,10 @@ describe('Help Center domains and languages autosave', () => {
   describe('protected terms', () => {
     it('saves the trimmed, non-empty lines on blur', async () => {
       renderTab()
-      typeAndBlur(screen.getByLabelText('Protected terms'), ' Quackback \n\nAPI\n')
+      typeAndBlur(screen.getByLabelText('Protected terms'), ' Zenith \n\nAPI\n')
       await waitFor(() => expect(fns.updateAutoTranslate).toHaveBeenCalledTimes(1))
       expect(fns.updateAutoTranslate).toHaveBeenCalledWith({
-        data: { protectedTerms: ['Quackback', 'API'] },
+        data: { protectedTerms: ['Zenith', 'API'] },
       })
     })
 

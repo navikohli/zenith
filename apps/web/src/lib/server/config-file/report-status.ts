@@ -7,8 +7,8 @@ const log = logger.child({ component: 'config-report-status' })
  * Build the post-reconcile status reporter for `ReconcileDeps`.
  *
  * Posts the reconcile outcome to the optional status endpoint
- * configured via env (`QUACKBACK_CP_STATUS_URL`,
- * `QUACKBACK_CP_INTERNAL_TOKEN`, `QUACKBACK_INSTANCE_ID`). Env vars are
+ * configured via env (`ZENITH_CP_STATUS_URL`,
+ * `ZENITH_CP_INTERNAL_TOKEN`, `ZENITH_INSTANCE_ID`). Env vars are
  * read at call time so a deployment that injects them late doesn't
  * require a restart. With no env configured the call is a silent no-op.
  *
@@ -21,9 +21,9 @@ const log = logger.child({ component: 'config-report-status' })
  */
 export function makeReportStatus(): NonNullable<ReconcileDeps['reportStatus']> {
   return async (status) => {
-    const url = process.env.QUACKBACK_CP_STATUS_URL
-    const token = process.env.QUACKBACK_CP_INTERNAL_TOKEN
-    const instanceId = process.env.QUACKBACK_INSTANCE_ID
+    const url = process.env.ZENITH_CP_STATUS_URL
+    const token = process.env.ZENITH_CP_INTERNAL_TOKEN
+    const instanceId = process.env.ZENITH_INSTANCE_ID
     if (!url || !token || !instanceId) return
 
     const body = JSON.stringify({

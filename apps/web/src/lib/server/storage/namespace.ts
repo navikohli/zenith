@@ -48,7 +48,7 @@
  * fails throws. It never falls back to the un-namespaced key, because in a
  * shared bucket that key is nobody's namespace.
  */
-import { isTypeId, type WorkspaceId } from '@quackback/ids'
+import { isTypeId, type WorkspaceId } from '@zenith/ids'
 
 /**
  * Segment 0 of every object name this application writes.

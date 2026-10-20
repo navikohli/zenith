@@ -46,10 +46,10 @@
  * `let_assistant_answer` (slice C-6) is its own third PARKING kind, alongside
  * the interactive ones above rather than a SEND kind as slice C-1 first had
  * it: reached fresh, it pushes the `let_assistant_answer` action (invokes
- * Quinn's turn out-of-band, same as before) and PARKS (waitKind 'assistant',
+ * ZenithAssistant's turn out-of-band, same as before) and PARKS (waitKind 'assistant',
  * resumeNodeId = its own id) — no message of its own, so no send_block, but
  * still a park: nothing else can resume this node until event-trigger.ts
- * hears back from Quinn (assistant.handed_off) or the conversation closes
+ * hears back from ZenithAssistant (assistant.handed_off) or the conversation closes
  * while parked. On resume, ctx.assistantOutcome (not blockAnswer — a
  * different node kind, a different resume signal) selects the edge:
  * 'escalated' follows the labeled 'escalated' branch edge (same edge-key
@@ -148,7 +148,7 @@ export interface WalkResult {
   /** 'timer' = a plain `wait` node (the existing durable BullMQ timer);
    *  'input' = an interactive block parked awaiting the customer's structured
    *  reply (no timer — resumed by event-trigger.ts on a matching reply);
-   *  'assistant' = a `let_assistant_answer` parked awaiting Quinn's own
+   *  'assistant' = a `let_assistant_answer` parked awaiting ZenithAssistant's own
    *  outcome (no timer either — resumed by event-trigger.ts on
    *  assistant.handed_off or the conversation closing, see graph.ts's module
    *  doc). Undefined when status !== 'waiting'. */
@@ -280,7 +280,7 @@ export function walkWorkflow(
           assistantOutcome = undefined
           break
         }
-        // Fresh: invoke Quinn's turn (out-of-band, same as before) and PARK —
+        // Fresh: invoke ZenithAssistant's turn (out-of-band, same as before) and PARK —
         // see the module doc for why this is a third parking kind, not a
         // pass-through SEND kind.
         actions.push({ type: 'let_assistant_answer', instructions: node.instructions })

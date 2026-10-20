@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import type { ConversationId } from '@quackback/ids'
+import type { ConversationId } from '@zenith/ids'
 import type { ParsedInboundEmail } from '../conversation.email-inbound'
 import { TierLimitError } from '@/lib/server/errors/tier-limit-error'
 
@@ -37,7 +37,7 @@ vi.mock('@/lib/server/domains/settings/tier-enforce', () => ({
   },
 }))
 
-vi.mock('@quackback/email', () => ({
+vi.mock('@zenith/email', () => ({
   sendConversationAutoAckEmail: (opts: unknown) => hoisted.sendConversationAutoAckEmail(opts),
 }))
 

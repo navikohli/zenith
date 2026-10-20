@@ -9,7 +9,7 @@
  * This runs first, touches only the control database, and hands everything
  * downstream a workspace that is already verified.
  *
- * Under `QUACKBACK_TENANCY=single` this is a pass-through and the process
+ * Under `ZENITH_TENANCY=single` this is a pass-through and the process
  * behaves exactly as it always has.
  *
  * ## What happens on each failure

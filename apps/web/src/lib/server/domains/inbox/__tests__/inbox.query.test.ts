@@ -5,7 +5,7 @@
  * rollback transaction (see server/__tests__/README.md).
  */
 import { describe, it, expect, vi, beforeEach, afterEach, afterAll } from 'vitest'
-import { createId, type PrincipalId, type UserId, type ConversationId } from '@quackback/ids'
+import { createId, type PrincipalId, type UserId, type ConversationId } from '@zenith/ids'
 
 vi.mock('@/lib/server/db', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/lib/server/db')>()),

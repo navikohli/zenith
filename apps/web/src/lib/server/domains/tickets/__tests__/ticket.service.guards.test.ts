@@ -5,7 +5,7 @@
  * (see server/__tests__/README.md).
  */
 import { describe, it, expect, vi } from 'vitest'
-import { createId, type PrincipalId, type TicketId, type TicketStatusId } from '@quackback/ids'
+import { createId, type PrincipalId, type TicketId, type TicketStatusId } from '@zenith/ids'
 
 vi.mock('@/lib/server/db', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/lib/server/db')>()),

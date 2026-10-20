@@ -263,7 +263,7 @@ describe('getPlanNotice — the trial countdown', () => {
       notice: {
         label: 'Free trial',
         expiresAt: '2026-08-30T09:36:53.964Z',
-        actionUrl: 'https://app.quackback.io/dashboard/org_x/choose-plan',
+        actionUrl: '/source.html',
         actionLabel: 'Choose your plan',
       },
     })

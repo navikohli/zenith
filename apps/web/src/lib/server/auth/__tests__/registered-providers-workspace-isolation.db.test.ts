@@ -196,7 +196,7 @@ describe('REGISTERED_AUTH_PROVIDERS does not cross workspaces', () => {
     // The successor of "two distinct Redis keys": the logical key is byte-for-
     // byte the same on both rows, and `workspace_key` is the only thing keeping the
     // second write from overwriting the first. Scoped to this file's two workspace
-    // ids — `quackback_test` is shared with every other checkout on the machine.
+    // ids — `zenith_test` is shared with every other checkout on the machine.
     const rows = await testSql()<{ workspace_key: string; key: string; value: string[] }[]>`
       SELECT workspace_key, key, value
       FROM kv_store

@@ -4,7 +4,7 @@
  * the SDK first loads from the customer's own site.
  */
 import { afterAll, afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { createId } from '@quackback/ids'
+import { createId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { settings } from '@/lib/server/db'
 
@@ -24,7 +24,7 @@ import { observeExternalWidgetRequest } from '@/lib/server/domains/settings/sett
 const fixture = await createDbTestFixture()
 
 function sdkRequest(origin: string | null): Request {
-  const request = new Request('https://acme.quackback.test/api/widget/sdk.js')
+  const request = new Request('https://acme.zenith.test/api/widget/sdk.js')
   if (origin) request.headers.set('origin', origin)
   return request
 }
@@ -46,7 +46,7 @@ describe.skipIf(!fixture.available)('Messenger install status (real DB)', () => 
   it('waits until the SDK loads from the customer site, then names the site', async () => {
     expect(await getMessengerInstallStatus()).toMatchObject({ seenHost: null, seenAt: null })
     // A load from the workspace's own host (the admin preview) is not the site.
-    await observeExternalWidgetRequest(sdkRequest('https://acme.quackback.test'))
+    await observeExternalWidgetRequest(sdkRequest('https://acme.zenith.test'))
     expect((await getMessengerInstallStatus()).seenHost).toBeNull()
     await observeExternalWidgetRequest(sdkRequest('https://www.acme.example'))
     const seen = await getMessengerInstallStatus()

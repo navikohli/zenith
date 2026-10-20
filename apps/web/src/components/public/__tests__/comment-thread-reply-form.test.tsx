@@ -12,7 +12,7 @@ import { render, screen, cleanup, fireEvent, within } from '@testing-library/rea
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { IntlProvider } from 'react-intl'
 import type { PublicCommentView } from '@/lib/client/queries/portal-detail'
-import type { PostCommentId, PostId } from '@quackback/ids'
+import type { PostCommentId, PostId } from '@zenith/ids'
 
 vi.mock('@tanstack/react-router', () => ({
   Link: ({ children }: { children: unknown }) => children,

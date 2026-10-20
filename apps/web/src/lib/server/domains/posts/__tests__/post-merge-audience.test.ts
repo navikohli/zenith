@@ -14,7 +14,7 @@
  * shape for unauthorized viewers.
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import type { PostId, PrincipalId, SegmentId } from '@quackback/ids'
+import type { PostId, PrincipalId, SegmentId } from '@zenith/ids'
 import type { Actor } from '@/lib/server/policy'
 // Static SUT import (vi.mock below is hoisted above it) so the module transform
 // is paid at file load, not inside a 5s-timed test — which it blew under a

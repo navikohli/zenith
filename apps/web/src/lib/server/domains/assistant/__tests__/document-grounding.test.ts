@@ -1,6 +1,6 @@
 /**
  * Capability proof for knowledge-file upload: an admin uploads a PDF, and
- * Quinn's customer-facing agent answers a customer question grounded on the
+ * ZenithAssistant's customer-facing agent answers a customer question grounded on the
  * PDF's content, citing the document.
  *
  * The arc in one file: a real (minimal, FlateDecode-compressed) PDF is built

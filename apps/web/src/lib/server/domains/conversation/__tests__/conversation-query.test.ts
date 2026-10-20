@@ -13,7 +13,7 @@ import type {
   PrincipalId,
   SegmentId,
   CompanyId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import type { Conversation, ConversationMessage } from '@/lib/server/db'
 import type { ConversationAuthorDTO } from '@/lib/shared/conversation/types'
 

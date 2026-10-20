@@ -4,7 +4,7 @@ import { resolveApiKeyAuthority } from '@/lib/server/domains/api-keys/api-key-au
 import { hasApiScope, parseApiKeyScopes } from '@/lib/shared/api-key-scopes'
 import type { PermissionKey } from '@/lib/shared/permissions'
 import type { Role } from '@/lib/shared/roles'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 import type { Actor } from '@/lib/server/policy/types'
 import type { McpAuthContext, McpScope } from './types'
 import { ForbiddenError } from '@/lib/shared/errors'

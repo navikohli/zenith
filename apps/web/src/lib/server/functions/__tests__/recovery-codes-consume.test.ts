@@ -62,7 +62,7 @@ vi.mock('@/lib/server/auth/magic-link-mint', () => ({
 }))
 
 vi.mock('@/lib/server/config', () => ({
-  config: { baseUrl: 'https://acme.quackback.io' },
+  config: { baseUrl: 'https://acme.zenith.io' },
 }))
 
 // Stub the rate-bucket store. The consume fn rate-limits through
@@ -79,7 +79,7 @@ vi.mock('@/lib/server/kv/pg-kv', async (importOriginal) => ({
 
 // Stub email so the fire-and-forget alert doesn't try to load real
 // SMTP / Resend bindings during the test.
-vi.mock('@quackback/email', () => ({
+vi.mock('@zenith/email', () => ({
   sendRecoveryCodeUsedEmail: vi.fn().mockResolvedValue({ sent: true }),
   isEmailConfigured: () => false,
 }))
@@ -124,7 +124,7 @@ beforeEach(() => {
   hoisted.rateBucketRetryAfter.mockResolvedValue(300)
   hoisted.verifyRecoveryCode.mockResolvedValue(false)
   hoisted.mintMagicLinkUrl.mockResolvedValue({
-    url: 'https://acme.quackback.io/verify-magic-link?token=t',
+    url: 'https://acme.zenith.io/verify-magic-link?token=t',
     token: 't',
   })
 })

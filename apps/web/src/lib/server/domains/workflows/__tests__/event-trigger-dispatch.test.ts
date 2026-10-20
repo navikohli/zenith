@@ -91,7 +91,7 @@ describe('dispatchWorkflowsForEvent', () => {
     expect(order).toEqual(['interrupt', 'dispatch']) // interrupt strictly first
   })
 
-  it('does NOT interrupt on a service-authored message (Quinn/a block send) — only a human reply counts', async () => {
+  it('does NOT interrupt on a service-authored message (ZenithAssistant/a block send) — only a human reply counts', async () => {
     // Phase C, slice C-1 regression: without this, a workflow's own
     // send_block action would self-interrupt the run that just parked,
     // since appendAssistantReply fires this same message.created event for
@@ -99,7 +99,7 @@ describe('dispatchWorkflowsForEvent', () => {
     await dispatchWorkflowsForEvent({
       ...base,
       type: 'message.created',
-      actor: { type: 'service' as const, principalId: 'principal_quinn' },
+      actor: { type: 'service' as const, principalId: 'principal_zenithAssistant' },
       data: {
         message: {
           id: 'conversation_message_block1',
@@ -533,7 +533,7 @@ describe('dispatchWorkflowsForEvent', () => {
       })
       expect(interruptWaitingRuns).not.toHaveBeenCalled()
       expect(order).toEqual(['dispatch']) // the assistant.handed_off trigger itself still dispatches
-      // 'escalated' is a customer-driven engagement signal (Quinn escalating
+      // 'escalated' is a customer-driven engagement signal (ZenithAssistant escalating
       // mid-conversation) — logged.
       expect(logRunEvent).toHaveBeenCalledWith(
         'workflow_run_assistant',
@@ -568,7 +568,7 @@ describe('dispatchWorkflowsForEvent', () => {
         excludeRunId: 'workflow_run_assistant',
       })
       expect(order).toEqual(['interrupt', 'dispatch'])
-      // 'resolved' is Quinn/an agent ending the conversation, not the
+      // 'resolved' is ZenithAssistant/an agent ending the conversation, not the
       // customer answering anything — no funnel event.
       expect(logRunEvent).not.toHaveBeenCalled()
     })
@@ -602,7 +602,7 @@ describe('dispatchWorkflowsForEvent', () => {
       })
     })
 
-    it('a visitor message never interrupts a parked assistant-wait: multi-turn Quinn conversations are normal', async () => {
+    it('a visitor message never interrupts a parked assistant-wait: multi-turn ZenithAssistant conversations are normal', async () => {
       // No input-wait match (waitKind is 'assistant', not 'input'), so
       // tryResumeInputWait falls through — but the interrupt call itself must
       // still spare the assistant-wait row.

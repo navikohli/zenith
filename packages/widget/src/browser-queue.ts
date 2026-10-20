@@ -1,16 +1,16 @@
 /**
  * IIFE entry for script-tag users.
  *
- * The inline snippet on the host page creates a stub `window.Quackback` that
+ * The inline snippet on the host page creates a stub `window.Zenith` that
  * pushes every call into a queue. This module replaces that stub with a live
  * dispatcher backed by `createSDK`, then replays anything already queued.
  *
  * The server-generated `/api/widget/sdk.js` prepends a line that sets
- * `window.__QUACKBACK_URL__` (and `window.__QUACKBACK_CONFIG__`, the baked
+ * `window.__ZENITH_URL__` (and `window.__ZENITH_CONFIG__`, the baked
  * server config that lets the SDK skip the config fetch — see core/sdk.ts).
  * Script-tag installs therefore omit `instanceUrl` from their init options —
  * we fold the baked URL into every init that doesn't carry one of its own. If
- * no init happens at all (a bare `<script src>` with no `Quackback("init")`
+ * no init happens at all (a bare `<script src>` with no `Zenith("init")`
  * call), we auto-dispatch one so the widget still boots.
  */
 import { createSDK } from './core/sdk'
@@ -18,15 +18,15 @@ import type { ServerConfig } from './core/config'
 
 declare global {
   interface Window {
-    Quackback?: ((...args: unknown[]) => unknown) & { q?: IArguments[] }
-    __QUACKBACK_URL__?: string
-    __QUACKBACK_CONFIG__?: ServerConfig
+    Zenith?: ((...args: unknown[]) => unknown) & { q?: IArguments[] }
+    __ZENITH_URL__?: string
+    __ZENITH_CONFIG__?: ServerConfig
   }
 }
 
 const sdk = createSDK()
 const w = window
-const bakedUrl = w.__QUACKBACK_URL__
+const bakedUrl = w.__ZENITH_URL__
 
 // Suppresses the deferred fallback once the host has taken explicit control:
 // either by initializing (their options take precedence) or by destroying
@@ -42,11 +42,11 @@ function dispatch(command: unknown, a?: unknown, b?: unknown): unknown {
   return sdk.dispatch(command as 'init', a, b)
 }
 
-// Capture any queued calls from the inline snippet before we overwrite Quackback.
-const queued: IArguments[] = Array.from(w.Quackback?.q ?? [])
+// Capture any queued calls from the inline snippet before we overwrite Zenith.
+const queued: IArguments[] = Array.from(w.Zenith?.q ?? [])
 
 // Replace the queue stub with a live dispatcher.
-w.Quackback = function (...args: unknown[]) {
+w.Zenith = function (...args: unknown[]) {
   return dispatch(args[0], args[1], args[2])
 }
 
@@ -56,7 +56,7 @@ for (const args of queued) {
   dispatch(a[0], a[1], a[2])
 }
 
-// Deferred so an explicit `Quackback("init", ...)` from host code can pre-empt
+// Deferred so an explicit `Zenith("init", ...)` from host code can pre-empt
 // the default-options fallback.
 if (bakedUrl) {
   setTimeout(() => {

@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from 'vitest'
-import { createId } from '@quackback/ids'
+import { createId } from '@zenith/ids'
 import { registerResolver, resolveTargets, __resetResolversForTests } from '../resolvers/registry'
 import type { DomainEvent } from '../envelope'
 

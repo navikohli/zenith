@@ -6,7 +6,7 @@ import { typography, colors } from './shared-styles'
  * The 5 CSAT rating faces, in order (worst to best) — mirrors CSAT_FACES
  * (packages/db/src/types.ts) and the widget's block-affordance.tsx rendering
  * of a request_csat block. Duplicated as a plain literal rather than
- * imported: this package has no dependency on @quackback/db, and 5 emoji
+ * imported: this package has no dependency on @zenith/db, and 5 emoji
  * aren't worth introducing one for. Exported (not just module-local) so
  * apps/web can assert deep equality against packages/db's own CSAT_FACES in
  * a parity test — a literal this easy to hand-edit in only one place is

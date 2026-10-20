@@ -51,7 +51,7 @@ import {
   isPrincipalOnline,
 } from '@/lib/server/realtime/presence'
 import { getDailySalt } from '@/lib/server/domains/analytics/visitor-hash'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 
 const [A, B] = workspacePair()
 

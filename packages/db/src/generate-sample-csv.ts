@@ -252,7 +252,7 @@ const userPersonas = [
   { firstName: 'Morgan', lastName: 'Davis' },
   { firstName: 'Jamie', lastName: 'Garcia' },
   { firstName: 'Riley', lastName: 'Anderson' },
-  { firstName: 'Quinn', lastName: 'Taylor' },
+  { firstName: 'Zenith Assistant', lastName: 'Taylor' },
   { firstName: 'Avery', lastName: 'Moore' },
   { firstName: 'Blake', lastName: 'Jackson' },
   { firstName: 'Chris', lastName: 'Miller' },

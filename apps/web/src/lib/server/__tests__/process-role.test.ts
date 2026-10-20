@@ -14,36 +14,36 @@ describe('getProcessRole', () => {
     __resetRoleWarningForTests()
   })
 
-  it('defaults to all when QUACKBACK_ROLE is unset', () => {
-    vi.stubEnv('QUACKBACK_ROLE', undefined)
+  it('defaults to all when ZENITH_ROLE is unset', () => {
+    vi.stubEnv('ZENITH_ROLE', undefined)
     expect(getProcessRole()).toBe('all')
     expect(shouldRunWorkers()).toBe(true)
   })
 
-  it('returns all for QUACKBACK_ROLE=all', () => {
-    vi.stubEnv('QUACKBACK_ROLE', 'all')
+  it('returns all for ZENITH_ROLE=all', () => {
+    vi.stubEnv('ZENITH_ROLE', 'all')
     expect(getProcessRole()).toBe('all')
     expect(shouldRunWorkers()).toBe(true)
   })
 
-  it('returns worker for QUACKBACK_ROLE=worker', () => {
-    vi.stubEnv('QUACKBACK_ROLE', 'worker')
+  it('returns worker for ZENITH_ROLE=worker', () => {
+    vi.stubEnv('ZENITH_ROLE', 'worker')
     expect(getProcessRole()).toBe('worker')
     expect(shouldRunWorkers()).toBe(true)
   })
 
-  it('returns web for QUACKBACK_ROLE=web', () => {
-    vi.stubEnv('QUACKBACK_ROLE', 'web')
+  it('returns web for ZENITH_ROLE=web', () => {
+    vi.stubEnv('ZENITH_ROLE', 'web')
     expect(getProcessRole()).toBe('web')
     expect(shouldRunWorkers()).toBe(false)
   })
 
-  it('returns migrator for QUACKBACK_ROLE=migrator, and starts NO workers', () => {
+  it('returns migrator for ZENITH_ROLE=migrator, and starts NO workers', () => {
     // The reason `shouldRunWorkers` is an allowlist and not `!== 'web'`: the
     // negative form answers "true" for every role added after it, so this role
     // would have quietly booted the job worker's fifteen queues and six sweepers
     // alongside a fleet migration.
-    vi.stubEnv('QUACKBACK_ROLE', 'migrator')
+    vi.stubEnv('ZENITH_ROLE', 'migrator')
     expect(getProcessRole()).toBe('migrator')
     expect(shouldRunWorkers()).toBe(false)
     expect(isMigratorRole()).toBe(true)
@@ -51,7 +51,7 @@ describe('getProcessRole', () => {
 
   it('is not the migrator under any other role', () => {
     for (const role of ['web', 'worker', 'all', 'banana']) {
-      vi.stubEnv('QUACKBACK_ROLE', role)
+      vi.stubEnv('ZENITH_ROLE', role)
       expect(isMigratorRole()).toBe(false)
     }
   })
@@ -65,9 +65,9 @@ describe('getProcessRole', () => {
   // respectively, which are both legitimate. Including them was my own bad
   // fixture and the suite caught it.
   it.each(['banana', 'MIGRATOR', 'Migrator', 'WEB', 'Worker', 'al l', 'web,worker'])(
-    'fails CLOSED for QUACKBACK_ROLE=%j — never to the everything-role',
+    'fails CLOSED for ZENITH_ROLE=%j — never to the everything-role',
     (raw) => {
-      vi.stubEnv('QUACKBACK_ROLE', raw)
+      vi.stubEnv('ZENITH_ROLE', raw)
       expect(getProcessRole()).not.toBe('all')
       expect(getProcessRole()).not.toBe('worker')
       expect(shouldRunWorkers()).toBe(false)
@@ -76,17 +76,17 @@ describe('getProcessRole', () => {
   )
 
   it('trims whitespace, because a trailing space is a YAML artefact not an intent', () => {
-    vi.stubEnv('QUACKBACK_ROLE', 'migrator ')
+    vi.stubEnv('ZENITH_ROLE', 'migrator ')
     expect(getProcessRole()).toBe('migrator')
-    vi.stubEnv('QUACKBACK_ROLE', '  worker')
+    vi.stubEnv('ZENITH_ROLE', '  worker')
     expect(getProcessRole()).toBe('worker')
   })
 
   it('treats an empty value as unset, not as invalid', () => {
-    vi.stubEnv('QUACKBACK_ROLE', '')
+    vi.stubEnv('ZENITH_ROLE', '')
     expect(getProcessRole()).toBe('all')
     expect(() =>
-      assertProcessRoleConfigured({ QUACKBACK_ROLE: '' } as NodeJS.ProcessEnv)
+      assertProcessRoleConfigured({ ZENITH_ROLE: '' } as NodeJS.ProcessEnv)
     ).not.toThrow()
   })
 })
@@ -95,7 +95,7 @@ describe('assertProcessRoleConfigured', () => {
   it('refuses to boot on an unrecognised role', () => {
     for (const raw of ['banana', 'MIGRATOR', 'Migrator']) {
       expect(() =>
-        assertProcessRoleConfigured({ QUACKBACK_ROLE: raw } as NodeJS.ProcessEnv)
+        assertProcessRoleConfigured({ ZENITH_ROLE: raw } as NodeJS.ProcessEnv)
       ).toThrow(InvalidProcessRole)
     }
   })
@@ -103,7 +103,7 @@ describe('assertProcessRoleConfigured', () => {
   it('accepts every documented role, and an unset one', () => {
     for (const raw of ['web', 'worker', 'all', 'migrator', undefined]) {
       expect(() =>
-        assertProcessRoleConfigured({ QUACKBACK_ROLE: raw } as NodeJS.ProcessEnv)
+        assertProcessRoleConfigured({ ZENITH_ROLE: raw } as NodeJS.ProcessEnv)
       ).not.toThrow()
     }
   })

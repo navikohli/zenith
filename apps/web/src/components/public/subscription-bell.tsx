@@ -17,7 +17,7 @@ import {
   unsubscribeFromPostFn,
   updateSubscriptionLevelFn,
 } from '@/lib/server/functions/subscriptions'
-import type { PostId } from '@quackback/ids'
+import type { PostId } from '@zenith/ids'
 import type { SubscriptionLevel } from '@/lib/shared/types'
 
 interface SubscriptionStatus {

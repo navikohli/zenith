@@ -7,7 +7,7 @@
  * lower role.
  */
 import { describe, it, expect, vi, beforeEach, afterEach, afterAll } from 'vitest'
-import { createId, type PrincipalId, type UserId } from '@quackback/ids'
+import { createId, type PrincipalId, type UserId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import { account, apiKeys, eq, principal, settings, user } from '@/lib/server/db'
 import { PERMISSIONS } from '@/lib/shared/permissions'

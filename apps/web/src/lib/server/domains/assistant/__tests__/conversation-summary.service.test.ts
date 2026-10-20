@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import type { ConversationId, PrincipalId } from '@quackback/ids'
+import type { ConversationId, PrincipalId } from '@zenith/ids'
 import type { ConversationMessageDTO } from '@/lib/shared/conversation/types'
 
 const mockConversationFindFirst = vi.fn()

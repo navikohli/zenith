@@ -10,7 +10,7 @@
  * panel comes back in the shape its own server function returns, because the
  * client seeds that function's query with it.
  */
-import type { PostId } from '@quackback/ids'
+import type { PostId } from '@zenith/ids'
 import { PERMISSIONS, type PermissionKey } from '@/lib/shared/permissions'
 import { toIsoString } from '@/lib/shared/utils'
 import { logger } from '@/lib/server/logger'

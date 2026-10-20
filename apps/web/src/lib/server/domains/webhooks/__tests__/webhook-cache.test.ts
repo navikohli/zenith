@@ -6,7 +6,7 @@
  */
 
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import type { PrincipalId, WebhookId } from '@quackback/ids'
+import type { PrincipalId, WebhookId } from '@zenith/ids'
 
 // --- Cache mocks ---
 const mockCacheDel = vi.fn()
@@ -91,7 +91,7 @@ vi.mock('@/lib/server/events/integrations/webhook/constants', () => ({
   isValidWebhookUrl: vi.fn().mockReturnValue(true),
 }))
 
-vi.mock('@quackback/ids', () => ({
+vi.mock('@zenith/ids', () => ({
   createId: vi.fn().mockReturnValue('webhook_new1'),
 }))
 

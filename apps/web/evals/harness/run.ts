@@ -6,7 +6,7 @@
  * Toolset scenarios assert on the assembled tool set with no model call.
  * Contrast scenarios run the same prompt under two configs and judge the pair.
  */
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 import { testDb } from '@/lib/server/__tests__/db-test-fixture'
 import {
   runAssistantTurn,

@@ -11,7 +11,7 @@ import type { ProbeReport, WorkspaceHandle } from '../types'
 
 function report(over: Partial<ProbeReport> = {}): ProbeReport {
   return {
-    suite: 'quackback-workspace-isolation',
+    suite: 'zenith-workspace-isolation',
     schemaVersion: 1,
     startedAt: '',
     finishedAt: '',

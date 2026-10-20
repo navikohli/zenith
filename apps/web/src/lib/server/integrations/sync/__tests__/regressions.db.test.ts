@@ -1,6 +1,6 @@
 import { afterAll, afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { randomUUID } from 'node:crypto'
-import { createId } from '@quackback/ids'
+import { createId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 vi.mock('@/lib/server/db', async (original) => ({
   ...(await original<typeof import('@/lib/server/db')>()),
@@ -142,7 +142,7 @@ describe('sync recovery regressions (PostgreSQL)', () => {
         .update(operations)
         .set({ kind: 'refresh', state: 'conflict', errorCode: 'manual_update' })
         .where(eq(operations.id, first.id))
-      vi.spyOn(config, 'getBaseUrl').mockReturnValue('https://review.quackback.test')
+      vi.spyOn(config, 'getBaseUrl').mockReturnValue('https://review.zenith.test')
       const detail = await inspectSyncOperation(first.id, {
         principalId: createId('principal'),
         role: 'admin',
@@ -155,12 +155,12 @@ describe('sync recovery regressions (PostgreSQL)', () => {
         '# Proposed update\n\n- Keep this list\n- Keep its formatting\n\n'
       )
       expect(detail.preview?.content).toContain(
-        '![Screenshot](https://review.quackback.test/uploads/image.png)'
+        '![Screenshot](https://review.zenith.test/uploads/image.png)'
       )
       expect(detail.preview?.content).toContain(
         provider === 'linear'
-          ? '![Video: Recording](https://review.quackback.test/uploads/video.mp4)'
-          : '[Recording](https://review.quackback.test/uploads/video.mp4)'
+          ? '![Video: Recording](https://review.zenith.test/uploads/video.mp4)'
+          : '[Recording](https://review.zenith.test/uploads/video.mp4)'
       )
     }
   )

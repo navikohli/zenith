@@ -8,7 +8,7 @@
  * import { db, eq, and, posts } from '@/lib/server/db'
  */
 
-import { createDb, type Database as PostgresDatabase } from '@quackback/db/client'
+import { createDb, type Database as PostgresDatabase } from '@zenith/db/client'
 import { config } from '@/lib/server/config'
 import { isPooledTenancy } from '@/lib/server/workspaces/mode'
 import {
@@ -86,7 +86,7 @@ declare global {
 /**
  * Get the database instance for the caller's scope.
  *
- * Two modes, decided by `QUACKBACK_TENANCY`:
+ * Two modes, decided by `ZENITH_TENANCY`:
  *
  * - **`single`** (the default, and every self-hosted install): one memoized
  *   connection from `DATABASE_URL`. Byte-for-byte the behaviour this function
@@ -315,10 +315,10 @@ export {
   conversationMessageFlagsRelations,
   conversationMessageTranslations,
   conversationMessageTranslationsRelations,
-  // Schema tables - past-conversation summaries (Quinn grounding, P2-A.4)
+  // Schema tables - past-conversation summaries (ZenithAssistant grounding, P2-A.4)
   conversationSummaries,
   conversationSummariesRelations,
-  // Schema tables - closed-ticket resolution summaries (Quinn grounding, Phase 4)
+  // Schema tables - closed-ticket resolution summaries (ZenithAssistant grounding, Phase 4)
   ticketSummaries,
   ticketSummariesRelations,
   // Schema tables - custom saved inbox views + per-user pins
@@ -445,7 +445,7 @@ export {
   statusIncidentTemplates,
   // Schema tables - push devices
   pushDevices,
-  // Schema tables - assistant (Quinn) involvement record
+  // Schema tables - assistant (ZenithAssistant) involvement record
   assistantInvolvements,
   ASSISTANT_INVOLVEMENT_TRIGGERS,
   ASSISTANT_INVOLVEMENT_STATUSES,
@@ -525,9 +525,9 @@ export {
   notTestPrincipal,
   notTestConversation,
   notTestTicket,
-} from '@quackback/db'
+} from '@zenith/db'
 
-// Re-export schema types not covered by @quackback/db/types
+// Re-export schema types not covered by @zenith/db/types
 export type {
   AssistantInvolvementSource,
   AssistantInvolvementStatus,
@@ -542,21 +542,21 @@ export type {
   MacroPriority,
   MacroSnoozePreset,
   MacroAction,
-} from '@quackback/db'
-export type { ServiceMetadata } from '@quackback/db'
-export type { FileRecord, NewFileRecord } from '@quackback/db'
-export type { IdentityProviderClaimMapping, ClaimRoleMapping } from '@quackback/db'
-export type { PermissionKey, PermissionCategory, SystemRoleKey } from '@quackback/db'
+} from '@zenith/db'
+export type { ServiceMetadata } from '@zenith/db'
+export type { FileRecord, NewFileRecord } from '@zenith/db'
+export type { IdentityProviderClaimMapping, ClaimRoleMapping } from '@zenith/db'
+export type { PermissionKey, PermissionCategory, SystemRoleKey } from '@zenith/db'
 export type {
   ChannelAccount,
   EmailSendingDomain,
   ChannelAccountConfig,
   SendingDomainDnsRecord,
   SendingDomainOwnershipRecord,
-} from '@quackback/db'
-export type { OfficeHoursSchedule, OfficeHoursInterval } from '@quackback/db'
-export type { ChangelogSubscriptionSource } from '@quackback/db'
-export type { TicketSubscriptionReason } from '@quackback/db'
+} from '@zenith/db'
+export type { OfficeHoursSchedule, OfficeHoursInterval } from '@zenith/db'
+export type { ChangelogSubscriptionSource } from '@zenith/db'
+export type { TicketSubscriptionReason } from '@zenith/db'
 export type {
   StatusComponentStatus,
   StatusIncidentStatus,
@@ -566,15 +566,15 @@ export type {
   StatusComponentEventSource,
   StatusSubscriptionScope,
   StatusSubscriptionSource,
-} from '@quackback/db'
-export type { SlaPolicy, SlaEvent } from '@quackback/db'
+} from '@zenith/db'
+export type { SlaPolicy, SlaEvent } from '@zenith/db'
 export type {
   ImportRunSource,
   ImportRunStatus,
   ImportRunTotals,
   ImportRunErrorEntry,
-} from '@quackback/db'
-export type { ExportRunStatus, ExportRunEntityCounts } from '@quackback/db'
+} from '@zenith/db'
+export type { ExportRunStatus, ExportRunEntityCounts } from '@zenith/db'
 export type {
   Workflow,
   WorkflowRun,
@@ -583,7 +583,7 @@ export type {
   WorkflowClass,
   WorkflowStatus,
   WorkflowRunState,
-} from '@quackback/db'
+} from '@zenith/db'
 
 // Re-export types (for client components that need types without side effects)
-export * from '@quackback/db/types'
+export * from '@zenith/db/types'

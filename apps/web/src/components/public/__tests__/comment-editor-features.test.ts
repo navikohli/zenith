@@ -18,7 +18,7 @@ const COMMENT: EditorFeatures = {
   videos: true,
   tables: true,
   embeds: true,
-  quackbackEmbeds: true,
+  zenithEmbeds: true,
   bubbleMenu: true,
   slashMenu: true,
   emojiPicker: true,

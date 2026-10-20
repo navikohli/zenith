@@ -5,7 +5,7 @@ import { pageViews, visitorStatsDaily, visitorTopStats } from '../schema/visitor
 import { refreshVisitorAnalytics } from '../visitor-rollup'
 
 // DB-backed (skips without Postgres). Requires 0137 + today's partitions
-// (run `bun run db:migrate` against quackback_test first).
+// (run `bun run db:migrate` against zenith_test first).
 const DB_URL = process.env.DATABASE_URL
 let db: Database | null = null
 if (DB_URL) db = createDb(DB_URL, { max: 1 })

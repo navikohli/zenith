@@ -8,7 +8,7 @@
  * auth-related — just the settings cache that backs `getPublicOidcProviders`.
  */
 import { db, eq, identityProvider } from '@/lib/server/db'
-import type { IdentityProviderId } from '@quackback/ids'
+import type { IdentityProviderId } from '@zenith/ids'
 import { deleteObject } from '@/lib/server/storage/s3'
 import { logger } from '@/lib/server/logger'
 import { ValidationError } from '@/lib/shared/errors'

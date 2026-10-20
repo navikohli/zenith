@@ -1,6 +1,6 @@
 /**
  * In-conversation card sends. An agent can surface existing content inside a conversation:
- *   - sharePost: send an agent message whose body is a quackbackEmbed of the post,
+ *   - sharePost: send an agent message whose body is a zenithEmbed of the post,
  *     which renders the live embed card the visitor can view and upvote.
  *
  * suggestPost is the agent-only sibling: instead of a visitor-facing embed, it
@@ -15,7 +15,7 @@ import type {
   BoardId,
   PrincipalId,
   ConversationMessageId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 import type { TiptapContent } from '@/lib/shared/db-types'
 import type { Actor } from '@/lib/server/policy/types'
 import { canActAsAgent } from '@/lib/server/policy/conversation'
@@ -30,26 +30,26 @@ export interface CardAgentCtx {
   agent: ConversationAuthorInput
 }
 
-/** Embed doc for a feedback post — a single-node doc carrying a quackbackEmbed.
+/** Embed doc for a feedback post — a single-node doc carrying a zenithEmbed.
  *  Renders the live embed card on every display surface (inbox + widget)
  *  via the shared embed hydration. */
 export function postEmbedDoc(postId: PostId): TiptapContent {
-  return { type: 'doc', content: [{ type: 'quackbackEmbed', attrs: { kind: 'post', id: postId } }] }
+  return { type: 'doc', content: [{ type: 'zenithEmbed', attrs: { kind: 'post', id: postId } }] }
 }
 
-/** Embed doc for a support ticket — a single-node doc carrying a quackbackEmbed.
+/** Embed doc for a support ticket — a single-node doc carrying a zenithEmbed.
  *  Renders the live ticket card (viewer-scoped) on every display surface. */
 export function ticketEmbedDoc(ticketId: TicketId): TiptapContent {
   return {
     type: 'doc',
-    content: [{ type: 'quackbackEmbed', attrs: { kind: 'ticket', id: ticketId } }],
+    content: [{ type: 'zenithEmbed', attrs: { kind: 'ticket', id: ticketId } }],
   }
 }
 
 /**
  * Agent shares (embeds) an existing post into the conversation. Sends an
  * embed-only agent message: the empty text is valid because the doc carries a
- * quackbackEmbed node (richMessageFallbackLabel backs the preview), and the embed
+ * zenithEmbed node (richMessageFallbackLabel backs the preview), and the embed
  * resolver viewer-scopes the card at render time, so a post the visitor can't see
  * degrades to "unavailable" — no gated content leaks.
  */
@@ -70,7 +70,7 @@ export async function sharePost(
 
 /**
  * Agent shares (embeds) a support ticket into the conversation — the live card
- * the customer sees when Quinn opens a customer ticket from their chat. Same
+ * the customer sees when ZenithAssistant opens a customer ticket from their chat. Same
  * embed-only agent message as {@link sharePost}; the ticket embed resolver
  * viewer-scopes the card so it renders for the ticket's requester (and the
  * team) but degrades to "unavailable" for anyone else.

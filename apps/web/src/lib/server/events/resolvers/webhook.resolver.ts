@@ -12,7 +12,7 @@ import { getEventDefinition } from '../catalogue'
 import type { SinkResolver } from './registry'
 import type { DomainEvent } from '../envelope'
 import type { HookTarget } from '../hook-types'
-import type { PostId, WebhookId } from '@quackback/ids'
+import type { PostId, WebhookId } from '@zenith/ids'
 
 type WebhookRow = typeof webhooks.$inferSelect
 

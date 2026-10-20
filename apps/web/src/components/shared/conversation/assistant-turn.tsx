@@ -78,7 +78,7 @@ const ACTIVITY: Record<AssistantActivityStatus, { id: string; defaultMessage: st
   },
 }
 
-/** The live working trace shown while Quinn's turn runs (thinking → searching). */
+/** The live working trace shown while ZenithAssistant's turn runs (thinking → searching). */
 export function AssistantWorkingTrace({ status }: { status: AssistantActivityStatus }) {
   const label = ACTIVITY[status]
   return (
@@ -217,7 +217,7 @@ function AnswerCaret() {
   )
 }
 
-/** Quinn's Markdown answer, shared by the inbox, widget and Help Center.
+/** ZenithAssistant's Markdown answer, shared by the inbox, widget and Help Center.
  * Citation dots are added only to prose, after parsing links and code. */
 export function AssistantAnswer({
   text,
@@ -247,7 +247,7 @@ export function AssistantAnswer({
   )
 }
 
-/** Quinn's answer as it streams, before the persisted message row lands.
+/** ZenithAssistant's answer as it streams, before the persisted message row lands.
  *  Citations resolve on the final message, so [n] markers render as nothing yet. */
 export function AssistantStreamingBubble({ text }: { text: string }) {
   return (

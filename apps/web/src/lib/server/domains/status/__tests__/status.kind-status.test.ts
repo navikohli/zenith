@@ -6,7 +6,7 @@
  * and the REST layer turns that into a 400.
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import type { StatusComponentId, StatusIncidentId } from '@quackback/ids'
+import type { StatusComponentId, StatusIncidentId } from '@zenith/ids'
 import { ValidationError } from '@/lib/shared/errors'
 import { handleDomainError } from '@/lib/server/domains/api/responses'
 

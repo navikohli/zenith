@@ -423,7 +423,7 @@ describe('GET /api/chat/stream - connection cap (Phase 6 R1)', () => {
 })
 
 describe('GET /api/chat/stream - assistant activity snapshot replay', () => {
-  it('replays a pending Quinn activity snapshot as an SSE frame for a fresh conversation subscriber', async () => {
+  it('replays a pending ZenithAssistant activity snapshot as an SSE frame for a fresh conversation subscriber', async () => {
     tokenPrincipal('user', 'anonymous')
     mockConversationFindFirst.mockResolvedValue({
       id: 'conversation_1',

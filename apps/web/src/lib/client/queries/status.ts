@@ -6,7 +6,7 @@
  * settings) — mirrors the changelog query module's shape.
  */
 import { queryOptions, infiniteQueryOptions, keepPreviousData } from '@tanstack/react-query'
-import type { StatusComponentId, StatusIncidentId } from '@quackback/ids'
+import type { StatusComponentId, StatusIncidentId } from '@zenith/ids'
 import {
   listStatusComponentsAdminFn,
   listStatusComponentChoicesFn,

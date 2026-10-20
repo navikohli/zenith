@@ -40,7 +40,7 @@ import { isJumboEmojiMessage, JUMBO_EMOJI_CLASS } from '@/lib/shared/conversatio
 import { RichTextContent } from '@/components/ui/rich-text-content'
 import { EmbedHydration } from '@/components/shared/embed-hydration'
 import { MessageMarkdown } from '@/components/shared/conversation/message-markdown'
-import type { EmbedOpenMode } from '@/components/shared/quackback-embed-card'
+import type { EmbedOpenMode } from '@/components/shared/zenith-embed-card'
 import { LinkPreviews } from '@/components/shared/link-preview-card'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import {
@@ -54,7 +54,7 @@ import { Badge } from '@/components/ui/badge'
 import { REACTION_EMOJIS, CSAT_FACES } from '@/lib/shared/db-types'
 import { cn } from '@/lib/shared/utils'
 import type { TiptapContent, WorkflowBlockPayload } from '@/lib/shared/db-types'
-import type { ConversationMessageId } from '@quackback/ids'
+import type { ConversationMessageId } from '@zenith/ids'
 import type {
   AgentConversationMessageDTO,
   ChannelDelivery,
@@ -233,9 +233,9 @@ export type BubbleSide = 'self' | 'peer'
  * this opacity, same as the flag/note tints this replaces.
  *
  * `opts.agentSelf` scopes the softer fill to the admin thread's own side
- * (human replies and Quinn's replies alike) so a full workday of reading it
+ * (human replies and ZenithAssistant's replies alike) so a full workday of reading it
  * isn't spent against the saturated brand-primary yellow — human replies get
- * a soft blue, `opts.assistant` (Quinn's own replies) get a soft purple so
+ * a soft blue, `opts.assistant` (ZenithAssistant's own replies) get a soft purple so
  * the two are visually distinct at a glance. Deliberately opt-in:
  * `VisitorMessageBubble` never passes it, so the customer-facing
  * widget/portal keeps the brand-primary bubble for the visitor's own
@@ -546,7 +546,7 @@ export const AgentMessageBubble = memo(function AgentMessageBubble({
   // entry into the convert dialog. Captured as a const so the click handler can
   // safely pass the narrowed (non-null) value into `onTrackSuggestion`.
   const suggestion = isNote ? message.postSuggestion : null
-  // Agent-only pointer to a Quinn write-tool proposal awaiting approval
+  // Agent-only pointer to a ZenithAssistant write-tool proposal awaiting approval
   // (populated only on the internal note that announced it); the card fetches
   // the live pending-action row itself, so this only needs to render once.
   const pendingAction = isNote ? message.assistantPendingAction : null
@@ -634,7 +634,7 @@ export const AgentMessageBubble = memo(function AgentMessageBubble({
                     />
                   </EmbedHydration>
                 ) : message.isAssistant ? (
-                  // Quinn's reply: render the same markdown + inline citations the
+                  // ZenithAssistant's reply: render the same markdown + inline citations the
                   // customer sees, so the agent has full context — uncited replies
                   // don't show raw markdown. No explicit text color: it inherits
                   // the bubble's `text-primary-foreground` from `bubbleClasses`.
@@ -921,7 +921,7 @@ export function VisitorMessageBubble({
 }: VisitorMessageBubbleProps) {
   const self = side === 'self'
   const jumbo = isJumboEmojiMessage(content, contentJson)
-  // Quinn's turns render as Markdown, with
+  // ZenithAssistant's turns render as Markdown, with
   // inline citation dots + a sources trace only when the answer was grounded.
   const isAiReply = !self && isAssistant
   const cited = isAiReply && citations && citations.length > 0 ? citations : null

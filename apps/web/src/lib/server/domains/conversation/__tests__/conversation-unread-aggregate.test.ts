@@ -7,7 +7,7 @@
  * visitors' conversations. Runs inside the rollback fixture transaction.
  */
 import { describe, it, expect, beforeEach, afterEach, afterAll, vi } from 'vitest'
-import { createId, type PrincipalId, type UserId, type ConversationId } from '@quackback/ids'
+import { createId, type PrincipalId, type UserId, type ConversationId } from '@zenith/ids'
 
 // Domain code imports the global `db`; rebind it to the test transaction.
 vi.mock('@/lib/server/db', async (importOriginal) => ({

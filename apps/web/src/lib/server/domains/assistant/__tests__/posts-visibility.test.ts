@@ -8,9 +8,9 @@ import { describe, it, expect, beforeAll, afterAll, vi } from 'vitest'
 import { sql, eq, and } from 'drizzle-orm'
 import { boards, posts, principal, type BoardAccess, type Database } from '@/lib/server/db'
 // oxlint-disable-next-line no-restricted-imports -- legitimate second createDb caller (see board-view-filter-parity.test.ts)
-import { createDb } from '@quackback/db/client'
+import { createDb } from '@zenith/db/client'
 import { postsVisibilityConditions } from '../posts-retrieval'
-import { createId, type PrincipalId, type BoardId, type PostId } from '@quackback/ids'
+import { createId, type PrincipalId, type BoardId, type PostId } from '@zenith/ids'
 
 const mockGenerateEmbedding = vi.hoisted(() => vi.fn())
 const mockDbSelect = vi.hoisted(() => vi.fn())
@@ -42,7 +42,7 @@ function mkAccess(view: BoardAccess['view']): BoardAccess {
 
 const CANDIDATE_URLS = [
   process.env.DATABASE_URL,
-  'postgresql://postgres:password@localhost:5432/quackback',
+  'postgresql://postgres:password@localhost:5432/zenith',
 ].filter((u): u is string => !!u)
 
 async function pickWorkingDb(): Promise<{ db: Database; close: () => Promise<void> } | null> {

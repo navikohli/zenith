@@ -6,7 +6,7 @@
  * against a correct system is validated against the one case where every
  * possible implementation passes.
  *
- * So this file implements just enough of the Quackback HTTP surface for the
+ * So this file implements just enough of the Zenith HTTP surface for the
  * probes to run, with a `leaks` switchboard that reproduces each hazard named in
  * SAAS-HOSTING-STACK.md §4: a shared session store, a shared storage secret, a
  * shared API-key table, a shared search index.
@@ -28,7 +28,7 @@ import type {
 import { CANARY, FIXTURE, IDENTITY_TOKEN, fixturePostBody } from '../fixtures'
 import { SCAN_TABLES } from '../db-scan'
 import { fixtureBoardDescription } from '../fixtures'
-import { toUuid } from '@quackback/ids'
+import { toUuid } from '@zenith/ids'
 
 export interface FleetLeaks {
   /** Either workspace honours the other's session cookie / bearer token. */
@@ -522,7 +522,7 @@ export class FakeFleet {
             },
           },
           401,
-          { 'www-authenticate': 'Bearer realm="Quackback API"' }
+          { 'www-authenticate': 'Bearer realm="Zenith API"' }
         )
       }
       // Under `sharedApiKeys` the request is served by the LOCAL workspace, which

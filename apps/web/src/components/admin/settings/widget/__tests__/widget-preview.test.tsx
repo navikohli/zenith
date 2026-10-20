@@ -9,7 +9,7 @@
  *   - The launcher button toggles the panel open/closed.
  *   - Panel and launcher share a bottom corner (panel above, button below).
  *   - An optional greeting bubble sits above the closed launcher.
- *   - The widget's own close button messages its host (quackback:close);
+ *   - The widget's own close button messages its host (zenith:close);
  *     the preview honours it like the SDK would, but only from its own origin.
  */
 import { describe, it, expect, beforeEach } from 'vitest'
@@ -17,7 +17,7 @@ import { render, screen, fireEvent } from '@testing-library/react'
 import { WidgetPreview } from '../widget-preview'
 
 function sendClose(origin: string) {
-  fireEvent(window, new MessageEvent('message', { data: { type: 'quackback:close' }, origin }))
+  fireEvent(window, new MessageEvent('message', { data: { type: 'zenith:close' }, origin }))
 }
 
 function launcher() {
@@ -68,14 +68,14 @@ describe('WidgetPreview', () => {
     expect(screen.getByTitle('Widget preview')).toBeTruthy()
   })
 
-  it('closes the panel when the widget posts quackback:close from our origin', () => {
+  it('closes the panel when the widget posts zenith:close from our origin', () => {
     render(<WidgetPreview position="bottom-right" />)
 
     sendClose(window.location.origin)
     expect(screen.queryByTitle('Widget preview')).toBeNull()
   })
 
-  it('ignores quackback:close from foreign origins', () => {
+  it('ignores zenith:close from foreign origins', () => {
     render(<WidgetPreview position="bottom-right" />)
 
     sendClose('https://evil.example')
@@ -135,6 +135,6 @@ describe('WidgetPreview', () => {
     render(<WidgetPreview position="bottom-right" greeting="Need a hand?" />)
     fireEvent.click(launcher())
     fireEvent.click(screen.getByRole('button', { name: 'Dismiss' }))
-    expect(sessionStorage.getItem('quackback:launcher-greeting-dismissed')).toBeNull()
+    expect(sessionStorage.getItem('zenith:launcher-greeting-dismissed')).toBeNull()
   })
 })

@@ -5,7 +5,7 @@
  * 1. Auth required (admin | member | user)
  * 2. Non-team callers must hold portal access
  * 3. `supportInbox` feature flag must be on (link previews ride the conversations product)
- * 4. Internal Quackback URLs are excluded (handled by quackbackEmbed)
+ * 4. Internal Zenith URLs are excluded (handled by zenithEmbed)
  * 5. Per-principal rate limit: 30 requests / 60 s
  * 6. KV cache (24h positives, 10min negatives)
  * 7. All outbound fetches via safeFetch (see unfurl.ts)
@@ -66,7 +66,7 @@ export const unfurlLinkFn = createServerFn({ method: 'GET' })
       const { isFeatureEnabled } = await import('@/lib/server/domains/settings/settings.service')
       if (!(await isFeatureEnabled('supportInbox'))) return null
 
-      // 4. Exclude internal Quackback URLs
+      // 4. Exclude internal Zenith URLs
       if (parseEmbedUrl(data.url) !== null) return null
 
       // 5. Rate limit (best-effort; failures don't block the request). Cap per

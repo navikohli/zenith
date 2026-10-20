@@ -5,7 +5,7 @@
  * webhook a manual status change does. The agent gate is covered too.
  */
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import type { PrincipalId, ConversationId } from '@quackback/ids'
+import type { PrincipalId, ConversationId } from '@zenith/ids'
 import type { Actor } from '@/lib/server/policy/types'
 
 const publishConversationUpdate = vi.fn()

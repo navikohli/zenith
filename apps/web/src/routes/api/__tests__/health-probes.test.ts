@@ -135,7 +135,7 @@ describe('GET /api/health/ready', () => {
   })
 
   it('stays ready on a web-role replica, which is not supposed to run the job worker', async () => {
-    vi.stubEnv('QUACKBACK_ROLE', 'web')
+    vi.stubEnv('ZENITH_ROLE', 'web')
     getJobWorkerStatus.mockReturnValue({ running: false, workspaces: [] })
     const res = await handleReadinessProbe()
     expect(res.status).toBe(200)

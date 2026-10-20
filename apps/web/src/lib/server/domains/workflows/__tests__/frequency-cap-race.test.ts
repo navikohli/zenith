@@ -29,7 +29,7 @@ import {
   type UserId,
   type ConversationId,
   type WorkflowId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 
 vi.mock('../action.executor', () => ({ applyAction: vi.fn().mockResolvedValue('ok') }))
 
@@ -50,8 +50,8 @@ vi.mock('@/lib/server/domains/settings/settings.office-hours', () => ({
 // two genuinely concurrent transactions this test races against each other.
 vi.mock('@/lib/server/db', async (importOriginal) => {
   // oxlint-disable-next-line no-restricted-imports -- sanctioned test fixture, same as db-test-fixture.ts
-  const { createDb } = await import('@quackback/db/client')
-  const url = process.env.DATABASE_URL ?? 'postgresql://postgres:password@localhost:5432/quackback'
+  const { createDb } = await import('@zenith/db/client')
+  const url = process.env.DATABASE_URL ?? 'postgresql://postgres:password@localhost:5432/zenith'
   return {
     ...(await importOriginal<typeof import('@/lib/server/db')>()),
     db: createDb(url, { max: 5, prepare: false }),

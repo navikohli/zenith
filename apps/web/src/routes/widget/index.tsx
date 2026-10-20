@@ -16,7 +16,7 @@ import { FormattedMessage, useIntl } from 'react-intl'
 import { CheckCircleIcon } from '@heroicons/react/24/solid'
 import { ArrowLeftIcon } from '@heroicons/react/24/outline'
 import { WidgetVoteButton } from '@/components/widget/widget-vote-button'
-import type { PostId } from '@quackback/ids'
+import type { PostId } from '@zenith/ids'
 import { WidgetShell } from '@/components/widget/widget-shell'
 import {
   type WidgetTab,
@@ -31,7 +31,7 @@ import { resolveOpenCommand, type WidgetComposeRequest } from '@/components/widg
 import { WidgetHome } from '@/components/widget/widget-home'
 import { WidgetOverview } from '@/components/widget/widget-overview'
 import { WidgetHeroBackdrop } from '@/components/widget/widget-hero-backdrop'
-import type { ConversationId } from '@quackback/ids'
+import type { ConversationId } from '@zenith/ids'
 import { useWidgetAuth } from '@/components/widget/widget-auth-provider'
 import { portalQueries } from '@/lib/client/queries/portal'
 import { widgetChangelogListQuery } from '@/components/widget/widget-changelog-query'
@@ -298,7 +298,7 @@ export const Route = createFileRoute('/widget/')({
       assistant:
         messengerTabEnabled && settings?.publicWidgetConfig?.messenger?.assistant?.enabled
           ? {
-              name: settings.publicWidgetConfig.messenger.assistant.name?.trim() || 'Quackback AI',
+              name: settings.publicWidgetConfig.messenger.assistant.name?.trim() || 'Zenith AI',
               avatarUrl: settings.publicWidgetConfig.messenger.assistant.avatarUrl || null,
             }
           : null,
@@ -479,7 +479,7 @@ function WidgetPage() {
   const [autoExpand, setAutoExpand] = useState(true)
   useEffect(() => {
     try {
-      setAutoExpand(window.localStorage.getItem('quackback:auto-expand') !== 'off')
+      setAutoExpand(window.localStorage.getItem('zenith:auto-expand') !== 'off')
     } catch {
       /* storage unavailable — keep the default */
     }
@@ -488,14 +488,14 @@ function WidgetPage() {
     setAutoExpand((prev) => {
       const next = !prev
       try {
-        window.localStorage.setItem('quackback:auto-expand', next ? 'on' : 'off')
+        window.localStorage.setItem('zenith:auto-expand', next ? 'on' : 'off')
       } catch {
         /* best-effort persistence */
       }
       return next
     })
   }, [])
-  // Host viewport class, reported by the SDK (quackback:mobile). On mobile the
+  // Host viewport class, reported by the SDK (zenith:mobile). On mobile the
   // panel is always full-screen, so the manual size control is meaningless.
   const [hostIsMobile, setHostIsMobile] = useState(false)
 
@@ -583,20 +583,20 @@ function WidgetPage() {
     // The tab bar fades out concurrently as the panel grows; on the way back
     // the panel shrinks first and the bar fades in once it has settled (the
     // shell delays its reveal).
-    sendToHost({ type: 'quackback:expand', expanded: panelExpanded })
+    sendToHost({ type: 'zenith:expand', expanded: panelExpanded })
   }, [panelExpanded])
 
-  // Listen for quackback:open messages from the SDK
+  // Listen for zenith:open messages from the SDK
   useEffect(() => {
     function handleMessage(event: MessageEvent) {
       if (event.source !== window.parent) return
       const msg = event.data
       if (!msg || typeof msg !== 'object') return
-      if (msg.type === 'quackback:mobile') {
+      if (msg.type === 'zenith:mobile') {
         setHostIsMobile(!!msg.data)
         return
       }
-      if (msg.type !== 'quackback:open') return
+      if (msg.type !== 'zenith:open') return
 
       const opts = (msg.data ?? {}) as {
         view?: string

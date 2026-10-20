@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { assertApiScope, withApiKeyAuth } from '@/lib/server/domains/api/auth'
 import { successResponse, handleDomainError } from '@/lib/server/domains/api/responses'
 import { parseTypeId } from '@/lib/server/domains/api/validation'
-import type { AssistantPendingActionId } from '@quackback/ids'
+import type { AssistantPendingActionId } from '@zenith/ids'
 
 export const Route = createFileRoute('/api/v1/approvals/$approvalId')({
   server: {

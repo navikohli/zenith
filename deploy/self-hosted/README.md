@@ -1,6 +1,6 @@
 # Self-Hosted Deployment
 
-Deploy Quackback on your own infrastructure with full control over your data.
+Deploy Zenith on your own infrastructure with full control over your data.
 
 ## Table of Contents
 
@@ -24,8 +24,8 @@ Deploy Quackback on your own infrastructure with full control over your data.
 
 ```bash
 # Clone the repository
-git clone https://github.com/quackbackio/quackback.git
-cd quackback
+git clone https://github.com/zenith/zenith.git
+cd zenith
 
 # Copy and configure environment
 cp .env.prod.example .env
@@ -38,7 +38,7 @@ docker compose -f docker-compose.prod.yml up -d
 docker compose -f docker-compose.prod.yml logs -f
 ```
 
-Open http://localhost:3000 to access Quackback.
+Open http://localhost:3000 to access Zenith.
 
 > The root `docker-compose.yml` is **development infrastructure only** (no app service, insecure defaults, world-readable bucket). Always use `docker-compose.prod.yml` for self-hosting.
 
@@ -48,19 +48,19 @@ Bring your own PostgreSQL (see [Database Setup](#database-setup) for the require
 
 ```bash
 docker run -d \
-  --name quackback \
+  --name zenith \
   -p 3000:3000 \
-  -e DATABASE_URL="postgresql://user:pass@host:5432/quackback" \
+  -e DATABASE_URL="postgresql://user:pass@host:5432/zenith" \
   -e SECRET_KEY="your-secret-key-at-least-32-chars" \
   -e BASE_URL="https://your-domain.com" \
-  ghcr.io/quackbackio/quackback:latest
+  ghcr.io/zenith/zenith:latest
 ```
 
 ---
 
 ## Docker Images
 
-Images are published to GitHub Container Registry as `ghcr.io/quackbackio/quackback`, for `linux/amd64` and `linux/arm64`:
+Images are published to GitHub Container Registry as `ghcr.io/zenith/zenith`, for `linux/amd64` and `linux/arm64`:
 
 | Tag      | Description                                                       |
 | -------- | ----------------------------------------------------------------- |
@@ -70,13 +70,13 @@ Images are published to GitHub Container Registry as `ghcr.io/quackbackio/quackb
 
 ```bash
 # Pull the latest release
-docker pull ghcr.io/quackbackio/quackback:latest
+docker pull ghcr.io/zenith/zenith:latest
 
 # Pull a specific release (recommended for production)
-docker pull ghcr.io/quackbackio/quackback:0.14.0
+docker pull ghcr.io/zenith/zenith:0.14.0
 ```
 
-With `docker-compose.prod.yml`, pin the release with `QUACKBACK_TAG` in `.env`.
+With `docker-compose.prod.yml`, pin the release with `ZENITH_TAG` in `.env`.
 
 ---
 
@@ -86,7 +86,7 @@ With `docker-compose.prod.yml`, pin the release with `QUACKBACK_TAG` in `.env`.
 
 | Variable       | Description                     | Example                                           |
 | -------------- | ------------------------------- | ------------------------------------------------- |
-| `DATABASE_URL` | PostgreSQL connection string    | `postgresql://user:pass@localhost:5432/quackback` |
+| `DATABASE_URL` | PostgreSQL connection string    | `postgresql://user:pass@localhost:5432/zenith` |
 | `SECRET_KEY`   | Auth encryption key (32+ chars) | `your-very-long-random-secret-key`                |
 | `BASE_URL`     | Public URL of your instance     | `https://feedback.yourcompany.com`                |
 
@@ -96,7 +96,7 @@ With `docker-compose.prod.yml`, pin the release with `QUACKBACK_TAG` in `.env`.
 | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------ |
 | `PORT`                             | Server port                                                                                                                                                                                                                                                              | `3000`       |
 | `NODE_ENV`                         | Environment                                                                                                                                                                                                                                                              | `production` |
-| `QUACKBACK_ROLE`                   | Process role: `all`, `web`, or `worker` (see [Scaling Out](#scaling-out))                                                                                                                                                                                                | `all`        |
+| `ZENITH_ROLE`                   | Process role: `all`, `web`, or `worker` (see [Scaling Out](#scaling-out))                                                                                                                                                                                                | `all`        |
 | `SKIP_MIGRATIONS`                  | Skip the startup migration step (run migrations out-of-band instead)                                                                                                                                                                                                     | `false`      |
 | `SETUP_OWNER_EMAIL`                | Hands an unfinished setup to this address. Use it when the first account created is not yours or you can't sign in to it, then restart; that address can create its account and finish setup. No effect once setup is finished                                           | -            |
 | `EMAIL_SMTP_HOST`                  | SMTP server for outbound email; with `EMAIL_SMTP_PORT`, `EMAIL_SMTP_USER`, `EMAIL_SMTP_PASS`                                                                                                                                                                             | -            |
@@ -116,13 +116,13 @@ To supply integration OAuth app credentials from the environment instead, set `P
 
 ## Database Setup
 
-Quackback requires:
+Zenith requires:
 
 - **PostgreSQL 14** or newer
 - **pgvector 0.5.0** or newer (the `vector` extension)
 - The **`pg_trgm`** extension (part of the PostgreSQL contrib package)
 
-`docker-compose.prod.yml` builds a PostgreSQL image that meets all three. For your own server, the `pgvector/pgvector` Docker image works, or install pgvector and contrib from your distribution. The app creates both extensions on startup if its database user is allowed to; otherwise, have a superuser run `CREATE EXTENSION vector; CREATE EXTENSION pg_trgm;` in the Quackback database first. Startup checks these requirements before running migrations and exits with a message naming anything missing.
+`docker-compose.prod.yml` builds a PostgreSQL image that meets all three. For your own server, the `pgvector/pgvector` Docker image works, or install pgvector and contrib from your distribution. The app creates both extensions on startup if its database user is allowed to; otherwise, have a superuser run `CREATE EXTENSION vector; CREATE EXTENSION pg_trgm;` in the Zenith database first. Startup checks these requirements before running migrations and exits with a message naming anything missing.
 
 `DATABASE_URL` must be a direct or session-mode connection. Transaction-mode poolers are not supported, because realtime features use `LISTEN`/`NOTIFY`.
 
@@ -130,10 +130,10 @@ Quackback requires:
 
 ```bash
 # Using psql
-createdb quackback
+createdb zenith
 
 # Or via SQL
-psql -c "CREATE DATABASE quackback;"
+psql -c "CREATE DATABASE zenith;"
 ```
 
 ### Run Migrations
@@ -145,17 +145,17 @@ Migrations run automatically on startup. To run manually:
 bun run db:migrate
 
 # Using Docker
-docker exec quackback bun /app/migrate.mjs
+docker exec zenith bun /app/migrate.mjs
 ```
 
 ### Database Backups
 
 ```bash
 # Backup
-pg_dump -Fc quackback > quackback_backup.dump
+pg_dump -Fc zenith > zenith_backup.dump
 
 # Restore
-pg_restore -d quackback quackback_backup.dump
+pg_restore -d zenith zenith_backup.dump
 ```
 
 ---
@@ -172,8 +172,8 @@ pg_restore -d quackback quackback_backup.dump
 
 ```bash
 # Clone repository
-git clone https://github.com/quackbackio/quackback.git
-cd quackback
+git clone https://github.com/zenith/zenith.git
+cd zenith
 
 # Install dependencies
 bun install
@@ -189,7 +189,7 @@ bun run db:migrate
 bun run build
 
 # Start the server
-bun run --filter @quackback/web start
+bun run --filter @zenith/web start
 ```
 
 ### Development Mode
@@ -241,7 +241,7 @@ server {
 }
 ```
 
-This config sets `X-Real-IP` to the address nginx saw and overwrites any copy the client sent, so you can tell Quackback to read the client IP from it instead of counting hops:
+This config sets `X-Real-IP` to the address nginx saw and overwrites any copy the client sent, so you can tell Zenith to read the client IP from it instead of counting hops:
 
 ```bash
 TRUSTED_CLIENT_IP_HEADER=x-real-ip
@@ -249,8 +249,8 @@ TRUSTED_CLIENT_IP_HEADER=x-real-ip
 
 Use `TRUSTED_CLIENT_IP_HEADER` when your proxy sets one authoritative client-IP header (`X-Real-IP` as above, `CF-Connecting-IP` behind Cloudflare), especially when requests pass through more proxies than you can count. Use `TRUSTED_PROXY_HOPS` when you know the exact number of proxies that append to `X-Forwarded-For`. Only name a header your proxy always sets or overwrites, and keep the app port unreachable except through the proxy; a header passed through from clients lets them spoof their IP.
 
-Quackback accepts MP4 and WebM feedback videos up to 100 MB. If another proxy,
-load balancer, or hosting platform sits in front of Quackback, set its request
+Zenith accepts MP4 and WebM feedback videos up to 100 MB. If another proxy,
+load balancer, or hosting platform sits in front of Zenith, set its request
 body limit above 100 MB as well. Image uploads remain limited to 5 MB.
 
 ### Caddy
@@ -266,12 +266,12 @@ feedback.yourcompany.com {
 ```yaml
 # docker-compose.yml with Traefik labels
 services:
-  quackback:
-    image: ghcr.io/quackbackio/quackback:latest
+  zenith:
+    image: ghcr.io/zenith/zenith:latest
     labels:
       - 'traefik.enable=true'
-      - 'traefik.http.routers.quackback.rule=Host(`feedback.yourcompany.com`)'
-      - 'traefik.http.routers.quackback.tls.certresolver=letsencrypt'
+      - 'traefik.http.routers.zenith.rule=Host(`feedback.yourcompany.com`)'
+      - 'traefik.http.routers.zenith.tls.certresolver=letsencrypt'
 ```
 
 ---
@@ -303,11 +303,11 @@ services:
   # postgres, minio, minio-init: same as docker-compose.prod.yml (minio runs Silo)
 
   web:
-    image: ghcr.io/quackbackio/quackback:latest
+    image: ghcr.io/zenith/zenith:latest
     environment:
-      QUACKBACK_ROLE: web
+      ZENITH_ROLE: web
       SKIP_MIGRATIONS: 'true'
-      DATABASE_URL: postgresql://postgres:password@postgres:5432/quackback
+      DATABASE_URL: postgresql://postgres:password@postgres:5432/zenith
       SECRET_KEY: ${SECRET_KEY}
       BASE_URL: ${BASE_URL}
       # plus your S3_* and email settings, same as docker-compose.prod.yml
@@ -319,11 +319,11 @@ services:
       replicas: 3
 
   worker:
-    image: ghcr.io/quackbackio/quackback:latest
+    image: ghcr.io/zenith/zenith:latest
     environment:
-      QUACKBACK_ROLE: worker
+      ZENITH_ROLE: worker
       SKIP_MIGRATIONS: 'true'
-      DATABASE_URL: postgresql://postgres:password@postgres:5432/quackback
+      DATABASE_URL: postgresql://postgres:password@postgres:5432/zenith
       SECRET_KEY: ${SECRET_KEY}
       BASE_URL: ${BASE_URL}
       # plus your S3_* and email settings, same as docker-compose.prod.yml
@@ -345,9 +345,9 @@ With a single replica, migrations run automatically on startup. With multiple re
 # Run migrations as a one-off container on the same network
 docker run --rm \
   --network <your-compose-network> \
-  -e DATABASE_URL="postgresql://postgres:password@postgres:5432/quackback" \
+  -e DATABASE_URL="postgresql://postgres:password@postgres:5432/zenith" \
   --entrypoint bun \
-  ghcr.io/quackbackio/quackback:latest \
+  ghcr.io/zenith/zenith:latest \
   /app/migrate.mjs
 
 # Then roll out the new image to web and worker replicas
@@ -366,7 +366,7 @@ For the first upgrade from upstream MinIO to Silo, complete the [storage migrati
 docker compose -f docker-compose.prod.yml exec postgres \
   pg_dump -Fc -U "$POSTGRES_USER" "$POSTGRES_DB" > backup-$(date +%Y%m%d).dump
 
-# 2. Pull the latest source + image (bump QUACKBACK_TAG in .env to pin a version)
+# 2. Pull the latest source + image (bump ZENITH_TAG in .env to pin a version)
 git pull
 docker compose -f docker-compose.prod.yml pull
 
@@ -386,7 +386,7 @@ There is no rolling upgrade and no downgrade: new migrations are not reversible,
 
    Then take a Postgres dump and an offline snapshot of object storage by following [Migrating the bundled MinIO to Silo](#migrating-the-bundled-minio-to-silo) (it also covers the MinIO to Silo change). When both are saved, run `docker compose -f docker-compose.prod.yml down` (still without `-v`). Never run the old and new versions against the same database.
 
-2. **Update the files.** Pull the new source with `git pull` (or download the new `docker-compose.prod.yml`, `.env.prod.example` and the `docker/postgres/` directory), set `QUACKBACK_TAG` in `.env`, and make these `.env` changes. Do this whole step before step 5: some of these settings are checked only after the migrations have run.
+2. **Update the files.** Pull the new source with `git pull` (or download the new `docker-compose.prod.yml`, `.env.prod.example` and the `docker/postgres/` directory), set `ZENITH_TAG` in `.env`, and make these `.env` changes. Do this whole step before step 5: some of these settings are checked only after the migrations have run.
    - If your `.env` has a `REDIS_URL` line, delete it. Redis and Dragonfly are no longer used. The 0.13 compose file set it for you, so most installs have none.
    - If you set `MINIO_IMAGE_TAG` or `MC_IMAGE_TAG`, remove them.
    - Set `SECRET_KEY` to the value your 0.13 instance used. The compose file refuses to start without it.
@@ -426,7 +426,7 @@ SILO_MIGRATION_BACKUP="../silo-migration-backup-$(date -u +%Y%m%dT%H%M%SZ)"
 mkdir "$SILO_MIGRATION_BACKUP"
 cp .env "$SILO_MIGRATION_BACKUP/environment.env"
 cp docker-compose.prod.yml "$SILO_MIGRATION_BACKUP/compose-before.yml"
-docker inspect quackback-minio --format '{{.Image}}' > "$SILO_MIGRATION_BACKUP/image-id.txt"
+docker inspect zenith-minio --format '{{.Image}}' > "$SILO_MIGRATION_BACKUP/image-id.txt"
 docker image inspect "$(cat "$SILO_MIGRATION_BACKUP/image-id.txt")" \
   --format '{{json .RepoDigests}}' > "$SILO_MIGRATION_BACKUP/image-digests.json"
 docker image save "$(cat "$SILO_MIGRATION_BACKUP/image-id.txt")" \
@@ -438,13 +438,13 @@ docker compose -f docker-compose.prod.yml stop app minio
 docker compose -f docker-compose.prod.yml exec -T postgres \
   sh -c 'exec pg_dump -Fc -U "$POSTGRES_USER" "$POSTGRES_DB"' \
   > "$SILO_MIGRATION_BACKUP/database.dump"
-docker cp quackback-minio:/data/. - > "$SILO_MIGRATION_BACKUP/data.tar"
+docker cp zenith-minio:/data/. - > "$SILO_MIGRATION_BACKUP/data.tar"
 tar -tf "$SILO_MIGRATION_BACKUP/data.tar" > /dev/null
 ```
 
 Keep this backup private: it includes credentials and IAM state. Rehearse restoring the archive into a fresh volume with the recorded old image and saved configuration before proceeding. Preserve file ownership and any external encryption keys. Object-format compatibility does not guarantee that old software understands new IAM or bucket metadata; see [Silo migration and recovery guidance](https://silo.pgsty.com/compatibility/migration/#rollback).
 
-After the backup and restore check, continue with the remaining steps of [Upgrading from 0.13](#upgrading-from-013), or the usual pull/start steps above if you are not coming from 0.13. Confirm the `minio` service is healthy and `minio-init` exits successfully, then download an existing attachment and exercise a new upload through Quackback. The production bucket should still deny anonymous direct downloads. Keep the backup and previous image until these checks pass.
+After the backup and restore check, continue with the remaining steps of [Upgrading from 0.13](#upgrading-from-013), or the usual pull/start steps above if you are not coming from 0.13. Confirm the `minio` service is healthy and `minio-init` exits successfully, then download an existing attachment and exercise a new upload through Zenith. The production bucket should still deny anonymous direct downloads. Keep the backup and previous image until these checks pass.
 
 If recovery is needed, stop application writes and restore the pre-upgrade snapshot into a fresh volume using the saved configuration and old image. Account for uploads and credential changes made after the snapshot. Avoid an in-place image downgrade or running old and new servers against the same volume. This sequence restores both the database and storage from the backup above; it deletes the current volumes, so only run it when you mean to roll back:
 
@@ -453,9 +453,9 @@ docker compose -f docker-compose.prod.yml down
 docker volume rm <project>_postgres_data <project>_minio_data
 cp "$SILO_MIGRATION_BACKUP/compose-before.yml" docker-compose.prod.yml
 cp "$SILO_MIGRATION_BACKUP/environment.env" .env
-# Pin the release you are returning to. A restored QUACKBACK_TAG=latest would
+# Pin the release you are returning to. A restored ZENITH_TAG=latest would
 # start the newer image you already pulled and migrate the database forward again.
-sed -i 's/^QUACKBACK_TAG=.*/QUACKBACK_TAG=0.13.2/' .env
+sed -i 's/^ZENITH_TAG=.*/ZENITH_TAG=0.13.2/' .env
 docker image load < "$SILO_MIGRATION_BACKUP/server-image.tar"
 docker compose -f docker-compose.prod.yml create
 docker compose -f docker-compose.prod.yml up -d --wait postgres
@@ -463,7 +463,7 @@ docker compose -f docker-compose.prod.yml up -d --wait postgres
 docker compose -f docker-compose.prod.yml exec -T postgres \
   sh -c 'pg_restore --no-owner -h 127.0.0.1 -U "$POSTGRES_USER" -d "$POSTGRES_DB"' \
   < "$SILO_MIGRATION_BACKUP/database.dump"
-docker cp - quackback-minio:/data < "$SILO_MIGRATION_BACKUP/data.tar"
+docker cp - zenith-minio:/data < "$SILO_MIGRATION_BACKUP/data.tar"
 docker compose -f docker-compose.prod.yml up -d
 ```
 
@@ -471,14 +471,14 @@ docker compose -f docker-compose.prod.yml up -d
 
 ```bash
 # Stop and remove old container
-docker stop quackback
-docker rm quackback
+docker stop zenith
+docker rm zenith
 
 # Pull new image
-docker pull ghcr.io/quackbackio/quackback:latest
+docker pull ghcr.io/zenith/zenith:latest
 
 # Start new container (same run command as before)
-docker run -d --name quackback ...
+docker run -d --name zenith ...
 ```
 
 ### From Source
@@ -497,7 +497,7 @@ bun run db:migrate
 bun run build
 
 # Restart
-bun run --filter @quackback/web start
+bun run --filter @zenith/web start
 ```
 
 ---
@@ -509,7 +509,7 @@ bun run --filter @quackback/web start
 Check logs:
 
 ```bash
-docker logs quackback
+docker logs zenith
 ```
 
 Common issues:
@@ -540,7 +540,7 @@ Check database permissions:
 
 ```sql
 -- User needs CREATE, ALTER, DROP permissions (including TEMPORARY)
-GRANT ALL PRIVILEGES ON DATABASE quackback TO your_user;
+GRANT ALL PRIVILEGES ON DATABASE zenith TO your_user;
 ```
 
 If the user cannot create extensions, have a superuser create `vector` and `pg_trgm` in the database (see [Database Setup](#database-setup)).
@@ -571,9 +571,9 @@ curl -X POST 'https://api.resend.com/emails' \
 
 ### Railway
 
-[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/quackback)
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/zenith)
 
-Deploys Quackback + PostgreSQL (with pgvector) + S3-compatible storage bucket to Railway. After deploying:
+Deploys Zenith + PostgreSQL (with pgvector) + S3-compatible storage bucket to Railway. After deploying:
 
 1. **Find your OTP code**: If email is not configured, login codes appear in Railway's deployment logs
 2. **Configure email** (recommended): Add SMTP, Amazon SES or Resend credentials (one of them) in the service's environment variables
@@ -587,6 +587,6 @@ See [Railway pricing](https://railway.com/pricing) for costs.
 
 ## Support
 
-- **Documentation**: https://quackback.io/docs
-- **GitHub Discussions**: https://github.com/quackbackio/quackback/discussions
-- **GitHub Issues**: https://github.com/quackbackio/quackback/issues
+- **Documentation**: /source.html
+- **GitHub Discussions**: https://github.com/zenith/zenith/discussions
+- **GitHub Issues**: https://github.com/zenith/zenith/issues

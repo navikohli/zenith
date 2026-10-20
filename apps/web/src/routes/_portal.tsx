@@ -296,7 +296,7 @@ export const Route = createFileRoute('/_portal')({
     const faviconUrl =
       loaderData?.faviconData?.url || loaderData?.brandingData?.logoUrl || '/logo.png'
 
-    const workspaceName = loaderData?.workspaceName ?? 'Quackback'
+    const workspaceName = loaderData?.workspaceName ?? 'Zenith'
     const description = `Share feedback, vote on feature requests, and track the ${workspaceName} roadmap.`
     // Social share image: workspace logo, then the bundled default.
     const ogImageUrl = resolvePortalOgImageUrl(loaderData?.brandingData, loaderData?.baseUrl)

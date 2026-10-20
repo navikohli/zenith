@@ -12,7 +12,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import { UserSegmentBadges } from '../user-segments'
 import type { UserSegmentSummary } from '@/lib/shared/types'
-import type { PrincipalId, SegmentId } from '@quackback/ids'
+import type { PrincipalId, SegmentId } from '@zenith/ids'
 
 const PRINCIPAL_ID = 'principal_1' as PrincipalId
 

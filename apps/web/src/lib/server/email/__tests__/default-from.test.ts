@@ -6,7 +6,7 @@
  * the resolver between cases.
  */
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { getEmailFrom } from '@quackback/email'
+import { getEmailFrom } from '@zenith/email'
 import { getCurrentWorkspace } from '@/lib/server/workspaces/workspace-context'
 import { withWorkspace } from '@/lib/server/__tests__/workspace-scope'
 import { ensureEmailLogSink } from '../email-log.sink'
@@ -46,7 +46,7 @@ describe('pooled default From', () => {
 describe('self-host default From', () => {
   beforeEach(() => {
     vi.stubEnv('EMAIL_FROM', 'Selfhost <noreply@self.example>')
-    vi.stubEnv('QUACKBACK_TENANCY', 'single')
+    vi.stubEnv('ZENITH_TENANCY', 'single')
     ensureEmailLogSink()
   })
 

@@ -33,7 +33,7 @@ export const sendMessengerInstallInstructionsFn = createServerFn({ method: 'POST
     await readyMessengerForInstall()
     const [{ sendMessengerInstallEmail }, { buildWidgetLoaderSnippet }, { getBaseUrl }] =
       await Promise.all([
-        import('@quackback/email'),
+        import('@zenith/email'),
         import('@/lib/shared/widget/install-prompt'),
         import('@/lib/server/config'),
       ])

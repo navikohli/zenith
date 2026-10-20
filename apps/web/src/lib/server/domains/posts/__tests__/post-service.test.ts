@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import type { PostId, PrincipalId, PostStatusId, PostTagId } from '@quackback/ids'
+import type { PostId, PrincipalId, PostStatusId, PostTagId } from '@zenith/ids'
 
 const createActivity = vi.fn()
 const dispatchPostStatusChanged = vi.fn()

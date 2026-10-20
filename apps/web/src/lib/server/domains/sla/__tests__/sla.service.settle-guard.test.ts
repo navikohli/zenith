@@ -15,7 +15,7 @@
  * second writer's content CAS matches zero rows and it reloads/withdraws.
  */
 import { describe, it, expect, beforeEach, afterEach, afterAll, vi } from 'vitest'
-import { createId, type PrincipalId, type UserId, type ConversationId } from '@quackback/ids'
+import { createId, type PrincipalId, type UserId, type ConversationId } from '@zenith/ids'
 
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import {

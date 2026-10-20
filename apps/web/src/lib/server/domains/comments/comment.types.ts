@@ -2,7 +2,7 @@
  * Input/Output types for CommentService operations
  */
 
-import type { PostId, PostCommentId, BoardId, PrincipalId, PostStatusId } from '@quackback/ids'
+import type { PostId, PostCommentId, BoardId, PrincipalId, PostStatusId } from '@zenith/ids'
 import type { CommentStatusChange } from '@/lib/shared'
 import type { TiptapContent } from '@/lib/shared/db-types'
 

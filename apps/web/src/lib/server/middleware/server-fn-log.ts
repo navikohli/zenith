@@ -13,7 +13,7 @@
  */
 import { createMiddleware } from '@tanstack/react-start'
 import { isNotFound, isRedirect } from '@tanstack/react-router'
-import type { AppLogger } from '@quackback/logger'
+import type { AppLogger } from '@zenith/logger'
 import { logger } from '@/lib/server/logger'
 import { DomainException } from '@/lib/shared/errors'
 import { isAuthDenialError } from '@/lib/server/functions/auth-errors'

@@ -35,7 +35,7 @@ import {
 } from '@/lib/server/domains/help-center/help-center.service'
 import { parseTypeId } from '@/lib/server/domains/api/validation'
 import { ForbiddenError, ValidationError } from '@/lib/shared/errors'
-import type { KbCategoryId, PrincipalId, ApiKeyId } from '@quackback/ids'
+import type { KbCategoryId, PrincipalId, ApiKeyId } from '@zenith/ids'
 import type {
   HelpCenterCategory,
   HelpCenterCategoryWithCount,

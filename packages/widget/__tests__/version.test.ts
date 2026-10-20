@@ -3,7 +3,7 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { describe, expect, it } from 'vitest'
 import { SDK_VERSION } from '../src/version'
-import Quackback from '../src/index'
+import Zenith from '../src/index'
 
 describe('SDK_VERSION', () => {
   it('matches package.json version', () => {
@@ -13,7 +13,7 @@ describe('SDK_VERSION', () => {
     expect(SDK_VERSION).toBe(pkg.version)
   })
 
-  it('is exposed on the Quackback singleton', () => {
-    expect(Quackback.version).toBe(SDK_VERSION)
+  it('is exposed on the Zenith singleton', () => {
+    expect(Zenith.version).toBe(SDK_VERSION)
   })
 })

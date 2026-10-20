@@ -9,8 +9,8 @@
  */
 import { z } from 'zod'
 import { createServerFn } from '@tanstack/react-start'
-import type { PrincipalId, TeamId } from '@quackback/ids'
-import type { ConversationId } from '@quackback/ids'
+import type { PrincipalId, TeamId } from '@zenith/ids'
+import type { ConversationId } from '@zenith/ids'
 import { PERMISSIONS } from '@/lib/shared/permissions'
 import { TEAM_ASSIGNMENT_METHODS } from '@/lib/shared/db-types'
 import { requireAuth, policyActorFromAuth } from './auth-helpers'

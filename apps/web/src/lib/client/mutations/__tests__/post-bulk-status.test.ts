@@ -6,7 +6,7 @@
  * error isolation and the summary shape the toolbar toasts from.
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import type { PostId, PostStatusId } from '@quackback/ids'
+import type { PostId, PostStatusId } from '@zenith/ids'
 
 const hoisted = vi.hoisted(() => ({
   changePostStatusFn: vi.fn(),

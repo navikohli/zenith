@@ -227,7 +227,7 @@ export function previewClaimMapping({
 
   const limitations: string[] = [
     profileSyncEnabled(draft)
-      ? 'Name, email and avatar show what a new account gets. Later sign-ins update the name and avatar unless someone changed them in Quackback. Email is not changed.'
+      ? 'Name, email and avatar show what a new account gets. Later sign-ins update the name and avatar unless someone changed them in Zenith. Email is not changed.'
       : 'Name, email and avatar show what a new account gets. Existing profiles are not changed on later sign-ins.',
     'People preview assumes no existing attributes.',
   ]

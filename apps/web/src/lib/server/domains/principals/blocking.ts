@@ -15,7 +15,7 @@
  * the fill-if-empty steps in principal-repoint.ts, so signing in never sheds it.
  */
 import { db, principal, eq, sql, type Principal } from '@/lib/server/db'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 import { ForbiddenError, NotFoundError } from '@/lib/shared/errors'
 import { isTeamMember } from '@/lib/shared/roles'
 import { logger } from '@/lib/server/logger'

@@ -40,8 +40,8 @@ const fixture = await createDbTestFixture({
 const IDENTITY = {
   version: 1,
   displayName: 'Acme',
-  canonicalOrigin: 'https://acme.quackback.example',
-  platformHostname: 'acme.quackback.example',
+  canonicalOrigin: 'https://acme.zenith.example',
+  platformHostname: 'acme.zenith.example',
   customDomains: [],
   updatedAt: '2026-10-01T09:00:00.000Z',
 }

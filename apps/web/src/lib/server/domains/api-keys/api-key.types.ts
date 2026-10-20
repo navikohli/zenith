@@ -1,4 +1,4 @@
-import type { TypeId, PrincipalId } from '@quackback/ids'
+import type { TypeId, PrincipalId } from '@zenith/ids'
 import type { ApiKeyScope } from './api-key-scopes'
 
 export type ApiKeyId = TypeId<'api_key'>

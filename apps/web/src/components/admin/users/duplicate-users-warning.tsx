@@ -19,7 +19,7 @@ import { Button } from '@/components/ui/button'
 import { ConfirmDialog } from '@/components/shared/confirm-dialog'
 import { listDuplicateUsersFn, type DuplicatePrincipalMatch } from '@/lib/server/functions/admin'
 import { useMergeLeadIntoUser } from '@/lib/client/mutations'
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 
 interface DuplicateUsersWarningProps {
   /** The profile being viewed (the merge target for lead matches). */

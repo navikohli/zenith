@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { Link } from '@tanstack/react-router'
 import { BuildingOffice2Icon, CheckIcon, PlusIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import type { CompanyId, PrincipalId } from '@quackback/ids'
+import type { CompanyId, PrincipalId } from '@zenith/ids'
 import {
   getCompanyForPrincipalFn,
   listCompaniesFn,

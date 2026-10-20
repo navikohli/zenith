@@ -1,7 +1,7 @@
 /**
  * Input/Output types for the changelog subscriber pipeline.
  */
-import type { PrincipalId } from '@quackback/ids'
+import type { PrincipalId } from '@zenith/ids'
 import type { ChangelogSubscriptionSource } from '@/lib/server/db'
 
 export type { ChangelogSubscriptionSource }

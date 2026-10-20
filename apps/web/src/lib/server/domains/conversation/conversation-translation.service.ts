@@ -54,7 +54,7 @@ import {
   type ConversationMessage,
   type TranslatedFromMetadata,
 } from '@/lib/server/db'
-import type { ConversationId, ConversationMessageId, UserId } from '@quackback/ids'
+import type { ConversationId, ConversationMessageId, UserId } from '@zenith/ids'
 import type { Executor } from '@/lib/server/domains/principals/principal.factory'
 import { chat } from '@tanstack/ai'
 import { openaiCompatibleText } from '@tanstack/ai-openai/compatible'

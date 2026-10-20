@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { isValidTypeId, type BoardId } from '@quackback/ids'
+import { isValidTypeId, type BoardId } from '@zenith/ids'
 import { escapeCSV } from '@/lib/server/utils/csv'
 import { logger } from '@/lib/server/logger'
 

@@ -71,7 +71,7 @@ function SearchPaletteDialogView({ open, onOpenChange, returnFocus }: SearchPale
   ]
   const title = intl.formatMessage({
     id: 'ask.composer.search',
-    defaultMessage: 'Search Quackback',
+    defaultMessage: 'Search Zenith',
   })
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>

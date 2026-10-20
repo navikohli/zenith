@@ -178,7 +178,7 @@ export function listDormantWorkspaces(): string[] {
  * Should a fleet pass skip this workspace right now?
  *
  * Past the threshold and not kept awake for standing work. A pass in a process
- * without a job worker (the one-shot `QUACKBACK_CRON_JOB` entry point) has an
+ * without a job worker (the one-shot `ZENITH_CRON_JOB` entry point) has an
  * empty standing-work set and skips every idle workspace, which is the
  * conservative reading of "nobody asked for this".
  */

@@ -71,3 +71,6 @@ docs/superpowers/
 
 # Local scratch
 scratchpad/
+# Local Zenith source distribution (rebuilt from the current source tree).
+apps/web/public/source/*.zip
+.env.zenith.local

@@ -4,7 +4,7 @@
  *
  * Usage: bun seed-widget-identified.ts
  */
-import { generateId, toUuid } from '@quackback/ids'
+import { generateId, toUuid } from '@zenith/ids'
 import { openDb } from './_lib'
 
 const CUSTOMER_EMAIL = 'e2e.customer@example.com'

@@ -3,7 +3,7 @@
  * gets either twice.
  */
 import { afterAll, afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { createId, type PrincipalId, type UserId } from '@quackback/ids'
+import { createId, type PrincipalId, type UserId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import {
   boards,
@@ -25,9 +25,9 @@ vi.mock('@/lib/server/db', async (importOriginal) => ({
 }))
 vi.mock('@/lib/server/config', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/lib/server/config')>()),
-  getBaseUrl: () => 'https://acme.quackback.test',
+  getBaseUrl: () => 'https://acme.zenith.test',
 }))
-// No model in the test environment: Quinn's step is simply unavailable.
+// No model in the test environment: ZenithAssistant's step is simply unavailable.
 vi.mock('@/lib/server/domains/assistant', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/lib/server/domains/assistant')>()),
   isAssistantConfigured: () => false,
@@ -36,8 +36,8 @@ const mail = vi.hoisted(() => ({
   welcome: vi.fn(async (_params: Record<string, unknown>) => ({ sent: true })),
   nudge: vi.fn(async (_params: Record<string, unknown>) => ({ sent: true })),
 }))
-vi.mock('@quackback/email', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@quackback/email')>()),
+vi.mock('@zenith/email', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@zenith/email')>()),
   sendOnboardingWelcomeEmail: mail.welcome,
   sendOnboardingNudgeEmail: mail.nudge,
 }))
@@ -111,8 +111,8 @@ describe.skipIf(!fixture.available)('setup emails (real DB)', () => {
     expect(params.subject).toBe('Acme is ready, Sam')
     expect(params.lang).toBe('en')
     expect(params.paragraphs).toContain('Your next step: Put Messenger on your site.')
-    expect(params.cta.url).toBe('https://acme.quackback.test/admin')
-    expect(params.unsubscribeUrl).toMatch(/^https:\/\/acme\.quackback\.test\/unsubscribe\?token=/)
+    expect(params.cta.url).toBe('https://acme.zenith.test/admin')
+    expect(params.unsubscribeUrl).toMatch(/^https:\/\/acme\.zenith\.test\/unsubscribe\?token=/)
 
     expect(await sendOnboardingEmail('welcome', owner)).toEqual({
       sent: false,
@@ -171,7 +171,7 @@ describe.skipIf(!fixture.available)('setup emails (real DB)', () => {
       subject: 'Your next step in Acme',
       cta: {
         label: 'Put Messenger on your site',
-        url: 'https://acme.quackback.test/admin/settings/widget/install',
+        url: 'https://acme.zenith.test/admin/settings/widget/install',
       },
       secondary: null,
     })
@@ -211,7 +211,7 @@ describe.skipIf(!fixture.available)('setup emails (real DB)', () => {
     })
     expect(await sendOnboardingEmail('nudge', owner)).toEqual({ sent: true })
     expect(mail.nudge.mock.calls[0][0]).toMatchObject({
-      cta: { label: 'A customer posts an idea', url: 'https://acme.quackback.test/admin' },
+      cta: { label: 'A customer posts an idea', url: 'https://acme.zenith.test/admin' },
     })
   })
 
@@ -247,8 +247,8 @@ describe.skipIf(!fixture.available)('setup emails (real DB)', () => {
       'One step gets you to your first customer idea: share the link.'
     )
     expect(params.share).toMatchObject({
-      url: 'https://acme.quackback.test/',
-      text: 'acme.quackback.test',
+      url: 'https://acme.zenith.test/',
+      text: 'acme.zenith.test',
     })
   })
 

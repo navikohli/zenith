@@ -8,7 +8,7 @@
  * able to fix the page. The save is refused instead.
  */
 import { describe, it, expect, vi, beforeEach, afterEach, afterAll } from 'vitest'
-import { createId, type IdentityProviderId, type RoleId, type UserId } from '@quackback/ids'
+import { createId, type IdentityProviderId, type RoleId, type UserId } from '@zenith/ids'
 import { createDbTestFixture, testDb } from '@/lib/server/__tests__/db-test-fixture'
 import {
   account,

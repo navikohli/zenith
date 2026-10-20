@@ -5,7 +5,7 @@
  */
 import { z } from 'zod'
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
-import type { AssistantPendingActionId } from '@quackback/ids'
+import type { AssistantPendingActionId } from '@zenith/ids'
 import { ForbiddenError, ValidationError } from '@/lib/shared/errors'
 import {
   APPROVAL_STATUSES,

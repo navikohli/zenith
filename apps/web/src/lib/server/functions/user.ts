@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { assertNotWidgetScope, toSessionScope, type Role } from '@/lib/shared/roles'
 import { createServerFn, createServerOnlyFn } from '@tanstack/react-start'
-import { type UserId, type PrincipalId } from '@quackback/ids'
+import { type UserId, type PrincipalId } from '@zenith/ids'
 import { getSession } from '@/lib/server/auth/session'
 import { requireAuth } from './auth-helpers'
 import { getCurrentUserRole } from './workspace'

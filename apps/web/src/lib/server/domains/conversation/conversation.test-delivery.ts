@@ -1,5 +1,5 @@
 import { db, principal, user, eq } from '@/lib/server/db'
-import type { ConversationId, PrincipalId } from '@quackback/ids'
+import type { ConversationId, PrincipalId } from '@zenith/ids'
 import { testOwnerOf } from '@/lib/server/test-data'
 import { isTeamMember } from '@/lib/shared/roles'
 import { contactRecipientFrom } from '@/lib/server/email/recipient'

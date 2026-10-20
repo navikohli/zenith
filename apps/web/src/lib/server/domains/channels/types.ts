@@ -1,4 +1,4 @@
-import type { ConversationId, ConversationMessageId, PrincipalId } from '@quackback/ids'
+import type { ConversationId, ConversationMessageId, PrincipalId } from '@zenith/ids'
 import type { Channel } from '@/lib/shared/channels'
 import type { JSONContent } from '@tiptap/core'
 import type { ConversationAttachment } from '@/lib/server/db'

@@ -6,7 +6,7 @@
  * widget. No React or query-client imports: everything is unit-testable
  * directly (events-reducer.test.ts).
  */
-import type { ConversationId, ConversationMessageId, TicketId } from '@quackback/ids'
+import type { ConversationId, ConversationMessageId, TicketId } from '@zenith/ids'
 import {
   asAgentMessage,
   type AgentConversationMessageDTO,

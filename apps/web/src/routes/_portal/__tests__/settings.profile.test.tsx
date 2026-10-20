@@ -12,7 +12,7 @@
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { QueryClient } from '@tanstack/react-query'
-import type { UserId } from '@quackback/ids'
+import type { UserId } from '@zenith/ids'
 
 vi.mock('@tanstack/react-router', () => ({
   createFileRoute:

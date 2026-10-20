@@ -8,7 +8,7 @@
  * Pure unit test, no real DB — mirrors post-autotag.test.ts's mocking idiom.
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import type { BoardId, PostId } from '@quackback/ids'
+import type { BoardId, PostId } from '@zenith/ids'
 
 const mockConfig = vi.hoisted(() => ({
   openaiApiKey: 'test-key' as string | undefined,

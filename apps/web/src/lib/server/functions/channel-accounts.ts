@@ -6,7 +6,7 @@
  */
 import { z } from 'zod'
 import { createServerFn } from '@tanstack/react-start'
-import type { ChannelAccountId, SendingDomainId, TeamId } from '@quackback/ids'
+import type { ChannelAccountId, SendingDomainId, TeamId } from '@zenith/ids'
 import type { ChannelAccount, EmailSendingDomain } from '@/lib/server/db'
 import { requireAuth } from './auth-helpers'
 import { PERMISSIONS } from '@/lib/shared/permissions'

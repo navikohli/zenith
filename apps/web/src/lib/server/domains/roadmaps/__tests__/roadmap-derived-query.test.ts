@@ -9,7 +9,7 @@ import {
   type RoadmapId,
   type SegmentId,
   type UserId,
-} from '@quackback/ids'
+} from '@zenith/ids'
 
 vi.mock('@/lib/server/db', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/lib/server/db')>()),

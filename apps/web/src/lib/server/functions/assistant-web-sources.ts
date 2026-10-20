@@ -9,7 +9,7 @@
  */
 import { z } from 'zod'
 import { createServerFn } from '@tanstack/react-start'
-import type { AssistantWebSourceId } from '@quackback/ids'
+import type { AssistantWebSourceId } from '@zenith/ids'
 import { logger } from '@/lib/server/logger'
 import { requireAuth, assertAnyPermission } from './auth-helpers'
 import { AI_ANY_PERMISSIONS } from '@/lib/shared/ai-permissions'
