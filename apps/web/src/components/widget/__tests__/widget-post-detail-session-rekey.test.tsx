@@ -13,11 +13,11 @@ import { act, render, screen, waitFor, fireEvent } from '@testing-library/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { IntlProvider } from 'react-intl'
 
-const auth = { sessionVersion: 0 }
+const auth = { sessionVersion: 0, hmacRequired: false, isIdentified: false }
 vi.mock('../widget-auth-provider', () => ({
   useWidgetAuth: () => ({
-    isIdentified: false,
-    hmacRequired: false,
+    isIdentified: auth.isIdentified,
+    hmacRequired: auth.hmacRequired,
     user: null,
     ensureSessionThen: async (cb: () => void | Promise<void>) => cb(),
     emitEvent: vi.fn(),
@@ -101,6 +101,8 @@ function wrapper({ children }: { children: ReactNode }) {
 describe('WidgetPostDetail — session re-key keeps the view mounted', () => {
   beforeEach(() => {
     auth.sessionVersion = 0
+    auth.hmacRequired = false
+    auth.isIdentified = false
     pending.length = 0
     fetchPublicPostDetail.mockClear()
     queryClient = new QueryClient({ defaultOptions: { queries: { retry: false } } })
@@ -150,5 +152,22 @@ describe('WidgetPostDetail — session re-key keeps the view mounted', () => {
         expect.objectContaining({ data: expect.objectContaining({ postId: 'post_canonical' }) })
       )
     )
+  })
+
+  it('lets an identified reporter comment when signed identity is required', async () => {
+    auth.hmacRequired = true
+    auth.isIdentified = true
+    render(<WidgetPostDetail postId="post_1" statuses={[]} />, { wrapper })
+    await act(async () => pending[0].resolve(detail('post_1', 'Signed-in thread')))
+    await screen.findByText('Signed-in thread')
+    expect(screen.getByTestId('comment-form')).toBeTruthy()
+  })
+
+  it('keeps the comment composer hidden until required identity is established', async () => {
+    auth.hmacRequired = true
+    render(<WidgetPostDetail postId="post_1" statuses={[]} />, { wrapper })
+    await act(async () => pending[0].resolve(detail('post_1', 'Identity required')))
+    await screen.findByText('Identity required')
+    expect(screen.queryByTestId('comment-form')).toBeNull()
   })
 })

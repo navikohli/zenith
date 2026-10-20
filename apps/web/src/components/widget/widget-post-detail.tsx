@@ -327,7 +327,7 @@ export function WidgetPostDetail({ postId, statuses }: WidgetPostDetailProps) {
 
           {/* Root comment form — unified: textarea + email (when anonymous) + single Post.
               For an anonymous viewer the email field escalates them to a real user. */}
-          {!post.isCommentsLocked && !commentNoAccess && !hmacRequired && (
+          {!post.isCommentsLocked && !commentNoAccess && (!hmacRequired || isIdentified) && (
             <WidgetCommentForm
               isIdentified={isIdentified}
               user={user}

@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+import type { BoardAccess } from '@/lib/shared/db-types'
 import {
   digest,
   requireRevision,
@@ -8,9 +9,26 @@ import {
   deploymentSchema,
   planSchema,
   validateProductClaims,
+  productAudience,
 } from './contracts'
 
 describe('feedback approval and deployment contracts', () => {
+  it('preserves an existing board moderation and reply policy when connecting a product', () => {
+    const access: BoardAccess = {
+      view: 'authenticated',
+      vote: 'authenticated',
+      comment: 'authenticated',
+      submit: 'authenticated',
+      segments: { view: [], vote: [], comment: [], submit: [] },
+      moderation: { comments: 'on', anonPosts: 'on', signedPosts: 'on' },
+      replyPolicy: 'author-only',
+    }
+    const connected = productAudience(access, 'product-segment')
+    expect(connected.moderation).toEqual(access.moderation)
+    expect(connected.replyPolicy).toBe('author-only')
+    expect(connected.segments.submit).toEqual(['product-segment'])
+    expect(access.submit).toBe('authenticated')
+  })
   const command = { command: 'node', args: ['--test', 'tests/tasks.test.mjs'] }
   const sha = 'a'.repeat(40),
     planHash = 'b'.repeat(64),

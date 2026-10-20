@@ -48,6 +48,9 @@ try {
     'rebuild' {
       & (Join-Path $PSScriptRoot 'package-source.ps1')
       & docker @composeArgs up --build -d --wait --wait-timeout 240
+      if ($LASTEXITCODE -ne 0) { throw 'Zenith rebuild failed.' }
+      # Compose can retain the previous app when a mutable local tag is rebuilt.
+      & docker @composeArgs up -d --no-deps --force-recreate --wait --wait-timeout 240 app
     }
     'down' { & docker @composeArgs down }
     'status' { & docker @composeArgs ps }

@@ -1,6 +1,18 @@
 import { createHash } from 'node:crypto'
 import { z } from 'zod'
 import { ConflictError, ForbiddenError } from '@/lib/shared/errors'
+import type { BoardAccess } from '@/lib/shared/db-types'
+
+export function productAudience(access: BoardAccess, segmentId: string): BoardAccess {
+  return {
+    ...access,
+    view: 'segments',
+    vote: 'segments',
+    comment: 'segments',
+    submit: 'segments',
+    segments: { view: [segmentId], vote: [segmentId], comment: [segmentId], submit: [segmentId] },
+  }
+}
 
 export const digest = (value: unknown): string =>
   createHash('sha256').update(stableJson(value)).digest('hex')

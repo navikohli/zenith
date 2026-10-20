@@ -15,6 +15,7 @@ import {
 import { encrypt, decrypt } from '@/lib/server/encryption'
 import { ConflictError, ForbiddenError, NotFoundError } from '@/lib/shared/errors'
 import type { BoardId, PrincipalId } from '@zenith/ids'
+import { productAudience } from './contracts'
 
 export const productSchema = z.object({
   key: z.string().regex(/^[a-z][a-z0-9-]{1,49}$/),
@@ -76,23 +77,19 @@ export async function registerProduct(input: z.infer<typeof productSchema>) {
         .returning()
       boardId = board.id
     }
+    // Preserve the board's existing moderation/reply rules under its row lock.
+    const [linkedBoard] = await tx
+      .select({ access: boards.access, deletedAt: boards.deletedAt })
+      .from(boards)
+      .where(eq(boards.id, boardId))
+      .for('update')
+    if (!linkedBoard || linkedBoard.deletedAt)
+      throw new NotFoundError('BOARD_NOT_FOUND', 'Board not found')
     // Dedicated audience; staff keeps the native policy bypass.
     await tx
       .update(boards)
       .set({
-        access: {
-          view: 'segments',
-          vote: 'segments',
-          comment: 'segments',
-          submit: 'segments',
-          segments: {
-            view: [segment.id],
-            vote: [segment.id],
-            comment: [segment.id],
-            submit: [segment.id],
-          },
-          moderation: { comments: 'inherit', anonPosts: 'inherit', signedPosts: 'inherit' },
-        },
+        access: productAudience(linkedBoard.access, segment.id),
       })
       .where(eq(boards.id, boardId))
     const [created] = await tx
