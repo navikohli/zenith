@@ -4,6 +4,7 @@ import { Suspense, memo, useState, useCallback } from 'react'
 import { useKeyboardSubmit } from '@/lib/client/hooks/use-keyboard-submit'
 import { CustomerContextPanel } from '@/components/admin/feedback/customer-context-panel'
 import { SubmissionContextPanel } from '@/components/admin/feedback/submission-context-panel'
+import { FeedbackDiagnosticsPanel } from '@/components/admin/feedback/feedback-diagnostics-panel'
 import { ModalFooter } from '@/components/shared/modal-footer'
 import { useSuspenseQuery, useQuery, useQueryClient, useMutation } from '@tanstack/react-query'
 import type { JSONContent } from '@tiptap/react'
@@ -456,6 +457,7 @@ export const PostModalContent = memo(function PostModalContent({
               />
 
               <SubmissionContextPanel metadata={post.widgetMetadata} />
+              <FeedbackDiagnosticsPanel diagnostics={post.diagnostics} />
 
               {/* AI section — summary + similar posts */}
               <div className="mt-8 space-y-3">

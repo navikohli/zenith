@@ -12,6 +12,7 @@ import type {
   PostCommentId,
 } from '@zenith/ids'
 import type { CommentReactionCount, CommentStatusChange } from '@/lib/shared'
+import type { FeedbackDiagnostics, FeedbackDiagnosticsInput } from '@/lib/shared/feedback-diagnostics'
 
 /**
  * Input for creating a new post
@@ -24,6 +25,7 @@ export interface CreatePostInput {
   statusId?: PostStatusId
   tagIds?: PostTagId[]
   widgetMetadata?: Record<string, string>
+  diagnostics?: FeedbackDiagnosticsInput
   /** Override creation timestamp (admin-only, for imports) */
   createdAt?: Date
   /** The team member who initiated this post on the customer's behalf. */
@@ -72,6 +74,7 @@ export interface ChangeStatusInput {
  * Extended post with related data
  */
 export interface PostWithDetails extends Post {
+  diagnostics?: FeedbackDiagnostics | null
   board: {
     id: BoardId
     name: string

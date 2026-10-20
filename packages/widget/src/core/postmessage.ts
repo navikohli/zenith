@@ -6,6 +6,7 @@ export type InboundMessage =
   | { type: 'zenith:open'; data?: unknown }
   | { type: 'zenith:locale'; data: string }
   | { type: 'zenith:mobile'; data: boolean }
+  | { type: 'zenith:diagnostics'; data: unknown }
 
 export type OutboundMessage =
   | { type: 'zenith:ready' }
@@ -16,6 +17,7 @@ export type OutboundMessage =
   | { type: 'zenith:auth-change'; user: unknown }
   | { type: 'zenith:event'; name: string; payload: unknown }
   | { type: 'zenith:unread'; count: number }
+  | { type: 'zenith:capture-diagnostics'; requestId: string }
 
 export interface BridgeOptions {
   getIframe: () => HTMLIFrameElement | null
@@ -36,6 +38,8 @@ export function createBridge(opts: BridgeOptions): Bridge {
     const msg = event.data
     if (!msg || typeof msg !== 'object' || typeof (msg as { type?: unknown }).type !== 'string')
       return
+    // Capturing the host page is permitted only to this SDK's own frame.
+    if (msg.type === 'zenith:capture-diagnostics' && event.source !== opts.getIframe()?.contentWindow) return
     for (const h of handlers) {
       try {
         h(msg as OutboundMessage)

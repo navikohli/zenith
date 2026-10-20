@@ -74,10 +74,6 @@
         "@hookform/resolvers": "^5.9.1",
         "@modelcontextprotocol/sdk": "1.32.1",
         "@opentelemetry/api": "^1.9.1",
-        "@zenith/db": "workspace:*",
-        "@zenith/email": "workspace:*",
-        "@zenith/ids": "workspace:*",
-        "@zenith/logger": "workspace:*",
         "@slack/web-api": "^8.1.1",
         "@tabler/icons-react": "^3.46.0",
         "@tailwindcss/typography": "^0.5.20",
@@ -115,6 +111,10 @@
         "@tiptap/starter-kit": "3.31.3",
         "@tiptap/suggestion": "3.31.3",
         "@xyflow/react": "^12.11.6",
+        "@zenith/db": "workspace:*",
+        "@zenith/email": "workspace:*",
+        "@zenith/ids": "workspace:*",
+        "@zenith/logger": "workspace:*",
         "bcryptjs": "^3.0.3",
         "better-auth": "1.7.10",
         "bowser": "2.14.1",
@@ -220,8 +220,8 @@
       "version": "0.1.0",
       "dependencies": {
         "@aws-sdk/client-sesv2": "^3.1131.0",
-        "@zenith/logger": "workspace:*",
         "@react-email/components": "^1.0.12",
+        "@zenith/logger": "workspace:*",
         "nodemailer": "^10.0.9",
         "react": "^19.3.0",
         "resend": "^6.28.0",
@@ -257,6 +257,9 @@
     "packages/widget": {
       "name": "@zenith/widget",
       "version": "0.1.6",
+      "dependencies": {
+        "html2canvas-pro": "2.5.2",
+      },
       "devDependencies": {
         "@testing-library/dom": "^10.4.1",
         "@testing-library/react": "^16.3.3",
@@ -717,20 +720,6 @@
     "@posthog/core": ["@posthog/core@1.59.1", "", { "dependencies": { "@posthog/types": "^1.416.0" } }, "sha512-P39YgzQVDh6oz6wAzQXEnoHgTYpM7gifonmVKq1scAJco79h31XmmNVurRq9tTmmyIrr1uX8FHT0riCsyfV9AQ=="],
 
     "@posthog/types": ["@posthog/types@1.416.0", "", {}, "sha512-0/9+02s/0uDyrH4G/qUg1yyl6gXUg8Uuxw/PlDad3KLzo9FFS9zS/kAQaEshx/saVGupj1aAy/4EUBxWisBogw=="],
-
-    "@zenith/db": ["@zenith/db@workspace:packages/db"],
-
-    "@zenith/email": ["@zenith/email@workspace:packages/email"],
-
-    "@zenith/ids": ["@zenith/ids@workspace:packages/ids"],
-
-    "@zenith/import": ["@zenith/import@workspace:scripts/import"],
-
-    "@zenith/logger": ["@zenith/logger@workspace:packages/logger"],
-
-    "@zenith/web": ["@zenith/web@workspace:apps/web"],
-
-    "@zenith/widget": ["@zenith/widget@workspace:packages/widget"],
 
     "@radix-ui/primitive": ["@radix-ui/primitive@1.2.0", "", {}, "sha512-KABY+VMIRPJL+Vyzv/335FEhXXD/xDv8BMb1kl48/aXJZMH0LtHCTx5ga5RnxaEP3nZHtmTLf1P9vanmFX46bw=="],
 
@@ -1286,6 +1275,20 @@
 
     "@xyflow/system": ["@xyflow/system@0.0.83", "", { "dependencies": { "@types/d3-drag": "^3.0.7", "@types/d3-interpolate": "^3.0.4", "@types/d3-selection": "^3.0.10", "@types/d3-transition": "^3.0.8", "@types/d3-zoom": "^3.0.8", "d3-drag": "^3.0.0", "d3-interpolate": "^3.0.1", "d3-selection": "^3.0.0", "d3-zoom": "^3.0.0" } }, "sha512-a//eDjez3WZF47aaPTfVUDD0OINOq+WVwBZCRTqG+m0a5euX8EwlJ4jMY1Wxz0Ocj4xOeekJ70V22Pq0ll8RJw=="],
 
+    "@zenith/db": ["@zenith/db@workspace:packages/db"],
+
+    "@zenith/email": ["@zenith/email@workspace:packages/email"],
+
+    "@zenith/ids": ["@zenith/ids@workspace:packages/ids"],
+
+    "@zenith/import": ["@zenith/import@workspace:scripts/import"],
+
+    "@zenith/logger": ["@zenith/logger@workspace:packages/logger"],
+
+    "@zenith/web": ["@zenith/web@workspace:apps/web"],
+
+    "@zenith/widget": ["@zenith/widget@workspace:packages/widget"],
+
     "accepts": ["accepts@2.0.0", "", { "dependencies": { "mime-types": "^3.0.0", "negotiator": "^1.0.0" } }, "sha512-5cvg6CtKwfgdmVqY1WIiXKc3Q1bkRqGLi+2W/6ao+6Y7gu/RCwRuAhGEzh5B4KlszSuTLgZYuqFqo5bImjNKng=="],
 
     "acorn": ["acorn@8.19.0", "", { "bin": { "acorn": "bin/acorn" } }, "sha512-oJlA3XiRm7Cyk6qFD2Jn8ak9B7jSy0qy00ADO3+8dpT0LSjFihQYv4C02LFCSYJV3Q37xYwwRy5m+IpIiUzqWw=="],
@@ -1681,6 +1684,8 @@
     "html-url-attributes": ["html-url-attributes@3.0.1", "", {}, "sha512-ol6UPyBWqsrO6EJySPz2O7ZSr856WDrEzM5zMqp+FJJLGMW35cLYmmZnl0vztAZxRUoNZJFTCohfjuIJ8I4QBQ=="],
 
     "html-void-elements": ["html-void-elements@3.0.0", "", {}, "sha512-bEqo66MRXsUGxWHV5IP0PUiAWwoEjba4VCzg0LjFJBpchPaTfyfCKTG6bc5F8ucKec3q5y6qOdGyYTSBEvhCrg=="],
+
+    "html2canvas-pro": ["html2canvas-pro@2.5.2", "", {}, "sha512-uka+0oVG/yB4B7U9M/+aJFF0aKZVmMWZKi4unemkQh537cLu3jXPvZtXakTuPl3taOI+O43RhuV6kn2igk1Z6g=="],
 
     "htmlparser2": ["htmlparser2@12.0.0", "", { "dependencies": { "domelementtype": "^3.0.0", "domhandler": "^6.0.0", "domutils": "^4.0.2", "entities": "^8.0.0" } }, "sha512-Tz7u1i95/g2x2jz81+x0FBVhBhY5aRTvD3tXXdFaljuNdzDLJ8UGNRrTcj2cgQvAg3iW/h77Fz15nLW0L0CrZw=="],
 

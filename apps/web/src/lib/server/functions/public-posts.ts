@@ -394,7 +394,7 @@ export const runCreatePublicPost = createServerOnlyFn(async function runCreatePu
   data: CreatePublicPostInput
 ) {
   log.debug({ board_id: data.boardId }, 'create public post')
-  const { boardId: boardIdRaw, title, content, contentJson, metadata, customFields } = data
+  const { boardId: boardIdRaw, title, content, contentJson, metadata, customFields, diagnostics } = data
   const boardId = boardIdRaw as BoardId
 
   // Resolve the actor first so getPublicBoardById can apply
@@ -461,6 +461,7 @@ export const runCreatePublicPost = createServerOnlyFn(async function runCreatePu
       contentJson: contentJson ? sanitizeTiptapContent(contentJson) : undefined,
       statusId: defaultStatus?.id,
       widgetMetadata: metadata,
+      diagnostics,
       customFields,
     },
     author,

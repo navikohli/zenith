@@ -533,6 +533,7 @@ async function getPostDetails(postId: PostId): Promise<CallToolResult> {
     title: post.title,
     content: contentJsonToMarkdown(post.contentJson, post.content),
     widgetMetadata: post.widgetMetadata ?? null,
+    diagnostics: post.diagnostics ?? null,
     voteCount: post.voteCount,
     commentCount: post.commentCount,
     boardId: post.boardId,

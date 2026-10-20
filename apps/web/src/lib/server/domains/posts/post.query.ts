@@ -33,6 +33,7 @@ import { hydrateMentions } from './hydrate-mentions'
 import type { JSONContent } from '@tiptap/core'
 import type { TiptapContent } from '@/lib/shared/db-types'
 import { contentJsonForClient } from '@/lib/server/content/storage-read-urls'
+import { readFeedbackDiagnostics } from './post.diagnostics'
 
 /**
  * Get a post with full details including board, tags, and comment count.
@@ -159,6 +160,7 @@ export async function getPostWithDetails(postId: PostId): Promise<PostWithDetail
   // etc.) that no caller reads, but PostWithDetails extends the full Post type.
   const postWithDetails = {
     ...post,
+    ...readFeedbackDiagnostics(post.widgetMetadata),
     contentJson: hydratedPostContentJson,
     board: {
       id: board.id,

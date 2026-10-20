@@ -73,6 +73,18 @@ describe('postmessage bridge', () => {
     expect(onRecv).not.toHaveBeenCalled()
   })
 
+  it('accepts capture requests only from the registered iframe window and origin', () => {
+    const received = vi.fn()
+    const bridge = createBridge({ getIframe: () => fakeIframe as unknown as HTMLIFrameElement, origin: 'https://feedback.acme.com' })
+    bridge.onMessage(received)
+    const data = { type: 'zenith:capture-diagnostics', requestId: 'test' }
+    window.dispatchEvent(new MessageEvent('message', { origin: 'https://feedback.acme.com', data }))
+    expect(received).not.toHaveBeenCalled()
+    window.dispatchEvent(new MessageEvent('message', { origin: 'https://feedback.acme.com', source: fakeIframe.contentWindow as unknown as Window, data }))
+    expect(received).toHaveBeenCalledWith(data)
+    bridge.dispose()
+  })
+
   it('dispose removes the window listener', () => {
     const onRecv = vi.fn()
     const bridge = createBridge({

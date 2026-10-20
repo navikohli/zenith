@@ -2,6 +2,7 @@ import { z } from 'zod'
 import { boardIdSchema, postStatusIdSchema, tagIdsSchema } from '@zenith/ids/zod'
 import type { TiptapContent as DbTiptapContent } from '@/lib/shared/db-types'
 import { PageLimitSchema } from './taxonomy'
+import { feedbackDiagnosticsSchema } from '@/lib/shared/feedback-diagnostics'
 
 /**
  * TipTap mark schema - validates mark types and their attributes
@@ -134,6 +135,7 @@ export const createPublicPostSchema = z.object({
   content: z.string().max(10000).optional().default(''),
   contentJson: tiptapContentSchema.optional(),
   metadata: z.record(z.string(), z.string()).optional(),
+  diagnostics: feedbackDiagnosticsSchema.optional(),
   customFields: z.record(z.string(), z.unknown()).optional(),
 })
 export type CreatePublicPostInput = z.infer<typeof createPublicPostSchema>

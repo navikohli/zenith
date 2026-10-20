@@ -8,6 +8,7 @@
 import type { Board, PostTag } from '@/lib/shared/db-types'
 import type { PostId, PostStatusId, PostCommentId, PrincipalId } from '@zenith/ids'
 import type { CommentTreeNode, CommentReactionCount } from '@/lib/shared'
+import type { FeedbackDiagnostics } from '@/lib/shared/feedback-diagnostics'
 
 export interface PinnedComment {
   id: PostCommentId
@@ -39,6 +40,7 @@ export interface PostDetails {
   contentJson?: unknown
   /** App-supplied intake context. Staff-only and untrusted. */
   widgetMetadata?: Record<string, string> | null
+  diagnostics?: FeedbackDiagnostics | null
   statusId: PostStatusId | null
   voteCount: number
   hasVoted: boolean

@@ -41,6 +41,8 @@ export interface InitOptions {
   locale?: (typeof WIDGET_LOCALES)[number] | (string & {})
   /** Bundle identity into init — shorthand for init + identify. */
   identity?: Identity
+  /** Capture the host page, browser details and recent errors on feedback submit. Default: true. */
+  diagnostics?: boolean
 }
 
 /**

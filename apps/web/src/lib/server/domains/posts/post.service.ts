@@ -62,6 +62,7 @@ import { getBaseUrl } from '@/lib/server/config'
 import { logger } from '@/lib/server/logger'
 import { isTestCustomer, notTestPrincipal } from '@/lib/server/test-data'
 import { resolveTestFeedbackActor } from '@/lib/server/test-customer-feedback'
+import { storeFeedbackDiagnostics } from './post.diagnostics'
 
 const log = logger.child({ component: 'posts' })
 
@@ -210,6 +211,8 @@ export async function createPost(
     principalId: author.principalId,
   })
 
+  const widgetMetadata = await storeFeedbackDiagnostics(input.widgetMetadata, input.diagnostics)
+
   const post = await db.transaction(async (tx) => {
     // Re-fetch the board (with its access matrix) under a row lock to close the
     // TOCTOU between the precheck above and the insert. Two races are covered:
@@ -257,7 +260,7 @@ export async function createPost(
         contentJson,
         statusId,
         principalId: author.principalId,
-        widgetMetadata: input.widgetMetadata ?? null,
+        widgetMetadata,
         customFieldValues,
         trackedByPrincipalId: input.trackedByPrincipalId ?? null,
         voteCount: 1,

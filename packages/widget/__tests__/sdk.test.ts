@@ -1,6 +1,9 @@
 // @vitest-environment happy-dom
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { createSDK } from '../src/core/sdk'
+vi.mock('../src/core/diagnostics', () => ({
+  createDiagnosticsCollector: vi.fn(() => ({ capture: vi.fn(async () => ({ test: true })), clear: vi.fn(), stop: vi.fn() })),
+}))
 
 const ORIGIN = 'https://feedback.acme.com'
 

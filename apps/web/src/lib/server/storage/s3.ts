@@ -1028,7 +1028,7 @@ function storageReadSig(secret: string, key: string): string {
  * stored link depends on a token that never expires; every other prefix keeps
  * that token, because stored content embeds it.
  */
-const EXPIRING_READ_PREFIXES = new Set([PIPELINE_FILES_PREFIX])
+const EXPIRING_READ_PREFIXES = new Set([PIPELINE_FILES_PREFIX, 'feedback-diagnostics'])
 
 /** Whether a key's read link is `?read=<hmac>&exp=<ms>` rather than `?read=<hmac>`. */
 export function hasExpiringReadToken(key: string): boolean {

@@ -14,6 +14,7 @@ import { fetchServerConfig, type ServerConfig } from './config'
 import { createTracker, type Tracker } from './tracker'
 import { getOrCreateDeviceId } from './device'
 import { removeStyles } from './style'
+import { createDiagnosticsCollector } from './diagnostics'
 
 type Command =
   | 'init'
@@ -51,6 +52,8 @@ export function createSDK(): SDK {
   let bridge: Bridge | null = null
   let ready = false
   let metadata: Record<string, string> | null = null
+  let diagnostics: ReturnType<typeof createDiagnosticsCollector> | null = null
+  let diagnosticsEpoch = 0
   // `pendingIdentify` can be an Identity, `{anonymous: true}`, or `null` (logout).
   // `pendingIdentifyPresent` distinguishes "nothing queued" from "logout queued".
   let pendingIdentify: unknown = null
@@ -77,6 +80,21 @@ export function createSDK(): SDK {
 
   function onIframeMessage(msg: { type: string; [k: string]: unknown }) {
     switch (msg.type) {
+      case 'zenith:capture-diagnostics': {
+        const requestId = typeof msg.requestId === 'string' ? msg.requestId : ''
+        if (!requestId || requestId.length > 100 || !panelOpen) break
+        const epoch = diagnosticsEpoch
+        if (!diagnostics) {
+          bridge?.send('zenith:diagnostics', { requestId, diagnostics: null })
+        } else {
+          void diagnostics.capture().then(data => {
+            if (epoch === diagnosticsEpoch && panelOpen) bridge?.send('zenith:diagnostics', { requestId, diagnostics: data })
+          }).catch(() => {
+            if (epoch === diagnosticsEpoch) bridge?.send('zenith:diagnostics', { requestId, diagnostics: null })
+          })
+        }
+        break
+      }
       case 'zenith:ready':
         ready = true
         if (pendingIdentifyPresent) {
@@ -293,6 +311,7 @@ export function createSDK(): SDK {
         // Validate before destroy so a bad re-init leaves the working instance intact.
         if (config) dispatch('destroy')
         config = next
+        if (next.diagnostics !== false) diagnostics = createDiagnosticsCollector()
         placement = next.placement ?? 'right'
         createLauncherIfNeeded()
         // Preload the hidden panel iframe off the host page's critical path:
@@ -327,9 +346,13 @@ export function createSDK(): SDK {
         return
       }
       case 'identify':
+        diagnosticsEpoch++
+        diagnostics?.clear()
         sendIdentity((a as Identity | undefined) ?? { anonymous: true })
         return
       case 'logout':
+        diagnosticsEpoch++
+        diagnostics?.clear()
         panel?.hide()
         launcher?.setOpen(false)
         panelOpen = false
@@ -393,6 +416,9 @@ export function createSDK(): SDK {
         return
       }
       case 'destroy':
+        diagnosticsEpoch++
+        diagnostics?.stop()
+        diagnostics = null
         cancelPanelPreload()
         panel?.destroy()
         launcher?.remove()

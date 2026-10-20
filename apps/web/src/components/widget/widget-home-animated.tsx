@@ -41,6 +41,7 @@ import { getWidgetAuthHeaders } from '@/lib/client/widget-auth'
 import { cn } from '@/lib/shared/utils'
 import { useWidgetAuth } from './widget-auth-provider'
 import { sendToHost } from '@/lib/client/widget-bridge'
+import { captureHostDiagnostics } from '@/lib/client/widget-diagnostics'
 import type { PostId } from '@zenith/ids'
 import {
   LazyRichTextEditor,
@@ -470,6 +471,7 @@ export function WidgetHomeAnimated({
   // or the last one goes, not with every keystroke.
   const hasTitle = useStoreValue(title, (value) => value.trim() !== '')
   const [expanded, setExpanded] = useState(false)
+  const [includeDiagnostics, setIncludeDiagnostics] = useState(true)
   const [selectedBoardId, setSelectedBoardId] = useState(() =>
     resolveComposeBoardId(boards, undefined, defaultBoard)
   )
@@ -784,7 +786,13 @@ export function WidgetHomeAnimated({
       // server casts belongs to whichever principal made this request, even
       // if the host identifies or clears the visitor while it is in flight.
       const headers = getWidgetAuthHeaders()
-      const votedPostsKey = widgetQueryKeys.votedPosts.bySession(getSessionVersion())
+      const submittingSession = getSessionVersion()
+      const votedPostsKey = widgetQueryKeys.votedPosts.bySession(submittingSession)
+      const diagnostics = includeDiagnostics ? await captureHostDiagnostics() : undefined
+      if (getSessionVersion() !== submittingSession) {
+        setError('Your account changed. Please submit your feedback again.')
+        return
+      }
       const details = detailsRef.current
       const result = await widgetCreatePublicPostFn({
         data: {
@@ -793,6 +801,7 @@ export function WidgetHomeAnimated({
           content: (details?.html() ?? '').trim(),
           contentJson: details?.json() as TiptapContent | undefined,
           metadata: metadata ?? undefined,
+          diagnostics,
         },
         headers,
       })
@@ -996,6 +1005,10 @@ export function WidgetHomeAnimated({
                     transition={{ duration: 0.2, delay: 0.15 }}
                     className="border-t border-border bg-muted/30"
                   >
+                    <label className="flex items-start gap-2 px-3 pt-2 text-[11px] text-muted-foreground">
+                      <input type="checkbox" checked={includeDiagnostics} onChange={event => setIncludeDiagnostics(event.target.checked)} disabled={isSubmitting} className="mt-0.5" />
+                      <span>Include a page screenshot, browser details and recent errors for the team. Form inputs are hidden.</span>
+                    </label>
                     <div className="flex items-center justify-between px-3 py-2">
                       <p className="text-[11px] text-muted-foreground truncate me-2">
                         {submitNoAccess ? (
