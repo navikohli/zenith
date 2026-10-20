@@ -63,6 +63,7 @@ import { logger } from '@/lib/server/logger'
 import { isTestCustomer, notTestPrincipal } from '@/lib/server/test-data'
 import { resolveTestFeedbackActor } from '@/lib/server/test-customer-feedback'
 import { storeFeedbackDiagnostics } from './post.diagnostics'
+import { bindingForSubmission } from '@/lib/server/domains/feedback/products'
 
 const log = logger.child({ component: 'posts' })
 
@@ -249,6 +250,12 @@ export async function createPost(
       : contentHoldReason(portalConfig.moderationDefault, contentJson, `${title}\n${content}`)
     if (holdReason) moderationState = 'pending'
 
+    const productUserBindingId = await bindingForSubmission(
+      tx,
+      input.boardId,
+      author.principalId,
+      isTeamActor(actor)
+    )
     const [newPost] = await tx
       .insert(posts)
       .values({
@@ -261,6 +268,7 @@ export async function createPost(
         statusId,
         principalId: author.principalId,
         widgetMetadata,
+        productUserBindingId,
         customFieldValues,
         trackedByPrincipalId: input.trackedByPrincipalId ?? null,
         voteCount: 1,

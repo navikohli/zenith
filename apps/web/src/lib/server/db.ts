@@ -160,6 +160,10 @@ export const db: Database = new Proxy({} as Database, {
 // because Nitro's bundler has issues with nested barrel exports (export *)
 // that can cause "X is not defined" errors at runtime.
 export {
+  feedbackProducts,
+  productUserBindings,
+  feedbackWork,
+  jobQueue,
   // Schema tables - auth
   account,
   accountRelations,

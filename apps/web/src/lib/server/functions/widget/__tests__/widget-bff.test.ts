@@ -239,6 +239,27 @@ function expectWidgetAuthOnly() {
   expect(hoisted.getOptionalAuth).not.toHaveBeenCalled()
 }
 
+describe('widget merged links', () => {
+  it('loads the audience-checked canonical thread with the same viewer', async () => {
+    hoisted.run.fetchPublicPostDetail
+      .mockResolvedValueOnce({ id: 'post_old', mergeInfo: { canonicalPostId: 'post_canonical' } })
+      .mockResolvedValueOnce({ id: 'post_canonical', title: 'Live thread' })
+    const result = await widgetFetchPublicPostDetailFn({ data: { postId: 'post_old' } })
+    expect(result?.id).toBe('post_canonical')
+    expect(hoisted.run.fetchPublicPostDetail).toHaveBeenNthCalledWith(
+      2,
+      WIDGET_CTX,
+      expect.objectContaining({ postId: 'post_canonical' })
+    )
+  })
+  it('does not resolve a canonical destination when native audience checks hide merge info', async () => {
+    hoisted.run.fetchPublicPostDetail.mockResolvedValue({ id: 'post_old', mergeInfo: null })
+    const result = await widgetFetchPublicPostDetailFn({ data: { postId: 'post_old' } })
+    expect(result?.id).toBe('post_old')
+    expect(hoisted.run.fetchPublicPostDetail).toHaveBeenCalledTimes(1)
+  })
+})
+
 describe('widget BFF requireWidgetAuth endpoints', () => {
   const required: { name: string; call: () => Promise<unknown>; run: () => unknown }[] = [
     {

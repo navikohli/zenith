@@ -9,7 +9,7 @@
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import type { ReactNode } from 'react'
-import { act, render, screen, waitFor } from '@testing-library/react'
+import { act, render, screen, waitFor, fireEvent } from '@testing-library/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { IntlProvider } from 'react-intl'
 
@@ -33,10 +33,22 @@ vi.mock('../use-widget-image-upload', () => ({
   useWidgetImageUpload: () => ({ upload: vi.fn() }),
   useWidgetMediaUpload: () => ({ upload: vi.fn() }),
 }))
-vi.mock('../widget-vote-button', () => ({ WidgetVoteButton: () => null }))
+vi.mock('../widget-vote-button', () => ({
+  WidgetVoteButton: ({ postId }: { postId: string }) => (
+    <span data-testid="vote-post-id">{postId}</span>
+  ),
+}))
 vi.mock('../widget-comment-list', () => ({ WidgetCommentList: () => null }))
 vi.mock('../widget-comment-form', () => ({
-  WidgetCommentForm: () => <div data-testid="comment-form" />,
+  WidgetCommentForm: ({
+    onSubmit,
+  }: {
+    onSubmit: (content: string, json: null) => Promise<void>
+  }) => (
+    <button data-testid="comment-form" onClick={() => void onSubmit('Thanks for the update', null)}>
+      Post
+    </button>
+  ),
 }))
 vi.mock('../widget-skeletons', () => ({
   WidgetPostDetailSkeleton: () => <div data-testid="skeleton" />,
@@ -55,6 +67,7 @@ vi.mock('@/lib/server/functions/widget/posts', () => ({
 vi.mock('@/lib/server/functions/widget/comments', () => ({ widgetCreateCommentFn: vi.fn() }))
 
 import { WidgetPostDetail } from '../widget-post-detail'
+import { widgetCreateCommentFn } from '@/lib/server/functions/widget/comments'
 
 const detail = (id: string, title: string) => ({
   id,
@@ -123,5 +136,19 @@ describe('WidgetPostDetail — session re-key keeps the view mounted', () => {
 
     expect(screen.getByTestId('skeleton')).toBeTruthy()
     expect(screen.queryByText('First title')).toBeNull()
+  })
+
+  it('uses the resolved canonical thread for votes and new comments from an old link', async () => {
+    vi.mocked(widgetCreateCommentFn).mockResolvedValue({ comment: { id: 'comment_test' } } as never)
+    render(<WidgetPostDetail postId="post_old" statuses={[]} />, { wrapper })
+    await act(async () => pending[0].resolve(detail('post_canonical', 'Canonical title')))
+    await screen.findByText('Canonical title')
+    expect(screen.getByTestId('vote-post-id').textContent).toBe('post_canonical')
+    fireEvent.click(screen.getByTestId('comment-form'))
+    await waitFor(() =>
+      expect(widgetCreateCommentFn).toHaveBeenCalledWith(
+        expect.objectContaining({ data: expect.objectContaining({ postId: 'post_canonical' }) })
+      )
+    )
   })
 })

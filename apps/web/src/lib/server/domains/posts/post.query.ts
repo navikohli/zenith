@@ -61,6 +61,7 @@ export async function getPostWithDetails(postId: PostId): Promise<PostWithDetail
       content: true,
       contentJson: true,
       widgetMetadata: true,
+      productUserBindingId: true,
       principalId: true,
       statusId: true,
       ownerPrincipalId: true,

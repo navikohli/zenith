@@ -70,6 +70,7 @@ describe('event catalogue coverage', () => {
     'archived',
     // semantic (curated)
     'status_changed',
+    'deployed',
     'priority_changed',
     'assigned',
     'owner_assigned',

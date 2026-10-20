@@ -75,3 +75,4 @@ export * from './integration-sync'
 
 export * from './workspace-assistant'
 export * from './onboarding-emails'
+export * from './feedback'

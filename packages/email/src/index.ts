@@ -983,6 +983,41 @@ export async function sendStatusChangeEmail(params: SendStatusChangeParams): Pro
   })
 }
 
+/** A deployment receipt, rather than a status edit, triggers this reporter update. */
+export async function sendFeedbackDeploymentEmail(params: {
+  to: string
+  productName: string
+  appUrl: string
+  environment: string
+  sha: string
+  unsubscribeUrl: string
+}): Promise<EmailResult> {
+  return sendEmail({
+    to: params.to,
+    subject: `${params.productName}: your feedback update is available`,
+    react: createElement(
+      'div',
+      null,
+      createElement('h1', null, 'Your feedback helped improve ' + params.productName),
+      createElement(
+        'p',
+        null,
+        `The update is deployed to ${params.environment} and passed its smoke check.`
+      ),
+      createElement('p', null, `Build ${params.sha.slice(0, 12)}`),
+      createElement('a', { href: params.appUrl }, 'Open ' + params.productName),
+      createElement(
+        'p',
+        null,
+        createElement('a', { href: params.unsubscribeUrl }, 'Unsubscribe from this feedback')
+      )
+    ),
+    emailType: 'StatusChangeEmail',
+    extraHeaders: listUnsubscribeHeaders(params.unsubscribeUrl),
+    preview: { appUrl: params.appUrl, environment: params.environment, sha: params.sha },
+  })
+}
+
 // ============================================================================
 // New Comment Email
 // ============================================================================

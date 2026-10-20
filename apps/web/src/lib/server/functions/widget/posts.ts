@@ -47,7 +47,14 @@ export const widgetFetchPublicPostDetailFn = createServerFn({ method: 'GET' })
   .handler(async ({ data }) => {
     const { getOptionalWidgetAuth } = await import('../widget-auth')
     const { runFetchPublicPostDetail } = await import('../portal')
-    return runFetchPublicPostDetail(await getOptionalWidgetAuth(), data)
+    const auth = await getOptionalWidgetAuth()
+    const detail = await runFetchPublicPostDetail(auth, data)
+    // Merge info is audience-checked by the native service. Resolve the old
+    // widget link to the live thread so comments/votes use its canonical ID.
+    if (detail?.mergeInfo?.canonicalPostId) {
+      return runFetchPublicPostDetail(auth, { ...data, postId: detail.mergeInfo.canonicalPostId })
+    }
+    return detail
   })
 
 export const widgetFetchBoardCapabilitiesFn = createServerFn({ method: 'GET' }).handler(

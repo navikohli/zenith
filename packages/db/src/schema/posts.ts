@@ -10,6 +10,7 @@ import {
   customType,
   check,
   varchar,
+  uuid,
   foreignKey,
 } from 'drizzle-orm/pg-core'
 import { relations, sql } from 'drizzle-orm'
@@ -18,6 +19,7 @@ import { boards, postTags } from './boards'
 import { postStatuses } from './statuses'
 import { postExternalLinks } from './external-links'
 import { principal } from './auth'
+import { productUserBindings } from './feedback'
 import { MODERATION_STATES } from '../types'
 import type { CustomFieldValues, TiptapContent } from '../types'
 
@@ -93,6 +95,7 @@ export const posts = pgTable(
       .notNull(),
     // Key-value metadata attached by the widget SDK
     widgetMetadata: jsonb('widget_metadata').$type<Record<string, string>>(),
+    productUserBindingId: uuid('product_user_binding_id').references(() => productUserBindings.id),
     // Validated answers to the board's configured custom fields
     // (boards.settings.customFields), keyed by field key. Null when the board
     // configures no fields.
@@ -137,6 +140,7 @@ export const posts = pgTable(
       foreignColumns: [principal.id],
     }).onDelete('set null'),
     index('posts_status_id_idx').on(table.statusId),
+    index('posts_product_user_binding_idx').on(table.productUserBindingId),
     index('posts_owner_principal_id_idx').on(table.ownerPrincipalId),
     // Partial indexes on mostly-null audit columns: never filtered on directly,
     // but principal deletion RI-checks them per referencing table.

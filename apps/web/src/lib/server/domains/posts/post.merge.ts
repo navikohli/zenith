@@ -46,6 +46,7 @@ import type {
 import type { CommentTreeNode } from '@/lib/shared'
 import { logger } from '@/lib/server/logger'
 import { isTestPrincipalSql, notTestPrincipal } from '@/lib/server/test-data'
+import { lockFeedbackPosts, rejectActiveWork } from '@/lib/server/domains/feedback/work.guard'
 
 const log = logger.child({ component: 'post-merge' })
 
@@ -132,6 +133,7 @@ export async function mergePost(
     for (const lockId of lockIds) {
       await tx.execute(sql`SELECT pg_advisory_xact_lock(hashtext(${lockId}))`)
     }
+    await rejectActiveWork(tx, lockIds)
     const existingChild = await tx.query.posts.findFirst({
       where: and(eq(posts.canonicalPostId, duplicatePostId), isNull(posts.deletedAt)),
       columns: { id: true },
@@ -297,6 +299,8 @@ export async function unmergePost(
   // together so we never leave a canonical with an inflated vote count
   // for a duplicate that's been unlinked.
   const newVoteCount = await db.transaction(async (tx) => {
+    await lockFeedbackPosts(tx, [postId, canonicalPostId])
+    await rejectActiveWork(tx, [postId, canonicalPostId])
     await tx
       .update(posts)
       .set({

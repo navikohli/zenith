@@ -12,6 +12,7 @@ export const postStatusChanged = decl(
   S
 )
 export const postUpdated = decl('post.updated', 'post', { webhook: true, activity: A }, S)
+export const postDeployed = decl('post.deployed', 'post', { audit: true }, S)
 export const postDeleted = decl('post.deleted', 'post', { webhook: true, activity: A }, S)
 export const postRestored = decl('post.restored', 'post', { webhook: true, activity: A }, S)
 export const postMerged = decl('post.merged', 'post', { webhook: true, activity: A }, S)

@@ -33,6 +33,7 @@ export const TIMER_DRIVEN_EVENT_TYPES = [
 export const EVENT_TYPES = [
   'post.created',
   'post.status_changed',
+  'post.deployed',
   'post.updated',
   'post.deleted',
   'post.restored',
@@ -626,6 +627,10 @@ export interface PostStatusChangedEvent extends EventBase<'post.status_changed'>
   data: PostStatusChangedPayload
 }
 
+export interface PostDeployedEvent extends EventBase<'post.deployed'> {
+  data: { workId: string; productKey: string; environment: string; sha: string; artifact: string }
+}
+
 export interface PostUpdatedEvent extends EventBase<'post.updated'> {
   data: PostUpdatedPayload
 }
@@ -816,6 +821,7 @@ export interface ApprovalAppliedEvent extends EventBase<'approval.applied'> {
 export type EventData =
   | PostCreatedEvent
   | PostStatusChangedEvent
+  | PostDeployedEvent
   | PostUpdatedEvent
   | PostDeletedEvent
   | PostRestoredEvent

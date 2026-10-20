@@ -84,12 +84,14 @@ export function WidgetPostDetail({ postId, statuses }: WidgetPostDetailProps) {
     staleTime: 30 * 1000,
   })
 
+  // The BFF resolves old merged links; writes must follow the resolved thread too.
+  const resolvedPostId = post?.id ?? postId
   // "Show more comments" appends the next page into the same widget detail cache.
   const {
     loadMore: loadMoreComments,
     isLoading: isLoadingMoreComments,
     hasMore: hasMoreComments,
-  } = useLoadMoreWidgetComments(postId as PostId, detailKey, WIDGET_COMMENT_PAGE_SIZE)
+  } = useLoadMoreWidgetComments(resolvedPostId as PostId, detailKey, WIDGET_COMMENT_PAGE_SIZE)
 
   const status = post?.statusId ? (statuses.find((s) => s.id === post.statusId) ?? null) : null
 
@@ -111,18 +113,23 @@ export function WidgetPostDetail({ postId, statuses }: WidgetPostDetailProps) {
     async (content: string, contentJson: TiptapContent | null, parentId?: string) => {
       await ensureSessionThen(async () => {
         const result = await widgetCreateCommentFn({
-          data: { postId, content, contentJson: contentJson ?? undefined, parentId },
+          data: {
+            postId: resolvedPostId,
+            content,
+            contentJson: contentJson ?? undefined,
+            parentId,
+          },
           headers: getWidgetAuthHeaders(),
         })
         emitEvent('comment:created', {
-          postId,
+          postId: resolvedPostId,
           commentId: result.comment.id,
           parentId: parentId ?? null,
         })
         queryClient.invalidateQueries({ queryKey: widgetQueryKeys.postDetail.all })
       })
     },
-    [ensureSessionThen, emitEvent, postId, queryClient]
+    [ensureSessionThen, emitEvent, resolvedPostId, queryClient]
   )
 
   const handleSubmitReply = useCallback(
@@ -204,7 +211,7 @@ export function WidgetPostDetail({ postId, statuses }: WidgetPostDetailProps) {
         <div className="flex items-start gap-3">
           <div className="shrink-0 mt-0.5">
             <WidgetVoteButton
-              postId={postId as PostId}
+              postId={resolvedPostId as PostId}
               voteCount={post.voteCount}
               onBeforeVote={
                 canVote

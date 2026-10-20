@@ -401,6 +401,17 @@ export const JOB_DEFINITIONS: readonly JobDefinition[] = [
       import('@/lib/server/events/event-dispatch-queue').then((m) => m.runEventDispatch),
   },
   {
+    name: 'feedback-deployment-email',
+    concurrency: 2,
+    maxAttempts: 5,
+    retentionMs: 30 * DAY_MS,
+    failedRetentionMs: 30 * DAY_MS,
+    handler: () =>
+      import('@/lib/server/domains/feedback/notification').then(
+        (m) => m.sendDeploymentNotification
+      ),
+  },
+  {
     // One event's reactions that read state an earlier event left (SLA
     // clocks, pair-ticket reopen, CSAT confirm), queued in emit()'s
     // transaction. `concurrency: 1` runs them one at a time in enqueue order

@@ -82,6 +82,13 @@ const attachment = z.object({
 
 // --- post family ---
 export const P = {
+  'post.deployed': z.object({
+    workId: z.string().uuid(),
+    productKey: z.string(),
+    environment: z.string(),
+    sha: z.string().regex(/^[0-9a-f]{40}$/),
+    artifact: z.string(),
+  }),
   'post.created': z.looseObject({ post: postData }),
   'post.status_changed': z.looseObject({
     post: postRef,

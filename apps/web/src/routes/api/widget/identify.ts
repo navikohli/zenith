@@ -45,6 +45,7 @@ const identifySchema = z.object({
   ssoToken: z.string().min(1),
   // Anonymous→identified merge: previous widget session token
   previousToken: z.string().optional(),
+  parentOrigin: z.string().optional(),
 })
 
 /** JWT claims that are identity fields or standard JWT metadata — not custom attributes */
@@ -184,6 +185,18 @@ export const Route = createFileRoute('/api/widget/identify')({
           body = identifySchema.parse(raw)
         } catch {
           return jsonError('VALIDATION_ERROR', 'Invalid request body', 400)
+        }
+
+        // Registered products have separate keys and product-scoped subjects.
+        try {
+          const { identifyProduct } = await import('@/lib/server/domains/feedback/identity')
+          const result = await identifyProduct(request, body)
+          if (result) return result
+        } catch (error) {
+          const { handleDomainError } = await import('@/lib/server/domains/api/responses')
+          if (error instanceof z.ZodError)
+            return jsonError('TOKEN_INVALID', 'Invalid product identity claims', 403)
+          return handleDomainError(error)
         }
 
         // Verified-only: the HMAC-signed JWT from the customer's backend is the

@@ -352,7 +352,7 @@ export function WidgetAuthProvider({
   const [widgetMetadata, setWidgetMetadata] = useState<WidgetMetadata | null>(null)
 
   useEffect(() => {
-    async function handleIdentify(data: Record<string, unknown>) {
+    async function handleIdentify(data: Record<string, unknown>, parentOrigin: string) {
       try {
         // Capture current token before the identify call — if it's an anonymous
         // session, the server will merge its activity into the newly identified user.
@@ -369,7 +369,7 @@ export function WidgetAuthProvider({
         const response = await fetch('/api/widget/identify', {
           method: 'POST',
           headers,
-          body: JSON.stringify(payload),
+          body: JSON.stringify({ ...payload, parentOrigin }),
         })
 
         if (!response.ok) {
@@ -452,7 +452,7 @@ export function WidgetAuthProvider({
             break
           case 'identify':
             sessionSourceRef.current = 'sdk'
-            handleIdentify(msg.data as Record<string, unknown>)
+            handleIdentify(msg.data as Record<string, unknown>, event.origin)
             break
           case 'skip':
             // Portal session takes precedence — ack without changing state

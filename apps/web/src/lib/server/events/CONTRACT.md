@@ -14,7 +14,7 @@ checklist.
   timelines, backfill, and audit.
 - **verb** MUST come from the fixed vocabulary (CI-checked):
   - generic lifecycle: `created` · `updated` · `deleted` · `restored` · `archived`
-  - semantic (curated): `status_changed`, `assigned`, `owner_assigned`,
+  - semantic (curated): `status_changed`, `deployed` (a validated feedback deployment receipt), `assigned`, `owner_assigned`,
     `priority_changed`, `merged`, `unmerged`, `mentioned`, `published`,
     `replied`, `handed_off`, `resolved`, `csat_submitted`, `breached`, `voted`,
     `external_status_changed` (a linked tracker issue moved upstream),
