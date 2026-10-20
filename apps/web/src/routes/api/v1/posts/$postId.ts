@@ -63,6 +63,7 @@ export const Route = createFileRoute('/api/v1/posts/$postId')({
             title: post.title,
             content: contentJsonToMarkdown(post.contentJson, post.content),
             contentJson: post.contentJson,
+            widgetMetadata: post.widgetMetadata ?? null,
             voteCount: post.voteCount,
             commentCount: post.commentCount,
             boardId: post.boardId,

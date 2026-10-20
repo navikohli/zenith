@@ -59,6 +59,7 @@ export async function getPostWithDetails(postId: PostId): Promise<PostWithDetail
       title: true,
       content: true,
       contentJson: true,
+      widgetMetadata: true,
       principalId: true,
       statusId: true,
       ownerPrincipalId: true,

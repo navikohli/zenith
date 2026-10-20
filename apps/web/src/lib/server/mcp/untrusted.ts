@@ -203,6 +203,7 @@ const POST_DETAILS: UntrustedSpec = [
   'content',
   'authorName',
   'summaryJson',
+  'widgetMetadata',
   'mergedPosts[].title',
   'mergedPosts[].authorName',
   {

@@ -37,6 +37,8 @@ export interface PostDetails {
   title: string
   content: string
   contentJson?: unknown
+  /** App-supplied intake context. Staff-only and untrusted. */
+  widgetMetadata?: Record<string, string> | null
   statusId: PostStatusId | null
   voteCount: number
   hasVoted: boolean
